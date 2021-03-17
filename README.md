@@ -10,6 +10,8 @@ We are a network of researchers investigating hypotheses that involve generalizi
 
 ## The tools
 
+<img src="./Files/fig_workflow.png" width=500>
+
 #### Private materials shared within the network
 
  - [Slack](https://slack.com/intl/en-de/) group (private) for coordinated conversations that don’t clog up inboxes (can use Mattermost [open source] instead of Slack, but you have to host the conversations on your own server)
