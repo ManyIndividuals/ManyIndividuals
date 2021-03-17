@@ -20,7 +20,7 @@ We are a network of researchers investigating hypotheses that involve generalizi
  - [Keeper](https://keeper.mpdl.mpg.de) is an online data back up space with ready-made folders for each experiment. Experimenters upload data sheets and videos daily. File naming instructions are included in each protocol here at GitHub (IndividualID_YYYY-MM-DD_ExpName_SessionNumber_TrialNumber)
  
 #### Public materials
- - GitHub repository (public; this page that you are reading) for registered reports, final data sheets, bibliography, etc. Make one folder called “Files” and put everything in there except for your readme file using…
+ - GitHub repository (this page that you are reading) for registered reports, final data sheets, bibliography, etc. Make one folder called “Files” and put everything in there (except for the readme file) using…
  - [GitHub Desktop](https://desktop.github.com) to push and pull files between your computer and your GitHub repo using folders (you can make folders on your computer, but not at GitHub directly)
  - [Rmarkdown](https://rmarkdown.rstudio.com) (rmd) to write registered reports/articles and open them in [RStudio](https://rstudio.com) (e.g., https://github.com/corinalogan/grackles/blob/master/Files/Preregistrations/gxpopbehaviorhabitat.Rmd)
  - [Google Docs](https://www.google.com/docs/about/) to write experimental protocols and link to them in the registered reports and articles at GitHub (e.g., http://corinalogan.com/Preregistrations/gxpopbehaviorhabitat.html#Protocols_and_open_materials)
