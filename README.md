@@ -6,7 +6,7 @@ We are a network of researchers investigating hypotheses that involve generalizi
 
  - **Manipulating behavioral flexibility through serial reversal learning:** [protocol](https://docs.google.com/document/d/16hKGUNO1SpnXAT8DN_GXb56Aw6WzCraCIUKiP9gVI6o/edit?usp=sharing), [pseudorandomized option on left order](https://docs.google.com/spreadsheets/d/1B3-ZKd4nr_4gA91Pu2eUUBOriwW-V88VRgK9c1lDSjY/edit?usp=sharing), [instructions](https://docs.google.com/document/d/1QakS8TMe4WRv_QWKrHaWHyJSXbQwl8v9Y061SY914Wg/edit?usp=sharing) for interobserver reliability video coders who code 20% of the videos from the experiment
  - **Manipulating behavioral flexibility through what where when memory using foraging predictability:**
-     - **GPS tracking:** [protocol](https://docs.google.com/document/d/1ZOpkdxy5-wiGg7hYod-XaaBoOl53DsVQ3pwWoIdvrzk/edit?usp=sharing) radio tag attachment instructions, how to GPS track tagged and non-tagged individuals
+     - **GPS tracking:** [protocol](https://docs.google.com/document/d/1ZOpkdxy5-wiGg7hYod-XaaBoOl53DsVQ3pwWoIdvrzk/edit?usp=sharing) with radio tag attachment instructions and how to GPS track tagged and non-tagged individuals
 
 ## The tools: an open and verifiable workflow that makes research better and faster
 
