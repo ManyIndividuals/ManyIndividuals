@@ -27,7 +27,7 @@ We use several tools that allow us to make our research open and verifiable, whi
 
 #### Materials shared within the network
 
- - [Slack](https://slack.com/intl/en-de/) group (private) for coordinated conversations that don’t clog up inboxes (can use Mattermost [open source] instead of Slack, but you have to host the conversations on your own server)
+ - [Slack](https://slack.com/intl/en-de/) group for coordinated conversations that don’t clog up inboxes (can use Mattermost [open source] instead of Slack, but you have to host the conversations on your own server)
  - [Google Sheets](https://www.google.com/sheets/about/) for all data sheets so everyone can enter/edit/see everything at the same time. What to code in each column is clearly defined in the Protocol…
  - [Keeper](https://keeper.mpdl.mpg.de) is an online data back up space with ready-made folders for each experiment. Experimenters upload data sheets and videos daily. File naming instructions are included in each protocol here at GitHub (IndividualID_YYYY-MM-DD_ExpName_SessionNumber_TrialNumber)
 
