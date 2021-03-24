@@ -21,7 +21,7 @@ We are a network of researchers with field sites investigating hypotheses that i
 
 ## The tools: an open and verifiable workflow that makes research better and faster
 
-We use several tools that allow us to make our research open and verifiable, which also makes our research better and faster. This is the infrastructure we use, which is replicable so feel free to try it out!
+We use a replicable infrastructure where all programs are free to use (and some are open source) - feel free to try it out!
 
 <img src="./Files/fig_workflow.png" width=500>
 
@@ -38,7 +38,7 @@ We use several tools that allow us to make our research open and verifiable, whi
  - [Google Photos](https://photos.google.com) album for each lab so experimenters can add photos and everyone can access them for their presentations/articles/websites
  
 #### Public materials
- - GitHub repository (this page that you are reading) for registered reports, final data sheets, bibliography, etc. Make one folder called “Files” and put everything in there (except for the readme file) using…
+ - GitHub organization with a *public repository* (this page that you are reading) for registered reports, final data sheets, bibliography, etc., and a *private repository* for links to google sheets with the budget, receipt tracking, registered report subimission plan and data collected for each, the Slack workspace, and Google Drive folder. For each repository, make one folder called “Files” and put everything in there (except for the readme file) using…
  - [GitHub Desktop](https://desktop.github.com) to push and pull files between your computer and your GitHub repo using folders (you can make folders on your computer, but not at GitHub directly)
  - [Rmarkdown](https://rmarkdown.rstudio.com) (rmd) is a reproducible manuscript where we write registered reports/articles. Rmd files contain all of the analysis code and text in one document. Put data sheets at the public GitHub repository and call them in the R code inside the rmd file and then anyone anywhere can download your rmd file and run your analyses in the same way you did. Open rmd files in [RStudio](https://rstudio.com) (e.g., https://github.com/corinalogan/grackles/blob/master/Files/Preregistrations/gxpopbehaviorhabitat.Rmd)
  - [Google Docs](https://www.google.com/docs/about/) to write experimental protocols and link to them in the registered reports and articles at GitHub (e.g., http://corinalogan.com/Preregistrations/gxpopbehaviorhabitat.html#Protocols_and_open_materials)
