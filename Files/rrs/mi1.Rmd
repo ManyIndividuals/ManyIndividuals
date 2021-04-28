@@ -1,0 +1,180 @@
+---
+title: How to survive in the city
+author: 
+- '[Logan CJ](http://CorinaLogan.com)^1^'
+- '[Shaw R](https://thinkingbehaviour.org)^2^'
+- '[McCune KB](https://www.kelseymccune.com/)^3^'
+date: '`r Sys.Date()`'
+output:
+  pdf_document:
+    keep_tex: yes
+    latex_engine: xelatex
+  md_document: 
+    toc: true
+  html_document: 
+    toc: true
+    toc_depth: 5
+    toc_float: 
+      collapsed: false
+    code_folding: hide 
+  github_document: 
+    toc: true
+bibliography: mi.bib
+csl: https://raw.githubusercontent.com/corinalogan/grackles/master/Files/behavioral-ecology.csl
+header-includes:
+  - \usepackage[left]{lineno}
+  - \linenumbers
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+knitr::opts_chunk$set(tidy.opts=list(width.cutoff=60),tidy=TRUE) 
+#Make code wrap text so it doesn't go off the page when Knitting to PDF
+
+knitr::opts_chunk$set(echo = TRUE) 
+#sets global options to display code along with the results https://exeter-data-analytics.github.io/LitProg/r-markdown.html
+```
+
+##### Affiliations: 
+1) Max Planck Institute for Evolutionary Anthropology, Germany; 2) Victoria University of Wellington, New Zealand; 3) University of California Santa Barbara, USA. Corresponding authors: corina_logan@eva.mpg.de, rachael.shaw@vuw.ac.nz, kelseybmccune@gmail.com
+
+# ABSTRACT
+
+Human-modified environments are increasing, causing global changes that other species must adjust to or suffer from. Behavioral flexibility could be key: animals interact with their environment through behavior, making it crucial to an ecologically valid understanding of how species adjust to environmental changes [@lee2021animal]. One of the top priorities for behavioral research to maximize conservation progress is to determine which cognitive abilities and behaviors can predict the ability to adjust to human-modified environments and whether these can be manipulated [@moseby2016harnessing]. The rare research that manipulates behavior in a conservation context trains specific behaviors (e.g., predator recognition through predator exposure) to improve individual success in the wild [e.g., @moseby2012can; @west2018predator; @jolly2018out; @ross2019reversing; see review in @tetzlaff2019effects]. However, training a general cognitive ability, such as behavioral flexibility (i.e., the ability to rapidly adapt behavior to changes through learning), has the potential to change a whole suite of behaviors and more broadly influence success in adjusting to human-modified environments. This project asks whether flexibility can be increased, whether such an increase can help threatened species survive in a city, and whether survival information spreads faster through social learning in a global context. We explore whether it is even possible to take insights from highly divergent species and apply them to address critical conservation challenges, which pushes the limits in terms of understanding how conserved these abilities may be and to what extent they can be shaped by the environment. We aim to 1) conduct behavioral flexibility interventions in two flexible species that are successful in human-modified environments (great-tailed grackles and California scrub jays) to understand how flexibility relates to success and whether social learning increases the rate of behavioral change; and 2) implement the effective interventions in a threatened species (toutouwai) to determine whether flexibility as a generalizable cognitive ability can be trained and whether such training improves survival in human-modified environments. This project will significantly advance our understanding of the causes and consequences of flexibility, linking behavior to cognition and success in human-modified environments through a comparative framework.
+
+# INTRODUCTION
+
+
+
+# A. LEVEL OF DATA BLINDNESS
+
+This registered report was written (Jul 2021) prior to collecting any data (Level 6).
+
+# B. PROGRAMMATIC REGISTERED REPORT
+
+Multiple Stage 2 articles will result from this one Stage 1 registered report.
+
+# C. RESEARCH QUESTIONS
+
+## Q1: Can behavioral flexibility in species associated with human modified environments be increased? If so, does such an increase help threatened species survive in a city?
+
+**Prediction 1:** 
+
+**Prediction 1 alternative 1:** 
+
+
+## Q2: Does survival information spread faster through social learning?
+
+**Prediction 2:** 
+
+**Prediction 2 alternative 1:** 
+
+
+# D. METHODS
+
+## Planned Sample
+
+Reversal learning experiment: 20 individuals per species will be tested.	
+
+Foraging predictability experiment: 60 individuals per species will be tested.
+
+## Sample size rationale
+	
+
+## Data collection stopping rule
+	
+
+## Protocols and open materials
+
+  - Manipulating behavioral flexibility through serial reversal learning: [protocol](https://docs.google.com/document/d/16hKGUNO1SpnXAT8DN_GXb56Aw6WzCraCIUKiP9gVI6o/edit?usp=sharing), [pseudorandomized option on left order](https://docs.google.com/spreadsheets/d/1B3-ZKd4nr_4gA91Pu2eUUBOriwW-V88VRgK9c1lDSjY/edit?usp=sharing), [instructions](https://docs.google.com/document/d/1QakS8TMe4WRv_QWKrHaWHyJSXbQwl8v9Y061SY914Wg/edit?usp=sharing) for interobserver reliability video coders who code 20% of the videos from the experiment.
+
+  - Manipulating behavioral flexibility through what where when memory using foraging predictability:
+     - GPS tracking: [protocol](https://docs.google.com/document/d/1ZOpkdxy5-wiGg7hYod-XaaBoOl53DsVQ3pwWoIdvrzk/edit?usp=sharing) with radio tag attachment instructions and how to GPS track tagged and non-tagged individuals.
+
+## Open data
+
+The data will be published in the Knowledge Network for Biocomplexity's data repository.
+
+## Randomization and counterbalancing
+
+**Reversal learning:** The first rewarded color in reversal learning is counterbalanced across birds at each site. The rewarded option is pseudorandomized for side (and the option on the left is always placed first). Pseudorandomization consists of alternating location for the first two trials of a session and then keeping the same color on the same side for at most two consecutive trials thereafter. A list of all 88 unique trial sequences for a 10-trial session, following the pseudorandomization rules, will be generated in advance for experimenters to use during testing (e.g., a randomized trial sequence might look like: LRLLRRLRLR, where L and R refer to the location, left or right, of the rewarded tube). Randomized trial sequences will be assigned randomly to any given 10-trial session using a random number generator (random.org) to generate a number from 1-88.
+
+## Blinding during analysis
+
+Blinding is usually not involved in the final analyses because the experimenters collect the data (and therefore have seen some form of it) and run the analyses. Hypothesis- and data-blind video coders are recruited to conduct interobserver reliability of 20% of the videos for the reversal learning experiment.
+
+
+# E. ANALYSIS PLAN
+
+## Interobserver reliability of reversal learning
+
+To determine whether experimenters coded the dependent variables in a repeatable way, hypothesis-blind video coders will first be trained in video coding the dependent variables (reversal learning: whether the bird made the correct choice or not), requiring a Cohen's unweighted kappa of 0.90 or above to pass training. This threshold indicates that the two coders (the experimenter and the video coder) agree with each other to a high degree [kappa: @landis1977measurement, using the psych package in R @psych]. After passing training, the video coders will code 20% of the videos for each experiment and the unweighted kappa will be calculated to determine how objective and repeatable scoring was for each variable, while noting that the experimenter has the advantage over the video coder because watching the videos is not as clear as watching the bird participate in person. The unweighted kappa is used when analyzing a categorical variable where the distances between the numbers are meaningless (e.g., 0=incorrect choice, 1=correct choice, -1=did not participate).
+
+```{r ior, eval=FALSE, warning=FALSE, results='asis', echo=TRUE, include=TRUE}
+library(irr) #ICC package
+
+#### REVERSAL LEARNING
+
+# did video coder pass interobserver reliability training? 
+data <- read.csv("", header = TRUE, sep = ",", stringsAsFactors = FALSE)
+head(data)  #Check to make sure it looks right
+# Note: c(3,5) is telling R to look at columns 2 and 3 and compare them. Double check this:
+data[,3] #coder 1 (live coder)
+data[,5] #coder 2 (video coder)
+cohen.kappa(data[,c(3,5)], w=NULL,n.obs=NULL,alpha=.05,levels=NULL) 
+
+# video coder score for 20% of videos =  
+data <- read.csv("", header = TRUE, sep = ",", stringsAsFactors = FALSE)
+head(data)  #Check to make sure it looks right
+# Note: c(3,5) is telling R to look at columns 2 and 3 and compare them. Double check this:
+data[,3] #coder 1 (live coder)
+data[,5] #coder 2 (video coder)
+cohen.kappa(data[,c(3,5)], w=NULL,n.obs=NULL,alpha=.05,levels=NULL) 
+```
+
+
+## Q1: Can flexibility be increased?
+
+*Response variable:* whether the bird chose the rewarded or unrewarded color per trial
+
+
+## Q2: Does info spread faster through social learning?
+
+*Response variable:*
+
+*Explanatory variables:*
+
+
+# F. ETHICS
+
+This research is carried out in accordance with permits from the:
+
+1) US Fish and Wildlife Service (scientific collecting permit number MB76700A-0,1,2)
+2) US Geological Survey Bird Banding Laboratory (federal bird banding permit number 23872)
+3) Institutional Animal Care and Use Committee at Arizona State University (protocol number 17-1594R)
+4) California Department of Fish and Wildlife (scientific collecting permit [specific use] number S‐192100001‐19210‐001)
+
+
+# G. AUTHOR CONTRIBUTIONS
+
+**Logan:** Hypothesis development, data collection, data analysis and interpretation, write up, revising/editing, materials/funding.
+
+**Shaw:** Hypothesis development, data collection, data analysis and interpretation, write up, revising/editing, materials/funding.
+
+**McCune:** Hypothesis development, data collection, data analysis and interpretation, write up, revising/editing.
+
+
+# H. FUNDING
+
+This research is funded by the Department of Human Behavior, Ecology and Culture at the Max Planck Institute for Evolutionary Anthropology.
+
+
+# I. CONFLICT OF INTEREST DISCLOSURE
+
+We, the authors, declare that we have no financial conflicts of interest with the content of this article. CJ Logan is a co-founder of and on the Managing Board at PCI Registered Reports.
+
+# J. ACKNOWLEDGEMENTS
+
+We thank Richard McElreath at the Max Planck Institute for Evolutionary Anthropology for project support.
+
+# K. REFERENCES
