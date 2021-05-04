@@ -6,25 +6,32 @@ author:
 - '[McCune KB](https://www.kelseymccune.com/)^3^'
 date: '`r Sys.Date()`'
 output:
-  pdf_document:
-    keep_tex: yes
-    latex_engine: xelatex
-  md_document: 
-    toc: true
   html_document: 
     toc: true
     toc_depth: 5
     toc_float: 
       collapsed: false
     code_folding: hide 
+  md_document: 
+    toc: true
+  pdf_document:
+    keep_tex: yes
+    latex_engine: xelatex
   github_document: 
     toc: true
 bibliography: mi.bib
 csl: https://raw.githubusercontent.com/corinalogan/grackles/master/Files/behavioral-ecology.csl
+urlcolor: blue
 header-includes:
   - \usepackage[left]{lineno}
   - \linenumbers
 ---
+
+Open... ![](logoOpenAccess.png){width=5%} access ![](logoOpenCode.png){width=5%} [code](https://github.com/ManyIndividuals/ManyIndividuals/blob/main/Files/rrs/mi1.Rmd)
+
+&nbsp;
+
+**Affiliations:** 1) Max Planck Institute for Evolutionary Anthropology, Germany; 2) Victoria University of Wellington, New Zealand; 3) University of California Santa Barbara, USA. Corresponding authors: corina_logan@eva.mpg.de, rachael.shaw@vuw.ac.nz, kelseybmccune@gmail.com
 
 ```{r setup, include=FALSE}
 library(knitr)
@@ -35,8 +42,7 @@ knitr::opts_chunk$set(echo = TRUE)
 #sets global options to display code along with the results https://exeter-data-analytics.github.io/LitProg/r-markdown.html
 ```
 
-##### Affiliations: 
-1) Max Planck Institute for Evolutionary Anthropology, Germany; 2) Victoria University of Wellington, New Zealand; 3) University of California Santa Barbara, USA. Corresponding authors: corina_logan@eva.mpg.de, rachael.shaw@vuw.ac.nz, kelseybmccune@gmail.com
+&nbsp;
 
 # ABSTRACT
 
