@@ -1,22 +1,22 @@
 ---
-title: How to survive in the city
+title: How to survive in human modified environments
 author: 
 - '[Logan CJ](http://CorinaLogan.com)^1^'
 - '[Shaw R](https://thinkingbehaviour.org)^2^'
-- '[McCune KB](https://www.kelseymccune.com/)^3^'
+- '[McCune KB](https://www.kelseymccune.com/)^1,3^'
 date: '`r Sys.Date()`'
 output:
-  pdf_document:
-    keep_tex: yes
-    latex_engine: xelatex
-  md_document: 
-    toc: true
   html_document: 
     toc: true
     toc_depth: 5
     toc_float: 
       collapsed: false
     code_folding: hide 
+  md_document: 
+    toc: true
+  pdf_document:
+    keep_tex: yes
+    latex_engine: xelatex
   github_document: 
     toc: true
 bibliography: mi.bib
@@ -52,11 +52,17 @@ Human-modified environments are increasing, causing global changes that other sp
 
 # INTRODUCTION
 
+Human-modified environments are increasing, causing global changes that other species must adjust to or suffer from. Behavioral flexibility could be key: animals interact with their environment through behavior, making it crucial to an ecologically valid understanding of how species adjust to environmental changes [@lee2021animal]. One of the top priorities for behavioral research to maximize conservation progress is to determine which cognitive abilities and behaviors can predict the ability to adjust to human-modified environments and whether these can be manipulated [@moseby2016harnessing]. The rare research that manipulates behavior in a conservation context trains specific behaviors (e.g., predator recognition through predator exposure) to improve individual success in the wild [e.g., @moseby2012can; @west2018predator; @jolly2018out; @ross2019reversing; see review in @tetzlaff2019effects]. However, training a general cognitive ability, such as behavioral flexibility (i.e., the ability to rapidly adapt behavior to changes through learning), has the potential to change a whole suite of behaviors and more broadly influence success in adjusting to human-modified environments. 
 
+CORINA INSERT theory about unpredictable environments being associated with flexibility Mikhalevich et al 2017
+
+EXPLAIN what we mean by survival: improved foraging efficiency/breadth/problem solving/search strategies / dispersal into human modified environments
+
+This investigation asks whether flexibility can be increased, whether such an increase can help threatened species survive in a city, and whether survival information spreads faster through social learning in a global context. We explore whether it is even possible to take insights from highly divergent species and apply them to address critical conservation challenges, which pushes the limits in terms of understanding how conserved these abilities may be and to what extent they can be shaped by the environment. We aim to 1) conduct behavioral flexibility interventions in two flexible species that are successful in human-modified environments (great-tailed grackles and California scrub jays) to understand how flexibility relates to success and whether social learning increases the rate of behavioral change; and 2) implement the effective interventions in a threatened species (toutouwai) to determine whether flexibility as a generalizable cognitive ability can be trained and whether such training improves survival in human-modified environments. This project will significantly advance our understanding of the causes and consequences of flexibility, linking behavior to cognition and success in human-modified environments through a comparative framework.
 
 # A. LEVEL OF DATA BLINDNESS
 
-This registered report was written (Jul 2021) prior to collecting any data (Level 6).
+This registered report was written (Jul 2021) prior to collecting any data (Level 6 at PCI RR).
 
 # B. PROGRAMMATIC REGISTERED REPORT
 
@@ -64,40 +70,74 @@ Multiple Stage 2 articles will result from this one Stage 1 registered report.
 
 # C. RESEARCH QUESTIONS
 
-## Q1: Can behavioral flexibility in species associated with human modified environments be increased? If so, does such an increase help threatened species survive in a city?
+## Q1: Can behavioral flexibility in species associated with human modified environments be increased? If so, does such an increase help species survive in human modified environments? 
 
-**Prediction 1:** 
+**Prediction 1:** Flexibility can be increased in species associated with human modified environments and in threatened species, and such an increase improves the likelihood of survival in human modified environments. This would indicate that the abilities involved in tracking changing resources in the environment (flexibility) are the same as or related to the abilities involved in living in human modified environments (survival). It would also indicate that flexibility is trainable and that such training could be a useful conservation tool.
 
-**Prediction 1 alternative 1:** 
+**Prediction 1 alternative 1:** Flexibility can be increased in species associated with human modified environments and in threatened species, but such an increase **does not improve the likelihood of survival** in human modified environments. This would indicate that species associated with human modified environments form this association for reasons other than their flexibility, and that threatened species are likely not very successful in human modified environments (survival) for reasons unrelated to their ability to change their behavior with changing circumstances (flexibility).
+
+**Prediction 1 alternative 2:** Flexibility can be increased in species associated with human modified environments, but **not in threatened species**. This would indicate that threatened species are likely not very successful in human modified environments (survival) because of their inability to change their behavior with changing circumstances (flexibility), and that flexibility is not trainable in these species.
+
+**Prediction 1 alternative 3:** Flexibility can be increased in **some (but not all) species** associated with human modified environments and in some (but not all) threatened species. This would indicate that flexibility manipulations may not work for all species, and that the effectiveness of such experiments should first be tested in the species of interest before including such an intervention in a conservation plan.
+
+**Prediction 1 alternative 4:** Flexibility **can not be increased in species associated with human modified environments**, but **can in threatened species**. This could indicate that species associated with human modified environments might have used flexibility in the past when originally forming the association, but the need to maintain flexibility in their repertoire is no longer necessary. Whereas, threatened species could experience a survival benefit by changing their behavior according to changing circumstances, therefore flexibility is worth incorporating into their repertoire.
+
+**Prediction 1 alternative 5:** Flexibility **can not be increased** in species associated with human modified environments or in threatened species. This would indicate that flexibility manipulations are not a useful conservation tool.
+
+**Prediction 1 alternative 6:** Any change (or lack thereof) in **flexibility is not associated with the likelihood of survival** in human modified environments. This would indicate that the abilities involved in tracking changing resources in the environment (flexibility) and are independent of the abilities involved in living in human modified environments (survival).
 
 
 ## Q2: Does survival information spread faster through social learning?
 
-**Prediction 2:** 
+**Prediction 2:** Individuals (observers) who learn about resources by watching those individuals (demonstrators) who were in the flexibility manipulation, are **faster** to use such resources than observers who were not exposed to demonstrators.
 
-**Prediction 2 alternative 1:** 
+**Prediction 2 alternative 1:** Individuals (observers) who learn about resources by watching those individuals (demonstrators) who were in the flexibility manipulation, are **slower** to use such resources than observers who were not exposed to demonstrators.
+
+**Prediction 2 alternative 2:** Individuals (observers) who learn about resources by watching those individuals (demonstrators) who were in the flexibility manipulation, **do not differ** in their use of such resources compared with observers who were not exposed to demonstrators.
 
 
 # D. METHODS
 
 ## Planned Sample
 
-Reversal learning experiment: 20 individuals per species will be tested.	
+**Reversal learning experiment:** 20 individuals per population will be tested (50% in the control condition, 50% in the flexibility manipulation condition).	
 
-Foraging predictability experiment: 60 individuals per species will be tested.
+**Foraging predictability experiments:** 60 individuals per population will be tested (50% in the control condition, 50% in the flexibility manipulation condition).
 
 ## Sample size rationale
-	
+
+**Reversal learning experiment:** the minimum sample size of 20 was determined using Bayesian simulations in Logan et al. [2020](http://corinalogan.com/Preregistrations/gxpopbehaviorhabitat.html#Q1:_behavior_across_the_range).
+
+**Foraging predictability experiments:** the minimum sample size of 60 was determined using G*Power for a similar analysis in McCune et al. [2020](http://corinalogan.com/Preregistrations/gspaceuse.html#H2:_P2_-_Space_use_behaviors_vary_among_populations_across_the_range).
 
 ## Data collection stopping rule
-	
+
+Data collection will be stopped when the minimum sample size is reached or when the season in which the minimum sample size is reached comes to an end.
 
 ## Protocols and open materials
 
-  - Manipulating behavioral flexibility through serial reversal learning: [protocol](https://docs.google.com/document/d/16hKGUNO1SpnXAT8DN_GXb56Aw6WzCraCIUKiP9gVI6o/edit?usp=sharing), [pseudorandomized option on left order](https://docs.google.com/spreadsheets/d/1B3-ZKd4nr_4gA91Pu2eUUBOriwW-V88VRgK9c1lDSjY/edit?usp=sharing), [instructions](https://docs.google.com/document/d/1QakS8TMe4WRv_QWKrHaWHyJSXbQwl8v9Y061SY914Wg/edit?usp=sharing) for interobserver reliability video coders who code 20% of the videos from the experiment.
+Only one of the following experiments (reversal learning or one of the foraging predictability options) must be conducted per population to be able to test the hypotheses in this registered report. Conducting more than one of these experiments per population is acceptable, but not necessary.
 
-  - Manipulating behavioral flexibility through what where when memory using foraging predictability:
-     - GPS tracking: [protocol](https://docs.google.com/document/d/1ZOpkdxy5-wiGg7hYod-XaaBoOl53DsVQ3pwWoIdvrzk/edit?usp=sharing) with radio tag attachment instructions and how to GPS track tagged and non-tagged individuals.
+### Flexibility manipulation
+
+**Reversal learning experiment:** [protocol](https://docs.google.com/document/d/16hKGUNO1SpnXAT8DN_GXb56Aw6WzCraCIUKiP9gVI6o/edit?usp=sharing), [pseudorandomized option on left order](https://docs.google.com/spreadsheets/d/1B3-ZKd4nr_4gA91Pu2eUUBOriwW-V88VRgK9c1lDSjY/edit?usp=sharing), [instructions](https://docs.google.com/document/d/1QakS8TMe4WRv_QWKrHaWHyJSXbQwl8v9Y061SY914Wg/edit?usp=sharing) for interobserver reliability video coders who video code 20% of the individuals inthe experiment.
+
+**Foraging predictability experiment:** We present a few experimental design options to make this experiment testable in a wider range of species and field sites.
+  
+  - Option 1 - Manipulating behavioral flexibility through what where when memory using foraging predictability:
+     - GPS tracking: [protocol for radio telemetry](https://docs.google.com/document/d/1ZOpkdxy5-wiGg7hYod-XaaBoOl53DsVQ3pwWoIdvrzk/edit?usp=sharing) with radio tag attachment instructions and how to GPS track tagged and non-tagged individuals.
+  
+  - Option 2 - ?
+  
+  - Social learning data collection: are observers more likely to touch a feeder or attempt to solve it faster if they see another (demonstrator) touch the feeder compared with observers who don't see demonstrators?
+
+### Assessment of survival likelihood with regard to the flexibility manipulation
+
+Compare control individuals with individuals in the flexibility manipulation using one or more of the following measures. If possible, also conduct within individual comparisons of the selected measures (e.g., predictability of space use) in the control and manipulation groups before and after the flexibility manipulation.
+
+ - Fitness measures: nest success, number of offspring who survived to independence or adulthood, longevity
+ - Foraging measures: diet breadth, number of foraging techniques used
+ - Space use measures: predictability of space use (e.g., step length and turning angles), ability to disperse from a non-human modified environment to a human modified environment (assess success/survival after disperal if possible)
 
 ## Open data
 
@@ -105,7 +145,9 @@ The data will be published in the Knowledge Network for Biocomplexity's data rep
 
 ## Randomization and counterbalancing
 
-**Reversal learning:** The first rewarded color in reversal learning is counterbalanced across birds at each site. The rewarded option is pseudorandomized for side (and the option on the left is always placed first). Pseudorandomization consists of alternating location for the first two trials of a session and then keeping the same color on the same side for at most two consecutive trials thereafter. A list of all 88 unique trial sequences for a 10-trial session, following the pseudorandomization rules, will be generated in advance for experimenters to use during testing (e.g., a randomized trial sequence might look like: LRLLRRLRLR, where L and R refer to the location, left or right, of the rewarded tube). Randomized trial sequences will be assigned randomly to any given 10-trial session using a random number generator (random.org) to generate a number from 1-88.
+**Reversal learning experiment:** Individuals will be randomly assigned to the control and flexibility manipulation conditions using a random number generator (random.org). The first rewarded color in reversal learning is counterbalanced across birds at each site. The rewarded option is pseudorandomized for side (and the option on the left is always placed first). Pseudorandomization consists of alternating location for the first two trials of a session and then keeping the same color on the same side for at most two consecutive trials thereafter. A list of all 88 unique trial sequences for a 10-trial session, following the pseudorandomization rules, will be generated in advance for experimenters to use during testing (e.g., a randomized trial sequence might look like: LRLLRRLRLR, where L and R refer to the location, left or right, of the rewarded tube). Randomized trial sequences will be assigned randomly to any given 10-trial session using a random number generator (random.org) to generate a number from 1-88.
+
+**Foraging predictability experiment:** Individuals will be randomly assigned to the control and flexibility manipulation conditions using a random number generator (random.org).
 
 ## Blinding during analysis
 
