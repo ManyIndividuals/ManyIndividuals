@@ -5,6 +5,7 @@ author:
 - '[Shaw R](https://thinkingbehaviour.org)^2^'
 - '[McCune KB](https://www.kelseymccune.com/)^1,3^'
 date: '`r Sys.Date()`'
+always_allow_html: yes
 output:
   html_document: 
     toc: true
@@ -20,7 +21,7 @@ output:
   github_document: 
     toc: true
 bibliography: mi.bib
-csl: https://raw.githubusercontent.com/corinalogan/grackles/master/Files/behavioral-ecology.csl
+csl: https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl
 urlcolor: blue
 header-includes:
   - \usepackage[left]{lineno}
@@ -52,13 +53,23 @@ Human-modified environments are increasing, causing global changes that other sp
 
 # INTRODUCTION
 
-Human-modified environments are increasing, causing global changes that other species must adjust to or suffer from. Behavioral flexibility could be key: animals interact with their environment through behavior, making it crucial to an ecologically valid understanding of how species adjust to environmental changes [@lee2021animal]. One of the top priorities for behavioral research to maximize conservation progress is to determine which cognitive abilities and behaviors can predict the ability to adjust to human-modified environments and whether these can be manipulated [@moseby2016harnessing]. The rare research that manipulates behavior in a conservation context trains specific behaviors (e.g., predator recognition through predator exposure) to improve individual success in the wild [e.g., @moseby2012can; @west2018predator; @jolly2018out; @ross2019reversing; see review in @tetzlaff2019effects]. However, training a general cognitive ability, such as behavioral flexibility (i.e., the ability to rapidly adapt behavior to changes through learning), has the potential to change a whole suite of behaviors and more broadly influence success in adjusting to human-modified environments. 
+Human-modified environments are increasing, causing global changes that other species must adjust to or suffer from. Behavioral flexibility (hereafter "flexibility") could be key: animals interact with their environment through behavior, making it crucial to an ecologically valid understanding of how species adjust to environmental changes [@lee2021animal]. One of the top priorities for behavioral research to maximize conservation progress is to determine which cognitive abilities and behaviors can predict the ability to adjust to human modified environments and whether these can be manipulated [@moseby2016harnessing]. The rare research that manipulates behavior in a conservation context trains specific behaviors (e.g., predator recognition through predator exposure) to improve individual success in the wild [e.g., @moseby2012can; @west2018predator; @jolly2018out; @ross2019reversing; see review in @tetzlaff2019effects]. However, training a general cognitive ability, such as flexibility (i.e., the ability to rapidly adapt behavior to changes through learning), has the potential to change a whole suite of behaviors and more broadly influence success in adjusting to human modified environments. 
 
-CORINA INSERT theory about unpredictable environments being associated with flexibility Mikhalevich et al 2017
+Environments where informational cues about resources vary in a heterogenous (but non-random) way across space and time are hypothesized to open a pathway for species to functionally detect and react to such cues via flexibility [@mikhalevich_is_2017]. Human modified environments likely provide a different set of informational cues that vary heterogeneously across space and time, and the species that are successful in such environments are likely those who are able to detect and track such cues. For example, great-tailed grackles appear to follow garbage trucks on garbage day where they forage on the spillage from the garbage bags [@Rodrigo2021gtgr]. Attending to garbage trucks, potentially across space and time, is an example of how flexibility can help individuals meet foraging needs in the context of changing environmental cues. **KELSEY and RACHAEL, do you have examples you want to add for your species?** Because heterogeneous environments are hypothesized to select for flexibility, we expect that experimentally manipulating environments to be more hetereogenous will result in an increase in flexibility in individuals, which will then increase their success and survival in such environments. Success and survival can relate to any number of variables regarding the usage of and investment in resources, from improved foraging efficiency to increased dispersal into human modified environments to placing nests in more protective locations. Measures of success and survival depend on the particular species in their particular environment. 
 
-EXPLAIN what we mean by survival: improved foraging efficiency/breadth/problem solving/search strategies / dispersal into human modified environments
+This investigation asks whether flexibility can be increased by experimentally increasing environmental heterogeneity, whether such an increase can help species survive in human modified environments, and whether survival information spreads faster through social learning. We explore whether it is even possible to take insights from highly divergent species and apply them to address critical conservation challenges, which pushes the limits in terms of understanding how conserved these abilities may be and to what extent they can be shaped by the environment. We aim to 1) conduct behavioral flexibility interventions in two flexible species that are successful in human modified environments (great-tailed grackles and California scrub jays) to understand how flexibility relates to success and whether social learning increases the rate of behavioral change; and 2) implement the effective interventions in a threatened species (toutouwai) to determine whether flexibility as a generalizable cognitive ability can be trained and whether such training improves survival in human modified environments. The results will significantly advance our understanding of the causes and consequences of flexibility, linking behavior to environmental change,cognition, and success in human modified environments through a comparative framework.
 
-This investigation asks whether flexibility can be increased, whether such an increase can help threatened species survive in a city, and whether survival information spreads faster through social learning in a global context. We explore whether it is even possible to take insights from highly divergent species and apply them to address critical conservation challenges, which pushes the limits in terms of understanding how conserved these abilities may be and to what extent they can be shaped by the environment. We aim to 1) conduct behavioral flexibility interventions in two flexible species that are successful in human-modified environments (great-tailed grackles and California scrub jays) to understand how flexibility relates to success and whether social learning increases the rate of behavioral change; and 2) implement the effective interventions in a threatened species (toutouwai) to determine whether flexibility as a generalizable cognitive ability can be trained and whether such training improves survival in human-modified environments. This project will significantly advance our understanding of the causes and consequences of flexibility, linking behavior to cognition and success in human-modified environments through a comparative framework.
+**Great-tailed grackles (Quiscalus mexicanus)** are flexible [@logan2016flexibilityproblem; @logan2019flexmanip], highly associated with human modified environments, and have been rapidly expanding their geographic range across North America over the past 140 years [@wehtje2003range].
+
+**Jay** paragraph
+
+**Toutouwai** paragraph
+
+
+<img width="100%" src="Fig3spp.png">
+
+**Figure 1.** Comparing the three species involved in this investigation relative to their geographic range, listed status, and success in human modified habitats.
+
 
 # A. LEVEL OF DATA BLINDNESS
 
