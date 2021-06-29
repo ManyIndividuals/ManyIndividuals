@@ -49,37 +49,35 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # ABSTRACT
 
-Human-modified environments are increasing, causing global changes that other species must adjust to or suffer from. Behavioral flexibility could be key: animals interact with their environment through behavior, making it crucial to an ecologically valid understanding of how species adjust to environmental changes [@lee2021animal]. One of the top priorities for behavioral research to maximize conservation progress is to determine which cognitive abilities and behaviors can predict the ability to adjust to human-modified environments and whether these can be manipulated [@moseby2016harnessing]. The rare research that manipulates behavior in a conservation context trains specific behaviors (e.g., predator recognition through predator exposure) to improve individual success in the wild [e.g., @moseby2012can; @west2018predator; @jolly2018out; @ross2019reversing; see review in @tetzlaff2019effects]. However, training a general cognitive ability, such as behavioral flexibility (i.e., the ability to rapidly adapt behavior to changes through learning), has the potential to change a whole suite of behaviors and more broadly influence success in adjusting to human-modified environments. This project asks whether flexibility can be increased, whether such an increase can help threatened species survive in a city, and whether survival information spreads faster through social learning in a global context. We explore whether it is even possible to take insights from highly divergent species and apply them to address critical conservation challenges, which pushes the limits in terms of understanding how conserved these abilities may be and to what extent they can be shaped by the environment. We aim to 1) conduct behavioral flexibility interventions in two flexible species that are successful in human-modified environments (great-tailed grackles and California scrub jays) to understand how flexibility relates to success and whether social learning increases the rate of behavioral change; and 2) implement the effective interventions in a threatened species (toutouwai) to determine whether flexibility as a generalizable cognitive ability can be trained and whether such training improves survival in human-modified environments. This project will significantly advance our understanding of the causes and consequences of flexibility, linking behavior to cognition and success in human-modified environments through a comparative framework.
+Human modified environments are increasing, causing global changes that other species must adjust to or suffer from. Behavioral flexibility (hereafter 'flexibility') could be key: individuals interact with their environment through behavior, making it crucial to an ecologically valid understanding of how species adjust to environmental changes. One of the top priorities for behavioral research to maximize conservation progress is to determine which cognitive abilities and behaviors can predict the ability to adjust to human modified environments and whether these can be manipulated. The rare research that manipulates behavior in a conservation context trains specific behaviors (e.g., predator recognition through predator exposure) to improve individual success in the wild. However, training a general cognitive ability, such as behavioral flexibility (i.e., the ability to rapidly adapt behavior to changes through learning), has the potential to change a whole suite of behaviors and more broadly influence success in adjusting to human modified environments. This project asks whether flexibility can be increased by experimentally increasing environmental heterogeneity, whether such an increase can help species survive in human modified environments, and whether survival information spreads faster through social learning. We explore whether it is even possible to take insights from highly divergent species and apply them to address critical conservation challenges, which pushes the limits in terms of understanding how conserved these abilities may be and to what extent they can be shaped by the environment. We aim to 1) conduct flexibility interventions in two flexible species that are successful in human modified environments (great-tailed grackles and California scrub jays) to understand how flexibility relates to success and whether social learning increases the rate of behavioral change; and 2) implement the effective interventions in a threatened species (toutouwai) to determine whether flexibility as a generalizable cognitive ability can be trained and whether such training improves survival in human-modified environments. This research will significantly advance our understanding of the causes and consequences of flexibility, linking behavior to environmental change, cognition, and success in human modified environments through a comparative and global framework.
 
 # INTRODUCTION
 
-Human-modified environments are increasing, causing global changes that other species must adjust to or suffer from. Behavioral flexibility (hereafter "flexibility") could be key: animals interact with their environment through behavior, making it crucial to an ecologically valid understanding of how species adjust to environmental changes [@lee2021animal]. One of the top priorities for behavioral research to maximize conservation progress is to determine which cognitive abilities and behaviors can predict the ability to adjust to human modified environments and whether these can be manipulated [@moseby2016harnessing]. The rare research that manipulates behavior in a conservation context trains specific behaviors (e.g., predator recognition through predator exposure) to improve individual success in the wild [e.g., @moseby2012can; @west2018predator; @jolly2018out; @ross2019reversing; see review in @tetzlaff2019effects]. However, training a general cognitive ability, such as flexibility (i.e., the ability to rapidly adapt behavior to changes through learning), has the potential to change a whole suite of behaviors and more broadly influence success in adjusting to human modified environments. 
+Human modified environments are increasing [@liu2020high], causing global changes that other species must adjust to or suffer from [@alberti2015eco]. Behavioral flexibility (hereafter 'flexibility') could be key: individuals interact with their environment through behavior, making it crucial to an ecologically valid understanding of how species adjust to environmental changes [@lee2021animal]. One of the top priorities for behavioral research to maximize conservation progress is to determine which cognitive abilities and behaviors can predict the ability to adjust to human modified environments and whether these can be manipulated [@moseby2016harnessing]. The rare research that manipulates behavior in a conservation context usually focuses on training specific behaviors (e.g., predator recognition through predator exposure) to improve individual success in the wild [e.g., @moseby2012can; @west2018predator; @jolly2018out; @ross2019reversing; see review in @tetzlaff2019effects]. However, training a general cognitive ability, such as flexibility -- the ability to rapidly adapt behavior to changes through learning throughout the lifetime [see the theory behind this definition in @mikhalevich_is_2017] -- has the potential to change a whole suite of behaviors and more broadly influence success in adjusting to human modified environments. 
 
 Environments where informational cues about resources vary in a heterogenous (but non-random) way across space and time are hypothesized to open a pathway for species to functionally detect and react to such cues via flexibility [@mikhalevich_is_2017]. Human modified environments likely provide a different set of informational cues that vary heterogeneously across space and time, and the species that are successful in such environments are likely those who are able to detect and track such cues. For example, great-tailed grackles appear to follow garbage trucks on garbage day where they forage on the spillage from the garbage bags [@Rodrigo2021gtgr]. Attending to garbage trucks, potentially across space and time, is an example of how flexibility can help individuals meet foraging needs in the context of changing environmental cues. **KELSEY and RACHAEL, do you have examples you want to add for your species?** Because heterogeneous environments are hypothesized to select for flexibility, we expect that experimentally manipulating environments to be more hetereogenous will result in an increase in flexibility in individuals, which will then increase their success and survival in such environments. Success and survival can relate to any number of variables regarding the usage of and investment in resources, from improved foraging efficiency to increased dispersal into human modified environments to placing nests in more protective locations. Measures of success and survival depend on the particular species in their particular environment. 
 
-This investigation asks whether flexibility can be increased by experimentally increasing environmental heterogeneity, whether such an increase can help species survive in human modified environments, and whether survival information spreads faster through social learning. We explore whether it is even possible to take insights from highly divergent species and apply them to address critical conservation challenges, which pushes the limits in terms of understanding how conserved these abilities may be and to what extent they can be shaped by the environment. We aim to 1) conduct behavioral flexibility interventions in two flexible species that are successful in human modified environments (great-tailed grackles and California scrub jays) to understand how flexibility relates to success and whether social learning increases the rate of behavioral change; and 2) implement the effective interventions in a threatened species (toutouwai) to determine whether flexibility as a generalizable cognitive ability can be trained and whether such training improves survival in human modified environments. The results will significantly advance our understanding of the causes and consequences of flexibility, linking behavior to environmental change,cognition, and success in human modified environments through a comparative framework.
-
-**Great-tailed grackles (Quiscalus mexicanus)** are flexible [@logan2016flexibilityproblem; @logan2019flexmanip], highly associated with human modified environments, and have been rapidly expanding their geographic range across North America over the past 140 years [@wehtje2003range].
-
-**Jay** paragraph
-
-**Toutouwai** paragraph
+This investigation asks whether flexibility can be increased by experimentally increasing environmental heterogeneity, whether such an increase can help species survive in human modified environments, and whether survival information spreads faster through social learning. We explore whether it is even possible to take insights from highly divergent species and apply them to address critical conservation challenges, which pushes the limits in terms of understanding how conserved these abilities may be and to what extent they can be shaped by the environment. We aim to 1) conduct behavioral flexibility interventions in two flexible species that are successful in human modified environments (great-tailed grackles and California scrub jays) to understand how flexibility relates to success and whether social learning increases the rate of behavioral change; and 2) implement the effective interventions in a threatened species (toutouwai) to determine whether flexibility as a generalizable cognitive ability can be trained and whether such training improves survival in human modified environments (Figure 1). The results will substantially advance our understanding of the causes and consequences of flexibility, linking behavior to environmental change, cognition, and success in human modified environments through a comparative and global framework.
 
 
 <img width="100%" src="Fig3spp.png">
 
-**Figure 1.** Comparing the three species involved in this investigation relative to their geographic range, listed status, and success in human modified habitats.
+**Figure 1.** Comparing the three species involved in this investigation relative to their geographic range and association with human modified habitats. The yellow dots represent the location of the field site for these experiments.
 
 
-# A. LEVEL OF DATA BLINDNESS
+**Great-tailed grackles (*Quiscalus mexicanus*)** are flexible [@logan2016flexibilityproblem; @logan2019flexmanip], highly associated with human modified environments, and have been rapidly expanding their geographic range across North America over the past 140 years [@wehtje2003range].
 
-This registered report was written (Jul 2021) prior to collecting any data (Level 6 at PCI RR).
+**Jays** background **KELSEY add**
 
-# B. PROGRAMMATIC REGISTERED REPORT
+**Toutouwai** background **RACHAEL add**
 
-Multiple Stage 2 articles will result from this one Stage 1 registered report.
 
-# C. RESEARCH QUESTIONS
+# REGISTERED REPORT DETAILS
+
+ - **Level of bias:** This registered report was written (Jul 2021) prior to collecting any data (Level 6 at Peer Community in Registered Reports).
+ - **Programmatic registered report:** One Stage 2 article for each species (3 in total) will result from this one Stage 1 registered report.
+
+# RESEARCH QUESTIONS
 
 ## Q1: Can behavioral flexibility in species associated with human modified environments be increased? If so, does such an increase help species survive in human modified environments? 
 
@@ -107,65 +105,74 @@ Multiple Stage 2 articles will result from this one Stage 1 registered report.
 **Prediction 2 alternative 2:** Individuals (observers) who learn about resources by watching those individuals (demonstrators) who were in the flexibility manipulation, **do not differ** in their use of such resources compared with observers who were not exposed to demonstrators.
 
 
-# D. METHODS
+# METHODS
 
-## Planned Sample
+We present two designs for flexibility intervention experiments. Experimenters can decide which (or both) they want to conduct in their population. Only one experiment must be conducted per population to be able to test these hypotheses. Conducting more than one of these experiments per population is acceptable, but not necessary. 
 
-**Reversal learning experiment:** 20 individuals per population will be tested (50% in the control condition, 50% in the flexibility manipulation condition).	
+## **Design 1 - Reversal learning experiment** 
 
-**Foraging predictability experiments:** 60 individuals per population will be tested (50% in the control condition, 50% in the flexibility manipulation condition).
+Half of the individuals (manipulated group) undergo serial reversal learning until they meet the passing criterion, while the other half (control group) receive only one reversal (Figure 2). A reversal of where the reward is placed represents environmental heterogeneity, and those individuals who have enough experience in this heterogeneous environment through multiple reversals are able to learn to improve their flexibility (the number of trials it takes to change a preference). This flexibility intervention has been shown to work in great-tailed grackles where 8 out of 9 individuals in the serial reversal group passed the passing criterion (passing 2 consecutive reversals in 50 trials or less) within their given time frame [@logan2019flexmanip]. 
 
-## Sample size rationale
+<img width="100%" src="Figdesign1.png">
 
-**Reversal learning experiment:** the minimum sample size of 20 was determined using Bayesian simulations in Logan et al. [2020](http://corinalogan.com/Preregistrations/gxpopbehaviorhabitat.html#Q1:_behavior_across_the_range).
+**Figure 2.** Template design for the reversal learning experiment.
 
-**Foraging predictability experiments:** the minimum sample size of 60 was determined using G*Power for a similar analysis in McCune et al. [2020](http://corinalogan.com/Preregistrations/gspaceuse.html#H2:_P2_-_Space_use_behaviors_vary_among_populations_across_the_range).
+### Planned Sample
 
-## Data collection stopping rule
+20 individuals per population will be tested (50% in the control condition, 50% in the flexibility manipulation condition). Sample size rationale: The minimum sample size of 20 was determined using Bayesian simulations in Logan et al. [2020](http://corinalogan.com/Preregistrations/gxpopbehaviorhabitat.html#Q1:_behavior_across_the_range). Data collection stopping rule: Data collection will be stopped when the minimum sample size is reached or when the season in which the minimum sample size is reached comes to an end.
 
-Data collection will be stopped when the minimum sample size is reached or when the season in which the minimum sample size is reached comes to an end.
+### Randomization and counterbalancing
 
-## Protocols and open materials
+Individuals will be randomly assigned to the control and flexibility manipulation conditions using a random number generator (random.org). The first rewarded color in reversal learning is counterbalanced across birds at each site. The rewarded option is pseudorandomized for side (and the option on the left is always placed first). Pseudorandomization consists of alternating location for the first two trials of a session and then keeping the same color on the same side for at most two consecutive trials thereafter. A list of all 88 unique trial sequences for a 10-trial session, following the pseudorandomization rules, will be generated in advance for experimenters to use during testing (e.g., a randomized trial sequence might look like: LRLLRRLRLR, where L and R refer to the location, left or right, of the rewarded tube). Randomized trial sequences will be assigned randomly to any given 10-trial session using a random number generator (random.org) to generate a number from 1-88.
 
-Only one of the following experiments (reversal learning or one of the foraging predictability options) must be conducted per population to be able to test the hypotheses in this registered report. Conducting more than one of these experiments per population is acceptable, but not necessary.
+### Protocols
 
-### Flexibility manipulation
+[Protocol](https://docs.google.com/document/d/16hKGUNO1SpnXAT8DN_GXb56Aw6WzCraCIUKiP9gVI6o/edit?usp=sharing) for reversal learning of a color preference used by @logan2019flexmanip on great-tailed grackles. We also use a spreadsheet to [pseudorandomize](https://docs.google.com/spreadsheets/d/1B3-ZKd4nr_4gA91Pu2eUUBOriwW-V88VRgK9c1lDSjY/edit?usp=sharing) the order of presentation of the option on the left. We conduct interobserver reliability by having hypothesis-blind video coders code all of the videos for 20% of the individuals in the experiment: [instructions for video coders](https://docs.google.com/document/d/1QakS8TMe4WRv_QWKrHaWHyJSXbQwl8v9Y061SY914Wg/edit?usp=sharing).
 
-**Reversal learning experiment:** [protocol](https://docs.google.com/document/d/16hKGUNO1SpnXAT8DN_GXb56Aw6WzCraCIUKiP9gVI6o/edit?usp=sharing), [pseudorandomized option on left order](https://docs.google.com/spreadsheets/d/1B3-ZKd4nr_4gA91Pu2eUUBOriwW-V88VRgK9c1lDSjY/edit?usp=sharing), [instructions](https://docs.google.com/document/d/1QakS8TMe4WRv_QWKrHaWHyJSXbQwl8v9Y061SY914Wg/edit?usp=sharing) for interobserver reliability video coders who video code 20% of the individuals inthe experiment.
 
-**Foraging predictability experiment:** We present a few experimental design options to make this experiment testable in a wider range of species and field sites.
+## **Design 2 - Feeder experiment** 
+
+Half of the individuals (manipulated group) are exposed to feeders that open at irregular times until they meet the passing criterion, while the other half (control group) are exposed to feeders that open regularly (Figure 3). The irregular opening times represents environmental heterogeneity, and those individuals who have enough experience in this heterogeneous environment through multiple exposures are able to learn to improve their flexibility (latency to approach the right feeder at the right time - i.e., when it is open). In both designs, the passing criterion is tailored to each population based on prior knowledge on this or similar experiments, and data are collected on success/survival measures either before and after the flexibility intervention or only after the intervention (depending on feasibility and how the study design needs to be tailored for each population). **KELSEY do we want to say anything about all of the "piloting" we're doing in GTGR in space use?**
+
+<img width="100%" src="Figdesign2.png">
+
+**Figure 3.** Template design for the feeder experiment.
+
+### Planned Sample
+
+60 individuals per population will be tested (50% in the control condition, 50% in the flexibility manipulation condition). Sample size rationale: the minimum sample size of 60 was determined using G*Power for a similar analysis in McCune et al. [2020](http://corinalogan.com/Preregistrations/gspaceuse.html#H2:_P2_-_Space_use_behaviors_vary_among_populations_across_the_range). **KELSEY did Cody run a minimum sample size model in space use? If so, let's use this instead. Or should we just do a GPower model with 1 predictor variable (control vs manipulated) bc this will apply generally?**  Data collection stopping rule: Data collection will be stopped when the minimum sample size is reached or when the season in which the minimum sample size is reached comes to an end.
+
+### Randomization and counterbalancing
+
+Individuals will be randomly assigned to the control and flexibility manipulation conditions using a random number generator (random.org).
+
+### Protocols
+
+[Protocol](https://docs.google.com/document/d/1ZOpkdxy5-wiGg7hYod-XaaBoOl53DsVQ3pwWoIdvrzk/edit?usp=sharing) used by @mccune2020spaceuse in great-tailed grackles for GPS tracking using radio telemetry, including radio tag attachment instructions, and how to GPS track tagged and non-tagged individuals.
   
-  - Option 1 - Manipulating behavioral flexibility through what where when memory using foraging predictability:
-     - GPS tracking: [protocol for radio telemetry](https://docs.google.com/document/d/1ZOpkdxy5-wiGg7hYod-XaaBoOl53DsVQ3pwWoIdvrzk/edit?usp=sharing) with radio tag attachment instructions and how to GPS track tagged and non-tagged individuals.
-  
-  - Option 2 - ?
-  
-  - Social learning data collection: are observers more likely to touch a feeder or attempt to solve it faster if they see another (demonstrator) touch the feeder compared with observers who don't see demonstrators?
+  - Social learning data collection: are observers more likely to touch a feeder or attempt to solve it faster if they see another (demonstrator) touch the feeder compared with observers who don't see demonstrators? **- NEED TO FIGURE THIS OUT** 
 
-### Assessment of survival likelihood with regard to the flexibility manipulation
 
-Compare control individuals with individuals in the flexibility manipulation using one or more of the following measures. If possible, also conduct within individual comparisons of the selected measures (e.g., predictability of space use) in the control and manipulation groups before and after the flexibility manipulation.
+## Assessment of survival likelihood with regard to the flexibility manipulation
 
- - Fitness measures: nest success, number of offspring who survived to independence or adulthood, longevity
- - Foraging measures: diet breadth, number of foraging techniques used
- - Space use measures: predictability of space use (e.g., step length and turning angles), ability to disperse from a non-human modified environment to a human modified environment (assess success/survival after disperal if possible)
+After the manipulation, compare control individuals with individuals in the flexibility manipulation using one or more of the following measures. If possible, also conduct within individual comparisons of the selected measures (e.g., predictability of space use) in the control and manipulation groups before and after the flexibility manipulation. Choose population-relevant survival variables that are predicted to be the most likely to be used in human modified environments.
+
+ - Fitness variables: nest success, number of offspring who survived to independence or adulthood, longevity, etc.
+ - Foraging variables: diet breadth, number of foraging techniques used, etc.
+ - Space use variables: predictability of space use (e.g., step length and turning angles), ability to disperse from a non-human modified environment to a human modified environment (assess success/survival after disperal if possible), etc.
+
+**NEED TO ADD TO THIS LIST**
 
 ## Open data
 
 The data will be published in the Knowledge Network for Biocomplexity's data repository.
 
-## Randomization and counterbalancing
 
-**Reversal learning experiment:** Individuals will be randomly assigned to the control and flexibility manipulation conditions using a random number generator (random.org). The first rewarded color in reversal learning is counterbalanced across birds at each site. The rewarded option is pseudorandomized for side (and the option on the left is always placed first). Pseudorandomization consists of alternating location for the first two trials of a session and then keeping the same color on the same side for at most two consecutive trials thereafter. A list of all 88 unique trial sequences for a 10-trial session, following the pseudorandomization rules, will be generated in advance for experimenters to use during testing (e.g., a randomized trial sequence might look like: LRLLRRLRLR, where L and R refer to the location, left or right, of the rewarded tube). Randomized trial sequences will be assigned randomly to any given 10-trial session using a random number generator (random.org) to generate a number from 1-88.
-
-**Foraging predictability experiment:** Individuals will be randomly assigned to the control and flexibility manipulation conditions using a random number generator (random.org).
+# ANALYSIS PLAN
 
 ## Blinding during analysis
 
-Blinding is usually not involved in the final analyses because the experimenters collect the data (and therefore have seen some form of it) and run the analyses. Hypothesis- and data-blind video coders are recruited to conduct interobserver reliability of 20% of the videos for the reversal learning experiment.
-
-
-# E. ANALYSIS PLAN
+Hypothesis- and data-blind video coders are recruited to conduct interobserver reliability of 20% of the videos for the reversal learning experiment. Blinding is usually not involved in the final analyses because the experimenters collect the data (and therefore have seen some form of it) and run the analyses. **- NEED TO ADD BLINDING MEASURES**
 
 ## Interobserver reliability of reversal learning
 
@@ -206,17 +213,17 @@ cohen.kappa(data[,c(3,5)], w=NULL,n.obs=NULL,alpha=.05,levels=NULL)
 *Explanatory variables:*
 
 
-# F. ETHICS
+# ETHICS
 
 This research is carried out in accordance with permits from the:
 
 1) US Fish and Wildlife Service (scientific collecting permit number MB76700A-0,1,2)
 2) US Geological Survey Bird Banding Laboratory (federal bird banding permit number 23872)
-3) Institutional Animal Care and Use Committee at Arizona State University (protocol number 17-1594R)
+3) Institutional Animal Care and Use Committee at the University of California Santa Barbara (protocol number 958)
 4) California Department of Fish and Wildlife (scientific collecting permit [specific use] number S‐192100001‐19210‐001)
+5) **RACHAEL: add your permits here**
 
-
-# G. AUTHOR CONTRIBUTIONS
+# AUTHOR CONTRIBUTIONS
 
 **Logan:** Hypothesis development, data collection, data analysis and interpretation, write up, revising/editing, materials/funding.
 
@@ -224,18 +231,16 @@ This research is carried out in accordance with permits from the:
 
 **McCune:** Hypothesis development, data collection, data analysis and interpretation, write up, revising/editing.
 
-
-# H. FUNDING
+# FUNDING
 
 This research is funded by the Department of Human Behavior, Ecology and Culture at the Max Planck Institute for Evolutionary Anthropology.
 
-
-# I. CONFLICT OF INTEREST DISCLOSURE
+# CONFLICT OF INTEREST DISCLOSURE
 
 We, the authors, declare that we have no financial conflicts of interest with the content of this article. CJ Logan is a co-founder of and on the Managing Board at PCI Registered Reports.
 
-# J. ACKNOWLEDGEMENTS
+# ACKNOWLEDGEMENTS
 
 We thank Richard McElreath at the Max Planck Institute for Evolutionary Anthropology for project support.
 
-# K. REFERENCES
+# REFERENCES
