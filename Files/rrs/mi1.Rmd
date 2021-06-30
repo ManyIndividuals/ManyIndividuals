@@ -53,19 +53,20 @@ Human modified environments are increasing, causing global changes that other sp
 
 # INTRODUCTION
 
-Human modified environments are increasing [@liu2020high], causing global changes that other species must adjust to or suffer from [@alberti2015eco]. Behavioral flexibility (hereafter 'flexibility') could be key: individuals interact with their environment through behavior, making it crucial to an ecologically valid understanding of how species adjust to environmental changes [@lee2021animal]. One of the top priorities for behavioral research to maximize conservation progress is to determine which cognitive abilities and behaviors can predict the ability to adjust to human modified environments and whether these can be manipulated [@moseby2016harnessing]. The rare research that manipulates behavior in a conservation context usually focuses on training specific behaviors (e.g., predator recognition through predator exposure) to improve individual success in the wild [e.g., @moseby2012can; @west2018predator; @jolly2018out; @ross2019reversing; see review in @tetzlaff2019effects]. However, training a general cognitive ability, such as flexibility -- the ability to rapidly adapt behavior to changes through learning throughout the lifetime [see the theory behind this definition in @mikhalevich_is_2017] -- has the potential to change a whole suite of behaviors and more broadly influence success in adjusting to human modified environments. 
+Human modified environments are increasing [e.g., @liu2020high; @wu2011quantifying; @goldewijk2001estimating], causing global changes that other species must adjust to or suffer from [e.g., @ciani1986intertroop; @chejanovski2017experimental; @federspiel2017adjusting; @alberti2015eco]. Behavioral flexibility (hereafter 'flexibility') could be key: individuals interact with their environment through behavior, making it crucial to an ecologically valid understanding of how species adjust to environmental changes [@lee2021animal]. One of the top priorities for behavioral research to maximize conservation progress is to determine which cognitive abilities and behaviors can predict the ability to adjust to human modified environments and whether these can be manipulated [@moseby2016harnessing]. The rare research that manipulates behavior in a conservation context usually focuses on training specific behaviors (e.g., predator recognition through predator exposure) to improve individual success in the wild [e.g., @moseby2012can; @west2018predator; @jolly2018out; @ross2019reversing; see review in @tetzlaff2019effects]. However, training a general cognitive ability, such as flexibility -- the ability to rapidly adapt behavior to changes through learning throughout the lifetime [see the theory behind this definition in @mikhalevich_is_2017] -- has the potential to change a whole suite of behaviors and more broadly influence success in adjusting to human modified environments. 
 
-Environments where informational cues about resources vary in a heterogenous (but non-random) way across space and time are hypothesized to open a pathway for species to functionally detect and react to such cues via flexibility [@mikhalevich_is_2017]. Human modified environments likely provide a different set of informational cues that vary heterogeneously across space and time, and the species that are successful in such environments are likely those who are able to detect and track such cues. For example, great-tailed grackles appear to follow garbage trucks on garbage day where they forage on the spillage from the garbage bags [@Rodrigo2021gtgr]. Attending to garbage trucks, potentially across space and time, is an example of how flexibility can help individuals meet foraging needs in the context of changing environmental cues. **KELSEY and RACHAEL, do you have examples you want to add for your species?** Because heterogeneous environments are hypothesized to select for flexibility, we expect that experimentally manipulating environments to be more hetereogenous will result in an increase in flexibility in individuals, which will then increase their success and survival in such environments. Success and survival can relate to any number of variables regarding the usage of and investment in resources, from improved foraging efficiency to increased dispersal into human modified environments to placing nests in more protective locations. Measures of success and survival depend on the particular species in their particular environment. 
+Environments where informational cues about resources vary in a heterogenous (but non-random) way across space and time are hypothesized to open a pathway for species to functionally detect and react to such cues via flexibility [@mikhalevich_is_2017]. Human modified environments likely provide a different set of informational cues that vary heterogeneously across space and time, and the species that are successful in such environments are likely those who are able to detect and track such cues. Because heterogeneous environments are hypothesized to select for flexibility, we expect that experimentally manipulating environments to be more hetereogenous will result in an increase in flexibility in individuals, which will then increase their success and survival in such environments. Success and survival can relate to any number of variables regarding the usage of and investment in resources, from improved foraging efficiency to increased dispersal into human modified environments to placing nests in more protective locations. Measures of success and survival depend on the particular populations in their particular environments. 
 
-This investigation asks whether flexibility can be increased by experimentally increasing environmental heterogeneity, whether such an increase can help species survive in human modified environments, and whether survival information spreads faster through social learning. We explore whether it is even possible to take insights from highly divergent species and apply them to address critical conservation challenges, which pushes the limits in terms of understanding how conserved these abilities may be and to what extent they can be shaped by the environment. We aim to 1) conduct behavioral flexibility interventions in two flexible species that are successful in human modified environments (great-tailed grackles and California scrub jays) to understand how flexibility relates to success and whether social learning increases the rate of behavioral change; and 2) implement the effective interventions in a threatened species (toutouwai) to determine whether flexibility as a generalizable cognitive ability can be trained and whether such training improves survival in human modified environments (Figure 1). The results will substantially advance our understanding of the causes and consequences of flexibility, linking behavior to environmental change, cognition, and success in human modified environments through a comparative and global framework.
+This investigation asks whether flexibility can be increased by experimentally increasing environmental heterogeneity, whether such an increase can help species survive in human modified environments, and whether survival information spreads faster through social learning. We explore whether it is even possible to take insights from highly divergent species and apply them to address critical conservation challenges, which pushes the limits in terms of understanding how conserved these abilities may be and to what extent they can be shaped by the environment. We aim to conduct flexibility interventions in two flexible species that are successful in human modified environments (great-tailed grackles and California scrub jays) to understand how flexibility relates to success and whether social learning increases the rate of behavioral change, and implement these interventions in a threatened species (toutouwai) to determine whether flexibility as a generalizable cognitive ability can be trained and whether such training improves survival in human modified environments (Figure 1). The results will substantially advance our understanding of the causes and consequences of flexibility, linking behavior to environmental change, cognition, and success in human modified environments through a comparative and global framework.
 
+&nbsp;
 
-<img width="100%" src="Fig3spp.png">
+<img width="100%" src="mi1Figthreespp.png">
 
 **Figure 1.** Comparing the three species involved in this investigation relative to their geographic range and association with human modified habitats. The yellow dots represent the location of the field site for these experiments.
 
 
-**Great-tailed grackles (*Quiscalus mexicanus*)** are flexible [@logan2016flexibilityproblem; @logan2019flexmanip], highly associated with human modified environments, and have been rapidly expanding their geographic range across North America over the past 140 years [@wehtje2003range].
+**Great-tailed grackles (*Quiscalus mexicanus*)** are flexible [@logan2016flexibilityproblem; @logan2019flexmanip], highly associated with human modified environments [@johnson2001great], and have been rapidly expanding their geographic range across North America over the past 140 years [@wehtje2003range]. They are social and polygamous, and eat a diversity of human foods as well as foraging on insects and on substrates for other natural food items [@johnson2001great]. They appear to follow garbage trucks on garbage day where they forage on the spillage from the garbage bags [@Rodrigo2021gtgr]. Attending to garbage trucks, potentially across space and time, is an example of how flexibility can help individuals meet foraging needs in the context of changing environmental cues.
 
 **Jays** background **KELSEY add**
 
@@ -79,21 +80,13 @@ This investigation asks whether flexibility can be increased by experimentally i
 
 # RESEARCH QUESTIONS
 
-## Q1: Can behavioral flexibility in species associated with human modified environments be increased? If so, does such an increase help species survive in human modified environments? 
+## Q1: Can behavioral flexibility in individuals be increased by increasing environmental heterogeneity? If so, does increased flexibility help individuals survive in human modified environments? 
 
-**Prediction 1:** Flexibility can be increased in species associated with human modified environments and in threatened species, and such an increase improves the likelihood of survival in human modified environments. This would indicate that the abilities involved in tracking changing resources in the environment (flexibility) are the same as or related to the abilities involved in living in human modified environments (survival). It would also indicate that flexibility is trainable and that such training could be a useful conservation tool.
+**Prediction 1:** Flexibility can be increased in individuals and such an increase **improves the likelihood of survival in human modified environments**. This would indicate that the abilities involved in tracking changing resources in the environment are the same as or related to the abilities involved in surviving in human modified environments. It would also indicate that flexibility is trainable and that such training could be a useful conservation tool for threatened and endangered species. 
 
-**Prediction 1 alternative 1:** Flexibility can be increased in species associated with human modified environments and in threatened species, but such an increase **does not improve the likelihood of survival** in human modified environments. This would indicate that species associated with human modified environments form this association for reasons other than their flexibility, and that threatened species are likely not very successful in human modified environments (survival) for reasons unrelated to their ability to change their behavior with changing circumstances (flexibility).
+**Prediction 1 alternative 1:** Flexibility can be increased in individuals, but such an increase **does not improve the likelihood of survival** in human modified environments. This would indicate that species associated with human modified environments form this association for reasons other than their flexibility, and that threatened species are likely not very successful in human modified environments for reasons unrelated to their ability to change their behavior with changing circumstances.
 
-**Prediction 1 alternative 2:** Flexibility can be increased in species associated with human modified environments, but **not in threatened species**. This would indicate that threatened species are likely not very successful in human modified environments (survival) because of their inability to change their behavior with changing circumstances (flexibility), and that flexibility is not trainable in these species.
-
-**Prediction 1 alternative 3:** Flexibility can be increased in **some (but not all) species** associated with human modified environments and in some (but not all) threatened species. This would indicate that flexibility manipulations may not work for all species, and that the effectiveness of such experiments should first be tested in the species of interest before including such an intervention in a conservation plan.
-
-**Prediction 1 alternative 4:** Flexibility **can not be increased in species associated with human modified environments**, but **can in threatened species**. This could indicate that species associated with human modified environments might have used flexibility in the past when originally forming the association, but the need to maintain flexibility in their repertoire is no longer necessary. Whereas, threatened species could experience a survival benefit by changing their behavior according to changing circumstances, therefore flexibility is worth incorporating into their repertoire.
-
-**Prediction 1 alternative 5:** Flexibility **can not be increased** in species associated with human modified environments or in threatened species. This would indicate that flexibility manipulations are not a useful conservation tool.
-
-**Prediction 1 alternative 6:** Any change (or lack thereof) in **flexibility is not associated with the likelihood of survival** in human modified environments. This would indicate that the abilities involved in tracking changing resources in the environment (flexibility) and are independent of the abilities involved in living in human modified environments (survival).
+**Prediction 1 alternative 2:** Flexibility can be increased in some populations, but not others. This would indicate that flexibility manipulations may not work for all populations, and that the effectiveness of such experiments should first be tested in the population of interest before including such an intervention in a conservation plan. If flexibility is not manipulatable in threatened populations, this would indicate that they are likely not very successful in human modified environments because of their inability to change their behavior with changing circumstances, and that flexibility is not trainable. If flexibility is not manipulatable in populations that are successful in human modified environments, this could indicate that they might have used flexibility in the past when originally forming the association, but the need to maintain flexibility in their repertoire is no longer necessary. In populations where flexibility is not manipulatable, this would indicate that the abilities involved in tracking changing resources in the environment and are independent of the abilities involved in surviving in human modified environments.
 
 
 ## Q2: Does survival information spread faster through social learning?
@@ -111,9 +104,11 @@ We present two designs for flexibility intervention experiments. Experimenters c
 
 ## **Design 1 - Reversal learning experiment** 
 
-Half of the individuals (manipulated group) undergo serial reversal learning until they meet the passing criterion, while the other half (control group) receive only one reversal (Figure 2). A reversal of where the reward is placed represents environmental heterogeneity, and those individuals who have enough experience in this heterogeneous environment through multiple reversals are able to learn to improve their flexibility (the number of trials it takes to change a preference). This flexibility intervention has been shown to work in great-tailed grackles where 8 out of 9 individuals in the serial reversal group passed the passing criterion (passing 2 consecutive reversals in 50 trials or less) within their given time frame [@logan2019flexmanip]. 
+Half of the individuals (manipulated group) undergo serial reversal learning until they meet the passing criterion, while the other half (control group) receive only one reversal (Figure 2). A reversal of where the reward is placed represents environmental heterogeneity, and those individuals who have enough experience in this heterogeneous environment through multiple reversals are able to learn to improve their flexibility (the number of trials it takes to change a preference). This flexibility intervention has been shown to work in great-tailed grackles where 8 out of 9 individuals in the serial reversal group passed the passing criterion (passing 2 consecutive reversals in 50 trials or less) within their given time frame [@logan2019flexmanip]. No social learning component is possible with this design because the experiment depends solely on individual learning in visual isolation of others.
 
-<img width="100%" src="Figdesign1.png">
+&nbsp;
+
+<img width="100%" src="mi1Figdesign1.png">
 
 **Figure 2.** Template design for the reversal learning experiment.
 
@@ -132,9 +127,11 @@ Individuals will be randomly assigned to the control and flexibility manipulatio
 
 ## **Design 2 - Feeder experiment** 
 
-Half of the individuals (manipulated group) are exposed to feeders that open at irregular times until they meet the passing criterion, while the other half (control group) are exposed to feeders that open regularly (Figure 3). The irregular opening times represents environmental heterogeneity, and those individuals who have enough experience in this heterogeneous environment through multiple exposures are able to learn to improve their flexibility (latency to approach the right feeder at the right time - i.e., when it is open). In both designs, the passing criterion is tailored to each population based on prior knowledge on this or similar experiments, and data are collected on success/survival measures either before and after the flexibility intervention or only after the intervention (depending on feasibility and how the study design needs to be tailored for each population). **KELSEY do we want to say anything about all of the "piloting" we're doing in GTGR in space use?**
+Half of the individuals (manipulated group) are exposed to feeders that open at irregular times until they meet the passing criterion, while the other half (control group) are exposed to feeders that open regularly (Figure 3). The irregular opening times represents environmental heterogeneity, and those individuals who have enough experience in this heterogeneous environment through multiple exposures are able to learn to improve their flexibility (latency to approach the right feeder at the right time - i.e., when it is open). In both designs, the passing criterion is tailored to each population based on prior knowledge on this or similar experiments, and data are collected on success/survival measures either before and after the flexibility intervention or only after the intervention (depending on feasibility and how the study design needs to be tailored for each population). **KELSEY do we want to say anything about all of the "piloting" we're doing in GTGR in space use? Actually, we might want publish a stage 2 that combines flexmanip, space use, and flexforaging to see whether the flexibility manipulated individuals had less predictable space use and wider foraging breadth. If we can make a new RR type at PCI RR (indie RRs), then I would say we would want to register the new stage 2 after the current stage 1 is accepted. Because this stage 1 has level 6 bias (no data are collected before IPA), and the new stage 2 will use data that are already being collected. At PCI RR, the stage 1 drops to the lowest level of bias so if we included the stage 2 based on existing data we would drop to a level 1 bias.** The social learning component is conducted during this experiment.
 
-<img width="100%" src="Figdesign2.png">
+&nbsp;
+
+<img width="100%" src="mi1Figdesign2.png">
 
 **Figure 3.** Template design for the feeder experiment.
 
@@ -148,7 +145,11 @@ Individuals will be randomly assigned to the control and flexibility manipulatio
 
 ### Protocols
 
-[Protocol](https://docs.google.com/document/d/1ZOpkdxy5-wiGg7hYod-XaaBoOl53DsVQ3pwWoIdvrzk/edit?usp=sharing) used by @mccune2020spaceuse in great-tailed grackles for GPS tracking using radio telemetry, including radio tag attachment instructions, and how to GPS track tagged and non-tagged individuals.
+ - [Great-tailed grackle protocol](https://docs.google.com/document/d/1pTrcy7ztgYVSAP7rGA6Y_lAmZ7hK_-mB01zwy0oKh7w/edit?usp=sharing) for the feeder experiment
+    - [Protocol for applying radio tags and conducting GPS tracks](https://docs.google.com/document/d/1ZOpkdxy5-wiGg7hYod-XaaBoOl53DsVQ3pwWoIdvrzk/edit?usp=sharing) from @mccune2020spaceuse
+  - [Scrub jay protocol]()
+  - [Toutouwai protocol]()
+ 
   
   - Social learning data collection: are observers more likely to touch a feeder or attempt to solve it faster if they see another (demonstrator) touch the feeder compared with observers who don't see demonstrators? **- NEED TO FIGURE THIS OUT** 
 
@@ -200,15 +201,22 @@ data[,5] #coder 2 (video coder)
 cohen.kappa(data[,c(3,5)], w=NULL,n.obs=NULL,alpha=.05,levels=NULL) 
 ```
 
+## Q1: Can flexibility be increased and help individuals survive in human modified environments?
 
-## Q1: Can flexibility be increased?
+### Design 1 - Reversal learning experiment
 
-*Response variable:* whether the bird chose the rewarded or unrewarded color per trial
+*Response variable:* whether the individual chose the rewarded or unrewarded option per trial
+
+### Design 2 - Feeder experiment
+
+*Response variable:* latency for the individual to go to the open feeder
 
 
 ## Q2: Does info spread faster through social learning?
 
-*Response variable:*
+### Design 2 - Feeder experiment
+
+*Response variable:* latency of the observer to go to the open feeder
 
 *Explanatory variables:*
 
@@ -221,7 +229,7 @@ This research is carried out in accordance with permits from the:
 2) US Geological Survey Bird Banding Laboratory (federal bird banding permit number 23872)
 3) Institutional Animal Care and Use Committee at the University of California Santa Barbara (protocol number 958)
 4) California Department of Fish and Wildlife (scientific collecting permit [specific use] number S‐192100001‐19210‐001)
-5) **RACHAEL: add your permits here**
+5) **RACHAEL & KELSEY: add your permits here**
 
 # AUTHOR CONTRIBUTIONS
 
