@@ -114,11 +114,11 @@ Half of the individuals (manipulated group) undergo serial reversal learning unt
 
 ### Planned Sample
 
-20 individuals per population will be tested (50% in the control condition, 50% in the flexibility manipulation condition). Sample size rationale: The minimum sample size of 20 was determined using Bayesian simulations in Logan et al. [2020](http://corinalogan.com/Preregistrations/gxpopbehaviorhabitat.html#Q1:_behavior_across_the_range). Data collection stopping rule: Data collection will be stopped when the minimum sample size is reached or when the season in which the minimum sample size is reached comes to an end.
+At least 20 individuals per population will be tested (50% in the control condition, 50% in the flexibility manipulation condition). Individuals will be randomly assigned to the control and flexibility manipulation conditions using a random number generator (random.org). The first rewarded option (i.e., color, shape, etc.) in reversal learning is counterbalanced across individuals at each site. The rewarded option is pseudorandomized for side (and the option on the left is always placed first). Pseudorandomization consists of alternating location for the first two trials of a session and then keeping the same color on the same side for at most two consecutive trials thereafter. A list of all 88 unique trial sequences for a 10-trial session, following the pseudorandomization rules, will be generated in advance for experimenters to use during testing (e.g., a randomized trial sequence might look like: LRLLRRLRLR, where L and R refer to the location, left or right, of the rewarded tube). Randomized trial sequences will be assigned randomly to any given 10-trial session using a random number generator (random.org) to generate a number from 1-88.
 
-### Randomization and counterbalancing
+**Minimum sample size:** The minimum sample size of 20 was determined using Bayesian simulations in Logan et al. [2020](http://corinalogan.com/Preregistrations/gxpopbehaviorhabitat.html#Q1:_behavior_across_the_range). 
 
-Individuals will be randomly assigned to the control and flexibility manipulation conditions using a random number generator (random.org). The first rewarded color in reversal learning is counterbalanced across birds at each site. The rewarded option is pseudorandomized for side (and the option on the left is always placed first). Pseudorandomization consists of alternating location for the first two trials of a session and then keeping the same color on the same side for at most two consecutive trials thereafter. A list of all 88 unique trial sequences for a 10-trial session, following the pseudorandomization rules, will be generated in advance for experimenters to use during testing (e.g., a randomized trial sequence might look like: LRLLRRLRLR, where L and R refer to the location, left or right, of the rewarded tube). Randomized trial sequences will be assigned randomly to any given 10-trial session using a random number generator (random.org) to generate a number from 1-88.
+**Data collection stopping rule:** Data collection will be stopped when the minimum sample size is reached or when the season in which the minimum sample size is reached comes to an end.
 
 ### Protocols
 
@@ -127,7 +127,7 @@ Individuals will be randomly assigned to the control and flexibility manipulatio
 
 ## **Design 2 - Feeder experiment** 
 
-Half of the individuals (manipulated group) are exposed to feeders that open at irregular times until they meet the passing criterion, while the other half (control group) are exposed to feeders that open regularly (Figure 3). The irregular opening times represents environmental heterogeneity, and those individuals who have enough experience in this heterogeneous environment through multiple exposures are able to learn to improve their flexibility (latency to approach the right feeder at the right time - i.e., when it is open). In both designs, the passing criterion is tailored to each population based on prior knowledge on this or similar experiments, and data are collected on success/survival measures either before and after the flexibility intervention or only after the intervention (depending on feasibility and how the study design needs to be tailored for each population). **KELSEY do we want to say anything about all of the "piloting" we're doing in GTGR in space use? Actually, we might want publish a stage 2 that combines flexmanip, space use, and flexforaging to see whether the flexibility manipulated individuals had less predictable space use and wider foraging breadth. If we can make a new RR type at PCI RR (indie RRs), then I would say we would want to register the new stage 2 after the current stage 1 is accepted. Because this stage 1 has level 6 bias (no data are collected before IPA), and the new stage 2 will use data that are already being collected. At PCI RR, the stage 1 drops to the lowest level of bias so if we included the stage 2 based on existing data we would drop to a level 1 bias.** The social learning component is conducted during this experiment.
+Half of the individuals (manipulated group) are exposed to feeders that open at irregular times until they meet the passing criterion, while the other half (control group) are exposed to feeders that open regularly (Figure 3). The irregular opening times represents environmental heterogeneity, and those individuals who have enough experience in this heterogeneous environment through multiple exposures are able to learn to improve their flexibility (latency to approach the right feeder at the right time - i.e., when it is open). In both designs, both groups are habituated to the open feeders filled with food until at least 3 individuals have visited more than 50% of the feeders, the manipulated group passing criterion is tailored to each population based on prior knowledge on this or similar experiments, and data are collected on success/survival measures either before and after the flexibility intervention or only after the intervention (depending on feasibility and how the study design needs to be tailored for each population). **KELSEY do we want to say anything about all of the "piloting" we're doing in GTGR in space use?** The social learning component is conducted during this experiment.
 
 &nbsp;
 
@@ -137,21 +137,31 @@ Half of the individuals (manipulated group) are exposed to feeders that open at 
 
 ### Planned Sample
 
-60 individuals per population will be tested (50% in the control condition, 50% in the flexibility manipulation condition). Sample size rationale: the minimum sample size of 60 was determined using G*Power for a similar analysis in McCune et al. [2020](http://corinalogan.com/Preregistrations/gspaceuse.html#H2:_P2_-_Space_use_behaviors_vary_among_populations_across_the_range). **KELSEY did Cody run a minimum sample size model in space use? If so, let's use this instead. Or should we just do a GPower model with 1 predictor variable (control vs manipulated) bc this will apply generally?**  Data collection stopping rule: Data collection will be stopped when the minimum sample size is reached or when the season in which the minimum sample size is reached comes to an end.
+50% of the individuals or locations will be assigned to the control condition and 50% to the flexibility manipulation condition. Assignment to condition will be random (using random number generator random.org).
 
-### Randomization and counterbalancing
+**Minimum sample size:** To determine the ability to detect actual effects in the analyses, we ran a power analysis in G&ast;Power with the following settings: test family=F tests, statistical test=linear multiple regression: Fixed model (R^2 deviation from zero), type of power analysis=a priori, alpha error probability=0.05. We set the power at 0.70. We found that, to have a 70% chance of detecting a medium effect (approximated at f^2=0.15 by @cohen1988statistical), the minimum sample size needs to be 44 for analyses with 1 explanatory variable.
 
-Individuals will be randomly assigned to the control and flexibility manipulation conditions using a random number generator (random.org).
+**Data collection stopping rule:** Data collection will be stopped when the minimum sample size is reached or when the season in which the minimum sample size is reached comes to an end.
 
 ### Protocols
 
- - [Great-tailed grackle protocol](https://docs.google.com/document/d/1pTrcy7ztgYVSAP7rGA6Y_lAmZ7hK_-mB01zwy0oKh7w/edit?usp=sharing) for the feeder experiment
+**Feeder habituation:** All feeders at all locations will have food and be open 9a-3p on 5 consecutive days or until at least the half of minimum sample size in each condition (control and manipulated) have visited more than 50% of the feeders.
+
+**Flexibility manipulation condition passing criterion:** the latency in seconds (from the beginning of the period in which the feeders in that location are open) to go to an open feeder is 10% faster for that individual at that particular feeder for 50% of the feeders.
+
+**Control condition stopping criterion:** the experiment will end when half of the individuals in the manipulated condition pass criterion.
+
+**Food in the feeders:** All feeders always have food in them to eliminate the confound due to olfactory differences between the feeders that could be introduced if only the active feeders have food in them. If a feeder needs to be refilled, refill all feeders consecutively in the same time period and refill each for the same amount of time even if that feeder does not need much or any food (in these cases, pretend to fill the feeder as you normally would). This eliminates confounds from cues provided by a differential amount of attention experimenters give the feeders depending on which needs refilling.
+
+**Population-specific experimental protocols:**
+
+ - [Great-tailed grackle protocol](https://docs.google.com/document/d/1pTrcy7ztgYVSAP7rGA6Y_lAmZ7hK_-mB01zwy0oKh7w/edit?usp=sharing)
     - [Protocol for applying radio tags and conducting GPS tracks](https://docs.google.com/document/d/1ZOpkdxy5-wiGg7hYod-XaaBoOl53DsVQ3pwWoIdvrzk/edit?usp=sharing) from @mccune2020spaceuse
   - [Scrub jay protocol]()
   - [Toutouwai protocol]()
  
   
-  - Social learning data collection: are observers more likely to touch a feeder or attempt to solve it faster if they see another (demonstrator) touch the feeder compared with observers who don't see demonstrators? **- NEED TO FIGURE THIS OUT** 
+  - Social learning data collection: are observers more likely to touch a feeder or attempt to solve it faster if they see another (demonstrator) touch the feeder compared with observers who don't see demonstrators? **CORINA KELSEY NEED TO FIGURE THIS OUT** 
 
 
 ## Assessment of survival likelihood with regard to the flexibility manipulation
@@ -162,7 +172,7 @@ After the manipulation, compare control individuals with individuals in the flex
  - Foraging variables: diet breadth, number of foraging techniques used, etc.
  - Space use variables: predictability of space use (e.g., step length and turning angles), ability to disperse from a non-human modified environment to a human modified environment (assess success/survival after disperal if possible), etc.
 
-**NEED TO ADD TO THIS LIST**
+**CORINA KELSEY RACHAEL NEED TO ADD TO THIS LIST**
 
 ## Open data
 
@@ -173,7 +183,7 @@ The data will be published in the Knowledge Network for Biocomplexity's data rep
 
 ## Blinding during analysis
 
-Hypothesis- and data-blind video coders are recruited to conduct interobserver reliability of 20% of the videos for the reversal learning experiment. Blinding is usually not involved in the final analyses because the experimenters collect the data (and therefore have seen some form of it) and run the analyses. **- NEED TO ADD BLINDING MEASURES**
+Hypothesis- and data-blind video coders are recruited to conduct interobserver reliability of 20% of the videos for the reversal learning experiment. Blinding is usually not involved in the final analyses because the experimenters collect the data (and therefore have seen some form of it) and run the analyses. **CORINA KELSEY RACHAEL NEED TO ADD BLINDING MEASURES**
 
 ## Interobserver reliability of reversal learning
 
@@ -205,11 +215,36 @@ cohen.kappa(data[,c(3,5)], w=NULL,n.obs=NULL,alpha=.05,levels=NULL)
 
 ### Design 1 - Reversal learning experiment
 
-*Response variable:* whether the individual chose the rewarded or unrewarded option per trial
+**Can flexibility be increased?** If most individuals in the flexibility manipulation (serial reversals) passed the passing criterion, then the answer is yes.
+
+**Do the flexibility manipulated (serial reversal) individuals survive better in human modified environments?**
+
+*Response variable:* survival variable (e.g., predictability of space use, number of different food items eaten, etc.)
+
+*Explanatory variable:* 
+
+- Condition (control, manipulated)
+
+OR
+
+- Time (pre-manipulation, post-manipulation)
+
+*Random variable:* ID (because multiple reversal trials per individual)
+
 
 ### Design 2 - Feeder experiment
 
-*Response variable:* latency for the individual to go to the open feeder
+*Response variable:* survival variable (e.g., predictability of space use, number of different food items eaten, etc.)
+
+*Explanatory variable:* 
+
+- Condition (control, manipulated)
+
+OR
+
+- Time (pre-manipulation, post-manipulation)
+
+*Random variable:* ID (when response variable has multiple data points per individual)
 
 
 ## Q2: Does info spread faster through social learning?
