@@ -86,7 +86,7 @@ This investigation asks whether flexibility can be increased by experimentally i
 
 **Prediction 1 alternative 1:** Flexibility can be increased in individuals, but such an increase **does not improve the likelihood of survival** in human modified environments. This would indicate that species associated with human modified environments form this association for reasons other than their flexibility, and that threatened species are likely not very successful in human modified environments for reasons unrelated to their ability to change their behavior with changing circumstances.
 
-**Prediction 1 alternative 2:** Flexibility can be increased in some populations, but not others. This would indicate that flexibility manipulations may not work for all populations, and that the effectiveness of such experiments should first be tested in the population of interest before including such an intervention in a conservation plan. If flexibility is not manipulatable in threatened populations, this would indicate that they are likely not very successful in human modified environments because of their inability to change their behavior with changing circumstances, and that flexibility is not trainable. If flexibility is not manipulatable in populations that are successful in human modified environments, this could indicate that they might have used flexibility in the past when originally forming the association, but the need to maintain flexibility in their repertoire is no longer necessary. In populations where flexibility is not manipulatable, this would indicate that the abilities involved in tracking changing resources in the environment and are independent of the abilities involved in surviving in human modified environments.
+**Prediction 1 alternative 2:** Flexibility can be increased in some populations, but not others. This would indicate that flexibility manipulations may not work for all populations, and that the effectiveness of such experiments should first be tested in the population of interest before including such an intervention in a conservation plan. If flexibility is not manipulatable in threatened populations, this would indicate that they are likely not very successful in human modified environments because of their inability to change their behavior with changing circumstances, and that flexibility is not trainable. If flexibility is not manipulatable in populations that are successful in human modified environments, this could indicate that they might have used flexibility in the past when originally forming the association, but the need to maintain flexibility in their repertoire is no longer necessary. In populations where flexibility is not manipulatable, this would indicate that the abilities involved in tracking changing resources in the environment are independent of the abilities involved in surviving in human modified environments.
 
 
 ## Q2: Does survival information spread faster through social learning?
@@ -127,7 +127,7 @@ At least 20 individuals per population will be tested (50% in the control condit
 
 ## **Design 2 - Feeder experiment** 
 
-Half of the individuals (manipulated group) are exposed to feeders that open at irregular times until they meet the passing criterion, while the other half (control group) are exposed to feeders that open regularly (Figure 3). The irregular opening times represents environmental heterogeneity, and those individuals who have enough experience in this heterogeneous environment through multiple exposures are able to learn to improve their flexibility (latency to approach the right feeder at the right time - i.e., when it is open). In both designs, both groups are habituated to the open feeders filled with food until at least 3 individuals have visited more than 50% of the feeders, the manipulated group passing criterion is tailored to each population based on prior knowledge on this or similar experiments, and data are collected on success/survival measures either before and after the flexibility intervention or only after the intervention (depending on feasibility and how the study design needs to be tailored for each population). **KELSEY do we want to say anything about all of the "piloting" we're doing in GTGR in space use?** The social learning component is conducted during this experiment.
+Half of the individuals (manipulated group) are exposed to opaque feeders that open at irregular times until they meet the passing criterion, while the other half (control group) are exposed to feeders that open regularly (Figure 3). The irregular opening times represents environmental heterogeneity, and those individuals who have enough experience in this heterogeneous environment through multiple exposures are able to learn to improve their flexibility (latency to approach the right feeder at the right time - i.e., when it is open). In both designs, both groups are habituated to the open feeders filled with food until at least 3 individuals have visited more than 50% of the feeders, the manipulated group passing criterion is tailored to each population based on prior knowledge on this or similar experiments, and data are collected on success/survival measures either before and after the flexibility intervention or only after the intervention (depending on feasibility and how the study design needs to be tailored for each population). **KELSEY do we want to say anything about all of the "piloting" we're doing in GTGR in space use?** The social learning component is conducted during this experiment.
 
 &nbsp;
 
@@ -151,7 +151,7 @@ Half of the individuals (manipulated group) are exposed to feeders that open at 
 
 **Control condition stopping criterion:** the experiment will end when half of the individuals in the manipulated condition pass criterion.
 
-**Food in the feeders:** All feeders always have food in them to eliminate the confound due to olfactory differences between the feeders that could be introduced if only the active feeders have food in them. If a feeder needs to be refilled, refill all feeders consecutively in the same time period and refill each for the same amount of time even if that feeder does not need much or any food (in these cases, pretend to fill the feeder as you normally would). This eliminates confounds from cues provided by a differential amount of attention experimenters give the feeders depending on which needs refilling.
+**Food in the feeders:** All of the opaque feeders always have food in them to eliminate the confound due to olfactory differences between the feeders that could be introduced if only the active feeders have food in them. If a feeder needs to be refilled, refill all feeders consecutively in the same time period and refill each for the same amount of time even if that feeder does not need much or any food (in these cases, pretend to fill the feeder as you normally would). This eliminates confounds from cues provided by a differential amount of attention experimenters give the feeders depending on which needs refilling.
 
 **Population-specific experimental protocols:**
 
@@ -261,10 +261,11 @@ OR
 This research is carried out in accordance with permits from the:
 
 1) US Fish and Wildlife Service (scientific collecting permit number MB76700A-0,1,2)
-2) US Geological Survey Bird Banding Laboratory (federal bird banding permit number 23872)
+2) US Geological Survey Bird Banding Laboratory (federal bird banding permit for Logan 23872, for McCune 24273)
 3) Institutional Animal Care and Use Committee at the University of California Santa Barbara (protocol number 958)
 4) California Department of Fish and Wildlife (scientific collecting permit [specific use] number S‐192100001‐19210‐001)
-5) **RACHAEL & KELSEY: add your permits here**
+5) Oregon Department of Fish and Wildlife (scientific collecting permit number XXXX)
+6) **RACHAEL & KELSEY: add your permits here**
 
 # AUTHOR CONTRIBUTIONS
 
