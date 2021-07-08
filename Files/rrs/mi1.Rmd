@@ -299,11 +299,11 @@ OR
 *Random variable:* ID (when response variable has multiple data points per individual)
 
 
-## Q2: Does info spread faster through social learning?
+## Q2: Does information spread faster through social learning?
 
 ### Design 2 - Feeder experiment
 
-The analyses will be conducted using multilevel experience-weighted attraction models that allow one to determine which individual-level learning rules are applied in a particular group [@barrett2017pay]. Experimenters will adapt the code from @barrett2017pay (code at: https://github.com/bjbarrett/panama1) to meet their specific experimental design needs.
+The analyses will be conducted using multilevel experience-weighted attraction models that allow one to determine which individual-level learning rules are applied in a particular group [as in @barrett2017pay]. Experimenters will adapt the code from @barrett2017pay (code at: https://github.com/bjbarrett/panama1) to meet their specific experimental design needs.
 
 
 # ETHICS
