@@ -51,6 +51,11 @@ knitr::opts_chunk$set(echo = TRUE)
 
 Human modified environments are increasing, causing global changes that other species must adjust to or suffer from. Behavioral flexibility (hereafter 'flexibility') could be key: individuals interact with their environment through behavior, making it crucial to an ecologically valid understanding of how species adjust to environmental changes. One of the top priorities for behavioral research to maximize conservation progress is to determine which cognitive abilities and behaviors can predict the ability to adjust to human modified environments and whether these can be manipulated. The rare research that manipulates behavior in a conservation context trains specific behaviors (e.g., predator recognition through predator exposure) to improve individual success in the wild. However, training a general cognitive ability, such as behavioral flexibility (i.e., the ability to rapidly adapt behavior to changes through learning), has the potential to change a whole suite of behaviors and more broadly influence success in adjusting to human modified environments. This project asks whether flexibility can be increased by experimentally increasing environmental heterogeneity, whether such an increase can help species survive in human modified environments, and whether survival information spreads faster through social learning. We explore whether it is even possible to take insights from highly divergent species and apply them to address critical conservation challenges, which pushes the limits in terms of understanding how conserved these abilities may be and to what extent they can be shaped by the environment. We aim to 1) conduct flexibility interventions in two flexible species that are successful in human modified environments (great-tailed grackles and California scrub jays) to understand how flexibility relates to success and whether social learning increases the rate of behavioral change; and 2) implement the effective interventions in a threatened species (toutouwai) to determine whether flexibility as a generalizable cognitive ability can be trained and whether such training improves survival in human-modified environments. This research will significantly advance our understanding of the causes and consequences of flexibility, linking behavior to environmental change, cognition, and success in human modified environments through a comparative and global framework.
 
+# REGISTERED REPORT DETAILS
+
+ - **Level of bias:** This registered report was written (Jul 2021) prior to collecting any data (Level 6 at Peer Community in Registered Reports).
+ - **Programmatic registered report:** One Stage 2 article for each species (3 in total) will result from this one Stage 1 registered report.
+
 # INTRODUCTION
 
 Human modified environments are increasing [e.g., @liu2020high; @wu2011quantifying; @goldewijk2001estimating], causing global changes that other species must adjust to or suffer from [e.g., @ciani1986intertroop; @chejanovski2017experimental; @federspiel2017adjusting; @alberti2015eco]. Behavioral flexibility (hereafter 'flexibility') could be key: individuals interact with their environment through behavior, making it crucial to an ecologically valid understanding of how species adjust to environmental changes [@lee2021animal]. One of the top priorities for behavioral research to maximize conservation progress is to determine which cognitive abilities and behaviors can predict the ability to adjust to human modified environments and whether these can be manipulated [@moseby2016harnessing]. The rare research that manipulates behavior in a conservation context usually focuses on training specific behaviors (e.g., predator recognition through predator exposure) to improve individual success in the wild [e.g., @moseby2012can; @west2018predator; @jolly2018out; @ross2019reversing; see review in @tetzlaff2019effects]. However, training a general cognitive ability, such as flexibility -- the ability to rapidly adapt behavior to changes through learning throughout the lifetime [see the theory behind this definition in @mikhalevich_is_2017] -- has the potential to change a whole suite of behaviors and more broadly influence success in adjusting to human modified environments. 
@@ -67,24 +72,6 @@ Environments where informational cues about resources vary in a heterogenous (bu
 
 This investigation asks whether flexibility can be increased by experimentally increasing environmental heterogeneity (via serial reversal learning and/or the regularity of feeder openings), whether such an increase can help species survive in human modified environments, and whether survival information spreads faster through social learning. We explore whether it is even possible to take insights from highly divergent species and apply them to address critical conservation challenges, which pushes the limits in terms of understanding how conserved these abilities may be and to what extent they can be shaped by the environment. We aim to conduct flexibility interventions in two flexible species that are successful in human modified environments (great-tailed grackles and California scrub jays) to understand how flexibility relates to success and whether social learning increases the rate of behavioral change, and implement these interventions in a threatened species (toutouwai) to determine whether flexibility as a generalizable cognitive ability can be trained and whether such training improves survival in human modified environments (Figure 2). The results will substantially advance our understanding of the causes and consequences of flexibility, linking behavior to environmental change, cognition, and success in human modified environments through a comparative and global framework.
 
-&nbsp;
-
-<img width="100%" src="mi1Figthreespp.png">
-
-**Figure 2.** Comparing the three species involved in this investigation relative to their geographic range and association with human modified habitats. The yellow dots represent field site locations.
-
-
-**Great-tailed grackles (*Quiscalus mexicanus*)** are flexible [@logan2016flexibilityproblem; @logan2019flexmanip], highly associated with human modified environments [@johnson2001great], and have been rapidly expanding their geographic range across North America over the past 140 years [@wehtje2003range]. They are social and polygamous, and eat a diversity of human foods as well as foraging on insects and on substrates for other natural food items [@johnson2001great]. We are currently in the middle of long-term data collection on grackles to answer questions about manipulating flexibility using serial reversal learning [@logan2019flexmanip], the predictibility of their space use [@mccune2020spaceuse], and their foraging breadth [@logan2019flexforaging]. In the future, we will conduct additional analyses on this data that are relevant to the current investigation. @Rodrigo2021gtgr found that more grackles are present and more foraging events occur during garbage pick ups when garbage tends to spill out of the bags, thus increasing food availability. Attending to garbage trucks, potentially across space and time, is an example of how flexibility can help individuals meet foraging needs in the context of changing environmental cues. The specific question we will address in the current investigation is: Do the flexibility manipulated grackles overlap more in time and space with garbage pick up days and times when there is more food availability compared to their baseline behavior before the manipulation?
-
-**Jays** background **KELSEY add**
-
-**Toutouwai** background **RACHAEL add**
-
-
-# REGISTERED REPORT DETAILS
-
- - **Level of bias:** This registered report was written (Jul 2021) prior to collecting any data (Level 6 at Peer Community in Registered Reports).
- - **Programmatic registered report:** One Stage 2 article for each species (3 in total) will result from this one Stage 1 registered report.
 
 # RESEARCH QUESTIONS
 
@@ -106,19 +93,60 @@ This investigation asks whether flexibility can be increased by experimentally i
 **Prediction 2 alternative 2:** Individuals (observers) who learn about resources by watching those individuals (demonstrators) who were in the flexibility manipulation, **do not differ** in their use of such resources compared with observers who were not exposed to demonstrators.
 
 
+## Population-specific background and tailored research questions
+
+&nbsp;
+
+<img width="100%" src="mi1Figthreespp.png">
+
+**Figure 2.** Comparing the three species involved in this investigation relative to their geographic range and association with human modified habitats. The yellow dots represent field site locations.
+
+
+### Great-tailed grackles (*Quiscalus mexicanus*)
+
+**Background:** Great-tailed grackles are flexible [@logan2016flexibilityproblem; @logan2019flexmanip], highly associated with human modified environments [@johnson2001great], and have been rapidly expanding their geographic range across North America over the past 140 years [@wehtje2003range]. They are social and polygamous, and eat a diversity of human foods as well as foraging on insects and on substrates for other natural food items [@johnson2001great]. We are currently in the middle of long-term data collection on grackles to answer questions about manipulating flexibility using serial reversal learning [@logan2019flexmanip], the predictibility of their space use [@mccune2020spaceuse], and their foraging breadth [@logan2019flexforaging]. In the future, we will conduct additional analyses on this data that are relevant to the current investigation. @Rodrigo2021gtgr found that more grackles are present and more foraging events occur during garbage pick ups when garbage tends to spill out of the bags, thus increasing food availability. Attending to garbage trucks, potentially across space and time, is an example of how flexibility can help individuals meet foraging needs in the context of changing environmental cues.
+
+**Do flexibility manipulated individuals differ in their visits to outdoor cafes and garbage dumpsters on regular days (when there is more food availability) than on holidays when they are closed (thus reduced food availability)?**
+
+ - **Prediction 1.1:** If individuals rely more on flexibility, they will likely decrease the frequency and duration of their visits on holidays because other environmental cues could indicate the lack of food availability (e.g., reduced human presence, no visible food). This is because flexibility is the functional tracking of resources across time and space: one knows a variety of places to obtain food and prefers to forage at those with higher pay offs. If no food is available at a usual food location, then the more functional choice is to go somewhere else that does have food. 
+ - **Prediction 1.2:** If individuals rely more on what-where-when memory (WWW, remembering what food was where and when from a previous experience they had) [@clayton_episodic-like_1998; @clayton_prometheus_2003], they will likely increase the frequency and duration of their visits on holidays because the closure is a violation of their expectations. These expectations are based on associations between food and this place and time that have been built from multiple past experiences. Therefore, they would likely keep checking this location, which is expected to have more food availability at this time.
+ - **Prediction 1.3:** If there is no difference in the frequency and/or duration of visits between regular days and holidays, this could indicate that the flexibility manipulation did not manipulate an ability that is linked to foraging visits to cafes and dumpsters. 
+ - **Prediction 1.4:** If the holiday frequency of visits increases while the duration decreases, this could indicate that WWW memory is being used because individuals keep checking the location they expect food to be, but that these visits are short and used for checking for food cues (including looking for human presence), which is likely faster than stopping to eat food that is present. 
+ - **Prediction 1.5:** If the holiday frequency of visits decreases while the duration increases, this could indicate that WWW memory is being used because individuals may be sitting and waiting for food to become available in the location they expect it to be.
+
+&nbsp;
+
+<img width="100%" src="mi1Figgtgr.png">
+
+**Figure 3.** The template feeder experimental design (Figure 7) tailored to the great-tailed grackle research question.
+
+
+### Jays
+
+**KELSEY add**
+
+**Figure 4.**
+
+### Toutouwai
+
+**RACHAEL add**
+
+**Figure 5.**
+
+
 # METHODS
 
 We present two designs for flexibility intervention experiments. Experimenters can decide which (or both) they want to conduct in their population. Only one experiment must be conducted per population to be able to test these hypotheses. Conducting more than one of these experiments per population is acceptable, but not necessary. Social learning data can only be collected using design 2 because design 1 is conducted in visual isolation of other individuals.
 
 ## **Design 1 - Reversal learning experiment** 
 
-Half of the individuals (manipulated group) undergo serial reversal learning until they meet the passing criterion, while the other half (control group) receive only one reversal (Figure 3). A reversal of where the reward is placed represents environmental heterogeneity, and those individuals who have enough experience in this heterogeneous environment through multiple reversals are able to learn to improve their flexibility (the number of trials it takes to change a preference). This flexibility intervention has been shown to work in great-tailed grackles where 8 out of 9 individuals in the serial reversal group passed the passing criterion (passing 2 consecutive reversals in 50 trials or less) within their given time frame [@logan2019flexmanip]. Individuals are presented with two options that differ in color, shape, or in some other way, with one option being the rewarded option. Once a preference for the rewarded option is reached (17/20 trials correct), the reward is then always placed in the previously non-rewarded option until a preference is reached (using the same criterion). The individual is only allowed one choice per trial and the option on the left is always placed first, with the experimenter always turning to the right when setting up and taking down each trial (if a live experimenter is involved). After the control group's first reversal, they receive a similar amount of experience as the manipulated group, but without the functionality: two apparatuses are still used in every trial, but they are the same color/shape/etc. and both contain food. As with the manipulated group, only one choice, the first choice, is allowed per trial. Choices are scored as: 1=chose the correct option (even if they do not eat the food), 0=chose the incorrect option, and -1=did not make a choice.
+Half of the individuals (manipulated group) undergo serial reversal learning until they meet the passing criterion, while the other half (control group) receive only one reversal (Figure 6). A reversal of where the reward is placed represents environmental heterogeneity, and those individuals who have enough experience in this heterogeneous environment through multiple reversals are able to learn to improve their flexibility (the number of trials it takes to change a preference). This flexibility intervention has been shown to work in great-tailed grackles where 8 out of 9 individuals in the serial reversal group passed the passing criterion (passing 2 consecutive reversals in 50 trials or less) within their given time frame [@logan2019flexmanip]. Individuals are presented with two options that differ in color, shape, or in some other way, with one option being the rewarded option. Once a preference for the rewarded option is reached (17/20 trials correct), the reward is then always placed in the previously non-rewarded option until a preference is reached (using the same criterion). The individual is only allowed one choice per trial and the option on the left is always placed first, with the experimenter always turning to the right when setting up and taking down each trial (if a live experimenter is involved). After the control group's first reversal, they receive a similar amount of experience as the manipulated group, but without the functionality: two apparatuses are still used in every trial, but they are the same color/shape/etc. and both contain food. As with the manipulated group, only one choice, the first choice, is allowed per trial. Choices are scored as: 1=chose the correct option (even if they do not eat the food), 0=chose the incorrect option, and -1=did not make a choice.
 
 &nbsp;
 
 <img width="100%" src="mi1Figdesign1.png">
 
-**Figure 3.** Template design for the reversal learning experiment.
+**Figure 6.** Template design for the reversal learning experiment.
 
 ### Planned Sample
 
@@ -148,13 +176,13 @@ We conduct interobserver reliability by having hypothesis-blind video coders cod
 
 ## **Design 2 - Feeder experiment** 
 
-Half of the individuals (manipulated group) are exposed to opaque feeders that open at irregular times until they meet the passing criterion, while the other half (control group) are exposed to feeders that open regularly (Figure 4). The irregular opening times represents environmental heterogeneity, and those individuals who have enough experience in this heterogeneous environment through multiple exposures are able to learn to improve their flexibility (latency to approach the right feeder at the right time - i.e., when it is open). In both designs, both groups are habituated to the open feeders filled with food until at least half of the minimum sample size has visited more than 50% of the feeders, and data are collected on success/survival measures either before and after the flexibility intervention or only after the intervention (depending on feasibility and how the study design needs to be tailored for each population). **KELSEY do we want to say anything about all of the "piloting" we're doing in GTGR in space use?** The social learning component is conducted during this experiment.
+Half of the individuals (manipulated group) are exposed to opaque feeders that open at irregular times until they meet the passing criterion, while the other half (control group) are exposed to feeders that open regularly (Figure 7). The irregular opening times represents environmental heterogeneity, and those individuals who have enough experience in this heterogeneous environment through multiple exposures are able to learn to improve their flexibility (latency to approach the right feeder at the right time - i.e., when it is open). In both designs, both groups are habituated to the open feeders filled with food until at least half of the minimum sample size has visited more than 50% of the feeders, and data are collected on success/survival measures either before and after the flexibility intervention or only after the intervention (depending on feasibility and how the study design needs to be tailored for each population). **KELSEY do we want to say anything about all of the "piloting" we're doing in GTGR in space use?** The social learning component is conducted during this experiment.
 
 &nbsp;
 
 <img width="100%" src="mi1Figdesign2.png">
 
-**Figure 4.** Template design for the feeder experiment.
+**Figure 7.** Template design for the feeder experiment.
 
 ### Planned Sample
 
@@ -275,9 +303,7 @@ OR
 
 ### Design 2 - Feeder experiment
 
-*Response variable:* latency of the observer to go to the open feeder
-
-*Explanatory variables:*
+The analyses will be conducted using multilevel experience-weighted attraction models that allow one to determine which individual-level learning rules are applied in a particular group [@barrett2017pay]. Experimenters will adapt the code from @barrett2017pay (code at: https://github.com/bjbarrett/panama1) to meet their specific experimental design needs.
 
 
 # ETHICS
