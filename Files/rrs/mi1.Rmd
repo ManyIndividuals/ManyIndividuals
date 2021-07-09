@@ -70,6 +70,8 @@ Environments where informational cues about resources vary in a heterogenous (bu
 
 &nbsp;
 
+**Social learning spread would decrease the number of inds you have to train & discuss how intersects with flex: observers learn how to solve what they see (or maybe learning to use social info), but not teaching flex, add explanatory variable to soc learn model: condition (control or manipulated) to see if we wrong that they don’t learn flex (horiz and/or vert transmission)**
+
 This investigation asks whether flexibility can be increased by experimentally increasing environmental heterogeneity (via serial reversal learning and/or the regularity of feeder openings), whether such an increase can help species survive in human modified environments, and whether survival information spreads faster through social learning. We explore whether it is even possible to take insights from highly divergent species and apply them to address critical conservation challenges, which pushes the limits in terms of understanding how conserved these abilities may be and to what extent they can be shaped by the environment. We aim to conduct flexibility interventions in two flexible species that are successful in human modified environments (great-tailed grackles and California scrub jays) to understand how flexibility relates to success and whether social learning increases the rate of behavioral change, and implement these interventions in a threatened species (toutouwai) to determine whether flexibility as a generalizable cognitive ability can be trained and whether such training improves survival in human modified environments (Figure 2). The results will substantially advance our understanding of the causes and consequences of flexibility, linking behavior to environmental change, cognition, and success in human modified environments through a comparative and global framework.
 
 
@@ -104,15 +106,20 @@ This investigation asks whether flexibility can be increased by experimentally i
 
 ### Great-tailed grackles (*Quiscalus mexicanus*)
 
-**Background:** Great-tailed grackles are flexible [@logan2016flexibilityproblem; @logan2019flexmanip], highly associated with human modified environments [@johnson2001great], and have been rapidly expanding their geographic range across North America over the past 140 years [@wehtje2003range]. They are social and polygamous, and eat a diversity of human foods as well as foraging on insects and on substrates for other natural food items [@johnson2001great]. We are currently in the middle of long-term data collection on grackles to answer questions about manipulating flexibility using serial reversal learning [@logan2019flexmanip], the predictibility of their space use [@mccune2020spaceuse], and their foraging breadth [@logan2019flexforaging]. In the future, we will conduct additional analyses on this data that are relevant to the current investigation. @Rodrigo2021gtgr found that more grackles are present and more foraging events occur during garbage pick ups when garbage tends to spill out of the bags, thus increasing food availability. Attending to garbage trucks, potentially across space and time, is an example of how flexibility can help individuals meet foraging needs in the context of changing environmental cues.
+**Background:** Great-tailed grackles are flexible [@logan2016flexibilityproblem; @logan2019flexmanip], highly associated with human modified environments [@johnson2001great], and have been rapidly expanding their geographic range across North America over the past 140 years [@wehtje2003range]. They are social and polygamous, and eat a diversity of human foods as well as foraging on insects and on substrates for other natural food items [@johnson2001great]. Males tend to be the socially dominant sex [@johnson2000male] and also the sex that disperses away from their natal area [@sevchik2019dispersal]. We are currently in the middle of long-term data collection on grackles to answer questions about manipulating flexibility using serial reversal learning [@logan2019flexmanip], the predictibility of their space use [@mccune2020spaceuse], and their foraging breadth [@logan2019flexforaging]. In the future, we will conduct additional analyses on this data that are relevant to the current investigation. @Rodrigo2021gtgr found that more grackles are present and more foraging events occur during garbage pick ups when garbage tends to spill out of the bags, thus increasing food availability. Attending to garbage trucks, potentially across space and time, is an example of how flexibility can help individuals meet foraging needs in the context of changing environmental cues.
 
-**Do flexibility manipulated individuals differ in their visits to outdoor cafes and garbage dumpsters on regular days (when there is more food availability) than on holidays when they are closed (thus reduced food availability)?**
+**Q1: Do flexibility manipulated individuals differ in their visits to outdoor cafes and garbage dumpsters on regular days (when there is more food availability) than on holidays when they are closed (thus reduced food availability)?**
 
- - **Prediction 1.1:** If individuals rely more on flexibility, they will likely decrease the frequency and duration of their visits on holidays because other environmental cues could indicate the lack of food availability (e.g., reduced human presence, no visible food). This is because flexibility is the functional tracking of resources across time and space: one knows a variety of places to obtain food and prefers to forage at those with higher pay offs. If no food is available at a usual food location, then the more functional choice is to go somewhere else that does have food. 
+ - **Prediction 1.1:** If individuals rely more on flexibility, they will likely decrease the frequency and duration of their visits on holidays because other environmental cues could indicate the lack of food availability (e.g., reduced human presence, no visible food, no garbge trucks or garbage spilled on the ground). This is because flexibility is the functional tracking of resources across time and space: one knows a variety of places to obtain food and prefers to forage at those with higher pay offs. If no food is available at a usual food location, then the more functional choice is to go somewhere else that does have food. 
  - **Prediction 1.2:** If individuals rely more on what-where-when memory (WWW, remembering what food was where and when from a previous experience they had) [@clayton_episodic-like_1998; @clayton_prometheus_2003], they will likely increase the frequency and duration of their visits on holidays because the closure is a violation of their expectations. These expectations are based on associations between food and this place and time that have been built from multiple past experiences. Therefore, they would likely keep checking this location, which is expected to have more food availability at this time.
  - **Prediction 1.3:** If there is no difference in the frequency and/or duration of visits between regular days and holidays, this could indicate that the flexibility manipulation did not manipulate an ability that is linked to foraging visits to cafes and dumpsters. 
  - **Prediction 1.4:** If the holiday frequency of visits increases while the duration decreases, this could indicate that WWW memory is being used because individuals keep checking the location they expect food to be, but that these visits are short and used for checking for food cues (including looking for human presence), which is likely faster than stopping to eat food that is present. 
  - **Prediction 1.5:** If the holiday frequency of visits decreases while the duration increases, this could indicate that WWW memory is being used because individuals may be sitting and waiting for food to become available in the location they expect it to be.
+ - **Prediction 2:** There will be no difference between pre- and post- experiment frequency and duration of visits at dumpsters because garbage pick up is generally once per week, which might be too long of a period to be able to accurately remember (i.e., can individuals count to 7 days?). However, we do predict a difference between pre- and post- experiment frequency and duration of visits (as outlined in Predictions 1.1-1.5) at cafes because they are generally open daily and therefore do not require longer-term memory retention to track.
+
+**Q2: Does information about which feeder contains the food spread faster through social learning?**
+
+Predictions are the same as in the Research Question: Q2 section, except the comparison is among all individuals in the flexibility manipulation, examining the difference between innovators (those who have not seen others at a feeder when attempting to solve) versus observers who had seen at least one demonstrator at a feeder. We will examine whether observers are more likely to learn from demonstrators of a particular sex or age (<1 year or >1 year), whether the rate of updating differs by sex or age, and whether the feeder's pay-off (accessible or inaccessible) played a role in the choice of visit.
 
 &nbsp;
 
@@ -173,10 +180,30 @@ At least 20 individuals per population will be tested (50% in the control condit
 
 We conduct interobserver reliability by having hypothesis-blind video coders code all of the videos for 20% of the individuals in the experiment: [instructions for video coders](https://docs.google.com/document/d/1QakS8TMe4WRv_QWKrHaWHyJSXbQwl8v9Y061SY914Wg/edit?usp=sharing). Live coder data is then compared with video coder data by analyzing whether the individual made the correct choice (1) or not (0) or whether they did not make a choice (-1) using Cohen's unweighted kappa (@landis1977measurement, with the psych package in R @psych). This measure indicates how replicable the experiment and the coding instructions are. Before a video coder is approved to begin coding, they must first pass training where they code a different set of videos and reach an unweighted kappa of 0.89 or above.
 
+```{r iorRev, eval=FALSE, warning=FALSE, results='asis', echo=TRUE, include=TRUE}
+library(irr) #ICC package
+
+# did video coder pass interobserver reliability training? 
+data <- read.csv("", header = TRUE, sep = ",", stringsAsFactors = FALSE)
+head(data)  #Check to make sure it looks right
+# Note: c(3,5) is telling R to look at columns 2 and 3 and compare them. Double check this:
+data[,3] #coder 1 (live coder)
+data[,5] #coder 2 (video coder)
+cohen.kappa(data[,c(3,5)], w=NULL,n.obs=NULL,alpha=.05,levels=NULL) 
+
+# video coder score for 20% of videos =  
+data <- read.csv("", header = TRUE, sep = ",", stringsAsFactors = FALSE)
+head(data)  #Check to make sure it looks right
+# Note: c(3,5) is telling R to look at columns 2 and 3 and compare them. Double check this:
+data[,3] #coder 1 (live coder)
+data[,5] #coder 2 (video coder)
+cohen.kappa(data[,c(3,5)], w=NULL,n.obs=NULL,alpha=.05,levels=NULL) 
+```
+
 
 ## **Design 2 - Feeder experiment** 
 
-Half of the individuals (manipulated group) are exposed to opaque feeders that open at irregular times until they meet the passing criterion, while the other half (control group) are exposed to feeders that open regularly (Figure 7). The irregular opening times represents environmental heterogeneity, and those individuals who have enough experience in this heterogeneous environment through multiple exposures are able to learn to improve their flexibility (latency to approach the right feeder at the right time - i.e., when it is open). In both designs, both groups are habituated to the open feeders filled with food until at least half of the minimum sample size has visited more than 50% of the feeders, and data are collected on success/survival measures either before and after the flexibility intervention or only after the intervention (depending on feasibility and how the study design needs to be tailored for each population). **KELSEY do we want to say anything about all of the "piloting" we're doing in GTGR in space use?** The social learning component is conducted during this experiment.
+Half of the individuals (manipulated group) are exposed to opaque feeders that open at irregular times until they meet the passing criterion, while the other half (control group) are exposed to opaque feeders that open regularly (Figure 7). The irregular opening times represents environmental heterogeneity, and those individuals who have enough experience in this heterogeneous environment through multiple exposures are able to learn to improve their flexibility (latency to approach the right feeder at the right time - i.e., when it is open). In both designs, both groups are habituated to the open feeders filled with food until at least half of the minimum sample size has visited more than 50% of the feeders, and data are collected on success/survival measures either before and after the flexibility intervention or only after the intervention (depending on feasibility and how the study design needs to be tailored for each population). **KELSEY do we want to say anything about all of the "piloting" we're doing in GTGR in space use?** The social learning component is conducted during this experiment.
 
 &nbsp;
 
@@ -200,7 +227,7 @@ Half of the individuals (manipulated group) are exposed to opaque feeders that o
 
 ### Protocols
 
-**Food in the feeders:** All of the opaque feeders always have food in them to eliminate the confound due to olfactory differences between the feeders that could be introduced if only the active feeders have food in them. If a feeder needs to be refilled, refill all feeders consecutively in the same time period and refill each for the same amount of time even if that feeder does not need much or any food (in these cases, pretend to fill the feeder as you normally would). This eliminates confounds from cues provided by a differential amount of attention experimenters give the feeders depending on which needs refilling.
+**Food in the feeders:** All feeders are opaque and always have food in them to eliminate the confound due to olfactory differences between the feeders that could be introduced if only the active feeders have food in them. If a feeder needs to be refilled, refill all feeders consecutively in the same time period and refill each for the same amount of time even if that feeder does not need much or any food (in these cases, pretend to fill the feeder as you normally would). This eliminates confounds from cues provided by a differential amount of attention experimenters give the feeders depending on which needs refilling.
 
 **Social learning data collection:** are observers (individuals who have never landed on the perch of any feeder) more likely to land on the perch of a feeder sooner if they see another individual (demonstrator) land on a perch compared with observers who don't see demonstrators? **CORINA KELSEY NEED TO FIGURE THIS OUT** 
 
@@ -211,7 +238,7 @@ Half of the individuals (manipulated group) are exposed to opaque feeders that o
   - [Scrub jay protocol](https://docs.google.com/document/d/1VWL7AIDB-Z1vhs1dEM7JACHuvNjgjZCBI3ubQECqm2U/edit?usp=sharing)
   - [Toutouwai protocol]()
 
-### Interobserver reliability
+### Reliability of feeder data
 
 During the experiment, we will determine the reliability of the automated feeder data. We will verify that the feeders are correctly detecting tags by using a (motion-activated, Go-Pro, or similar) camera focused on 20% of the feeder perches. Hypothesis-blind video coders will then code who landed on the perch: individual ID, time of day, and whether it ate food. We will then compare the automated feeder data sheets with the video coder’s data sheets by calculating the Cohen’s unweighted kappa for individual ID and the intra-class correlation coefficient (ICC) on the time of day (kappa: @landis1977measurement, with the psych package in R @psych; ICC: @hutcheon2010random, with the irr package in R: @gamer2012package). Cohen's kappa is used when the distance between measurements is not quantifiable numerically, and the ICC is used for continuous variables with equal distances between units.
 
@@ -232,36 +259,6 @@ The data will be published in the Knowledge Network for Biocomplexity's data rep
 
 
 # ANALYSIS PLAN
-
-## Blinding during analysis
-
-Hypothesis- and data-blind video coders are recruited to conduct interobserver reliability of 20% of the videos for the reversal learning experiment. Blinding is usually not involved in the final analyses because the experimenters collect the data (and therefore have seen some form of it) and run the analyses. **CORINA KELSEY RACHAEL NEED TO ADD BLINDING MEASURES**
-
-## Interobserver reliability of reversal learning
-
-To determine whether experimenters coded the dependent variables in a repeatable way, hypothesis-blind video coders will first be trained in video coding the dependent variables (reversal learning: whether the bird made the correct choice or not), requiring a Cohen's unweighted kappa of 0.90 or above to pass training. This threshold indicates that the two coders (the experimenter and the video coder) agree with each other to a high degree [kappa: @landis1977measurement, using the psych package in R @psych]. After passing training, the video coders will code 20% of the videos for each experiment and the unweighted kappa will be calculated to determine how objective and repeatable scoring was for each variable, while noting that the experimenter has the advantage over the video coder because watching the videos is not as clear as watching the bird participate in person. The unweighted kappa is used when analyzing a categorical variable where the distances between the numbers are meaningless (e.g., 0=incorrect choice, 1=correct choice, -1=did not participate).
-
-```{r ior, eval=FALSE, warning=FALSE, results='asis', echo=TRUE, include=TRUE}
-library(irr) #ICC package
-
-#### REVERSAL LEARNING
-
-# did video coder pass interobserver reliability training? 
-data <- read.csv("", header = TRUE, sep = ",", stringsAsFactors = FALSE)
-head(data)  #Check to make sure it looks right
-# Note: c(3,5) is telling R to look at columns 2 and 3 and compare them. Double check this:
-data[,3] #coder 1 (live coder)
-data[,5] #coder 2 (video coder)
-cohen.kappa(data[,c(3,5)], w=NULL,n.obs=NULL,alpha=.05,levels=NULL) 
-
-# video coder score for 20% of videos =  
-data <- read.csv("", header = TRUE, sep = ",", stringsAsFactors = FALSE)
-head(data)  #Check to make sure it looks right
-# Note: c(3,5) is telling R to look at columns 2 and 3 and compare them. Double check this:
-data[,3] #coder 1 (live coder)
-data[,5] #coder 2 (video coder)
-cohen.kappa(data[,c(3,5)], w=NULL,n.obs=NULL,alpha=.05,levels=NULL) 
-```
 
 ## Q1: Can flexibility be increased and help individuals survive in human modified environments?
 
@@ -299,11 +296,60 @@ OR
 *Random variable:* ID (when response variable has multiple data points per individual)
 
 
+#### Great-tailed grackles
+
+**Cafes: cafe pre-manipulation baseline compared with cafe post-manipulation**
+
+Model 1: Number of visits ~ Time (before/after) + (ID)
+
+Model 2: Duration of visits ~ Time (before/after) + (ID)
+
+**Dumpsters: dumpster pre-manipulation baseline compared with dumpster post-manipulation**
+
+Model 3: Number of visits ~ Time (before/after) + (ID)
+
+Model 4: Duration of visits ~ Time (before/after) + (ID)
+
+
+#### Jays
+
+**KELSEY**
+
+#### Toutouwai
+
+**Rachael**
+
+
+
 ## Q2: Does information spread faster through social learning?
 
 ### Design 2 - Feeder experiment
 
 The analyses will be conducted using multilevel experience-weighted attraction models that allow one to determine which individual-level learning rules are applied in a particular group [as in @barrett2017pay]. Experimenters will adapt the code from @barrett2017pay (code at: https://github.com/bjbarrett/panama1) to meet their specific experimental design needs.
+
+#### Great-tailed grackles
+
+*Variables in the model:* 
+
+ - Attraction scores (indicating whether the currently open feeder had the largest attraction score)
+ - Gamma (indicating the weight of social information - whether social learning influenced which feeder was chosen)
+ - Logit(theta) (rate of updating per individual)
+ - Phi (indicating the weight of past experiences)
+ - Pay-off - Beta(pay) (whether they visited an accessible or inaccessible feeder)
+ - Age similarity biases (between the observer and demonstrator. Two age classes: adult (1+ years) and juvenile (<1 year))
+ - Age bias - Beta(age) (whether observers ore more likely to learn from demonstrators of a certain age)
+ - Sex bias (whether observers ore more likely to learn from demonstrators of a certain sex)
+
+
+#### Jays
+
+**KELSEY**
+
+
+#### Toutouwai
+
+**Rachael**
+
 
 
 # ETHICS
