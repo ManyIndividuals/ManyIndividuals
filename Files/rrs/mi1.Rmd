@@ -116,9 +116,8 @@ d <- read.csv(url("https://raw.githubusercontent.com/ManyIndividuals/ManyIndivid
 colnames(d) <- c("Question","Hypothesis","Sampling plan","Analysis plan","Rationale for deciding the sensitivity of the test for confirming or disconfirming the hypothesis","Interpretation given different outcomes","Theory that could be shown wrong by the outcomes")
 
 library(kableExtra)
-knitr::kable(d, booktabs=T, escape=F) %>%
-kable_styling(full_width = T, position = "left")
-linebreak(d, align = c("l"), linebreaker="\n")
+knitr::kable(d)
+#kable_styling(full_width = T, position = "left")
 ```
 
 **Q1: Do flexibility manipulated individuals differ in their visits to outdoor cafes and garbage dumpsters on regular days (when there is more food availability) than on holidays when they are closed (thus reduced food availability)?**
