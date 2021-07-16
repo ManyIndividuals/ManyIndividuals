@@ -160,7 +160,7 @@ Predictions are the same as in the Research Question: Q2 section, except the com
 
 ### Jays
 
-**KELSEY add**
+**Background:** California scrub-jays (*Aphelocoma californica*, hereafter "CASJ"), a singular, monogamous breeder, are increasing in abundance and range size and highly successful in natural, suburban, and urban areas [@blair1996land; @curry2017california]. CASJ forage primarily on mast (acorns, hazelnuts, etc.) that they cache throughout their territory to eat all year. But they are also opportunistic omnivores and specifically need high-fat and high-protein arthropods to feed to nestlings and fledglings [@curry2017california]. Nesting and foraging substrate can be drastically different in human modified environments compared to natural areas, but it is unknown whether suburban and urban jays persist through behavioral adaptations.
 
 **Figure 4.**
 
