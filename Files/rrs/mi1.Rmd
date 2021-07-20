@@ -303,7 +303,8 @@ After the manipulation, compare control individuals with individuals in the flex
 
  - Fitness variables: nest success, number of offspring who survived to independence or adulthood, longevity, etc.
  - Foraging variables: diet breadth, number of foraging techniques used, etc.
- - Space use variables: predictability of space use (e.g., step length and turning angles), ability to disperse from a non-human modified environment to a human modified environment (assess success/survival after disperal if possible), etc.
+ - Movement variables: predictability of movement behavior (e.g., step length and turning angles), ability to disperse from a non-human modified environment to a human modified environment (assess success/survival after dispersal if possible), etc.
+ - Habitat use variables: foraging substrate (ground, bushes, trees, human modified substrates, human-provided supplemental food), nesting substrate (high or low, tree, bush or reeds), etc.
 
 **CORINA KELSEY RACHAEL NEED TO ADD TO THIS LIST**
 
