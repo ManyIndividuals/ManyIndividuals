@@ -138,7 +138,7 @@ knitr::kable(d)
 #kable_styling(full_width = T, position = "left")
 ```
 
-**Q1: Do flexibility manipulated individuals differ in their visits to outdoor cafes and garbage dumpsters on regular days (when there is more food availability) than on holidays when they are closed (thus reduced food availability)?**
+**G.Q1: Do flexibility manipulated individuals differ in their visits to outdoor cafes and garbage dumpsters on regular days (when there is more food availability) than on holidays when they are closed (thus reduced food availability)?**
 
  - **Prediction 1.1:** If individuals rely more on flexibility, they will likely decrease the frequency and duration of their visits on holidays because other environmental cues could indicate the lack of food availability (e.g., reduced human presence, no visible food, no garbage trucks or garbage spilled on the ground). This is because flexibility is the functional tracking of resources across time and space: one knows a variety of places to obtain food and prefers to forage at those with higher pay offs. If no food is available at a usual food location, then the more functional choice is to go somewhere else that does have food. 
  - **Prediction 1.2:** If individuals rely more on what-where-when memory (WWW, remembering what food was where and when from a previous experience they had) [@clayton_episodic-like_1998; @clayton_prometheus_2003], they will likely increase the frequency and duration of their visits on holidays because the closure is a violation of their expectations. These expectations are based on associations between food and this place and time that have been built from multiple past experiences. Therefore, they would likely keep checking this location, which is expected to have more food availability at this time.
@@ -147,7 +147,7 @@ knitr::kable(d)
  - **Prediction 1.5:** If the holiday frequency of visits decreases while the duration increases, this could indicate that WWW memory is being used because individuals may be sitting and waiting for food to become available in the location they expect it to be.
  - **Prediction 2:** There will be no difference between pre- and post- experiment frequency and duration of visits at dumpsters because garbage pick up is generally once per week, which might be too long of a period to be able to accurately remember (i.e., can individuals count to 7 days?). However, we do predict a difference between pre- and post- experiment frequency and duration of visits (as outlined in Predictions 1.1-1.5) at cafes because they are generally open daily and therefore do not require longer-term memory retention to track.
 
-**Q2: Does information about which feeder contains the food spread faster through social learning?**
+**G.Q2: Does information about which feeder contains the food spread faster through social learning?**
 
 Predictions are the same as in the Research Question: Q2 section, except the comparison is among all individuals in the flexibility manipulation, examining the difference between innovators (those who have not seen others at a feeder when attempting to solve) versus observers who had seen at least one demonstrator at a feeder. We will examine whether observers are more likely to learn from demonstrators of a particular sex or age (<1 year or >1 year), whether the rate of updating differs by sex or age, and whether the feeder's pay-off (accessible or inaccessible) played a role in the choice of visit.
 
@@ -167,19 +167,19 @@ Both species forage primarily on mast (acorns, hazelnuts, etc.) that they cache 
 We aim to compare behavioral flexibility within species, between suburban and natural populations to determine if variation in flexibility relates to variation in persistence. Subsequently we will compare flexibility between species to determine whether this trait is related to the greater persistence of CASJ in human-dominated areas. Lastly, we will test whether manipulating flexibility increases the foraging breadth and reproductive success of jays in human modified environments. Manipulating flexibility of a subset of individuals has the potential to affect the population because previous research demonstrates that both species have the capacity to use foraging information discovered by others to flexibly change their behavior [social learning; @mccune2018cognition, @midford2000social].
 
 
-**Q1: Do jay populations in human modified areas differ in baseline behavioral flexibility compared to populations in natural areas?**
+**J.Q1: Do jay populations in human modified areas differ in baseline behavioral flexibility compared to populations in natural areas?**
 
  - **Prediction 1.1:** If suburban jays are *more* flexible than jays in natural areas, this implies that flexibility is related to the ability to persist in human modified environments where spatial and temporal heterogeneity of resources is high. 
  - **Prediction 1.2:** If suburban jays are *less* flexible than jays in natural areas, this implies that human modification of the environment has led to less spatial and temporal heterogeneity of resources. For example, the prevalence of bird feeders in suburban areas leads to consistently available food.
  - **Prediction 1.3:** If suburban jays are *equally* flexible as jays in natural areas, this implies that additional behavioral traits [i.e. boldness; @lapiedra2017urbanization] facilitate success in human modified environments
  
-**Q2: Are CASJ more behaviorally flexible than FLSJ in general?**
+**J.Q2: Are CASJ more behaviorally flexible than FLSJ in general?**
 
  - **Prediction 2.1:** If CASJ are *more* flexible than FLSJ, this may explain the range expansion and greater success of CASJ in human modified environments.
  - **Prediction 2.2:** If CASJ are *less* flexible than FLSJ, it implies that flexibility is not related to persistence in human modified environments and that behavioral flexibility is instead related to a different, unknown social or environmental characteristic.
  - **Prediction 2.3:** If CASJ and FLSJ are *equally* flexible, then flexibility is not related to persistence in human modified environments and the level of flexibility is potentially an evolutionary conserved trait from the *Aphelocoma* common ancestor.
  
-**Q3: Does manipulating behavioral flexibility affect success of CASJ and FLSJ in human modified environments?**
+**J.Q3: Does manipulating behavioral flexibility affect success of CASJ and FLSJ in human modified environments?**
 
 Predictions are the same as in the general Research Question: Q1 section.
 
