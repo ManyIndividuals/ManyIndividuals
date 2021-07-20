@@ -323,7 +323,7 @@ The data will be published in the Knowledge Network for Biocomplexity's data rep
 
 **Do the flexibility manipulated (serial reversal) individuals survive better in human modified environments?**
 
-*Response variable:* survival variable (e.g., predictability of space use, number of different food items eaten, etc.)
+*Response variable:* survival variable (e.g., predictability of movement behavior, number of different food items eaten, etc.)
 
 *Explanatory variable:* 
 
@@ -333,12 +333,12 @@ OR
 
 - Time (pre-manipulation, post-manipulation)
 
-*Random variable:* ID (because multiple reversal trials per individual)
+*Random variable:* ID (when response variable has multiple data points per individual)
 
 
 ### Design 2 - Feeder experiment
 
-*Response variable:* survival variable (e.g., predictability of space use, number of different food items eaten, etc.)
+*Response variable:* survival variable (e.g., predictability of movement behavior, number of different food items eaten, etc.)
 
 *Explanatory variable:* 
 
@@ -368,7 +368,18 @@ Model 4: Duration of visits ~ Time (before/after) + (ID)
 
 #### Jays
 
-**KELSEY**
+*Condition = flexibility manipulation or control site; Habitat = human modified or natural site*
+
+**Fitness:**
+Model 1: Probability of fledging a nest ~ Species + Condition + Habitat + Condition x Habitat + Species x Habitat
+
+**Movement:**
+Model 2: Step length ~ Species + Condition + Habitat + Condition x Habitat + Species x Habitat + (1 | ID)
+Model 3: Turning angle ~ Species + Condition + Habitat + Condition x Habitat + Species x Habitat + (1 | ID)
+
+**Habitat use:**
+Model 4: Number of different food types eaten per individual ~ Species + Condition + Habitat + Condition x Habitat + Species x Habitat
+
 
 #### Toutouwai
 
@@ -376,7 +387,7 @@ Model 4: Duration of visits ~ Time (before/after) + (ID)
 
 
 
-## Q2: Does information spread faster through social learning?
+## Q2: Does information spread through social learning?
 
 ### Design 2 - Feeder experiment
 
