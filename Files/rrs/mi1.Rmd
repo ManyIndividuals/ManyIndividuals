@@ -55,6 +55,7 @@ Human modified environments are increasing, causing global changes that other sp
 
  - **Level of bias = 6** This registered report was written (Jul 2021) prior to collecting any data.
  - **Programmatic registered report:** One Stage 2 article for each species (3 in total) will result from this one Stage 1 registered report.
+ - **Deviations from the Stage 1 registered report:** [to be filled in as needed after data collection begins]
 
 # INTRODUCTION
 
@@ -109,24 +110,6 @@ This investigation asks whether flexibility can be increased by experimentally i
 **Background:** Great-tailed grackles are flexible [@logan2016flexibilityproblem; @logan2019flexmanip], highly associated with human modified environments [@johnson2001great], and have been rapidly expanding their geographic range across North America over the past 140 years [@wehtje2003range]. They are social and polygamous, and eat a diversity of human foods as well as foraging on insects and on substrates for other natural food items [@johnson2001great]. Males tend to be the socially dominant sex [@johnson2000male] and also the sex that disperses away from their natal area [@sevchik2019dispersal]. @Rodrigo2021gtgr found that more grackles are present and more foraging events occur during garbage pick ups when garbage tends to spill out of the bags, thus increasing food availability. Attending to garbage trucks, potentially across space and time, is an example of how flexibility can help individuals meet foraging needs in the context of changing environmental cues. We are in the middle of long-term data collection on grackles to answer questions about manipulating flexibility using serial reversal learning [@logan2019flexmanip], the predictibility of their space use [@mccune2020spaceuse], and their foraging breadth [@logan2019flexforaging]. In the future, we will conduct additional analyses on this data that are relevant to the current investigation. 
 
 **Table 1.** Study design for the great-tailed grackle research.
-
-```{r designgtgr, eval=TRUE, echo=F, message=F, warnings=F, results='asis', include=TRUE}
-var md = require('markdown-it')()
-                .use(require('markdown-it-multimd-table'));
-
-    const exampleTable =
-    "|             |          Grouping           || \n" +
-    "First Header  | Second Header | Third Header | \n" +
-    " ------------ | :-----------: | -----------: | \n" +
-    "Content       |          *Long Cell*        || \n" +
-    "Content       |   **Cell**    |         Cell | \n" +
-    "                                               \n" +
-    "New section   |     More      |         Data | \n" +
-    "And more      | With an escaped '\\|'       || \n" +
-    "[Prototype table]                              \n";
-
-    console.log(md.render(exampleTable));
-```
 
 ```{r designgtgrtest, eval=TRUE, warning=FALSE, results='asis', echo=TRUE, include=TRUE}
 d <- read.csv(url("https://raw.githubusercontent.com/ManyIndividuals/ManyIndividuals/main/Files/rrs/mi1studydesignGTGR.csv"), header=F, sep=",", stringsAsFactors=F) 
