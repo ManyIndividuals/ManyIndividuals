@@ -273,7 +273,7 @@ Half of the individuals (manipulated group) are exposed to opaque feeders that o
  - [Grackle protocol](https://docs.google.com/document/d/1pTrcy7ztgYVSAP7rGA6Y_lAmZ7hK_-mB01zwy0oKh7w/edit?usp=sharing)
     - [Protocol for applying radio tags and conducting GPS tracks](https://docs.google.com/document/d/1ZOpkdxy5-wiGg7hYod-XaaBoOl53DsVQ3pwWoIdvrzk/edit?usp=sharing) from @mccune2020spaceuse
   - [Scrub jay protocol](https://docs.google.com/document/d/1VWL7AIDB-Z1vhs1dEM7JACHuvNjgjZCBI3ubQECqm2U/edit?usp=sharing)
-  - [Toutouwai protocol]()
+  - [Toutouwai protocol](https://docs.google.com/document/d/1U11MpcGd6_dQmgv4jP127KklD7gpAQR--yOtWGMpFXw/edit?usp=sharing)
 
 ### Reliability of feeder data
 
@@ -374,7 +374,7 @@ Model 4: Number of different food types eaten per individual ~ Species + Conditi
 
 ### Design 2 - Feeder experiment
 
-The analyses will be conducted using multilevel experience-weighted attraction models that allow one to determine which individual-level learning rules are applied in a particular group [as in @barrett2017pay]. Experimenters will adapt the code from @barrett2017pay (code at: https://github.com/bjbarrett/panama1) to meet their specific experimental design needs. When the experiment has a control condition and a flexibility manipulated condition, this variable must be added to the model to determine whether observers learn only to attend to the particular stimulus in the environment that they observed others attending to, or whether observers learn how to be flexible (i.e., observers of individuals in the manipulated condition perform better than observers of individuals in the control condition). **KELSEY will you check the logic on this last part?**
+The analyses will be conducted using multilevel experience-weighted attraction models that allow one to determine which individual-level learning rules are applied in a particular group [as in @barrett2017pay]. Experimenters will adapt the code from @barrett2017pay (code at: https://github.com/bjbarrett/panama1) to meet their specific experimental design needs. When the experiment has a control condition and a flexibility manipulated condition, this variable must be added to the model to determine whether observers learn only to attend to the particular stimulus in the environment that they observed others attending to (i.e., observers of individuals in the manipulated condition perform the same as observers of individuals in the control condition), or whether observers learn how to be flexible (i.e., observers of individuals in the manipulated condition perform better than observers of individuals in the control condition).
 
 
 #### Great-tailed grackles
