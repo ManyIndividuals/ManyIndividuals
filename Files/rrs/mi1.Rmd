@@ -87,7 +87,7 @@ This investigation asks whether flexibility can be increased by experimentally i
 **Prediction 1 alternative 2:** Flexibility can be increased in some populations, but not others. This would indicate that flexibility manipulations may not work for all populations, and that the effectiveness of such experiments should first be tested in the population of interest before including such an intervention in a conservation plan. If flexibility is not manipulatable in threatened populations, this would indicate that they are likely not very successful in human modified environments because of their inability to change their behavior with changing circumstances, and that flexibility is not trainable. If flexibility is not manipulatable in populations that are successful in human modified environments, this could indicate that they might have used flexibility in the past when originally forming the association, but the need to maintain flexibility in their repertoire is no longer necessary. In populations where flexibility is not manipulatable, this would indicate that the abilities involved in tracking changing resources in the environment are independent of the abilities involved in surviving in human modified environments.
 
 
-## Q2: Does information spread faster through social learning?
+## Q2: Does information spread through social learning?
 
 **Prediction 2:** Individuals (observers) who learn about resources by watching those individuals (demonstrators) who were in the flexibility manipulation, are **faster** to use such resources than observers who were not exposed to demonstrators.
 
