@@ -176,14 +176,15 @@ At Zealandia, a 225 hectare predator-proof fenced sanctuary located in central W
 
 **T.Q1: Does a flexibility manipulation alter dispersal timing and distance, as well as the likelihood that juvenile toutouwai will disperse beyond the protection of Zealandia’s fence and attempt to establish in the adjacent urban reserves?**
 
-- **Prediction 1.1:** Flexibility can be increased in individuals and such an increase alters the pattern and/or timing of dispersal.
+- **Prediction 1.1:** Flexibility can be increased in individuals and such an increase alters the pattern (distance and location) and/or timing of dispersal.
 
-- **Prediction 1 alternative 1:** Flexibility can be increased in individuals, but such an increase does not alter the pattern and/or timing of dispersal
+- **Prediction 1.1 alternative 1:** Flexibility can be increased in individuals, but such an increase does not alter the pattern and/or timing of dispersal.
+
+**Prediction 1.1 alternative 2:** Flexibility cannot be increased in individuals.
+
 **T.Q2: Compared to control individuals, are flexibility manipulated individuals more likely to survive their first 16 weeks post-fledging, particularly if they disperse into the urban reserves outside the sanctuary fence?**
 
-Predictions are the same as in the general Research Question: Q1 section
-
-**Figure 5.**
+Predictions are the same as in the general Research Question: Q1 section.
 
 
 # METHODS
