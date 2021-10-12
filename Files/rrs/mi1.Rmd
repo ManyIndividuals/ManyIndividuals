@@ -3,6 +3,7 @@ title: How to succeed in human modified environments
 author: 
 - '[Logan CJ](http://CorinaLogan.com)^1^'
 - '[Shaw R](https://thinkingbehaviour.org)^2^'
+- '[Lukas D](https://dieterlukas.mystrikingly.com)^1^'
 - '[McCune KB](https://www.kelseymccune.com/)^1,3^'
 date: '`r Sys.Date()`'
 always_allow_html: yes
@@ -423,6 +424,8 @@ This research is carried out in accordance with permits from the:
 **Logan:** Hypothesis development, data collection, data analysis and interpretation, write up, revising/editing, materials/funding.
 
 **Shaw:** Hypothesis development, data collection, data analysis and interpretation, write up, revising/editing, materials/funding.
+
+**Shaw:** Analysis design and code, sample size modeling, validated serial reversal passing criterion, write up, revising/editing
 
 **McCune:** Hypothesis development, data collection, data analysis and interpretation, write up, revising/editing.
 
