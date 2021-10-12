@@ -8,10 +8,12 @@ We are a global network of researchers with field sites investigating hypotheses
  - Does survival information spread faster through social learning?
 
 ## Founders
- - [Dr. Kelsey McCune](https://www.kelseymccune.com) - designed the foraging predictability experiment and conducts experiments in California scrub jays at her field site in northern California
+ - [Dr. Kelsey McCune](https://www.kelseymccune.com) - designed the foraging predictability experiment and conducts experiments in California scrub jays at her field site in northern California. Developed the reproducible workflow
  - [Dr. Rachael Shaw](https://thinkingbehaviour.org) -  conducts experiments in the threatened toutouwai at her field site in New Zealand, then assesses the manipulation’s impact on their ability to survive in a human modified environment
- - [Dr. Corina Logan](http://corinalogan.com) - designed the serial reversal manipulation and conducts experiments in great-tailed grackles at her field site in northern California
+ - [Dr. Corina Logan](http://corinalogan.com) - designed the serial reversal manipulation and conducts experiments in great-tailed grackles at her field site in northern California. Developed the reproducible workflow
 
+## Collaborators
+ - [Dr. Dieter Lukas](http://dieterlukas.strikingly.com) - customized the analyses for the reversal learning and feeder experiments, generated Bayesian "power analyses" to determine what level of differences will be detectable with which sample size, validated the serial reversal passing criterion, and made the analyses generalizeable across species
 
 ## The experiments
 
