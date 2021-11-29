@@ -219,9 +219,11 @@ At least 20 individuals per population will be tested (50% in the control condit
 
 **Data collection stopping rule:** Data collection will be stopped when the minimum sample size is reached or when the season in which the minimum sample size is reached comes to an end.
 
-### Protocols
+### Protocols and data sheet template
 
 [Protocol](https://docs.google.com/document/d/16hKGUNO1SpnXAT8DN_GXb56Aw6WzCraCIUKiP9gVI6o/edit?usp=sharing) for reversal learning of a color preference used by @logan2019flexmanip for great-tailed grackles. 
+
+See the [data sheet templates](http://corinalogan.com/Preregistrations/g_flexmanip.html) in @logan2019flexmanip.
 
 ### Interobserver reliability
 
@@ -276,12 +278,12 @@ Half of the individuals (manipulated group) are exposed to opaque feeders that o
 
 **Social learning data collection:** are observers (individuals who have never landed on the perch of any feeder) more likely to land on the perch of a feeder sooner if they see another individual (demonstrator) land on a perch compared with observers who don't see demonstrators? **CORINA KELSEY NEED TO FIGURE THIS OUT** 
 
-**Population-specific experimental protocols:**
+**Population-specific experimental protocols and data sheet templates:**
 
- - [Grackle protocol](https://docs.google.com/document/d/1pTrcy7ztgYVSAP7rGA6Y_lAmZ7hK_-mB01zwy0oKh7w/edit?usp=sharing)
+ - Grackle [protocol](https://docs.google.com/document/d/1pTrcy7ztgYVSAP7rGA6Y_lAmZ7hK_-mB01zwy0oKh7w/edit?usp=sharing) and [data sheet templates](https://docs.google.com/spreadsheets/d/1xELxnCJPa0hIXKagbUPgqq8Tap8mh7PFfLFUGCc525s/edit?usp=sharing)
     - [Protocol for applying radio tags and conducting GPS tracks](https://docs.google.com/document/d/1ZOpkdxy5-wiGg7hYod-XaaBoOl53DsVQ3pwWoIdvrzk/edit?usp=sharing) from @mccune2020spaceuse
-  - [Scrub jay protocol](https://docs.google.com/document/d/1VWL7AIDB-Z1vhs1dEM7JACHuvNjgjZCBI3ubQECqm2U/edit?usp=sharing)
-  - [Toutouwai protocol](https://docs.google.com/document/d/1U11MpcGd6_dQmgv4jP127KklD7gpAQR--yOtWGMpFXw/edit?usp=sharing)
+  - Jay [protocol](https://docs.google.com/document/d/1VWL7AIDB-Z1vhs1dEM7JACHuvNjgjZCBI3ubQECqm2U/edit?usp=sharing) and [data sheet templates](https://docs.google.com/spreadsheets/d/1qpukS67A8IslPxP8RBpdB4fS4f9ofWCvQXVgXu-G7Qs/edit?usp=sharing)
+  - Toutouwai [protocol](https://docs.google.com/document/d/1U11MpcGd6_dQmgv4jP127KklD7gpAQR--yOtWGMpFXw/edit?usp=sharing)
 
 ### Reliability of feeder data
 
