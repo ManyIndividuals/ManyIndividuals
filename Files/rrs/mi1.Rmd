@@ -114,7 +114,7 @@ This investigation asks whether flexibility can be increased by experimentally i
 
 <img width="100%" src="mi1Figgtgr.png">
 
-**Figure 3.** The template feeder experimental design (Figure 7) tailored to the great-tailed grackle research question.
+**Figure 3.** The reversal learning experiment in a group context (Figure 7) tailored to the great-tailed grackle research question.
 
 
 ### Scrub-jays (*Aphelocoma californica* & *A. coerulescens*)
@@ -168,7 +168,14 @@ Predictions are the same as in the general Research Question: Q1 section.
 
 # METHODS
 
-We present two designs for flexibility intervention experiments. Experimenters can decide which (or both) they want to conduct in their population. Only one experiment must be conducted per population to be able to test these hypotheses. Conducting more than one of these experiments per population is acceptable, but not necessary. Social learning data can only be collected using design 2 because design 1 is conducted in visual isolation of other individuals.
+We present one experimental design for the flexibility intervention that can be conducted in two ways: in visual isolation (design 1) and in a group context (design 2). Experimenters can decide which (or both) they want to conduct in their population. Only one experiment must be conducted per population to be able to test these hypotheses. Conducting more than one of these experiments per population is acceptable, but not necessary.
+
+&nbsp;
+
+<img width="100%" src="mi1Figexpdesign.png">
+
+**Figure 6.** Template design for the reversal learning experiment.
+
 
 ## **Design 1 - Reversal learning experiment in visual isolation** 
 
@@ -183,11 +190,6 @@ Half of the individuals (manipulated group) undergo serial reversal learning unt
  - **Serial reversal manipulation group:** achieve the reversal criterion for two consecutive reversals in 50 trials or less. This passing criterion was generated using great-tailed grackles [@logan2019flexmanip] and might need to be adjusted depending on the population.
  - **Control group:** receives as many trials with the control apparatuses as the average number of trials that manipulated individuals require to pass serial reversals. If this is unknown at the beginning of the experiment, test a manipulated individual first and match the control individuals to this number until an average can be obtained. The average can continue to be updated as more manipulated individuals complete testing.
 
-&nbsp;
-
-<img width="100%" src="mi1Figexpdesign.png">
-
-**Figure 6.** Template design for the reversal learning experiment.
 
 ### Planned Sample
 
@@ -230,11 +232,6 @@ Feeders are set up counterbalanced for color/location/etc and will be available 
 
 Individuals in the control condition (if there is one), will receive 1 reversal and, after they pass criterion on reversal 1, feeders of both options (previously rewarded and previously non-rewarded options) will open for these individuals. This will help keep the whole group interested in visiting the feeders while the individuals in the manipulated group complete their serial reversals. Data are collected on success measures either before and after the flexibility intervention or only after the intervention (depending on feasibility and how the study design needs to be tailored for each population).
 
-&nbsp;
-
-<img width="100%" src="mi1Figdesign2.png">
-
-**Figure 7.** Template design for the feeder experiment.
 
 ### Planned Sample
 
@@ -327,13 +324,17 @@ Model 2: Duration of visits ~ Time (before/after) + Reward (present/absent) + (I
 *Condition = flexibility manipulation or control site; Habitat = human modified or natural site; Time = pre- or post-flexibility manipulation*
 
 **Fitness:**
+
 Model 1: Probability of fledging a nest ~ Species + Condition + Habitat + Condition x Habitat + Species x Habitat
 
 **Movement:**
+
 Model 2: Step length ~ Species + Condition + Habitat + Time + Condition x Habitat + Species x Habitat + Condition x Time + (1 | ID)
+
 Model 3: Turning angle ~ Species + Condition + Habitat + Time + Condition x Habitat + Species x Habitat + Condition x Time + (1 | ID)
 
 **Foraging:**
+
 Model 4: Number of different food types eaten per individual ~ Species + Condition + Habitat + Time + Condition x Habitat + Species x Habitat + Condition x Time
 
 
@@ -351,7 +352,6 @@ This research is carried out in accordance with permits from the:
 3) Institutional Animal Care and Use Committee at the University of California Santa Barbara (protocol number 958)
 4) California Department of Fish and Wildlife (scientific collecting permit [specific use] number S‐192100001‐19210‐001)
 5) Oregon Department of Fish and Wildlife (scientific collecting permit number XXXX)
-6) **RACHAEL & KELSEY: add your permits here**
 
 # AUTHOR CONTRIBUTIONS
 
