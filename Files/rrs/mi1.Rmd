@@ -318,46 +318,68 @@ Same as in Design 1
 
 The model as it would appear in a generalized linear mixed model format:
 
-(duration that food was present / total duration at cafes and dumpsters) ~ Time (before/after) + (1 | ID)
+(duration at cafes and dumpsters when food was present / total duration at cafes and dumpsters) ~ Time (before/after) + (1 | ID)
+
+y ~ $\alpha$[ind] + $\beta$[ind]*B
+
+y is the response variable (duration at cafes and dumpsters when food was present / total duration at cafes and dumpsters). There will be one intercept, $\alpha$, and one slope $\beta$ per individual, which will be estimated for the two times, B (before and after manipulation).
 
 ```{r gtgr, eval=T}
-# Use Arizona reversal learning data to make priors (n=20 grackles in first and last reversals)
-revfirst <- c(50,70,100,80,50,60,40,160,90,70,80,80,60,100,40,60,80,60,70,100) 
-revlast <- c(50,70,100,80,50,60,40,160,50,50,40,40,23,50,30,40,80,80,70,100)
-mean(revfirst) #75 trials
-mean(revlast) #63 trials
-mean(revfirst) - mean(revlast) #12 trials
-sd(revfirst) #27 trials
-sd(revlast) #31 trials
-sd(revfirst) - sd(revlast) #-4 trials
-cor.test(revfirst,revlast) #0.79
+# SIMULATE the population (p.437 McElreath 2021)
+# estimates for pre-manipulation data: use a sequential distribution from 0.00 to 1.00 to estimate priors (n=20 data points)
+d <- seq(0.00, 1.00, length.out=20) #make a sequence of 20 data points from 0.00 to 1.00
+mean(d) #0.50
+sd(d) #0.31
 
-a <- 74 #avg first reversal trials to pass
-b <- (-12) #avg difference between first and last reversal trials to pass (avg last=63 including both control and manipulated data)
-sigma_a <- 27 #std dev in intercepts (std dev first reversal trials to pass)
-sigma_b <- 4 #std dev in slopes (std dev first - std dev last)
-rho <- 0.79 #correlation between intercepts and slopes (corr between first and last reversals)
+# make priors
+a <- 0.50 #avg pre-manipulation proportion time spent when food present
+b <- (0.20) #avg difference pre and post manipulation - unknown so estimate something higher
+sigma_a <- 0.31 #std dev in intercepts (std dev a)
+sigma_b <- 0.11 #std dev in slopes: std dev pre - std dev post. Post is unknown so estimate something smaller than for a like 0.20
+rho <- (0.70) #correlation between intercepts and slopes (corr between pre and post). Post is unknown. Estimate a positive correlation because post should be higher than pre
 
+# build a covariance matrix that treats standard deviations and correlations separately, then matrix multiplies them to make the covariance matrix (p.438 McElreath 2021)
 Mu <- c(a, b)
 sigmas <- c(sigma_a,sigma_b) # standard deviations
 Rho <- matrix( c(1,rho,rho,1) , nrow=2 ) # correlation matrix
 Sigma <- diag(sigmas) %*% Rho %*% diag(sigmas) # now matrix multiply to get covariance matrix
 
-N_condition <- 2 #before/after
+# simulate individuals, each with their own intercept and slope
+N_ind <- 20 #number of individuals tested
 
+# sample randomly using a multivariate Gaussian distribution defined by Mu and Sigma
 library(MASS)
-vary_effects <- mvrnorm( N_condition , Mu , Sigma )
+vary_effects <- mvrnorm( N_ind , Mu , Sigma )
 
-a_condition <- vary_effects[,1]
-b_condition <- vary_effects[,2]
+# pull vary_effects columns into separate vectors
+a_ind<- vary_effects[,1]
+b_ind <- vary_effects[,2]
 
-#figure that shows the intercepts and slopes as well as the distribution's contours
-plot( a_condition , b_condition , col=4 , xlab="intercepts (a_condition)" , ylab="slopes (b_condition)" )
+# visualize intercepts and slopes as well as the distribution's contours
+plot( a_ind , b_ind , col=4 , xlab="intercepts (a_ind)" , ylab="slopes (b_ind)" )
 # overlay population distribution
 library(ellipse)
 for ( l in c(0.1,0.3,0.5,0.8,0.99) )
     lines(ellipse(Sigma,centre=Mu,level=l),col="black")
+
+# simulate observations (p.440)
+N_datapoints <- 2 #simulate 2 data points per individual: one proportion for before the manipulation, and one for after
+before <- rep(0:1,N_datapoints*N_ind/2)
+ind_id <- rep( 1:N_ind , each=N_datapoints )
+mu <- a_ind[ind_id] + b_ind[ind_id]*before
+sigma <- 0.5  # std dev within cafes
+wait <- rnorm( N_datapoints*N_ind , mu , sigma )
+d <- data.frame( ind=ind_id , before=before , wait=wait )
+
+# THE MODEL (p.441)
+
 ```
+
+**Is the behavior change in the previous analysis linked with flexibility?**
+
+If so, all would be expected to have high phis. If not, then phis would be randomly distributed and the change in success behavior would be attributable to some other trait that was potentially manipulated. Filter data so that it is only the post-manipulation data (and not the pre-manipulation data) or only the manipulated group (and not the control group)
+
+(duration at cafes and dumpsters when food was present / total duration at cafes and dumpsters) ~ phi last reversal + (1 | ID)
 
 
 #### Jays
