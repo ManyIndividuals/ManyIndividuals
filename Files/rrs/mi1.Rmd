@@ -43,8 +43,10 @@ Open... ![](logoOpenAccess.png){width=5%} access ![](logoOpenCode.png){width=5%}
 library(knitr)
 knitr::opts_chunk$set(tidy.opts=list(width.cutoff=60),tidy=TRUE) 
 #Make code wrap text so it doesn't go off the page when Knitting to PDF
-knitr::opts_chunk$set(echo = TRUE) 
+
+knitr::opts_chunk$set(echo=F, include=T, results='asis', warning=F, message=F) 
 #sets global options to display code along with the results https://exeter-data-analytics.github.io/LitProg/r-markdown.html
+#set echo=F for knitting to PDF (hide code), and echo=T for knitting to HTML (show code)
 ```
 
 # ABSTRACT
@@ -314,9 +316,48 @@ Same as in Design 1
 
 **Cafes and dumpsters: pre-manipulation baseline compared with post-manipulation**
 
-Model 1: Number of visits ~ Time (before/after) + Reward (present/absent) + (ID)
+The model as it would appear in a generalized linear mixed model format:
 
-Model 2: Duration of visits ~ Time (before/after) + Reward (present/absent) + (ID)
+(duration that food was present / total duration at cafes and dumpsters) ~ Time (before/after) + (1 | ID)
+
+```{r gtgr, eval=T}
+# Use Arizona reversal learning data to make priors (n=20 grackles in first and last reversals)
+revfirst <- c(50,70,100,80,50,60,40,160,90,70,80,80,60,100,40,60,80,60,70,100) 
+revlast <- c(50,70,100,80,50,60,40,160,50,50,40,40,23,50,30,40,80,80,70,100)
+mean(revfirst) #75 trials
+mean(revlast) #63 trials
+mean(revfirst) - mean(revlast) #12 trials
+sd(revfirst) #27 trials
+sd(revlast) #31 trials
+sd(revfirst) - sd(revlast) #-4 trials
+cor.test(revfirst,revlast) #0.79
+
+a <- 74 #avg first reversal trials to pass
+b <- (-12) #avg difference between first and last reversal trials to pass (avg last=63 including both control and manipulated data)
+sigma_a <- 27 #std dev in intercepts (std dev first reversal trials to pass)
+sigma_b <- 4 #std dev in slopes (std dev first - std dev last)
+rho <- 0.79 #correlation between intercepts and slopes (corr between first and last reversals)
+
+Mu <- c(a, b)
+sigmas <- c(sigma_a,sigma_b) # standard deviations
+Rho <- matrix( c(1,rho,rho,1) , nrow=2 ) # correlation matrix
+Sigma <- diag(sigmas) %*% Rho %*% diag(sigmas) # now matrix multiply to get covariance matrix
+
+N_condition <- 2 #before/after
+
+library(MASS)
+vary_effects <- mvrnorm( N_condition , Mu , Sigma )
+
+a_condition <- vary_effects[,1]
+b_condition <- vary_effects[,2]
+
+#figure that shows the intercepts and slopes as well as the distribution's contours
+plot( a_condition , b_condition , col=4 , xlab="intercepts (a_condition)" , ylab="slopes (b_condition)" )
+# overlay population distribution
+library(ellipse)
+for ( l in c(0.1,0.3,0.5,0.8,0.99) )
+    lines(ellipse(Sigma,centre=Mu,level=l),col="black")
+```
 
 
 #### Jays
@@ -351,7 +392,7 @@ This research is carried out in accordance with permits from the:
 2) US Geological Survey Bird Banding Laboratory (federal bird banding permit for Logan 23872, for McCune 24273)
 3) Institutional Animal Care and Use Committee at the University of California Santa Barbara (protocol number 958)
 4) California Department of Fish and Wildlife (scientific collecting permit [specific use] number S‐192100001‐19210‐001)
-5) Oregon Department of Fish and Wildlife (scientific collecting permit number XXXX)
+5) Oregon Department of Fish and Wildlife (scientific collecting permit in process)
 
 # AUTHOR CONTRIBUTIONS
 
