@@ -3,12 +3,11 @@
 We are a global network of researchers with field sites investigating hypotheses that involve generalizing across many individuals (e.g., populations or species). We conduct the same tests in the same way across species to determine whether the results of particular experiments are generalizable beyond that population or species. 
 
 ## Research questions
- - Can behavioral flexibility in species associated with human modified environments (California scrub jays and great-tailed grackles) be increased?
- - If so, does such an increase help threatened species (toutouwai) survive in a city? 
- - Does survival information spread faster through social learning?
+ - Can behavioral flexibility in species associated with human modified environments (California scrub-jays and great-tailed grackles) be increased?
+ - If so, does such an increase help threatened species (toutouwai and Florida scrub-jays) survive in human modified environments? 
 
 ## Founders
- - [Dr. Kelsey McCune](https://www.kelseymccune.com) - designed the foraging predictability experiment and conducts experiments in California scrub jays at her field site in northern California. Developed the reproducible workflow
+ - [Dr. Kelsey McCune](https://www.kelseymccune.com) - designed the foraging predictability experiment and conducts experiments in California and Florida scrub-jays at her field site in Oregon and at Archbold Biological Station in Florida. Developed the reproducible workflow
  - [Dr. Rachael Shaw](https://thinkingbehaviour.org) -  conducts experiments in the threatened toutouwai at her field site in New Zealand, then assesses the manipulation’s impact on their ability to survive in a human modified environment
  - [Dr. Corina Logan](http://corinalogan.com) - designed the serial reversal manipulation and conducts experiments in great-tailed grackles at her field site in northern California. Developed the reproducible workflow
 
