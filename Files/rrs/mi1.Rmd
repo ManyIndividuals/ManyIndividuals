@@ -314,65 +314,87 @@ Same as in Design 1
 
 #### Great-tailed grackles
 
-**Cafes and dumpsters: pre-manipulation baseline compared with post-manipulation**
+##### Cafes and dumpsters: pre-manipulation baseline compared with post-manipulation
 
 The model as it would appear in a generalized linear mixed model format:
 
 (duration at cafes and dumpsters when food was present / total duration at cafes and dumpsters) ~ Time (before/after) + (1 | ID)
 
+The Bayesian models were developed using @mcelreath2020statistical as a guide.
+
+*Bayesian model for a normal distribution:*
+
 y ~ $\alpha$[ind] + $\beta$[ind]*B
 
 y is the response variable (duration at cafes and dumpsters when food was present / total duration at cafes and dumpsters). There will be one intercept, $\alpha$, and one slope $\beta$ per individual, which will be estimated for the two times, B (before and after manipulation).
 
-```{r gtgr, eval=T}
-# SIMULATE the population (p.437 McElreath 2021)
-# estimates for pre-manipulation data: use a sequential distribution from 0.00 to 1.00 to estimate priors (n=20 data points)
-d <- seq(0.00, 1.00, length.out=20) #make a sequence of 20 data points from 0.00 to 1.00
-mean(d) #0.50
-sd(d) #0.31
+*Bayesian model for a binomial distribution:*
 
-# make priors
-a <- 0.50 #avg pre-manipulation proportion time spent when food present
-b <- (0.20) #avg difference pre and post manipulation - unknown so estimate something higher
-sigma_a <- 0.31 #std dev in intercepts (std dev a)
-sigma_b <- 0.11 #std dev in slopes: std dev pre - std dev post. Post is unknown so estimate something smaller than for a like 0.20
-rho <- (0.70) #correlation between intercepts and slopes (corr between pre and post). Post is unknown. Estimate a positive correlation because post should be higher than pre
+$R_i$ ~ Binomial(1,$p_i$)
 
-# build a covariance matrix that treats standard deviations and correlations separately, then matrix multiplies them to make the covariance matrix (p.438 McElreath 2021)
-Mu <- c(a, b)
-sigmas <- c(sigma_a,sigma_b) # standard deviations
-Rho <- matrix( c(1,rho,rho,1) , nrow=2 ) # correlation matrix
-Sigma <- diag(sigmas) %*% Rho %*% diag(sigmas) # now matrix multiply to get covariance matrix
+logit($p_i$) = $\gamma$[condition] + $\alpha$[ind],[condition]
 
-# simulate individuals, each with their own intercept and slope
+$\gamma$[condition] is the average log-odds for each condition (before/after) and $\alpha$[ind],[condition] is the effect for each individual in each condition.
+
+```{r gtgrq1, eval=T}
+library(rethinking)
+library(cmdstanr)
+set_ulam_cmdstan(TRUE) #makes it so ulam always runs with cmdstan
+
+# SIMULATE the population 
+# use the cafe example for normal distribution p.437, the primate pulling example p.447 for the binomial distribution, and the grad admissions example for how to deal with a response variable that is a proportion p.341 (McElreath 2020). Replace the 1 in the primate pulling model with the total duration; the response variable is duration when reward is present. So the model makes the proportion for you - feed it the raw data.
 N_ind <- 20 #number of individuals tested
 
-# sample randomly using a multivariate Gaussian distribution defined by Mu and Sigma
-library(MASS)
-vary_effects <- mvrnorm( N_ind , Mu , Sigma )
+#before
+durationtotalb <- round(rnorm(N_ind,mean=10000,sd=500),0) #observed for 10000 seconds before manipulation, 0=no decimal points
+propbefore <- round(rnorm(N_ind,mean=0.5,sd=0.1),2) #proportion of duration rewarded:total duration, 2 means 2 decimal points
+durationrewardb <- round(durationtotalb*propbefore,0) #duration at location when reward was present
+changeprop <- rnorm(N_ind, mean=(1-propbefore)/5,sd=0.1) #if had a large proportion before, have a smaller change relative to the after condition. Divide by 2 = assume that on average they will improve by 0.25 (the before mean of 0.5 divided by 2)
 
-# pull vary_effects columns into separate vectors
-a_ind<- vary_effects[,1]
-b_ind <- vary_effects[,2]
+#after
+propafter <- round(propbefore+changeprop,2)
+propafter[propafter>1]<-1 #values larger than 1 mess up the model so restrict it
+durationtotala <- round(rnorm(N_ind,mean=10000,sd=500),0) #10000 seconds, after manipulation
+durationrewarda <- round(durationtotala*propafter,0) 
 
-# visualize intercepts and slopes as well as the distribution's contours
-plot( a_ind , b_ind , col=4 , xlab="intercepts (a_ind)" , ylab="slopes (b_ind)" )
-# overlay population distribution
-library(ellipse)
-for ( l in c(0.1,0.3,0.5,0.8,0.99) )
-    lines(ellipse(Sigma,centre=Mu,level=l),col="black")
+#check the plot to see whether individuals are increasing their proportions
+#plot(propbefore,propafter)
+#abline(0,1)
 
-# simulate observations (p.440)
-N_datapoints <- 2 #simulate 2 data points per individual: one proportion for before the manipulation, and one for after
-before <- rep(0:1,N_datapoints*N_ind/2)
-ind_id <- rep( 1:N_ind , each=N_datapoints )
-mu <- a_ind[ind_id] + b_ind[ind_id]*before
-sigma <- 0.5  # std dev within cafes
-wait <- rnorm( N_datapoints*N_ind , mu , sigma )
-d <- data.frame( ind=ind_id , before=before , wait=wait )
+# power analysis: run this simulation with different N_ind, changeprop means and sd, to find the boundaries of where you can detect a difference (run the model and use contrasts) between the two conditions (before/after). Automate the process like Dieter did in xpop figs 5 (line 1133) and 6 (line 1452)?
 
-# THE MODEL (p.441)
 
+# THE MODEL (p.441 for normal distribution, 448 for binomial distribution)
+dat <- list(
+    response = c(durationrewardb,durationrewarda),
+    total = c(durationtotalb,durationtotala),
+    tid = c(rep(1,N_ind),rep(2,N_ind)), #1 refers to durationrewardb and 2 to durationrewarda
+    actor = rep(1:N_ind,2) #go through all individuals twice because there are observations from before and after for each
+)
+
+m1 <- ulam(
+    alist(
+        response ~ dbinom(total,p),
+        logit(p) <- g[tid] + alpha[actor,tid],
+        # adaptive priors - non-centered
+        transpars> matrix[actor,4]:alpha <- compose_noncentered( sigma_actor , L_Rho_actor , z_actor ),
+        matrix[4,actor]:z_actor ~ normal( 0 , 1 ),
+        # fixed priors
+        g[tid] ~ normal(0,1),
+        vector[4]:sigma_actor ~ dexp(1),
+        cholesky_factor_corr[4]:L_Rho_actor ~ lkj_corr_cholesky( 2 ),
+        # compute ordinary correlation matrixes from Cholesky factors
+        gq> matrix[4,4]:Rho_actor <<- Chol_to_Corr(L_Rho_actor)
+    ) , data=dat , chains=4 , cores=4 , log_lik=TRUE , cmdstan = TRUE)
+
+#model output: pay attention to before (g1) and after (g2)
+#precis(m1,depth=2)
+
+#run a CONTRAST to determine whether there is a difference between before (g1) and after (g2). Yes if all values on one side of zero
+post <- extract.samples(m1)
+diff_g <- post$g[,1] - post$g[,2] #log-odds difference p.341
+diff_p <- inv_logit(post$g[,1]) - inv_logit(post$g[,2]) #on the probability scale p.341
+precis( list( diff_g=diff_g , diff_p=diff_p ) )
 ```
 
 **Is the behavior change in the previous analysis linked with flexibility?**
