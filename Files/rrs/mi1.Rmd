@@ -341,7 +341,7 @@ library(rethinking)
 library(cmdstanr)
 set_ulam_cmdstan(TRUE) #makes it so ulam always runs with cmdstan
 
-# SIMULATE the population 
+### SIMULATE the population 
 # use the cafe example for normal distribution p.437, the primate pulling example p.447 for the binomial distribution, and the grad admissions example for how to deal with a response variable that is a proportion p.341 (McElreath 2020). Replace the 1 in the primate pulling model with the total duration; the response variable is duration when reward is present. So the model makes the proportion for you - feed it the raw data.
 N_ind <- 20 #number of individuals tested
 
@@ -364,19 +364,71 @@ durationrewarda <- round(durationtotala*propafter,0)
 # power analysis: run this simulation with different N_ind, changeprop means and sd, to find the boundaries of where you can detect a difference (run the model and use contrasts) between the two conditions (before/after). Automate the process like Dieter did in xpop figs 5 (line 1133) and 6 (line 1452)?
 
 
-# THE MODEL (p.441 for normal distribution, 448 for binomial distribution)
-dat <- list(
+### POWER ANALYSIS: sample size
+# We now set our range of likely sample sizes, from a minimum of 9 individuals per population to a maximum of 60 individuals per population. We draw repeated samples of individuals of that size from each of the 5 populations, during each repetition we draw two samples from each population (so we can infer the false negative rate of wrongly estimating that two samples come from a different population even though they were taken from the sample population). This means we have 10 repetitions for each of the 5 sample sizes and each of the 8 changeprops. So 10*8 changeprops for each of the 5 sample sizes=80
+samplesizes<-c(rep(9,80),rep(12,80),rep(15,80),rep(20,80),rep(60,80))
+
+currentsamplesize<-NA
+
+# Set the means you want to compare
+meanchangeprop1<-0.2
+meanchangeprop2<-0.1
+meanchangeprop3<-0.05
+meanchangeprop4<-0.03
+meanchangeprop5<-0.025
+meanchangeprop6<-0.01
+
+#Make a vector with all the possible pairwise distances between the mean change in proportion between before and after
+changeprop1 <- rnorm(N_ind, mean=meanchangeprop1,sd=0.1)
+changeprop2 <- rnorm(N_ind, mean=meanchangeprop2,sd=0.1)
+changeprop3 <- rnorm(N_ind, mean=meanchangeprop3,sd=0.1)
+changeprop4 <- rnorm(N_ind, mean=meanchangeprop4,sd=0.1)
+changeprop5 <- rnorm(N_ind, mean=meanchangeprop5,sd=0.1)
+changeprop6 <- rnorm(N_ind, mean=meanchangeprop6,sd=0.1)
+
+pairwisecomparisons<-c(meanchangeprop1,meanchangeprop2,meanchangeprop3,meanchangeprop4,meanchangeprop5,meanchangeprop6)
+# Calculate the differences between populations. We set this up in a vector that will link to the simulation output, so there are 50 repeats for the 10 independent repetitions across the 5 different sample sizes
+currentoutcome<-NA
+counter<-1
+
+# We now run our simulations. There are 5 different sample sizes, and for each we perform 10 estimations for a total of 50 samples.
+for (samplesize in 1:50) {
+  
+        n <- samplesizes[counter] #number of grackles in total across all sites
+        sites <- matrix(nrow=n*5*2,ncol=2) #store data here
+        colnames(sites)<-c("phi","sites") # We label the outcome phi, but this doesn't matter for the lambda simulations
+        
+        # We randomly draw the pre-specified number of individuals from the 10,000 individuals in each population
+        sample1_1<-sample(changeprop1,n)
+        sample2_1<-sample(changeprop2,n)
+        sample3_1<-sample(changeprop3,n)
+        sample4_1<-sample(changeprop4,n)
+        sample5_1<-sample(changeprop5,n)
+        sample6_1<-sample(changeprop6,n)
+
+        # We combine them into one long dataframe
+        allsamples<-c(sample1_1,sample2_1,sample3_1,sample4_1,sample5_1)
+        
+        # In the dataframe, we will have the phi, and an identifier for each population
+        sites[,1]<-allsamples
+        sites[,2]<-c(rep(1,n),rep(2,n),rep(3,n),rep(4,n),rep(5,n),rep(6,n),rep(7,n),rep(8,n),rep(9,n),rep(10,n))
+        
+        ### We now run a STAN model to see whether we estimate that these samples come from the same or from different populations
+        #This sets up the data sheet with the simulated data that the model will run on
+       dat <- list(
     response = c(durationrewardb,durationrewarda),
     total = c(durationtotalb,durationtotala),
     tid = c(rep(1,N_ind),rep(2,N_ind)), #1 refers to durationrewardb and 2 to durationrewarda
     actor = rep(1:N_ind,2) #go through all individuals twice because there are observations from before and after for each
 )
-
-m1 <- ulam(
+       
+        # Our model, which will estimate a different mean and variance of phi for each site
+        # THE MODEL (p.441 for normal distribution, 448 for binomial distribution)
+s1 <- ulam(
     alist(
         response ~ dbinom(total,p),
         logit(p) <- g[tid] + alpha[actor,tid],
-        # adaptive priors - non-centered
+        # adaptive priors - non-centered which is a parameterization that improves sampling for the MCMC model fit by helping with complex varying effects (see p.453)
         transpars> matrix[actor,4]:alpha <- compose_noncentered( sigma_actor , L_Rho_actor , z_actor ),
         matrix[4,actor]:z_actor ~ normal( 0 , 1 ),
         # fixed priors
@@ -389,6 +441,91 @@ m1 <- ulam(
 
 #model output: pay attention to before (g1) and after (g2)
 #precis(m1,depth=2)
+
+        # Now, we extract the posterior of the model, and on this perform the comparison to see whether the model thinks the sites have different or the same phi / lambda. For this, we calculate all pairwise differences in the posterior estimates of the sites.
+        for (sample in 1:13) {
+          for (comparison in (sample+1):14) {
+        
+        post1 <- extract.samples(s1) 
+        post1$diff <- post1$g[,sample] - post1$g[,comparison]
+        currentoutcome[counter]<-ifelse( precis(post1,depth=2)[29,1]<0 , currentoutcome[counter]<-precis(post1,depth=2)[29,4]<0, currentoutcome[counter]<-precis(post1,depth=2)[29,3]>0 )
+        
+        currentsamplesize[counter]<-samplesizes[samplesize]
+        counter<-counter+1
+           }
+        }
+}
+
+# We now take the output from the estimation that says whether the model thought the phis are different or not, and link it to the sample size for that run and the difference we had set between the original populations
+combinedoutput<-matrix(ncol=3,nrow=91*60)
+combinedoutput[,1]<-as.integer(currentoutcome)
+combinedoutput[,2]<-currentmeandifference
+combinedoutput[,3]<-samplesizes
+combinedoutput<-as.data.frame(combinedoutput)
+colnames(combinedoutput)<-c("differencedetected","populationdifference","samplesize")
+combinedoutput<-arrange(combinedoutput,samplesize)
+falsenegative<-filter(combinedoutput,populationdifference>0)
+
+# We can look at how many times two sites were estimated to be different or not for the six different sample sizes
+table(combinedoutput[,c(1,3)])
+
+# We run the STAN model - it is a binomial model that assumes that the probability to estimate a difference depends on an interaction between the sample size and the difference between the conditions (before/after)
+
+m_samplesize_populationdifferences <- ulam(
+  alist(
+    differencedetected~dbinom(1,p),
+    logit(p) <- a[samplesize]-b[samplesize]*populationdifference,
+    a[samplesize]~dnorm(a_bar,sigma_a),
+    a_bar~dnorm(0,1.5),
+    sigma_a~dexp(1),
+    b[samplesize]~dnorm(0,1.5)
+  ),data=falsenegative_data, log_lik=TRUE, messages=FALSE,cmdstan=T)
+
+# To plot the output of this STAN model, we sort the differences between the populations so that they align along the x-axis
+sequence_mean_differences<-c(sort(unique(falsenegative_data$populationdifference)))
+
+# We extract the posterior estimates from this STAN model.
+precis_output_5<-precis( m_samplesize_populationdifferences , depth=2 )
+
+# We can now plot the predictions for the different sample sizes as separate lines
+plot(NULL,xlim=c(0,max(exp(sequence_mean_differences))),ylim=c(0.0,1.0),pch=1,ann=F,frame.plot=F,cex=1.5)
+
+mu_9 <- link( m_samplesize_populationdifferences , data=data.frame( populationdifference=sequence_mean_differences,samplesize=rep(1,length(sequence_mean_differences)) ) )
+mu_9_mean <- apply( mu_9 , 2 , mean )
+mu_9_ci <- apply( mu_9 , 2 , PI , prob=0.97 )
+shade( 1-mu_9_ci , exp(sequence_mean_differences) , col=col.alpha("blue",0.4) )
+
+mu_12 <- link( m_samplesize_populationdifferences , data=data.frame( populationdifference=sequence_mean_differences,samplesize=rep(2,length(sequence_mean_differences)) ) )
+mu_12_mean <- apply( mu_12 , 2 , mean )
+mu_12_ci <- apply( mu_12 , 2 , PI , prob=0.97 )
+shade( 1-mu_12_ci , exp(sequence_mean_differences) , col=col.alpha("orange",0.4) )
+
+mu_15 <- link( m_samplesize_populationdifferences , data=data.frame( populationdifference=sequence_mean_differences,samplesize=rep(3,length(sequence_mean_differences)) ) )
+mu_15_mean <- apply( mu_15 , 2 , mean )
+mu_15_ci <- apply( mu_15 , 2 , PI , prob=0.97 )
+shade( 1-mu_15_ci , exp(sequence_mean_differences) , col=col.alpha("skyblue",0.4) )
+
+mu_20 <- link( m_samplesize_populationdifferences , data=data.frame( populationdifference=sequence_mean_differences,samplesize=rep(4,length(sequence_mean_differences)) ) )
+mu_20_mean <- apply( mu_20 , 2 , mean )
+mu_20_ci <- apply( mu_20 , 2 , PI , prob=0.97 )
+shade( 1-mu_20_ci , exp(sequence_mean_differences) , col=col.alpha("#213940",0.4) )
+
+mu_60 <- link( m_samplesize_populationdifferences , data=data.frame( populationdifference=sequence_mean_differences,samplesize=rep(6,length(sequence_mean_differences)) ) )
+mu_60_mean <- apply( mu_60 , 2 , mean )
+mu_60_ci <- apply( mu_60 , 2 , PI , prob=0.97 )
+shade( 1-mu_60_ci , exp(sequence_mean_differences) , col=col.alpha("yellow",0.4) )
+
+legend(x="topright",legend=c(lty2="9",lty1="12",lty3="15",lty2="18",lty3="24"),lty=c(1,1,1,1,1),lwd=c(5,5,5,5,5),col=c(col.alpha("blue",0.4),col.alpha("orange",0.4),col.alpha("skyblue",0.4),col.alpha("#213940",0.4),col.alpha("yellow",0.4)),cex=1,bty="n")
+
+
+# Labels when analysing phi
+mtext("Sample size",side=3,line=-0.7,at=0.048)
+mtext("Power to detect site differences",side=3,line=1,at=0.025,cex=1.5)
+mtext("Difference of mean phis between sites",side=1,line=3)
+mtext("Probability model estimates difference could be zero",side=2,line=3)
+
+
+
 
 #run a CONTRAST to determine whether there is a difference between before (g1) and after (g2). Yes if all values on one side of zero
 post <- extract.samples(m1)
