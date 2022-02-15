@@ -330,18 +330,20 @@ y is the response variable (duration at cafes and dumpsters when food was presen
 
 *Bayesian model for a binomial distribution:*
 
-$R_i$ ~ Binomial(1,$p_i$)
+$R_i$ ~ Binomial($t_i$,$p_i$)
+
+$R_i$ is the duration spent at cafes and dumpsters when food rewards were present and $t_i$ is the total duration spent at cafes and dumpsters either before or after (i) the flexibility manipulation.
 
 logit($p_i$) = $\gamma$[condition] + $\alpha$[ind],[condition]
 
 $\gamma$[condition] is the average log-odds for each condition (before/after) and $\alpha$[ind],[condition] is the effect for each individual in each condition.
 
-```{r gtgrq1, eval=T}
+```{r gtgrq1simulation, eval=T}
 library(rethinking)
 library(cmdstanr)
 set_ulam_cmdstan(TRUE) #makes it so ulam always runs with cmdstan
 
-### SIMULATE the population 
+### SIMULATE the population
 # use the cafe example for normal distribution p.437, the primate pulling example p.447 for the binomial distribution, and the grad admissions example for how to deal with a response variable that is a proportion p.341 (McElreath 2020). Replace the 1 in the primate pulling model with the total duration; the response variable is duration when reward is present. So the model makes the proportion for you - feed it the raw data.
 N_ind <- 20 #number of individuals tested
 
@@ -365,56 +367,68 @@ durationrewarda <- round(durationtotala*propafter,0)
 
 
 ### POWER ANALYSIS: sample size
-# We now set our range of likely sample sizes, from a minimum of 9 individuals per population to a maximum of 60 individuals per population. We draw repeated samples of individuals of that size from each of the 5 populations, during each repetition we draw two samples from each population (so we can infer the false negative rate of wrongly estimating that two samples come from a different population even though they were taken from the sample population). This means we have 10 repetitions for each of the 5 sample sizes and each of the 8 changeprops. So 10*8 changeprops for each of the 5 sample sizes=80
-samplesizes<-c(rep(9,80),rep(12,80),rep(15,80),rep(20,80),rep(60,80))
-
-currentsamplesize<-NA
+# We now set our range of likely sample sizes, from a minimum of 9 individuals per population to a maximum of 60 individuals per population. We draw repeated samples of individuals of that size from each of the 5 populations, during each repetition we draw two samples from each population (so we can infer the false negative rate of wrongly estimating that two samples come from a different population even though they were taken from the sample population). This means we have 10 repetitions for each of the 5 sample sizes and each of the 6 changeprops. So 10*6 changeprops (=60) for each of the 5 sample sizes, resulting in a total length of samplesizes of 300
+samplesizes<-c(9,12,15,20,60)
 
 # Set the means you want to compare
-meanchangeprop1<-0.2
+meanchangeprop1<-0.2 #e.g., a bird spends 0.6 of its time being rewarded at cafes and dumpsters before the manipulation and then increases this proportion to 0.8 after the manipulation, showing that the manipulation improved their foraging success
 meanchangeprop2<-0.1
 meanchangeprop3<-0.05
 meanchangeprop4<-0.03
 meanchangeprop5<-0.025
 meanchangeprop6<-0.01
+changepropvariants<-c(meanchangeprop1,meanchangeprop2,meanchangeprop3,meanchangeprop4,meanchangeprop5,meanchangeprop6)
 
-#Make a vector with all the possible pairwise distances between the mean change in proportion between before and after
-changeprop1 <- rnorm(N_ind, mean=meanchangeprop1,sd=0.1)
-changeprop2 <- rnorm(N_ind, mean=meanchangeprop2,sd=0.1)
-changeprop3 <- rnorm(N_ind, mean=meanchangeprop3,sd=0.1)
-changeprop4 <- rnorm(N_ind, mean=meanchangeprop4,sd=0.1)
-changeprop5 <- rnorm(N_ind, mean=meanchangeprop5,sd=0.1)
-changeprop6 <- rnorm(N_ind, mean=meanchangeprop6,sd=0.1)
+#compare different baseline proportions for how much time these individuals spend when the reward is present before the manipulation
+prop_before<-c(0.5,0.6,0.7)
 
-pairwisecomparisons<-c(meanchangeprop1,meanchangeprop2,meanchangeprop3,meanchangeprop4,meanchangeprop5,meanchangeprop6)
-# Calculate the differences between populations. We set this up in a vector that will link to the simulation output, so there are 50 repeats for the 10 independent repetitions across the 5 different sample sizes
-currentoutcome<-NA
+
+#set up data frame where results will be stored
+simresults <- matrix(NA,nrow=900,ncol=6)
+simresults <- data.frame(simresults)
+colnames(simresults) <- c("n","changeprop_mean","changeprop_sd","repetition","proportion_before","proportion_estimates_below_zero")
+
 counter<-1
+ 
+# run simulations. There are 5 different sample sizes, and for each we have 6 different mean change in proportions that we want to examine, and each will repeat 10 times for a total of 300 samples.
+for (samplesize in 1:5) {
+        N_ind <- samplesizes[samplesize] #number of grackles per sample size
+        
+        #now run through each of the 6 proportion variations
+        for (propvariant in 1:6) {
+        
+        #pick the current proportion variant from the list changepropvariants
+        currentchangeprop <- changepropvariants[propvariant]
+        
+        for (baselineprop in 1:3) {
+        #pick the current proportion variant from the list changepropvariants
+        currentprop_before <- prop_before[baselineprop]
+        
+        for (repetition in 1:10) {
+        #create data frame to store for each repetition of the simulated data to be analyzed by the model
+        sites <- matrix(nrow=n,ncol=4) 
+        colnames(sites)<-c("ID","condition","duration_rewarded","total_duration")
 
-# We now run our simulations. There are 5 different sample sizes, and for each we perform 10 estimations for a total of 50 samples.
-for (samplesize in 1:50) {
+        indchange <- rnorm(N_ind, mean=currentchangeprop,sd=0.1) #choose the next proportion change for each individual
+        
+        #BEFORE manipulation
+        #observed for 10000 seconds before manipulation, 0=no decimal points
+        durationtotalb <- round(rnorm(N_ind,mean=10000,sd=500),0) 
+        #proportion of duration rewarded:total duration, 2 means 2 decimal points. Assume baseline proportion is 0.5, 0.6, or 0.7
+        propbefore <- round(rnorm(N_ind,mean=currentprop_before,sd=0.1),2) 
+        #duration at location when reward was present
+        durationrewardb <- round(durationtotalb*propbefore,0) 
+        #choose the next proportion change for each individual. If had a large proportion before, have a smaller change relative to the after condition. Multiply by 0.2 = assume that on average they will improve by 0.2. Modifying the proportion after relative to the proportion before accounts for those individuals who were already successful before the manipulation and thus won't have much of a change in prop due to the manipulation. Using the relative change also ensures that an individual will never have an after proportion larger than 1. Multiply currentchangeprop by 2 bc want the relative change to be in about the same order of magnitude as the proportion of change for each individual as the absolute change. If the proportion before is 0.5, the relative change will be the same as the absolute change. If the proportion before >0.5, then the absolute change will be smaller. E.g., if proportion before = 0.7, then a relative change of 0.2 leads to an absolute change of 0.14. If it is <0.5, then the absolute change will be larger than 0.2.
+        changeprop <- rnorm(N_ind, mean=(1-propbefore)*(currentchangeprop*2),sd=0.1)  
+
+        #AFTER manipulation
+        propafter <- round(propbefore+changeprop,2)
+        propafter[propafter>1]<-1 #values larger than 1 mess up the model so restrict it
+        durationtotala <- round(rnorm(N_ind,mean=10000,sd=500),0) 
+        durationrewarda <- round(durationtotala*propafter,0) 
   
-        n <- samplesizes[counter] #number of grackles in total across all sites
-        sites <- matrix(nrow=n*5*2,ncol=2) #store data here
-        colnames(sites)<-c("phi","sites") # We label the outcome phi, but this doesn't matter for the lambda simulations
-        
-        # We randomly draw the pre-specified number of individuals from the 10,000 individuals in each population
-        sample1_1<-sample(changeprop1,n)
-        sample2_1<-sample(changeprop2,n)
-        sample3_1<-sample(changeprop3,n)
-        sample4_1<-sample(changeprop4,n)
-        sample5_1<-sample(changeprop5,n)
-        sample6_1<-sample(changeprop6,n)
-
-        # We combine them into one long dataframe
-        allsamples<-c(sample1_1,sample2_1,sample3_1,sample4_1,sample5_1)
-        
-        # In the dataframe, we will have the phi, and an identifier for each population
-        sites[,1]<-allsamples
-        sites[,2]<-c(rep(1,n),rep(2,n),rep(3,n),rep(4,n),rep(5,n),rep(6,n),rep(7,n),rep(8,n),rep(9,n),rep(10,n))
-        
-        ### We now run a STAN model to see whether we estimate that these samples come from the same or from different populations
-        #This sets up the data sheet with the simulated data that the model will run on
+        ### run a STAN model to see whether the before and after proportions are estimated to be different from each other
+        #sets up the data sheet with the simulated data that the model will run on
        dat <- list(
     response = c(durationrewardb,durationrewarda),
     total = c(durationtotalb,durationtotala),
@@ -422,8 +436,7 @@ for (samplesize in 1:50) {
     actor = rep(1:N_ind,2) #go through all individuals twice because there are observations from before and after for each
 )
        
-        # Our model, which will estimate a different mean and variance of phi for each site
-        # THE MODEL (p.441 for normal distribution, 448 for binomial distribution)
+        # Our MODEL, which will estimate a different mean and variance of phi for each site
 s1 <- ulam(
     alist(
         response ~ dbinom(total,p),
@@ -438,39 +451,28 @@ s1 <- ulam(
         # compute ordinary correlation matrixes from Cholesky factors
         gq> matrix[4,4]:Rho_actor <<- Chol_to_Corr(L_Rho_actor)
     ) , data=dat , chains=4 , cores=4 , log_lik=TRUE , cmdstan = TRUE)
-
-#model output: pay attention to before (g1) and after (g2)
-#precis(m1,depth=2)
-
-        # Now, we extract the posterior of the model, and on this perform the comparison to see whether the model thinks the sites have different or the same phi / lambda. For this, we calculate all pairwise differences in the posterior estimates of the sites.
-        for (sample in 1:13) {
-          for (comparison in (sample+1):14) {
-        
-        post1 <- extract.samples(s1) 
-        post1$diff <- post1$g[,sample] - post1$g[,comparison]
-        currentoutcome[counter]<-ifelse( precis(post1,depth=2)[29,1]<0 , currentoutcome[counter]<-precis(post1,depth=2)[29,4]<0, currentoutcome[counter]<-precis(post1,depth=2)[29,3]>0 )
-        
-        currentsamplesize[counter]<-samplesizes[samplesize]
-        counter<-counter+1
-           }
+      
+        #run a CONTRAST to determine whether there is a difference between before (g1) and after (g2) (subtract g1 before from g2 after). Yes if all values for diff_p on one side of zero (want probability scale because that is the scale we used in the simulation)
+post <- extract.samples(s1)
+diff_g <- post$g[,2] - post$g[,1] #log-odds difference p.341 McElreath 2020
+diff_p <- inv_logit(post$g[,2]) - inv_logit(post$g[,1]) #on the probability scale p.341 McElreath 2020
+#precis( list( diff_g=diff_g , diff_p=diff_p ) )
+    
+    # enter all of the results into the data sheet
+    simresults[counter,]$n <- N_ind
+    simresults[counter,]$changeprop_mean <- currentchangeprop
+    simresults[counter,]$changeprop_sd <- 0.1
+    simresults[counter,]$repetition <- repetition
+    simresults[counter,]$proportion_before <- currentprop_before
+    simresults[counter,]$proportion_estimates_below_zero <- sum(diff_p<0)/length(diff_p)
+    counter<-counter+1
+   
+        }
+        }
         }
 }
 
-# We now take the output from the estimation that says whether the model thought the phis are different or not, and link it to the sample size for that run and the difference we had set between the original populations
-combinedoutput<-matrix(ncol=3,nrow=91*60)
-combinedoutput[,1]<-as.integer(currentoutcome)
-combinedoutput[,2]<-currentmeandifference
-combinedoutput[,3]<-samplesizes
-combinedoutput<-as.data.frame(combinedoutput)
-colnames(combinedoutput)<-c("differencedetected","populationdifference","samplesize")
-combinedoutput<-arrange(combinedoutput,samplesize)
-falsenegative<-filter(combinedoutput,populationdifference>0)
-
-# We can look at how many times two sites were estimated to be different or not for the six different sample sizes
-table(combinedoutput[,c(1,3)])
-
 # We run the STAN model - it is a binomial model that assumes that the probability to estimate a difference depends on an interaction between the sample size and the difference between the conditions (before/after)
-
 m_samplesize_populationdifferences <- ulam(
   alist(
     differencedetected~dbinom(1,p),
@@ -480,6 +482,19 @@ m_samplesize_populationdifferences <- ulam(
     sigma_a~dexp(1),
     b[samplesize]~dnorm(0,1.5)
   ),data=falsenegative_data, log_lik=TRUE, messages=FALSE,cmdstan=T)
+
+m_samplesize_propmeanbaselinediffs <- ulam(
+    alist(
+        response ~ dbinom(1,p),
+        logit(p) <- g[tid] + alpha[actor,tid],
+        transpars> matrix[actor,4]:alpha <- compose_noncentered( sigma_actor , L_Rho_actor , z_actor ),
+        matrix[4,actor]:z_actor ~ normal( 0 , 1 ),
+        g[tid] ~ normal(0,1),
+        vector[4]:sigma_actor ~ dexp(1),
+        cholesky_factor_corr[4]:L_Rho_actor ~ lkj_corr_cholesky( 2 ),
+        gq> matrix[4,4]:Rho_actor <<- Chol_to_Corr(L_Rho_actor)
+    ) , data=simresults , chains=4 , cores=4 , log_lik=TRUE , cmdstan = TRUE)
+
 
 # To plot the output of this STAN model, we sort the differences between the populations so that they align along the x-axis
 sequence_mean_differences<-c(sort(unique(falsenegative_data$populationdifference)))
@@ -523,9 +538,53 @@ mtext("Sample size",side=3,line=-0.7,at=0.048)
 mtext("Power to detect site differences",side=3,line=1,at=0.025,cex=1.5)
 mtext("Difference of mean phis between sites",side=1,line=3)
 mtext("Probability model estimates difference could be zero",side=2,line=3)
+```
 
+```{r gtgrq1model, eval=T}
+library(rethinking)
+library(cmdstanr)
+set_ulam_cmdstan(TRUE) #makes it so ulam always runs with cmdstan
 
+# load data sheet
+d <- read.csv(url(""), header=T, sep=",", stringsAsFactors=F)
 
+# sort the data
+beforepresent <- d[d$RewardPresent==1 & d$BeforeOrAfterManipulation=="Before",]
+beforeabsent <- d[d$RewardPresent==0 & d$BeforeOrAfterManipulation=="Before",]
+beforetotal <- c(beforepresent,beforeabsent)
+afterpresent <- d[d$RewardPresent==1 & d$BeforeOrAfterManipulation=="After",]
+afterabsent <- d[d$RewardPresent==0 & d$BeforeOrAfterManipulation=="After",]
+aftertotal <- c(afterpresent,afterabsent)
+
+# Total sample size
+N_ind <- 20
+
+# Set up the data sheet
+       dat <- list(
+    response = c(beforepresent$Duration,afterpresent$Duration),
+    total = c(beforetotal$Duration,aftertotal$Duration),
+    tid = d$BeforeOrAfterManipulation,
+    actor = d$ID
+)
+
+# THE MODEL (p.441 for normal distribution, 448 for binomial distribution - McElreath 2020)
+m1 <- ulam(
+    alist(
+        response ~ dbinom(total,p),
+        logit(p) <- g[tid] + alpha[actor,tid],
+        # adaptive priors - non-centered which is a parameterization that improves sampling for the MCMC model fit by helping with complex varying effects (see p.453)
+        transpars> matrix[actor,4]:alpha <- compose_noncentered( sigma_actor , L_Rho_actor , z_actor ),
+        matrix[4,actor]:z_actor ~ normal( 0 , 1 ),
+        # fixed priors
+        g[tid] ~ normal(0,1),
+        vector[4]:sigma_actor ~ dexp(1),
+        cholesky_factor_corr[4]:L_Rho_actor ~ lkj_corr_cholesky( 2 ),
+        # compute ordinary correlation matrixes from Cholesky factors
+        gq> matrix[4,4]:Rho_actor <<- Chol_to_Corr(L_Rho_actor)
+    ) , data=dat , chains=4 , cores=4 , log_lik=TRUE , cmdstan = TRUE)
+
+#model output: pay attention to before (g1) and after (g2)
+#precis(m1,depth=2)
 
 #run a CONTRAST to determine whether there is a difference between before (g1) and after (g2). Yes if all values on one side of zero
 post <- extract.samples(m1)
