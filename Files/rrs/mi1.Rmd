@@ -483,10 +483,10 @@ m_samplesize_populationdifferences <- ulam(
     b[samplesize]~dnorm(0,1.5)
   ),data=falsenegative_data, log_lik=TRUE, messages=FALSE,cmdstan=T)
 
-m_samplesize_propmeanbaselinediffs <- ulam(
+m_samplesize_diffs <- ulam(
     alist(
         response ~ dbinom(1,p),
-        logit(p) <- g[tid] + alpha[actor,tid],
+        logit(p) <- g[samplesize] + alpha[actor,samplesize],
         transpars> matrix[actor,4]:alpha <- compose_noncentered( sigma_actor , L_Rho_actor , z_actor ),
         matrix[4,actor]:z_actor ~ normal( 0 , 1 ),
         g[tid] ~ normal(0,1),
