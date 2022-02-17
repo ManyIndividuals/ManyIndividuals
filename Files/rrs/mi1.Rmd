@@ -347,6 +347,12 @@ set_ulam_cmdstan(TRUE) #makes it so ulam always runs with cmdstan
 # use the cafe example for normal distribution p.437, the primate pulling example p.447 for the binomial distribution, and the grad admissions example for how to deal with a response variable that is a proportion p.341 (McElreath 2020). Replace the 1 in the primate pulling model with the total duration; the response variable is duration when reward is present. So the model makes the proportion for you - feed it the raw data.
 N_ind <- 20 #number of individuals tested
 
+#choosing the mean proportion change in the amount of time spent at a location when a reward was present and standard deviations - visualize to see whether it would be possible to tell the difference between before (black) and after (red)
+prob_before<-0.6
+changeprop<-0.025
+plot(density(rnorm(10000,prob_before,sd=0.1)),lwd=2)
+lines(density(rnorm(10000,prob_before+(1-prob_before)*(changeprop*2),sd=0.1)),lwd=2,col="red")
+
 #before
 durationtotalb <- round(rnorm(N_ind,mean=10000,sd=500),0) #observed for 10000 seconds before manipulation, 0=no decimal points
 propbefore <- round(rnorm(N_ind,mean=0.5,sd=0.1),2) #proportion of duration rewarded:total duration, 2 means 2 decimal points
@@ -387,11 +393,10 @@ prop_before<-c(0.5,0.6,0.7)
 simresults <- matrix(NA,nrow=900,ncol=6)
 simresults <- data.frame(simresults)
 colnames(simresults) <- c("n","changeprop_mean","changeprop_sd","repetition","proportion_before","proportion_estimates_below_zero")
-
 counter<-1
  
 # run simulations. There are 5 different sample sizes, and for each we have 6 different mean change in proportions that we want to examine, and each will repeat 10 times for a total of 300 samples.
-for (samplesize in 1:5) {
+for (samplesize in 1:length(samplesizes)) {
         N_ind <- samplesizes[samplesize] #number of grackles per sample size
         
         #now run through each of the 6 proportion variations
@@ -415,7 +420,8 @@ for (samplesize in 1:5) {
         #observed for 10000 seconds before manipulation, 0=no decimal points
         durationtotalb <- round(rnorm(N_ind,mean=10000,sd=500),0) 
         #proportion of duration rewarded:total duration, 2 means 2 decimal points. Assume baseline proportion is 0.5, 0.6, or 0.7
-        propbefore <- round(rnorm(N_ind,mean=currentprop_before,sd=0.1),2) 
+        propbefore <- round(rnorm(N_ind,mean=currentprop_before,sd=0.1),2)
+        propbefore[propbefore>1]<-1
         #duration at location when reward was present
         durationrewardb <- round(durationtotalb*propbefore,0) 
         #choose the next proportion change for each individual. If had a large proportion before, have a smaller change relative to the after condition. Multiply by 0.2 = assume that on average they will improve by 0.2. Modifying the proportion after relative to the proportion before accounts for those individuals who were already successful before the manipulation and thus won't have much of a change in prop due to the manipulation. Using the relative change also ensures that an individual will never have an after proportion larger than 1. Multiply currentchangeprop by 2 bc want the relative change to be in about the same order of magnitude as the proportion of change for each individual as the absolute change. If the proportion before is 0.5, the relative change will be the same as the absolute change. If the proportion before >0.5, then the absolute change will be smaller. E.g., if proportion before = 0.7, then a relative change of 0.2 leads to an absolute change of 0.14. If it is <0.5, then the absolute change will be larger than 0.2.
@@ -436,7 +442,8 @@ for (samplesize in 1:5) {
     actor = rep(1:N_ind,2) #go through all individuals twice because there are observations from before and after for each
 )
        
-        # Our MODEL, which will estimate a different mean and variance of phi for each site
+        # Our MODEL, which will estimate a different mean and variance of phi for each site 
+       #(note: had to add force_recompile bc kept giving me an error and wouldn't finish running. See https://github.com/rmcelreath/rethinking/issues/338)
 s1 <- ulam(
     alist(
         response ~ dbinom(total,p),
@@ -450,7 +457,7 @@ s1 <- ulam(
         cholesky_factor_corr[4]:L_Rho_actor ~ lkj_corr_cholesky( 2 ),
         # compute ordinary correlation matrixes from Cholesky factors
         gq> matrix[4,4]:Rho_actor <<- Chol_to_Corr(L_Rho_actor)
-    ) , data=dat , chains=4 , cores=4 , log_lik=TRUE , cmdstan = TRUE)
+    ) , data=dat , chains=4 , cores=4 , log_lik=TRUE , cmdstan = TRUE, control = list(adapt_delta = .95, force_recompile = TRUE))
       
         #run a CONTRAST to determine whether there is a difference between before (g1) and after (g2) (subtract g1 before from g2 after). Yes if all values for diff_p on one side of zero (want probability scale because that is the scale we used in the simulation)
 post <- extract.samples(s1)
@@ -472,6 +479,16 @@ diff_p <- inv_logit(post$g[,2]) - inv_logit(post$g[,1]) #on the probability scal
         }
 }
 
+#write.csv(simresults,file="simresults60.csv") #put the outputs into a csv file so don't have to run the model again...it takes hours
+```
+
+
+```{r gtgrq1simulation, eval=T}
+#load the data sheet that was made from the simulation in the previous R chunk
+d <- read.csv("https://raw.githubusercontent.com/ManyIndividuals/ManyIndividuals/main/Files/rrs/mi1simresultsgtgr.csv", header = TRUE, sep = ",", stringsAsFactors = FALSE)
+#head(d)
+#plot(d$proportion_estimates_below_zero~d$changeprop_mean)
+
 # We run the STAN model - it is a binomial model that assumes that the probability to estimate a difference depends on an interaction between the sample size and the difference between the conditions (before/after)
 m_samplesize_populationdifferences <- ulam(
   alist(
@@ -485,61 +502,59 @@ m_samplesize_populationdifferences <- ulam(
 
 m_samplesize_diffs <- ulam(
     alist(
-        response ~ dbinom(1,p),
-        logit(p) <- g[samplesize] + alpha[actor,samplesize],
-        transpars> matrix[actor,4]:alpha <- compose_noncentered( sigma_actor , L_Rho_actor , z_actor ),
-        matrix[4,actor]:z_actor ~ normal( 0 , 1 ),
-        g[tid] ~ normal(0,1),
-        vector[4]:sigma_actor ~ dexp(1),
-        cholesky_factor_corr[4]:L_Rho_actor ~ lkj_corr_cholesky( 2 ),
-        gq> matrix[4,4]:Rho_actor <<- Chol_to_Corr(L_Rho_actor)
+        proportion_estimates_below_zero ~ dbinom(1,p),
+        logit(p) <- a[samplesize] + b[samplesize]*changeprop_mean,
+        a[samplesize] ~ dnorm(a_bar,sigma_a),
+        a_bar~dnorm(0,1.5),
+        sigma_a~dexp(1),
+        b[samplesize]~dnorm(0,1.5)
     ) , data=simresults , chains=4 , cores=4 , log_lik=TRUE , cmdstan = TRUE)
 
 
 # To plot the output of this STAN model, we sort the differences between the populations so that they align along the x-axis
-sequence_mean_differences<-c(sort(unique(falsenegative_data$populationdifference)))
+#sequence_mean_differences<-c(sort(unique(falsenegative_data$populationdifference)))
 
 # We extract the posterior estimates from this STAN model.
-precis_output_5<-precis( m_samplesize_populationdifferences , depth=2 )
+precis_output_5<-precis( m_samplesize_diffs , depth=2 )
 
 # We can now plot the predictions for the different sample sizes as separate lines
-plot(NULL,xlim=c(0,max(exp(sequence_mean_differences))),ylim=c(0.0,1.0),pch=1,ann=F,frame.plot=F,cex=1.5)
+plot(NULL,xlim=c(0,max(changeprop_mean),ylim=c(0.0,1.0),pch=1,ann=F,frame.plot=F,cex=1.5)
 
-mu_9 <- link( m_samplesize_populationdifferences , data=data.frame( populationdifference=sequence_mean_differences,samplesize=rep(1,length(sequence_mean_differences)) ) )
+mu_9 <- link( m_samplesize_diffs , data=data.frame( populationdifference=changeprop_mean,samplesize=rep(1,length(changeprop_mean)) ) )
 mu_9_mean <- apply( mu_9 , 2 , mean )
 mu_9_ci <- apply( mu_9 , 2 , PI , prob=0.97 )
-shade( 1-mu_9_ci , exp(sequence_mean_differences) , col=col.alpha("blue",0.4) )
+shade( 1-mu_9_ci , exp(changeprop_mean) , col=col.alpha("blue",0.4) )
 
-mu_12 <- link( m_samplesize_populationdifferences , data=data.frame( populationdifference=sequence_mean_differences,samplesize=rep(2,length(sequence_mean_differences)) ) )
+mu_12 <- link( m_samplesize_diffs , data=data.frame( populationdifference=changeprop_mean,samplesize=rep(2,length(changeprop_mean)) ) )
 mu_12_mean <- apply( mu_12 , 2 , mean )
 mu_12_ci <- apply( mu_12 , 2 , PI , prob=0.97 )
-shade( 1-mu_12_ci , exp(sequence_mean_differences) , col=col.alpha("orange",0.4) )
+shade( 1-mu_12_ci , exp(changeprop_mean) , col=col.alpha("orange",0.4) )
 
-mu_15 <- link( m_samplesize_populationdifferences , data=data.frame( populationdifference=sequence_mean_differences,samplesize=rep(3,length(sequence_mean_differences)) ) )
+mu_15 <- link( m_samplesize_diffs , data=data.frame( populationdifference=changeprop_mean,samplesize=rep(3,length(changeprop_mean)) ) )
 mu_15_mean <- apply( mu_15 , 2 , mean )
 mu_15_ci <- apply( mu_15 , 2 , PI , prob=0.97 )
-shade( 1-mu_15_ci , exp(sequence_mean_differences) , col=col.alpha("skyblue",0.4) )
+shade( 1-mu_15_ci , exp(changeprop_mean) , col=col.alpha("skyblue",0.4) )
 
-mu_20 <- link( m_samplesize_populationdifferences , data=data.frame( populationdifference=sequence_mean_differences,samplesize=rep(4,length(sequence_mean_differences)) ) )
+mu_20 <- link( m_samplesize_diffs , data=data.frame( populationdifference=changeprop_mean,samplesize=rep(4,length(changeprop_mean)) ) )
 mu_20_mean <- apply( mu_20 , 2 , mean )
 mu_20_ci <- apply( mu_20 , 2 , PI , prob=0.97 )
-shade( 1-mu_20_ci , exp(sequence_mean_differences) , col=col.alpha("#213940",0.4) )
+shade( 1-mu_20_ci , exp(changeprop_mean) , col=col.alpha("#213940",0.4) )
 
-mu_60 <- link( m_samplesize_populationdifferences , data=data.frame( populationdifference=sequence_mean_differences,samplesize=rep(6,length(sequence_mean_differences)) ) )
+mu_60 <- link( m_samplesize_diffs , data=data.frame( populationdifference=changeprop_mean,samplesize=rep(6,length(changeprop_mean)) ) )
 mu_60_mean <- apply( mu_60 , 2 , mean )
 mu_60_ci <- apply( mu_60 , 2 , PI , prob=0.97 )
-shade( 1-mu_60_ci , exp(sequence_mean_differences) , col=col.alpha("yellow",0.4) )
+shade( 1-mu_60_ci , exp(changeprop_mean) , col=col.alpha("yellow",0.4) )
 
 legend(x="topright",legend=c(lty2="9",lty1="12",lty3="15",lty2="18",lty3="24"),lty=c(1,1,1,1,1),lwd=c(5,5,5,5,5),col=c(col.alpha("blue",0.4),col.alpha("orange",0.4),col.alpha("skyblue",0.4),col.alpha("#213940",0.4),col.alpha("yellow",0.4)),cex=1,bty="n")
 
-
-# Labels when analysing phi
+# Figure labels 
 mtext("Sample size",side=3,line=-0.7,at=0.048)
-mtext("Power to detect site differences",side=3,line=1,at=0.025,cex=1.5)
-mtext("Difference of mean phis between sites",side=1,line=3)
-mtext("Probability model estimates difference could be zero",side=2,line=3)
+mtext("Power to detect differences between conditions",side=3,line=1,at=0.025,cex=1.5)
+mtext("The mean change in proportion of time spent in the presence of a reward between before and after conditions",side=1,line=3)
+mtext("Proportion of estimates below zero",side=2,line=3)
 ```
 
+**Figure X.** A difference in the proportion of time an individual spends at a location when food is present before the flexibility manipulation vs. after can be detected if the sample size is at least 20.
 ```{r gtgrq1model, eval=T}
 library(rethinking)
 library(cmdstanr)
