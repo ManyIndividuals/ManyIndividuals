@@ -351,7 +351,7 @@ N_ind <- 20 #number of individuals tested
 #choosing the mean proportion change in the amount of time spent at a location when a reward was present and standard deviations - visualize to see whether it would be possible to tell the difference between before (black) and after (red). An SD of 0.1 (when the mean before is 0.6) encompasses all of the range of proportions we expect to find (0.3-0.9) so it would be the largest SD we would expect and thus the most conservative sd to use in the simulations
 prob_before<-0.6
 changeprop<-0.025
-plot(density(rnorm(10000,prob_before,sd=0.1)),lwd=2)
+plot(density(rnorm(10000,prob_before,sd=0.1)),lwd=2,xlim=c(0,1.2))
 lines(density(rnorm(10000,prob_before+(1-prob_before)*(changeprop*2),sd=0.1)),lwd=2,col="red")
 
 #before
@@ -373,9 +373,9 @@ durationrewarda <- round(durationtotala*propafter,0)
 # power analysis: run this simulation with different N_ind, changeprop means and sd, to find the boundaries of where you can detect a difference (run the model and use contrasts) between the two conditions (before/after). Automate the process like Dieter did in xpop figs 5 (line 1133) and 6 (line 1452)?
 
 
-### POWER ANALYSIS: sample size
+### POWER ANALYSIS: different sample sizes and different mean changes in proportions between before and after conditions
 # We now set our range of likely sample sizes, from a minimum of 9 individuals per population to a maximum of 60 individuals per population. We draw repeated samples of individuals of that size from each of the 5 populations, during each repetition we draw two samples from each population (so we can infer the false negative rate of wrongly estimating that two samples come from a different population even though they were taken from the sample population). This means we have 10 repetitions for each of the 5 sample sizes and each of the 6 changeprops. So 10*6 changeprops (=60) for each of the 5 sample sizes, resulting in a total length of samplesizes of 300
-samplesizes<-c(20,30,40,60) #c(10,20,30,40,60)
+samplesizes<-c(10,20,30,40,60) #c(10,20,30,40,60)
 
 # Set the means you want to compare
 meanchangeprop1<-0.4 
@@ -384,10 +384,12 @@ meanchangeprop3<-0.2 #e.g., a bird spends 0.6 of its time being rewarded at cafe
 meanchangeprop4<-0.1
 meanchangeprop5<-0.05
 meanchangeprop6<-0.025
-changepropvariants<-c(meanchangeprop1,meanchangeprop2,meanchangeprop3,meanchangeprop4,meanchangeprop5,meanchangeprop6)
+changepropvariants<-c(meanchangeprop1,meanchangeprop2,meanchangeprop3,meanchangeprop4,meanchangeprop5,meanchangeprop6) #for false negatives
+#changepropvariants<-c(0) #for false positives
+#changepropvariants<-c(meanchangeprop6) #for showing differences
 
 #compare different baseline proportions for how much time these individuals spend when the reward is present before the manipulation
-prop_before<-c(0.5,0.6,0.7)
+prop_before<-c(0.5,0.6,0.7) #c(0.5,0.6,0.7)
 
 
 #set up data frame where results will be stored
@@ -401,7 +403,7 @@ for (samplesize in 1:length(samplesizes)) {
         N_ind <- samplesizes[samplesize] #number of grackles per sample size
         
         #now run through each of the 6 proportion variations
-        for (propvariant in 1:6) {
+        for (propvariant in 1:length(changepropvariants)) {
         
         #pick the current proportion variant from the list changepropvariants
         currentchangeprop <- changepropvariants[propvariant]
@@ -481,7 +483,13 @@ diff_p <- inv_logit(post$g[,2]) - inv_logit(post$g[,1]) #on the probability scal
         }
 }
 
-#write.csv(simresults,file="simresults20.csv") #put the outputs into a csv file so don't have to run the model again...it takes hours
+#write.csv(simresults,file="simresults20plus.csv") #put the outputs into a csv file so don't have to run the model again...it takes hours
+
+## Prep a figure to show how sample size and mean change prop makes a difference in the results. Get posterior values for particular sample sizes and change props. Set samplesize (20 or 60), changepropvariants (0.1 or 0.025), and prop_before (always 0.6) to just one number and run the model. Generate the output, write to csv. Repeat for other model variants
+#write.csv(diff_p,file="diff_p20changeprop0.1.csv")
+#write.csv(diff_p,file="diff_p60changeprop0.1.csv")
+#write.csv(diff_p,file="diff_p20changeprop0.025.csv")
+#write.csv(diff_p,file="diff_p60changeprop0.025.csv")
 ```
 
 ```{r gtgrq1simulationfiguresamplesize, eval=F}
@@ -492,22 +500,20 @@ set_ulam_cmdstan(TRUE) #makes it so ulam always runs with cmdstan
 #load the data sheet that was made from the simulation in the previous R chunk
 d <- read.csv("https://raw.githubusercontent.com/ManyIndividuals/ManyIndividuals/main/Files/rrs/mi1simresultsgtgr.csv", header = TRUE, sep = ",", stringsAsFactors = FALSE)
 #head(d)
-#plot(d$proportion_estimates_below_zero~d$changeprop_mean)
-#mean(d$proportion_estimates_below_zero)
 
 # Set up the data sheet for the model
 dat <- list(
   proportion_estimates_below_zero = as.numeric(d$proportion_estimates_below_zero),
   count_estimates_below_zero = as.numeric(d$count_estimates_below_zero),
-  changeprop_mean = d$changeprop_mean,
+  changeprop_mean = as.numeric(sqrt(d$changeprop_mean)),
   samplesize = as.integer(as.factor(d$n))
 )
 
-# We run the STAN model - it is a binomial model that assumes that the probability to estimate a difference depends on an interaction between the sample size and the difference between the conditions (before/after)
+# We run the STAN model - it is a binomial model that assumes that the probability to estimate a difference depends on an interaction between the sample size and the difference between the conditions (before/after). These two models do the same thing with different versions of the response variable. In m_samplesize_diffs, the response variable is already a proportion. In m_samplesize_diffscount, the response variable is a count and the model turns it into a proportion. We ended up using the latter
 m_samplesize_diffs <- ulam(
     alist(
         proportion_estimates_below_zero ~ dnorm(mu,sigma),
-        mu <- a[samplesize] + b[samplesize]*changeprop_mean,
+        mu <- a[samplesize] + b[samplesize]*changeprop_mean],
         a[samplesize] ~ dnorm(a_bar,sigma_a),
         a_bar~dnorm(0,1.5),
         sigma_a~dexp(1),
@@ -517,7 +523,7 @@ m_samplesize_diffs <- ulam(
 
 m_samplesize_diffscount <- ulam(
   alist(
-    count_estimates_below_zero~dbinom(10000,p),
+    count_estimates_below_zero~dbinom(2000,p),
     logit(p) <- a[samplesize]-b[samplesize]*changeprop_mean,
     a[samplesize]~dnorm(a_bar,sigma_a),
     a_bar~dnorm(0,1.5),
@@ -525,50 +531,91 @@ m_samplesize_diffscount <- ulam(
     b[samplesize]~dnorm(0,1.5)
   ),data=dat, log_lik=TRUE, messages=FALSE,cmdstan=T)
 
-# To plot the output of this STAN model, we sort the differences between the populations so that they align along the x-axis
-#sequence_mean_differences<-c(sort(unique(falsenegative_data$populationdifference)))
+# Extract the posterior estimates from this STAN model
+precis_output<-precis( m_samplesize_diffscount , depth=2 )
 
-# We extract the posterior estimates from this STAN model.
-precis_output<-precis( m_samplesize_diffs , depth=2 )
+# Plot the predictions for the different sample sizes as separate lines = COUNT out of 2000
+plot(NULL,xlim=c(0,0.4),ylim=c(0.0,0.6),pch=1,ann=F,frame.plot=F,cex=1.5)
 
-# We can now plot the predictions for the different sample sizes as separate lines
-plot(NULL,xlim=c(0,0.2),ylim=c(0.0,1.0),pch=1,ann=F,frame.plot=F,cex=1.5)
+mu_10<- link( m_samplesize_diffscount , data=data.frame( changeprop_mean=sqrt(unique(d$changeprop_mean)),samplesize=rep(1,length(unique(d$changeprop_mean))) ) )
+mu_10_mean <- apply( mu_10 , 2 , mean )
+mu_10_ci <- apply( mu_10 , 2 , PI , prob=0.97 )
+shade( mu_10_ci , unique(d$changeprop_mean) , col=col.alpha("blue",0.4) )
 
-mu_9<- link( m_samplesize_diffs , data=data.frame( changeprop_mean=unique(d$changeprop_mean),samplesize=rep(1,length(unique(d$changeprop_mean))) ) )
-mu_9_mean <- apply( mu_9 , 2 , mean )
-mu_9_ci <- apply( mu_9 , 2 , PI , prob=0.97 )
-shade( mu_9_ci , unique(d$changeprop_mean) , col=col.alpha("blue",0.4) )
-
-mu_12 <- link( m_samplesize_diffs , data=data.frame( changeprop_mean=unique(d$changeprop_mean),samplesize=rep(2,length(unique(d$changeprop_mean))) ) )
-mu_12_mean <- apply( mu_12 , 2 , mean )
-mu_12_ci <- apply( mu_12 , 2 , PI , prob=0.97 )
-shade( mu_12_ci , unique(d$changeprop_mean) , col=col.alpha("orange",0.4) )
-
-mu_15 <- link( m_samplesize_diffs , data=data.frame( changeprop_mean=unique(d$changeprop_mean),samplesize=rep(3,length(unique(d$changeprop_mean))) ) )
-mu_15_mean <- apply( mu_15 , 2 , mean )
-mu_15_ci <- apply( mu_15 , 2 , PI , prob=0.97 )
-shade( mu_15_ci ,unique(d$changeprop_mean), col=col.alpha("skyblue",0.4) )
-
-mu_20 <- link( m_samplesize_diffs , data=data.frame( changeprop_mean=unique(d$changeprop_mean),samplesize=rep(4,length(unique(d$changeprop_mean))) ) )
+mu_20 <- link( m_samplesize_diffscount , data=data.frame( changeprop_mean=sqrt(unique(d$changeprop_mean)),samplesize=rep(2,length(unique(d$changeprop_mean))) ) )
 mu_20_mean <- apply( mu_20 , 2 , mean )
 mu_20_ci <- apply( mu_20 , 2 , PI , prob=0.97 )
-shade( mu_20_ci ,unique(d$changeprop_mean) , col=col.alpha("#213940",0.4) )
+shade( mu_20_ci , unique(d$changeprop_mean) , col=col.alpha("orange",0.4) )
 
-mu_60 <- link( m_samplesize_diffs , data=data.frame( changeprop_mean=unique(d$changeprop_mean),samplesize=rep(5,length(unique(d$changeprop_mean))) ) )
+mu_30 <- link( m_samplesize_diffscount , data=data.frame( changeprop_mean=sqrt(unique(d$changeprop_mean)),samplesize=rep(3,length(unique(d$changeprop_mean))) ) )
+mu_30_mean <- apply( mu_30 , 2 , mean )
+mu_30_ci <- apply( mu_30 , 2 , PI , prob=0.97 )
+shade( mu_30_ci ,unique(d$changeprop_mean), col=col.alpha("skyblue",0.4) )
+
+mu_40 <- link( m_samplesize_diffscount , data=data.frame( changeprop_mean=sqrt(unique(d$changeprop_mean)),samplesize=rep(4,length(unique(d$changeprop_mean))) ) )
+mu_40_mean <- apply( mu_40 , 2 , mean )
+mu_40_ci <- apply( mu_40 , 2 , PI , prob=0.97 )
+shade( mu_40_ci ,unique(d$changeprop_mean) , col=col.alpha("#213940",0.4) )
+
+mu_60 <- link( m_samplesize_diffscount , data=data.frame( changeprop_mean=sqrt(unique(d$changeprop_mean)),samplesize=rep(5,length(unique(d$changeprop_mean))) ) )
 mu_60_mean <- apply( mu_60 , 2 , mean )
 mu_60_ci <- apply( mu_60 , 2 , PI , prob=0.97 )
-shade( mu_60_ci , unique(d$changeprop_mean), col=col.alpha("yellow",0.4) )
+shade( mu_60_ci , unique(d$changeprop_mean), col=col.alpha("red",0.4) )
 
-legend(x="topright",legend=c(lty2="9",lty1="12",lty3="15",lty2="20",lty3="60"),lty=c(1,1,1,1,1),lwd=c(5,5,5,5,5),col=c(col.alpha("blue",0.4),col.alpha("orange",0.4),col.alpha("skyblue",0.4),col.alpha("#213940",0.4),col.alpha("yellow",0.4)),cex=1,bty="n")
+legend(x="topright",legend=c(lty2="10",lty1="20",lty3="30",lty2="40",lty3="60"),lty=c(1,1,1,1,1),lwd=c(5,5,5,5,5),col=c(col.alpha("blue",0.4),col.alpha("orange",0.4),col.alpha("skyblue",0.4),col.alpha("#213940",0.4),col.alpha("red",0.4)),cex=1,bty="n")
 
 # Axis labels (side 1=x axis, side 2=y axis)
-mtext("Sample size",side=3,line=-0.7,at=0.048)
-mtext("Power to detect differences between conditions",side=3,line=1,at=0.025,cex=1.5)
-mtext("The mean change in proportion of time spent in the presence of a reward between before and after conditions",side=1,line=3)
-mtext("Proportion of estimates below zero",side=2,line=3)
+mtext("Sample size",side=3,line=-0.7,at=0.4)
+mtext("Power to detect differences between conditions",side=3,line=1,at=0.2,cex=1.5)
+mtext("Mean change in proportion of time spent in the presence of a reward between before and after conditions",side=1,line=3, cex=1.2)
+mtext("Proportion of estimates below zero",side=2,line=3, cex=1.2)
+
+#have a 93% chance of detecting a 0.1 or larger mean change in proportion between before and after when the sample size is 20. 96% for n=30, 99% for n=40, and 99.7% for n=60
+#mu_10_ci #82%. 3rd column from the right (column 4) for the 0.1 category on the x axis (ordered by unique(d$changeprop_mean))
+#mu_20_ci #93%
+#mu_30_ci #96%
+#mu_40_ci #99%
+#mu_60_ci #99.7%
+
+
+# figure to show that an increase in sample size reduces the SD, but does not shift the curve to the right
+d20 <-d[d$n==20,] #sample size of 20, sd=0.1
+d60 <-d[d$n==60,] #sample size of 60, sd=0.1
+plot(density(d20$proportion_estimates_below_zero),lwd=2,col="blue",xlim=c(-0.1,1),ylim=c(0,40),ylab="",ylab(""),xlab(""))
+lines(density(d60$proportion_estimates_below_zero),lwd=2,col="red")
+abline(v=0)
+legend(x="topright",legend=c(lty2="20",lty1="60"),lty=c(1,1),lwd=c(5,5),col=c(col.alpha("blue",0.4),col.alpha("red",0.4)),cex=1,bty="n")
+
+# Axis labels (side 1=x axis, side 2=y axis)
+mtext("Sample size",side=3,line=0,at=1)
+mtext("Mean change in proportion of time spent in the presence of a reward between before and after conditions",side=1,line=3, cex=1.2)
+mtext("Density of the proportion of estimates below zero",side=2,line=3, cex=1.2)
 ```
 
-**Figure 7.** A difference in the proportion of time an individual spends at a location when food is present before the flexibility manipulation vs. after can be detected if the sample size is at least 20.
+![If the difference in the proportion of time an individual spends at a location when food is present before the flexibility manipulation vs. after is 0.1, on average 93% of the posterior of the model based on a sample size of 20 individuals will be larger than zero, which means the model is quite certain that there is a difference that is larger than zero (12 times more likely to say that the difference is larger than zero than it is to say it is smaller than zero).](mi1FigPowerAnalysisFalseNegativeGTGR.png)
+
+```{r gtgrq1simulationfigurecurve, eval=F}
+# (not shown in the article, but useful if you want to learn more about this modeling process)
+
+# a figure that shows that an increase in sample size usually only decreases the sd and doesn't shift the curve to the right where there would be less of a chance of crossing zero and thus being less likely that the before and after are different from each other 
+#load the data sheet that was made from the simulation
+d <- read.csv("https://raw.githubusercontent.com/ManyIndividuals/ManyIndividuals/main/Files/rrs/mi1_posterior_diff_p.csv", header = TRUE, sep = ",", stringsAsFactors = FALSE)
+#head(d)
+
+# figure to show that an increase in sample size reduces the SD, but does not shift the curve to the right
+plot(density(d$diff_p20changeprop0.1),lwd=2,col="blue",xlim=c(-0.1,0.3),ylim=c(0,25),ylab="",ylab(""),xlab(""))
+lines(density(d$diff_p60changeprop0.1),lwd=2,col="red")
+lines(density(d$diff_p20changeprop0.025),lwd=2,col="black")
+lines(density(d$diff_p60changeprop0.025),lwd=2,col="purple")
+abline(v=0)
+legend(x="topright",legend=c(lty2="n=20, change=0.1",lty1="n=60, change=0.1",lty1="n=20, change=0.025",lty1="n=60, change=0.025"),lty=c(1,1,1,1),lwd=c(5,5,5,5),col=c(col.alpha("blue",0.4),col.alpha("red",0.4),col.alpha("black",0.4),col.alpha("purple",0.4)),cex=1,bty="n")
+
+# Axis labels (side 1=x axis, side 2=y axis)
+mtext("Sample size and mean proportion change",side=3,line=0,at=1)
+mtext("Mean change in proportion of time spent in the presence of a reward between before and after conditions",side=1,line=3, cex=1.2)
+mtext("Density",side=2,line=3, cex=1.2)
+```
+
 ```{r gtgrq1model, eval=F}
 library(rethinking)
 library(cmdstanr)
@@ -585,11 +632,8 @@ afterpresent <- d[d$RewardPresent==1 & d$BeforeOrAfterManipulation=="After",]
 afterabsent <- d[d$RewardPresent==0 & d$BeforeOrAfterManipulation=="After",]
 aftertotal <- c(afterpresent,afterabsent)
 
-# Total sample size
-N_ind <- 20
-
 # Set up the data sheet
-       dat <- list(
+dat <- list(
     response = c(beforepresent$Duration,afterpresent$Duration),
     total = c(beforetotal$Duration,aftertotal$Duration),
     tid = d$BeforeOrAfterManipulation,
