@@ -492,6 +492,9 @@ diff_p <- inv_logit(post$g[,2]) - inv_logit(post$g[,1]) #on the probability scal
 #write.csv(diff_p,file="diff_p60changeprop0.025.csv")
 ```
 
+We estimated our power to detect differences between conditions at different sample sizes and with different mean changes in the proportion of time spent in the presence of a reward in the before vs. after conditions (Figure 3). We simulated the proportions of times that different sample sizes of individuals would spend in the presence of the reward before and after the flexibility manipulation. We analyzed these simulated data with the model we will use to analyze the actual data, estimating the change in the proportion of time spent in the presence of the reward between the before and after conditions. From the posterior estimates of the model, we extracted both the mean change as well as the ratio of the posterior estimates that were below zero. If the mean ratio of estimates below zero is close to 0.5, the model assumes that the change in proportion of time spent in the presence of a reward before the flexibility manipulation is similar to after. If the ratio is close to zero, the model assumes individuals have changed their behavior. For changes smaller than 0.1, models are likely to assume that no changes occured even with large sample sizes. If the change in the proportion of time an individual spends at a location when food is present before the flexibility manipulation vs. after is 0.1, on average 93% of the posterior of the model based on a sample size of 20 individuals will be larger than zero. This means that the model is quite certain there is a difference that is larger than zero. In addition, none of the models for a sample size of 20 at the mean change of 0.1 have a ratio larger than 0.3, meaning that the risk of having a false negative is unlikely. In general, with sample sizes at or above 20 and mean changes in the proportion of time spent in the presence of a reward is 0.1 or larger, then it is highly likely that the model will indicate that individuals have changed their behavior. Mean changes below 0.1 can still be detected, however there is a higher risk that there will be a false negative. If the change in the proportion of time an individual spends at a location when food is present before the flexibility manipulation vs. after is 0.025, on average 61% of the posterior of the model based on a sample size of 20 individuals will be larger than zero. In addition, only 20% of the models for a sample size of 20 at the mean change of 0.025 have a ratio larger than 0.3, meaning that the risk of having a false negative is still low.
+
+With small mean changes in the response variable, some individuals might not increase or even decrease their response after the manipulation because there is variation around the mean change in individual responses. With small sample sizes, there is a risk that only individuals who did not clearly increase their response will be studied, whereas larger sample sizes are more likely to include a wider spectrum of individuals.
 
 ```{r gtgrq1simulationfiguresamplesize, eval=T, messages=F}
 library(rethinking)
@@ -542,89 +545,52 @@ mu_10<- link( m_samplesize_diffscount , data=data.frame( changeprop_mean=sqrt(un
 mu_10_mean <- apply( mu_10 , 2 , mean )
 mu_10_ci <- apply( mu_10 , 2 , PI , prob=0.97 )
 shade( mu_10_ci , unique(d$changeprop_mean) , col=col.alpha("blue",0.7) )
-
-lines(x=c(0.02,0.02),y=c(min(d[d$n %in% 10 & d$changeprop_mean %in% 0.025,]$proportion_estimates_below_zero),max(d[d$n %in% 10 & d$changeprop_mean %in% 0.025,]$proportion_estimates_below_zero)),col=col.alpha("blue",0.5))
-
-lines(x=c(0.048,0.048),y=c(min(d[d$n %in% 10 & d$changeprop_mean %in% 0.05,]$proportion_estimates_below_zero),max(d[d$n %in% 10 & d$changeprop_mean %in% 0.05,]$proportion_estimates_below_zero)),col=col.alpha("blue",0.5))
-
-lines(x=c(0.08,0.08),y=c(min(d[d$n %in% 10 & d$changeprop_mean %in% 0.1,]$proportion_estimates_below_zero),max(d[d$n %in% 10 & d$changeprop_mean %in% 0.1,]$proportion_estimates_below_zero)),col=col.alpha("blue",0.5))
-
-lines(x=c(0.18,0.18),y=c(min(d[d$n %in% 10 & d$changeprop_mean %in% 0.2,]$proportion_estimates_below_zero),max(d[d$n %in% 10 & d$changeprop_mean %in% 0.2,]$proportion_estimates_below_zero)),col=col.alpha("blue",0.5))
-
-lines(x=c(0.28,0.28),y=c(min(d[d$n %in% 10 & d$changeprop_mean %in% 0.3,]$proportion_estimates_below_zero),max(d[d$n %in% 10 & d$changeprop_mean %in% 0.3,]$proportion_estimates_below_zero)),col=col.alpha("blue",0.5))
-
-lines(x=c(0.38,0.38),y=c(min(d[d$n %in% 10 & d$changeprop_mean %in% 0.4,]$proportion_estimates_below_zero),max(d[d$n %in% 10 & d$changeprop_mean %in% 0.4,]$proportion_estimates_below_zero)),col=col.alpha("blue",0.5))
++lines(x=c(0.044,0.044),y=c(min(d[d$n %in% 10 & d$changeprop_mean %in% 0.05,]$proportion_estimates_below_zero),max(d[d$n %in% 10 & d$changeprop_mean %in% 0.05,]$proportion_estimates_below_zero)),col=col.alpha("blue",0.5))
+lines(x=c(0.092,0.092),y=c(min(d[d$n %in% 10 & d$changeprop_mean %in% 0.1,]$proportion_estimates_below_zero),max(d[d$n %in% 10 & d$changeprop_mean %in% 0.1,]$proportion_estimates_below_zero)),col=col.alpha("blue",0.5))
+lines(x=c(0.192,0.192),y=c(min(d[d$n %in% 10 & d$changeprop_mean %in% 0.2,]$proportion_estimates_below_zero),max(d[d$n %in% 10 & d$changeprop_mean %in% 0.2,]$proportion_estimates_below_zero)),col=col.alpha("blue",0.5))
+lines(x=c(0.292,0.292),y=c(min(d[d$n %in% 10 & d$changeprop_mean %in% 0.3,]$proportion_estimates_below_zero),max(d[d$n %in% 10 & d$changeprop_mean %in% 0.3,]$proportion_estimates_below_zero)),col=col.alpha("blue",0.5))
+lines(x=c(0.392,0.392),y=c(min(d[d$n %in% 10 & d$changeprop_mean %in% 0.4,]$proportion_estimates_below_zero),max(d[d$n %in% 10 & d$changeprop_mean %in% 0.4,]$proportion_estimates_below_zero)),col=col.alpha("blue",0.5))
 
 mu_20 <- link( m_samplesize_diffscount , data=data.frame( changeprop_mean=sqrt(unique(d$changeprop_mean)),samplesize=rep(2,length(unique(d$changeprop_mean))) ) )
 mu_20_mean <- apply( mu_20 , 2 , mean )
 mu_20_ci <- apply( mu_20 , 2 , PI , prob=0.97 )
 shade( mu_20_ci , unique(d$changeprop_mean) , col=col.alpha("orange",0.7) )
-
-lines(x=c(0.024,0.024),y=c(min(d[d$n %in% 10 & d$changeprop_mean %in% 0.025,]$proportion_estimates_below_zero),max(d[d$n %in% 20 & d$changeprop_mean %in% 0.025,]$proportion_estimates_below_zero)),col=col.alpha("orange",0.5))
-
-lines(x=c(0.049,0.049),y=c(min(d[d$n %in% 20 & d$changeprop_mean %in% 0.05,]$proportion_estimates_below_zero),max(d[d$n %in% 20 & d$changeprop_mean %in% 0.05,]$proportion_estimates_below_zero)),col=col.alpha("orange",0.5))
-
-lines(x=c(0.09,0.09),y=c(min(d[d$n %in% 20 & d$changeprop_mean %in% 0.1,]$proportion_estimates_below_zero),max(d[d$n %in% 20 & d$changeprop_mean %in% 0.1,]$proportion_estimates_below_zero)),col=col.alpha("orange",0.5))
-
-lines(x=c(0.19,0.19),y=c(min(d[d$n %in% 20 & d$changeprop_mean %in% 0.2,]$proportion_estimates_below_zero),max(d[d$n %in% 20 & d$changeprop_mean %in% 0.2,]$proportion_estimates_below_zero)),col=col.alpha("orange",0.5))
-
-lines(x=c(0.29,0.29),y=c(min(d[d$n %in% 20 & d$changeprop_mean %in% 0.3,]$proportion_estimates_below_zero),max(d[d$n %in% 20 & d$changeprop_mean %in% 0.3,]$proportion_estimates_below_zero)),col=col.alpha("orange",0.5))
-
-lines(x=c(0.39,0.39),y=c(min(d[d$n %in% 20 & d$changeprop_mean %in% 0.4,]$proportion_estimates_below_zero),max(d[d$n %in% 20 & d$changeprop_mean %in% 0.4,]$proportion_estimates_below_zero)),col=col.alpha("orange",0.5))
+lines(x=c(0.048,0.048),y=c(min(d[d$n %in% 20 & d$changeprop_mean %in% 0.05,]$proportion_estimates_below_zero),max(d[d$n %in% 20 & d$changeprop_mean %in% 0.05,]$proportion_estimates_below_zero)),col=col.alpha("orange",0.5))
+lines(x=c(0.096,0.096),y=c(min(d[d$n %in% 20 & d$changeprop_mean %in% 0.1,]$proportion_estimates_below_zero),max(d[d$n %in% 20 & d$changeprop_mean %in% 0.1,]$proportion_estimates_below_zero)),col=col.alpha("orange",0.5))
+lines(x=c(0.196,0.196),y=c(min(d[d$n %in% 20 & d$changeprop_mean %in% 0.2,]$proportion_estimates_below_zero),max(d[d$n %in% 20 & d$changeprop_mean %in% 0.2,]$proportion_estimates_below_zero)),col=col.alpha("orange",0.5))
+lines(x=c(0.296,0.296),y=c(min(d[d$n %in% 20 & d$changeprop_mean %in% 0.3,]$proportion_estimates_below_zero),max(d[d$n %in% 20 & d$changeprop_mean %in% 0.3,]$proportion_estimates_below_zero)),col=col.alpha("orange",0.5))
+lines(x=c(0.396,0.396),y=c(min(d[d$n %in% 20 & d$changeprop_mean %in% 0.4,]$proportion_estimates_below_zero),max(d[d$n %in% 20 & d$changeprop_mean %in% 0.4,]$proportion_estimates_below_zero)),col=col.alpha("orange",0.5))
 
 mu_30 <- link( m_samplesize_diffscount , data=data.frame( changeprop_mean=sqrt(unique(d$changeprop_mean)),samplesize=rep(3,length(unique(d$changeprop_mean))) ) )
 mu_30_mean <- apply( mu_30 , 2 , mean )
 mu_30_ci <- apply( mu_30 , 2 , PI , prob=0.97 )
 shade( mu_30_ci ,unique(d$changeprop_mean), col=col.alpha("skyblue",0.7) )
-
 lines(x=c(0.028,0.028),y=c(min(d[d$n %in% 30 & d$changeprop_mean %in% 0.025,]$proportion_estimates_below_zero),max(d[d$n %in% 30 & d$changeprop_mean %in% 0.025,]$proportion_estimates_below_zero)),col=col.alpha("skyblue",0.5))
-
-lines(x=c(0.05,0.05),y=c(min(d[d$n %in% 30 & d$changeprop_mean %in% 0.05,]$proportion_estimates_below_zero),max(d[d$n %in% 30 & d$changeprop_mean %in% 0.05,]$proportion_estimates_below_zero)),col=col.alpha("skyblue",0.5))
-
+lines(x=c(0.052,0.052),y=c(min(d[d$n %in% 30 & d$changeprop_mean %in% 0.05,]$proportion_estimates_below_zero),max(d[d$n %in% 30 & d$changeprop_mean %in% 0.05,]$proportion_estimates_below_zero)),col=col.alpha("skyblue",0.5))
 lines(x=c(0.1,0.1),y=c(min(d[d$n %in% 30 & d$changeprop_mean %in% 0.1,]$proportion_estimates_below_zero),max(d[d$n %in% 30 & d$changeprop_mean %in% 0.1,]$proportion_estimates_below_zero)),col=col.alpha("skyblue",0.5))
-
 lines(x=c(0.2,0.2),y=c(min(d[d$n %in% 30 & d$changeprop_mean %in% 0.2,]$proportion_estimates_below_zero),max(d[d$n %in% 30 & d$changeprop_mean %in% 0.2,]$proportion_estimates_below_zero)),col=col.alpha("skyblue",0.5))
-
 lines(x=c(0.3,0.3),y=c(min(d[d$n %in% 30 & d$changeprop_mean %in% 0.3,]$proportion_estimates_below_zero),max(d[d$n %in% 30 & d$changeprop_mean %in% 0.3,]$proportion_estimates_below_zero)),col=col.alpha("skyblue",0.5))
-
 lines(x=c(0.4,0.4),y=c(min(d[d$n %in% 30 & d$changeprop_mean %in% 0.4,]$proportion_estimates_below_zero),max(d[d$n %in% 30 & d$changeprop_mean %in% 0.4,]$proportion_estimates_below_zero)),col=col.alpha("skyblue",0.5))
-
 
 mu_40 <- link( m_samplesize_diffscount , data=data.frame( changeprop_mean=sqrt(unique(d$changeprop_mean)),samplesize=rep(4,length(unique(d$changeprop_mean))) ) )
 mu_40_mean <- apply( mu_40 , 2 , mean )
 mu_40_ci <- apply( mu_40 , 2 , PI , prob=0.97 )
 shade( mu_40_ci ,unique(d$changeprop_mean) , col=col.alpha("#213940",0.7) )
-
-lines(x=c(0.032,0.032),y=c(min(d[d$n %in% 40 & d$changeprop_mean %in% 0.025,]$proportion_estimates_below_zero),max(d[d$n %in% 40 & d$changeprop_mean %in% 0.025,]$proportion_estimates_below_zero)),col=col.alpha("#213940",0.5))
-
-lines(x=c(0.051,0.051),y=c(min(d[d$n %in% 40 & d$changeprop_mean %in% 0.05,]$proportion_estimates_below_zero),max(d[d$n %in% 40 & d$changeprop_mean %in% 0.05,]$proportion_estimates_below_zero)),col=col.alpha("#213940",0.5))
-
-lines(x=c(0.11,0.11),y=c(min(d[d$n %in% 40 & d$changeprop_mean %in% 0.1,]$proportion_estimates_below_zero),max(d[d$n %in% 40 & d$changeprop_mean %in% 0.1,]$proportion_estimates_below_zero)),col=col.alpha("#213940",0.5))
-
-lines(x=c(0.21,0.21),y=c(min(d[d$n %in% 40 & d$changeprop_mean %in% 0.2,]$proportion_estimates_below_zero),max(d[d$n %in% 40 & d$changeprop_mean %in% 0.2,]$proportion_estimates_below_zero)),col=col.alpha("#213940",0.5))
-
-lines(x=c(0.31,0.31),y=c(min(d[d$n %in% 40 & d$changeprop_mean %in% 0.3,]$proportion_estimates_below_zero),max(d[d$n %in% 40 & d$changeprop_mean %in% 0.3,]$proportion_estimates_below_zero)),col=col.alpha("#213940",0.5))
-
-lines(x=c(0.41,0.41),y=c(min(d[d$n %in% 40 & d$changeprop_mean %in% 0.4,]$proportion_estimates_below_zero),max(d[d$n %in% 40 & d$changeprop_mean %in% 0.4,]$proportion_estimates_below_zero)),col=col.alpha("#213940",0.5))
-
+lines(x=c(0.056,0.056),y=c(min(d[d$n %in% 40 & d$changeprop_mean %in% 0.05,]$proportion_estimates_below_zero),max(d[d$n %in% 40 & d$changeprop_mean %in% 0.05,]$proportion_estimates_below_zero)),col=col.alpha("#213940",0.5))
+lines(x=c(0.104,0.104),y=c(min(d[d$n %in% 40 & d$changeprop_mean %in% 0.1,]$proportion_estimates_below_zero),max(d[d$n %in% 40 & d$changeprop_mean %in% 0.1,]$proportion_estimates_below_zero)),col=col.alpha("#213940",0.5))
+lines(x=c(0.204,0.204),y=c(min(d[d$n %in% 40 & d$changeprop_mean %in% 0.2,]$proportion_estimates_below_zero),max(d[d$n %in% 40 & d$changeprop_mean %in% 0.2,]$proportion_estimates_below_zero)),col=col.alpha("#213940",0.5))
+lines(x=c(0.304,0.304),y=c(min(d[d$n %in% 40 & d$changeprop_mean %in% 0.3,]$proportion_estimates_below_zero),max(d[d$n %in% 40 & d$changeprop_mean %in% 0.3,]$proportion_estimates_below_zero)),col=col.alpha("#213940",0.5))
+lines(x=c(0.404,0.404),y=c(min(d[d$n %in% 40 & d$changeprop_mean %in% 0.4,]$proportion_estimates_below_zero),max(d[d$n %in% 40 & d$changeprop_mean %in% 0.4,]$proportion_estimates_below_zero)),col=col.alpha("#213940",0.5))
 
 mu_60 <- link( m_samplesize_diffscount , data=data.frame( changeprop_mean=sqrt(unique(d$changeprop_mean)),samplesize=rep(5,length(unique(d$changeprop_mean))) ) )
 mu_60_mean <- apply( mu_60 , 2 , mean )
 mu_60_ci <- apply( mu_60 , 2 , PI , prob=0.97 )
 shade( mu_60_ci , unique(d$changeprop_mean), col=col.alpha("red",0.7) )
-
-lines(x=c(0.036,0.036),y=c(min(d[d$n %in% 60 & d$changeprop_mean %in% 0.025,]$proportion_estimates_below_zero),max(d[d$n %in% 60 & d$changeprop_mean %in% 0.025,]$proportion_estimates_below_zero)),col=col.alpha("red",0.5))
-
-lines(x=c(0.052,0.052),y=c(min(d[d$n %in% 60 & d$changeprop_mean %in% 0.05,]$proportion_estimates_below_zero),max(d[d$n %in% 60 & d$changeprop_mean %in% 0.05,]$proportion_estimates_below_zero)),col=col.alpha("red",0.5))
-
-lines(x=c(0.12,0.12),y=c(min(d[d$n %in% 60 & d$changeprop_mean %in% 0.1,]$proportion_estimates_below_zero),max(d[d$n %in% 60 & d$changeprop_mean %in% 0.1,]$proportion_estimates_below_zero)),col=col.alpha("red",0.5))
-
-lines(x=c(0.22,0.22),y=c(min(d[d$n %in% 60 & d$changeprop_mean %in% 0.2,]$proportion_estimates_below_zero),max(d[d$n %in% 60 & d$changeprop_mean %in% 0.2,]$proportion_estimates_below_zero)),col=col.alpha("red",0.5))
-
-lines(x=c(0.32,0.32),y=c(min(d[d$n %in% 60 & d$changeprop_mean %in% 0.3,]$proportion_estimates_below_zero),max(d[d$n %in% 60 & d$changeprop_mean %in% 0.3,]$proportion_estimates_below_zero)),col=col.alpha("red",0.5))
-
-lines(x=c(0.42,0.42),y=c(min(d[d$n %in% 60 & d$changeprop_mean %in% 0.4,]$proportion_estimates_below_zero),max(d[d$n %in% 60 & d$changeprop_mean %in% 0.4,]$proportion_estimates_below_zero)),col=col.alpha("red",0.5))
-
+lines(x=c(0.06,0.06),y=c(min(d[d$n %in% 60 & d$changeprop_mean %in% 0.05,]$proportion_estimates_below_zero),max(d[d$n %in% 60 & d$changeprop_mean %in% 0.05,]$proportion_estimates_below_zero)),col=col.alpha("red",0.5))
+lines(x=c(0.108,0.108),y=c(min(d[d$n %in% 60 & d$changeprop_mean %in% 0.1,]$proportion_estimates_below_zero),max(d[d$n %in% 60 & d$changeprop_mean %in% 0.1,]$proportion_estimates_below_zero)),col=col.alpha("red",0.5))
+lines(x=c(0.208,0.208),y=c(min(d[d$n %in% 60 & d$changeprop_mean %in% 0.2,]$proportion_estimates_below_zero),max(d[d$n %in% 60 & d$changeprop_mean %in% 0.2,]$proportion_estimates_below_zero)),col=col.alpha("red",0.5))
+lines(x=c(0.308,0.308),y=c(min(d[d$n %in% 60 & d$changeprop_mean %in% 0.3,]$proportion_estimates_below_zero),max(d[d$n %in% 60 & d$changeprop_mean %in% 0.3,]$proportion_estimates_below_zero)),col=col.alpha("red",0.5))
+lines(x=c(0.408,0.408),y=c(min(d[d$n %in% 60 & d$changeprop_mean %in% 0.4,]$proportion_estimates_below_zero),max(d[d$n %in% 60 & d$changeprop_mean %in% 0.4,]$proportion_estimates_below_zero)),col=col.alpha("red",0.5))
 
 legend(x="topright",legend=c(lty2="10",lty1="20",lty3="30",lty2="40",lty3="60"),lty=c(1,1,1,1,1),lwd=c(5,5,5,5,5),col=c(col.alpha("blue",0.4),col.alpha("orange",0.4),col.alpha("skyblue",0.4),col.alpha("#213940",0.4),col.alpha("red",0.4)),cex=1,bty="n")
 
@@ -634,7 +600,7 @@ mtext("Power to detect differences between conditions",side=3,line=1,at=0.2,cex=
 mtext("Mean change in proportion of time spent in reward presence before vs. after",side=1,line=3, cex=1.2)
 mtext("Ratio of estimates below zero",side=2,line=3, cex=1.2)
 
-#have a 93% chance of detecting a 0.1 or larger mean change in proportion between before and after when the sample size is 20. 96% for n=30, 99% for n=40, and 99.7% for n=60
+#93% of the posterior mass is above zero for a 0.1 or larger mean change in proportion between before and after when the sample size is 20. 96% for n=30, 99% for n=40, and 99.7% for n=60
 #mu_10_ci #82%. 3rd column from the right (column 4) for the 0.1 category on the x axis (ordered by unique(d$changeprop_mean))
 #mu_20_ci #93%
 #mu_30_ci #96%
@@ -655,10 +621,6 @@ mtext("Ratio of estimates below zero",side=2,line=3, cex=1.2)
 #mtext("Mean change in proportion of time spent in the presence of a reward between before and after conditions",side=1,line=3, cex=1.2)
 #mtext("Density of the proportion of estimates below zero",side=2,line=3, cex=1.2)
 ```
-
-We estimated our power to detect differences between conditions at different sample sizes and with different mean changes in the proportion of time spent in the presence of a reward in the before vs. after conditions (Figure 3). We simulated the proportions of times that different sample sizes of individuals would spend in the presence of the reward before and after the flexibility manipulation. We analyzed these simulated data with the model we will use to analyze the actual data, estimating the change in the proportion of time spent in the presence of the reward between the before and after conditions. From the posterior estimates of the model, we extracted both the mean change as well as the ratio of the posterior estimates that were below zero. If the mean ratio of estimates below zero is close to 0.5, the model assumes that the change in proportion of time spent in the presence of a reward before the flexibility manipulation is similar to after. If the ratio is close to zero, the model assumes individuals have changed their behavior. For changes smaller than 0.1, models are likely to assume that no changes occured even with large sample sizes. If the change in the proportion of time an individual spends at a location when food is present before the flexibility manipulation vs. after is 0.1, on average 93% of the posterior of the model based on a sample size of 20 individuals will be larger than zero. This means that the model is quite certain there is a difference that is larger than zero. In addition, none of the models for a sample size of 20 at the mean change of 0.1 have a ratio larger than 0.3, meaning that the risk of having a false negative is unlikely. In general, with sample sizes at or above 20 and mean changes in the proportion of time spent in the presence of a reward is 0.1 or larger, then it is highly likely that the model will indicate that individuals have changed their behavior. Mean changes below 0.1 can still be detected, however there is a higher risk that there will be a false negative. If the change in the proportion of time an individual spends at a location when food is present before the flexibility manipulation vs. after is 0.025, on average 61% of the posterior of the model based on a sample size of 20 individuals will be larger than zero. In addition, only 20% of the models for a sample size of 20 at the mean change of 0.025 have a ratio larger than 0.3, meaning that the risk of having a false negative is still low.
-
-With small mean changes in the response variable, some individuals might not increase or even decrease their response after the manipulation because there is variation around the mean change in individual responses. With small sample sizes, there is a risk that only individuals who did not clearly increase their response will be studied, whereas larger sample sizes are more likely to include a wider spectrum of individuals.
 
 **Figure 3.** Curves of the mean ratio of estimates below zero (vertical lines show the minimum and maximum ratios), which illustrates the power we have to detect differences between conditions at different sample sizes.
 
