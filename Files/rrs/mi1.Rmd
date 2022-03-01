@@ -309,12 +309,10 @@ OR
 
 ### Design 2 - Reversal learning experiment in a group context
 
-Same as in Design 1
+Same questions, response/explanatory/random variables as in Design 1.
 
 
-#### Great-tailed grackles
-
-##### Cafes and dumpsters: pre-manipulation baseline compared with post-manipulation
+#### Great-tailed grackles: cafes and dumpsters - pre-manipulation baseline compared with post-manipulation
 
 The model as it would appear in a generalized linear mixed model format:
 
@@ -337,6 +335,8 @@ $R_i$ is the duration spent at cafes and dumpsters when food rewards were presen
 logit($p_i$) = $\gamma$[condition] + $\alpha$[ind],[condition]
 
 $\gamma$[condition] is the average log-odds for each condition (before/after) and $\alpha$[ind],[condition] is the effect for each individual in each condition.
+
+##### Power analysis
 
 ```{r gtgrq1simulation, eval=F}
 library(rethinking)
@@ -661,6 +661,10 @@ mtext("Sample size and mean proportion change",side=3,line=0,at=1)
 mtext("Mean change in proportion of time spent in the presence of a reward between before and after conditions",side=1,line=3, cex=1.2)
 mtext("Density",side=2,line=3, cex=1.2)
 ```
+
+##### Run this model on the actual data
+
+Run the code below to determine whether there were differences between the before and after conditions in their proportion of time spent at locations when food was present.
 
 ```{r gtgrq1model, eval=F}
 library(rethinking)
