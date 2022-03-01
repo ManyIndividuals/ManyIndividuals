@@ -743,6 +743,8 @@ If so, all would be expected to have high phis. If not, then phis would be rando
 ```{r gtgrq1flex, eval=F}
 library(rethinking)
 library(cmdstanr)
+library(posterior)
+
 set_ulam_cmdstan(TRUE) #makes it so ulam always runs with cmdstan
 
 # load data sheet
@@ -807,7 +809,12 @@ for (i in 1:length(unique(dflex_last_manipulated$id))) {
 }
 dflex_last_manipulated <- reduceddata
 
-datlasterversalsskewed <- as.list(dflex_last_manipulated)
+datlasterversalsskewed <- list(
+  Trial = dflex_last_manipulated$Trial,
+  Choice = dflex_last_manipulated$Choice,
+  Correct = dflex_last_manipulated$Correct,
+  id = dflex_last_manipulated$id
+  )
 datlasterversalsskewed$N <- nrow(dflex_last_manipulated)
 datlasterversalsskewed$N_id <- length(unique(dflex_last_manipulated$id))
 
@@ -852,7 +859,7 @@ Rho_ID ~ lkj_corr_cholesky(4);
 // initialize attraction scores
 
 for ( i in 1:N_id ) {
-A[i,1] = 0.7; A[i,2] = 0.1';
+A[i,1] = 0.7; A[i,2] = 0.1;
 }
 
 // loop over Choices
@@ -874,13 +881,12 @@ Choice[i] ~ categorical( p );
 phi =  inv_logit(logit_phi + v_ID[id[i],2]);
 pay[1:2] = rep_vector(0,2);
 pay[ Choice[i] ] = Correct[i];
-A[ id[i] , Choice[i] ] = ( (1-phi)*(A[ id[i] , Choice[i] ]) + phi*pay[Choice[i]])';
+A[ id[i] , Choice[i] ] = ( (1-phi)*(A[ id[i] , Choice[i] ]) + phi*pay[Choice[i]]);
 
 }//i
 }
 "
 
-m_lastreversals_skewed <- stan( model_code =  reinforcement_model_nonzeroattraction_skewedpriorattraction, data=datlasterversalsskewed ,iter = 5000, cores = 4, chains=4, control = list(adapt_delta=0.9, max_treedepth = 12))
 
 
 
@@ -898,7 +904,6 @@ options(mc.cores=4)
 # RUN the model
 fit <- mod$sample(
   data = datlasterversalsskewed,
-  seed = 123,
   chains = 4,
   parallel_chains = 4,
   refresh = 500
@@ -906,6 +911,17 @@ fit <- mod$sample(
 # Extract relevant variables
 outcome<-data.frame(fit$summary())
 rownames(outcome)<-outcome$variable
+
+drawsarray<-fit$draws()
+drawsdataframe<-as_draws_df(drawsarray)
+drawsdataframe<-data.frame(drawsdataframe)
+HPDI(drawsdataframe$log_L)
+HPDI(drawsdataframe$logit_phi)
+
+lambda <- sapply(1 : datlasterversalsskewed$N_id, function(x) exp( mean(drawsdataframe$log_L) + mean(drawsdataframe[ ,which( colnames(drawsdataframe)=="v_ID.1.1." )-1+x])))
+# 3.255569 1.864466 3.593549 2.662279 3.181319 5.525084 1.000564 1.908013 3.357928
+phi <- sapply(1 : datlasterversalsskewed$N_id, function(x) inv_logit( mean(drawsdataframe$logit_phi) + mean(drawsdataframe[ ,which( colnames(drawsdataframe)=="v_ID.2.1." )-1+x])))
+# 0.05424413 0.09954200 0.07569839 0.08914105 0.14527321 0.02986060 0.05544085 0.09362632 0.06175480
 
 
 # Remove the stan command line file we created for this particular model from your computer
@@ -915,34 +931,6 @@ file.remove(fn)
 # Reset your working directory to what it was before we ran the model
 setwd(currentlocation)
 
-
-
-
-
-
-
-slastreversals_skewed <- extract.samples(m_lastreversals_skewed)
-lastreversals_lambda_skewed <- sapply(1 : datlasterversalsskewed$N_id, function(x) exp( mean(slastreversals_skewed$log_L) + mean(slastreversals_skewed$v_ID[ ,x, 1])))
-lastreversals_phi_skewed <- sapply(1 : datlasterversalsskewed$N_id, function(x) inv_logit( mean(slastreversals_skewed$logit_phi) + mean(slastreversals_skewed$v_ID[ ,x, 2])))
-
-# We can now combine the information on the estimated phis and lambdas for the initial performance of all birds and the last performance of the manipulated birds into a single table
-eachbirdslearningparameters<-matrix(nrow=datlasterversalsskewed$N_id,ncol=4)
-eachbirdslearningparameters<-data.frame(eachbirdslearningparameters)
-colnames(eachbirdslearningparameters)<-c("Bird","Number","lastphi","lastlambda")
-eachbirdslearningparameters[,1]<-birdnames
-eachbirdslearningparameters[,2]<-unique(dflex_last_manipulated$id)
-eachbirdslearningparameters[eachbirdslearningparameters$Bird %in% birdnames_manipulated,3]<-lastreversals_phi_skewed
-eachbirdslearningparameters[eachbirdslearningparameters$Bird %in% birdnames_manipulated,4]<-lastreversals_lambda_skewed
-for(i in 1:nrow(eachbirdslearningparameters)){
-  if(is.na(eachbirdslearningparameters[i,]$manipulatedphi)==T) {
-    eachbirdslearningparameters[i,]$lastphi<- eachbirdslearningparameters[i,]$beginningphi
-    eachbirdslearningparameters[i,]$lastlambda<- eachbirdslearningparameters[i,]$beginninglambda}
-  if(is.na(eachbirdslearningparameters[i,]$manipulatedphi)==F) {
-    eachbirdslearningparameters[i,]$lastphi<- eachbirdslearningparameters[i,]$manipulatedphi
-    eachbirdslearningparameters[i,]$lastlambda<- eachbirdslearningparameters[i,]$manipulatedlambda}
-}
-
-write.csv(eachbirdslearningparameters,file="mi1gtgrphi.csv")
 
 
 ### SECOND, prepare the success data
