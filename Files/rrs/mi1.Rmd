@@ -55,7 +55,7 @@ Human modified environments are increasing, causing global changes that other sp
 
 # REGISTERED REPORT DETAILS
 
- - **Level of bias = 6** This registered report was written (Jul 2021-Feb 2022) prior to collecting any data.
+ - **Level of bias = 6:** This registered report was written (Jul 2021-Mar 2022) prior to collecting any data.
  - **Programmatic registered report:** Three Stage 2 articles will result from this one Stage 1 registered report: one for toutouwai, one for grackles, and one for scrub-jays.
  - **Deviations from the Stage 1 registered report:** [to be filled in as needed after data collection begins]
 
@@ -76,7 +76,7 @@ Environments where informational cues about resources vary in a heterogenous (bu
 This investigation asks whether flexibility can be increased by experimentally increasing environmental heterogeneity (via serial reversal learning) and whether such an increase can help species succeed in human modified environments. We explore whether it is possible to take insights from highly divergent species and apply them to address critical conservation challenges. We aim to conduct a flexibility intervention in two flexible species that are successful in human modified environments (great-tailed grackles and California scrub-jays) to understand how flexibility relates to success, and implement these interventions in two vulnerable species (toutouwai and Florida scrub-jays) to determine whether flexibility as a generalizable cognitive ability can be trained and whether such training improves success in human modified environments (Figure 2). Manipulating the flexibility of a few individuals could have population-level effects because significant research on social information use in birds [e.g., @valente2021conspecific] demonstrates the potential for the manipulated behavior to disseminate to conspecifics (e.g., if manipulated individuals are faster at locating new resources, which could attract the attention of conspecifics, or if unmanipulated individuals copy the manipulated individuals’ nesting or foraging locations). This comparative approach will ultimately reveal how conserved these abilities may be and to what extent they can be shaped by the environment. The results will substantially advance our understanding of the causes and consequences of flexibility, linking behavior to environmental change, cognition, and success in human modified environments through a comparative and global framework.
 
 
-# RESEARCH QUESTION
+# RESEARCH QUESTIONS
 
 ## Can behavioral flexibility in individuals be increased by increasing environmental heterogeneity? If so, does increased flexibility help individuals succeed in human modified environments? 
 
@@ -84,7 +84,7 @@ This investigation asks whether flexibility can be increased by experimentally i
 
 **Prediction 1 alternative 1:** Flexibility can be increased in individuals, but such an increase **does not improve the likelihood of success** in human modified environments. This would indicate that species associated with human modified environments form this association for reasons other than their flexibility, and that threatened species are likely not very successful in human modified environments for reasons unrelated to their ability to change their behavior with changing circumstances.
 
-**Prediction 1 alternative 2:** Flexibility can be increased in some populations, but not others. This would indicate that flexibility manipulations may not work for all populations, and that the effectiveness of such experiments should first be tested in the population of interest before including such an intervention in a conservation plan. If flexibility is not manipulatable in threatened populations, this would indicate that they are likely not very successful in human modified environments because of their inability to change their behavior with changing circumstances, and that flexibility is not trainable. If flexibility is not manipulatable in populations that are successful in human modified environments, this could indicate that they might have used flexibility in the past when originally forming the association, but the need to maintain flexibility in their repertoire is no longer necessary. In populations where flexibility is not manipulatable, this would indicate that the abilities involved in tracking changing resources in the environment are independent of the abilities involved in succeeding in human modified environments.
+**Prediction 1 alternative 2:** Flexibility can be increased in some populations, but not others. This would indicate that **flexibility manipulations may not work for all populations**, and that the effectiveness of such experiments should first be tested in the population of interest before including such an intervention in a conservation plan. If flexibility is not manipulatable in threatened populations, this would indicate that they are likely not very successful in human modified environments because of their inability to change their behavior with changing circumstances, and that flexibility is not trainable. If flexibility is not manipulatable in populations that are successful in human modified environments, this could indicate that they might have used flexibility in the past when originally forming the association, but the need to maintain flexibility in their repertoire is no longer necessary. In populations where flexibility is not manipulatable, this would indicate that the abilities involved in tracking changing resources in the environment are independent of the abilities involved in succeeding in human modified environments.
 
 
 ## Population-specific background and tailored research questions
@@ -98,25 +98,41 @@ This investigation asks whether flexibility can be increased by experimentally i
 
 ### Great-tailed grackles (*Quiscalus mexicanus*)
 
-**Background:** Great-tailed grackles are flexible [@logan2016flexibilityproblem; @logan2019flexmanip], highly associated with human modified environments [@johnson2001great], and have been rapidly expanding their geographic range across North America over the past 140 years [@wehtje2003range]. They are social and polygamous, and eat a diversity of human foods as well as foraging on insects and on substrates for other natural food items [@johnson2001great]. Males tend to be the socially dominant sex [@johnson2000male] and also the sex that disperses away from their natal area [@sevchik2019dispersal]. @Rodrigo2021gtgr found that more grackles are present and more foraging events occur during garbage pick ups when garbage tends to spill out of the bags, thus increasing food availability. Attending to garbage trucks, potentially across space and time, is an example of how flexibility can help individuals meet foraging needs in the context of changing environmental cues. Their flexibility is manipulatable using serial reversal learning, and this manipulation improves their flexibility in a new context as well as their innovativeness [@logan2019flexmanip], which shows that training a general cognitive ability can affect more behaviors than the behavior that was trained and potentially make them more successful in human modified environments. We are in the middle of long-term data collection on grackles to answer questions about, how flexibility relates to exploration [@mccune2019exploration], the predictability of their space use [@mccune2020spaceuse] and their foraging breadth [@logan2019flexforaging]. 
+#### Background 
+Great-tailed grackles are flexible [@logan2016flexibilityproblem; @logan2019flexmanip], highly associated with human modified environments [@johnson2001great], and have been rapidly expanding their geographic range across North America over the past 140 years [@wehtje2003range]. They are social and polygamous, and eat a diversity of human foods as well as foraging on insects and on substrates for other natural food items [@johnson2001great]. Males tend to be the socially dominant sex [@johnson2000male] and also the sex that disperses away from their natal area [@sevchik2019dispersal]. @Rodrigo2021gtgr found that more grackles are present and more foraging events occur during garbage pick ups when garbage tends to spill out of the bags, thus increasing food availability. Attending to garbage trucks, potentially across space and time, is an example of how flexibility can help individuals meet foraging needs in the context of changing environmental cues. Great-tailed grackle behavioral flexibility is manipulatable using serial reversal learning, and this manipulation improves their flexibility in a new context as well as their innovativeness [@logan2019flexmanip], which shows that training a general cognitive ability can affect more behaviors than the behavior that was trained and potentially make them more successful in human modified environments. We are in the middle of long-term data collection on grackles to answer questions about how flexibility relates to exploration [@mccune2019exploration], the predictability of their space use [@mccune2020spaceuse] and their foraging breadth [@logan2019flexforaging]. 
 
-**Table 1.** Study design for the great-tailed grackle research.
+#### Research question: Do flexibility manipulated individuals differ in the proportion of time spent at cafes and garbage dumpsters when food is present?
 
-<img width="100%" src="mi1StudyDesignTableGTGR.png">
-
-**G.Q1: Do flexibility manipulated individuals differ in their visits to outdoor cafes and garbage dumpsters on regular days (when there is more food availability) than on holidays when they are closed (thus reduced food availability)?**
-
- - **Prediction 1.1:** If individuals rely more on flexibility, they will likely decrease the frequency and duration of their visits on holidays because other environmental cues could indicate the lack of food availability (e.g., reduced human presence, no visible food, no garbage trucks or garbage spilled on the ground). This is because flexibility is the functional tracking of resources across time and space: one knows a variety of places to obtain food and prefers to forage at those with higher pay offs. If no food is available at a usual food location, then the more functional choice is to go somewhere else that does have food. 
- - **Prediction 1.2:** If there is no difference in the frequency and/or duration of visits between regular days and holidays, this could indicate that the flexibility manipulation did not manipulate an ability that is linked to foraging visits to cafes and dumpsters. 
- - **Prediction 1.3:** If the holiday frequency of visits increases while the duration decreases, this could indicate individuals keep checking the location they expect food to be, but that these visits are short and used for checking for food cues (including looking for human presence), which is likely faster than stopping to eat food that is present. 
- - **Prediction 1.4:** If the holiday frequency of visits decreases while the duration increases, this could indicate that individuals may be sitting and waiting for food to become available in the location they expect it to be.
- - **Prediction 2:** There will be no difference between pre- and post- experiment frequency and duration of visits at dumpsters because garbage pick up is generally once per week, which might be too long of a period to be able to accurately remember. However, we do predict a difference between pre- and post- experiment frequency and duration of visits (as outlined in Predictions 1.1-1.4) at cafes because they are generally open daily and therefore do not require longer-term memory retention to track.
-
-&nbsp;
+We will investigate this question by tracking their presence at cafes and dumpsters when food is present versus when it is absent before and after manipulating their flexibility using serial reversal learning in the wild (Figure 3). Table 1 summarizes our predictions, analysis plans, interpretations for the various directions the results could go, and the theories that could be contradicted given the various outcomes.
 
 <img width="100%" src="mi1Figgtgr.png">
 
 **Figure 3.** The reversal learning experiment in a group context (Figure 7) tailored to the great-tailed grackle research question.
+
+&nbsp;
+
+**Table 1.** Study design for the great-tailed grackle research. References that were not already cited in the introduction: [@barton2000limits].
+
+<img width="100%" src="mi1StudyDesignTableGTGR.png">
+
+#### Planned sample
+
+We will catch at least 20 grackles using walk in traps, mist nets, and bow nets; collect their biometric data, blood, and feathers; apply colored leg bands for individual identification, one band will have a PIT tag that will interface with the automated feeders; attach a radio tag using a leg loop harness; and release them at their point of capture.
+
+#### Before and after manipulation success measures
+
+The proportion of time spent at dumpsters and outdoor cafes when food is present will be collected using automation from Cellular Tracking Technologies. Individuals will wear radio tags whose signals are detected (within approximately 75m) by nodes that are placed at approximately 200m intervals. Before and after tracking data will be collected on a minimum of 20 individuals with a minimum of 4 separate visit events per individual pre-manipulation and a minimum of 4 separate visit events per individual post-manipulation. This data will allow me to detect pre- vs post-manipulation within-individual differences in visits to dumpsters and cafes to determine whether individuals change the proportion of time they spend at these locations when food is present. 
+
+A determination will be made daily about whether food was present at a location and in which particular time period. I will visit the dumpsters each morning to record whether the lids were open and there was garbage inside or garbage on the ground around the dumpsters (1=food present) or whether the lids were closed and there was no garbage on the ground (0=food absent). I will initially visit cafes during lunch hours to determine when people generally eat outside and then set the default food presence period for each cafe to the widest time period I observed for that cafe (e.g., 12-2p = food present, before 12p and after 2p = food absent).
+
+#### Flexibility manipulation (Design 2 reversal learning)
+
+We will set up 4 feeders (2 dark gray and 2 light gray) at one location in a particular spatial arrangement: one dark gray and one light gray feeder will be oriented in the same way 1-2m apart, and the other dark gray and light gray feeders will be facing them in a mirrored position, but 5-10m away. The feeders will be available for opening for 3 hours per day, 5 days per week. The feeders will be fitted with RFID readers to automatically record which individual (fitted with a PIT tag attached to a leg band) visits which feeder and when. If the subject visits the feeder that has the rewarded color, the feeder will automatically deliver a small amount of food, and then close and reset more food in preparation for the next opening. If the subject visits the feeder that has the non-rewarded color, the presence data will be recorded, but the feeder will not open. All feeders will contain one type of high value food (e.g., goldfish crackers, cheetos, cheez-its, or peanuts).
+
+**Feeder habituation:** All feeders will have food available and be open for 3 hours per day on 5 consecutive days or until at least 20 banded grackles have visited at least 1 feeder.
+
+**The experiment:** Each time a PIT tagged subject lands on a feeder it is recorded as the color choice and counts as one trial. The experiment will begin with the dark gray feeder being the rewarded feeder for all individuals. 
+
 
 
 ### Scrub-jays (*Aphelocoma californica* & *A. coerulescens*)
@@ -734,6 +750,61 @@ Model 3: Turning angle ~ Species + Condition + Habitat + Time + Condition x Habi
 **Foraging:**
 
 Model 4: Number of different food types eaten per individual ~ Species + Condition + Habitat + Time + Condition x Habitat + Species x Habitat + Condition x Time
+
+##### Run this model on the actual data
+
+Run the code below to determine whether there were differences between the before and after conditions in their proportion of time spent at locations when food was present.
+
+```{r jaymodel4, eval=F}
+library(rethinking)
+library(cmdstanr)
+set_ulam_cmdstan(TRUE) #makes it so ulam always runs with cmdstan
+
+# load data sheet
+d <- read.csv(url(""), header=T, sep=",", stringsAsFactors=F)
+
+# sort the data
+beforepresent <- d[d$RewardPresent==1 & d$BeforeOrAfterManipulation=="Before",]
+beforeabsent <- d[d$RewardPresent==0 & d$BeforeOrAfterManipulation=="Before",]
+beforetotal <- c(beforepresent,beforeabsent)
+afterpresent <- d[d$RewardPresent==1 & d$BeforeOrAfterManipulation=="After",]
+afterabsent <- d[d$RewardPresent==0 & d$BeforeOrAfterManipulation=="After",]
+aftertotal <- c(afterpresent,afterabsent)
+
+# Set up the data sheet
+dat <- list(
+    response = c(beforepresent$Duration,afterpresent$Duration),
+    total = c(beforetotal$Duration,aftertotal$Duration),
+    tid = d$BeforeOrAfterManipulation,
+    actor = d$ID
+)
+
+# THE MODEL (p.441 for normal distribution, 448 for binomial distribution - McElreath 2020)
+m1 <- ulam(
+    alist(
+        response ~ dbinom(total,p),
+        logit(p) <- g[tid] + alpha[actor,tid],
+        # adaptive priors - non-centered which is a parameterization that improves sampling for the MCMC model fit by helping with complex varying effects (see p.453)
+        transpars> matrix[actor,4]:alpha <- compose_noncentered( sigma_actor , L_Rho_actor , z_actor ),
+        matrix[4,actor]:z_actor ~ normal( 0 , 1 ),
+        # fixed priors
+        g[tid] ~ normal(0,1),
+        vector[4]:sigma_actor ~ dexp(1),
+        cholesky_factor_corr[4]:L_Rho_actor ~ lkj_corr_cholesky( 2 ),
+        # compute ordinary correlation matrixes from Cholesky factors
+        gq> matrix[4,4]:Rho_actor <<- Chol_to_Corr(L_Rho_actor)
+    ) , data=dat , chains=4 , cores=4 , log_lik=TRUE , cmdstan = TRUE)
+
+#model output: pay attention to before (g1) and after (g2)
+#precis(m1,depth=2)
+
+#run a CONTRAST to determine whether there is a difference between before (g1) and after (g2). Yes if all values on one side of zero
+post <- extract.samples(m1)
+diff_g <- post$g[,1] - post$g[,2] #log-odds difference p.341
+diff_p <- inv_logit(post$g[,1]) - inv_logit(post$g[,2]) #on the probability scale p.341
+precis( list( diff_g=diff_g , diff_p=diff_p ) )
+```
+
 
 
 #### Toutouwai
