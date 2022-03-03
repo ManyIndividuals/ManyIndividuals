@@ -96,7 +96,7 @@ This investigation asks whether flexibility can be increased by experimentally i
 **Figure 2.** Comparing the three species involved in this investigation relative to their geographic range and association with human modified habitats. The yellow dots represent field site locations.
 
 
-### Great-tailed grackles (*Quiscalus mexicanus*)
+### **Great-tailed grackles (*Quiscalus mexicanus*)**
 
 #### Background 
 Great-tailed grackles are flexible [@logan2016flexibilityproblem; @logan2019flexmanip], highly associated with human modified environments [@johnson2001great], and have been rapidly expanding their geographic range across North America over the past 140 years [@wehtje2003range]. They are social and polygamous, and eat a diversity of human foods as well as foraging on insects and on substrates for other natural food items [@johnson2001great]. Males tend to be the socially dominant sex [@johnson2000male] and also the sex that disperses away from their natal area [@sevchik2019dispersal]. @Rodrigo2021gtgr found that more grackles are present and more foraging events occur during garbage pick ups when garbage tends to spill out of the bags, thus increasing food availability. Attending to garbage trucks, potentially across space and time, is an example of how flexibility can help individuals meet foraging needs in the context of changing environmental cues. Great-tailed grackle behavioral flexibility is manipulatable using serial reversal learning, and this manipulation improves their flexibility in a new context as well as their innovativeness [@logan2019flexmanip], which shows that training a general cognitive ability can affect more behaviors than the behavior that was trained and potentially make them more successful in human modified environments. We are in the middle of long-term data collection on grackles to answer questions about how flexibility relates to exploration [@mccune2019exploration], the predictability of their space use [@mccune2020spaceuse] and their foraging breadth [@logan2019flexforaging]. 
@@ -135,7 +135,7 @@ We will set up 4 feeders (2 dark gray and 2 light gray) at one location in a par
 
 
 
-### Scrub-jays (*Aphelocoma californica* & *A. coerulescens*)
+### **Scrub-jays (*Aphelocoma californica* & *A. coerulescens*)**
 
 **Background:** Jay species in the genus *Aphelocoma* exhibit a diversity of social systems and success in colonizing suburban and urban areas. California scrub-jays (*A. californica*, hereafter "CASJ"), a singular, monogamous breeder, are increasing in abundance, expanding their range size and are highly successful in natural, suburban, and urban areas [@blair1996land; @curry2017california]. In contrast, the Florida scrub-jay (*A. coerulescens*; hereafter "FLSJ") is a threatened species, endemic and range-restricted to xeric oak scrub habitat in Florida [@woolfenden1996florida]. 
 
@@ -165,7 +165,7 @@ Predictions are the same as in the general Research Question: Q1 section.
 
 **Figure 4.**
 
-### Toutouwai (North Island robin, *Petroica longipes*)
+### **Toutouwai (North Island robin, *Petroica longipes*)**
 
 **Background:** Toutouwai are a small insectivorous passerine species that is endemic to the North Island of New Zealand. Prior to the arrival of European settlers, they were abundant and widespread. However, European colonization brought the introduction of mammalian predators, which  had devastating consequences for New Zealand's avifauna. As a result, the national conservation status of the toutouwai is now at risk and in decline [@Robertson2016birdstatus]. In response to avifauna declines in New Zealand, many offshore islands have now been established as predator free sanctuaries. Threatened endemic birds have also been reintroduced into ‘mainland island’ sanctuaries; areas on New Zealand's North and South Islands that are designed to eliminate the threat posed by non-native mammalian predators [@Saunders2001mainlandisland]. Yet, despite predator control and fences protecting sanctuary populations, these vulnerable species still come into contact with invasive mammalian predators beyond mainland sanctuary boundaries. 
 
@@ -764,11 +764,23 @@ precis( list( diff_g=diff_g , diff_p=diff_p ) )
 
 ##### J.Q1 Do jay populations in human modified areas differ in baseline behavioral flexibility compared to populations in natural areas?
 
-###### The model (as in @logan2020xpop)
+###### The model
+
+We used the reversal learning Bayesian model in @logan2020xpop to simulate and analyze population differences in reversal learning, and calculate our ability to detect differences between populations. The model "accounts for every choice made in the reversal learning experiment and updates the probability of choosing either option after the choice was made depending on whether that choice contained a food reward or not. It does this by updating three main components for each choice: an attraction score, a learning rate ($\phi$), and a rate of deviating from learned attractions ($\lambda$)" [@logan2020xpop].
+
+**Equation 1 (attraction and $\phi$):** $A_{i,j, t+1} = (1-\phi_j) A_{i,j,t} + \phi_j \pi_{i,j,t}$
+
+Equation 1 “tells us how attractions to different behavioral options $A_{i,j, t+1}$ (i.e., how preferable option $i$ is to the bird $j$ at time $t+1$) change over time as a function of previous attractions $A_{i ,j, t}$ and recently experienced payoffs $\pi_{i,j,t}$ (i.e., whether they received a reward in a given trial or not). Attraction scores thus reflect the accumulated learning history up to this point. The (bird-specific) parameter $\phi_j$ describes the weight of recent experience. The higher the value of $\phi_j$, the faster the bird updates their attraction. It thus can be interpreted as the *learning or updating rate of an individual*. A value of $\phi_j = 0.04$, for example, means that receiving a single reward for one of the two options will shift preferences by 0.02 from initial 0.5-0.5 attractions, a value of $\phi_j = 0.06$ will shift preferences by 0.03 and so on” [@blaisdell2021causal]. 
+
+**Equation 2 ($\lambda$):** $P(i)_{t+1} = \frac{\exp(\lambda_j A_{i, j, t})}{\sum\limits_{m=1}^{2}\exp(\lambda_j A_{m, j, t})}.$
+
+Equation 2 “expresses the probability an individual $j$ chooses option $i$ in the next round, $t+1$, based on the latent attractions. The parameter $\lambda_j$ represents the *rate of deviating from learned attractions* of an individual (also called inverse temperature). It controls how sensitive choices are to differences in attraction scores. As $\lambda_j$ gets larger, choices become more deterministic, as it gets smaller, choices become more exploratory (random choice if $\lambda_j = 0$). For instance, if an individual has a 0.6-0.4 preference for option A, a value of $\lambda_j = 3$ means they choose A 65% of the time, a value of $\lambda_j = 10$ means they choose A 88% of the time and a value of $\lambda_j = 0.5$ means they choose A only 53% of the time” [@blaisdell2021causal].  
+
+We used the $\phi_j$ and $\lambda_j$ values as the response variable in the Bayesian model to examine whether there were differences in flexibility between the habitats:
 
 y ~ $\alpha$[habitat]
 
-y is the response variable (phi and lambda, which are extracted from the correct and incorrect choices in the serial reversals). There is one intercept, $\alpha$, per habitat (suburban or natural) and we will estimate the habitat's average and standard deviation of the response variable. EXPLAIN PHI AND LAMBDA
+y is the response variable ($\phi_j$ and $\lambda_j$, which are extracted from the correct and incorrect choices in the serial reversals). There is one intercept, $\alpha$, per habitat (suburban or natural) and we will estimate the habitat's average and standard deviation of the response variable.
 
 ###### Power analysis
 
@@ -912,6 +924,10 @@ estimates_pairwisedifferences_phiposteriors$crosseszero<-ifelse(estimates_pairwi
 
 ##### J.Q2 Are CASJ more flexible than FLSJ?
 
+###### The model
+
+Same as in J.Q1 above.
+
 ###### Power analysis
 
 Same as in J.Q1 above.
@@ -1053,6 +1069,8 @@ estimates_pairwisedifferences_phiposteriors$crosseszero<-ifelse(estimates_pairwi
 
 ##### J.Q3 Fitness
 
+###### The model
+
 Model 1: Probability of fledging a nest ~ Species + Condition + Habitat + Condition x Habitat + Species x Habitat
 
 ###### Power analysis
@@ -1113,6 +1131,8 @@ precis( list( diff_g=diff_g , diff_p=diff_p ) )
 ```
 
 ##### J.Q4 Movement
+
+###### The model
 
 Model 2: Step length ~ Species + Condition + Habitat + Time + Condition x Habitat + Species x Habitat + Condition x Time + (1 | ID)
 
@@ -1177,6 +1197,8 @@ precis( list( diff_g=diff_g , diff_p=diff_p ) )
 
 
 ##### J.Q5 Foraging
+
+###### The model
 
 Model 4: Number of different food types eaten per individual ~ Species + Condition + Habitat + Time + Condition x Habitat + Species x Habitat + Condition x Time
 
@@ -1244,6 +1266,9 @@ precis( list( diff_g=diff_g , diff_p=diff_p ) )
 
 ##### T.Q1 Does a flexibility manipulation alter dispersal timing and distance, as well as the likelihood that juvenile toutouwai will disperse beyond the protection of Zealandia’s fence and attempt to establish in the adjacent urban reserves?
 
+###### The model
+
+
 
 ###### Power analysis
 
@@ -1304,6 +1329,8 @@ precis( list( diff_g=diff_g , diff_p=diff_p ) )
 
 
 ##### T.Q2 Compared to control individuals, are flexibility manipulated individuals more likely to survive their first 16 weeks post-fledging, particularly if they disperse into the urban reserves outside the sanctuary fence?
+
+###### The model
 
 
 ###### Power analysis
