@@ -195,7 +195,7 @@ We present one experimental design for the flexibility intervention that can be 
 **Figure 6.** Template design for the reversal learning experiment.
 
 
-## **Design 1 - Reversal learning experiment in visual isolation** 
+## Design 1 - Reversal learning experiment in visual isolation
 
 Half of the individuals (manipulated group) undergo serial reversal learning until they meet the passing criterion, while the other half (control group) receive only one reversal (Figure 6). A reversal of where the reward is placed represents environmental heterogeneity, and those individuals who have enough experience in this heterogeneous environment through multiple reversals are able to learn to improve their flexibility (the number of trials it takes to change a preference). This flexibility intervention has been shown to work in great-tailed grackles where 8 out of 9 individuals in the serial reversal group achieved the passing criterion (passing 2 consecutive reversals in 50 trials or less) within their given time frame [@logan2019flexmanip]. Individuals are presented with two options that differ in color, shape, or in some other way, with one option being the rewarded option. The first rewarded option (i.e., color, shape, etc.) in reversal learning is counterbalanced across individuals at each site. The rewarded option location is pseudorandomized for side. Pseudorandomization consists of alternating location of the rewarded option for the first two trials of a session and then keeping the same color on the same side for at most two consecutive trials thereafter. A list of all [88 unique trial sequences](https://docs.google.com/spreadsheets/d/1B3-ZKd4nr_4gA91Pu2eUUBOriwW-V88VRgK9c1lDSjY/edit?usp=sharing) for a 10-trial session, following the pseudorandomization rules, will be generated in advance for experimenters to use during testing (e.g., a randomized trial sequence might look like: LRLLRRLRLR, where L and R refer to the location, left or right, of the rewarded tube). Randomized trial sequences will be assigned randomly to any given 10-trial session using a random number generator (random.org) to generate a number from 1-88. The individual is only allowed one choice per trial and the option on the left is always placed first, with the experimenter always turning to the right when setting up and taking down each trial (if a live experimenter is involved). Once a preference for the rewarded option is reached (17/20 trials correct), the reward is then always placed in the previously non-rewarded option until a preference is reached (using the same criterion). After the control group's first reversal, they receive a similar amount of experience as the manipulated group, but without the functionality: two apparatuses are still used in every trial, but they are the same color/shape/etc. and both contain food. As with the manipulated group, only one choice, the first choice, is allowed per trial. Choices are scored as: 1=chose the correct option (even if they do not eat the food), 0=chose the incorrect option, and -1=did not make a choice.
 
@@ -244,7 +244,7 @@ cohen.kappa(data[,c(3,5)], w=NULL,n.obs=NULL,alpha=.05,levels=NULL)
 ```
 
 
-## **Design 2 - Reversal learning experiment in a group context** 
+## Design 2 - Reversal learning experiment in a group context
 
 Feeders are set up counterbalanced for color/location/etc and will be available for opening when the experiment is being conducted (Figure 7). The feeders will be fitted with technology to automatically record which individual visits which feeder and when (unless a particular population is easy to track visually without such automated technology). Individuals are habituated to the open feeders filled with food until at least half of the minimum sample size has visited at least 1 feeder. All individuals start on the same rewarded option for the intiial discrimination to improve motivation for participating in the experiment (e.g., if the first rewarded option was counterbalanced across individuals, subjects might be slower to learn their rewarded option if they use social information about which option is rewarded). If the subject visits the rewarded feeder, the feeder will automatically deliver a small amount of food, and then close and reset more food in preparation for the next opening. If the subject visits the non-rewarded feeder, the presence data will be recorded, but the feeder will not open. All feeders will contain one type of high value food.
 
@@ -302,7 +302,9 @@ The data will be published in the Knowledge Network for Biocomplexity's data rep
 
 # ANALYSIS PLAN
 
-## Q1: Can flexibility be increased to help individuals succeed in human modified environments?
+We run analyses in R [current version `r getRversion()`; @rcoreteam] using the following R packages: rethinking [@rethinking2020], rstan [@rstan], cmdstanr [@cmdstanr], knitr [@xie2018knitr], and irr [@gamer2012package].
+
+## Can flexibility be increased to help individuals succeed in human modified environments?
 
 ### Design 1 - Reversal learning experiment in visual isolation
 
@@ -328,7 +330,9 @@ OR
 Same questions, response/explanatory/random variables as in Design 1.
 
 
-#### Great-tailed grackles: cafes and dumpsters - pre-manipulation baseline compared with post-manipulation
+#### **Great-tailed grackles**
+
+##### G.Q1 Do flexibility manipulated individuals differ in the proportion of time spent at cafes and garbage dumpsters when food is present?
 
 The model as it would appear in a generalized linear mixed model format:
 
@@ -352,7 +356,7 @@ logit($p_i$) = $\gamma$[condition] + $\alpha$[ind],[condition]
 
 $\gamma$[condition] is the average log-odds for each condition (before/after) and $\alpha$[ind],[condition] is the effect for each individual in each condition.
 
-##### Power analysis
+###### Power analysis
 
 ```{r gtgrq1simulation, eval=F}
 library(rethinking)
@@ -468,14 +472,14 @@ s1 <- ulam(
         response ~ dbinom(total,p),
         logit(p) <- g[tid] + alpha[actor,tid],
         # adaptive priors - non-centered which is a parameterization that improves sampling for the MCMC model fit by helping with complex varying effects (see p.453)
-        transpars> matrix[actor,4]:alpha <- compose_noncentered( sigma_actor , L_Rho_actor , z_actor ),
-        matrix[4,actor]:z_actor ~ normal( 0 , 1 ),
+        transpars> matrix[actor,2]:alpha <- compose_noncentered( sigma_actor , L_Rho_actor , z_actor ),
+        matrix[2,actor]:z_actor ~ normal( 0 , 1 ),
         # fixed priors
         g[tid] ~ normal(0,1),
-        vector[4]:sigma_actor ~ dexp(1),
-        cholesky_factor_corr[4]:L_Rho_actor ~ lkj_corr_cholesky( 2 ),
+        vector[2]:sigma_actor ~ dexp(1),
+        cholesky_factor_corr[2]:L_Rho_actor ~ lkj_corr_cholesky( 2 ),
         # compute ordinary correlation matrixes from Cholesky factors
-        gq> matrix[4,4]:Rho_actor <<- Chol_to_Corr(L_Rho_actor)
+        gq> matrix[2,2]:Rho_actor <<- Chol_to_Corr(L_Rho_actor)
     ) , data=dat , chains=4 , cores=4 , log_lik=TRUE , cmdstan = TRUE, control = list(adapt_delta = .95, force_recompile = TRUE))
       
         #run a CONTRAST to determine whether there is a difference between before (g1) and after (g2) (subtract g1 before from g2 after). Yes if all values for diff_p on one side of zero (want probability scale because that is the scale we used in the simulation)
@@ -678,7 +682,7 @@ mtext("Mean change in proportion of time spent in the presence of a reward betwe
 mtext("Density",side=2,line=3, cex=1.2)
 ```
 
-##### Run this model on the actual data
+###### Run this model on the actual data
 
 Run the code below to determine whether there were differences between the before and after conditions in their proportion of time spent at locations when food was present.
 
@@ -702,9 +706,30 @@ aftertotal <- c(afterpresent,afterabsent)
 dat <- list(
     response = c(beforepresent$Duration,afterpresent$Duration),
     total = c(beforetotal$Duration,aftertotal$Duration),
-    tid = d$BeforeOrAfterManipulation,
-    actor = d$ID
+    tid = c(rep(1,nrow(beforepresent)),rep(2,nrow(afterpresent))), #for all rows with before data, assign a treatment=1, and for all rows with after data, assign a treatment=2
+    actor = rep(unique(d$ID),2) #now each actor has 2 data points: one for before and one for after so multiply by 2
 )
+
+#simulated data to test the model
+simulatedgtgrproportiondata<-matrix(nrow=40,ncol=4) #n=20*2 conditions
+simulatedgtgrproportiondata<-as.data.frame(simulatedgtgrproportiondata)
+colnames(simulatedgtgrproportiondata)<-c("id","condition","totalduration","presentduration")
+simulatedgtgrproportiondata$id<-rep(c(1:20),2) #n=20 individuals in 2 conditions so need to repeat the ID twice
+simulatedgtgrproportiondata$condition<-c(rep(1,20),rep(2,20)) #condition: first 20 rows = condition 1, second 20 rows = condition 2
+simulatedgtgrproportiondata$totalduration<-rnorm(40,mean=3600,sd=600) #assume mean total duration = 3600 seconds for n=20*2 conditions
+for(durationbefore in 1:20) {
+  initialproportion<-runif(1,min=0.5,max=0.7) #proportion of time spent in the presence of a reward before the manipulation is between 0.5 and 0.7
+simulatedgtgrproportiondata[durationbefore,]$presentduration<-simulatedgtgrproportiondata[durationbefore,]$totalduration*initialproportion #convert the proportion to the number of seconds by multiplying it by total duration before
+simulatedgtgrproportiondata[durationbefore+20,]$presentduration<-simulatedgtgrproportiondata[durationbefore+20,]$totalduration*initialproportion*runif(1,1.1,1.3) #increase proportion by between 1.1 and 1.3 to get the proportion after the manipulation and convert it to seconds by multiplying it by duration after
+}
+
+dat2 <- list(
+    response = round(simulatedgtgrproportiondata$presentduration,0),
+    total = round(simulatedgtgrproportiondata$totalduration,0),
+    tid = simulatedgtgrproportiondata$condition,
+    actor = simulatedgtgrproportiondata$id 
+)
+
 
 # THE MODEL (p.441 for normal distribution, 448 for binomial distribution - McElreath 2020)
 m1 <- ulam(
@@ -712,15 +737,15 @@ m1 <- ulam(
         response ~ dbinom(total,p),
         logit(p) <- g[tid] + alpha[actor,tid],
         # adaptive priors - non-centered which is a parameterization that improves sampling for the MCMC model fit by helping with complex varying effects (see p.453)
-        transpars> matrix[actor,4]:alpha <- compose_noncentered( sigma_actor , L_Rho_actor , z_actor ),
-        matrix[4,actor]:z_actor ~ normal( 0 , 1 ),
+        transpars> matrix[actor,2]:alpha <- compose_noncentered( sigma_actor , L_Rho_actor , z_actor ),
+        matrix[2,actor]:z_actor ~ normal( 0 , 1 ),
         # fixed priors
         g[tid] ~ normal(0,1),
-        vector[4]:sigma_actor ~ dexp(1),
-        cholesky_factor_corr[4]:L_Rho_actor ~ lkj_corr_cholesky( 2 ),
+        vector[2]:sigma_actor ~ dexp(1),
+        cholesky_factor_corr[2]:L_Rho_actor ~ lkj_corr_cholesky( 2 ),
         # compute ordinary correlation matrixes from Cholesky factors
-        gq> matrix[4,4]:Rho_actor <<- Chol_to_Corr(L_Rho_actor)
-    ) , data=dat , chains=4 , cores=4 , log_lik=TRUE , cmdstan = TRUE)
+        gq> matrix[2,2]:Rho_actor <<- Chol_to_Corr(L_Rho_actor)
+    ) , data=dat2 , chains=4 , cores=4 , log_lik=TRUE , cmdstan = TRUE)
 
 #model output: pay attention to before (g1) and after (g2)
 #precis(m1,depth=2)
@@ -733,29 +758,311 @@ precis( list( diff_g=diff_g , diff_p=diff_p ) )
 ```
 
 
-#### Jays
+#### **Jays**
 
 *Condition = flexibility manipulation or control site; Habitat = human modified or natural site; Time = pre- or post-flexibility manipulation*
 
-**Fitness:**
+##### J.Q1 Do jay populations in human modified areas differ in baseline behavioral flexibility compared to populations in natural areas?
+
+###### The model (as in @logan2020xpop)
+
+y ~ $\alpha$[habitat]
+
+y is the response variable (phi and lambda, which are extracted from the correct and incorrect choices in the serial reversals). There is one intercept, $\alpha$, per habitat (suburban or natural) and we will estimate the habitat's average and standard deviation of the response variable. EXPLAIN PHI AND LAMBDA
+
+###### Power analysis
+
+Simulations using bespoke Bayesian models in @logan2020xpop (the same model structure we use here) showed a high likelihood of detecting differences with a minimum sample size of 15 when mean differences in phi were at least 0.01 and mean differences in lambda at least 3.
+
+###### Run this model on the actual data
+
+Run the code below to determine whether there were differences between the two habitats in their phi and lambda flexibility measures.
+
+```{r jayflexbeforehabitatcomparison, eval=F}
+library(rethinking)
+library(cmdstanr)
+set_ulam_cmdstan(TRUE) #makes it so ulam always runs with cmdstan
+
+# load data sheet
+dflex <- read.csv(url(""), header=T, sep=",", stringsAsFactors=F)
+
+# sort the data: only want data from the initial discrimination and first reversal to use as the baseline flexibility so we can compare between habitats
+reduceddata <- matrix(ncol=ncol(dflex),nrow=0)
+reduceddata <- data.frame(reduceddata)
+for (i in 1:length(unique(dflex$ID))) {
+  thisbird <- unique(dflex$ID)[i]
+  thisbirddata <- dflex[dflex$ID==thisbird,]
+  thisbirdslastreversal <- thisbirddata[thisbirddata$Reversal %in% c(0,1),]
+  reduceddata <- rbind(reduceddata,thisbirdslastreversal)
+}
+dflex_beginning <- reduceddata
+
+
+# Now we run a STAN model with all simulated habitats, estimating both means of phi and lambda for each habitat as well as each individuals' phi and lambda
+
+# We set up the data for the model
+dat_full <- as.list(simulatedreversaldata_attractionscores)
+dat_full$N <- nrow(simulatedreversaldata_attractionscores)
+dat_full$N_id <- length(unique(simulatedreversaldata_attractionscores$id))
+dat_full$N_exp <- length(unique(simulatedreversaldata_attractionscores$Habitat))
+dat_full$Choice <- as.numeric(as.factor(dat_full$Choice))
+
+# This STAN model, in addition to estimating phi and lambda for each individual, also estimates means for each habitat It again starts with attractions set to 0.1 and assumes that individuals only learn about the option they chose.
+
+reinforcement_model_id_site_nonzeroattraction <- "
+data{
+   int N;
+   int N_id;
+   int N_exp;
+   int id[N];
+   int Habitat[N];
+   int Trial[N];
+   int Choice[N];
+   int Correct[N];
+}
+
+parameters{
+  real logit_phi;
+  real log_L;
+
+  // Varying effects clustered on individual
+  matrix[2,N_id] z_ID;
+  vector<lower=0>[2] sigma_ID;       //SD of parameters among individuals
+  cholesky_factor_corr[2] Rho_ID;
+
+  // Varying effects clustered on experimenter
+  matrix[2,N_exp] z_EXP;
+  vector<lower=0>[2] sigma_EXP;
+  cholesky_factor_corr[2] Rho_EXP;
+}
+
+transformed parameters{
+matrix[N_id,2] v_ID; // varying effects on individuals
+matrix[N_exp,2] v_EXP; // varying effects on experimenter
+
+v_ID = ( diag_pre_multiply( sigma_ID , Rho_ID ) * z_ID )';
+v_EXP = ( diag_pre_multiply( sigma_EXP , Rho_EXP ) * z_EXP )';
+}
+
+model{
+matrix[N_id,2] A; // attraction matrix
+
+logit_phi ~  normal(0,1);
+log_L ~  normal(0,1);
+
+// varying effects
+to_vector(z_ID) ~ normal(0,1);
+sigma_ID ~ exponential(1);
+Rho_ID ~ lkj_corr_cholesky(4);
+
+to_vector(z_EXP) ~ normal(0,1);
+sigma_EXP ~ exponential(1);
+Rho_EXP ~ lkj_corr_cholesky(4);
+
+// initialize attraction scores
+for ( i in 1:N_id ) {
+A[i,1] = 0.1; A[i,2] = 0.1';
+}
+
+// loop over Choices
+for ( i in 1:N ) {
+vector[2] pay;
+vector[2] p;
+real L;
+real phi;
+
+// first, what is log-prob of observed choice
+L =  exp(log_L + v_ID[id[i],1]+ v_EXP[Habitat[i],1]);
+p = softmax(L*A[id[i],1:2]' );
+Choice[i] ~ categorical( p );
+
+// second, update attractions conditional on observed choice
+phi =  inv_logit(logit_phi + v_ID[id[i],2]+ v_EXP[Habitat[i],2]);
+pay[1:2] = rep_vector(0,2);
+pay[ Choice[i] ] = Correct[i];
+A[ id[i] , Choice[i] ] = ( (1-phi)*(A[ id[i] , Choice[i] ]) + phi*pay[Choice[i]])';
+}//i
+}
+"
+
+# Now we run the STAN model on the full data. This will take a few hours.
+m_simulated_full <- stan( model_code =  reinforcement_model_id_site_nonzeroattraction, data=dat_full ,iter = 5000, cores = 4, chains=4, control = list(adapt_delta=0.9, max_treedepth = 12))
+
+# We extract the posterior from the STAN model
+s <- extract.samples(m_simulated_full)
+
+# We calculate the mean phi and lambda for each habitat as estimated by the STAN model
+lambda <- sapply(1 : dat_full$N_exp, function(x) exp( mean(s$log_L) + mean(s$v_EXP[ ,x, 1])))
+phi <- sapply(1 : dat_full$N_exp, function(x) inv_logit( mean(s$logit_phi) + mean(s$v_EXP[ ,x, 2])))
+
+
+# We want to know whether the STAN model estimated two habitats to be different or not. As criterion for this, we check whether the samples in the posterior for pairs of habitat overlap or not. That means that, when calculating the difference between the samples in the posterior for a pair of habitat, they are assumed to be different if the differences are all on one side of zero.
+
+# We first check our power to estimate difference in mean phi between sites
+# We calculate the pairwise differences between sites for the estimated phi means
+pairwisedifferences_phiposteriors<-list(sapply(1 : (dat_full$N_exp * (dat_full$N_exp-1)/2), function(x) (s$v_EXP[ ,combn(1:dat_full$N_exp,m=2)[1,x], 2]-(s$v_EXP[ ,combn(1:dat_full$N_exp,m=2)[2,x], 2]))))
+
+# We convert it into a dataframe for easier manipulation
+estimates_pairwisedifferences_phiposteriors<-as.data.frame(precis(pairwisedifferences_phiposteriors,depth=2))
+
+# We add a column that classifies as true or false whether the estimates crosses zero (as opposed to all values being either smaller or larger than zero)
+estimates_pairwisedifferences_phiposteriors$crosseszero<-ifelse(estimates_pairwisedifferences_phiposteriors$mean>0,estimates_pairwisedifferences_phiposteriors$`5.5%`<0,estimates_pairwisedifferences_phiposteriors$`94.5%`>0)
+```
+
+
+##### J.Q2 Are CASJ more flexible than FLSJ?
+
+###### Power analysis
+
+Same as in J.Q1 above.
+
+###### Run this model on the actual data
+
+Run the code below to determine whether there were differences between the species in their phi and lambda flexibility measures.
+
+```{r jayflexsppdiff, eval=F}
+library(rethinking)
+library(cmdstanr)
+set_ulam_cmdstan(TRUE) #makes it so ulam always runs with cmdstan
+
+# load data sheet
+dflex <- read.csv(url(""), header=T, sep=",", stringsAsFactors=F)
+
+# sort the data: only want data from the initial discrimination and first reversal to use as the baseline flexibility so we can compare between species
+reduceddata <- matrix(ncol=ncol(dflex),nrow=0)
+reduceddata <- data.frame(reduceddata)
+for (i in 1:length(unique(dflex$ID))) {
+  thisbird <- unique(dflex$ID)[i]
+  thisbirddata <- dflex[dflex$ID==thisbird,]
+  thisbirdslastreversal <- thisbirddata[thisbirddata$Reversal %in% c(0,1),]
+  reduceddata <- rbind(reduceddata,thisbirdslastreversal)
+}
+dflex_beginning <- reduceddata
+
+
+# Now we run a STAN model with all simulated species, estimating both means of phi and lambda for each species as well as each individuals' phi and lambda
+
+# We set up the data for the model
+dat_full <- as.list(simulatedreversaldata_attractionscores)
+dat_full$N <- nrow(simulatedreversaldata_attractionscores)
+dat_full$N_id <- length(unique(simulatedreversaldata_attractionscores$id))
+dat_full$N_exp <- length(unique(simulatedreversaldata_attractionscores$Habitat))
+dat_full$Choice <- as.numeric(as.factor(dat_full$Choice))
+
+# This STAN model, in addition to estimating phi and lambda for each individual, also estimates means for each habitat It again starts with attractions set to 0.1 and assumes that individuals only learn about the option they chose.
+
+reinforcement_model_id_site_nonzeroattraction <- "
+data{
+   int N;
+   int N_id;
+   int N_exp;
+   int id[N];
+   int Species[N];
+   int Trial[N];
+   int Choice[N];
+   int Correct[N];
+}
+
+parameters{
+  real logit_phi;
+  real log_L;
+
+  // Varying effects clustered on individual
+  matrix[2,N_id] z_ID;
+  vector<lower=0>[2] sigma_ID;       //SD of parameters among individuals
+  cholesky_factor_corr[2] Rho_ID;
+
+  // Varying effects clustered on experimenter
+  matrix[2,N_exp] z_EXP;
+  vector<lower=0>[2] sigma_EXP;
+  cholesky_factor_corr[2] Rho_EXP;
+}
+
+transformed parameters{
+matrix[N_id,2] v_ID; // varying effects on individuals
+matrix[N_exp,2] v_EXP; // varying effects on experimenter
+
+v_ID = ( diag_pre_multiply( sigma_ID , Rho_ID ) * z_ID )';
+v_EXP = ( diag_pre_multiply( sigma_EXP , Rho_EXP ) * z_EXP )';
+}
+
+model{
+matrix[N_id,2] A; // attraction matrix
+
+logit_phi ~  normal(0,1);
+log_L ~  normal(0,1);
+
+// varying effects
+to_vector(z_ID) ~ normal(0,1);
+sigma_ID ~ exponential(1);
+Rho_ID ~ lkj_corr_cholesky(4);
+
+to_vector(z_EXP) ~ normal(0,1);
+sigma_EXP ~ exponential(1);
+Rho_EXP ~ lkj_corr_cholesky(4);
+
+// initialize attraction scores
+for ( i in 1:N_id ) {
+A[i,1] = 0.1; A[i,2] = 0.1';
+}
+
+// loop over Choices
+for ( i in 1:N ) {
+vector[2] pay;
+vector[2] p;
+real L;
+real phi;
+
+// first, what is log-prob of observed choice
+L =  exp(log_L + v_ID[id[i],1]+ v_EXP[Species[i],1]);
+p = softmax(L*A[id[i],1:2]' );
+Choice[i] ~ categorical( p );
+
+// second, update attractions conditional on observed choice
+phi =  inv_logit(logit_phi + v_ID[id[i],2]+ v_EXP[Species[i],2]);
+pay[1:2] = rep_vector(0,2);
+pay[ Choice[i] ] = Correct[i];
+A[ id[i] , Choice[i] ] = ( (1-phi)*(A[ id[i] , Choice[i] ]) + phi*pay[Choice[i]])';
+}//i
+}
+"
+
+# Now we run the STAN model on the full data. This will take a few hours.
+m_simulated_full <- stan( model_code =  reinforcement_model_id_site_nonzeroattraction, data=dat_full ,iter = 5000, cores = 4, chains=4, control = list(adapt_delta=0.9, max_treedepth = 12))
+
+# We extract the posterior from the STAN model
+s <- extract.samples(m_simulated_full)
+
+# We calculate the mean phi and lambda for each Species as estimated by the STAN model
+lambda <- sapply(1 : dat_full$N_exp, function(x) exp( mean(s$log_L) + mean(s$v_EXP[ ,x, 1])))
+phi <- sapply(1 : dat_full$N_exp, function(x) inv_logit( mean(s$logit_phi) + mean(s$v_EXP[ ,x, 2])))
+
+
+# We want to know whether the STAN model estimated two habitats to be different or not. As criterion for this, we check whether the samples in the posterior for pairs of Species overlap or not. That means that, when calculating the difference between the samples in the posterior for a pair of Species, they are assumed to be different if the differences are all on one side of zero.
+
+# We first check our power to estimate difference in mean phi between sites
+# We calculate the pairwise differences between sites for the estimated phi means
+pairwisedifferences_phiposteriors<-list(sapply(1 : (dat_full$N_exp * (dat_full$N_exp-1)/2), function(x) (s$v_EXP[ ,combn(1:dat_full$N_exp,m=2)[1,x], 2]-(s$v_EXP[ ,combn(1:dat_full$N_exp,m=2)[2,x], 2]))))
+
+# We convert it into a dataframe for easier manipulation
+estimates_pairwisedifferences_phiposteriors<-as.data.frame(precis(pairwisedifferences_phiposteriors,depth=2))
+
+# We add a column that classifies as true or false whether the estimates crosses zero (as opposed to all values being either smaller or larger than zero)
+estimates_pairwisedifferences_phiposteriors$crosseszero<-ifelse(estimates_pairwisedifferences_phiposteriors$mean>0,estimates_pairwisedifferences_phiposteriors$`5.5%`<0,estimates_pairwisedifferences_phiposteriors$`94.5%`>0)
+```
+
+##### J.Q3 Fitness
 
 Model 1: Probability of fledging a nest ~ Species + Condition + Habitat + Condition x Habitat + Species x Habitat
 
-**Movement:**
+###### Power analysis
 
-Model 2: Step length ~ Species + Condition + Habitat + Time + Condition x Habitat + Species x Habitat + Condition x Time + (1 | ID)
 
-Model 3: Turning angle ~ Species + Condition + Habitat + Time + Condition x Habitat + Species x Habitat + Condition x Time + (1 | ID)
-
-**Foraging:**
-
-Model 4: Number of different food types eaten per individual ~ Species + Condition + Habitat + Time + Condition x Habitat + Species x Habitat + Condition x Time
-
-##### Run this model on the actual data
+###### Run this model on the actual data
 
 Run the code below to determine whether there were differences between the before and after conditions in their proportion of time spent at locations when food was present.
 
-```{r jaymodel4, eval=F}
+```{r jayfitness, eval=F}
 library(rethinking)
 library(cmdstanr)
 set_ulam_cmdstan(TRUE) #makes it so ulam always runs with cmdstan
@@ -785,14 +1092,140 @@ m1 <- ulam(
         response ~ dbinom(total,p),
         logit(p) <- g[tid] + alpha[actor,tid],
         # adaptive priors - non-centered which is a parameterization that improves sampling for the MCMC model fit by helping with complex varying effects (see p.453)
-        transpars> matrix[actor,4]:alpha <- compose_noncentered( sigma_actor , L_Rho_actor , z_actor ),
+        transpars> matrix[actor,2]:alpha <- compose_noncentered( sigma_actor , L_Rho_actor , z_actor ),
+        matrix[2,actor]:z_actor ~ normal( 0 , 1 ),
+        # fixed priors
+        g[tid] ~ normal(0,1),
+        vector[2]:sigma_actor ~ dexp(1),
+        cholesky_factor_corr[2]:L_Rho_actor ~ lkj_corr_cholesky( 2 ),
+        # compute ordinary correlation matrixes from Cholesky factors
+        gq> matrix[2,2]:Rho_actor <<- Chol_to_Corr(L_Rho_actor)
+    ) , data=dat , chains=4 , cores=4 , log_lik=TRUE , cmdstan = TRUE)
+
+#model output: pay attention to before (g1) and after (g2)
+#precis(m1,depth=2)
+
+#run a CONTRAST to determine whether there is a difference between before (g1) and after (g2). Yes if all values on one side of zero
+post <- extract.samples(m1)
+diff_g <- post$g[,1] - post$g[,2] #log-odds difference p.341
+diff_p <- inv_logit(post$g[,1]) - inv_logit(post$g[,2]) #on the probability scale p.341
+precis( list( diff_g=diff_g , diff_p=diff_p ) )
+```
+
+##### J.Q4 Movement
+
+Model 2: Step length ~ Species + Condition + Habitat + Time + Condition x Habitat + Species x Habitat + Condition x Time + (1 | ID)
+
+Model 3: Turning angle ~ Species + Condition + Habitat + Time + Condition x Habitat + Species x Habitat + Condition x Time + (1 | ID)
+
+###### Power analysis
+
+
+###### Run this model on the actual data
+
+Run the code below to determine whether there were differences between the before and after conditions in their proportion of time spent at locations when food was present.
+
+```{r jaymovement, eval=F}
+library(rethinking)
+library(cmdstanr)
+set_ulam_cmdstan(TRUE) #makes it so ulam always runs with cmdstan
+
+# load data sheet
+d <- read.csv(url(""), header=T, sep=",", stringsAsFactors=F)
+
+# sort the data
+beforepresent <- d[d$RewardPresent==1 & d$BeforeOrAfterManipulation=="Before",]
+beforeabsent <- d[d$RewardPresent==0 & d$BeforeOrAfterManipulation=="Before",]
+beforetotal <- c(beforepresent,beforeabsent)
+afterpresent <- d[d$RewardPresent==1 & d$BeforeOrAfterManipulation=="After",]
+afterabsent <- d[d$RewardPresent==0 & d$BeforeOrAfterManipulation=="After",]
+aftertotal <- c(afterpresent,afterabsent)
+
+# Set up the data sheet
+dat <- list(
+    response = c(beforepresent$Duration,afterpresent$Duration),
+    total = c(beforetotal$Duration,aftertotal$Duration),
+    tid = d$BeforeOrAfterManipulation,
+    actor = d$ID
+)
+
+# THE MODEL (p.441 for normal distribution, 448 for binomial distribution - McElreath 2020)
+m1 <- ulam(
+    alist(
+        response ~ dbinom(total,p),
+        logit(p) <- g[tid] + alpha[actor,tid],
+        # adaptive priors - non-centered which is a parameterization that improves sampling for the MCMC model fit by helping with complex varying effects (see p.453)
+        transpars> matrix[actor,2]:alpha <- compose_noncentered( sigma_actor , L_Rho_actor , z_actor ),
+        matrix[2,actor]:z_actor ~ normal( 0 , 1 ),
+        # fixed priors
+        g[tid] ~ normal(0,1),
+        vector[2]:sigma_actor ~ dexp(1),
+        cholesky_factor_corr[2]:L_Rho_actor ~ lkj_corr_cholesky( 2 ),
+        # compute ordinary correlation matrixes from Cholesky factors
+        gq> matrix[2,2]:Rho_actor <<- Chol_to_Corr(L_Rho_actor)
+    ) , data=dat , chains=4 , cores=4 , log_lik=TRUE , cmdstan = TRUE)
+
+#model output: pay attention to before (g1) and after (g2)
+#precis(m1,depth=2)
+
+#run a CONTRAST to determine whether there is a difference between before (g1) and after (g2). Yes if all values on one side of zero
+post <- extract.samples(m1)
+diff_g <- post$g[,1] - post$g[,2] #log-odds difference p.341
+diff_p <- inv_logit(post$g[,1]) - inv_logit(post$g[,2]) #on the probability scale p.341
+precis( list( diff_g=diff_g , diff_p=diff_p ) )
+```
+
+
+##### J.Q5 Foraging
+
+Model 4: Number of different food types eaten per individual ~ Species + Condition + Habitat + Time + Condition x Habitat + Species x Habitat + Condition x Time
+
+###### Power analysis
+
+
+
+###### Run this model on the actual data
+
+Run the code below to determine whether there were differences between the before and after conditions in their proportion of time spent at locations when food was present.
+
+```{r jayforaging, eval=F}
+library(rethinking)
+library(cmdstanr)
+set_ulam_cmdstan(TRUE) #makes it so ulam always runs with cmdstan
+
+# load data sheet
+d <- read.csv(url(""), header=T, sep=",", stringsAsFactors=F)
+
+# sort the data
+beforepresent <- d[d$RewardPresent==1 & d$BeforeOrAfterManipulation=="Before",]
+beforeabsent <- d[d$RewardPresent==0 & d$BeforeOrAfterManipulation=="Before",]
+beforetotal <- c(beforepresent,beforeabsent)
+afterpresent <- d[d$RewardPresent==1 & d$BeforeOrAfterManipulation=="After",]
+afterabsent <- d[d$RewardPresent==0 & d$BeforeOrAfterManipulation=="After",]
+aftertotal <- c(afterpresent,afterabsent)
+
+# Set up the data sheet
+dat <- list(
+    response = c(beforepresent$Duration,afterpresent$Duration),
+    total = c(beforetotal$Duration,aftertotal$Duration),
+    tid = d$BeforeOrAfterManipulation,
+    actor = d$ID
+)
+
+# THE MODEL (p.441 for normal distribution, 448 for binomial distribution - McElreath 2020)
+m1 <- ulam(
+    alist(
+        response ~ dbinom(total,p),
+        logit(p) <- g[tid] + alpha[actor,tid],
+        # adaptive priors - non-centered which is a parameterization that improves sampling for the MCMC model fit by helping with complex varying effects (see p.453)
+        transpars> matrix[actor,2]:alpha <- compose_noncentered( sigma_actor , L_Rho_actor , z_actor ),
         matrix[4,actor]:z_actor ~ normal( 0 , 1 ),
         # fixed priors
         g[tid] ~ normal(0,1),
-        vector[4]:sigma_actor ~ dexp(1),
-        cholesky_factor_corr[4]:L_Rho_actor ~ lkj_corr_cholesky( 2 ),
+        vector[2]:sigma_actor ~ dexp(1),
+        cholesky_factor_corr[2]:L_Rho_actor ~ lkj_corr_cholesky( 2 ),
         # compute ordinary correlation matrixes from Cholesky factors
-        gq> matrix[4,4]:Rho_actor <<- Chol_to_Corr(L_Rho_actor)
+        gq> matrix[2,2]:Rho_actor <<- Chol_to_Corr(L_Rho_actor)
     ) , data=dat , chains=4 , cores=4 , log_lik=TRUE , cmdstan = TRUE)
 
 #model output: pay attention to before (g1) and after (g2)
@@ -807,8 +1240,77 @@ precis( list( diff_g=diff_g , diff_p=diff_p ) )
 
 
 
-#### Toutouwai
+#### **Toutouwai**
 
+##### T.Q1 Does a flexibility manipulation alter dispersal timing and distance, as well as the likelihood that juvenile toutouwai will disperse beyond the protection of Zealandia’s fence and attempt to establish in the adjacent urban reserves?
+
+
+###### Power analysis
+
+
+
+###### Run this model on the actual data
+
+```{r toudispersalhabitat, eval=F}
+#Dispersal habitat: Location of bird at the end of study (or at point of death), Zealandia (0) or areas outside the sanctuary (1)
+
+library(rethinking)
+library(cmdstanr)
+set_ulam_cmdstan(TRUE) #makes it so ulam always runs with cmdstan
+
+# load data sheet
+d <- read.csv(url(""), header=T, sep=",", stringsAsFactors=F)
+
+# Set up the data sheet: condition = manipulated or control, habitat = inside or outside Zealandia, 
+dat <- list(
+    response = as.numeric(as.factor(d$Habitat)),
+    tid = d$Condition,
+    fledglingsex = d$Sex,
+    caregiversex = d$Sex,
+    hatchdate = as.numeric(d$HatchDate),
+    season = as.factor(d$Season),
+    parentpairid = d$ParentPairID
+)
+
+# THE MODEL (p.441 for normal distribution, 448 for binomial distribution - McElreath 2020)
+m1 <- ulam(
+    alist(
+        response ~ dbinom(1,p),
+        logit(p) <- g[tid] + alpha[season,tid] + h[fledglingsex] + i[caregiversex] + j*hatchdate + k[parentpairid],
+        # adaptive priors - non-centered which is a parameterization that improves sampling for the MCMC model fit by helping with complex varying effects (see p.453)
+        transpars> matrix[season,2]:alpha <- compose_noncentered( sigma_season , L_Rho_season , z_season ),
+        matrix[2,season]:z_season ~ normal( 0 , 1 ),
+        # fixed priors
+        g[tid] ~ normal(0,1),
+        h[fledglingsex] ~ normal(0,1),
+        i[caregiversex] ~ normal(0,1),
+        j ~ normal(0,1),
+        k[parentpairid] ~ normal(0,1),
+        vector[2]:sigma_season ~ dexp(1),
+        cholesky_factor_corr[2]:L_Rho_season ~ lkj_corr_cholesky( 2 ),
+        # compute ordinary correlation matrixes from Cholesky factors
+        gq> matrix[2,2]:Rho_season <<- Chol_to_Corr(L_Rho_season)
+    ) , data=dat , chains=4 , cores=4 , log_lik=TRUE , cmdstan = TRUE)
+
+#model output: pay attention to before (g1) and after (g2)
+#precis(m1,depth=2)
+
+#run a CONTRAST to determine whether there is a difference between before (g1) and after (g2). Yes if all values on one side of zero
+post <- extract.samples(m1)
+diff_g <- post$g[,1] - post$g[,2] #log-odds difference p.341
+diff_p <- inv_logit(post$g[,1]) - inv_logit(post$g[,2]) #on the probability scale p.341
+precis( list( diff_g=diff_g , diff_p=diff_p ) )
+```
+
+
+##### T.Q2 Compared to control individuals, are flexibility manipulated individuals more likely to survive their first 16 weeks post-fledging, particularly if they disperse into the urban reserves outside the sanctuary fence?
+
+
+###### Power analysis
+
+
+
+###### Run this model on the actual data
 
 
 
