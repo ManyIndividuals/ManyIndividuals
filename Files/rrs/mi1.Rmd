@@ -51,7 +51,7 @@ knitr::opts_chunk$set(echo=T, include=T, results='asis', warning=F, message=F)
 
 # ABSTRACT
 
-Human modified environments are increasing, causing global changes that other species must adjust to or suffer from. Behavioral flexibility (hereafter 'flexibility') could be key to coping with rapid change. Behavioral research can contribute to conservation by determining which behaviors can predict the ability to adjust to human modified environments and whether these can be manipulated. When research that manipulates behavior in a conservation context occurs, it primarily trains a specific behavior to improve individual success in the wild. However, training a domain general cognitive ability, such as flexibility, has the potential to change a whole suite of behaviors, which could have a larger impact on influencing success in adjusting to human modified environments. This project asks whether flexibility can be increased by experimentally increasing environmental heterogeneity and whether such an increase can help species succeed in human modified environments. We explore whether it is  possible to take insights from highly divergent species and apply them to address critical conservation challenges. This pushes the limits in terms of understanding how conserved these abilities may be and to what extent they can be shaped by the environment. We aim to 1) conduct flexibility interventions in two flexible species that are successful in human modified environments (great-tailed grackles and California scrub-jays) to understand how flexibility relates to success and whether information about new behavior spreads via social learning; and 2) implement these interventions in two vulnerable species (toutouwai and Florida scrub-jays) to determine whether flexibility as a generalizable cognitive ability can be trained and whether such training improves success in human-modified environments. This research will significantly advance our understanding of the causes and consequences of flexibility, linking behavior to environmental change, cognition, and success in human modified environments through a comparative and global framework.
+Human modified environments are increasing, causing global changes that other species must adjust to or suffer from. Behavioral flexibility (hereafter 'flexibility') could be key to coping with rapid change. Behavioral research can contribute to conservation by determining which behaviors can predict the ability to adjust to human modified environments and whether these can be manipulated. When research that manipulates behavior in a conservation context occurs, it primarily trains a specific behavior to improve individual success in the wild. However, training a domain general cognitive ability, such as flexibility, has the potential to change a whole suite of behaviors, which could have a larger impact on influencing success in adjusting to human modified environments. This project asks whether flexibility can be increased by experimentally increasing environmental heterogeneity and whether such an increase can help species succeed in human modified environments. We explore whether it is  possible to take insights from highly divergent species and apply them to address critical conservation challenges. This pushes the limits in terms of understanding how conserved these abilities may be and to what extent they can be shaped by the environment. We aim to 1) conduct flexibility interventions in two flexible species that are successful in human modified environments (great-tailed grackles and California scrub-jays) to understand how flexibility relates to success; and 2) implement these interventions in two vulnerable species (toutouwai and Florida scrub-jays) to determine whether flexibility as a generalizable cognitive ability can be trained and whether such training improves success in human-modified environments. This research will significantly advance our understanding of the causes and consequences of flexibility, linking behavior to environmental change, cognition, and success in human modified environments through a comparative and global framework.
 
 # REGISTERED REPORT DETAILS
 
@@ -69,7 +69,7 @@ Environments where informational cues about resources vary in a heterogenous (bu
 
 <img width="100%" src="mi1Figdag.png">
 
-**Figure 1.** The theory behind this research illustrated by a directed acyclic graph (DAG). We assume that more heterogeneity causes more flexibility, which then causes more success in human modified environments.
+**Figure 1.** The theory behind this research illustrated by a directed acyclic graph (DAG), which is a theoretical model of the causal relationships among the key variables in our investigation. Based on the theoretical background provided by @mikhalevich_is_2017, we assume that more heterogeneity causes more flexibility, which then causes more success in human modified environments.
 
 &nbsp;
 
@@ -93,7 +93,7 @@ This investigation asks whether flexibility can be increased by experimentally i
 
 <img width="100%" src="mi1Figthreespp.png">
 
-**Figure 2.** Comparing the three species involved in this investigation relative to their geographic range and association with human modified habitats. The yellow dots represent field site locations.
+**Figure 2.** Comparing the four species involved in this investigation relative to their geographic range and association with human modified habitats. The yellow dots represent field site locations.
 
 
 ### **Great-tailed grackles (*Quiscalus mexicanus*)**
@@ -338,14 +338,6 @@ The model as it would appear in a generalized linear mixed model format:
 
 (duration at cafes and dumpsters when food was present / total duration at cafes and dumpsters) ~ Time (before/after) + (1 | ID)
 
-The Bayesian models were developed using @mcelreath2020statistical as a guide.
-
-*Bayesian model for a normal distribution:*
-
-y ~ $\alpha$[ind] + $\beta$[ind]*B
-
-y is the response variable (duration at cafes and dumpsters when food was present / total duration at cafes and dumpsters). There will be one intercept, $\alpha$, and one slope $\beta$ per individual, which will be estimated for the two times, B (before and after manipulation).
-
 *Bayesian model for a binomial distribution:*
 
 $R_i$ ~ Binomial($t_i$,$p_i$)
@@ -354,7 +346,7 @@ $R_i$ is the duration spent at cafes and dumpsters when food rewards were presen
 
 logit($p_i$) = $\gamma$[condition] + $\alpha$[ind],[condition]
 
-$\gamma$[condition] is the average log-odds for each condition (before/after) and $\alpha$[ind],[condition] is the effect for each individual in each condition.
+$\gamma$[condition] is the average log-odds for each condition (before/after) and $\alpha$[ind],[condition] is the effect for each individual in each condition. The Bayesian model was developed using @mcelreath2020statistical as a guide.
 
 ###### Power analysis
 
@@ -363,6 +355,7 @@ library(rethinking)
 library(cmdstanr)
 set_ulam_cmdstan(TRUE) #makes it so ulam always runs with cmdstan
 rstan_options(auto_write = TRUE)
+#rebuild_cmdstan() #run this if you get an error about a PCH file https://discourse.mc-stan.org/t/struggling-to-get-cmdstan-working-on-mac-os-big-sur/19774/4
 
 ### SIMULATE the population
 # use the cafe example for normal distribution p.437, the primate pulling example p.447 for the binomial distribution, and the grad admissions example for how to deal with a response variable that is a proportion p.341 (McElreath 2020). Replace the 1 in the primate pulling model with the total duration; the response variable is duration when reward is present. So the model makes the proportion for you - feed it the raw data.
@@ -1130,22 +1123,31 @@ diff_p <- inv_logit(post$g[,1]) - inv_logit(post$g[,2]) #on the probability scal
 precis( list( diff_g=diff_g , diff_p=diff_p ) )
 ```
 
-##### J.Q4 Movement
+##### J.Q4 Habitat use
 
 ###### The model
 
-Model 2: Step length ~ Species + Condition + Habitat + Time + Condition x Habitat + Species x Habitat + Condition x Time + (1 | ID)
+The model as it would appear in a generalized linear mixed model format:
 
-Model 3: Turning angle ~ Species + Condition + Habitat + Time + Condition x Habitat + Species x Habitat + Condition x Time + (1 | ID)
+Number of different habitats per individual ~ Time + (Time | ID)
+
+Time is before or after the flexibility manipulation. ID is nested within time as a random effect because there is more than one data point per individual: each individual has a data point at time 1 and time 2.
+
+*Bayesian model for a normal distribution:*
+
+y ~ $\alpha$[ind] + $\beta$[ind]*B
+
+y is the response variable (duration at cafes and dumpsters when food was present / total duration at cafes and dumpsters). There will be one intercept, $\alpha$, and one slope $\beta$ per individual, which will be estimated for the two times, B (before and after manipulation). A normal distribution was used because the response variable is a sum with an expected normal distribution  [@mcelreath2020statistical]. The Bayesian model was developed using @mcelreath2020statistical as a guide.
 
 ###### Power analysis
+
 
 
 ###### Run this model on the actual data
 
 Run the code below to determine whether there were differences between the before and after conditions in their proportion of time spent at locations when food was present.
 
-```{r jaymovement, eval=F}
+```{r jayhabitat, eval=F}
 library(rethinking)
 library(cmdstanr)
 set_ulam_cmdstan(TRUE) #makes it so ulam always runs with cmdstan
@@ -1153,43 +1155,31 @@ set_ulam_cmdstan(TRUE) #makes it so ulam always runs with cmdstan
 # load data sheet
 d <- read.csv(url(""), header=T, sep=",", stringsAsFactors=F)
 
-# sort the data
-beforepresent <- d[d$RewardPresent==1 & d$BeforeOrAfterManipulation=="Before",]
-beforeabsent <- d[d$RewardPresent==0 & d$BeforeOrAfterManipulation=="Before",]
-beforetotal <- c(beforepresent,beforeabsent)
-afterpresent <- d[d$RewardPresent==1 & d$BeforeOrAfterManipulation=="After",]
-afterabsent <- d[d$RewardPresent==0 & d$BeforeOrAfterManipulation=="After",]
-aftertotal <- c(afterpresent,afterabsent)
-
 # Set up the data sheet
 dat <- list(
-    response = c(beforepresent$Duration,afterpresent$Duration),
-    total = c(beforetotal$Duration,aftertotal$Duration),
-    tid = d$BeforeOrAfterManipulation,
-    actor = d$ID
+    habitats = d$habitats,
+    B = d$BeforeOrAfterManipulation,
+    ind = d$ID
 )
 
-# THE MODEL (p.441 for normal distribution, 448 for binomial distribution - McElreath 2020)
-m1 <- ulam(
+# THE MODEL (p.441 for normal distribution - McElreath 2020)
+mj <- ulam(
     alist(
-        response ~ dbinom(total,p),
-        logit(p) <- g[tid] + alpha[actor,tid],
-        # adaptive priors - non-centered which is a parameterization that improves sampling for the MCMC model fit by helping with complex varying effects (see p.453)
-        transpars> matrix[actor,2]:alpha <- compose_noncentered( sigma_actor , L_Rho_actor , z_actor ),
-        matrix[2,actor]:z_actor ~ normal( 0 , 1 ),
-        # fixed priors
-        g[tid] ~ normal(0,1),
-        vector[2]:sigma_actor ~ dexp(1),
-        cholesky_factor_corr[2]:L_Rho_actor ~ lkj_corr_cholesky( 2 ),
-        # compute ordinary correlation matrixes from Cholesky factors
-        gq> matrix[2,2]:Rho_actor <<- Chol_to_Corr(L_Rho_actor)
+        habitats ~ normal( mu , sigma ),
+        mu <- a[ind] + b[ind]*B,
+        c(a,b)[ind] ~ multi_normal( c(a,b) , Rho , sigma_ind ),
+        a ~ normal(5,2),
+        b ~ normal(-1,0.5),
+        sigma_ind ~ exponential(1),
+        sigma ~ exponential(1),
+        Rho ~ lkj_corr(2)
     ) , data=dat , chains=4 , cores=4 , log_lik=TRUE , cmdstan = TRUE)
 
 #model output: pay attention to before (g1) and after (g2)
-#precis(m1,depth=2)
+#precis(mj,depth=2)
 
 #run a CONTRAST to determine whether there is a difference between before (g1) and after (g2). Yes if all values on one side of zero
-post <- extract.samples(m1)
+post <- extract.samples(mj)
 diff_g <- post$g[,1] - post$g[,2] #log-odds difference p.341
 diff_p <- inv_logit(post$g[,1]) - inv_logit(post$g[,2]) #on the probability scale p.341
 precis( list( diff_g=diff_g , diff_p=diff_p ) )
@@ -1200,7 +1190,9 @@ precis( list( diff_g=diff_g , diff_p=diff_p ) )
 
 ###### The model
 
-Model 4: Number of different food types eaten per individual ~ Species + Condition + Habitat + Time + Condition x Habitat + Species x Habitat + Condition x Time
+Number of different food types eaten per individual ~ Habitat * Time + (Time | ID)
+
+Habitat is either a human modified or a natural site, and time is before or after the flexibility manipulation. ID is nested within time as a random effect because there is more than one data point per individual: each individual has a data point at time 1 and time 2.
 
 ###### Power analysis
 
@@ -1218,43 +1210,32 @@ set_ulam_cmdstan(TRUE) #makes it so ulam always runs with cmdstan
 # load data sheet
 d <- read.csv(url(""), header=T, sep=",", stringsAsFactors=F)
 
-# sort the data
-beforepresent <- d[d$RewardPresent==1 & d$BeforeOrAfterManipulation=="Before",]
-beforeabsent <- d[d$RewardPresent==0 & d$BeforeOrAfterManipulation=="Before",]
-beforetotal <- c(beforepresent,beforeabsent)
-afterpresent <- d[d$RewardPresent==1 & d$BeforeOrAfterManipulation=="After",]
-afterabsent <- d[d$RewardPresent==0 & d$BeforeOrAfterManipulation=="After",]
-aftertotal <- c(afterpresent,afterabsent)
-
 # Set up the data sheet
 dat <- list(
-    response = c(beforepresent$Duration,afterpresent$Duration),
-    total = c(beforetotal$Duration,aftertotal$Duration),
-    tid = d$BeforeOrAfterManipulation,
-    actor = d$ID
+    foods = d$foods,
+    B = d$BeforeOrAfterManipulation,
+    ind = d$ID
 )
 
-# THE MODEL (p.441 for normal distribution, 448 for binomial distribution - McElreath 2020)
-m1 <- ulam(
+# THE MODEL (p.441 for normal distribution - McElreath 2020)
+mj <- ulam(
     alist(
-        response ~ dbinom(total,p),
-        logit(p) <- g[tid] + alpha[actor,tid],
-        # adaptive priors - non-centered which is a parameterization that improves sampling for the MCMC model fit by helping with complex varying effects (see p.453)
-        transpars> matrix[actor,2]:alpha <- compose_noncentered( sigma_actor , L_Rho_actor , z_actor ),
-        matrix[4,actor]:z_actor ~ normal( 0 , 1 ),
-        # fixed priors
-        g[tid] ~ normal(0,1),
-        vector[2]:sigma_actor ~ dexp(1),
-        cholesky_factor_corr[2]:L_Rho_actor ~ lkj_corr_cholesky( 2 ),
-        # compute ordinary correlation matrixes from Cholesky factors
-        gq> matrix[2,2]:Rho_actor <<- Chol_to_Corr(L_Rho_actor)
+        foods ~ normal( mu , sigma ),
+        mu <- a[ind] + b[ind]*B + c[ind]*B,
+        c(a,b)[ind] ~ multi_normal( c(a,b) , Rho , sigma_ind ),
+        a ~ normal(5,2),
+        b ~ normal(-1,0.5),
+        c ~ normal(-1,0.5),
+        sigma_ind ~ exponential(1),
+        sigma ~ exponential(1),
+        Rho ~ lkj_corr(3)
     ) , data=dat , chains=4 , cores=4 , log_lik=TRUE , cmdstan = TRUE)
 
 #model output: pay attention to before (g1) and after (g2)
-#precis(m1,depth=2)
+#precis(mj,depth=2)
 
 #run a CONTRAST to determine whether there is a difference between before (g1) and after (g2). Yes if all values on one side of zero
-post <- extract.samples(m1)
+post <- extract.samples(mj)
 diff_g <- post$g[,1] - post$g[,2] #log-odds difference p.341
 diff_p <- inv_logit(post$g[,1]) - inv_logit(post$g[,2]) #on the probability scale p.341
 precis( list( diff_g=diff_g , diff_p=diff_p ) )
@@ -1298,30 +1279,21 @@ dat <- list(
 )
 
 # THE MODEL (p.441 for normal distribution, 448 for binomial distribution - McElreath 2020)
-m1 <- ulam(
+mt <- ulam(
     alist(
-        response ~ dbinom(1,p),
-        logit(p) <- g[tid] + alpha[season,tid] + h[fledglingsex] + i[caregiversex] + j*hatchdate + k[parentpairid],
-        # adaptive priors - non-centered which is a parameterization that improves sampling for the MCMC model fit by helping with complex varying effects (see p.453)
-        transpars> matrix[season,2]:alpha <- compose_noncentered( sigma_season , L_Rho_season , z_season ),
-        matrix[2,season]:z_season ~ normal( 0 , 1 ),
-        # fixed priors
-        g[tid] ~ normal(0,1),
-        h[fledglingsex] ~ normal(0,1),
-        i[caregiversex] ~ normal(0,1),
-        j ~ normal(0,1),
-        k[parentpairid] ~ normal(0,1),
-        vector[2]:sigma_season ~ dexp(1),
-        cholesky_factor_corr[2]:L_Rho_season ~ lkj_corr_cholesky( 2 ),
-        # compute ordinary correlation matrixes from Cholesky factors
-        gq> matrix[2,2]:Rho_season <<- Chol_to_Corr(L_Rho_season)
+        y ~ normal( mu , sigma ),
+        mu <- a[ind] + b[ind]*t + c*t,
+        a ~ normal(70,40),
+        b ~ normal(0,20),
+        c ~ normal(0,20),
+        sigma ~ exponential(1)
     ) , data=dat , chains=4 , cores=4 , log_lik=TRUE , cmdstan = TRUE)
 
 #model output: pay attention to before (g1) and after (g2)
-#precis(m1,depth=2)
+#precis(mt,depth=2)
 
 #run a CONTRAST to determine whether there is a difference between before (g1) and after (g2). Yes if all values on one side of zero
-post <- extract.samples(m1)
+post <- extract.samples(mt)
 diff_g <- post$g[,1] - post$g[,2] #log-odds difference p.341
 diff_p <- inv_logit(post$g[,1]) - inv_logit(post$g[,2]) #on the probability scale p.341
 precis( list( diff_g=diff_g , diff_p=diff_p ) )
