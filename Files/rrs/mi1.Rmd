@@ -1147,36 +1147,46 @@ y is the response variable (duration at cafes and dumpsters when food was presen
 
 Run the code below to determine whether there were differences between the before and after conditions in their proportion of time spent at locations when food was present.
 
-```{r jayhabitat, eval=F}
+```{r jayhabitatuse, eval=F}
 library(rethinking)
 library(cmdstanr)
 set_ulam_cmdstan(TRUE) #makes it so ulam always runs with cmdstan
 
-# load data sheet
+## when the data do not yet exist, use simulated data to test the model
+N_ind <- 20
+
+dat <- list(
+    habitatuse = rnorm(40,mean=5,sd=2), #estimate 20 total individuals (*2 conditions) with a mean of 5 habitats/individual
+    before = c(rep(1,N_ind),rep(2,N_ind)), #1 refers to before and 2 to after
+    ind = rep(1:N_ind,2) #go through all individuals twice because there are observations from before and after for each
+)
+
+## load data sheet
 d <- read.csv(url(""), header=T, sep=",", stringsAsFactors=F)
 
 # Set up the data sheet
 dat <- list(
-    habitats = d$habitats,
-    B = d$BeforeOrAfterManipulation,
+    habitatuse = d$habitats,
+    before = d$BeforeOrAfterManipulation,
     ind = d$ID
 )
 
 # THE MODEL (p.441 for normal distribution - McElreath 2020)
 mj <- ulam(
     alist(
-        habitats ~ normal( mu , sigma ),
-        mu <- a[ind] + b[ind]*B,
-        c(a,b)[ind] ~ multi_normal( c(a,b) , Rho , sigma_ind ),
-        a ~ normal(5,2),
-        b ~ normal(-1,0.5),
+        habitatuse ~ normal( mu , sigma ),
+        mu <- a_ind[ind] + b_ind[ind]*before,
+        c(a_ind,b_ind)[ind] ~ multi_normal( c(alpha,beta) , Rho , sigma_ind ),
+        alpha ~ normal(5,2), #5=mean number of habitats used, 2=habitats for the sd
+        beta ~ normal(0,4), #0=mean slope, 4=sd which is like the max difference between before and after
         sigma_ind ~ exponential(1),
         sigma ~ exponential(1),
         Rho ~ lkj_corr(2)
     ) , data=dat , chains=4 , cores=4 , log_lik=TRUE , cmdstan = TRUE)
 
-#model output: pay attention to before (g1) and after (g2)
-#precis(mj,depth=2)
+#model output: pay attention to beta to determine whether there is a difference between the before and after conditions (there is a difference if CI on one side of zero)
+precis(mj,depth=2)
+#boxplot(dat$habitatuse~dat$before) #see if there is a difference visually
 
 #run a CONTRAST to determine whether there is a difference between before (g1) and after (g2). Yes if all values on one side of zero
 post <- extract.samples(mj)
@@ -1207,7 +1217,16 @@ library(rethinking)
 library(cmdstanr)
 set_ulam_cmdstan(TRUE) #makes it so ulam always runs with cmdstan
 
-# load data sheet
+## when the data do not yet exist, use simulated data to test the model
+N_ind <- 20
+
+dat <- list(
+    foods = rnorm(40,mean=10,sd=2), #estimate 40 total food types with a mean of 10 types eaten/individual
+    B = c(rep(1,N_ind),rep(2,N_ind)), #1 refers to before and 2 to after
+    ind <- rep(1:N_ind,2) #go through all individuals twice because there are observations from before and after for each
+)
+
+## when the data exist, load data sheet
 d <- read.csv(url(""), header=T, sep=",", stringsAsFactors=F)
 
 # Set up the data sheet
@@ -1221,11 +1240,11 @@ dat <- list(
 mj <- ulam(
     alist(
         foods ~ normal( mu , sigma ),
-        mu <- a[ind] + b[ind]*B + c[ind]*B,
-        c(a,b)[ind] ~ multi_normal( c(a,b) , Rho , sigma_ind ),
-        a ~ normal(5,2),
-        b ~ normal(-1,0.5),
-        c ~ normal(-1,0.5),
+        mu <- alpha[ind] + habitat[] + condition[ind]*B,
+        c(alpha,b)[ind] ~ multi_normal( c(alpha,habitat) , Rho , sigma_ind ),
+        alpha ~ normal(5,2),
+        habitat ~ normal(-1,0.5),
+        condition ~ normal(-1,0.5),
         sigma_ind ~ exponential(1),
         sigma ~ exponential(1),
         Rho ~ lkj_corr(3)
