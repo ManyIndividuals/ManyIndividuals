@@ -1168,10 +1168,12 @@ lines(density(rnorm(10000,number_before*(changenumber*1),sd=1.5)),lwd=2,col="red
 
 #before
 numberbefore <- round(rnorm(N_ind,mean=5,sd=1.5),2) #number of habitats used, 2 means 2 decimal points
+numberbefore[numberbefore<1]<-1 #this needs to be a minimum of 1 bc an individual can never live in less than 1 habitat
 changenumber <- rnorm(N_ind, mean=numberbefore/2,sd=1.5) #if had a large number before, have a smaller change relative to the after condition. Divide by 2 = assume that on average they will improve by is 2 habitats (the before mean of 5 divided by 2)
 
 #after
 numberafter <- round(numberbefore+changenumber,2)
+numberafter[numberafter<1]<-1 #this needs to be a minimum of 1 bc an individual can never live in less than 1 habitat
 
 #check the plot to see whether individuals are increasing their numbers = yes, all points are above the 1:1 line
 #plot(numberbefore,numberafter)
@@ -1226,11 +1228,14 @@ for (samplesize in 1:length(samplesizes)) {
         #BEFORE manipulation
         #number of habitats used, 2 means 2 decimal points. Assume baseline number is 2, 3, or 4
         numberbefore <- round(rnorm(N_ind,mean=currentnumber_before,sd=1.5),2) #number of habitats used, 2 means 2 decimal points
-        #choose the next number change for each individual. If had a large number before, have a smaller change relative to the after condition. Multiply by 0.2 = assume that on average they will improve by 0.2. Modifying the proportion after relative to the proportion before accounts for those individuals who were already successful before the manipulation and thus won't have much of a change in prop due to the manipulation. Using the relative change also ensures that an individual will never have an after proportion larger than 1. Multiply currentchangeprop by 2 bc want the relative change to be in about the same order of magnitude as the proportion of change for each individual as the absolute change. If the proportion before is 0.5, the relative change will be the same as the absolute change. If the proportion before >0.5, then the absolute change will be smaller. E.g., if proportion before = 0.7, then a relative change of 0.2 leads to an absolute change of 0.14. If it is <0.5, then the absolute change will be larger than 0.2.
-        changenumber <- rnorm(N_ind, mean=numberbefore/2,sd=1.5)
+        numberbefore[numberbefore<1]<-1 #this needs to be a minimum of 1 bc an individual can never live in less than 1 habitat
+        
+        #choose the next number change for each individual. If had a large number before, have a smaller change relative to the after condition. Multiply by 0.2 = assume that on average they will improve by 0.2. Modifying the number after relative to the number before accounts for those individuals who were already successful before the manipulation and thus won't have much of a change in number due to the manipulation. Using the relative change also ensures that an individual will never have an after number smaller than 1. Multiply currentchangenumber by 2 bc want the relative change to be in about the same order of magnitude as the proportion of change for each individual as the absolute change. If the number before is 0.5, the relative change will be the same as the absolute change. If the relative before >0.5, then the absolute change will be smaller. E.g., if number before = 0.7, then a relative change of 0.2 leads to an absolute change of 0.14. If it is <0.5, then the absolute change will be larger than 0.2.
+        changenumber <- rnorm(N_ind, mean=numberbefore/2,sd=1.5) #DIETER need to check that I modified this correctly
 
         #AFTER manipulation
         numberafter <- round(numberbefore+changenumber,2)
+        numberafter[numberafter<1]<-1 #this needs to be a minimum of 1 bc an individual can never live in less than 1 habitat
   
         ### run a STAN model to see whether the before and after proportions are estimated to be different from each other
         #sets up the data sheet with the simulated data that the model will run on
@@ -1283,7 +1288,7 @@ diff_b <- post$b_ind[,2] - post$b_ind[,1] #log-odds difference p.341 McElreath 2
 #write.csv(diff_b,file="diff_p20changenumber2.csv")
 ```
 
-```{r jayq3simulationfiguresamplesize, eval=T, messages=F}
+```{r jayq3simulationfiguresamplesize, eval=F, messages=F}
 library(rethinking)
 library(cmdstanr)
 set_ulam_cmdstan(TRUE) #makes it so ulam always runs with cmdstan
