@@ -101,7 +101,7 @@ This investigation asks whether flexibility can be increased by experimentally i
 #### Background 
 Great-tailed grackles are flexible [@logan2016flexibilityproblem; @logan2019flexmanip], highly associated with human modified environments [@johnson2001great], and have been rapidly expanding their geographic range across North America over the past 140 years [@wehtje2003range]. They are social and polygamous, and eat a diversity of human foods as well as foraging on insects and on substrates for other natural food items [@johnson2001great]. Males tend to be the socially dominant sex [@johnson2000male] and also the sex that disperses away from their natal area [@sevchik2019dispersal]. @Rodrigo2021gtgr found that more grackles are present and more foraging events occur during garbage pick ups when garbage tends to spill out of the bags, thus increasing food availability. Attending to garbage trucks, potentially across space and time, is an example of how flexibility can help individuals meet foraging needs in the context of changing environmental cues. Great-tailed grackle behavioral flexibility is manipulatable using serial reversal learning, and this manipulation improves their flexibility in a new context as well as their innovativeness [@logan2019flexmanip], which shows that training a general cognitive ability can affect more behaviors than the behavior that was trained and potentially make them more successful in human modified environments. We are in the middle of long-term data collection on grackles to answer questions about how flexibility relates to exploration [@mccune2019exploration], the predictability of their space use [@mccune2020spaceuse] and their foraging breadth [@logan2019flexforaging]. 
 
-#### Research question: Do flexibility manipulated individuals differ in the proportion of time spent at cafes and garbage dumpsters when food is present?
+#### Research question (G.Q1): Do flexibility manipulated individuals differ in the proportion of time spent at cafes and garbage dumpsters when food is present?
 
 We will investigate this question by tracking their presence at cafes and dumpsters when food is present versus when it is absent before and after manipulating their flexibility using serial reversal learning in the wild (Figure 3). Table 1 summarizes our predictions, analysis plans, interpretations for the various directions the results could go, and the theories that could be contradicted given the various outcomes.
 
@@ -111,7 +111,7 @@ We will investigate this question by tracking their presence at cafes and dumpst
 
 &nbsp;
 
-**Table 1.** Study design for the great-tailed grackle research. References that were not already cited in the introduction: [@barton2000limits].
+**Table 1.** Study design for the great-tailed grackle research. References that were not already cited in the introduction: @duckworth2009role, @dingemanse2013between.
 
 <img width="100%" src="mi1StudyDesignTableGTGR.png">
 
@@ -135,35 +135,60 @@ We will set up 4 feeders (2 dark gray and 2 light gray) at one location in a par
 
 
 
-### **Scrub-jays (*Aphelocoma californica* & *A. coerulescens*)**
+### **Jays (*Aphelocoma californica* and/or *A. coerulescens* and/or *Cyanocitta cristata*)**
 
-**Background:** Jay species in the genus *Aphelocoma* exhibit a diversity of social systems and success in colonizing suburban and urban areas. California scrub-jays (*A. californica*, hereafter "CASJ"), a singular, monogamous breeder, are increasing in abundance, expanding their range size and are highly successful in natural, suburban, and urban areas [@blair1996land; @curry2017california]. In contrast, the Florida scrub-jay (*A. coerulescens*; hereafter "FLSJ") is a threatened species, endemic and range-restricted to xeric oak scrub habitat in Florida [@woolfenden1996florida]. 
+We are not yet sure which jay species will be feasible to test as part of this investigation. We aim to test a disturbance resilience species like the California scrub-jay or blue jay. We also aim to test the disturbance sensitive Florida scrub-jay, but we are still waiting for permits on the Florida Scrub-jay and blue jay. Regardless of the species that end up in the investigation, we will use the same hypotheses and predictions below.
 
-Both species forage primarily on mast (acorns, hazelnuts, etc.) that they cache throughout their territory, which makes it available to eat year-round. They are also opportunistic omnivores and specifically need high-fat and high-protein arthropods to feed to nestlings and fledglings [@curry2017california]. Nesting and foraging substrates can be drastically different in human modified environments compared to natural areas [@tuomainen2011behavioural], and it is unknown whether suburban and urban jays are able to persist in these environments through behavioral adjustments. FLSJ can persist in suburban habitats after conversion from xeric oak scrub, however suburban populations of FLSJ steadily decline (Bowman pers. comm.). This is potentially due to the presence of suboptimal habitat resulting from fire suppression [@woolfenden1996florida], higher rates of brood reduction through nestling starvation [@shawkey2004brood], and the lack of nutritionally complete prey items [@shawkey2004brood] in suburban habitats. It is possible that behavioral flexibility in habitat use and foraging breadth underlies the ability of some FLSJ to persist in human-dominated areas. 
+**Background:** Jay species exhibit a diversity of social systems and success in colonizing suburban and urban areas. California scrub-jays (*Aphelocoma californica*, hereafter "CASJ") and blue jays (*Cyanocitta cristata*, hereafter “BLJA”) are singular, monogamous breeders that are increasing in abundance, expanding their range sizes, and highly successful in natural, suburban, and urban areas [@blair1996land; @curry2017california]. We therefore consider these “disturbance-resilient” (DR) jay species. In contrast, the Florida scrub-jay (*A. coerulescens*; hereafter "FLSJ") is a “disturbance-sensitive” (DS) jay species that is threatened, endemic, and range-restricted to xeric oak scrub habitat in Florida [@woolfenden1996florida]. 
 
-We aim to compare behavioral flexibility within species, between suburban and natural populations to determine whether variation in flexibility relates to variation in presence in these habitats. Subsequently we will compare flexibility between species to determine whether this trait is related to the greater presence of CASJ in human-dominated areas. Lastly, we will test whether manipulating flexibility increases the foraging breadth and reproductive success of jays in human modified environments. Manipulating the flexibility of a subset of individuals has the potential to affect the population because previous research demonstrates that both species have the capacity to use foraging information discovered by others (social learning) to flexibly change their behavior [@mccune2018cognition; @midford2000social].
+These species forage primarily on mast (acorns, hazelnuts, etc.) that they cache throughout their territory, which makes it available to eat year-round. They are also opportunistic omnivores and specifically need high-fat and high-protein arthropods to feed to nestlings and fledglings [@curry2017california]. Nesting and foraging substrates can be drastically different in human modified environments compared to natural areas [@tuomainen2011behavioural], and it is unknown whether suburban and urban jays are able to persist in these environments through behavioral adjustments. The DS jay species, the FLSJ, can persist in suburban habitats after conversion from xeric oak scrub, however suburban populations of FLSJ steadily decline (Bowman pers. comm.). This is potentially due to the presence of suboptimal habitat resulting from fire suppression [@woolfenden1996florida], higher rates of brood reduction through nestling starvation [@shawkey2004brood], and the lack of nutritionally complete prey items [@shawkey2004brood] in suburban habitats. It is possible that behavioral flexibility in habitat use and foraging breadth underlies the ability of some FLSJ to persist in human-dominated areas. 
+
+We aim to compare behavioral flexibility within species, between suburban and natural populations to determine whether variation in flexibility relates to variation in presence in these habitats. Subsequently, we will compare flexibility between DS and DR jay species to determine whether this trait is related to the greater success of DR jay species, like the CASJ and BLJA, in human-dominated areas. Lastly, we will test whether manipulating flexibility increases the foraging breadth and reproductive success of jays in human modified environments. Manipulating the flexibility of a subset of individuals has the potential to affect the population because previous research demonstrates that both species have the capacity to use foraging information discovered by others (social learning) to flexibly change their behavior [@mccune2018cognition; @midford2000social]. 
+
+While we have begun to acquire permits to work with these species, the processing time for permits to research threatened and endangered species can be very long and unpredictable. Therefore, while we aim to collect data on the FLSJ during the 5-year timeline of this project, it is possible this species will have to be omitted if the permits are not approved in time. If this occurs, we will not be able to compare CASJ/BLJA and FLSJ (Question 2 in Table 2), but we will still be able to compare behavioral flexibility of CASJ/BLJA populations in human modified and natural areas, and assess whether the behavioral flexibility manipulation affects success in human modified environments.
+
+#### Research question (J.Q1): Do jay populations in human modified areas differ in baseline behavioral flexibility compared to populations in natural areas?
+
+We will investigate this question by comparing performance on serial reversal learning in the wild between jays in natural areas and jays in human modified areas. Table 2 summarizes our predictions, analysis plans, interpretations for the various directions the results could go, and the theories that could be contradicted given the various outcomes.
+
+#### Research question (J.Q2): Are disturbance-resilient (DR) jays more behaviorally flexible than disturbance-sensitive (DS) jays?
+
+We will investigate this question by comparing performance on serial reversal learning in the wild between between DR and DS jay species. Table 2 summarizes our predictions, analysis plans, interpretations for the various directions the results could go, and the theories that could be contradicted given the various outcomes.
+
+#### Research question (J.Q3): Does manipulating behavioral flexibility alter the number of microhabitats used?
+
+We will investigate this question by tracking their presence in a variety of microhabitats before and after manipulating their flexibility using serial reversal learning in the wild. Table 2 summarizes our predictions, analysis plans, interpretations for the various directions the results could go, and the theories that could be contradicted given the various outcomes.
+
+#### Research question (J.Q4): Does manipulating flexibility alter the number of different food items taken by jays?
+
+We will investigate this question by tracking the various food items they take before and after manipulating their flexibility using serial reversal learning in the wild. Table 2 summarizes our predictions, analysis plans, interpretations for the various directions the results could go, and the theories that could be contradicted given the various outc
+
+<img width="100%" src="mi1Figgtgr.png">
+
+**Figure 4.** The reversal learning experiment in a group context (Figure 7) tailored to the jay research questions.
+
+&nbsp;
+
+**Table 2.** Study design for the jay research. References that were not already cited in the introduction: [@barton2000limits].
+
+<img width="100%" src="mi1StudyDesignTableGTGR.png">
+
+#### Planned sample
 
 
-**J.Q1: Do jay populations in human modified areas differ in baseline behavioral flexibility compared to populations in natural areas?**
+#### Before and after manipulation success measures
 
- - **Prediction 1.1:** If suburban jays are *more* flexible than jays in natural areas, this implies that flexibility is related to the ability to occupy human modified environments where spatial and temporal heterogeneity of resources is high. 
- - **Prediction 1.2:** If suburban jays are *less* flexible than jays in natural areas, this implies that human modification of the environment has led to less spatial and temporal heterogeneity of resources. For example, the prevalence of bird feeders in suburban areas leads to consistently available food.
- - **Prediction 1.3:** If suburban jays are *equally* flexible as jays in natural areas, this implies that additional behavioral traits [e.g. boldness, @lapiedra2017urbanization] may facilitate success in human modified environments
- 
-**J.Q2: Are CASJ more behaviorally flexible than FLSJ in general?**
 
- - **Prediction 2.1:** If CASJ are *more* flexible than FLSJ, this may explain the range expansion and greater success of CASJ in human modified environments.
- - **Prediction 2.2:** If CASJ are *less* flexible than FLSJ, it implies that flexibility is not related to success in human modified environments and that flexibility may instead be related to a different, unknown social or environmental characteristic. For example, the cooperative breeding system of FLSJ may favor increased flexibility for responding to group mates’ behavior.
- - **Prediction 2.3:** If CASJ and FLSJ are *equally* flexible, then flexibility is not related to success in human modified environments and the level of flexibility is potentially an evolutionary conserved trait from the *Aphelocoma* common ancestor [@emery2004mentality].
- 
-**J.Q3: Does manipulating behavioral flexibility affect success of CASJ and FLSJ in human modified environments?**
+#### Flexibility manipulation (Design 2 reversal learning)
 
-Predictions are the same as in the general Research Question: Q1 section.
+CASJ/BLJA will use the same set up as the grackles (see above). **FLSJ...**
+
+**Feeder habituation:** All feeders will have food available and be open for 3 hours per day on 5 consecutive days or until at least 20 banded individuals have visited at least 1 feeder.
+
+**The experiment:** Each time a PIT tagged subject lands on a feeder it is recorded as the color choice and counts as one trial. The experiment will begin with the dark gray feeder being the rewarded feeder for all individuals. 
 
 
 
-
-**Figure 4.**
 
 ### **Toutouwai (North Island robin, *Petroica longipes*)**
 
@@ -1634,8 +1659,8 @@ This research is carried out in accordance with permits from the:
 1) US Fish and Wildlife Service (scientific collecting permit number MB76700A-0,1,2)
 2) US Geological Survey Bird Banding Laboratory (federal bird banding permit for Logan 23872, for McCune 24273)
 3) Institutional Animal Care and Use Committee at the University of California Santa Barbara (protocol number 958)
-4) California Department of Fish and Wildlife (scientific collecting permit [specific use] number S‐192100001‐19210‐001)
-5) Oregon Department of Fish and Wildlife (scientific collecting permit in process)
+4) California Department of Fish and Wildlife (scientific collecting permit [specific use] number S‐192100001‐19210‐001 for grackles and S-192100002-20329-001 for jays)
+5) Oregon Department of Fish and Wildlife (scientific collecting permit 125-22)
 
 # AUTHOR CONTRIBUTIONS
 
