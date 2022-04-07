@@ -1087,10 +1087,6 @@ estimates_pairwisedifferences_phiposteriors$crosseszero<-ifelse(estimates_pairwi
 
 ###### The model
 
-The model as it would appear in a generalized linear mixed model format:
-
-Number of different habitats per individual ~ Condition + (Condition | ID)
-
 *Bayesian model with a normal distribution:*
 
 y ~ $\alpha$[ind] + $\beta$[ind]*before
@@ -1218,13 +1214,9 @@ sj <- ulam(
         Rho ~ lkj_corr(2)
     ) , data=dat , chains=4 , cores=4 , log_lik=TRUE , cmdstan = TRUE, control = list(adapt_delta = .95, force_recompile = TRUE))
 #precis(sj, depth=2) #check the output to make sure it looks as expected
+  #Don't need to do the contrast because we already have each individual's number so we only need to look at their beta to see whether it is positive (more habitats after) or negative (fewer habitats after)
 
-       #run a CONTRAST to determine whether there is a difference between before (g1) and after (g2) (subtract g1 before from g2 after). Yes if all values for diff_p on one side of zero (want probability scale because that is the scale we used in the simulation)
 post <- extract.samples(sj)
-#str(post) #check it
-#diff_b <- post$b_ind[,2] - post$b_ind[,1] #log-odds difference p.341 McElreath 2020. Don't need to do the contrast because we already have each individual's number so we only need to look at their beta to see whether it is positive (more habitats after) or negative (fewere habitats after)
-#PI(diff_b) #did the difference cross zero?
-#precis( list( diff_b=diff_b ) )
 
   # enter all of the results into the data sheet
     simresults[counter,]$n <- N_ind
@@ -1537,10 +1529,6 @@ mj <- ulam(
 
 ###### The model
 
-The model as it would appear in a generalized linear mixed model format:
-
-Number of different food types taken per individual ~ Condition + (Condition | ID)
-
 *Bayesian model with a normal distribution:*
 
 y ~ $\alpha$[ind] + $\beta$[ind]*before
@@ -1575,19 +1563,19 @@ plot(density(rnorm(10000,number_before,sd=2)),lwd=2,xlim=c(0,18),ylim=c(0,0.3)) 
 lines(density(rnorm(10000,number_before*(changenumber*1),sd=2)),lwd=2,col="red") #the after condition. Should be able to tell the difference when changenumber is at least 1.3 and the SD is at least 2 (and number_before is 6.5)
 
 #before
-numberbefore <- round(rnorm(N_ind,mean=6.5,sd=1),2) #number of foods taken, 2 means 2 decimal points
+numberbefore <- round(rnorm(N_ind,mean=6.5,sd=2),2) #number of foods taken, 2 means 2 decimal points
 numberbefore[numberbefore<1]<-0 #this needs to be a minimum of 0 bc an individual can never take negative food
 changenumber <- rnorm(N_ind, mean=(13-numberbefore)-4.5,sd=2) #if had a large number before, have a smaller change relative to the after condition. Subtract 4.5 to have a change of 2 food types (13-6.5 = 6.5-4.5 = 2)
 
 #after
-numberafter <- round(numberbefore+rnorm(N_ind,mean=changenumber,sd=1),2)
+numberafter <- round(numberbefore+rnorm(N_ind,mean=changenumber,sd=2),2)
 numberafter[numberafter<1]<-0
 
 #change the number of foods increased (e.g., 4.5) in changenumber and the sd in numberafter to determine which sds to run the simulations at. Visualize using the plot below to see when the distributions have more separation. It looks like with a difference of 2 foods (4.5 in changenumber), which is probably the minimum we could detect differences with, the maximum numberafter sd would be 2 and an sd with larger detectable differences is 1. Run the simulation with an sd of 1 and 2 to explore the boundaries
 plot(density(numberbefore),lwd=2,xlim=c(0,18),ylim=c(0,0.3)) #A sample size of 10k individuals. An SD of 2 (when the mean before is 6.5) encompasses all of the range of numbers of foods we expect to find (0-13) so it would be the largest SD we would expect and thus the most conservative sd to use in the simulations
 lines(density(numberafter),lwd=2,col="red") #the after condition. Should be able to tell the difference when changenumber is at least 2 and the SD is at least 2 (and number_before is 6.5)
 
-#check the plot to see whether individuals are increasing their numbers = several points are below the 1:1 line
+#check the plot to see whether individuals are increasing their numbers in general (as we are attempting with the changenumber) = 3 points are below the 1:1 line so it looks good
 plot(numberbefore,numberafter)
 abline(0,1)
 
@@ -1597,18 +1585,18 @@ abline(0,1)
 samplesizes<-c(10,20,30,40,60) #c(10,20,30,40,60)
 
 # Set the means you want to compare. To get a certain mean change in number of microhabitats between before and after, set the subtractor in the changenumber mean (as above): a small subtractor means a large change
-meanchangenumber1<-0.5 #individuals will on average use 5 more habitats after the experiment (10-4.5 = 5.5 - 0.5  = 5)
-meanchangenumber2<-1.5 # individuals will on average use 4 more habitats after the experiment (10-4.5 = 5.5 - 1.5  = 4)
-meanchangenumber3<-2.5 #individuals will on average use 3 more habitats after the experiment (10-4.5 = 5.5 - 2.5  = 3)
-meanchangenumber4<-3.5 # individuals will on average use 2 more habitats after the experiment (10-4.5 = 5.5 - 3.5  = 2)
-meanchangenumber5<-4.5 # individuals will on average use 1 more habitats after the experiment (10-4.5 = 5.5 - 4.5  = 1)
-meanchangenumber6<-5.5 # individuals will on average use 0 more habitats after the experiment (10-4.5 = 5.5 - 5.5  = 0)
+meanchangenumber1<-1.5 #individuals will on average take 5 more foods after the experiment (13-6.5 = 6.5 - 1.5  = 5)
+meanchangenumber2<-2.5 # individuals will on average take 4 more foods after the experiment (13-6.5 = 6.5 - 2.5  = 4)
+meanchangenumber3<-3.5 #individuals will on average take 3 more foods after the experiment (13-6.5 = 6.5 - 3.5  = 3)
+meanchangenumber4<-4.5 # individuals will on average take 2 more foods after the experiment (13-6.5 = 6.5 - 4.5  = 2)
+meanchangenumber5<-5.5 # individuals will on average take 1 more food after the experiment (13-6.5 = 6.5 - 5.5  = 1)
+meanchangenumber6<-6.5 # individuals will on average take 0 more foods after the experiment (13-6.5 = 6.5 - 6.5  = 0)
 changenumbervariants<-c(meanchangenumber1,meanchangenumber2,meanchangenumber3,meanchangenumber4,meanchangenumber5,meanchangenumber6) #for false negatives
 #changenumbervariants<-c(0) #for false positives
 #changenumbervariants<-c(meanchangeprop6) #for showing differences
 
-#compare different baseline numbers for how many habitats these individuals use before the manipulation
-number_before<-c(3, 4.5, 6)
+#compare different baseline numbers for how many foods these individuals take before the manipulation
+number_before<-c(4, 6.5, 9)
 
 #set up data frame where results will be stored
 simresults <- matrix(NA,nrow=900,ncol=7)
@@ -1649,7 +1637,7 @@ for (samplesize in 1:length(samplesizes)) {
         ### run a STAN model to see whether the before and after proportions are estimated to be different from each other
         #sets up the data sheet with the simulated data that the model will run on
       dat <- list(
-    habitatuse = standardize(c(numberbefore,numberafter)), #compare before and after
+    foods = standardize(c(numberbefore,numberafter)), #compare before and after
     before = c(rep(1,N_ind),rep(2,N_ind)), #1 refers to before and 2 to after
     ind = rep(1:N_ind,2) #go through all individuals twice because there are observations from before and after for each
 )
@@ -1661,26 +1649,22 @@ sjf <- ulam(
         foods ~ normal( mu , sigma ),
         mu <- a_ind[ind] + b_ind[ind]*before,
         c(a_ind,b_ind)[ind] ~ multi_normal( c(alpha,beta) , Rho , sigma_ind ),
-        alpha ~ normal(6.5,2), #6.5=mean number of foods taken, 2=food types for the sd
+        alpha ~ normal(6.5,2), #6.5=mean number of foods taken, 2=food types for the sd (don't change when exploring different SDs for changenumber)
         beta ~ normal(0,6), #0.5=mean slope, 6=sd which is like the max difference between before and after
         sigma_ind ~ exponential(1),
         sigma ~ exponential(1),
         Rho ~ lkj_corr(2)
     ) , data=dat , chains=4 , cores=4 , log_lik=TRUE , cmdstan = TRUE, control = list(adapt_delta = .95, force_recompile = TRUE))
 
-precis(sjf, depth=2) #check the output to make sure it looks as expected
+#precis(sjf, depth=2) #check the output to make sure it looks as expected
+  #Don't need to do the contrast because we already have each individual's number so we only need to look at their beta to see whether it is positive (more foods after) or negative (fewer foods after)
 
-       #run a CONTRAST to determine whether there is a difference between before (g1) and after (g2) (subtract g1 before from g2 after). Yes if all values for diff_p on one side of zero (want probability scale because that is the scale we used in the simulation)
 post <- extract.samples(sjf)
-#str(post) #check it
-#diff_b <- post$b_ind[,2] - post$b_ind[,1] #log-odds difference p.341 McElreath 2020. Don't need to do the contrast because we already have each individual's number so we only need to look at their beta to see whether it is positive (more habitats after) or negative (fewere habitats after)
-#PI(diff_b) #did the difference cross zero?
-#precis( list( diff_b=diff_b ) )
 
   # enter all of the results into the data sheet
     simresults[counter,]$n <- N_ind
     simresults[counter,]$changenumber_mean <- 5.5 - currentchangenumber
-    simresults[counter,]$changenumber_sd <- 1
+    simresults[counter,]$changenumber_sd <- 1 #change this to match the SD in changenumber
     simresults[counter,]$repetition <- repetition
     simresults[counter,]$number_before <- currentnumber_before
     simresults[counter,]$proportion_estimates_below_zero <- sum(post$beta<0)/2000
