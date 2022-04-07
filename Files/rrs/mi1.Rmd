@@ -219,6 +219,384 @@ We present one experimental design for the flexibility intervention that can be 
 
 **Figure 6.** Template design for the reversal learning experiment.
 
+## Determining when to switch each individual to the next reversal: reversal passing criterion
+
+Different criteria exist to decide whether an individual has learned an association during a reversal. The two main two criteria are to switch an individual after it either has chosen 10 out of 12 choices correct or 17 out of 20 choices. The criteria are further modified depending on whether choices are assessed continuously or grouped in predetermined blocks. 
+
+Here, we assess whether stopping after an individual chose 10 out of the last 12 continuously counted choices can be used as a reliable reversal passing criterion. To determine reliability and suitability, we investigated five questions by generalizing previously simulated reversal learning data from @xpop, which was based on reversal learning data from one species (great-tailed grackles). Grackles are fast to reverse preferences compared with many other species [@Logan2016], therefore we generalized the simulations to other species by setting the parameters that guide performance (phi and lambda) to also lead to slower performances. 
+
+The findings from these simulated data indicate that deciding that an individual has passed the reversal when they choose 10 out of the last 12 consecutive trials correctly is functional and reliable, because with this criterion:
+
+*1) individuals will be finished after fewer trials than with other criteria*
+With the 10 out of 12 criterion, individuals pass the reversal 8 trials earlier (median) than with the 17 out of 20 criterion. This means that for most individuals the two rules are equally effective as they will pass them in the same run of trials, but because the 10 out of 12 criterion is restricted to 12 trials instead of 20 individuals need 8 fewer trials. No individual needs more trials with the 10 out of 12 criterion. When trials are grouped into blocks (of 10), individuals need 5 more trials (median) compared to when choices are assessed continously.
+
+*2) classification of individuals is less noisy because there is less of a chance of individuals coming close to the criterion but not passing, including the risk that some individuals never pass*
+The average improvement is larger than the median because, first, there are no individuals who are faster with the 17 out of 20 criterion, and secondly because there is a subset of individuals who need considerably fewer trials with the 10 out of 12 criterion (Figure m1Fig_ReversalCriterionComparison.png). Individuals with very larger number of trials (>100) to pass almost never occur with the 10 out 12 criterion, whereas they are more common with the 17 out of 20. With more trials, there is a higher chance that an individual will deviate from their preference by chance. This is also reflected by the 65 out of the 626 individuals who never reached the 17 out of 20 criterion within the maximum 300 trials that were simulated, whereas there were only 4 individuals with the 10 out of 12 criterion. Accordingly, an additional benefit of choosing the 10 out of 12 criterion is that it is more likely that data for all individuals, even those slow to learn an association, can be collected.
+
+m1Fig_ReversalCriterionComparison.png
+
+*3) variation among individuals is still present and similar to the variation detected with other criteria*
+As described above, when changing the criterion from 17 out of 20 to 10 out of 12, most individuals need 8 fewer trials. That also means that the differences among individuals, which might contain relevant information about variation among them, is preserved. When transforming performance with the two criteria to ranks, individuals are sorted essentially in the same order independent of which of the criteria is being used.
+
+*4) individuals can be assumed to have reliably learned the association*
+Based on the two criteria, we can extract the attractions that simulated individuals have formed toward both the rewarded and the unrewarded option at the point when they would be assumed to have passed. Comparing the two attractions, we can determine whether individuals are likely to have learned an association or not. Independent of the criterion, individuals generally have formed a preference for the rewarded option (89% of individuals favour the rewarded over the unrewarded option between 2.5 and 14 times). The lowest relative preference are very similar between the two options, suggesting that these are individuals who bias their choice even when there are only small differences in attraction, which again indicates that they have reliably learned the association. With the 10 out of 12 criterion, individuals would in the next trial on average choose the rewarded option with a probability of 76% (3 times more likely to choose rewarded over unrewarded option), whereas this is 84% with the 17 out of 20 criterion (5 times more likely).
+
+*5) the learned association means that individuals who move to the next reversal are unlikely to solve the reversed association by chance.*
+
+As expected based on the relative attraction scores at the end of the reversal (probability to choose the now rewarded option of 76% for 10/12 and 84% for 17/20), most individuals choose the now rewarded option in 4 or less out of the first 12 trials after a passing the previous reversal, lower than if they had formed no association and slightly higher than how individuals would perform that would have passed with the 17 out of 20 criterion (Fig m1Fig_ReversalCriterionAssociation.png). The probability that an individual would, after a reversal, directly reach the 10 out of 12 rule by chance is 0.001, and even these individuals will have reversed their association because they will have updated their attractions during the 12 trials.
+
+
+
+m1Fig_ReversalCriterionComparison.png
+
+m1Fig_ReversalCriterionAssociation.png
+
+
+```{r loadsimulatedreversaldata, eval=F}
+
+################################################################################################
+# Load previously simulated data from xpop
+################################################################################################
+
+# There are two sets of simulated data, with initial attractions towards both options set at 0.1, and eight different phi and four different lambda combinations
+simulatedreversaldata_attractionscores_1<-read.csv(url("https://raw.githubusercontent.com/corinalogan/grackles/master/Files/Preregistrations/gxpopbehaviorhabitat_SimulatedReversalData_Grackles_PhiLambda_Attraction02_Aug2021.csv"), header=T, sep=",", stringsAsFactors=F) 
+
+simulatedreversaldata_attractionscores_2<-read.csv(url("https://raw.githubusercontent.com/corinalogan/grackles/master/Files/Preregistrations/gxpopbehaviorhabitat_SimulatedReversalData_Grackles_PhiLambda_Attraction04_Aug2021.csv"), header=T, sep=",", stringsAsFactors=F) 
+
+# In both simulations, sites (which differ by the phi and lambda assigned to individuals) were counted from 1-16; for the second simulation we change this to 17-32
+simulatedreversaldata_attractionscores_2$Site<-simulatedreversaldata_attractionscores_2$Site+16
+
+# In both simulations, individuals were counted from 1-320; for the second population we change the ids to start at 321
+simulatedreversaldata_attractionscores_2$Bird_ID<-simulatedreversaldata_attractionscores_2$Bird_ID+320
+
+# We combine the two data sets for the further analyses
+library(dplyr)
+simulatedreversaldata_attractionscores<-bind_rows(simulatedreversaldata_attractionscores_1,simulatedreversaldata_attractionscores_2)
+
+
+################################################################################################
+# Preparing simulated data for analyses
+################################################################################################
+
+# In the simulations, trials were counted continuously for each bird. We now want to change this so that it restarts counting trials from 1 upward once a bird switches to reversal.
+
+for (birds in 1:length(unique(simulatedreversaldata_attractionscores$Bird_ID))){
+  currentbird<-unique(simulatedreversaldata_attractionscores$Bird_ID)[birds]
+  maximuminitial<-max(simulatedreversaldata_attractionscores[simulatedreversaldata_attractionscores$Bird_ID==currentbird & simulatedreversaldata_attractionscores$Reversal == "initial",]$Trial)
+  simulatedreversaldata_attractionscores[simulatedreversaldata_attractionscores$Bird_ID==currentbird & simulatedreversaldata_attractionscores$Reversal == "reversal",]$Trial<-simulatedreversaldata_attractionscores[simulatedreversaldata_attractionscores$Bird_ID==currentbird & simulatedreversaldata_attractionscores$Reversal == "reversal",]$Trial - maximuminitial
+}
+
+# We need to adjust the coding during the reversal learning so that "correct" now matches whether it is correct or not. 
+simulatedreversaldata_attractionscores[simulatedreversaldata_attractionscores$Choice==0,]$Choice<-2
+
+# To use the model to estimate the phi and lambda parameters, we first need to change the column names to match these to the specifications in the model: change Bird_ID  to id; change Reversal to Choice, change CorrectChoice to Correct, change Site to Expid
+
+colnames(simulatedreversaldata_attractionscores)<-c("counter","id","Session","Trial","Reversal","Choice","Correct","Phi_mean","Lambda_mean","Site","Phi_sd","Lambda_sd","ThisBirdsPhi","ThisBirdsLambda","Attraction1","Attraction2")
+
+
+# There are several simulated individuals who never reached any criterion during the initial learning phase (in xpop we worked with the criterion of 17 correct out of the 20 choices given as one block). We need to remove these individuals from the dataset
+
+birdswithreversal<-as.data.frame(simulatedreversaldata_attractionscores %>% group_by(id) %>% summarise(experiments=length(unique(Reversal))))
+birdswithreversal<-birdswithreversal[birdswithreversal$experiments==2,]
+simulatedreversaldata_attractionscores<-simulatedreversaldata_attractionscores[simulatedreversaldata_attractionscores$id %in% birdswithreversal$id,]
+
+# Next, we need to change the ids of the birds to be continuous again for easier further processing in loops
+simulatedreversaldata_attractionscores$id<-as.integer(as.factor(simulatedreversaldata_attractionscores$id))
+
+
+
+################################################################################################
+# 1) With the 10 correct out of 12 continuous trials criterion, individuals finish after fewer trials than with other criteria
+################################################################################################
+
+# We use the data from the first reversal to check after how many trials an individual reaches the 10 out of 12 trials solved correctly rule. We are using a sliding window, rather than assuming that the experiment is split into discrete blocks of trials. For this, we check for each individual at what trial number it first reached the criterion that it had correctly solved 10 out of the last 12 trials.
+
+# We create a matrix to store the output. We have two columns, one with the id of the individual the other with the number of trials they needed with this rule. Having this setup makes the comparison with the alternative rule easier. In addition, it will keep track of individuals that never reached the criterion
+trialnumber_initiallearning_reachedtwelveten<-matrix(ncol=2,nrow=length(unique(simulatedreversaldata_attractionscores$id)))
+
+# We loop through all unique individuals in the simulated dataset (626 individuals) and for each check when they reached the criterion - at that point we can stop ("break") and ignore the remaining performance. In the initial association learning, wrong choices are coded as 2 and correct choices as 1, so individuals reached the criterion if they chose 10*1 + 2*2 (equals 14) - so individuals reached criterion when the sum in choices across 12 trials is lower than 15.
+for (i in 1:length(unique(simulatedreversaldata_attractionscores$id))){
+  
+  thisindividualsinitaltrials<-simulatedreversaldata_attractionscores[simulatedreversaldata_attractionscores$id %in% i & simulatedreversaldata_attractionscores$Reversal %in% "initial",]
+  trialnumber_initiallearning_reachedtwelveten[i,1]<-i
+  for (k in 1:(nrow(thisindividualsinitaltrials)-12)){
+    if(sum(thisindividualsinitaltrials[c(k:(k+11)),]$Choice)<15){
+      trialnumber_initiallearning_reachedtwelveten[i,2]<-(k+11)
+      break}
+  }
+}
+
+# Next, we repeat this for the alternative rule of 17 out of 20 trials, again using a sliding window approach across trials (17*1 + 3*2 = 23).
+trialnumber_initiallearning_reachedseventeentwenty<-matrix(ncol=2,nrow=length(unique(simulatedreversaldata_attractionscores$id)))
+
+for (i in 1:length(unique(simulatedreversaldata_attractionscores$id))){
+  
+  thisindividualsinitaltrials<-simulatedreversaldata_attractionscores[simulatedreversaldata_attractionscores$id %in% i & simulatedreversaldata_attractionscores$Reversal %in% "initial",]
+  trialnumber_initiallearning_reachedseventeentwenty[i,1]<-i
+  for (k in 1:(nrow(thisindividualsinitaltrials)-20)){
+    if(sum(thisindividualsinitaltrials[c(k:(k+19)),]$Choice)<24){
+      trialnumber_initiallearning_reachedseventeentwenty[i,2]<-(k+19)
+      break}
+  }
+}
+
+# We now have the number of trials each individual would have needed with the two rules to reach the respective criterion. We can check whether individuals needed fewer trials with the 10 out of 12 rule than the 17 out of 20 rule
+twelvetenfaster<-trialnumber_initiallearning_reachedseventeentwenty[,2]-trialnumber_initiallearning_reachedtwelveten[,2]
+
+# The median improvement is 8 trials
+median(twelvetenfaster,na.rm=T)
+# This means that for most individuals the two rules are equally effective, but because the 10 out of 12 rule is restricted to 12 trials instead of 20 individuals need 8 fewer trials.
+
+
+# The same is seen in a regression
+summary(lm(trialnumber_initiallearning_reachedseventeentwenty[,2]~trialnumber_initiallearning_reachedtwelveten[,2]))
+# The intercept is 7 (similar to the mean listed above), and the slope is 1.3 (suggesting that deviations are slightly more when individuals need a large number of trials). 
+
+
+# We can also check whether counting trials continously, instead of grouping them into blocks, means that individuals finish sooner. In the original simulation, trials where stopped when birds reached the 17 out of 20 criterion based on blocks of 10 trials. We can check whether counting trials continously means they would have finished sooner:
+
+# We now get the number of trials they needed to pass the block criterion
+trialnumber_initiallearning_reachedseventeentwentyblock<-matrix(ncol=2,nrow=length(unique(simulatedreversaldata_attractionscores$id)))
+
+for (i in 1:length(unique(simulatedreversaldata_attractionscores$id))){
+  
+  thisindividualsinitaltrials<-simulatedreversaldata_attractionscores[simulatedreversaldata_attractionscores$id %in% i & simulatedreversaldata_attractionscores$Reversal %in% "initial",]
+  trialnumber_initiallearning_reachedseventeentwentyblock[i,1]<-i
+  trialnumber_initiallearning_reachedseventeentwentyblock[i,2]<-max(thisindividualsinitaltrials$Trial)
+
+  }
+
+plot(trialnumber_initiallearning_reachedseventeentwentyblock[,2]~trialnumber_initiallearning_reachedseventeentwenty[,2])
+abline(a=0,b=1)
+
+median(trialnumber_initiallearning_reachedseventeentwentyblock[,2]-trialnumber_initiallearning_reachedseventeentwenty[,2],na.rm=T)
+# 5 trials faster
+
+mean(trialnumber_initiallearning_reachedseventeentwentyblock[,2]-trialnumber_initiallearning_reachedseventeentwenty[,2],na.rm=T)
+# 7 trials faster
+
+
+################################################################################################
+# ii) With the 10 correct out of 12 continuous trials criterion, variation among individuals is still present and similar to the variation detected with other criteria
+################################################################################################
+
+
+# Changing the criterion from 17/20 to 10/12 generally means that most individuals need 8 fewer trials. That also means that the differences among individuals, which might contain relevant information, is preserved. We can see this when we plot their ranks in how many trials they need (individuals who need the same number of trials have the same rank; there are fewer ranks with the 10/12 criterion because large values do not appear)
+plot(as.integer(as.factor(trialnumber_initiallearning_reachedseventeentwenty[,2])) ~ as.integer(as.factor(trialnumber_initiallearning_reachedtwelveten[,2])),xlim=c(0,100),ylim=c(0,100))
+abline(a=0,b=1)
+
+
+
+
+################################################################################################
+# iii) With the 10 correct out of 12 continuous trials criterion, classification is less noisy because there is less of a chance of individuals missing the criterion repeatedly or even never reaching it, meaning that individuals slow to learn will be more reliably classified than with a different criterion
+################################################################################################
+
+
+# While the median improvement is 8 trials, the average improvement is 15 trials
+mean(twelvetenfaster,na.rm=T)
+# The average improvement is larger than the median because, first, there are no individuals who are faster with the 17 out of 20 rule, and secondly because there is a subset of individuals who need considerably fewer trials with the 10 out of 12 rule. We can see this in a plot:
+
+plot(trialnumber_initiallearning_reachedseventeentwenty[,2]~trialnumber_initiallearning_reachedtwelveten[,2],xlim=c(0,250),ylim=c(0,250),ann=F,bty="n")
+mtext("with 10 out of 12 criterion", side=1,line=3,cex=1.5)
+mtext("with 17 out of 20 criterion", side=2,line=2.5,cex=1.5)
+mtext("number of trials needed to pass reversal", side=3,line=1.25,cex=2)
+
+abline(a=0,b=1)
+
+segments(x0 = 12, y0 = 20, x1 = 100, y1 = 108, col = "red",lwd=2) 
+
+# m1Fig_ReversalCriterionComparison
+
+# With the 17 out of 20 rule, some individuals need a very large number of trials. This is presumably because with more trials there is a higher chance that an individual will deviate from their preference by chance, leading to them not reaching the criterion. Such individuals with very larger number of trials (>100) almost never occur with the 10 out 12 rule. There are also 65 individuals (out of the 626) with the 17 out of 20 criterion who never reached the criterion within the maximum 300 trials that were simulated - while there are only 4 with the 10 out of 12 criterion.
+sum(is.na(trialnumber_initiallearning_reachedseventeentwenty))
+sum(is.na(trialnumber_initiallearning_reachedtwelveten))
+
+# Accordingly, an additional benefit of choosing the 10/12 rule is that it is more likely that data for all individuals, even those slow to learn an association, can be collected.
+
+
+
+
+################################################################################################
+# iv) With the 10 correct out of 12 continuous trials criterion, individuals can be assumed to have reliably learned the association
+################################################################################################
+
+# The difference in attraction, the mechanisms of the assumed learning processes mean that changes in attraction scores are non-linear. New information that an option is rewarded leads initially to large increases in the attraction score towards that option, but each additional information about the reward leads to smaller and smaller additional increases; new information that a previously rewarded option is now unrewarded lead initially to large drops in the attraction score, but additional information that this option is no longer rewarded leads to smaller declines in the attraction score. This means that with the 10 out of 12 criterion, individuals might have already reached the part in the curve of change of attraction scores where there are large differences that have essentially plateaued. We can check this by assessing both the actual attraction scores at that trial when individuals would have reached the criterion, and how high their attraction score is in relation to the maximum attraction score they obtained during the experiment.
+
+
+simulatedreversaldata_attractionscores$relativeattraction<-simulatedreversaldata_attractionscores$Attraction1/simulatedreversaldata_attractionscores$Attraction2
+
+# We create a matrix to store the output. We have two columns, one with the id of the individual the other with the number of trials they needed with this rule. Having this setup makes the comparison with the alternative rule easier. In addition, it will keep track of individuals that never reached the criterion
+trialnumber_initiallearning_reachedtwelveten<-matrix(ncol=6,nrow=length(unique(simulatedreversaldata_attractionscores$id)))
+colnames(trialnumber_initiallearning_reachedtwelveten)<-c("Id","TrialAtReachingCriterion","AttractionScore","RelativeAttractionScore","AttractionOutOfMax","RelativeAttractionOutOfMax")
+trialnumber_initiallearning_reachedtwelveten<-as.data.frame(trialnumber_initiallearning_reachedtwelveten)
+
+# We loop through all unique individuals in the simulated dataset (626 individuals) and for each check when they reached the criterion - at that point we can stop ("break") and ignore the remaining performance. In the initial association learning, wrong choices are coded as 2 and correct choices as 1, so individuals reached the criterion if they chose 10*1 + 2*2 (equals 14) - so individuals reached criterion when the sum in choices across 12 trials is lower than 15.
+for (i in 1:length(unique(simulatedreversaldata_attractionscores$id))){
+  
+  thisindividualsinitaltrials<-simulatedreversaldata_attractionscores[simulatedreversaldata_attractionscores$id %in% i & simulatedreversaldata_attractionscores$Reversal %in% "initial",]
+  trialnumber_initiallearning_reachedtwelveten[i,1]<-i
+  for (k in 1:(nrow(thisindividualsinitaltrials)-12)){
+    if(sum(thisindividualsinitaltrials[c(k:(k+11)),]$Choice)<15){
+      trialnumber_initiallearning_reachedtwelveten[i,2]<-(k+11)
+      trialnumber_initiallearning_reachedtwelveten[i,3]<-thisindividualsinitaltrials[k+11,]$Attraction1
+      trialnumber_initiallearning_reachedtwelveten[i,4]<-thisindividualsinitaltrials[k+11,]$relativeattraction
+      trialnumber_initiallearning_reachedtwelveten[i,5]<-thisindividualsinitaltrials[k+11,]$Attraction1/max(thisindividualsinitaltrials$Attraction1,na.rm=T)
+      trialnumber_initiallearning_reachedtwelveten[i,6]<-thisindividualsinitaltrials[k+11,]$relativeattraction/max(thisindividualsinitaltrials$relativeattraction,na.rm=T)
+      break}
+  }
+}
+
+
+# Next, we repeat this for the alternative rule of 17 out of 20 trials, again using a sliding window approach across trials (17*1 + 3*2 = 23).
+trialnumber_initiallearning_reachedseventeentwenty<-matrix(ncol=6,nrow=length(unique(simulatedreversaldata_attractionscores$id)))
+colnames(trialnumber_initiallearning_reachedseventeentwenty)<-c("Id","TrialAtReachingCriterion","AttractionScore","RelativeAttractionScore","AttractionOutOfMax","RelativeAttractionOutOfMax")
+trialnumber_initiallearning_reachedseventeentwenty<-as.data.frame(trialnumber_initiallearning_reachedseventeentwenty)
+
+for (i in 1:length(unique(simulatedreversaldata_attractionscores$id))){
+  
+  thisindividualsinitaltrials<-simulatedreversaldata_attractionscores[simulatedreversaldata_attractionscores$id %in% i & simulatedreversaldata_attractionscores$Reversal %in% "initial",]
+  trialnumber_initiallearning_reachedseventeentwenty[i,1]<-i
+  for (k in 1:(nrow(thisindividualsinitaltrials)-20)){
+    if(sum(thisindividualsinitaltrials[c(k:(k+19)),]$Choice)<24){
+      trialnumber_initiallearning_reachedseventeentwenty[i,2]<-(k+19)
+      trialnumber_initiallearning_reachedseventeentwenty[i,3]<-thisindividualsinitaltrials[k+19,]$Attraction1
+      trialnumber_initiallearning_reachedseventeentwenty[i,4]<-thisindividualsinitaltrials[k+19,]$relativeattraction
+      trialnumber_initiallearning_reachedseventeentwenty[i,5]<-thisindividualsinitaltrials[k+19,]$Attraction1/max(thisindividualsinitaltrials$Attraction1,na.rm=T)
+      trialnumber_initiallearning_reachedseventeentwenty[i,6]<-thisindividualsinitaltrials[k+19,]$relativeattraction/max(thisindividualsinitaltrials$relativeattraction,na.rm=T)
+      break}
+  }
+}
+
+
+# We can plot the relative attraction scores (prefer rewarded option relative to unrewarded option) at the points where each individual reached either the 10/12 or the 17/20 criterion. 
+plot(trialnumber_initiallearning_reachedtwelveten$RelativeAttractionScore~trialnumber_initiallearning_reachedseventeentwenty$RelativeAttractionScore,ylim=c(0,50),xlim=c(0,50))
+abline(a=0,b=1)
+library(rethinking)
+PI(trialnumber_initiallearning_reachedtwelveten[is.na(trialnumber_initiallearning_reachedtwelveten$RelativeAttractionScore)==F,]$RelativeAttractionScore)
+PI(trialnumber_initiallearning_reachedseventeentwenty[is.na(trialnumber_initiallearning_reachedseventeentwenty$RelativeAttractionScore)==F,]$RelativeAttractionScore)
+
+# We can see that (i) the lowest relative attraction scores are very similar, suggesting that independent of the criterion, individuals generally have formed a preference for the rewarded option (89% of the values lie between 2.5 and 14); and that (ii) for most individuals, the relative attraction scores are very similar for the two criteria.
+
+
+# We can convert the relative attraction scores into the probability that an individual will choose the rewarded option in the trial following the cut-off by converting it back with the respective phi and lambda values
+attractionlightgrey_twelveten<-median(trialnumber_initiallearning_reachedtwelveten$AttractionScore,na.rm=T)
+attractiondarkgrey_twelveten<-(median(trialnumber_initiallearning_reachedtwelveten$AttractionScore,na.rm=T))/(median(trialnumber_initiallearning_reachedtwelveten$RelativeAttractionScore,na.rm=T))
+bird_lambda<-median(simulatedreversaldata_attractionscores$ThisBirdsLambda)
+probability_choose_lightgrey_tenoftwelve<-exp(bird_lambda*attractionlightgrey_twelveten)/(exp(bird_lambda*attractionlightgrey_twelveten)+exp(bird_lambda*attractiondarkgrey_twelveten)  )
+
+attractionlightgrey_seventeentwenty<-median(trialnumber_initiallearning_reachedseventeentwenty$AttractionScore,na.rm=T)
+attractiondarkgrey_seventeentwenty<-(median(trialnumber_initiallearning_reachedseventeentwenty$AttractionScore,na.rm=T))/(median(trialnumber_initiallearning_reachedseventeentwenty$RelativeAttractionScore,na.rm=T))
+bird_lambda<-median(simulatedreversaldata_attractionscores$ThisBirdsLambda)
+probability_choose_lightgrey_seventeenoftwenty<-exp(bird_lambda*attractionlightgrey_seventeentwenty)/(exp(bird_lambda*attractionlightgrey_seventeentwenty)+exp(bird_lambda*attractiondarkgrey_seventeentwenty)  )
+
+
+probability_choose_lightgrey_tenoftwelve
+# 0.7612336
+probability_choose_lightgrey_seventeenoftwenty
+# 0.839137
+
+# While individuals are more likely to choose the rewarded option if they needed the 17/20 criterion to pass, also with the 10/12 criterion individuals show a clear preference for the rewarded option
+
+
+################################################################################################
+# iv) this learned association means that individuals who move to the next reversal with this criteria are unlikely to solve the reversed association by chance.
+################################################################################################
+
+
+# We can simulate the performance in the first 12 trials after switching the rewarded option for sets of 10000 individuals who either have no learned association, have been stopped after the 10/12 rule, or stopped after the 17/20 rule.
+choselightgrey_seventeenoftwenty<-matrix(nrow=10000,ncol=12)
+choselightgrey_seventeenoftwenty<-as.data.frame(choselightgrey_seventeenoftwenty)
+
+for(i in 1:10000){
+  for(j in 1:12)
+choselightgrey_seventeenoftwenty[i,j]<-if(runif(1,0,1)<probability_choose_lightgrey_seventeenoftwenty){1} else{0}
+}
+
+# We can plot how often these individuals choose the now rewarded option in the first 12 trials: individuals with no learned associations are in the grey distribution, individuals with the 10/12 rule in the blue distribution, and individuals with the 17/20 rule are in the red distribution.  
+plot(NA,xlim=c(1,12),ylim=c(0,0.3))
+lines(dbinom(1:12,12,1-probability_choose_lightgrey_seventeenoftwenty)~c(1:12),col="red")
+lines(dbinom(1:12,12,1-probability_choose_lightgrey_tenoftwelve)~c(1:12),col="blue")
+lines(dbinom(1:12,12,0.5)~c(1:12),col="grey")
+
+# As expected based on the relative attraction scores (probability to choose the now rewarded option of 24% for 10/12 and 16% for 17/20), most individuals choose the now rewarded option in less than 6 out of the first 12 trials, whereas that is the mean for individuals with no association
+
+
+# We can make this more explicit and incorporate that individuals will also change their association as they learn that the rewarded option has switched
+#assume that a bird made 10/12 choices correct
+attractiondarkgrey<-0.388985
+attractionlightgrey<-0.08549744
+
+bird_phi<-median(simulatedreversaldata_attractionscores$ThisBirdsPhi)
+
+# We give the individual 12 trials. We assume that at first they chose the previously rewarded option (dark grey) and switch to the now rewarded option halfway through
+attractiondarkgrey<-(1-bird_phi)*attractiondarkgrey+bird_phi*0
+attractiondarkgrey<-(1-bird_phi)*attractiondarkgrey+bird_phi*0
+attractiondarkgrey<-(1-bird_phi)*attractiondarkgrey+bird_phi*0
+attractionlightgrey<-(1-bird_phi)*attractionlightgrey+bird_phi*1
+attractiondarkgrey<-(1-bird_phi)*attractiondarkgrey+bird_phi*0
+attractiondarkgrey<-(1-bird_phi)*attractiondarkgrey+bird_phi*0
+attractionlightgrey<-(1-bird_phi)*attractionlightgrey+bird_phi*1
+attractionlightgrey<-(1-bird_phi)*attractionlightgrey+bird_phi*1
+attractionlightgrey<-(1-bird_phi)*attractionlightgrey+bird_phi*1
+attractiondarkgrey<-(1-bird_phi)*attractiondarkgrey+bird_phi*0
+attractionlightgrey<-(1-bird_phi)*attractionlightgrey+bird_phi*1
+attractionlightgrey<-(1-bird_phi)*attractionlightgrey+bird_phi*1
+
+probability_choose_lightgrey_twelvetrials<-exp(bird_lambda*attractionlightgrey)/(exp(bird_lambda*attractionlightgrey)+exp(bird_lambda*attractiondarkgrey)  )
+
+
+
+
+attractionlightgrey_seventeentwenty
+
+attractiondarkgrey<-attractionlightgrey_seventeentwenty
+attractionlightgrey<-attractiondarkgrey_seventeentwenty
+
+bird_phi<-median(simulatedreversaldata_attractionscores$ThisBirdsPhi)
+
+# We give the individual 12 trials. We assume that at first they chose the previously rewarded option (dark grey) and switch to the now rewarded option halfway through
+attractiondarkgrey<-(1-bird_phi)*attractiondarkgrey+bird_phi*0
+attractiondarkgrey<-(1-bird_phi)*attractiondarkgrey+bird_phi*0
+attractiondarkgrey<-(1-bird_phi)*attractiondarkgrey+bird_phi*0
+attractionlightgrey<-(1-bird_phi)*attractionlightgrey+bird_phi*1
+attractiondarkgrey<-(1-bird_phi)*attractiondarkgrey+bird_phi*0
+attractiondarkgrey<-(1-bird_phi)*attractiondarkgrey+bird_phi*0
+attractionlightgrey<-(1-bird_phi)*attractionlightgrey+bird_phi*1
+attractionlightgrey<-(1-bird_phi)*attractionlightgrey+bird_phi*1
+attractionlightgrey<-(1-bird_phi)*attractionlightgrey+bird_phi*1
+attractiondarkgrey<-(1-bird_phi)*attractiondarkgrey+bird_phi*0
+attractionlightgrey<-(1-bird_phi)*attractionlightgrey+bird_phi*1
+attractionlightgrey<-(1-bird_phi)*attractionlightgrey+bird_phi*1
+
+probability_choose_lightgrey_twentytrials<-exp(bird_lambda*attractionlightgrey)/(exp(bird_lambda*attractionlightgrey)+exp(bird_lambda*attractiondarkgrey)  )
+
+
+
+# While the learning during the 12 trials changes what they choose compared to what they would choose just based on their attractions at the end of the previous phase (black line is shifted up compared to the blue line), this is still not sufficient for them to pass the 10/12 rule
+plot(NA,xlim=c(0,12),ylim=c(0,0.3),bty="n",ann=F)
+lines(dbinom(0:12,12,0.5)~c(0:12),col="grey",lwd=2)
+lines(dbinom(0:12,12,probability_choose_lightgrey_twelvetrials)~c(0:12),col="red",lwd=2)
+lines(dbinom(0:12,12,probability_choose_lightgrey_twentytrials)~c(0:12),col="black",lwd=2)
+mtext("Choice of the newly rewarded option in the first 12 trials after a reversal", side=1,line=3,cex=1.25)
+mtext("Percentage of individuals", side=2,line=2.5,cex=1.5)
+mtext("Strength of association at a reversal with different criteria", side=3,line=1.25,cex=1.5)
+legend(x="topright",legend=c(lty1="17 / 20",lty1="10 / 12",lty3="random"),lwd=c(2,2,2),col=c("black","red","grey"),cex=1,bty="n")
+
+
+dbinom(1:12,12,probability_choose_lightgrey_twelvetrials)[10]
+# The probability that a bird would, after a reversal, reach the 10 out of 12 rule by chance is 0.001
+
+
+
+
+
+```
+
+
+## Determining after which reversal an individual has completed the experiment: serial reversal passing criterion
+
+
 
 ## Design 1 - Reversal learning experiment in visual isolation
 
