@@ -1917,7 +1917,7 @@ lines(density(rnorm(10000,number_before*(changenumber*1),sd=2)),lwd=2,col="red")
 #before
 numberbefore <- round(rnorm(N_ind,mean=6.5,sd=2),2) #number of foods taken, 2 means 2 decimal points
 numberbefore[numberbefore<1]<-0 #this needs to be a minimum of 0 bc an individual can never take negative food
-changenumber <- rnorm(N_ind, mean=(13-numberbefore)-4.5,sd=2) #if had a large number before, have a smaller change relative to the after condition. Subtract 4.5 to have a change of 2 food types (13-6.5 = 6.5-4.5 = 2)
+changenumber <- rnorm(N_ind, mean=(13-numberbefore)*1,sd=2) #if had a large number before, have a smaller change relative to the after condition. Multiply by 1 to have a change of 6.5 food types (13-6.5 = 6.5*1 = 6.5)
 
 #after
 numberafter <- round(numberbefore+rnorm(N_ind,mean=changenumber,sd=2),2)
@@ -1936,13 +1936,13 @@ abline(0,1)
 # We now set our range of likely sample sizes, from a minimum of 9 individuals per population to a maximum of 60 individuals per population. We draw repeated samples of individuals of that size from each of the 5 populations, during each repetition we draw two samples from each population (so we can infer the false negative rate of wrongly estimating that two samples come from a different population even though they were taken from the sample population). This means we have 10 repetitions for each of the 5 sample sizes and each of the 6 changeprops. So 10*6 changeprops (=60) for each of the 5 sample sizes, resulting in a total length of samplesizes of 300
 samplesizes<-c(10,20,30,40,60) #c(10,20,30,40,60)
 
-# Set the means you want to compare. To get a certain mean change in number of microhabitats between before and after, set the subtractor in the changenumber mean (as above): a small subtractor means a large change
+# Set the means you want to compare. To get a certain mean change in number of microhabitats between before and after, set the multiplier in the changenumber mean: a large multiplier means a large change
 meanchangenumber1<-1 #individuals will on average take 5 more foods after the experiment ((13-numberbefore)*1 = push everyone to 13 - 1.5  = 5)
-meanchangenumber2<-0.5 # individuals will on average take 4 more foods after the experiment (13-6.5 = 6.5 - 2.5  = 4)
-meanchangenumber3<-0.333 #individuals will on average take 3 more foods after the experiment (13-6.5 = 6.5 - 3.5  = 3)
-meanchangenumber4<-0.17 # individuals will on average take 2 more foods after the experiment (13-6.5 = 6.5 - 4.5  = 2)
-meanchangenumber5<-0.08 # individuals will on average take 1 more food after the experiment (13-6.5 = 6.5 - 5.5  = 1)
-meanchangenumber6<-0 # individuals will on average take 0 more foods after the experiment (13-6.5 = 6.5 - 6.5  = 0)
+meanchangenumber2<-0.5 # individuals will on average take 4 more foods after the experiment ((13-numberbefore)*0.5  = 4)
+meanchangenumber3<-0.333 #individuals will on average take 3 more foods after the experiment ((13-numberbefore)*0.33  = 3)
+meanchangenumber4<-0.17 # individuals will on average take 2 more foods after the experiment ((13-numberbefore)*0.17  = 2)
+meanchangenumber5<-0.08 # individuals will on average take 1 more food after the experiment ((13-numberbefore)*0.08 = 1)
+meanchangenumber6<-0 # individuals will on average take 0 more foods after the experiment ((13-numberbefore)*0  = 0)
 changenumbervariants<-c(meanchangenumber1,meanchangenumber2,meanchangenumber3,meanchangenumber4,meanchangenumber5,meanchangenumber6) #for false negatives
 #changenumbervariants<-c(0) #for false positives
 #changenumbervariants<-c(meanchangeprop6) #for showing differences
@@ -1980,7 +1980,7 @@ for (samplesize in 1:length(samplesizes)) {
         numberbefore <- round(rnorm(N_ind,mean=currentnumber_before,sd=1.5),0) #number of habitats used, 2 means 2 decimal points
         numberbefore[numberbefore<1]<-1 #this needs to be a minimum of 1 bc an individual can never live in less than 1 habitat#
         
-        changenumber <- rnorm(N_ind, mean=(13-numberbefore)*(currentchangenumber),d=2) #change this SD to explore the boundaries of individual variation in their response (in terms of the success measure) to the flexibility manipulation. We explored SD=1 and SD=2
+        changenumber <- rnorm(N_ind, mean=(13-numberbefore)*(currentchangenumber),sd=1) #change this SD to explore the boundaries of individual variation in their response (in terms of the success measure) to the flexibility manipulation. We explored SD=1 and SD=2
 
         #AFTER manipulation
         numberafter <- round(numberbefore+changenumber,0)
@@ -2016,7 +2016,7 @@ post <- extract.samples(sjf)
   # enter all of the results into the data sheet
     simresults[counter,]$n <- N_ind
     simresults[counter,]$changenumber_mean <- (13-currentnumber_before)*(currentchangenumber)
-    simresults[counter,]$changenumber_sd <- 2 #change this to match the SD in changenumber
+    simresults[counter,]$changenumber_sd <- 1 #change this to match the SD in changenumber
     simresults[counter,]$repetition <- repetition
     simresults[counter,]$number_before <- currentnumber_before
     simresults[counter,]$proportion_estimates_below_zero <- sum(post$beta<0)/2000
