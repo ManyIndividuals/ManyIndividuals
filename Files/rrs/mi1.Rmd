@@ -1937,12 +1937,12 @@ abline(0,1)
 samplesizes<-c(10,20,30,40,60) #c(10,20,30,40,60)
 
 # Set the means you want to compare. To get a certain mean change in number of microhabitats between before and after, set the subtractor in the changenumber mean (as above): a small subtractor means a large change
-meanchangenumber1<-1.5 #individuals will on average take 5 more foods after the experiment (13-6.5 = 6.5 - 1.5  = 5)
-meanchangenumber2<-2.5 # individuals will on average take 4 more foods after the experiment (13-6.5 = 6.5 - 2.5  = 4)
-meanchangenumber3<-3.5 #individuals will on average take 3 more foods after the experiment (13-6.5 = 6.5 - 3.5  = 3)
-meanchangenumber4<-4.5 # individuals will on average take 2 more foods after the experiment (13-6.5 = 6.5 - 4.5  = 2)
-meanchangenumber5<-5.5 # individuals will on average take 1 more food after the experiment (13-6.5 = 6.5 - 5.5  = 1)
-meanchangenumber6<-6.5 # individuals will on average take 0 more foods after the experiment (13-6.5 = 6.5 - 6.5  = 0)
+meanchangenumber1<-1 #individuals will on average take 5 more foods after the experiment ((13-numberbefore)*1 = push everyone to 13 - 1.5  = 5)
+meanchangenumber2<-0.5 # individuals will on average take 4 more foods after the experiment (13-6.5 = 6.5 - 2.5  = 4)
+meanchangenumber3<-0.333 #individuals will on average take 3 more foods after the experiment (13-6.5 = 6.5 - 3.5  = 3)
+meanchangenumber4<-0.17 # individuals will on average take 2 more foods after the experiment (13-6.5 = 6.5 - 4.5  = 2)
+meanchangenumber5<-0.08 # individuals will on average take 1 more food after the experiment (13-6.5 = 6.5 - 5.5  = 1)
+meanchangenumber6<-0 # individuals will on average take 0 more foods after the experiment (13-6.5 = 6.5 - 6.5  = 0)
 changenumbervariants<-c(meanchangenumber1,meanchangenumber2,meanchangenumber3,meanchangenumber4,meanchangenumber5,meanchangenumber6) #for false negatives
 #changenumbervariants<-c(0) #for false positives
 #changenumbervariants<-c(meanchangeprop6) #for showing differences
@@ -1977,20 +1977,20 @@ for (samplesize in 1:length(samplesizes)) {
         
         #BEFORE manipulation
         #number of habitats used, 2 means 2 decimal points. Assume baseline number is 2, 3, or 4
-        numberbefore <- round(rnorm(N_ind,mean=currentnumber_before,sd=1.5),2) #number of habitats used, 2 means 2 decimal points
-        numberbefore[numberbefore<1]<-1 #this needs to be a minimum of 1 bc an individual can never live in less than 1 habitat
+        numberbefore <- round(rnorm(N_ind,mean=currentnumber_before,sd=1.5),0) #number of habitats used, 2 means 2 decimal points
+        numberbefore[numberbefore<1]<-1 #this needs to be a minimum of 1 bc an individual can never live in less than 1 habitat#
         
-        changenumber <- rnorm(N_ind, mean=(13-numberbefore)-currentchangenumber,sd=2) #change this SD to explore the boundaries of individual variation in their response (in terms of the success measure) to the flexibility manipulation. We explored SD=1 and SD=2
+        changenumber <- rnorm(N_ind, mean=(13-numberbefore)*(currentchangenumber),d=2) #change this SD to explore the boundaries of individual variation in their response (in terms of the success measure) to the flexibility manipulation. We explored SD=1 and SD=2
 
         #AFTER manipulation
-        numberafter <- round(numberbefore+changenumber,2)
+        numberafter <- round(numberbefore+changenumber,0)
         numberafter[numberafter<1]<-1 #this needs to be a minimum of 1 bc an individual can never live in less than 1 habitat
   
         ### run a STAN model to see whether the before and after proportions are estimated to be different from each other
         #sets up the data sheet with the simulated data that the model will run on
       dat <- list(
-    foods = standardize(c(numberbefore,numberafter)), #compare before and after
-    before = c(rep(1,N_ind),rep(2,N_ind)), #1 refers to before and 2 to after
+    foods = c(numberbefore,numberafter), #compare before and after
+    before = c(rep(0,N_ind),rep(1,N_ind)), #1 refers to before and 2 to after
     ind = rep(1:N_ind,2) #go through all individuals twice because there are observations from before and after for each
 )
 
@@ -2015,7 +2015,7 @@ post <- extract.samples(sjf)
 
   # enter all of the results into the data sheet
     simresults[counter,]$n <- N_ind
-    simresults[counter,]$changenumber_mean <- 6.5 - currentchangenumber
+    simresults[counter,]$changenumber_mean <- (13-currentnumber_before)*(currentchangenumber)
     simresults[counter,]$changenumber_sd <- 2 #change this to match the SD in changenumber
     simresults[counter,]$repetition <- repetition
     simresults[counter,]$number_before <- currentnumber_before
@@ -2038,7 +2038,7 @@ library(cmdstanr)
 set_ulam_cmdstan(TRUE) #makes it so ulam always runs with cmdstan
 
 #load the data sheet that was made from the simulation in the previous R chunk
-d <- read.csv("https://raw.githubusercontent.com/ManyIndividuals/ManyIndividuals/main/Files/rrs/mi1simresultsjayshabitat.csv", header = TRUE, sep = ",", stringsAsFactors = FALSE)
+d <- read.csv("https://raw.githubusercontent.com/ManyIndividuals/ManyIndividuals/main/Files/rrs/mi1simresultsjaysforaging.csv", header = TRUE, sep = ",", stringsAsFactors = FALSE)
 #head(d)
 
 #make a plot first for sd=2
@@ -2231,7 +2231,7 @@ legend(x="topright",legend=c(lty2="10",lty1="20",lty3="30",lty2="40",lty3="60"),
 # Axis labels (side 1=x axis, side 2=y axis)
 mtext("Sample size",side=3,line=-0.7,at=4.9)
 mtext("B. SD=1",side=3,line=1,at=0.5,cex=1.3)
-mtext("Mean change in number of habitats used before vs after",side=1,line=3, cex=1)
+mtext("Mean change in number of foods taken before vs after",side=1,line=3, cex=1)
 par(op)
 
 #94% of the posterior mass is above zero for a 2 or larger mean change in number of habitats used between before and after when the sample size is 20
@@ -2308,6 +2308,123 @@ mjf <- ulam(
 
 ###### Run this model on the actual data
 
+```{r toudispersaltiming, eval=F}
+#Dispersal age: Age in days at which dispersal (defined as leaving the natal territory on three consecutive days) is first detected. If a bird does not disperse, the maximum age at the study end (i.e. 112 days) will be assigned. For the analysis, we will invert this as 112 - days at dispersal to make it so those who never dispersed receive a 0 value
+
+library(rethinking)
+library(cmdstanr)
+set_ulam_cmdstan(TRUE) #makes it so ulam always runs with cmdstan
+
+ 
+# set up a simulation
+prob_notdisperse <- 0.1 # 20% of individuals
+rate_disperse <- 60    # average 1 dispersal per day
+# sample until the end of the study period 112 days
+N <- 112
+# simulate days dispersed
+notdisperse <- rbinom( 20 , 1 , prob_notdisperse )
+# simulate manuscripts completed
+dispersalday <- (1-notdisperse)*rpois( 20 , rate_disperse ) #n=20 individuals
+
+#visualize (code from p 378 McElreath 2020)
+simplehist( dispersalday , xlab="age at dispersal (days)" , lwd=4 )
+zeros_notdisperse <- sum(notdisperse)
+zeros_disperse <- sum(dispersalday==0 & notdisperse==0)
+zeros_total <- sum(dispersalday==0)
+lines( c(0,0) , c(zeros_disperse,zeros_total) , lwd=4 , col=rangi2 )
+
+
+# Start with 20 control birds
+prob_notdisperse <- 0.2 # 20% of individuals
+
+# simulate days dispersed
+# First define which of the 20 individuals does and does not disperse, this will give  alist of 20 values of either 0 or 1 with the probability as set above
+notdisperse <- rbinom( 20 , 1 , prob_notdisperse )
+# next we simulate how many days ago individuals dispersed. We multiply this by the 0/1 values from before to set the nondispersers to zero. We are using a gamma distribution to get a wider spread of values across the whole possible dispersal period which is skewed left
+dispersalday <- (1-notdisperse)*rgamma( 20 ,1,0.05 ) #n=20 individuals, mean age at dispersal is at 20 days (1 divided by 0.05) before the cut-off (112-20 = 92), values range between 0 and 60 days before cut-off #rpois
+dispersalday<-  round(dispersalday,0)
+
+#visualize
+simplehist( dispersalday , xlab="112 days - days old at dispersal" , lwd=4 )
+zeros_notdisperse <- sum(notdisperse)
+zeros_disperse <- sum(dispersalday==0 & notdisperse==0)
+zeros_total <- sum(dispersalday==0)
+lines( c(0,0) , c(zeros_disperse,zeros_total) , lwd=4 , col=rangi2 )
+
+
+# Next the 20 manipulated birds: we assume that manipulated birds are twice as likely to disperse, and that they disperse 10 days sooner than control birds
+prob_notdisperse_manipulated <- 0.1 # only 10% of individuals remain
+
+# simulate days dispersed
+# First define which of the 20 individuals does and does not disperse, this will give  alist of 20 values of either 0 or 1 with the probability as set above
+notdisperse_manipulated <- rbinom( 20 , 1 , prob_notdisperse_manipulated )
+# next we simulate how many days ago individuals dispersed. We multiply this by the 0/1 values from before to set the nondispersers to zero. We are using a gamma distribution to get a wider spread of values across the whole possible dispersal period which is skewed left
+dispersalday_manipulated <- (1-notdisperse_manipulated)*rgamma( 20 ,1,0.033333 ) #n=20 individuals, mean age at dispersal is at 30 days (1 divided by 0.05) before the cut-off (112-30 = 82), values range between 0 and 100 days before cut-off #rpois
+dispersalday_manipulated<-  round(dispersalday_manipulated,0)
+
+
+#visualize
+simplehist( dispersalday_manipulated , xlab="112 days - days old at dispersal" , lwd=4 )
+zeros_notdisperse_manipulated <- sum(notdisperse_manipulated)
+zeros_disperse_manipulated <- sum(dispersalday_manipulated==0 & notdisperse_manipulated==0)
+zeros_total_manipulated <- sum(dispersalday_manipulated==0)
+lines( c(0,0) , c(zeros_disperse_manipulated,zeros_total_manipulated) , lwd=4 , col=rangi2 )
+
+
+
+
+# combined simulated data for STAN model
+
+dat <- list(
+    days = c(as.numeric(dispersalday),as.numeric(dispersalday_manipulated)),
+    condition = c(rep(1,20),rep(2,20)) # 1 = control group, 2 = manipulated group
+)
+
+mt <- ulam(
+    alist(
+       days|days>0 ~ custom(log1m( p )+gamma_lpdf(days|mu,scale)),
+       days|days==0 ~  custom(log_mix(p,0,exp(gamma_lpdf(0|mu,scale) ))),          
+        logit(p) <- ap[condition], #ap=probability of zero
+        mu <- al[condition], #al=mean of poisson
+        ap[condition] ~ dnorm( -1.5 , 1 ), #nudge the prior for the probability of not-dispersing so that there is more mass below 0.5, assuming that only a minority of birds will not disperse
+        al[condition] ~ dnorm( 1 , 10 ),
+       scale~dnorm(0,5)
+        ) , data=dat , chains=4 , cores=4 , log_lik=TRUE , cmdstan = TRUE)
+
+
+
+# load data sheet
+d <- read.csv(url(""), header=T, sep=",", stringsAsFactors=F)
+
+# Set up the data sheet: condition = manipulated or control, habitat = inside or outside Zealandia, 
+dat <- list(
+    days = as.numeric(as.factor(d$Habitat)),
+    t = d$Condition,
+    parentpairid = d$ParentPairID
+)
+
+# THE MODEL (p.377 for zero inflated poisson, 448 for binomial distribution - McElreath 2020)
+#probability that a juv does not disperse or does disperse and what is the probability on each day that they will disperse. Zero values (still on parent's territory on day 112) will be a mixture of birds who will remain on their parents territory and those who have not yet dispersed, but will soon and the 112 cut off doesn't detect this
+mt <- ulam(
+    alist(
+       days ~ dzipois( p , lambda ),
+        logit(p) <- ap[condition], #ap=probability of zero
+        log(lambda) <- al[condition], #al=mean of poisson
+        ap[condition] ~ dnorm( -1.5 , 1 ), #nudge the prior for the probability of not-dispersing so that there is more mass below 0.5, assuming that only a minority of birds will not disperse
+        al[condition] ~ dnorm( 1 , 0.5 )
+        ) , data=dat , chains=4 , cores=4 , log_lik=TRUE , cmdstan = TRUE)
+
+#model output: pay attention to before (g1) and after (g2)
+#precis(mt,depth=2)
+
+#run a CONTRAST to determine whether there is a difference between before (g1) and after (g2). Yes if all values on one side of zero
+post <- extract.samples(mt)
+diff_g <- post$g[,1] - post$g[,2] #log-odds difference p.341
+diff_p <- inv_logit(post$g[,1]) - inv_logit(post$g[,2]) #on the probability scale p.341
+precis( list( diff_g=diff_g , diff_p=diff_p ) )
+```
+
+
 ```{r toudispersalhabitat, eval=F}
 #Dispersal habitat: Location of bird at the end of study (or at point of death), Zealandia (0) or areas outside the sanctuary (1)
 
@@ -2321,18 +2438,14 @@ d <- read.csv(url(""), header=T, sep=",", stringsAsFactors=F)
 # Set up the data sheet: condition = manipulated or control, habitat = inside or outside Zealandia, 
 dat <- list(
     response = as.numeric(as.factor(d$Habitat)),
-    tid = d$Condition,
-    fledglingsex = d$Sex,
-    caregiversex = d$Sex,
-    hatchdate = as.numeric(d$HatchDate),
-    season = as.factor(d$Season),
+    t = d$Condition,
     parentpairid = d$ParentPairID
 )
 
 # THE MODEL (p.441 for normal distribution, 448 for binomial distribution - McElreath 2020)
 mt <- ulam(
     alist(
-        y ~ normal( mu , sigma ),
+        response ~ normal( mu , sigma ),
         mu <- a[ind] + b[ind]*t + c*t,
         a ~ normal(70,40),
         b ~ normal(0,20),
