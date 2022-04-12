@@ -1470,12 +1470,12 @@ N_ind <- 20 #number of individuals tested
 number_before<-4.5 #number of habitats used per bird in the before condition
 changenumber<-1.5 #the difference in the number habitats used between the before and after conditions
 plot(density(rnorm(10000,number_before,sd=1.5)),lwd=2,xlim=c(0,18),ylim=c(0,0.3)) #A sample size of 10k individuals. An SD of 2 (when the mean before is 5) encompasses all of the range of numbers of habitats we expect to find (0-10) so it would be the largest SD we would expect and thus the most conservative sd to use in the simulations
-lines(density(rnorm(10000,number_before*(changenumber*1),sd=1.5)),lwd=2,col="red") #the after condition. Should be able to tell the difference when changenumber is at least 1.5 and the SD is at least 1.5 (and number_before is 5)
+lines(density(rnorm(10000,number_before*(changenumber*1),sd=2)),lwd=2,col="red") #the after condition. Should be able to tell the difference when changenumber is at least 1.3 and the SD is at least 2 (and number_before is 4.5)
 
 #before
 numberbefore <- round(rnorm(N_ind,mean=4.5,sd=1.5),2) #number of habitats used, 2 means 2 decimal points
 numberbefore[numberbefore<1]<-1 #this needs to be a minimum of 1 bc an individual can never live in less than 1 habitat
-changenumber <- rnorm(N_ind, mean=(10-numberbefore)-3.5,sd=1.5) #if had a large number before, have a smaller change relative to the after condition. Subtract 3.5 to have a change of 2 habitats (10-4.5=5.5-3.5=2)
+changenumber <- rnorm(N_ind, mean=(10-numberbefore)*1,sd=2)  #if had a large number before, have a smaller change relative to the after condition. Subtract 3.5 to have a change of 2 habitats (10-4.5=5.5-3.5=2)
 
 #after
 numberafter <- round(numberbefore+rnorm(N_ind,mean=changenumber,sd=2),2)
@@ -1494,16 +1494,14 @@ lines(density(numberafter),lwd=2,col="red") #the after condition. Should be able
 # We now set our range of likely sample sizes, from a minimum of 9 individuals per population to a maximum of 60 individuals per population. We draw repeated samples of individuals of that size from each of the 5 populations, during each repetition we draw two samples from each population (so we can infer the false negative rate of wrongly estimating that two samples come from a different population even though they were taken from the sample population). This means we have 10 repetitions for each of the 5 sample sizes and each of the 6 changeprops. So 10*6 changeprops (=60) for each of the 5 sample sizes, resulting in a total length of samplesizes of 300
 samplesizes<-c(10,20,30,40,60) #c(10,20,30,40,60)
 
-# Set the means you want to compare. To get a certain mean change in number of microhabitats between before and after, set the subtractor in the changenumber mean (as above): a small subtractor means a large change
-meanchangenumber1<-0.5 #individuals will on average use 5 more habitats after the experiment (10-4.5 = 5.5 - 0.5  = 5)
-meanchangenumber2<-1.5 # individuals will on average use 4 more habitats after the experiment (10-4.5 = 5.5 - 1.5  = 4)
-meanchangenumber3<-2.5 #individuals will on average use 3 more habitats after the experiment (10-4.5 = 5.5 - 2.5  = 3)
-meanchangenumber4<-3.5 # individuals will on average use 2 more habitats after the experiment (10-4.5 = 5.5 - 3.5  = 2)
-meanchangenumber5<-4.5 # individuals will on average use 1 more habitats after the experiment (10-4.5 = 5.5 - 4.5  = 1)
-meanchangenumber6<-5.5 # individuals will on average use 0 more habitats after the experiment (10-4.5 = 5.5 - 5.5  = 0)
+# Set the means you want to compare. To get a certain mean change in number of microhabitats between before and after, set the multiplier in the changenumber mean: a large multiplier means a large change
+meanchangenumber1<-1 #individuals will on average use 4.5 more habitats after the experiment ((10-numberbefore)*(4.5/4.5) = push everyone to 10 meaning that the lowest individuals will increase by 9 and the highest by 0 food items. Therefore, the average is 4.5 food items
+meanchangenumber2<-0.89 # 4 more habitats ((10-numberbefore)*(4/4.5)  = 4)
+meanchangenumber3<-0.67 #3 more habitats ((10-numberbefore)*(3/4.5)  = 3)
+meanchangenumber4<-0.44 # 2 more habitats ((10-numberbefore)*(2/4.5)  = 2)
+meanchangenumber5<-0.22 # 1 more habitat ((10-numberbefore)*(1/4.5) = 1)
+meanchangenumber6<-0 # 0 more habitats ((10-numberbefore)*(0/4.5)  = 0). 0 for false positives
 changenumbervariants<-c(meanchangenumber1,meanchangenumber2,meanchangenumber3,meanchangenumber4,meanchangenumber5,meanchangenumber6) #for false negatives
-#changenumbervariants<-c(0) #for false positives
-#changenumbervariants<-c(meanchangeprop6) #for showing differences
 
 #compare different baseline numbers for how many habitats these individuals use before the manipulation
 number_before<-c(3, 4.5, 6)
@@ -1538,7 +1536,7 @@ for (samplesize in 1:length(samplesizes)) {
         numberbefore <- round(rnorm(N_ind,mean=currentnumber_before,sd=1.5),2) #number of habitats used, 2 means 2 decimal points
         numberbefore[numberbefore<1]<-1 #this needs to be a minimum of 1 bc an individual can never live in less than 1 habitat
         
-        changenumber <- rnorm(N_ind, mean=(10-numberbefore)-currentchangenumber,sd=1) #change this SD to explore the boundaries of individual variation in their response (in terms of the success measure) to the flexibility manipulation. We explored SD=1 and SD=2
+        changenumber <- rnorm(N_ind, mean=(10-numberbefore)*(currentchangenumber),sd=1) #change this SD to explore the boundaries of individual variation in their response (in terms of the success measure) to the flexibility manipulation. We explored SD=1 and SD=2
 
         #AFTER manipulation
         numberafter <- round(numberbefore+changenumber,2)
@@ -1572,7 +1570,7 @@ post <- extract.samples(sj)
 
   # enter all of the results into the data sheet
     simresults[counter,]$n <- N_ind
-    simresults[counter,]$changenumber_mean <- 5.5 - currentchangenumber
+    simresults[counter,]$changenumber_mean <- (10-currentnumber_before)*(currentchangenumber)
     simresults[counter,]$changenumber_sd <- 1
     simresults[counter,]$repetition <- repetition
     simresults[counter,]$number_before <- currentnumber_before
@@ -1585,8 +1583,8 @@ post <- extract.samples(sj)
         }
 }
 
-#write.csv(simresults,file="simresultsjaysd2.csv") #put the outputs into a csv file so don't have to run the model again...it takes hours
-#write.csv(simresults,file="simresultsjaysd1.csv")
+#write.csv(simresults,file="simresultsjayhabitatsd2.csv") #put the outputs into a csv file so don't have to run the model again...it takes hours
+#write.csv(simresults,file="simresultsjayhabitatsd1.csv")
 ```
 
 ```{r jayq3simulationfiguresamplesize, eval=T, messages=F}
@@ -1605,19 +1603,22 @@ d2 <- d[d$changenumber_sd==2,]
 dat2 <- list(
   proportion_estimates_below_zero = as.numeric(d$proportion_estimates_below_zero),
   count_estimates_below_zero = as.numeric(d$count_estimates_below_zero),
-  changenumber_mean = as.numeric(sqrt(d$changenumber_mean)),
+  changenumber_mean = as.factor(d$changenumber_mean),
   samplesize = as.integer(as.factor(d$n))
 )
 
-# We run the STAN model - it is a binomial model that assumes that the probability to estimate a difference depends on an interaction between the sample size and the difference between the conditions (before/after). The response variable is a count and the model turns it into a proportion
+# We run the STAN model for sd=2 - it is a binomial model that assumes that the probability to estimate a difference depends on an interaction between the sample size and the difference between the conditions (before/after). The response variable is a count and the model turns it into a proportion
 m_samplesize_diffscount2 <- ulam(
   alist(
-    count_estimates_below_zero~dbinom(2000,p),
-    logit(p) <- a[samplesize]-b[samplesize]*changenumber_mean,
-    a[samplesize]~dnorm(a_bar,sigma_a),
-    a_bar~dnorm(0,1.5),
-    sigma_a~dexp(1),
-    b[samplesize]~dnorm(0,1.5)
+    count_estimates_below_zero ~ dbinom(2000,p),
+    logit(p) <- a[samplesize] + b[samplesize,changenumber_mean],
+    a[samplesize]~dnorm(0,1),
+    transpars> matrix[samplesize,6]:b <- compose_noncentered( sigma_actor , L_Rho_actor , z_actor ),
+    matrix[6,samplesize]:z_actor ~ normal( 0 , 1 ),
+    # fixed priors
+    vector[6]:sigma_actor ~ dexp(1),
+    cholesky_factor_corr[6]:L_Rho_actor ~ lkj_corr_cholesky( 2 ),
+    gq> matrix[6,6]:Rho_actor <<- Chol_to_Corr(L_Rho_actor)
   ),data=dat2, log_lik=TRUE, messages=FALSE,cmdstan=T)
 
 # Extract the posterior estimates from this STAN model
@@ -1631,19 +1632,22 @@ d1 <- d[d$changenumber_sd==1,]
 dat1 <- list(
   proportion_estimates_below_zero = as.numeric(d1$proportion_estimates_below_zero),
   count_estimates_below_zero = as.numeric(d1$count_estimates_below_zero),
-  changenumber_mean = as.numeric(sqrt(d1$changenumber_mean)),
+  changenumber_mean = as.factor(d$changenumber_mean),
   samplesize = as.integer(as.factor(d1$n))
 )
 
 # We run the STAN model - it is a binomial model that assumes that the probability to estimate a difference depends on an interaction between the sample size and the difference between the conditions (before/after). The response variable is a count and the model turns it into a proportion
 m_samplesize_diffscount <- ulam(
   alist(
-    count_estimates_below_zero~dbinom(2000,p),
-    logit(p) <- a[samplesize]-b[samplesize]*changenumber_mean,
-    a[samplesize]~dnorm(a_bar,sigma_a),
-    a_bar~dnorm(0,1.5),
-    sigma_a~dexp(1),
-    b[samplesize]~dnorm(0,1.5)
+    count_estimates_below_zero ~ dbinom(2000,p),
+    logit(p) <- a[samplesize] + b[samplesize,changenumber_mean],
+    a[samplesize]~dnorm(0,1),
+    transpars> matrix[samplesize,6]:b <- compose_noncentered( sigma_actor , L_Rho_actor , z_actor ),
+    matrix[6,samplesize]:z_actor ~ normal( 0 , 1 ),
+    # fixed priors
+    vector[6]:sigma_actor ~ dexp(1),
+    cholesky_factor_corr[6]:L_Rho_actor ~ lkj_corr_cholesky( 2 ),
+    gq> matrix[6,6]:Rho_actor <<- Chol_to_Corr(L_Rho_actor)
   ),data=dat1, log_lik=TRUE, messages=FALSE,cmdstan=T)
 
 # Extract the posterior estimates from this STAN model
@@ -1936,16 +1940,14 @@ abline(0,1)
 # We now set our range of likely sample sizes, from a minimum of 9 individuals per population to a maximum of 60 individuals per population. We draw repeated samples of individuals of that size from each of the 5 populations, during each repetition we draw two samples from each population (so we can infer the false negative rate of wrongly estimating that two samples come from a different population even though they were taken from the sample population). This means we have 10 repetitions for each of the 5 sample sizes and each of the 6 changeprops. So 10*6 changeprops (=60) for each of the 5 sample sizes, resulting in a total length of samplesizes of 300
 samplesizes<-c(10,20,30,40,60) #c(10,20,30,40,60)
 
-# Set the means you want to compare. To get a certain mean change in number of microhabitats between before and after, set the multiplier in the changenumber mean: a large multiplier means a large change
-meanchangenumber1<-1 #individuals will on average take 5 more foods after the experiment ((13-numberbefore)*1 = push everyone to 13 - 1.5  = 5)
-meanchangenumber2<-0.5 # individuals will on average take 4 more foods after the experiment ((13-numberbefore)*0.5  = 4)
-meanchangenumber3<-0.333 #individuals will on average take 3 more foods after the experiment ((13-numberbefore)*0.33  = 3)
-meanchangenumber4<-0.17 # individuals will on average take 2 more foods after the experiment ((13-numberbefore)*0.17  = 2)
-meanchangenumber5<-0.08 # individuals will on average take 1 more food after the experiment ((13-numberbefore)*0.08 = 1)
-meanchangenumber6<-0 # individuals will on average take 0 more foods after the experiment ((13-numberbefore)*0  = 0)
+# Set the means you want to compare. To get a certain mean change in number of microhabitats between before and after, set the multiplier in the changenumber mean: a large multiplier means a large change. Max (13) minus 1 (bc individuals will always live in at least one habitat) / 2 bc individuals who have low starting values will increase to the max, whereas individuals with high starting values will not increase at all
+meanchangenumber1<-1 #individuals will on average take 6 more foods after the experiment ((13-numberbefore=6) 6*(6/6)=6*1 = 6. push everyone to 13 meaning that the lowest individuals will increase by 12 and the highest by 0 food items. Therefore, the average is 6 food items
+meanchangenumber2<-0.5 # individuals will on average take 3 more foods after the experiment (6*(3/6) =6*0.5= 3)
+meanchangenumber3<-0.333 #individuals will on average take 2 more foods after the experiment (6*(2/6) =6*0.33  = 2)
+meanchangenumber4<-0.17 # individuals will on average take 1 more foods after the experiment (6*(1/6)=6*0.17  = 1)
+meanchangenumber5<-0.08 # individuals will on average take 0.5 more foods after the experiment (6*(0.5/6)=6*0.08 = 0.5)
+meanchangenumber6<-0 # individuals will on average take 0 more foods after the experiment (6*(0/6))=6*0 = 0). 0 for false positives
 changenumbervariants<-c(meanchangenumber1,meanchangenumber2,meanchangenumber3,meanchangenumber4,meanchangenumber5,meanchangenumber6) #for false negatives
-#changenumbervariants<-c(0) #for false positives
-#changenumbervariants<-c(meanchangeprop6) #for showing differences
 
 #compare different baseline numbers for how many foods these individuals take before the manipulation
 number_before<-c(4, 6.5, 9)
@@ -2016,7 +2018,7 @@ post <- extract.samples(sjf)
   # enter all of the results into the data sheet
     simresults[counter,]$n <- N_ind
     simresults[counter,]$changenumber_mean <- (13-currentnumber_before)*(currentchangenumber)
-    simresults[counter,]$changenumber_sd <- 1 #change this to match the SD in changenumber
+    simresults[counter,]$changenumber_sd <- 1 #change this to match the SD in changenumber (it only gets changed in these 2 places)
     simresults[counter,]$repetition <- repetition
     simresults[counter,]$number_before <- currentnumber_before
     simresults[counter,]$proportion_estimates_below_zero <- sum(post$beta<0)/2000
@@ -2036,6 +2038,8 @@ post <- extract.samples(sjf)
 library(rethinking)
 library(cmdstanr)
 set_ulam_cmdstan(TRUE) #makes it so ulam always runs with cmdstan
+#rebuild_cmdstan() #run this if you get an error about a PCH file https://discourse.mc-stan.org/t/struggling-to-get-cmdstan-working-on-mac-os-big-sur/19774/4
+
 
 #load the data sheet that was made from the simulation in the previous R chunk
 d <- read.csv("https://raw.githubusercontent.com/ManyIndividuals/ManyIndividuals/main/Files/rrs/mi1simresultsjaysforaging.csv", header = TRUE, sep = ",", stringsAsFactors = FALSE)
@@ -2048,19 +2052,22 @@ d2 <- d[d$changenumber_sd==2,]
 dat2 <- list(
   proportion_estimates_below_zero = as.numeric(d$proportion_estimates_below_zero),
   count_estimates_below_zero = as.numeric(d$count_estimates_below_zero),
-  changenumber_mean = as.numeric(sqrt(d$changenumber_mean)),
+  changenumber_mean = as.factor(d$changenumber_mean),
   samplesize = as.integer(as.factor(d$n))
 )
 
-# We run the STAN model - it is a binomial model that assumes that the probability to estimate a difference depends on an interaction between the sample size and the difference between the conditions (before/after). The response variable is a count and the model turns it into a proportion
+# We run the STAN model for sd=2 - it is a binomial model that assumes that the probability to estimate a difference depends on an interaction between the sample size and the difference between the conditions (before/after). The response variable is a count and the model turns it into a proportion
 m_samplesize_diffscount2 <- ulam(
   alist(
-    count_estimates_below_zero~dbinom(2000,p),
-    logit(p) <- a[samplesize]-b[samplesize]*changenumber_mean,
-    a[samplesize]~dnorm(a_bar,sigma_a),
-    a_bar~dnorm(0,1.5),
-    sigma_a~dexp(1),
-    b[samplesize]~dnorm(0,1.5)
+    count_estimates_below_zero ~ dbinom(2000,p),
+    logit(p) <- a[samplesize] + b[samplesize,changenumber_mean],
+    a[samplesize]~dnorm(0,1),
+    transpars> matrix[samplesize,6]:b <- compose_noncentered( sigma_actor , L_Rho_actor , z_actor ),
+    matrix[6,samplesize]:z_actor ~ normal( 0 , 1 ),
+    # fixed priors
+    vector[6]:sigma_actor ~ dexp(1),
+    cholesky_factor_corr[6]:L_Rho_actor ~ lkj_corr_cholesky( 2 ),
+    gq> matrix[6,6]:Rho_actor <<- Chol_to_Corr(L_Rho_actor)
   ),data=dat2, log_lik=TRUE, messages=FALSE,cmdstan=T)
 
 # Extract the posterior estimates from this STAN model
@@ -2074,19 +2081,21 @@ d1 <- d[d$changenumber_sd==1,]
 dat1 <- list(
   proportion_estimates_below_zero = as.numeric(d1$proportion_estimates_below_zero),
   count_estimates_below_zero = as.numeric(d1$count_estimates_below_zero),
-  changenumber_mean = as.numeric(sqrt(d1$changenumber_mean)),
+  changenumber_mean = as.factor(d$changenumber_mean),
   samplesize = as.integer(as.factor(d1$n))
 )
 
-# We run the STAN model - it is a binomial model that assumes that the probability to estimate a difference depends on an interaction between the sample size and the difference between the conditions (before/after). The response variable is a count and the model turns it into a proportion
+# We run the STAN model for sd=1
 m_samplesize_diffscount <- ulam(
   alist(
-    count_estimates_below_zero~dbinom(2000,p),
-    logit(p) <- a[samplesize]-b[samplesize]*changenumber_mean,
-    a[samplesize]~dnorm(a_bar,sigma_a),
-    a_bar~dnorm(0,1.5),
-    sigma_a~dexp(1),
-    b[samplesize]~dnorm(0,1.5)
+    count_estimates_below_zero ~ dbinom(2000,p),
+    logit(p) <- a[samplesize] + b[samplesize,changenumber_mean],
+    a[samplesize]~dnorm(0,1),
+    transpars> matrix[samplesize,6]:b <- compose_noncentered( sigma_actor , L_Rho_actor , z_actor ),
+    matrix[6,samplesize]:z_actor ~ normal( 0 , 1 ),
+    vector[6]:sigma_actor ~ dexp(1),
+    cholesky_factor_corr[6]:L_Rho_actor ~ lkj_corr_cholesky( 2 ),
+    gq> matrix[6,6]:Rho_actor <<- Chol_to_Corr(L_Rho_actor)
   ),data=dat1, log_lik=TRUE, messages=FALSE,cmdstan=T)
 
 # Extract the posterior estimates from this STAN model
@@ -2158,13 +2167,13 @@ mtext("A. Power to detect differences between conditions: SD=2",side=3,line=1,at
 mtext("Mean change in number of habitats used before vs after",side=1,line=3, cex=1)
 mtext("Ratio of estimates below zero",side=2,line=3, cex=1.2)
 
-#92% of the posterior mass is above zero for a 2 or larger mean change in number of habitats used between before and after when the sample size is 20
-#mu_10_ci #91%. column 4 for the 2 category on the x axis (ordered by unique(d$changenumber_mean))
-#mu_20_ci #92%
-#mu_30_ci #93%
-#mu_40_ci #93%
-#mu_60_ci #94%
-#sum(d2[d2$n %in% 20 & d2$changenumber_mean %in% 2,]$proportion_estimates_below_zero<0.3) #24 values are <0.3 (out of 30)
+#97% of the posterior mass is above zero for a 2 or larger mean change in number of habitats used between before and after when the sample size is 20
+#mu_10_ci #93%. column 4 for the 2 category on the x axis (ordered by unique(d$changenumber_mean))
+#mu_20_ci #97%
+#mu_30_ci #98%
+#mu_40_ci #99%
+#mu_60_ci #99%
+#sum(d2[d2$n %in% 20 & d2$changenumber_mean %in% 2,]$proportion_estimates_below_zero<0.3) #30 values are <0.3 (out of 30)
 #length(d2[d2$n %in% 20 & d2$changenumber_mean %in% 2,]$proportion_estimates_below_zero) #30 values total
 
 
@@ -2234,13 +2243,13 @@ mtext("B. SD=1",side=3,line=1,at=0.5,cex=1.3)
 mtext("Mean change in number of foods taken before vs after",side=1,line=3, cex=1)
 par(op)
 
-#94% of the posterior mass is above zero for a 2 or larger mean change in number of habitats used between before and after when the sample size is 20
-#mu1_10_ci #92%. column 4 for the 2 category on the x axis (ordered by unique(d$changenumber_mean))
-#mu1_20_ci #93%
+#98% of the posterior mass is above zero for a 2 or larger mean change in number of habitats used between before and after when the sample size is 20
+#mu1_10_ci #96%. column 4 for the 2 category on the x axis (ordered by unique(d$changenumber_mean))
+#mu1_20_ci #98%
 #mu1_30_ci #94%
-#mu1_40_ci #94%
-#mu1_60_ci #94%
-#sum(d1[d1$n %in% 20 & d1$changenumber_mean %in% 2,]$proportion_estimates_below_zero<0.3) #28 values are <0.3 (out of 30)
+#mu1_40_ci #99.991%
+#mu1_60_ci #99.997%
+#sum(d1[d1$n %in% 20 & d1$changenumber_mean %in% 2,]$proportion_estimates_below_zero<0.3) #30 values are <0.3 (out of 30)
 #length(d1[d1$n %in% 20 & d1$changenumber_mean %in% 2,]$proportion_estimates_below_zero) #30 values total
 ```
 
