@@ -1536,7 +1536,7 @@ for (samplesize in 1:length(samplesizes)) {
         numberbefore <- round(rnorm(N_ind,mean=currentnumber_before,sd=1.5),2) #number of habitats used, 2 means 2 decimal points
         numberbefore[numberbefore<1]<-1 #this needs to be a minimum of 1 bc an individual can never live in less than 1 habitat
         
-        changenumber <- rnorm(N_ind, mean=(10-numberbefore)*(currentchangenumber),sd=1) #change this SD to explore the boundaries of individual variation in their response (in terms of the success measure) to the flexibility manipulation. We explored SD=1 and SD=2
+        changenumber <- rnorm(N_ind, mean=(10-numberbefore)*(currentchangenumber),sd=2) #change this SD to explore the boundaries of individual variation in their response (in terms of the success measure) to the flexibility manipulation. We explored SD=1 and SD=2
 
         #AFTER manipulation
         numberafter <- round(numberbefore+changenumber,2)
@@ -1571,7 +1571,7 @@ post <- extract.samples(sj)
   # enter all of the results into the data sheet
     simresults[counter,]$n <- N_ind
     simresults[counter,]$changenumber_mean <- (10-currentnumber_before)*(currentchangenumber)
-    simresults[counter,]$changenumber_sd <- 1
+    simresults[counter,]$changenumber_sd <- 2 #change this SD to match that in changenumber (only changes in these 2 places)
     simresults[counter,]$repetition <- repetition
     simresults[counter,]$number_before <- currentnumber_before
     simresults[counter,]$proportion_estimates_below_zero <- sum(post$beta<0)/2000
@@ -1583,7 +1583,8 @@ post <- extract.samples(sj)
         }
 }
 
-#write.csv(simresults,file="simresultsjayhabitatsd2.csv") #put the outputs into a csv file so don't have to run the model again...it takes hours
+#write the output to csv, combine both SD data sets into one sheet, change the column "changenumber_mean" to the number of habitats (e.g., 4.5, 4, 3, 2, 1 as in meanchangenumber above), upload to github, and get the url for the next R chunk. FYI the model takes 5-7hrs to run
+#write.csv(simresults,file="simresultsjayhabitatsd2.csv")
 #write.csv(simresults,file="simresultsjayhabitatsd1.csv")
 ```
 
