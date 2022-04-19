@@ -1449,13 +1449,13 @@ y is the response variable: the total number of different habitats used per indi
 
 We estimated our power to detect differences between conditions at different sample sizes and with different mean changes in the total number of different microhabitats used per individual in the before vs. after conditions (Figure 4). We simulated the number of habitats used for different sample sizes of individuals before and after the flexibility manipulation. We analyzed these simulated data with the model we will use to analyze the actual data, estimating the change in the number of habitats used between the before and after conditions. From the posterior estimates of the model, we extracted both the mean change as well as the ratio of the posterior estimates that were below zero.
 
-If the mean ratio of estimates below zero is close to 0.5, the model assumes that the change in the number of habitats used before the flexibility manipulation is similar to after. If the ratio is close to zero, the model assumes individuals have changed their behavior. For changes in the number of habitats used smaller than 2, models are likely to assume that no changes occurred even with large sample sizes. If the change in the number of habitats used before the flexibility manipulation vs. after is 2 with a standard deviation of 2, on average 91% of the posterior of the model based on a sample size of 20 individuals will be larger than zero. This means that the model is quite certain there is a difference that is larger than zero. In addition, only 6 of the 30 models for a sample size of 20 at the mean change of 2 have a ratio larger than 0.3, meaning that the risk of having a false negative is not very likely.
+If the mean ratio of estimates below zero is close to 0.5, the model assumes that the change in the number of habitats used before the flexibility manipulation is similar to after. If the ratio is close to zero, the model assumes individuals have changed their behavior. For changes in the number of habitats used smaller than 1, models are likely to assume that no changes occurred even with large sample sizes. If the change in the number of habitats used before the flexibility manipulation vs. after is 1 with a standard deviation of 2, on average 99.96% of the posterior of the model based on a sample size of 20 individuals will be larger than zero. This means that the model is quite certain there is a difference that is larger than zero. In addition, only one of the 30 models for a sample size of 20 at the mean change of 1 have a ratio larger than 0.3, meaning that the risk of having a false negative is not very likely.
 
-In general, with sample sizes at or above 20 and mean changes in the number of habitats used at 2 or larger, it is likely that the model will indicate that individuals have changed their behavior. Mean changes below 2 can still be detected, however there is a much higher risk that there will be a false negative and this risk is independent of sample size. For example, 60% of the models for a sample size of 20 at the mean change of 1 have a ratio larger than 0.3, meaning there is a risk of having a false negative.
+In general, with sample sizes at or above 20 and mean changes in the number of habitats used at 1 or larger, it is highly likely that the model will indicate that individuals have changed their behavior. Mean changes below 1 can still be detected, however there is a higher risk that there will be a false negative and this risk is independent of sample size. 
 
 With small mean changes in the response variable, some individuals might not increase or even decrease their response after the manipulation because there is variation around the mean change in individual responses. With small sample sizes, there is a risk that only individuals who did not clearly increase their response will be studied, whereas larger sample sizes are more likely to include a wider spectrum of individuals.
 
-To estimate the risk of detecting false positives, we set the mean change in the number of habitats used to zero so there was no change between the before and after conditions. As expected, the average ratio of estimates below zero is close to 0.5 and independent of sample size. With a sample size of 20, 43% have a ratio smaller than 0.3, meaning that the risk of having a false positive is high. The risk would be lower if the variation among individuals was lower than what we assumed (the standard deviation of the mean change in number of habitats was 2, which is a conservative estimate).
+To estimate the risk of detecting false positives, we set the mean change in the number of habitats used to zero so there was no change between the before and after conditions. As expected, the average ratio of estimates below zero is close to but below 0.5 and independent of sample size. The estimates went generally below 0.5 because the maximum number of habitats used was set to 10 and we had a condition where individuals before the manipulation used a mean of 9 habitats. Accordingly, if individuals randomly either increase or decrease their number of habitats used, decreases will be more severe because individuals can only increase by 1 habitat, but potentially decrease by 8 habitats. With a sample size of 20, 33% have a ratio smaller than 0.3, meaning that the risk of having a false positive is high. The risk would be lower if the variation among individuals was lower than what we assumed (the standard deviation of the mean change in number of habitats was 2, which is a conservative estimate).
 
 ```{r jayhabitatusesim, eval=F}
 library(rethinking)
@@ -1604,10 +1604,10 @@ d2 <- d[d$changenumber_sd==2,]
 
 # Set up the data sheet for the model
 dat2 <- list(
-  proportion_estimates_below_zero = as.numeric(d$proportion_estimates_below_zero),
-  count_estimates_below_zero = as.numeric(d$count_estimates_below_zero),
-  changenumber_mean = as.factor(d$changenumber_mean),
-  samplesize = as.integer(as.factor(d$n))
+  proportion_estimates_below_zero = as.numeric(d2$proportion_estimates_below_zero),
+  count_estimates_below_zero = as.numeric(d2$count_estimates_below_zero),
+  changenumber_mean = as.factor(d2$changenumber_mean),
+  samplesize = as.integer(as.factor(d2$n))
 )
 
 # We run the STAN model for sd=2 - it is a binomial model that assumes that the probability to estimate a difference depends on an interaction between the sample size and the difference between the conditions (before/after). The response variable is a count and the model turns it into a proportion
@@ -1635,7 +1635,7 @@ d1 <- d[d$changenumber_sd==1,]
 dat1 <- list(
   proportion_estimates_below_zero = as.numeric(d1$proportion_estimates_below_zero),
   count_estimates_below_zero = as.numeric(d1$count_estimates_below_zero),
-  changenumber_mean = as.factor(d$changenumber_mean),
+  changenumber_mean = as.factor(d1$changenumber_mean),
   samplesize = as.integer(as.factor(d1$n))
 )
 
@@ -1660,9 +1660,9 @@ precis_output1<-precis( m_samplesize_diffscount , depth=2 )
 # Plot the predictions for the different sample sizes as separate lines = COUNT out of 2000
 # plot for sd=2
 op <- par(mfrow=c(1,2), mar=c(5.9,4.9,2.3,0.9))
-plot(NULL,xlim=c(-0.2,5),ylim=c(0.0,0.8),pch=1,ann=F,frame.plot=F,cex=1.5)
+plot(NULL,xlim=c(-0.2,5),ylim=c(0.0,0.8),pch=1,ann=F,frame.plot=F,cex=1.5,xaxt="n")
 
-mu_10<- link( m_samplesize_diffscount2 , data=data.frame( changenumber_mean=sqrt(unique(d2$changenumber_mean)),samplesize=rep(1,length(unique(d2$changenumber_mean))) ) )
+mu_10<- link( m_samplesize_diffscount2 , data=data.frame( changenumber_mean=as.factor(unique(d2$changenumber_mean)),samplesize=rep(1,length(unique(d2$changenumber_mean))) ) )
 mu_10_mean <- apply( mu_10 , 2 , mean )
 mu_10_ci <- apply( mu_10 , 2 , PI , prob=0.97 )
 shade( mu_10_ci , unique(d2$changenumber_mean) , col=col.alpha("blue",0.7) )
@@ -1671,9 +1671,9 @@ lines(x=c(0.9,0.9),y=c(min(d2[d2$n %in% 10 & d2$changenumber_mean %in% 1,]$propo
 lines(x=c(1.9,1.9),y=c(min(d2[d2$n %in% 10 & d2$changenumber_mean %in% 2,]$proportion_estimates_below_zero),max(d2[d2$n %in% 10 & d2$changenumber_mean %in% 2,]$proportion_estimates_below_zero)),col=col.alpha("blue",0.5))
 lines(x=c(2.9,2.9),y=c(min(d2[d2$n %in% 10 & d2$changenumber_mean %in% 3,]$proportion_estimates_below_zero),max(d2[d2$n %in% 10 & d2$changenumber_mean %in% 3,]$proportion_estimates_below_zero)),col=col.alpha("blue",0.5))
 lines(x=c(3.9,3.9),y=c(min(d2[d2$n %in% 10 & d2$changenumber_mean %in% 4,]$proportion_estimates_below_zero),max(d2[d2$n %in% 10 & d2$changenumber_mean %in% 4,]$proportion_estimates_below_zero)),col=col.alpha("blue",0.5))
-lines(x=c(4.9,4.9),y=c(min(d2[d2$n %in% 10 & d2$changenumber_mean %in% 5,]$proportion_estimates_below_zero),max(d2[d2$n %in% 10 & d2$changenumber_mean %in% 5,]$proportion_estimates_below_zero)),col=col.alpha("blue",0.5))
+lines(x=c(4.9,4.9),y=c(min(d2[d2$n %in% 10 & d2$changenumber_mean %in% 4.5,]$proportion_estimates_below_zero),max(d2[d2$n %in% 10 & d2$changenumber_mean %in% 4.5,]$proportion_estimates_below_zero)),col=col.alpha("blue",0.5))
 
-mu_20 <- link( m_samplesize_diffscount2 , data=data.frame( changenumber_mean=sqrt(unique(d2$changenumber_mean)),samplesize=rep(2,length(unique(d2$changenumber_mean))) ) )
+mu_20 <- link( m_samplesize_diffscount2 , data=data.frame( changenumber_mean=as.factor(unique(d2$changenumber_mean)),samplesize=rep(2,length(unique(d2$changenumber_mean))) ) )
 mu_20_mean <- apply( mu_20 , 2 , mean )
 mu_20_ci <- apply( mu_20 , 2 , PI , prob=0.97 )
 shade( mu_20_ci , unique(d2$changenumber_mean) , col=col.alpha("orange",0.7) )
@@ -1682,9 +1682,9 @@ lines(x=c(0.95,0.95),y=c(min(d2[d2$n %in% 20 & d2$changenumber_mean %in% 1,]$pro
 lines(x=c(1.95,1.95),y=c(min(d2[d2$n %in% 20 & d2$changenumber_mean %in% 2,]$proportion_estimates_below_zero),max(d2[d2$n %in% 20 & d2$changenumber_mean %in% 2,]$proportion_estimates_below_zero)),col=col.alpha("orange",0.5))
 lines(x=c(2.95,2.95),y=c(min(d2[d2$n %in% 20 & d2$changenumber_mean %in% 3,]$proportion_estimates_below_zero),max(d2[d2$n %in% 20 & d2$changenumber_mean %in% 3,]$proportion_estimates_below_zero)),col=col.alpha("orange",0.5))
 lines(x=c(3.95,3.95),y=c(min(d2[d2$n %in% 20 & d2$changenumber_mean %in% 4,]$proportion_estimates_below_zero),max(d2[d2$n %in% 20 & d2$changenumber_mean %in% 4,]$proportion_estimates_below_zero)),col=col.alpha("orange",0.5))
-lines(x=c(4.95,4.95),y=c(min(d2[d2$n %in% 20 & d2$changenumber_mean %in% 5,]$proportion_estimates_below_zero),max(d2[d2$n %in% 20 & d2$changenumber_mean %in% 5,]$proportion_estimates_below_zero)),col=col.alpha("orange",0.5))
+lines(x=c(4.95,4.95),y=c(min(d2[d2$n %in% 20 & d2$changenumber_mean %in% 4.5,]$proportion_estimates_below_zero),max(d2[d2$n %in% 20 & d2$changenumber_mean %in% 4.5,]$proportion_estimates_below_zero)),col=col.alpha("orange",0.5))
 
-mu_30 <- link( m_samplesize_diffscount2 , data=data.frame( changenumber_mean=sqrt(unique(d2$changenumber_mean)),samplesize=rep(3,length(unique(d2$changenumber_mean))) ) )
+mu_30 <- link( m_samplesize_diffscount2 , data=data.frame( changenumber_mean=as.factor(unique(d2$changenumber_mean)),samplesize=rep(3,length(unique(d2$changenumber_mean))) ) )
 mu_30_mean <- apply( mu_30 , 2 , mean )
 mu_30_ci <- apply( mu_30 , 2 , PI , prob=0.97 )
 shade( mu_30_ci ,unique(d2$changenumber_mean), col=col.alpha("skyblue",0.7) )
@@ -1693,9 +1693,9 @@ lines(x=c(1,1),y=c(min(d2[d2$n %in% 30 & d2$changenumber_mean %in% 1,]$proportio
 lines(x=c(2,2),y=c(min(d2[d2$n %in% 30 & d2$changenumber_mean %in% 2,]$proportion_estimates_below_zero),max(d2[d2$n %in% 30 & d2$changenumber_mean %in% 2,]$proportion_estimates_below_zero)),col=col.alpha("skyblue",0.5))
 lines(x=c(3,3),y=c(min(d2[d2$n %in% 30 & d2$changenumber_mean %in% 3,]$proportion_estimates_below_zero),max(d2[d2$n %in% 30 & d2$changenumber_mean %in% 3,]$proportion_estimates_below_zero)),col=col.alpha("skyblue",0.5))
 lines(x=c(4,4),y=c(min(d2[d2$n %in% 30 & d2$changenumber_mean %in% 4,]$proportion_estimates_below_zero),max(d2[d2$n %in% 30 & d2$changenumber_mean %in% 4,]$proportion_estimates_below_zero)),col=col.alpha("skyblue",0.5))
-lines(x=c(5,5),y=c(min(d2[d2$n %in% 30 & d2$changenumber_mean %in% 5,]$proportion_estimates_below_zero),max(d2[d2$n %in% 30 & d2$changenumber_mean %in% 5,]$proportion_estimates_below_zero)),col=col.alpha("skyblue",0.5))
+lines(x=c(5,5),y=c(min(d2[d2$n %in% 30 & d2$changenumber_mean %in% 4.5,]$proportion_estimates_below_zero),max(d2[d2$n %in% 30 & d2$changenumber_mean %in% 4.5,]$proportion_estimates_below_zero)),col=col.alpha("skyblue",0.5))
 
-mu_40 <- link( m_samplesize_diffscount2 , data=data.frame( changenumber_mean=sqrt(unique(d2$changenumber_mean)),samplesize=rep(4,length(unique(d2$changenumber_mean))) ) )
+mu_40 <- link( m_samplesize_diffscount2 , data=data.frame( changenumber_mean=as.factor(unique(d2$changenumber_mean)),samplesize=rep(4,length(unique(d2$changenumber_mean))) ) )
 mu_40_mean <- apply( mu_40 , 2 , mean )
 mu_40_ci <- apply( mu_40 , 2 , PI , prob=0.97 )
 shade( mu_40_ci ,unique(d2$changenumber_mean) , col=col.alpha("#213940",0.7) )
@@ -1704,9 +1704,9 @@ lines(x=c(1.05,1.05),y=c(min(d2[d2$n %in% 40 & d2$changenumber_mean %in% 1,]$pro
 lines(x=c(2.05,2.05),y=c(min(d2[d2$n %in% 40 & d2$changenumber_mean %in% 2,]$proportion_estimates_below_zero),max(d2[d2$n %in% 40 & d2$changenumber_mean %in% 2,]$proportion_estimates_below_zero)),col=col.alpha("#213940",0.5))
 lines(x=c(3.05,3.05),y=c(min(d2[d2$n %in% 40 & d2$changenumber_mean %in% 3,]$proportion_estimates_below_zero),max(d2[d2$n %in% 40 & d2$changenumber_mean %in% 3,]$proportion_estimates_below_zero)),col=col.alpha("#213940",0.5))
 lines(x=c(4.05,4.05),y=c(min(d2[d2$n %in% 40 & d2$changenumber_mean %in% 4,]$proportion_estimates_below_zero),max(d2[d2$n %in% 40 & d2$changenumber_mean %in% 4,]$proportion_estimates_below_zero)),col=col.alpha("#213940",0.5))
-lines(x=c(5.05,5.05),y=c(min(d2[d2$n %in% 40 & d2$changenumber_mean %in% 5,]$proportion_estimates_below_zero),max(d2[d2$n %in% 40 & d2$changenumber_mean %in% 5,]$proportion_estimates_below_zero)),col=col.alpha("#213940",0.5))
+lines(x=c(5.05,5.05),y=c(min(d2[d2$n %in% 40 & d2$changenumber_mean %in% 4.5,]$proportion_estimates_below_zero),max(d2[d2$n %in% 40 & d2$changenumber_mean %in% 4.5,]$proportion_estimates_below_zero)),col=col.alpha("#213940",0.5))
 
-mu_60 <- link( m_samplesize_diffscount2 , data=data.frame( changenumber_mean=sqrt(unique(d2$changenumber_mean)),samplesize=rep(5,length(unique(d2$changenumber_mean))) ) )
+mu_60 <- link( m_samplesize_diffscount2 , data=data.frame( changenumber_mean=as.factor(unique(d2$changenumber_mean)),samplesize=rep(4.5,length(unique(d2$changenumber_mean))) ) )
 mu_60_mean <- apply( mu_60 , 2 , mean )
 mu_60_ci <- apply( mu_60 , 2 , PI , prob=0.97 )
 shade( mu_60_ci , unique(d2$changenumber_mean), col=col.alpha("red",0.7) )
@@ -1715,27 +1715,41 @@ lines(x=c(1.1,1.1),y=c(min(d2[d2$n %in% 60 & d2$changenumber_mean %in% 1,]$propo
 lines(x=c(2.1,2.1),y=c(min(d2[d2$n %in% 60 & d2$changenumber_mean %in% 2,]$proportion_estimates_below_zero),max(d2[d2$n %in% 60 & d2$changenumber_mean %in% 2,]$proportion_estimates_below_zero)),col=col.alpha("red",0.5))
 lines(x=c(3.1,3.1),y=c(min(d2[d2$n %in% 60 & d2$changenumber_mean %in% 3,]$proportion_estimates_below_zero),max(d2[d2$n %in% 60 & d2$changenumber_mean %in% 3,]$proportion_estimates_below_zero)),col=col.alpha("red",0.5))
 lines(x=c(4.1,4.1),y=c(min(d2[d2$n %in% 60 & d2$changenumber_mean %in% 4,]$proportion_estimates_below_zero),max(d2[d2$n %in% 60 & d2$changenumber_mean %in% 4,]$proportion_estimates_below_zero)),col=col.alpha("red",0.5))
-lines(x=c(5.1,5.1),y=c(min(d2[d2$n %in% 60 & d2$changenumber_mean %in% 5,]$proportion_estimates_below_zero),max(d2[d2$n %in% 60 & d2$changenumber_mean %in% 5,]$proportion_estimates_below_zero)),col=col.alpha("red",0.5))
+lines(x=c(5.1,5.1),y=c(min(d2[d2$n %in% 60 & d2$changenumber_mean %in% 4.5,]$proportion_estimates_below_zero),max(d2[d2$n %in% 60 & d2$changenumber_mean %in% 4.5,]$proportion_estimates_below_zero)),col=col.alpha("red",0.5))
 
 # Axis labels (side 1=x axis, side 2=y axis)
-mtext("A. Power to detect differences between conditions: SD=2",side=3,line=1,at=3,cex=1.3)
+mtext("A. Power to detect differences between conditions: SD=2",side=3,line=1,at=2.5,cex=1.2)
+mtext("Suburban",side=1,line=0, at=-0.7, cex=1)
+mtext("Natural",side=1,line=1, at=-0.6, cex=1)
+mtext("0",side=1,line=0, at=0, cex=1)
+mtext("1",side=1,line=0, at=1, cex=1)
+mtext("2",side=1,line=0, at=2, cex=1)
+mtext("3",side=1,line=0, at=3, cex=1)
+mtext("4",side=1,line=0, at=4, cex=1)
+mtext("4.5",side=1,line=0, at=5, cex=1)
+mtext("0",side=1,line=1, at=0, cex=1)
+mtext("0.8",side=1,line=1, at=1, cex=1)
+mtext("1.5",side=1,line=1, at=2, cex=1)
+mtext("2.3",side=1,line=1, at=3, cex=1)
+mtext("3.1",side=1,line=1, at=4, cex=1)
+mtext("3.5",side=1,line=1, at=5, cex=1)
 mtext("Mean change in number of habitats used before vs after",side=1,line=3, cex=1)
 mtext("Ratio of estimates below zero",side=2,line=3, cex=1.2)
 
-#92% of the posterior mass is above zero for a 2 or larger mean change in number of habitats used between before and after when the sample size is 20
-#mu_10_ci #91%. column 4 for the 2 category on the x axis (ordered by unique(d$changenumber_mean))
-#mu_20_ci #92%
-#mu_30_ci #93%
-#mu_40_ci #93%
-#mu_60_ci #94%
-#sum(d2[d2$n %in% 20 & d2$changenumber_mean %in% 2,]$proportion_estimates_below_zero<0.3) #24 values are <0.3 (out of 30)
-#length(d2[d2$n %in% 20 & d2$changenumber_mean %in% 2,]$proportion_estimates_below_zero) #30 values total
+#99.98% of the posterior mass is above zero for a 1 or larger mean change in number of habitats used between before and after when the sample size is 20
+#mu_10_ci #99.87%. column 5 for the 1 habitat change category on the x axis (ordered by unique(d$changenumber_mean))
+#mu_20_ci #99.96%
+#mu_30_ci #99.983%
+#mu_40_ci #99.996%
+#mu_60_ci #99.996%
+#sum(d2[d2$n %in% 20 & d2$changenumber_mean %in% 1,]$proportion_estimates_below_zero<0.3) #mean change=1 then 29 values are <0.3 (out of 30). mean change=0 then 10/30 values are <0.3
+#length(d2[d2$n %in% 20 & d2$changenumber_mean %in% 1,]$proportion_estimates_below_zero) #30 values total
 
 
 # plot for sd=1
-plot(NULL,xlim=c(-0.2,5.2),ylim=c(0.0,0.8),pch=1,ann=F,frame.plot=F,cex=1.5)
+plot(NULL,xlim=c(-0.2,5.2),ylim=c(0.0,0.8),pch=1,ann=F,frame.plot=F,cex=1.5,xaxt="n")
 
-mu1_10<- link( m_samplesize_diffscount , data=data.frame( changenumber_mean=sqrt(unique(d1$changenumber_mean)),samplesize=rep(1,length(unique(d1$changenumber_mean))) ) )
+mu1_10<- link( m_samplesize_diffscount , data=data.frame( changenumber_mean=as.factor(unique(d1$changenumber_mean)),samplesize=rep(1,length(unique(d1$changenumber_mean))) ) )
 mu1_10_mean <- apply( mu1_10 , 2 , mean )
 mu1_10_ci <- apply( mu1_10 , 2 , PI , prob=0.97 )
 shade( mu1_10_ci , unique(d1$changenumber_mean) , col=col.alpha("blue",0.7) )
@@ -1744,9 +1758,9 @@ lines(x=c(0.9,0.9),y=c(min(d1[d1$n %in% 10 & d1$changenumber_mean %in% 1,]$propo
 lines(x=c(1.9,1.9),y=c(min(d1[d1$n %in% 10 & d1$changenumber_mean %in% 2,]$proportion_estimates_below_zero),max(d1[d1$n %in% 10 & d1$changenumber_mean %in% 2,]$proportion_estimates_below_zero)),col=col.alpha("blue",0.5))
 lines(x=c(2.9,2.9),y=c(min(d1[d1$n %in% 10 & d1$changenumber_mean %in% 3,]$proportion_estimates_below_zero),max(d1[d1$n %in% 10 & d1$changenumber_mean %in% 3,]$proportion_estimates_below_zero)),col=col.alpha("blue",0.5))
 lines(x=c(3.9,3.9),y=c(min(d1[d1$n %in% 10 & d1$changenumber_mean %in% 4,]$proportion_estimates_below_zero),max(d1[d1$n %in% 10 & d1$changenumber_mean %in% 4,]$proportion_estimates_below_zero)),col=col.alpha("blue",0.5))
-lines(x=c(4.9,4.9),y=c(min(d1[d1$n %in% 10 & d1$changenumber_mean %in% 5,]$proportion_estimates_below_zero),max(d1[d1$n %in% 10 & d1$changenumber_mean %in% 5,]$proportion_estimates_below_zero)),col=col.alpha("blue",0.5))
+lines(x=c(4.9,4.9),y=c(min(d1[d1$n %in% 10 & d1$changenumber_mean %in% 4.5,]$proportion_estimates_below_zero),max(d1[d1$n %in% 10 & d1$changenumber_mean %in% 4.5,]$proportion_estimates_below_zero)),col=col.alpha("blue",0.5))
 
-mu1_20 <- link( m_samplesize_diffscount , data=data.frame( changenumber_mean=sqrt(unique(d1$changenumber_mean)),samplesize=rep(2,length(unique(d1$changenumber_mean))) ) )
+mu1_20 <- link( m_samplesize_diffscount , data=data.frame( changenumber_mean=as.factor(unique(d1$changenumber_mean)),samplesize=rep(2,length(unique(d1$changenumber_mean))) ) )
 mu1_20_mean <- apply( mu1_20 , 2 , mean )
 mu1_20_ci <- apply( mu1_20 , 2 , PI , prob=0.97 )
 shade( mu1_20_ci , unique(d1$changenumber_mean) , col=col.alpha("orange",0.7) )
@@ -1755,9 +1769,9 @@ lines(x=c(0.95,0.95),y=c(min(d1[d1$n %in% 20 & d1$changenumber_mean %in% 1,]$pro
 lines(x=c(1.95,1.95),y=c(min(d1[d1$n %in% 20 & d1$changenumber_mean %in% 2,]$proportion_estimates_below_zero),max(d1[d1$n %in% 20 & d1$changenumber_mean %in% 2,]$proportion_estimates_below_zero)),col=col.alpha("orange",0.5))
 lines(x=c(2.95,2.95),y=c(min(d1[d1$n %in% 20 & d1$changenumber_mean %in% 3,]$proportion_estimates_below_zero),max(d1[d1$n %in% 20 & d1$changenumber_mean %in% 3,]$proportion_estimates_below_zero)),col=col.alpha("orange",0.5))
 lines(x=c(3.95,3.95),y=c(min(d1[d1$n %in% 20 & d1$changenumber_mean %in% 4,]$proportion_estimates_below_zero),max(d1[d1$n %in% 20 & d1$changenumber_mean %in% 4,]$proportion_estimates_below_zero)),col=col.alpha("orange",0.5))
-lines(x=c(4.95,4.95),y=c(min(d1[d1$n %in% 20 & d1$changenumber_mean %in% 5,]$proportion_estimates_below_zero),max(d1[d1$n %in% 20 & d1$changenumber_mean %in% 5,]$proportion_estimates_below_zero)),col=col.alpha("orange",0.5))
+lines(x=c(4.95,4.95),y=c(min(d1[d1$n %in% 20 & d1$changenumber_mean %in% 4.5,]$proportion_estimates_below_zero),max(d1[d1$n %in% 20 & d1$changenumber_mean %in% 4.5,]$proportion_estimates_below_zero)),col=col.alpha("orange",0.5))
 
-mu1_30 <- link( m_samplesize_diffscount , data=data.frame( changenumber_mean=sqrt(unique(d1$changenumber_mean)),samplesize=rep(3,length(unique(d1$changenumber_mean))) ) )
+mu1_30 <- link( m_samplesize_diffscount , data=data.frame( changenumber_mean=as.factor(unique(d1$changenumber_mean)),samplesize=rep(3,length(unique(d1$changenumber_mean))) ) )
 mu1_30_mean <- apply( mu1_30 , 2 , mean )
 mu1_30_ci <- apply( mu1_30 , 2 , PI , prob=0.97 )
 shade( mu1_30_ci ,unique(d1$changenumber_mean), col=col.alpha("skyblue",0.7) )
@@ -1766,9 +1780,9 @@ lines(x=c(1,1),y=c(min(d1[d1$n %in% 30 & d1$changenumber_mean %in% 1,]$proportio
 lines(x=c(2,2),y=c(min(d1[d1$n %in% 30 & d1$changenumber_mean %in% 2,]$proportion_estimates_below_zero),max(d1[d1$n %in% 30 & d1$changenumber_mean %in% 2,]$proportion_estimates_below_zero)),col=col.alpha("skyblue",0.5))
 lines(x=c(3,3),y=c(min(d1[d1$n %in% 30 & d1$changenumber_mean %in% 3,]$proportion_estimates_below_zero),max(d1[d1$n %in% 30 & d1$changenumber_mean %in% 3,]$proportion_estimates_below_zero)),col=col.alpha("skyblue",0.5))
 lines(x=c(4,4),y=c(min(d1[d1$n %in% 30 & d1$changenumber_mean %in% 4,]$proportion_estimates_below_zero),max(d1[d1$n %in% 30 & d1$changenumber_mean %in% 4,]$proportion_estimates_below_zero)),col=col.alpha("skyblue",0.5))
-lines(x=c(5,5),y=c(min(d1[d1$n %in% 30 & d1$changenumber_mean %in% 5,]$proportion_estimates_below_zero),max(d1[d1$n %in% 30 & d1$changenumber_mean %in% 5,]$proportion_estimates_below_zero)),col=col.alpha("skyblue",0.5))
+lines(x=c(5,5),y=c(min(d1[d1$n %in% 30 & d1$changenumber_mean %in% 4.5,]$proportion_estimates_below_zero),max(d1[d1$n %in% 30 & d1$changenumber_mean %in% 4.5,]$proportion_estimates_below_zero)),col=col.alpha("skyblue",0.5))
 
-mu1_40 <- link( m_samplesize_diffscount , data=data.frame( changenumber_mean=sqrt(unique(d1$changenumber_mean)),samplesize=rep(4,length(unique(d1$changenumber_mean))) ) )
+mu1_40 <- link( m_samplesize_diffscount , data=data.frame( changenumber_mean=as.factor(unique(d1$changenumber_mean)),samplesize=rep(4,length(unique(d1$changenumber_mean))) ) )
 mu1_40_mean <- apply( mu1_40 , 2 , mean )
 mu1_40_ci <- apply( mu1_40 , 2 , PI , prob=0.97 )
 shade( mu1_40_ci ,unique(d1$changenumber_mean) , col=col.alpha("#213940",0.7) )
@@ -1777,9 +1791,9 @@ lines(x=c(1.05,1.05),y=c(min(d1[d1$n %in% 40 & d1$changenumber_mean %in% 1,]$pro
 lines(x=c(2.05,2.05),y=c(min(d1[d1$n %in% 40 & d1$changenumber_mean %in% 2,]$proportion_estimates_below_zero),max(d1[d1$n %in% 40 & d1$changenumber_mean %in% 2,]$proportion_estimates_below_zero)),col=col.alpha("#213940",0.5))
 lines(x=c(3.05,3.05),y=c(min(d1[d1$n %in% 40 & d1$changenumber_mean %in% 3,]$proportion_estimates_below_zero),max(d1[d1$n %in% 40 & d1$changenumber_mean %in% 3,]$proportion_estimates_below_zero)),col=col.alpha("#213940",0.5))
 lines(x=c(4.05,4.05),y=c(min(d1[d1$n %in% 40 & d1$changenumber_mean %in% 4,]$proportion_estimates_below_zero),max(d1[d1$n %in% 40 & d1$changenumber_mean %in% 4,]$proportion_estimates_below_zero)),col=col.alpha("#213940",0.5))
-lines(x=c(5.05,5.05),y=c(min(d1[d1$n %in% 40 & d1$changenumber_mean %in% 5,]$proportion_estimates_below_zero),max(d1[d1$n %in% 40 & d1$changenumber_mean %in% 5,]$proportion_estimates_below_zero)),col=col.alpha("#213940",0.5))
+lines(x=c(5.05,5.05),y=c(min(d1[d1$n %in% 40 & d1$changenumber_mean %in% 4.5,]$proportion_estimates_below_zero),max(d1[d1$n %in% 40 & d1$changenumber_mean %in% 4.5,]$proportion_estimates_below_zero)),col=col.alpha("#213940",0.5))
 
-mu1_60 <- link( m_samplesize_diffscount , data=data.frame( changenumber_mean=sqrt(unique(d1$changenumber_mean)),samplesize=rep(5,length(unique(d1$changenumber_mean))) ) )
+mu1_60 <- link( m_samplesize_diffscount , data=data.frame( changenumber_mean=as.factor(unique(d1$changenumber_mean)),samplesize=rep(5,length(unique(d1$changenumber_mean))) ) )
 mu1_60_mean <- apply( mu1_60 , 2 , mean )
 mu1_60_ci <- apply( mu1_60 , 2 , PI , prob=0.97 )
 shade( mu1_60_ci , unique(d1$changenumber_mean), col=col.alpha("red",0.7) )
@@ -1788,24 +1802,36 @@ lines(x=c(1.1,1.1),y=c(min(d1[d1$n %in% 60 & d1$changenumber_mean %in% 1,]$propo
 lines(x=c(2.1,2.1),y=c(min(d1[d1$n %in% 60 & d1$changenumber_mean %in% 2,]$proportion_estimates_below_zero),max(d1[d1$n %in% 60 & d1$changenumber_mean %in% 2,]$proportion_estimates_below_zero)),col=col.alpha("red",0.5))
 lines(x=c(3.1,3.1),y=c(min(d1[d1$n %in% 60 & d1$changenumber_mean %in% 3,]$proportion_estimates_below_zero),max(d1[d1$n %in% 60 & d1$changenumber_mean %in% 3,]$proportion_estimates_below_zero)),col=col.alpha("red",0.5))
 lines(x=c(4.1,4.1),y=c(min(d1[d1$n %in% 60 & d1$changenumber_mean %in% 4,]$proportion_estimates_below_zero),max(d1[d1$n %in% 60 & d1$changenumber_mean %in% 4,]$proportion_estimates_below_zero)),col=col.alpha("red",0.5))
-lines(x=c(5.1,5.1),y=c(min(d1[d1$n %in% 60 & d1$changenumber_mean %in% 5,]$proportion_estimates_below_zero),max(d1[d1$n %in% 60 & d1$changenumber_mean %in% 5,]$proportion_estimates_below_zero)),col=col.alpha("red",0.5))
+lines(x=c(5.1,5.1),y=c(min(d1[d1$n %in% 60 & d1$changenumber_mean %in% 4.5,]$proportion_estimates_below_zero),max(d1[d1$n %in% 60 & d1$changenumber_mean %in% 4.5,]$proportion_estimates_below_zero)),col=col.alpha("red",0.5))
 
 legend(x="topright",legend=c(lty2="10",lty1="20",lty3="30",lty2="40",lty3="60"),lty=c(1,1,1,1,1),lwd=c(5,5,5,5,5),col=c(col.alpha("blue",0.4),col.alpha("orange",0.4),col.alpha("skyblue",0.4),col.alpha("#213940",0.4),col.alpha("red",0.4)),cex=1,bty="n")
 
 # Axis labels (side 1=x axis, side 2=y axis)
 mtext("Sample size",side=3,line=-0.7,at=4.9)
-mtext("B. SD=1",side=3,line=1,at=0.5,cex=1.3)
+mtext("B. SD=1",side=3,line=1,at=0.1,cex=1.2)
+mtext("0",side=1,line=0, at=0, cex=1)
+mtext("1",side=1,line=0, at=1, cex=1)
+mtext("2",side=1,line=0, at=2, cex=1)
+mtext("3",side=1,line=0, at=3, cex=1)
+mtext("4",side=1,line=0, at=4, cex=1)
+mtext("4.5",side=1,line=0, at=5, cex=1)
+mtext("0",side=1,line=1, at=0, cex=1)
+mtext("0.8",side=1,line=1, at=1, cex=1)
+mtext("1.5",side=1,line=1, at=2, cex=1)
+mtext("2.3",side=1,line=1, at=3, cex=1)
+mtext("3.1",side=1,line=1, at=4, cex=1)
+mtext("3.5",side=1,line=1, at=5, cex=1)
 mtext("Mean change in number of habitats used before vs after",side=1,line=3, cex=1)
 par(op)
 
-#94% of the posterior mass is above zero for a 2 or larger mean change in number of habitats used between before and after when the sample size is 20
-#mu1_10_ci #92%. column 4 for the 2 category on the x axis (ordered by unique(d$changenumber_mean))
-#mu1_20_ci #93%
-#mu1_30_ci #94%
-#mu1_40_ci #94%
-#mu1_60_ci #94%
-#sum(d1[d1$n %in% 20 & d1$changenumber_mean %in% 2,]$proportion_estimates_below_zero<0.3) #28 values are <0.3 (out of 30)
-#length(d1[d1$n %in% 20 & d1$changenumber_mean %in% 2,]$proportion_estimates_below_zero) #30 values total
+#99.996% of the posterior mass is above zero for a 1 or larger mean change in number of habitats used between before and after when the sample size is 20
+#mu1_10_ci #99.987%. column 5 for the 1 habitat change category on the x axis (ordered by unique(d$changenumber_mean))
+#mu1_20_ci #99.996%
+#mu1_30_ci #99.9996%
+#mu1_40_ci #100%
+#mu1_60_ci #100%
+#sum(d1[d1$n %in% 20 & d1$changenumber_mean %in% 1,]$proportion_estimates_below_zero<0.3) #30 values are <0.3 (out of 30)
+#length(d1[d1$n %in% 20 & d1$changenumber_mean %in% 1,]$proportion_estimates_below_zero) #30 values total
 ```
 
 **Figure 4.** Curves of the mean ratio of estimates below zero (vertical lines show the minimum and maximum ratios), which illustrates the power we have to detect differences between conditions at different sample sizes. Across all models, the standard deviation of the mean change in number of habitats used was 2 (A) or 1 (B) and the number of habitats used before the flexibility manipulation was 4.5.
@@ -1898,13 +1924,13 @@ y is the response variable: the total number of different food types taken per i
 
 We estimated our power to detect differences between conditions at different sample sizes and with different mean changes in the total number of different food types taken per individual in the before vs. after conditions (Figure 4). We simulated the number of food types taken for different sample sizes of individuals before and after the flexibility manipulation. We analyzed these simulated data with the model we will use to analyze the actual data, estimating the change in the number of food types taken between the before and after conditions. From the posterior estimates of the model, we extracted both the mean change as well as the ratio of the posterior estimates that were below zero.
 
-If the mean ratio of estimates below zero is close to 0.5, the model assumes that the change in the number of food types taken before the flexibility manipulation is similar to after. If the ratio is close to zero, the model assumes individuals have changed their behavior. For changes in the number of food types taken smaller than 2, models are likely to assume that no changes occurred even with large sample sizes. If the change in the number of food types taken before the flexibility manipulation vs. after is 2 with a standard deviation of 2, on average 91% of the posterior of the model based on a sample size of 20 individuals will be larger than zero. This means that the model is quite certain there is a difference that is larger than zero. In addition, only 6 of the 30 models for a sample size of 20 at the mean change of 2 have a ratio larger than 0.3, meaning that the risk of having a false negative is not very likely.
+If the mean ratio of estimates below zero is close to 0.5, the model assumes that the change in the number of food types taken before the flexibility manipulation is similar to after. If the ratio is close to zero, the model assumes individuals have changed their behavior. For changes in the number of food types taken smaller than 1, models are likely to assume that no changes occurred even with large sample sizes. If the change in the number of food types taken before the flexibility manipulation vs. after is 1 with a standard deviation of 2, on average 99.96% of the posterior of the model based on a sample size of 20 individuals will be larger than zero. This means that the model is quite certain there is a difference that is larger than zero. In addition, none of the 30 models for a sample size of 20 at the mean change of 1 have a ratio larger than 0.3, meaning that the risk of having a false negative is not very likely.
 
-In general, with sample sizes at or above 20 and mean changes in the number of food types taken at 2 or larger, it is likely that the model will indicate that individuals have changed their behavior. Mean changes below 2 can still be detected, however there is a much higher risk that there will be a false negative and this risk is independent of sample size. For example, 60% of the models for a sample size of 20 at the mean change of 1 have a ratio larger than 0.3, meaning there is a risk of having a false negative.
+In general, with sample sizes at or above 20 and mean changes in the number of food types taken at 1 or larger, it is likely that the model will indicate that individuals have changed their behavior. Mean changes below 1 can still be detected, however there is a higher risk that there will be a false negative and this risk is independent of sample size. For example, 17% of the models for a sample size of 20 at the mean change of 0.5 have a ratio larger than 0.3, meaning there is a risk of having a false negative.
 
 With small mean changes in the response variable, some individuals might not increase or even decrease their response after the manipulation because there is variation around the mean change in individual responses. With small sample sizes, there is a risk that only individuals who did not clearly increase their response will be studied, whereas larger sample sizes are more likely to include a wider spectrum of individuals.
 
-To estimate the risk of detecting false positives, we set the mean change in the number of food types taken to zero so there was no change between the before and after conditions. As expected, the average ratio of estimates below zero is close to 0.5 and independent of sample size. With a sample size of 20, 43% have a ratio smaller than 0.3, meaning that the risk of having a false positive is high. The risk would be lower if the variation among individuals was lower than what we assumed (the standard deviation of the mean change in number of foods was 2, which is a conservative estimate).
+To estimate the risk of detecting false positives, we set the mean change in the number of food types taken to zero so there was no change between the before and after conditions. As expected, the average ratio of estimates below zero is close to 0.5 and independent of sample size. With a sample size of 20, 30% have a ratio smaller than 0.3, meaning that the risk of having a false positive is high. The risk would be lower if the variation among individuals was lower than what we assumed (the standard deviation of the mean change in number of foods was 2, which is a conservative estimate).
 
 ```{r jayforagingsim, eval=F}
 library(rethinking)
@@ -2052,11 +2078,11 @@ d <- read.csv("https://raw.githubusercontent.com/ManyIndividuals/ManyIndividuals
 d2 <- d[d$changenumber_sd==2,]
 
 # Set up the data sheet for the model
-dat2 <- list(
-  proportion_estimates_below_zero = as.numeric(d$proportion_estimates_below_zero),
-  count_estimates_below_zero = as.numeric(d$count_estimates_below_zero),
-  changenumber_mean = as.factor(d$changenumber_mean),
-  samplesize = as.integer(as.factor(d$n))
+datsd2 <- list(
+  proportion_estimates_below_zero = as.numeric(d2$proportion_estimates_below_zero),
+  count_estimates_below_zero = as.numeric(d2$count_estimates_below_zero),
+  changenumber_mean = as.factor(d2$changenumber_mean),
+  samplesize = as.integer(as.factor(d2$n))
 )
 
 # We run the STAN model for sd=2 - it is a binomial model that assumes that the probability to estimate a difference depends on an interaction between the sample size and the difference between the conditions (before/after). The response variable is a count and the model turns it into a proportion
@@ -2071,7 +2097,7 @@ m_samplesize_diffscount2 <- ulam(
     vector[6]:sigma_actor ~ dexp(1),
     cholesky_factor_corr[6]:L_Rho_actor ~ lkj_corr_cholesky( 2 ),
     gq> matrix[6,6]:Rho_actor <<- Chol_to_Corr(L_Rho_actor)
-  ),data=dat2, log_lik=TRUE, messages=FALSE,cmdstan=T)
+  ),data=datsd2, log_lik=TRUE, messages=FALSE,cmdstan=T)
 
 # Extract the posterior estimates from this STAN model
 precis_output<-precis( m_samplesize_diffscount2 , depth=2 )
@@ -2081,10 +2107,10 @@ precis_output<-precis( m_samplesize_diffscount2 , depth=2 )
 d1 <- d[d$changenumber_sd==1,]
 
 # Set up the data sheet for the model
-dat1 <- list(
+datsd1 <- list(
   proportion_estimates_below_zero = as.numeric(d1$proportion_estimates_below_zero),
   count_estimates_below_zero = as.numeric(d1$count_estimates_below_zero),
-  changenumber_mean = as.factor(d$changenumber_mean),
+  changenumber_mean = as.factor(d1$changenumber_mean),
   samplesize = as.integer(as.factor(d1$n))
 )
 
@@ -2099,7 +2125,7 @@ m_samplesize_diffscount <- ulam(
     vector[6]:sigma_actor ~ dexp(1),
     cholesky_factor_corr[6]:L_Rho_actor ~ lkj_corr_cholesky( 2 ),
     gq> matrix[6,6]:Rho_actor <<- Chol_to_Corr(L_Rho_actor)
-  ),data=dat1, log_lik=TRUE, messages=FALSE,cmdstan=T)
+  ),data=datsd1, log_lik=TRUE, messages=FALSE,cmdstan=T)
 
 # Extract the posterior estimates from this STAN model
 precis_output1<-precis( m_samplesize_diffscount , depth=2 )
@@ -2108,9 +2134,9 @@ precis_output1<-precis( m_samplesize_diffscount , depth=2 )
 # Plot the predictions for the different sample sizes as separate lines = COUNT out of 2000
 # plot for sd=2
 op <- par(mfrow=c(1,2), mar=c(5.9,4.9,2.3,0.9))
-plot(NULL,xlim=c(-0.2,5),ylim=c(0.0,0.8),pch=1,ann=F,frame.plot=F,cex=1.5)
+plot(NULL,xlim=c(-0.2,5),ylim=c(0.0,0.8),pch=1,ann=F,frame.plot=F,cex=1.5,xaxt="n")
 
-mu_10<- link( m_samplesize_diffscount2 , data=data.frame( changenumber_mean=sqrt(unique(d2$changenumber_mean)),samplesize=rep(1,length(unique(d2$changenumber_mean))) ) )
+mu_10<- link( m_samplesize_diffscount2 , data=data.frame( changenumber_mean=as.factor(unique(d2$changenumber_mean)),samplesize=rep(1,length(unique(d2$changenumber_mean))) ) )
 mu_10_mean <- apply( mu_10 , 2 , mean )
 mu_10_ci <- apply( mu_10 , 2 , PI , prob=0.97 )
 shade( mu_10_ci , unique(d2$changenumber_mean) , col=col.alpha("blue",0.7) )
@@ -2121,7 +2147,7 @@ lines(x=c(2.9,2.9),y=c(min(d2[d2$n %in% 10 & d2$changenumber_mean %in% 3,]$propo
 lines(x=c(3.9,3.9),y=c(min(d2[d2$n %in% 10 & d2$changenumber_mean %in% 4,]$proportion_estimates_below_zero),max(d2[d2$n %in% 10 & d2$changenumber_mean %in% 4,]$proportion_estimates_below_zero)),col=col.alpha("blue",0.5))
 lines(x=c(4.9,4.9),y=c(min(d2[d2$n %in% 10 & d2$changenumber_mean %in% 5,]$proportion_estimates_below_zero),max(d2[d2$n %in% 10 & d2$changenumber_mean %in% 5,]$proportion_estimates_below_zero)),col=col.alpha("blue",0.5))
 
-mu_20 <- link( m_samplesize_diffscount2 , data=data.frame( changenumber_mean=sqrt(unique(d2$changenumber_mean)),samplesize=rep(2,length(unique(d2$changenumber_mean))) ) )
+mu_20 <- link( m_samplesize_diffscount2 , data=data.frame( changenumber_mean=as.factor(unique(d2$changenumber_mean)),samplesize=rep(2,length(unique(d2$changenumber_mean))) ) )
 mu_20_mean <- apply( mu_20 , 2 , mean )
 mu_20_ci <- apply( mu_20 , 2 , PI , prob=0.97 )
 shade( mu_20_ci , unique(d2$changenumber_mean) , col=col.alpha("orange",0.7) )
@@ -2132,7 +2158,7 @@ lines(x=c(2.95,2.95),y=c(min(d2[d2$n %in% 20 & d2$changenumber_mean %in% 3,]$pro
 lines(x=c(3.95,3.95),y=c(min(d2[d2$n %in% 20 & d2$changenumber_mean %in% 4,]$proportion_estimates_below_zero),max(d2[d2$n %in% 20 & d2$changenumber_mean %in% 4,]$proportion_estimates_below_zero)),col=col.alpha("orange",0.5))
 lines(x=c(4.95,4.95),y=c(min(d2[d2$n %in% 20 & d2$changenumber_mean %in% 5,]$proportion_estimates_below_zero),max(d2[d2$n %in% 20 & d2$changenumber_mean %in% 5,]$proportion_estimates_below_zero)),col=col.alpha("orange",0.5))
 
-mu_30 <- link( m_samplesize_diffscount2 , data=data.frame( changenumber_mean=sqrt(unique(d2$changenumber_mean)),samplesize=rep(3,length(unique(d2$changenumber_mean))) ) )
+mu_30 <- link( m_samplesize_diffscount2 , data=data.frame( changenumber_mean=as.factor(unique(d2$changenumber_mean)),samplesize=rep(3,length(unique(d2$changenumber_mean))) ) )
 mu_30_mean <- apply( mu_30 , 2 , mean )
 mu_30_ci <- apply( mu_30 , 2 , PI , prob=0.97 )
 shade( mu_30_ci ,unique(d2$changenumber_mean), col=col.alpha("skyblue",0.7) )
@@ -2143,7 +2169,7 @@ lines(x=c(3,3),y=c(min(d2[d2$n %in% 30 & d2$changenumber_mean %in% 3,]$proportio
 lines(x=c(4,4),y=c(min(d2[d2$n %in% 30 & d2$changenumber_mean %in% 4,]$proportion_estimates_below_zero),max(d2[d2$n %in% 30 & d2$changenumber_mean %in% 4,]$proportion_estimates_below_zero)),col=col.alpha("skyblue",0.5))
 lines(x=c(5,5),y=c(min(d2[d2$n %in% 30 & d2$changenumber_mean %in% 5,]$proportion_estimates_below_zero),max(d2[d2$n %in% 30 & d2$changenumber_mean %in% 5,]$proportion_estimates_below_zero)),col=col.alpha("skyblue",0.5))
 
-mu_40 <- link( m_samplesize_diffscount2 , data=data.frame( changenumber_mean=sqrt(unique(d2$changenumber_mean)),samplesize=rep(4,length(unique(d2$changenumber_mean))) ) )
+mu_40 <- link( m_samplesize_diffscount2 , data=data.frame( changenumber_mean=as.factor(unique(d2$changenumber_mean)),samplesize=rep(4,length(unique(d2$changenumber_mean))) ) )
 mu_40_mean <- apply( mu_40 , 2 , mean )
 mu_40_ci <- apply( mu_40 , 2 , PI , prob=0.97 )
 shade( mu_40_ci ,unique(d2$changenumber_mean) , col=col.alpha("#213940",0.7) )
@@ -2154,7 +2180,7 @@ lines(x=c(3.05,3.05),y=c(min(d2[d2$n %in% 40 & d2$changenumber_mean %in% 3,]$pro
 lines(x=c(4.05,4.05),y=c(min(d2[d2$n %in% 40 & d2$changenumber_mean %in% 4,]$proportion_estimates_below_zero),max(d2[d2$n %in% 40 & d2$changenumber_mean %in% 4,]$proportion_estimates_below_zero)),col=col.alpha("#213940",0.5))
 lines(x=c(5.05,5.05),y=c(min(d2[d2$n %in% 40 & d2$changenumber_mean %in% 5,]$proportion_estimates_below_zero),max(d2[d2$n %in% 40 & d2$changenumber_mean %in% 5,]$proportion_estimates_below_zero)),col=col.alpha("#213940",0.5))
 
-mu_60 <- link( m_samplesize_diffscount2 , data=data.frame( changenumber_mean=sqrt(unique(d2$changenumber_mean)),samplesize=rep(5,length(unique(d2$changenumber_mean))) ) )
+mu_60 <- link( m_samplesize_diffscount2 , data=data.frame( changenumber_mean=as.factor(unique(d2$changenumber_mean)),samplesize=rep(5,length(unique(d2$changenumber_mean))) ) )
 mu_60_mean <- apply( mu_60 , 2 , mean )
 mu_60_ci <- apply( mu_60 , 2 , PI , prob=0.97 )
 shade( mu_60_ci , unique(d2$changenumber_mean), col=col.alpha("red",0.7) )
@@ -2166,24 +2192,30 @@ lines(x=c(4.1,4.1),y=c(min(d2[d2$n %in% 60 & d2$changenumber_mean %in% 4,]$propo
 lines(x=c(5.1,5.1),y=c(min(d2[d2$n %in% 60 & d2$changenumber_mean %in% 5,]$proportion_estimates_below_zero),max(d2[d2$n %in% 60 & d2$changenumber_mean %in% 5,]$proportion_estimates_below_zero)),col=col.alpha("red",0.5))
 
 # Axis labels (side 1=x axis, side 2=y axis)
-mtext("A. Power to detect differences between conditions: SD=2",side=3,line=1,at=3,cex=1.3)
-mtext("Mean change in number of habitats used before vs after",side=1,line=3, cex=1)
+mtext("A. Power to detect differences between conditions: SD=2",side=3,line=1,at=2.5,cex=1.2)
+mtext("Mean change in number of food types taken before vs after",side=1,line=2, cex=1)
 mtext("Ratio of estimates below zero",side=2,line=3, cex=1.2)
+mtext("0",side=1,line=0, at=0, cex=1)
+mtext("0.5",side=1,line=0, at=1, cex=1)
+mtext("1",side=1,line=0, at=2, cex=1)
+mtext("2",side=1,line=0, at=3, cex=1)
+mtext("3",side=1,line=0, at=4, cex=1)
+mtext("6",side=1,line=0, at=5, cex=1)
 
-#97% of the posterior mass is above zero for a 2 or larger mean change in number of habitats used between before and after when the sample size is 20
-#mu_10_ci #93%. column 4 for the 2 category on the x axis (ordered by unique(d$changenumber_mean))
-#mu_20_ci #97%
-#mu_30_ci #98%
-#mu_40_ci #99%
-#mu_60_ci #99%
-#sum(d2[d2$n %in% 20 & d2$changenumber_mean %in% 2,]$proportion_estimates_below_zero<0.3) #30 values are <0.3 (out of 30)
+#99.96% of the posterior mass is above zero for a 1 or larger mean change in number of habitats used between before and after when the sample size is 20
+#mu_10_ci #99.85%. column 4 for the 1 category on the x axis (ordered by unique(d$changenumber_mean))
+#mu_20_ci #99.96%
+#mu_30_ci #99.95%
+#mu_40_ci #99.97%
+#mu_60_ci #99.98%
+#sum(d2[d2$n %in% 20 & d2$changenumber_mean %in% 2,]$proportion_estimates_below_zero<0.3) #30 values are <0.3 (out of 30). 25/30 are <0.3 when the changenumber mean is 1 (equivalant to a 0.5 change in habitats), and 9/30 when changenumbermean=0
 #length(d2[d2$n %in% 20 & d2$changenumber_mean %in% 2,]$proportion_estimates_below_zero) #30 values total
 
 
 # plot for sd=1
-plot(NULL,xlim=c(-0.2,5.2),ylim=c(0.0,0.8),pch=1,ann=F,frame.plot=F,cex=1.5)
+plot(NULL,xlim=c(-0.2,5.2),ylim=c(0.0,0.8),pch=1,ann=F,frame.plot=F,cex=1.5,xaxt="n")
 
-mu1_10<- link( m_samplesize_diffscount , data=data.frame( changenumber_mean=sqrt(unique(d1$changenumber_mean)),samplesize=rep(1,length(unique(d1$changenumber_mean))) ) )
+mu1_10<- link( m_samplesize_diffscount , data=data.frame( changenumber_mean=as.factor(unique(d1$changenumber_mean)),samplesize=rep(1,length(unique(d1$changenumber_mean))) ) )
 mu1_10_mean <- apply( mu1_10 , 2 , mean )
 mu1_10_ci <- apply( mu1_10 , 2 , PI , prob=0.97 )
 shade( mu1_10_ci , unique(d1$changenumber_mean) , col=col.alpha("blue",0.7) )
@@ -2194,7 +2226,7 @@ lines(x=c(2.9,2.9),y=c(min(d1[d1$n %in% 10 & d1$changenumber_mean %in% 3,]$propo
 lines(x=c(3.9,3.9),y=c(min(d1[d1$n %in% 10 & d1$changenumber_mean %in% 4,]$proportion_estimates_below_zero),max(d1[d1$n %in% 10 & d1$changenumber_mean %in% 4,]$proportion_estimates_below_zero)),col=col.alpha("blue",0.5))
 lines(x=c(4.9,4.9),y=c(min(d1[d1$n %in% 10 & d1$changenumber_mean %in% 5,]$proportion_estimates_below_zero),max(d1[d1$n %in% 10 & d1$changenumber_mean %in% 5,]$proportion_estimates_below_zero)),col=col.alpha("blue",0.5))
 
-mu1_20 <- link( m_samplesize_diffscount , data=data.frame( changenumber_mean=sqrt(unique(d1$changenumber_mean)),samplesize=rep(2,length(unique(d1$changenumber_mean))) ) )
+mu1_20 <- link( m_samplesize_diffscount , data=data.frame( changenumber_mean=as.factor(unique(d1$changenumber_mean)),samplesize=rep(2,length(unique(d1$changenumber_mean))) ) )
 mu1_20_mean <- apply( mu1_20 , 2 , mean )
 mu1_20_ci <- apply( mu1_20 , 2 , PI , prob=0.97 )
 shade( mu1_20_ci , unique(d1$changenumber_mean) , col=col.alpha("orange",0.7) )
@@ -2205,7 +2237,7 @@ lines(x=c(2.95,2.95),y=c(min(d1[d1$n %in% 20 & d1$changenumber_mean %in% 3,]$pro
 lines(x=c(3.95,3.95),y=c(min(d1[d1$n %in% 20 & d1$changenumber_mean %in% 4,]$proportion_estimates_below_zero),max(d1[d1$n %in% 20 & d1$changenumber_mean %in% 4,]$proportion_estimates_below_zero)),col=col.alpha("orange",0.5))
 lines(x=c(4.95,4.95),y=c(min(d1[d1$n %in% 20 & d1$changenumber_mean %in% 5,]$proportion_estimates_below_zero),max(d1[d1$n %in% 20 & d1$changenumber_mean %in% 5,]$proportion_estimates_below_zero)),col=col.alpha("orange",0.5))
 
-mu1_30 <- link( m_samplesize_diffscount , data=data.frame( changenumber_mean=sqrt(unique(d1$changenumber_mean)),samplesize=rep(3,length(unique(d1$changenumber_mean))) ) )
+mu1_30 <- link( m_samplesize_diffscount , data=data.frame( changenumber_mean=as.factor(unique(d1$changenumber_mean)),samplesize=rep(3,length(unique(d1$changenumber_mean))) ) )
 mu1_30_mean <- apply( mu1_30 , 2 , mean )
 mu1_30_ci <- apply( mu1_30 , 2 , PI , prob=0.97 )
 shade( mu1_30_ci ,unique(d1$changenumber_mean), col=col.alpha("skyblue",0.7) )
@@ -2216,7 +2248,7 @@ lines(x=c(3,3),y=c(min(d1[d1$n %in% 30 & d1$changenumber_mean %in% 3,]$proportio
 lines(x=c(4,4),y=c(min(d1[d1$n %in% 30 & d1$changenumber_mean %in% 4,]$proportion_estimates_below_zero),max(d1[d1$n %in% 30 & d1$changenumber_mean %in% 4,]$proportion_estimates_below_zero)),col=col.alpha("skyblue",0.5))
 lines(x=c(5,5),y=c(min(d1[d1$n %in% 30 & d1$changenumber_mean %in% 5,]$proportion_estimates_below_zero),max(d1[d1$n %in% 30 & d1$changenumber_mean %in% 5,]$proportion_estimates_below_zero)),col=col.alpha("skyblue",0.5))
 
-mu1_40 <- link( m_samplesize_diffscount , data=data.frame( changenumber_mean=sqrt(unique(d1$changenumber_mean)),samplesize=rep(4,length(unique(d1$changenumber_mean))) ) )
+mu1_40 <- link( m_samplesize_diffscount , data=data.frame( changenumber_mean=as.factor(unique(d1$changenumber_mean)),samplesize=rep(4,length(unique(d1$changenumber_mean))) ) )
 mu1_40_mean <- apply( mu1_40 , 2 , mean )
 mu1_40_ci <- apply( mu1_40 , 2 , PI , prob=0.97 )
 shade( mu1_40_ci ,unique(d1$changenumber_mean) , col=col.alpha("#213940",0.7) )
@@ -2227,7 +2259,7 @@ lines(x=c(3.05,3.05),y=c(min(d1[d1$n %in% 40 & d1$changenumber_mean %in% 3,]$pro
 lines(x=c(4.05,4.05),y=c(min(d1[d1$n %in% 40 & d1$changenumber_mean %in% 4,]$proportion_estimates_below_zero),max(d1[d1$n %in% 40 & d1$changenumber_mean %in% 4,]$proportion_estimates_below_zero)),col=col.alpha("#213940",0.5))
 lines(x=c(5.05,5.05),y=c(min(d1[d1$n %in% 40 & d1$changenumber_mean %in% 5,]$proportion_estimates_below_zero),max(d1[d1$n %in% 40 & d1$changenumber_mean %in% 5,]$proportion_estimates_below_zero)),col=col.alpha("#213940",0.5))
 
-mu1_60 <- link( m_samplesize_diffscount , data=data.frame( changenumber_mean=sqrt(unique(d1$changenumber_mean)),samplesize=rep(5,length(unique(d1$changenumber_mean))) ) )
+mu1_60 <- link( m_samplesize_diffscount , data=data.frame( changenumber_mean=as.factor(unique(d1$changenumber_mean)),samplesize=rep(5,length(unique(d1$changenumber_mean))) ) )
 mu1_60_mean <- apply( mu1_60 , 2 , mean )
 mu1_60_ci <- apply( mu1_60 , 2 , PI , prob=0.97 )
 shade( mu1_60_ci , unique(d1$changenumber_mean), col=col.alpha("red",0.7) )
@@ -2242,16 +2274,22 @@ legend(x="topright",legend=c(lty2="10",lty1="20",lty3="30",lty2="40",lty3="60"),
 
 # Axis labels (side 1=x axis, side 2=y axis)
 mtext("Sample size",side=3,line=-0.7,at=4.9)
-mtext("B. SD=1",side=3,line=1,at=0.5,cex=1.3)
-mtext("Mean change in number of foods taken before vs after",side=1,line=3, cex=1)
+mtext("0",side=1,line=0, at=0, cex=1)
+mtext("0.5",side=1,line=0, at=1, cex=1)
+mtext("1",side=1,line=0, at=2, cex=1)
+mtext("2",side=1,line=0, at=3, cex=1)
+mtext("3",side=1,line=0, at=4, cex=1)
+mtext("6",side=1,line=0, at=5, cex=1)
+mtext("B. SD=1",side=3,line=1,at=0.1,cex=1.2)
+mtext("Mean change in number of foods taken before vs after",side=1,line=2, cex=1)
 par(op)
 
-#98% of the posterior mass is above zero for a 2 or larger mean change in number of habitats used between before and after when the sample size is 20
-#mu1_10_ci #96%. column 4 for the 2 category on the x axis (ordered by unique(d$changenumber_mean))
-#mu1_20_ci #98%
-#mu1_30_ci #94%
-#mu1_40_ci #99.991%
-#mu1_60_ci #99.997%
+#98% of the posterior mass is above zero for a 1 or larger mean change in number of habitats used between before and after when the sample size is 20
+#mu1_10_ci #99.97%. column 4 for the 1 category on the x axis (ordered by unique(d$changenumber_mean))
+#mu1_20_ci #99.99%
+#mu1_30_ci #99.996%
+#mu1_40_ci #99.998%
+#mu1_60_ci #100%
 #sum(d1[d1$n %in% 20 & d1$changenumber_mean %in% 2,]$proportion_estimates_below_zero<0.3) #30 values are <0.3 (out of 30)
 #length(d1[d1$n %in% 20 & d1$changenumber_mean %in% 2,]$proportion_estimates_below_zero) #30 values total
 ```
