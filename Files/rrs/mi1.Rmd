@@ -49,17 +49,17 @@ knitr::opts_chunk$set(echo=T, include=T, results='asis', warning=F, message=F)
 #set echo=F for knitting to PDF (hide code), and echo=T for knitting to HTML (show code)
 ```
 
-# ABSTRACT
+# **ABSTRACT**
 
 Human modified environments are increasing, causing global changes that other species must adjust to or suffer from. Behavioral flexibility (hereafter 'flexibility') could be key to coping with rapid change. Behavioral research can contribute to conservation by determining which behaviors can predict the ability to adjust to human modified environments and whether these can be manipulated. When research that manipulates behavior in a conservation context occurs, it primarily trains a specific behavior to improve individual success in the wild. However, training a domain general cognitive ability, such as flexibility, has the potential to change a whole suite of behaviors, which could have a larger impact on influencing success in adjusting to human modified environments. This project asks whether flexibility can be increased by experimentally increasing environmental heterogeneity and whether such an increase can help species succeed in human modified environments. We explore whether it is  possible to take insights from highly divergent species and apply them to address critical conservation challenges. This pushes the limits in terms of understanding how conserved these abilities may be and to what extent they can be shaped by the environment. We aim to 1) conduct flexibility interventions in two flexible species that are successful in human modified environments (great-tailed grackles and California scrub-jays) to understand how flexibility relates to success; and 2) implement these interventions in two vulnerable species (toutouwai and Florida scrub-jays) to determine whether flexibility as a generalizable cognitive ability can be trained and whether such training improves success in human-modified environments. This research will significantly advance our understanding of the causes and consequences of flexibility, linking behavior to environmental change, cognition, and success in human modified environments through a comparative and global framework.
 
-# REGISTERED REPORT DETAILS
+# **REGISTERED REPORT DETAILS**
 
  - **Level of bias = 6:** This registered report was written (Jul 2021-Mar 2022) prior to collecting any data.
  - **Programmatic registered report:** Three Stage 2 articles will result from this one Stage 1 registered report: one for toutouwai, one for grackles, and one for scrub-jays.
  - **Deviations from the Stage 1 registered report:** [to be filled in as needed after data collection begins]
 
-# INTRODUCTION
+# **INTRODUCTION**
 
 Human modified environments are increasing [e.g., @liu2020high; @wu2011quantifying; @goldewijk2001estimating], causing global changes that other species must adjust to or suffer from [e.g., @ciani1986intertroop; @chejanovski2017experimental; @federspiel2017adjusting; @alberti2015eco]. Behavioral flexibility (hereafter 'flexibility') could be key: individuals interact with their environment through behavior, making it crucial to an ecologically valid understanding of how species adjust to environmental changes [@lee2021animal]. One of the top priorities for behavioral research to maximize conservation progress is to determine which cognitive abilities and behaviors can predict the ability to adjust to human modified environments and whether these can be manipulated [@moseby2016harnessing]. The rare research that manipulates behavior in a conservation context usually focuses on training specific behaviors (e.g., predator recognition through predator exposure) to improve individual success in the wild [@moseby2012can; @west2018predator; @jolly2018out; @ross2019reversing; see review in @tetzlaff2019effects]. However, training a general cognitive ability, such as flexibility -- the ability to rapidly adapt behavior to changes through learning throughout the lifetime [see the theory behind this definition in @mikhalevich_is_2017] -- has the potential to change a whole suite of behaviors and more broadly influence success in adjusting to human modified environments. Recent evidence supports this hypothesis: as far as we are aware, we were the first to show that flexibility can be manipulated using serial reversal learning of color preferences, and that the manipulated individuals were more flexible in a new context (locus switching on a puzzlebox) as well as being more innovative (solved more loci on a puzzlebox) [@logan2022flexmanip].
 
@@ -76,7 +76,7 @@ Environments where informational cues about resources vary in a heterogenous (bu
 This investigation asks whether flexibility can be increased by experimentally increasing environmental heterogeneity (via serial reversal learning) and whether such an increase can help species succeed in human modified environments. We explore whether it is possible to take insights from highly divergent species and apply them to address critical conservation challenges. We aim to conduct a flexibility intervention in two flexible species that are successful in human modified environments (great-tailed grackles and California scrub-jays) to understand how flexibility relates to success, and implement these interventions in two vulnerable species (toutouwai and Florida scrub-jays) to determine whether flexibility as a generalizable cognitive ability can be trained and whether such training improves success in human modified environments (Figure 2). Manipulating the flexibility of a few individuals could have population-level effects because significant research on social information use in birds [e.g., @valente2021conspecific] demonstrates the potential for the manipulated behavior to disseminate to conspecifics (e.g., if manipulated individuals are faster at locating new resources, which could attract the attention of conspecifics, or if unmanipulated individuals copy the manipulated individuals’ nesting or foraging locations). This comparative approach will ultimately reveal how conserved these abilities may be and to what extent they can be shaped by the environment. The results will substantially advance our understanding of the causes and consequences of flexibility, linking behavior to environmental change, cognition, and success in human modified environments through a comparative and global framework.
 
 
-# RESEARCH QUESTIONS
+# **RESEARCH QUESTIONS**
 
 ## Can behavioral flexibility in individuals be increased by increasing environmental heterogeneity? If so, does increased flexibility help individuals succeed in human modified environments? 
 
@@ -91,23 +91,26 @@ This investigation asks whether flexibility can be increased by experimentally i
 
 &nbsp;
 
-<img width="100%" src="mi1Figthreespp.png">
+<img width="100%" src="mi1Figspp.png">
 
 **Figure 2.** Comparing the four species involved in this investigation relative to their geographic range and association with human modified habitats. The yellow dots represent field site locations.
 
+&nbsp;
 
 ### **Great-tailed grackles (*Quiscalus mexicanus*)**
 
 #### Background 
 Great-tailed grackles are flexible [@logan2016flexibilityproblem; @logan2019flexmanip], highly associated with human modified environments [@johnson2001great], and have been rapidly expanding their geographic range across North America over the past 140 years [@wehtje2003range]. They are social and polygamous, and eat a diversity of human foods as well as foraging on insects and on substrates for other natural food items [@johnson2001great]. Males tend to be the socially dominant sex [@johnson2000male] and also the sex that disperses away from their natal area [@sevchik2019dispersal]. @Rodrigo2021gtgr found that more grackles are present and more foraging events occur during garbage pick ups when garbage tends to spill out of the bags, thus increasing food availability. Attending to garbage trucks, potentially across space and time, is an example of how flexibility can help individuals meet foraging needs in the context of changing environmental cues. Great-tailed grackle behavioral flexibility is manipulatable using serial reversal learning, and this manipulation improves their flexibility in a new context as well as their innovativeness [@logan2019flexmanip], which shows that training a general cognitive ability can affect more behaviors than the behavior that was trained and potentially make them more successful in human modified environments. We are in the middle of long-term data collection on grackles to answer questions about how flexibility relates to exploration [@mccune2019exploration], the predictability of their space use [@mccune2020spaceuse] and their foraging breadth [@logan2019flexforaging]. 
 
-#### Research question (G.Q1): Do flexibility manipulated individuals differ in the proportion of time spent at cafes and garbage dumpsters when food is present?
+#### Research question 
 
-We will investigate this question by tracking their presence at cafes and dumpsters when food is present versus when it is absent before and after manipulating their flexibility using serial reversal learning in the wild (Figure 3). Table 1 summarizes our predictions, analysis plans, interpretations for the various directions the results could go, and the theories that could be contradicted given the various outcomes.
+ - **G.Q1: Do flexibility manipulated individuals differ in the proportion of time spent at cafes and garbage dumpsters when food is present?** We will investigate this question by tracking their presence at cafes and dumpsters when food is present versus when it is absent before and after manipulating their flexibility using serial reversal learning in the wild (Figure 3). Table 1 summarizes our predictions, analysis plans, interpretations for the various directions the results could go, and the hypotheses that could be contradicted given the various outcomes.
+
+&nbsp;
 
 <img width="100%" src="mi1Figgtgr.png">
 
-**Figure 3.** The reversal learning experiment in a group context (Figure 7) tailored to the great-tailed grackle research question.
+**Figure 3.** The reversal learning experiment in a group context (Design 2) tailored to the great-tailed grackle research question.
 
 &nbsp;
 
@@ -115,23 +118,7 @@ We will investigate this question by tracking their presence at cafes and dumpst
 
 <img width="100%" src="mi1StudyDesignTableGTGR.png">
 
-#### Planned sample
-
-We will catch at least 20 grackles using walk in traps, mist nets, and bow nets; collect their biometric data, blood, and feathers; apply colored leg bands for individual identification, one band will have a PIT tag that will interface with the automated feeders; attach a radio tag using a leg loop harness; and release them at their point of capture.
-
-#### Before and after manipulation success measures
-
-The proportion of time spent at dumpsters and outdoor cafes when food is present will be collected using automation from Cellular Tracking Technologies. Individuals will wear radio tags whose signals are detected (within approximately 75m) by nodes that are placed at approximately 200m intervals. Before and after tracking data will be collected on a minimum of 20 individuals with a minimum of 4 separate visit events per individual pre-manipulation and a minimum of 4 separate visit events per individual post-manipulation. This data will allow me to detect pre- vs post-manipulation within-individual differences in visits to dumpsters and cafes to determine whether individuals change the proportion of time they spend at these locations when food is present. 
-
-A determination will be made daily about whether food was present at a location and in which particular time period. I will visit the dumpsters each morning to record whether the lids were open and there was garbage inside or garbage on the ground around the dumpsters (1=food present) or whether the lids were closed and there was no garbage on the ground (0=food absent). I will initially visit cafes during lunch hours to determine when people generally eat outside and then set the default food presence period for each cafe to the widest time period I observed for that cafe (e.g., 12-2p = food present, before 12p and after 2p = food absent).
-
-#### Flexibility manipulation (Design 2 reversal learning)
-
-We will set up 4 feeders (2 dark gray and 2 light gray) at one location in a particular spatial arrangement: one dark gray and one light gray feeder will be oriented in the same way 1-2m apart, and the other dark gray and light gray feeders will be facing them in a mirrored position, but 5-10m away. The feeders will be available for opening for 3 hours per day, 5 days per week. The feeders will be fitted with RFID readers to automatically record which individual (fitted with a PIT tag attached to a leg band) visits which feeder and when. If the subject visits the feeder that has the rewarded color, the feeder will automatically deliver a small amount of food, and then close and reset more food in preparation for the next opening. If the subject visits the feeder that has the non-rewarded color, the presence data will be recorded, but the feeder will not open. All feeders will contain one type of high value food (e.g., goldfish crackers, cheetos, cheez-its, or peanuts).
-
-**Feeder habituation:** All feeders will have food available and be open for 3 hours per day on 5 consecutive days or until at least 20 banded grackles have visited at least 1 feeder.
-
-**The experiment:** Each time a PIT tagged subject lands on a feeder it is recorded as the color choice and counts as one trial. The experiment will begin with the dark gray feeder being the rewarded feeder for all individuals. 
+&nbsp;
 
 
 
@@ -139,7 +126,8 @@ We will set up 4 feeders (2 dark gray and 2 light gray) at one location in a par
 
 We are not yet sure which jay species will be feasible to test as part of this investigation. We aim to test a disturbance resilience species like the California scrub-jay or blue jay. We also aim to test the disturbance sensitive Florida scrub-jay, but we are still waiting for permits on the Florida Scrub-jay and blue jay. Regardless of the species that end up in the investigation, we will use the same hypotheses and predictions below.
 
-**Background:** Jay species exhibit a diversity of social systems and success in colonizing suburban and urban areas. California scrub-jays (*Aphelocoma californica*, hereafter "CASJ") and blue jays (*Cyanocitta cristata*, hereafter “BLJA”) are singular, monogamous breeders that are increasing in abundance, expanding their range sizes, and highly successful in natural, suburban, and urban areas [@blair1996land; @curry2017california]. We therefore consider these “disturbance-resilient” (DR) jay species. In contrast, the Florida scrub-jay (*A. coerulescens*; hereafter "FLSJ") is a “disturbance-sensitive” (DS) jay species that is threatened, endemic, and range-restricted to xeric oak scrub habitat in Florida [@woolfenden1996florida]. 
+#### Background
+Jay species exhibit a diversity of social systems and success in colonizing suburban and urban areas. California scrub-jays (*Aphelocoma californica*, hereafter "CASJ") and blue jays (*Cyanocitta cristata*, hereafter “BLJA”) are singular, monogamous breeders that are increasing in abundance, expanding their range sizes, and highly successful in natural, suburban, and urban areas [@blair1996land; @curry2017california]. We therefore consider these “disturbance-resilient” (DR) jay species. In contrast, the Florida scrub-jay (*A. coerulescens*; hereafter "FLSJ") is a “disturbance-sensitive” (DS) jay species that is threatened, endemic, and range-restricted to xeric oak scrub habitat in Florida [@woolfenden1996florida]. 
 
 These species forage primarily on mast (acorns, hazelnuts, etc.) that they cache throughout their territory, which makes it available to eat year-round. They are also opportunistic omnivores and specifically need high-fat and high-protein arthropods to feed to nestlings and fledglings [@curry2017california]. Nesting and foraging substrates can be drastically different in human modified environments compared to natural areas [@tuomainen2011behavioural], and it is unknown whether suburban and urban jays are able to persist in these environments through behavioral adjustments. The DS jay species, the FLSJ, can persist in suburban habitats after conversion from xeric oak scrub, however suburban populations of FLSJ steadily decline (Bowman pers. comm.). This is potentially due to the presence of suboptimal habitat resulting from fire suppression [@woolfenden1996florida], higher rates of brood reduction through nestling starvation [@shawkey2004brood], and the lack of nutritionally complete prey items [@shawkey2004brood] in suburban habitats. It is possible that behavioral flexibility in habitat use and foraging breadth underlies the ability of some FLSJ to persist in human-dominated areas. 
 
@@ -147,25 +135,20 @@ We aim to compare behavioral flexibility within species, between suburban and na
 
 While we have begun to acquire permits to work with these species, the processing time for permits to research threatened and endangered species can be very long and unpredictable. Therefore, while we aim to collect data on the FLSJ during the 5-year timeline of this project, it is possible this species will have to be omitted if the permits are not approved in time. If this occurs, we will not be able to compare CASJ/BLJA and FLSJ (Question 2 in Table 2), but we will still be able to compare behavioral flexibility of CASJ/BLJA populations in human modified and natural areas, and assess whether the behavioral flexibility manipulation affects success in human modified environments.
 
-#### Research question (J.Q1): Do jay populations in human modified areas differ in baseline behavioral flexibility compared to populations in natural areas?
+#### Research questions
 
-We will investigate this question by comparing performance on serial reversal learning in the wild between jays in natural areas and jays in human modified areas. Table 2 summarizes our predictions, analysis plans, interpretations for the various directions the results could go, and the theories that could be contradicted given the various outcomes.
+For all research questions, Table 2 summarizes our predictions, analysis plans, interpretations for the various directions the results could go, and the hypotheses that could be contradicted given the various outcomes.
 
-#### Research question (J.Q2): Are disturbance-resilient (DR) jays more behaviorally flexible than disturbance-sensitive (DS) jays?
-
-We will investigate this question by comparing performance on serial reversal learning in the wild between between DR and DS jay species. Table 2 summarizes our predictions, analysis plans, interpretations for the various directions the results could go, and the theories that could be contradicted given the various outcomes.
-
-#### Research question (J.Q3): Does manipulating behavioral flexibility alter the number of microhabitats used?
-
-We will investigate this question by tracking their presence in a variety of microhabitats before and after manipulating their flexibility using serial reversal learning in the wild. Table 2 summarizes our predictions, analysis plans, interpretations for the various directions the results could go, and the theories that could be contradicted given the various outcomes.
-
-#### Research question (J.Q4): Does manipulating flexibility alter the number of different food items taken by jays?
-
-We will investigate this question by tracking the various food items they take before and after manipulating their flexibility using serial reversal learning in the wild. Table 2 summarizes our predictions, analysis plans, interpretations for the various directions the results could go, and the theories that could be contradicted given the various outc
+ - **J.Q1: Do jay populations in human modified areas differ in baseline behavioral flexibility compared to populations in natural areas?** We will investigate this question by comparing performance on serial reversal learning in the wild between jays in natural areas and jays in human modified areas. 
+ - **J.Q2: Are disturbance-resilient (DR) jays more behaviorally flexible than disturbance-sensitive (DS) jays?** We will investigate this question by comparing performance on serial reversal learning in the wild between between DR and DS jay species. 
+ - **J.Q3: Does manipulating behavioral flexibility alter the number of microhabitats used?** We will investigate this question by tracking their presence in a variety of microhabitats before and after manipulating their flexibility using serial reversal learning in the wild. 
+ - **J.Q4: Does manipulating flexibility alter the number of different food items taken by jays?** We will investigate this question by tracking the various food items they take before and after manipulating their flexibility using serial reversal learning in the wild.
+ 
+&nbsp;
 
 <img width="100%" src="mi1Figgtgr.png">
 
-**Figure 4.** The reversal learning experiment in a group context (Figure 7) tailored to the jay research questions.
+**Figure 4.** The reversal learning experiment in a group context (Design 2) tailored to the jay research questions.
 
 &nbsp;
 
@@ -173,45 +156,41 @@ We will investigate this question by tracking the various food items they take b
 
 <img width="100%" src="mi1StudyDesignTableGTGR.png">
 
-#### Planned sample
-
-
-#### Before and after manipulation success measures
-
-
-#### Flexibility manipulation (Design 2 reversal learning)
-
-CASJ/BLJA will use the same set up as the grackles (see above). **FLSJ...**
-
-**Feeder habituation:** All feeders will have food available and be open for 3 hours per day on 5 consecutive days or until at least 20 banded individuals have visited at least 1 feeder.
-
-**The experiment:** Each time a PIT tagged subject lands on a feeder it is recorded as the color choice and counts as one trial. The experiment will begin with the dark gray feeder being the rewarded feeder for all individuals. 
-
-
+&nbsp;
 
 
 ### **Toutouwai (North Island robin, *Petroica longipes*)**
 
-**Background:** Toutouwai are a small insectivorous passerine species that is endemic to the North Island of New Zealand. Prior to the arrival of European settlers, they were abundant and widespread. However, European colonization brought the introduction of mammalian predators, which  had devastating consequences for New Zealand's avifauna. As a result, the national conservation status of the toutouwai is now at risk and in decline [@Robertson2016birdstatus]. In response to avifauna declines in New Zealand, many offshore islands have now been established as predator free sanctuaries. Threatened endemic birds have also been reintroduced into ‘mainland island’ sanctuaries; areas on New Zealand's North and South Islands that are designed to eliminate the threat posed by non-native mammalian predators [@Saunders2001mainlandisland]. Yet, despite predator control and fences protecting sanctuary populations, these vulnerable species still come into contact with invasive mammalian predators beyond mainland sanctuary boundaries. 
+#### Background
+Toutouwai are a small insectivorous passerine species that is endemic to the North Island of New Zealand. Prior to the arrival of European settlers, they were abundant and widespread. However, European colonization brought the introduction of mammalian predators, which  had devastating consequences for New Zealand's avifauna. As a result, the national conservation status of the toutouwai is now at risk and in decline [@Robertson2016birdstatus]. In response to avifauna declines in New Zealand, many offshore islands have now been established as predator free sanctuaries. Threatened endemic birds have also been reintroduced into ‘mainland island’ sanctuaries; areas on New Zealand's North and South Islands that are designed to eliminate the threat posed by non-native mammalian predators [@Saunders2001mainlandisland]. Yet, despite predator control and fences protecting sanctuary populations, these vulnerable species still come into contact with invasive mammalian predators beyond mainland sanctuary boundaries. 
 
 At Zealandia, a 225 hectare predator-proof fenced sanctuary located in central Wellington, less than 20 years have passed since the introduction of toutouwai [@Miskelly2005zealandia]. This species now thrives inside the sanctuary with some individuals surviving up to 14 years, but is struggling to gain a foothold in the surrounding reserves. Toutouwai may undergo juvenile dispersal from 5 weeks post-fledging onwards, travelling anywhere from a few meters to several kilometers from their natal territory [@Richard2010dispersal]. Many juvenile toutouwai are sighted establishing territories outside of the sanctuary each year, yet few persist for more than a few weeks [@Shaw2018halomonitoring]. Previous research on the cognitive abilities of toutouwai reveals that this species can retain a learned skill for several months in the wild, without reinforcement [@Shaw2020longterm]. Moreover, their bold and curious nature means that they will interact with novel objects and readily engage in a suite of cognitive tests [@shaw2015wild]. As such, they are an ideal species in which to examine whether flexibility manipulations might influence the dispersal decisions made by juveniles, or enhance the survival of juveniles that attempt to establish beyond the sanctuary fence.
 
-**T.Q1: Does a flexibility manipulation alter dispersal timing and distance, as well as the likelihood that juvenile toutouwai will disperse beyond the protection of Zealandia’s fence and attempt to establish in the adjacent urban reserves?**
+#### Research questions
+For all research questions, Table 3 summarizes our predictions, analysis plans, interpretations for the various directions the results could go, and the hypotheses that could be contradicted given the various outcomes.
 
-- **Prediction 1.1:** Flexibility can be increased in individuals and such an increase alters the pattern (distance and location) and/or timing of dispersal.
+ - **T.Q1: Does a flexibility manipulation alter dispersal timing and distance, as well as the likelihood that juvenile toutouwai will disperse beyond the protection of Zealandia’s fence and attempt to establish in the adjacent urban reserves?** We will investigate this question by measuring their age at dispersal, dispersal distance, and habitat dispersed to after either manipulating their flexibility using serial reversal learning in the wild (manipulated group) or not manipulating their flexibility by giving them only one reversal rather than serial reversals (control group).  
+ - **T.Q2: Compared to control individuals, are flexibility manipulated individuals more likely to survive their first 16 weeks post-fledging, particularly if they disperse into the urban reserves outside the sanctuary fence?** We will investigate this question by tracking their dispersal destination after either manipulating their flexibility using serial reversal learning in the wild (manipulated group) or not manipulating their flexibility by giving them only one reversal rather than serial reversals (control group). 
 
-- **Prediction 1.1 alternative 1:** Flexibility can be increased in individuals, but such an increase does not alter the pattern and/or timing of dispersal.
+&nbsp;
 
-**Prediction 1.1 alternative 2:** Flexibility cannot be increased in individuals.
+<img width="100%" src="mi1Figgtgr.png">
 
-**T.Q2: Compared to control individuals, are flexibility manipulated individuals more likely to survive their first 16 weeks post-fledging, particularly if they disperse into the urban reserves outside the sanctuary fence?**
+**Figure 5.** The reversal learning experiment in a group context (Design 2) tailored to the toutouwai research questions.
 
-Predictions are the same as in the general Research Question: Q1 section.
+&nbsp;
+
+**Table 3.** Study design for the toutouwai research. References that were not already cited in the introduction: .
+
+<img width="100%" src="mi1StudyDesignTableGTGR.png">
+
+&nbsp;
 
 
-# METHODS
 
-We present one experimental design for the flexibility intervention that can be conducted in two ways: in visual isolation (design 1) and in a group context (design 2). Experimenters can decide which (or both) they want to conduct in their population. Only one experiment must be conducted per population to be able to test these hypotheses. Conducting more than one of these experiments per population is acceptable, but not necessary. Before we present the designs, we first validated the reversal passing criteria and made them generalizable to a variety of species (see the next two sections).
+# **METHODS**
+
+We present one experimental design for the flexibility intervention (Figure 6) that can be conducted in two ways: in visual isolation (design 1) and in a group context (design 2). Experimenters can decide which (or both) they want to conduct in their population. Only one experiment must be conducted per population to be able to test these hypotheses. Conducting more than one of these experiments per population is acceptable, but not necessary. Before we present the designs, we first validated the reversal passing criteria and made them generalizable to a variety of species (see the next two sections).
 
 &nbsp;
 
@@ -576,7 +555,7 @@ dbinom(1:12,12,probability_choose_lightgrey_twelvetrials)[10]
 
 
 
-## Design 1 - Reversal learning experiment in visual isolation
+## **DESIGN 1** - Reversal learning experiment in visual isolation
 
 Half of the individuals (manipulated group) undergo serial reversal learning until they meet the passing criterion, while the other half (control group) receive only one reversal (Figure 6). A reversal of where the reward is placed represents environmental heterogeneity, and those individuals who have enough experience in this heterogeneous environment through multiple reversals are able to learn to improve their flexibility (the number of trials it takes to change a preference). This flexibility intervention has been shown to work in great-tailed grackles where 8 out of 9 individuals in the serial reversal group achieved the passing criterion (passing 2 consecutive reversals in 50 trials or less) within their given time frame [@logan2019flexmanip]. Individuals are presented with two options that differ in color, shape, or in some other way, with one option being the rewarded option. The first rewarded option (i.e., color, shape, etc.) in reversal learning is counterbalanced across individuals at each site. The rewarded option location is pseudorandomized for side. Pseudorandomization consists of alternating location of the rewarded option for the first two trials of a session and then keeping the same color on the same side for at most two consecutive trials thereafter. A list of all [88 unique trial sequences](https://docs.google.com/spreadsheets/d/1B3-ZKd4nr_4gA91Pu2eUUBOriwW-V88VRgK9c1lDSjY/edit?usp=sharing) for a 10-trial session, following the pseudorandomization rules, will be generated in advance for experimenters to use during testing (e.g., a randomized trial sequence might look like: LRLLRRLRLR, where L and R refer to the location, left or right, of the rewarded tube). Randomized trial sequences will be assigned randomly to any given 10-trial session using a random number generator (random.org) to generate a number from 1-88. The individual is only allowed one choice per trial and the option on the left is always placed first, with the experimenter always turning to the right when setting up and taking down each trial (if a live experimenter is involved). Once a preference for the rewarded option is reached (17/20 trials correct), the reward is then always placed in the previously non-rewarded option until a preference is reached (using the same criterion). After the control group's first reversal, they receive a similar amount of experience as the manipulated group, but without the functionality: two apparatuses are still used in every trial, but they are the same color/shape/etc. and both contain food. As with the manipulated group, only one choice, the first choice, is allowed per trial. Choices are scored as: 1=chose the correct option (even if they do not eat the food), 0=chose the incorrect option, and -1=did not make a choice.
 
@@ -625,7 +604,7 @@ cohen.kappa(data[,c(3,5)], w=NULL,n.obs=NULL,alpha=.05,levels=NULL)
 ```
 
 
-## Design 2 - Reversal learning experiment in a group context
+## **DESIGN 2** - Reversal learning experiment in a group context
 
 Feeders are set up counterbalanced for color/location/etc and will be available for opening when the experiment is being conducted (Figure 7). The feeders will be fitted with technology to automatically record which individual visits which feeder and when (unless a particular population is easy to track visually without such automated technology). Individuals are habituated to the open feeders filled with food until at least half of the minimum sample size has visited at least 1 feeder. All individuals start on the same rewarded option for the intiial discrimination to improve motivation for participating in the experiment (e.g., if the first rewarded option was counterbalanced across individuals, subjects might be slower to learn their rewarded option if they use social information about which option is rewarded). If the subject visits the rewarded feeder, the feeder will automatically deliver a small amount of food, and then close and reset more food in preparation for the next opening. If the subject visits the non-rewarded feeder, the presence data will be recorded, but the feeder will not open. All feeders will contain one type of high value food.
 
@@ -655,17 +634,9 @@ There are two experimental design options:
 
 **Food in the feeders:** All feeders are opaque and always have food in them to eliminate the confound due to olfactory differences between the feeders that could be introduced if only the rewarded feeders have food in them. If a feeder needs to be refilled, refill all feeders consecutively in the same time period and refill each for the same amount of time even if that feeder does not need much or any food (in these cases, pretend to fill the feeder as you normally would). This eliminates confounds from cues provided by a differential amount of attention experimenters give the feeders depending on which needs refilling.
 
-**Population-specific experimental protocols and data sheet templates:**
-
- - Grackle [protocol](https://docs.google.com/document/d/1pTrcy7ztgYVSAP7rGA6Y_lAmZ7hK_-mB01zwy0oKh7w/edit?usp=sharing) and [data sheet templates](https://docs.google.com/spreadsheets/d/1xELxnCJPa0hIXKagbUPgqq8Tap8mh7PFfLFUGCc525s/edit?usp=sharing)
-    - [Protocol for applying radio tags and conducting GPS tracks](https://docs.google.com/document/d/1ZOpkdxy5-wiGg7hYod-XaaBoOl53DsVQ3pwWoIdvrzk/edit?usp=sharing) from @mccune2020spaceuse
-  - Jay [protocol](https://docs.google.com/document/d/1VWL7AIDB-Z1vhs1dEM7JACHuvNjgjZCBI3ubQECqm2U/edit?usp=sharing) and [data sheet templates](https://docs.google.com/spreadsheets/d/1qpukS67A8IslPxP8RBpdB4fS4f9ofWCvQXVgXu-G7Qs/edit?usp=sharing)
-  - Toutouwai [protocol](https://docs.google.com/document/d/1U11MpcGd6_dQmgv4jP127KklD7gpAQR--yOtWGMpFXw/edit?usp=sharing) and [data sheet templates]()
-
 ### Reliability of feeder data
 
 During the experiment, we will determine the reliability of the automated feeder data. We will verify that the feeders are correctly detecting tags by using a (motion-activated, Go-Pro, or similar) camera focused on 20% of the feeder perches. Hypothesis-blind video coders will then code who landed on the perch: individual ID, time of day, and whether it ate food. We will then compare the automated feeder data sheets with the video coder’s data sheets by calculating the Cohen’s unweighted kappa for individual ID and the intra-class correlation coefficient (ICC) on the time of day (kappa: @landis1977measurement, with the psych package in R @psych; ICC: @hutcheon2010random, with the irr package in R: @gamer2012package). Cohen's kappa is used when the distance between measurements is not quantifiable numerically, and the ICC is used for continuous variables with equal distances between units.
-
 
 ## Assessment of the likelihood of success in human modified environments with regard to the flexibility manipulation
 
@@ -680,14 +651,104 @@ After the manipulation, compare control individuals with individuals in the flex
 
 The data will be published in the Knowledge Network for Biocomplexity's data repository.
 
+## **Great-tailed grackles**
 
-# ANALYSIS PLAN
+ - Grackle [protocol](https://docs.google.com/document/d/1pTrcy7ztgYVSAP7rGA6Y_lAmZ7hK_-mB01zwy0oKh7w/edit?usp=sharing) and [data sheet templates](https://docs.google.com/spreadsheets/d/1xELxnCJPa0hIXKagbUPgqq8Tap8mh7PFfLFUGCc525s/edit?usp=sharing)
+ - [Protocol for applying radio tags and conducting GPS tracks](https://docs.google.com/document/d/1ZOpkdxy5-wiGg7hYod-XaaBoOl53DsVQ3pwWoIdvrzk/edit?usp=sharing) from @mccune2020spaceuse
+
+### Planned sample
+
+We will catch at least 20 grackles using walk in traps, mist nets, and bow nets; collect their biometric data, blood, and feathers; apply colored leg bands for individual identification, one band will have a PIT tag that will interface with the automated feeders; attach a radio tag using a leg loop harness; and release them at their point of capture.
+
+### Before and after manipulation success measures
+
+The proportion of time spent at dumpsters and outdoor cafes when food is present will be collected using automation from Cellular Tracking Technologies. Individuals will wear radio tags whose signals are detected (within approximately 75m) by nodes that are placed at approximately 200m intervals. Before and after tracking data will be collected on a minimum of 20 individuals with a minimum of 4 separate visit events per individual pre-manipulation and a minimum of 4 separate visit events per individual post-manipulation. This data will allow me to detect pre- vs post-manipulation within-individual differences in visits to dumpsters and cafes to determine whether individuals change the proportion of time they spend at these locations when food is present. 
+
+A determination will be made daily about whether food was present at a location and in which particular time period. I will visit the dumpsters each morning to record whether the lids were open and there was garbage inside or garbage on the ground around the dumpsters (1=food present) or whether the lids were closed and there was no garbage on the ground (0=food absent). I will initially visit cafes during lunch hours to determine when people generally eat outside and then set the default food presence period for each cafe to the widest time period I observed for that cafe (e.g., 12-2p = food present, before 12p and after 2p = food absent).
+
+### Flexibility manipulation (Design 2 reversal learning)
+
+We will set up 4 feeders (2 dark gray and 2 light gray) at one location in a particular spatial arrangement: one dark gray and one light gray feeder will be oriented in the same way 1-2m apart, and the other dark gray and light gray feeders will be facing them in a mirrored position, but 5-10m away. The feeders will be available for opening for 3 hours per day, 5 days per week. The feeders will be fitted with RFID readers to automatically record which individual (fitted with a PIT tag attached to a leg band) visits which feeder and when. If the subject visits the feeder that has the rewarded color, the feeder will automatically deliver a small amount of food, and then close and reset more food in preparation for the next opening. If the subject visits the feeder that has the non-rewarded color, the presence data will be recorded, but the feeder will not open. All feeders will contain one type of high value food (e.g., goldfish crackers, cheetos, cheez-its, or peanuts).
+
+**Feeder habituation:** All feeders will have food available and be open for 3 hours per day on 5 consecutive days or until at least 20 banded grackles have visited at least 1 feeder.
+
+**The experiment:** Each time a PIT tagged subject lands on a feeder it is recorded as the color choice and counts as one trial. The experiment will begin with the dark gray feeder being the rewarded feeder for all individuals. 
+
+
+## **Jays**
+
+  - Jay [protocol](https://docs.google.com/document/d/1VWL7AIDB-Z1vhs1dEM7JACHuvNjgjZCBI3ubQECqm2U/edit?usp=sharing) and [data sheet templates](https://docs.google.com/spreadsheets/d/1qpukS67A8IslPxP8RBpdB4fS4f9ofWCvQXVgXu-G7Qs/edit?usp=sharing)
+ - [Protocol for applying radio tags and conducting GPS tracks](https://docs.google.com/document/d/1ZOpkdxy5-wiGg7hYod-XaaBoOl53DsVQ3pwWoIdvrzk/edit?usp=sharing) from @mccune2020spaceuse
+ - Jay [processing protocol](https://docs.google.com/document/d/1YnGdsU-Q7kNBVT-N3x1BA30xP10jPFYEv9-dlTw2RcQ/edit?usp=sharing)
+
+### Planned sample
+
+We will catch up to 60 jays per year using walk in traps, mist nets, and bow nets; collect their biometric data, and a blood sample; apply colored leg bands; attach a radio tag using a leg loop harness; and release them at their point of capture.
+
+To determine whether the flexibility manipulation has influenced the ability of jays to persist in human modified environments, we will catch half of the jays in areas with access to human-supplemented food (i.e. private property, a university campus, parks adjacent to neighborhoods with feeders) and the other half in natural areas (wildlife management areas, reserves).
+
+### Before and after manipulation success measures
+
+We will track baseline behavior and changes after the flexibility manipulation via spatial movement tracking that lasts for 90 min, noting the GPS location and the jay’s behavior at 1 minute intervals. During tracks, we document all occurrences of habitats used (see below), foraging (see below), and breeding behaviors of the focal individual [@altmann1974observational]. The minimum sample size will be 20 individuals with a minimum of 4 tracks per individual (at least 2 per month) pre-manipulation and a minimum of 4 tracks per individual (at least 2 per month) post-manipulation (at least 352 tracks in total). These data will allow us to detect any pre- and post-manipulation within-individual differences in movement, diversity of habitat use, and foraging breadth.
+
+Substrate types in the suburban habitat include: human structure, native vegetation, non-native vegetation, grass, and dirt. In the natural habitat, substrate types include all previous categories, but not human structure. All categories can be further defined by whether the substrate was high (>3m) or low (<3m).
+
+Food types are broken down into plant (seed, fruit, human-provided, or unknown plant) and animal (insect larva, adult insect, amphibian, reptile, mammal, bird, egg, human-provided, or unknown animal).
+
+### Flexibility manipulation (Design 2 reversal learning)
+
+We will set up feeding stations at a minimum of 4 study sites, each containing multiple jay territories, spaced at least 2km apart: 2 for the in natural habitat, 2 in human-modified habitat. If individuals are dispersed across multiple areas, we will attempt to add an equal number of locations in natural and human-modified habitats. Gravity feeders will be set up in territories in each of the sites in the same spatial arrangements. 
+
+#### Feeder habituation
+
+All feeders at all locations will have food and be open for 2-hour sessions between 8a-3p on a minimum of 4 consecutive days or until at least 1 banded jay per territory per condition (control/manipulated and natural/human modified) has visited at least 3 feeders.
+
+### The experiment
+
+Prior to the flexibility manipulation, we will collect the 4 minimum tracking sessions to determine the baseline values for movement, nest success, and foraging breadth. Afterwards, we will set up feeders to initiate the flexibility manipulation phase.  Once jays are habituated to the feeders we will manipulate behavioral flexibility using serial reversals of the open feeder location or color.  Only one feeder will be opened at a consistent location (or that is a consistent color) within territories across days and the manipulation treatment will consist of 1-hour sessions per day, up to 4 days per week, where each visit to a feeder is considered a trial.  Jays pass a given reversal when they correctly choose the open feeder in at least 10 trials out of the most recent 12 trials.  Serial reversals will continue in manipulated territories until jays are able to switch their preference in 50 or fewer trials in two sequential reversals (Logan et al. 2019).  At this criterion, the jays in manipulated territories will be considered to have increased their behavioral flexibility.  After the manipulation is complete in each territory, I will again conduct the tracking sessions to measure movement, nest success and foraging breadth.
+
+
+## **Toutouwai**
+
+  - Toutouwai [protocol](https://docs.google.com/document/d/1U11MpcGd6_dQmgv4jP127KklD7gpAQR--yOtWGMpFXw/edit?usp=sharing) and [data sheet templates]()
+
+### Planned sample
+
+In the Zealandia toutouwai population the breeding season runs from October to February. Pairs typically produce 1-3 fledglings per nesting attempt and can nest up to 3 times per season. Each season, around 30 pairs nest in the long term study area (Figure 9), so I will aim to catch up to 30 fledgling toutouwai a year (one per pair, 60 in total) using a drop trap. I will collect their biometric data and a feather sample for DNA sexing. On each bird I will apply 2 colored leg bands for individual ID (one to each leg), a uniquely numbered metal BP sized band (supplied by the New Zealand National Bird Banding Scheme) and a single RFID tag attached to a leg band (on the opposite leg to the metal band). I will also attach a radio tag using a leg loop harness that degrades over time. Birds will be released at their point of capture. 
+
+&nbsp;
+
+<img width="100%" src="mi1FigZealandia.png">
+
+**Figure 9.** The toutouwai study area shown in white, is situated centrally within Zealandia Ecosanctuary, outlined in purple.
+
+&nbsp;
+
+### Flexibility manipulation (Design 2 reversal learning)
+
+Juvenile toutouwai typically begin to forage independently on their caregiver parent’s territory from 3-4 weeks post-fledging. I will set up two experimental feeders on the caregiver parent’s territory when the juvenile toutouwai is at least 3 weeks post-fledging and has been captured, radio tagged and fitted with an RFID tag. Half of all juveniles will be assigned to a manipulated condition and half will be assigned to a control condition. The condition (control or manipulation) will be randomly assigned to each bird using random.org. On each territory the two RFID activated feeders will be spaced a maximum of 4 m apart and within sight of each other, with one feeder mounted within 20 cm of the ground, and the other mounted at 2 m height. Feeders on the ground will be light grey in colour and feeders mounted at height will be dark grey, to make them both spatially and visually distinct. To ensure that the juvenile belonging to the territory is the only bird that can access the feeders, each feeder will only open when the individual fitted with the RFID tag coded to the feeder approaches.
+
+#### Feeder habituation
+
+Both feeders on a territory will be available to the RFID tagged individual(s) from 8 am - 3 pm for 5 consecutive days, or until the juvenile has visited both feeders. When a juvenile lands on the perch of an available feeder, the RFID tag will be read and the feeder will automatically open to dispense a live mealworm reward.
+
+#### The experiment
+
+Juveniles in both the manipulation and control conditions will initially undergo one reversal learning procedure consisting of a discrimination learning phase and a reversal learning phase. During the initial discrimination learning phase, only one feeder will be available (hereafter called the rewarded feeder) and the location of this rewarded feeder (high or low) will be assigned on the basis of it being the least frequented feeder during the habituation phase. The rewarded feeder will be available for 2 hours each day, or until all food is taken from the feeder (whichever occurs first). The rewarded feeder will automatically open when the target bird (fitted with the correct RFID tag) lands on the feeder perch. However, when the target bird lands on the perch of either feeder (rewarded or unrewarded), the visit will be logged and counted as a single trial. To pass the discrimination phase, the bird must vist the rewarded feeder in 17 out of 20 consecutive trials. Once this criteria is reached, the juvenile toutouwai will be given a reversal phase, where the previously unrewarded feeder is now rewarded. To pass this reversal phase, the bird must again achieve the criterion of 107 out of 120 consecutive trials visiting the correct feeder. Birds in the manipulation group will then receive serial reversals until the point at which they are switching feeder preferences in 50 or fewer trials in two sequential reversals (Logan et al. 2019). For juveniles in the control group, after the initial single reversal both feeders will remain available and rewarded for two hours each day (or until food is depleted) for a minimum of 8 days. 
+
+#### Post-manipulation success measures
+
+We will radio track fledglings for 12 weeks following the end of the flexibility manipulation. Tag signals will either be detected with a hand-held antenna, or by nodes that are placed at approximately 200m intervals across the 25 ha robin study area and around the sanctuary perimeter. Each fledgling will be located once per week over this time period and their location will be GPS marked to reconstruct dispersal tracks. By the end of 12 weeks, fledglings will be approximately 4 months old, at which point they are likely to be attempting to establish their own territories. The measures used to investigate the effect of the manipulation versus control treatment will include the final dispersal location (inside or outside the sanctuary), the total dispersal distance covered, the age at which dispersal is first detected (defined as when the bird has left the caregiver parent’s territory for a minimum of 3 days), and their survival status at 16 weeks old (alive/dead).
+
+
+
+# **ANALYSIS PLAN**
 
 We run analyses in R [current version `r getRversion()`; @rcoreteam] using the following R packages: rethinking [@rethinking2020], rstan [@rstan], cmdstanr [@cmdstanr], knitr [@xie2018knitr], and irr [@gamer2012package].
 
 ## Can flexibility be increased to help individuals succeed in human modified environments?
 
-### Design 1 - Reversal learning experiment in visual isolation
+### **DESIGN 1** - Reversal learning experiment in visual isolation
 
 **Can flexibility be increased?** If most individuals in the flexibility manipulation (serial reversals) passed the passing criterion, then the answer is yes.
 
@@ -706,7 +767,7 @@ OR
 *Random variable:* ID (when response variable has multiple data points per individual)
 
 
-### Design 2 - Reversal learning experiment in a group context
+### **DESIGN 2** - Reversal learning experiment in a group context
 
 Same questions, response/explanatory/random variables as in Design 1.
 
@@ -880,7 +941,7 @@ diff_p <- inv_logit(post$g[,2]) - inv_logit(post$g[,1]) #on the probability scal
 #write.csv(diff_p,file="diff_p60changeprop0.025.csv")
 ```
 
-We estimated our power to detect differences between conditions at different sample sizes and with different mean changes in the proportion of time spent in the presence of a reward in the before vs. after conditions (Figure 3). We simulated the proportions of times that different sample sizes of individuals would spend in the presence of the reward before and after the flexibility manipulation. We analyzed these simulated data with the model we will use to analyze the actual data, estimating the change in the proportion of time spent in the presence of the reward between the before and after conditions. From the posterior estimates of the model, we extracted both the mean change as well as the ratio of the posterior estimates that were below zero. 
+We estimated our power to detect differences between conditions at different sample sizes and with different mean changes in the proportion of time spent in the presence of a reward in the before vs. after conditions (Figure 10). We simulated the proportions of times that different sample sizes of individuals would spend in the presence of the reward before and after the flexibility manipulation. We analyzed these simulated data with the model we will use to analyze the actual data, estimating the change in the proportion of time spent in the presence of the reward between the before and after conditions. From the posterior estimates of the model, we extracted both the mean change as well as the ratio of the posterior estimates that were below zero. 
 
 If the mean ratio of estimates below zero is close to 0.5, the model assumes that the change in proportion of time spent in the presence of a reward before the flexibility manipulation is similar to after. If the ratio is close to zero, the model assumes individuals have changed their behavior. For changes smaller than 0.1, models are likely to assume that no changes occurred even with large sample sizes. If the change in the proportion of time an individual spends at a location when food is present before the flexibility manipulation vs. after is 0.1, on average 93% of the posterior of the model based on a sample size of 20 individuals will be larger than zero. This means that the model is quite certain there is a difference that is larger than zero. In addition, none of the models for a sample size of 20 at the mean change of 0.1 have a ratio larger than 0.3, meaning that the risk of having a false negative is unlikely. 
 
@@ -890,7 +951,7 @@ With small mean changes in the response variable, some individuals might not inc
 
 To estimate the risk of detecting false positives, we set the mean change in the proportion of time spent in the presence of the reward to zero so there was no change between the before and after conditions. As expected, the average ratio of estimates below zero is close to 0.5 and independent of sample size. With a sample size of 20, 43% have a ratio smaller than 0.3, meaning that the risk of having a false positive is high. The risk would be lower if the variation among individuals was lower than what we assumed (across all models, the standard deviation of the mean change in proportion was 0.1, which is a conservative estimate).
 
-```{r gtgrq1simulationfiguresamplesize, eval=T, messages=F}
+```{r gtgrq1simulationfiguresamplesize, eval=F, messages=F}
 library(rethinking)
 library(cmdstanr)
 set_ulam_cmdstan(TRUE) #makes it so ulam always runs with cmdstan
@@ -1026,7 +1087,11 @@ mtext("Ratio of estimates below zero",side=2,line=3, cex=1.2)
 #mtext("Density of the proportion of estimates below zero",side=2,line=3, cex=1.2)
 ```
 
-**Figure 3.** Curves of the mean ratio of estimates below zero (vertical lines show the minimum and maximum ratios), which illustrates the power we have to detect differences between conditions at different sample sizes. Across all models, the standard deviation of the mean change in proportion was 0.1 (a conservative estimate) and the proportion of time spent in the presence of food before the flexibility manipulation was 0.6.
+&nbsp;
+
+<img width="100%" src="mi1FigPowerAnalysisGTGR.png">
+
+**Figure 10.** Curves of the mean ratio of estimates below zero (vertical lines show the minimum and maximum ratios), which illustrates the power we have to detect differences between conditions at different sample sizes. Across all models, the standard deviation of the mean change in proportion was 0.1 (a conservative estimate) and the proportion of time spent in the presence of food before the flexibility manipulation was 0.6.
 
 ```{r gtgrq1simulationfigurecurve, eval=F}
 # (not shown in the article, but useful if you want to learn more about this modeling process)
@@ -1127,8 +1192,6 @@ precis( list( diff_g=diff_g , diff_p=diff_p ) )
 
 
 #### **Jays**
-
-*Condition = flexibility manipulation or control site; Habitat = human modified or natural site; Time = pre- or post-flexibility manipulation*
 
 ##### J.Q1 Do jay populations in human modified areas differ in baseline behavioral flexibility compared to populations in natural areas?
 
@@ -1447,7 +1510,7 @@ y is the response variable: the total number of different habitats used per indi
 
 ###### Power analysis
 
-We estimated our power to detect differences between conditions at different sample sizes and with different mean changes in the total number of different microhabitats used per individual in the before vs. after conditions (Figure 4). We simulated the number of habitats used for different sample sizes of individuals before and after the flexibility manipulation. We analyzed these simulated data with the model we will use to analyze the actual data, estimating the change in the number of habitats used between the before and after conditions. From the posterior estimates of the model, we extracted both the mean change as well as the ratio of the posterior estimates that were below zero.
+We estimated our power to detect differences between conditions at different sample sizes and with different mean changes in the total number of different microhabitats used per individual in the before vs. after conditions (Figure 11). We simulated the number of habitats used for different sample sizes of individuals before and after the flexibility manipulation. We analyzed these simulated data with the model we will use to analyze the actual data, estimating the change in the number of habitats used between the before and after conditions. From the posterior estimates of the model, we extracted both the mean change as well as the ratio of the posterior estimates that were below zero.
 
 If the mean ratio of estimates below zero is close to 0.5, the model assumes that the change in the number of habitats used before the flexibility manipulation is similar to after. If the ratio is close to zero, the model assumes individuals have changed their behavior. For changes in the number of habitats used smaller than 1, models are likely to assume that no changes occurred even with large sample sizes. If the change in the number of habitats used before the flexibility manipulation vs. after is 1 with a standard deviation of 2, on average 99.96% of the posterior of the model based on a sample size of 20 individuals will be larger than zero. This means that the model is quite certain there is a difference that is larger than zero. In addition, only one of the 30 models for a sample size of 20 at the mean change of 1 have a ratio larger than 0.3, meaning that the risk of having a false negative is not very likely.
 
@@ -1590,7 +1653,7 @@ post <- extract.samples(sj)
 #write.csv(simresults,file="simresultsjayhabitatsd1.csv")
 ```
 
-```{r jayq3simulationfiguresamplesize, eval=T, messages=F}
+```{r jayq3simulationfiguresamplesize, eval=F, messages=F}
 library(rethinking)
 library(cmdstanr)
 set_ulam_cmdstan(TRUE) #makes it so ulam always runs with cmdstan
@@ -1834,8 +1897,13 @@ par(op)
 #length(d1[d1$n %in% 20 & d1$changenumber_mean %in% 1,]$proportion_estimates_below_zero) #30 values total
 ```
 
-**Figure 4.** Curves of the mean ratio of estimates below zero (vertical lines show the minimum and maximum ratios), which illustrates the power we have to detect differences between conditions at different sample sizes. Across all models, the standard deviation of the mean change in number of habitats used was 2 (A) or 1 (B) and the number of habitats used before the flexibility manipulation was 4.5.
+&nbsp;
 
+<img width="100%" src="mi1FigPowerAnalysisJayHabitat.png">
+
+**Figure 11.** Curves of the mean ratio of estimates below zero (vertical lines show the minimum and maximum ratios), which illustrates the power we have to detect differences between conditions at different sample sizes. Across all models, the standard deviation of the mean change in number of habitats used was 2 (A) or 1 (B) and the number of habitats used before the flexibility manipulation was 4.5.
+
+&nbsp;
 
 ###### Run this model on the actual data
 
@@ -1922,7 +1990,7 @@ y is the response variable: the total number of different food types taken per i
 
 ###### Power analysis
 
-We estimated our power to detect differences between conditions at different sample sizes and with different mean changes in the total number of different food types taken per individual in the before vs. after conditions (Figure 4). We simulated the number of food types taken for different sample sizes of individuals before and after the flexibility manipulation. We analyzed these simulated data with the model we will use to analyze the actual data, estimating the change in the number of food types taken between the before and after conditions. From the posterior estimates of the model, we extracted both the mean change as well as the ratio of the posterior estimates that were below zero.
+We estimated our power to detect differences between conditions at different sample sizes and with different mean changes in the total number of different food types taken per individual in the before vs. after conditions (Figure 14). We simulated the number of food types taken for different sample sizes of individuals before and after the flexibility manipulation. We analyzed these simulated data with the model we will use to analyze the actual data, estimating the change in the number of food types taken between the before and after conditions. From the posterior estimates of the model, we extracted both the mean change as well as the ratio of the posterior estimates that were below zero.
 
 If the mean ratio of estimates below zero is close to 0.5, the model assumes that the change in the number of food types taken before the flexibility manipulation is similar to after. If the ratio is close to zero, the model assumes individuals have changed their behavior. For changes in the number of food types taken smaller than 1, models are likely to assume that no changes occurred even with large sample sizes. If the change in the number of food types taken before the flexibility manipulation vs. after is 1 with a standard deviation of 2, on average 99.96% of the posterior of the model based on a sample size of 20 individuals will be larger than zero. This means that the model is quite certain there is a difference that is larger than zero. In addition, none of the 30 models for a sample size of 20 at the mean change of 1 have a ratio larger than 0.3, meaning that the risk of having a false negative is not very likely.
 
@@ -2063,7 +2131,7 @@ post <- extract.samples(sjf)
 #write.csv(simresults,file="simresultsjayforagingsd1.csv")
 ```
 
-```{r jayq4simulationfiguresamplesize, eval=T, messages=F}
+```{r jayq4simulationfiguresamplesize, eval=F, messages=F}
 library(rethinking)
 library(cmdstanr)
 set_ulam_cmdstan(TRUE) #makes it so ulam always runs with cmdstan
@@ -2294,8 +2362,13 @@ par(op)
 #length(d1[d1$n %in% 20 & d1$changenumber_mean %in% 2,]$proportion_estimates_below_zero) #30 values total
 ```
 
-**Figure 5.** Curves of the mean ratio of estimates below zero (vertical lines show the minimum and maximum ratios), which illustrates the power we have to detect differences between conditions at different sample sizes. Across all models, the standard deviation of the mean change in number of food types taken was 2 (A) or 1 (B), and the number of food types taken before the flexibility manipulation was 6.5.
+&nbsp;
 
+<img width="100%" src="mi1FigPowerAnalysisJayForaging.png">
+
+**Figure 14.** Curves of the mean ratio of estimates below zero (vertical lines show the minimum and maximum ratios), which illustrates the power we have to detect differences between conditions at different sample sizes. Across all models, the standard deviation of the mean change in number of food types taken was 2 (A) or 1 (B), and the number of food types taken before the flexibility manipulation was 6.5.
+
+&nbsp;
 
 ###### Run this model on the actual data
 
@@ -2527,7 +2600,7 @@ precis( list( diff_g=diff_g , diff_p=diff_p ) )
 
 
 
-# ETHICS
+# **ETHICS**
 
 This research is carried out in accordance with permits from the:
 
@@ -2537,7 +2610,7 @@ This research is carried out in accordance with permits from the:
 4) California Department of Fish and Wildlife (scientific collecting permit [specific use] number S‐192100001‐19210‐001 for grackles and S-192100002-20329-001 for jays)
 5) Oregon Department of Fish and Wildlife (scientific collecting permit 125-22)
 
-# AUTHOR CONTRIBUTIONS
+# **AUTHOR CONTRIBUTIONS**
 
 **Logan:** Hypothesis development, data collection, data analysis and interpretation, write up, revising/editing, materials/funding.
 
@@ -2547,16 +2620,16 @@ This research is carried out in accordance with permits from the:
 
 **McCune:** Hypothesis development, data collection, data analysis and interpretation, write up, revising/editing.
 
-# FUNDING
+# **FUNDING**
 
 This research is funded by the Department of Human Behavior, Ecology and Culture at the Max Planck Institute for Evolutionary Anthropology.
 
-# CONFLICT OF INTEREST DISCLOSURE
+# **CONFLICT OF INTEREST DISCLOSURE**
 
 We, the authors, declare that we have no financial conflicts of interest with the content of this article. CJ Logan is a co-founder of and on the Managing Board at PCI Registered Reports.
 
-# ACKNOWLEDGEMENTS
+# **ACKNOWLEDGEMENTS**
 
 We thank Richard McElreath at the Max Planck Institute for Evolutionary Anthropology for project support.
 
-# REFERENCES
+# **REFERENCES**
