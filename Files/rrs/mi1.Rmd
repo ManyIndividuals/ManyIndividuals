@@ -93,7 +93,7 @@ This investigation asks whether flexibility can be increased by experimentally i
 
 <img width="100%" src="mi1Figspp.png">
 
-**Figure 2.** Comparing the four species involved in this investigation relative to their geographic range and association with human modified habitats. The yellow dots represent field site locations.
+**Figure 2.** Comparing the species involved in this investigation relative to their geographic range and association with human modified habitats. The yellow dots represent field site locations. Photo credit: grackle and CASJ, Corina Logan; blue jay, ?; FLSJ, ?; toutouwai, Rachael Shaw.
 
 &nbsp;
 
@@ -2595,9 +2595,79 @@ precis( list( diff_g=diff_g , diff_p=diff_p ) )
 ###### Power analysis
 
 
+**Figure 18.** Curves of the mean ratio of estimates below zero (vertical lines show the minimum and maximum ratios), which illustrates the power we have to detect differences between conditions at different sample sizes. Across all models, the standard deviation of the mean change in proportion was 0.1 (a conservative estimate) and the proportion of time spent in the presence of food before the flexibility manipulation was 0.6.
+
 
 ###### Run this model on the actual data
 
+Run the code below to determine whether there were differences between the control and manipulated conditions in their survival status (alive or dead when individuals are or would be 112 days old). A contrast will be run to determine whether there is a difference between the conditions: if all values of the confidence interval are on one side of zero, then there was a difference; if the confidence interval crosses zero, then there was no difference.
+
+```{r touq2model, eval=F}
+library(rethinking)
+library(cmdstanr)
+set_ulam_cmdstan(TRUE) #makes it so ulam always runs with cmdstan
+rstan_options(auto_write = TRUE)
+#rebuild_cmdstan() #run this if you get an error about a PCH file https://discourse.mc-stan.org/t/struggling-to-get-cmdstan-working-on-mac-os-big-sur/19774/4
+
+# load data sheet
+d <- read.csv(url(""), header=T, sep=",", stringsAsFactors=F)
+
+# Set up the data sheet
+dat <- list(
+    status = d$status,
+    habitat = d$habitat,
+    condition = d$condition,
+    parentpairID = d$parentpairID
+)
+
+#simulated data to test the model
+dat2 <- list(
+    status = rbinom(40,1,0.5), #for 40 data points, randomly assign a 0 (dead) or 1 (alive) survival status such that each appears 50% of the time
+    habitat = rbinom(40,1,0.5), #for 40 data points, randomly assign a 0 (reserve) or 1 (suburban) habitat such that each appears 50% of the time
+    condition = c(rep(1,20),rep(2,20)), #for all rows with control data, assign a condition=1, and for all rows with manipulated data, assign a condition=2, repeat each 20 times (for a total sample size of 40)
+    parentpairID = round(seq(1,35,length=40),0) #for 40 data points, run through numbers 1-35 and repeat a number 5 times (so 5 individuals will have been raised by a parentpairID who also raised another individual in this dataset)
+)
+
+
+# THE MODEL (p.448 for binomial distribution - McElreath 2020)
+#an interaction model that allows the effect of each condition to vary by each parent pair ID and each habitat
+#g[condition] = avg log odds for each condition
+#alpha[parentpairID,condition] = an effect for each parent pair ID in each condition
+#beta[habitat,condition] = an effect for each habitat in each condition
+mt <- ulam(
+    alist(
+        status ~ dbinom(1,p),
+        logit(p) <- g[condition] + alpha[parentpairID,condition] + beta[habitat,condition],
+        # adaptive priors - non-centered which is a parameterization that improves sampling for the MCMC model fit by helping with complex varying effects (see p.453)
+        transpars> matrix[parentpairID,2]:alpha <- compose_noncentered( sigma_parentpairID , L_Rho_parentpairID , z_parentpairID ),
+        matrix[2,parentpairID]:z_parentpairID ~ normal( 0 , 1 ),
+        transpars> matrix[habitat,2]:beta <- compose_noncentered( sigma_habitat , L_Rho_habitat , z_habitat ),
+        matrix[2,habitat]:z_habitat ~ normal( 0 , 1 ),
+        # fixed priors
+        g[condition] ~ normal(0,1),
+        vector[2]:sigma_parentpairID ~ dexp(1),
+        cholesky_factor_corr[2]:L_Rho_parentpairID ~ lkj_corr_cholesky( 2 ),
+        vector[2]:sigma_habitat ~ dexp(1),
+        cholesky_factor_corr[2]:L_Rho_habitat ~ lkj_corr_cholesky( 2 ),
+        # compute ordinary correlation matrixes from Cholesky factors
+        gq> matrix[2,2]:Rho_parentpairID <<- Chol_to_Corr(L_Rho_parentpairID),
+        gq> matrix[2,2]:Rho_habitat <<- Chol_to_Corr(L_Rho_habitat)
+    ) , data=dat2 , chains=4 , cores=4 , log_lik=TRUE , cmdstan = TRUE, control = list(adapt_delta = .95, force_recompile = TRUE))
+
+#model output: pay attention to before (g1) and after (g2)
+#precis(mt,depth=2)
+
+#run a CONTRAST to determine whether there is a difference in survival status between control (g1) and manipulated (g2). Yes if all values on one side of zero
+post <- extract.samples(mt)
+diff_g <- post$g[,1] - post$g[,2] #log-odds difference p.341
+diff_p <- inv_logit(post$g[,1]) - inv_logit(post$g[,2]) #on the probability scale p.341
+precis( list( diff_g=diff_g , diff_p=diff_p ) )
+
+#run a CONTRAST to determine whether there is a difference in survival status between control (g1) and manipulated (g2) and habitat (reserve vs suburban). Yes if all values on one side of zero
+diff_beta <- post$beta[,1] - post$beta[,2] #log-odds difference p.341
+diff_betap <- inv_logit(post$beta[,1]) - inv_logit(post$beta[,2]) #on the probability scale p.341
+precis( list( diff_beta=diff_beta , diff_betap=diff_betap ) )
+```
 
 
 # **ETHICS**
