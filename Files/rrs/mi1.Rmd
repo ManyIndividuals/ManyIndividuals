@@ -553,6 +553,16 @@ dbinom(1:12,12,probability_choose_lightgrey_twelvetrials)[10]
 
 ## Determining after which reversal an individual has completed the experiment: serial reversal passing criterion
 
+Data from previous serial reversal experiments suggests that individuals who go through multiple reversals will end up with a performance that is is similar to the individuals who needed the fewest trials on the first reversal [@Loganflexmanip; @morandferron]. This suggests that the manipulation changes individuals within their natural range of variation rather than pushing them to new limits. This means that we can use the performance of the fastest individuals in the first reversal to set the criterion for passing the serial reversal experiment. Accordingly, we can only set the serial reversal passing criterion after the data from the first reversal begins to become available. Some species might already have data from previous studies on reversal learning, however it is important to set the passing criterion for this experiment using the this particular setup. Therefore, the criterion must be established from scratch for each species using this setup.
+
+**The serial reversal passing criterion:** reach the reversal passing criterion (10 out of 12 trials correct) in X trials or fewer in two consecutive reversals. 
+
+X = the number of trials required that marks the fastest 20% of individuals in the first reversal. For example, if you test 20 individuals, the number of trials for the 4th fastest individual will be the criterion. For 10 individuals, use the number of trials for the 2nd fastest individual. The fastest 20% was validated using the grackle data [@Loganflexmanip]: it aligns with the one sigma rule from a normal distribution, indicating the percentage of individuals who are faster than the mean number of trials minus one standard deviation. If more than 20% of individuals reach this number of trials in their first reversal (because there might be a tie), choose the next fastest number of trials to pass. Particularly near the beginning of the experiment, it will be important to set the passing criterion to a lower number to ensure that individuals will be overtrained rather than undertrained. 
+
+As the data for additional individuals becomes available, this number can change accordingly. If the number changes across the experiment, we will check whether any currently participating individuals would have already passed according to this criterion and end their experiment.
+
+Individuals need to meet this criterion in two consecutive reversals to pass the serial reversal experiment to ensure that their behavior is consistent and that their speedy performance did not occur by chance. Previous serial reversal experiments show that reversal performance plateaus after a certain number of reversals [e.g., 6-8 reversals in great-tailed grackles @Loganflexmanip]. If individuals show no consistent improvement after 12 reversals and have not yet met the serial reversal passing criterion, they will be excluded from the experiment. We will plan to start with many more individuals than the minimum sample size to allow for potential drop outs.
+
 
 
 ## **DESIGN 1** - Reversal learning experiment in visual isolation
@@ -2591,9 +2601,171 @@ precis( list( diff_g=diff_g , diff_p=diff_p ) )
 
 ###### The model
 
+*Bayesian model with a binomial distribution:*
+
+status ~ dbinom(1,p)
+
+logit(p) <- g[condition] + $\alpha$[parentpairID,condition] + $\beta$[habitat,condition]
+
+The response variable is survival status (0=dead, 1=alive) on day 112 post-fledging. g[condition] is the average log odds for each condition (control or flexibility manipulated), $\alpha$[parentpairID,condition] is an effect for each parent pair ID (because parents can produce multiple offspring that participate in the experiment) in each condition, and $\beta$[habitat,condition] is an effect for each habitat (natural or suburban) in each condition. A binomial distribution was used because the response variable is binomial [see Figure 10.6 in @mcelreath2020statistical]. The Bayesian model was developed using @mcelreath2020statistical as a guide.
 
 ###### Power analysis
 
+We estimated our power to detect differences between conditions at different sample sizes and with different mean changes in the total number of different food types taken per individual in the before vs. after conditions (Figure 14). We simulated the number of food types taken for different sample sizes of individuals before and after the flexibility manipulation. We analyzed these simulated data with the model we will use to analyze the actual data, estimating the change in the number of food types taken between the before and after conditions. From the posterior estimates of the model, we extracted both the mean change as well as the ratio of the posterior estimates that were below zero.
+
+If the mean ratio of estimates below zero is close to 0.5, the model assumes that the change in the number of food types taken before the flexibility manipulation is similar to after. If the ratio is close to zero, the model assumes individuals have changed their behavior. For changes in the number of food types taken smaller than 1, models are likely to assume that no changes occurred even with large sample sizes. If the change in the number of food types taken before the flexibility manipulation vs. after is 1 with a standard deviation of 2, on average 99.96% of the posterior of the model based on a sample size of 20 individuals will be larger than zero. This means that the model is quite certain there is a difference that is larger than zero. In addition, none of the 30 models for a sample size of 20 at the mean change of 1 have a ratio larger than 0.3, meaning that the risk of having a false negative is not very likely.
+
+In general, with sample sizes at or above 20 and mean changes in the number of food types taken at 1 or larger, it is likely that the model will indicate that individuals have changed their behavior. Mean changes below 1 can still be detected, however there is a higher risk that there will be a false negative and this risk is independent of sample size. For example, 17% of the models for a sample size of 20 at the mean change of 0.5 have a ratio larger than 0.3, meaning there is a risk of having a false negative.
+
+With small mean changes in the response variable, some individuals might not increase or even decrease their response after the manipulation because there is variation around the mean change in individual responses. With small sample sizes, there is a risk that only individuals who did not clearly increase their response will be studied, whereas larger sample sizes are more likely to include a wider spectrum of individuals.
+
+To estimate the risk of detecting false positives, we set the mean change in the number of food types taken to zero so there was no change between the before and after conditions. As expected, the average ratio of estimates below zero is close to 0.5 and independent of sample size. With a sample size of 20, 30% have a ratio smaller than 0.3, meaning that the risk of having a false positive is high. The risk would be lower if the variation among individuals was lower than what we assumed (the standard deviation of the mean change in number of foods was 2, which is a conservative estimate).
+
+```{r TouSurvivalSim, eval=F}
+library(rethinking)
+library(cmdstanr)
+set_ulam_cmdstan(TRUE) #makes it so ulam always runs with cmdstan
+rstan_options("auto_write" = TRUE)
+#rebuild_cmdstan() #run this if you get an error about a PCH file https://discourse.mc-stan.org/t/struggling-to-get-cmdstan-working-on-mac-os-big-sur/19774/4
+
+#SIMULATE the population
+N_ind <- 20 #number of individuals tested
+
+#choosing the mean change in survival between control and manipulated groups and standard deviations - visualize to see whether it would be possible to tell the difference between control (black) and manipulated (red). An SD of 0.1 (when the control mean is 0.6) encompasses all of the range of proportions we expect to find (0.3-0.9) so it would be the largest SD we would expect and thus the most conservative sd to use in the simulations
+prob_control<-0.6
+changemanip<-0.1
+plot(density(rnorm(10000,prob_control,sd=0.1)),lwd=2,xlim=c(0,1.2))
+lines(density(rnorm(10000,prob_control+(1-prob_control)*(changemanip*2),sd=0.1)),lwd=2,col="red")
+
+#control
+probcontrol <- round(rbinom(n=N_ind,size=1,prob=0.6),2) #for 20 data points, randomly assign a 0 (dead) or 1 (alive) survival status such that each appears 60% of the time
+changemanip <- rnorm(N_ind, mean=(1-probcontrol)/5,sd=0.1) #if had a large proportion before, have a smaller change relative to the after condition. Divide by 2 = assume that on average they will improve by 0.25 (the before mean of 0.5 divided by 2)
+
+#manip
+probmanip <- round(probcontrol+changemanip,2)
+probmanip[probmanip>1]<-1 #values larger than 1 mess up the model so restrict it
+
+#check the plot to see whether manip increases prob of survival
+#plot(probcontrol,probmanip)
+#abline(0,1)
+
+# power analysis: run this simulation with different N_ind, changeprop means and sd, to find the boundaries of where you can detect a difference (run the model and use contrasts) between the two conditions
+
+
+### POWER ANALYSIS: different sample sizes and different mean changes in proportions between before and after conditions
+# We now set our range of likely sample sizes, from a minimum of 9 individuals per population to a maximum of 60 individuals per population. We draw repeated samples of individuals of that size from each of the 5 populations, during each repetition we draw two samples from each population (so we can infer the false negative rate of wrongly estimating that two samples come from a different population even though they were taken from the sample population). This means we have 10 repetitions for each of the 5 sample sizes and each of the 6 changeprops. So 10*6 changeprops (=60) for each of the 5 sample sizes, resulting in a total length of samplesizes of 300
+samplesizes<-c(10,20,30,40,60) #c(10,20,30,40,60)
+
+# Set the means you want to compare
+meanchangeprop1<-0.4 
+meanchangeprop2<-0.3
+meanchangeprop3<-0.2 #e.g., a bird spends 0.6 of its time being rewarded at cafes and dumpsters before the manipulation and then increases this proportion to 0.8 after the manipulation, showing that the manipulation improved their foraging success
+meanchangeprop4<-0.1
+meanchangeprop5<-0.05
+meanchangeprop6<-0 #for false positives
+changeprobvariants<-c(meanchangeprop1,meanchangeprop2,meanchangeprop3,meanchangeprop4,meanchangeprop5,meanchangeprop6) #for false negatives
+
+#compare different control individual survival probabilities
+prob_control<-c(0.5,0.6,0.7)
+
+#set up data frame where results will be stored
+simresults <- matrix(NA,nrow=900,ncol=9)
+simresults <- data.frame(simresults)
+colnames(simresults) <- c("n","changeprob_mean","changeprob_sd","repetition","survival_control","proportion_estimates_below_zero_condition","count_estimates_below_zero_condition","proportion_estimates_below_zero_habitatnatural","proportion_estimates_below_zero_habitatsuburban")
+counter<-1
+ 
+# run simulations. There are 5 different sample sizes, and for each we have 6 different mean change in proportions that we want to examine, and each will repeat 10 times for a total of 300 samples.
+for (samplesize in 1:length(samplesizes)) {
+        N_ind <- samplesizes[samplesize] #number of grackles per sample size
+        
+        #now run through each of the 6 proportion variations
+        for (probvariant in 1:length(changeprobvariants)) {
+        
+        #pick the current proportion variant from the list changepropvariants
+        currentchangeprob <- changeprobvariants[probvariant]
+        
+        for (baselineprob in 1:3) {
+        #pick the current proportion variant from the list changepropvariants
+        currentprob_control <- prob_control[baselineprob]
+        
+        for (repetition in 1:10) {
+        #create data frame to store for each repetition of the simulated data to be analyzed by the model
+        sites <- matrix(nrow=n,ncol=3) 
+        colnames(sites)<-c("ID","condition","survival")
+        
+        #CONTROL & MANIP groups
+        probcontrol <- round(rbinom(n=N_ind/2,size=1,prob=currentprob_control),2) #for half the data points, randomly assign a 0 (dead) or 1 (alive) survival status according to the baseline survival probabilities (0.5,0.6,0.7)
+        probcontrol[probcontrol>1]<-1 #values larger than 1 mess up the model so restrict it
+        
+        probmanip <- round(rbinom(n=N_ind/2,size=1,prob=currentprob_control+currentchangeprob),2) #for the other half the data points, randomly assign a 0 (dead) or 1 (alive) survival status according to the baseline survival probabilities (0.5,0.6,0.7)
+        probmanip[probmanip>1]<-1 #values larger than 1 mess up the model so restrict it
+
+        ### run a STAN model to see whether the before and after proportions are estimated to be different from each other
+        #sets up the data sheet with the simulated data that the model will run on
+  dat2 <- list(
+    status = c(probcontrol,probmanip),
+    habitat = rbinom(N_ind,1,0.25)+1, #75% of individuals in the reserve, 25% in suburban randomly assigned from control and manip groups. 1=reserve, 2=suburban
+    condition = c(rep(1,N_ind/2),rep(2,N_ind/2)), 
+    parentpairID = round(seq(1,N_ind*0.8,length=N_ind),0)
+)
+       
+        # Our MODEL, which will estimate a different mean and variance of phi for each site 
+       #(note: had to add force_recompile bc kept giving me an error and wouldn't finish running. See https://github.com/rmcelreath/rethinking/issues/338)
+s1 <- ulam(
+    alist(
+        status ~ dbinom(1,p),
+        logit(p) <- g[condition] + alpha[parentpairID,condition] + beta[habitat,condition],
+        # adaptive priors - non-centered which is a parameterization that improves sampling for the MCMC model fit by helping with complex varying effects (see p.453)
+        transpars> matrix[parentpairID,2]:alpha <- compose_noncentered( sigma_parentpairID , L_Rho_parentpairID , z_parentpairID ),
+        matrix[2,parentpairID]:z_parentpairID ~ normal( 0 , 1 ),
+        transpars> matrix[habitat,2]:beta <- compose_noncentered( sigma_habitat , L_Rho_habitat , z_habitat ),
+        matrix[2,habitat]:z_habitat ~ normal( 0 , 1 ),
+        # fixed priors
+        g[condition] ~ normal(0,1),
+        vector[2]:sigma_parentpairID ~ dexp(1),
+        cholesky_factor_corr[2]:L_Rho_parentpairID ~ lkj_corr_cholesky( 2 ),
+        vector[2]:sigma_habitat ~ dexp(1),
+        cholesky_factor_corr[2]:L_Rho_habitat ~ lkj_corr_cholesky( 2 ),
+        # compute ordinary correlation matrixes from Cholesky factors
+        gq> matrix[2,2]:Rho_parentpairID <<- Chol_to_Corr(L_Rho_parentpairID),
+        gq> matrix[2,2]:Rho_habitat <<- Chol_to_Corr(L_Rho_habitat)
+    ) , data=dat2 , chains=4 , cores=4 , log_lik=TRUE , cmdstan = TRUE, control = list(adapt_delta = .95, force_recompile = TRUE))
+      
+        #run a CONTRAST to determine whether there is a difference between before (g1) and after (g2) (subtract g1 before from g2 after). Yes if all values for diff_p on one side of zero (want probability scale because that is the scale we used in the simulation)
+post <- extract.samples(s1)
+diff_g <- post$g[,2] - post$g[,1] #log-odds difference p.341 McElreath 2020
+diff_p <- inv_logit(post$g[,2]) - inv_logit(post$g[,1]) #on the probability scale p.341 McElreath 2020
+#precis( list( diff_g=diff_g , diff_p=diff_p ) )
+
+      #run a CONTRAST to determine whether there is a difference in survival status between control (g1) and manipulated (g2) and habitat (reserve vs suburban). Yes if all values on one side of zero
+if(length(unique(dat2$habitat))>1){
+  diff_betanatural <- inv_logit(post$beta[,2,1]+post$g[,2]) - inv_logit(post$beta[,1,1]+post$g[,1]) # Comparison for habitat 1 (natural): take the inverse logit of the sum (posterior control habitat 1 + posterior control) minus the inverse logit of the sum (posterior manipulated habitat 1 + posterior manipulated). For the beta values, the first entry in the square brackets refers to the rows (we want all of them so we leave this empty), the second entry refers to control (1) versus manipulated (2), and the third entry refers to the habitat (here habitat 1)
+diff_betasuburban <- inv_logit(post$beta[,2,2]+post$g[,2]) - inv_logit(post$beta[,1,2]+post$g[,1]) # Comparison for habitat 2 (suburban): take the inverse logit of the sum (posterior control habitat 2 + posterior control) minus the inverse logit of the sum (posterior manipulated habitat 2 + posterior manipulated). For the beta values, the first entry in the square brackets refers to the rows (we want all of them so we leave this empty), the second entry refers to control (1) versus manipulated (2), and the third entry refers to the habitat (here habitat 2)
+}
+    # enter all of the results into the data sheet
+    simresults[counter,]$n <- N_ind
+    simresults[counter,]$changeprob_mean <- currentchangeprob
+    simresults[counter,]$changeprob_sd <- 0.1
+    simresults[counter,]$repetition <- repetition
+    simresults[counter,]$survival_control <- currentprob_control
+    simresults[counter,]$proportion_estimates_below_zero_condition <- sum(diff_p<0)/length(diff_p)
+    simresults[counter,]$count_estimates_below_zero_condition <- sum(diff_p<0)
+     if(length(unique(dat2$habitat))>1){simresults[counter,]$proportion_estimates_below_zero_habitatnatural <-sum(diff_betanatural<0)/length(diff_betanatural)}else{simresults[counter,]$proportion_estimates_below_zero_habitatnatural <-"NA"}
+     if(length(unique(dat2$habitat))>1){simresults[counter,]$proportion_estimates_below_zero_habitatsuburban <-sum(diff_betasuburban<0)/length(diff_betasuburban)}else{simresults[counter,]$proportion_estimates_below_zero_habitatsuburban <-"NA"}
+    counter<-counter+1 
+    print(c(counter,"out of",10*length(samplesizes)*length(changeprobvariants)*length(prob_control)))
+        }
+        }
+        }
+}
+#write.csv(simresults,file="simresultsTouSD0.1.csv") #put the outputs into a csv file so don't have to run the model again...it takes about 5 hours
+
+## Prep a figure to show how sample size and mean change prop makes a difference in the results. Get posterior values for particular sample sizes and change props. Set samplesize (20 or 60), changeprobvariants (0.1 or 0.025), and prop_control (always 0.6) to just one number and run the model. Generate the output, write to csv. Repeat for other model variants
+#write.csv(diff_p,file="diff_p20changeprob0.1.csv")
+#write.csv(diff_p,file="diff_p60changeprob0.1.csv")
+#write.csv(diff_p,file="diff_p20changeprob0.025.csv")
+#write.csv(diff_p,file="diff_p60changeprob0.025.csv")
+```
 
 **Figure 18.** Curves of the mean ratio of estimates below zero (vertical lines show the minimum and maximum ratios), which illustrates the power we have to detect differences between conditions at different sample sizes. Across all models, the standard deviation of the mean change in proportion was 0.1 (a conservative estimate) and the proportion of time spent in the presence of food before the flexibility manipulation was 0.6.
 
@@ -2623,7 +2795,7 @@ dat <- list(
 #simulated data to test the model
 dat2 <- list(
     status = rbinom(40,1,0.5), #for 40 data points, randomly assign a 0 (dead) or 1 (alive) survival status such that each appears 50% of the time
-    habitat = rbinom(40,1,0.5), #for 40 data points, randomly assign a 0 (reserve) or 1 (suburban) habitat such that each appears 50% of the time
+    habitat = rbinom(40,1,0.5)+1, #for 40 data points, randomly assign a 0 (reserve) or 1 (suburban) habitat such that each appears 50% of the time. Add a 1 to each data point to make it 1 & 2 rather than 0 and 1 (if don't do this, rstan will throw a csv error and break)
     condition = c(rep(1,20),rep(2,20)), #for all rows with control data, assign a condition=1, and for all rows with manipulated data, assign a condition=2, repeat each 20 times (for a total sample size of 40)
     parentpairID = round(seq(1,35,length=40),0) #for 40 data points, run through numbers 1-35 and repeat a number 5 times (so 5 individuals will have been raised by a parentpairID who also raised another individual in this dataset)
 )
@@ -2664,9 +2836,12 @@ diff_p <- inv_logit(post$g[,1]) - inv_logit(post$g[,2]) #on the probability scal
 precis( list( diff_g=diff_g , diff_p=diff_p ) )
 
 #run a CONTRAST to determine whether there is a difference in survival status between control (g1) and manipulated (g2) and habitat (reserve vs suburban). Yes if all values on one side of zero
-diff_beta <- post$beta[,1] - post$beta[,2] #log-odds difference p.341
-diff_betap <- inv_logit(post$beta[,1]) - inv_logit(post$beta[,2]) #on the probability scale p.341
-precis( list( diff_beta=diff_beta , diff_betap=diff_betap ) )
+diff_betacontrol <- post$beta[,1,1] - post$beta[,1,2] #log-odds difference p.341 for condition = 1 control 
+diff_betamanip <- post$beta[,2,1] - post$beta[,2,2] #log-odds difference p.341 for condition = 2 manipulated 
+diff_betapcontrol <- inv_logit(post$beta[,1,1]) - inv_logit(post$beta[,1,2]) #on the probability scale p.341 for condition = 1 control 
+diff_betapmanip <- inv_logit(post$beta[,2,1]) - inv_logit(post$beta[,2,2]) #on the probability scale p.341 for condition = 2 manip
+precis( list( diff_betacontrol=diff_betacontrol , diff_betamanip=diff_betapmanip ) )
+#reading the output: diff_betacontrol - if CI crosses 0, then no difference between habitats for the control condition. diff_betamanip - if CI does not cross 0, then there difference between habitats for the manipulated condition
 ```
 
 
