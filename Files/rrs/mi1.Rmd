@@ -2773,7 +2773,7 @@ diff_betasuburban <- inv_logit(post2$beta[,2,2]) - inv_logit(post2$beta[,1,2]) #
         }
         }
 }
-#write.csv(simresults,file="simresultsTouSD0.1.csv") #put the outputs into a csv file so don't have to run the model again...it takes about 6 hours
+#write.csv(simresults,file="simresultsTouSurvival.csv") #put the outputs into a csv file so don't have to run the model again...it takes about 9 hours
 ```
 
 
