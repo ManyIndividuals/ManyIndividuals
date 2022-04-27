@@ -2666,12 +2666,12 @@ meanchangeprop6<-0 #for false positives
 changeprobvariants<-c(meanchangeprop1,meanchangeprop2,meanchangeprop3,meanchangeprop4,meanchangeprop5,meanchangeprop6) #for false negatives
 
 #compare different control individual survival probabilities
-prob_control<-c(0.5,0.6,0.7)
+prob_control<-c(0.5,0.6,0.7) #expected baseline survival in the natural area. We assume that it will be half of this in the suburban areas
 
 #set up data frame where results will be stored
 simresults <- matrix(NA,nrow=900,ncol=9)
 simresults <- data.frame(simresults)
-colnames(simresults) <- c("n","changeprob_mean","changeprob_sd","repetition","survival_control","proportion_estimates_below_zero_condition","count_estimates_below_zero_condition","proportion_estimates_below_zero_habitatnatural","proportion_estimates_below_zero_habitatsuburban")
+colnames(simresults) <- c("n","changeprob_mean","n_suburban","repetition","survival_control","proportion_estimates_below_zero_condition","count_estimates_below_zero_condition","proportion_estimates_below_zero_habitatnatural","proportion_estimates_below_zero_habitatsuburban")
 counter<-1
  
 # run simulations. There are 5 different sample sizes, and for each we have 6 different mean change in proportions that we want to examine, and each will repeat 10 times for a total of 300 samples.
@@ -2689,22 +2689,18 @@ for (samplesize in 1:length(samplesizes)) {
         currentprob_control <- prob_control[baselineprob]
         
         for (repetition in 1:10) {
-        #create data frame to store for each repetition of the simulated data to be analyzed by the model
-        sites <- matrix(nrow=n,ncol=3) 
-        colnames(sites)<-c("ID","condition","survival")
-        
         #CONTROL & MANIP groups
-        probcontrol <- round(rbinom(n=N_ind/2,size=1,prob=currentprob_control),2) #for half the data points, randomly assign a 0 (dead) or 1 (alive) survival status according to the baseline survival probabilities (0.5,0.6,0.7)
-        probcontrol[probcontrol>1]<-1 #values larger than 1 mess up the model so restrict it
+        habitatcontrol <- rbinom(N_ind/2,1,0.25)+1  
+        probcontrol <- round(rbinom(n=N_ind/2,size=1,prob=currentprob_control/habitatcontrol),2) #for half the data points, randomly assign a 0 (dead) or 1 (alive) survival status according to the baseline survival probabilities (0.5,0.6,0.7)
         
-        probmanip <- round(rbinom(n=N_ind/2,size=1,prob=currentprob_control+currentchangeprob),2) #for the other half the data points, randomly assign a 0 (dead) or 1 (alive) survival status according to the baseline survival probabilities (0.5,0.6,0.7)
-        probmanip[probmanip>1]<-1 #values larger than 1 mess up the model so restrict it
+        habitatmanip <- rbinom(N_ind/2,1,0.25)+1  
+        probmanip <- round(rbinom(n=N_ind/2,size=1,prob=(currentprob_control/habitatmanip)+currentchangeprob),2) #for the other half the data points, randomly assign a 0 (dead) or 1 (alive) survival status according to the baseline survival probabilities (0.5,0.6,0.7)
 
         ### run a STAN model to see whether the before and after proportions are estimated to be different from each other
         #sets up the data sheet with the simulated data that the model will run on
   dat2 <- list(
     status = c(probcontrol,probmanip),
-    habitat = rbinom(N_ind,1,0.25)+1, #75% of individuals in the reserve, 25% in suburban randomly assigned from control and manip groups. 1=reserve, 2=suburban
+    habitat = c(habitatcontrol,habitatmanip), #75% of individuals in the reserve, 25% in suburban randomly assigned from control and manip groups. 1=reserve, 2=suburban
     condition = c(rep(1,N_ind/2),rep(2,N_ind/2)), 
     parentpairID = round(seq(1,N_ind*0.8,length=N_ind),0)
 )
@@ -2714,12 +2710,34 @@ for (samplesize in 1:length(samplesizes)) {
 s1 <- ulam(
     alist(
         status ~ dbinom(1,p),
-        logit(p) <- g[condition] + alpha[parentpairID,condition] + beta[habitat,condition],
+        logit(p) <- g[condition] + alpha[parentpairID,condition],
         # adaptive priors - non-centered which is a parameterization that improves sampling for the MCMC model fit by helping with complex varying effects (see p.453)
         transpars> matrix[parentpairID,2]:alpha <- compose_noncentered( sigma_parentpairID , L_Rho_parentpairID , z_parentpairID ),
         matrix[2,parentpairID]:z_parentpairID ~ normal( 0 , 1 ),
-        transpars> matrix[habitat,2]:beta <- compose_noncentered( sigma_habitat , L_Rho_habitat , z_habitat ),
-        matrix[2,habitat]:z_habitat ~ normal( 0 , 1 ),
+        # fixed priors
+        g[condition] ~ normal(0,1),
+        vector[2]:sigma_parentpairID ~ dexp(1),
+        cholesky_factor_corr[2]:L_Rho_parentpairID ~ lkj_corr_cholesky( 2 ),
+        # compute ordinary correlation matrixes from Cholesky factors
+        gq> matrix[2,2]:Rho_parentpairID <<- Chol_to_Corr(L_Rho_parentpairID)
+       ) , data=dat2 , chains=4 , cores=4 , log_lik=TRUE , cmdstan = TRUE, control = list(adapt_delta = .95, force_recompile = TRUE))
+
+
+        #run a CONTRAST to determine whether there is a difference between before (g1) and after (g2) (subtract g1 before from g2 after). Yes if all values for diff_p on one side of zero (want probability scale because that is the scale we used in the simulation)
+post <- extract.samples(s1)
+diff_g <- post$g[,2] - post$g[,1] #log-odds difference p.341 McElreath 2020
+diff_p <- inv_logit(post$g[,2]) - inv_logit(post$g[,1]) #on the probability scale p.341 McElreath 2020
+#precis( list( diff_g=diff_g , diff_p=diff_p ) )      
+
+s2 <- ulam(
+    alist(
+        status ~ dbinom(1,p),
+        logit(p) <- g[habitat] + alpha[parentpairID,habitat] + beta[condition,habitat],
+        # adaptive priors - non-centered which is a parameterization that improves sampling for the MCMC model fit by helping with complex varying effects (see p.453)
+        transpars> matrix[parentpairID,2]:alpha <- compose_noncentered( sigma_parentpairID , L_Rho_parentpairID , z_parentpairID ),
+        matrix[2,parentpairID]:z_parentpairID ~ normal( 0 , 1 ),
+        transpars> matrix[condition,2]:beta <- compose_noncentered( sigma_habitat , L_Rho_habitat , z_habitat ),
+        matrix[2,condition]:z_habitat ~ normal( 0 , 1 ),
         # fixed priors
         g[condition] ~ normal(0,1),
         vector[2]:sigma_parentpairID ~ dexp(1),
@@ -2731,21 +2749,18 @@ s1 <- ulam(
         gq> matrix[2,2]:Rho_habitat <<- Chol_to_Corr(L_Rho_habitat)
     ) , data=dat2 , chains=4 , cores=4 , log_lik=TRUE , cmdstan = TRUE, control = list(adapt_delta = .95, force_recompile = TRUE))
       
-        #run a CONTRAST to determine whether there is a difference between before (g1) and after (g2) (subtract g1 before from g2 after). Yes if all values for diff_p on one side of zero (want probability scale because that is the scale we used in the simulation)
-post <- extract.samples(s1)
-diff_g <- post$g[,2] - post$g[,1] #log-odds difference p.341 McElreath 2020
-diff_p <- inv_logit(post$g[,2]) - inv_logit(post$g[,1]) #on the probability scale p.341 McElreath 2020
-#precis( list( diff_g=diff_g , diff_p=diff_p ) )
+
+post2 <- extract.samples(s2)
 
       #run a CONTRAST to determine whether there is a difference in survival status between control (g1) and manipulated (g2) and habitat (reserve vs suburban). Yes if all values on one side of zero
 if(length(unique(dat2$habitat))>1){
-  diff_betanatural <- inv_logit(post$beta[,2,1]+post$g[,2]) - inv_logit(post$beta[,1,1]+post$g[,1]) # Comparison for habitat 1 (natural): take the inverse logit of the sum (posterior control habitat 1 + posterior control) minus the inverse logit of the sum (posterior manipulated habitat 1 + posterior manipulated). For the beta values, the first entry in the square brackets refers to the rows (we want all of them so we leave this empty), the second entry refers to control (1) versus manipulated (2), and the third entry refers to the habitat (here habitat 1)
-diff_betasuburban <- inv_logit(post$beta[,2,2]+post$g[,2]) - inv_logit(post$beta[,1,2]+post$g[,1]) # Comparison for habitat 2 (suburban): take the inverse logit of the sum (posterior control habitat 2 + posterior control) minus the inverse logit of the sum (posterior manipulated habitat 2 + posterior manipulated). For the beta values, the first entry in the square brackets refers to the rows (we want all of them so we leave this empty), the second entry refers to control (1) versus manipulated (2), and the third entry refers to the habitat (here habitat 2)
+  diff_betanatural <- inv_logit(post2$beta[,2,1]) - inv_logit(post2$beta[,1,1]) # Comparison for habitat 1 (natural): take the inverse logit of the sum (posterior control habitat 1 + posterior control) minus the inverse logit of the sum (posterior manipulated habitat 1 + posterior manipulated). For the beta values, the first entry in the square brackets refers to the rows (we want all of them so we leave this empty), the second entry refers to control (1) versus manipulated (2), and the third entry refers to the habitat (here habitat 1)
+diff_betasuburban <- inv_logit(post2$beta[,2,2]) - inv_logit(post2$beta[,1,2]) # Comparison for habitat 2 (suburban): take the inverse logit of the sum (posterior control habitat 2 + posterior control) minus the inverse logit of the sum (posterior manipulated habitat 2 + posterior manipulated). For the beta values, the first entry in the square brackets refers to the rows (we want all of them so we leave this empty), the second entry refers to control (1) versus manipulated (2), and the third entry refers to the habitat (here habitat 2)
 }
     # enter all of the results into the data sheet
     simresults[counter,]$n <- N_ind
     simresults[counter,]$changeprob_mean <- currentchangeprob
-    simresults[counter,]$changeprob_sd <- 0.1
+    simresults[counter,]$n_suburban <- sum(dat2$habitat==2)
     simresults[counter,]$repetition <- repetition
     simresults[counter,]$survival_control <- currentprob_control
     simresults[counter,]$proportion_estimates_below_zero_condition <- sum(diff_p<0)/length(diff_p)
@@ -2768,37 +2783,37 @@ library(cmdstanr)
 set_ulam_cmdstan(TRUE) #makes it so ulam always runs with cmdstan
 
 #load the data sheet that was made from the simulation in the previous R chunk
-d <- read.csv("https://raw.githubusercontent.com/ManyIndividuals/ManyIndividuals/main/Files/rrs/mi1simresultsgtgr.csv", header = TRUE, sep = ",", stringsAsFactors = FALSE)
+d <- read.csv("https://raw.githubusercontent.com/ManyIndividuals/ManyIndividuals/main/Files/rrs/mi1simresultstousurvival.csv", header = TRUE, sep = ",", stringsAsFactors = FALSE)
 #head(d)
 
 # Set up the data sheet for the model
 dat <- list(
-  proportion_estimates_below_zero = as.numeric(d$proportion_estimates_below_zero_control),
-  count_estimates_below_zero = as.numeric(d$count_estimates_below_zero_control),
-  changeprop_mean = as.numeric(sqrt(d$changeprob_mean)),
-  samplesize = as.integer(as.factor(d$n))
+  proportion_estimates_below_zero = as.numeric(d$proportion_estimates_below_zero_condition),
+  count_estimates_below_zero = as.numeric(d$count_estimates_below_zero_condition),
+  changeprop_mean = as.numeric(d$changeprob_mean),
+  samplesize = as.integer(as.factor(d$n)
 )
 
-# We run the STAN model - it is a binomial model that assumes that the probability to estimate a difference depends on an interaction between the sample size and the difference between the conditions (before/after). These two models do the same thing with different versions of the response variable. In m_samplesize_diffs, the response variable is already a proportion. In m_samplesize_diffscount, the response variable is a count and the model turns it into a proportion. We ended up using the latter
-#m_samplesize_diffs <- ulam(
-#    alist(
-#        proportion_estimates_below_zero ~ dnorm(mu,sigma),
-#        mu <- a[samplesize] + b[samplesize]*changeprop_mean,
-#        a[samplesize] ~ dnorm(a_bar,sigma_a),
-#        a_bar~dnorm(0,1.5),
-#        sigma_a~dexp(1),
-#        sigma~dexp(1),
-#        b[samplesize]~dnorm(0,1.5)
-#    ) , data=dat , chains=4 , cores=4 , log_lik=TRUE , cmdstan = TRUE, control = list(adapt_delta = .95, force_recompile = TRUE))
+# We run the STAN model - it is a binomial model that assumes that the probability to estimate a difference depends on an interaction between the sample size and the difference between the conditions. These two models do the same thing with different versions of the response variable. In m_samplesize_diffs, the response variable is already a proportion. In m_samplesize_diffscount, the response variable is a count and the model turns it into a proportion. We ended up using the latter
+m_samplesize_diffs <- ulam(
+    alist(
+        proportion_estimates_below_zero ~ dnorm(mu,sigma),
+        mu <- a[samplesize] + b[samplesize]*changeprop_mean,
+        a[samplesize] ~ dnorm(a_bar,sigma_a),
+        a_bar~dnorm(0,1.5),
+        sigma_a~dexp(1),
+        sigma~dexp(1),
+        b[samplesize]~dnorm(0,1.5)
+    ) , data=dat , chains=4 , cores=4 , log_lik=TRUE , cmdstan = TRUE, control = list(adapt_delta = .95, force_recompile = TRUE))
 
 m_samplesize_diffscount <- ulam(
   alist(
     count_estimates_below_zero~dbinom(2000,p),
-    logit(p) <- a[samplesize]-b[samplesize]*changeprop_mean,
-    a[samplesize]~dnorm(a_bar,sigma_a),
-    a_bar~dnorm(0,1.5),
-    sigma_a~dexp(1),
-    b[samplesize]~dnorm(0,1.5)
+    logit(p) <- a[samplesize]+b[samplesize]*changeprop_mean,
+    a[samplesize] ~ dnorm(a_bar,sigma_a),
+    a_bar ~ dnorm(0,1.5),
+    sigma_a ~ dexp(1),
+    b[samplesize] ~ dnorm(0,1.5)
   ),data=dat, log_lik=TRUE, messages=FALSE,cmdstan=T)
 
 # Extract the posterior estimates from this STAN model
@@ -2807,65 +2822,60 @@ precis_output<-precis( m_samplesize_diffscount , depth=2 )
 # Plot the predictions for the different sample sizes as separate lines = COUNT out of 2000
 plot(NULL,xlim=c(-0.01,0.41),ylim=c(0.0,0.6),pch=1,ann=F,frame.plot=F,cex=1.5)
 
-mu_10<- link( m_samplesize_diffscount , data=data.frame( changeprop_mean=sqrt(unique(d$changeprop_mean)),samplesize=rep(1,length(unique(d$changeprop_mean))) ) )
+mu_10<- link( m_samplesize_diffscount , data=data.frame( changeprop_mean=as.factor(unique(d$changeprob_mean)),samplesize=rep(1,length(unique(d$changeprob_mean))) ) )
 mu_10_mean <- apply( mu_10 , 2 , mean )
 mu_10_ci <- apply( mu_10 , 2 , PI , prob=0.97 )
-shade( mu_10_ci , unique(d$changeprop_mean) , col=col.alpha("blue",0.7) )
-lines(x=c(-0.008,-0.008),y=c(min(d[d$n %in% 10 & d$changeprop_mean %in% 0,]$proportion_estimates_below_zero),max(d[d$n %in% 10 & d$changeprop_mean %in% 0,]$proportion_estimates_below_zero)),col=col.alpha("blue",0.5))
-lines(x=c(0.022,0.022),y=c(min(d[d$n %in% 10 & d$changeprop_mean %in% 0.025,]$proportion_estimates_below_zero),max(d[d$n %in% 10 & d$changeprop_mean %in% 0.025,]$proportion_estimates_below_zero)),col=col.alpha("blue",0.5))
-lines(x=c(0.044,0.044),y=c(min(d[d$n %in% 10 & d$changeprop_mean %in% 0.05,]$proportion_estimates_below_zero),max(d[d$n %in% 10 & d$changeprop_mean %in% 0.05,]$proportion_estimates_below_zero)),col=col.alpha("blue",0.5))
-lines(x=c(0.092,0.092),y=c(min(d[d$n %in% 10 & d$changeprop_mean %in% 0.1,]$proportion_estimates_below_zero),max(d[d$n %in% 10 & d$changeprop_mean %in% 0.1,]$proportion_estimates_below_zero)),col=col.alpha("blue",0.5))
-lines(x=c(0.192,0.192),y=c(min(d[d$n %in% 10 & d$changeprop_mean %in% 0.2,]$proportion_estimates_below_zero),max(d[d$n %in% 10 & d$changeprop_mean %in% 0.2,]$proportion_estimates_below_zero)),col=col.alpha("blue",0.5))
-lines(x=c(0.292,0.292),y=c(min(d[d$n %in% 10 & d$changeprop_mean %in% 0.3,]$proportion_estimates_below_zero),max(d[d$n %in% 10 & d$changeprop_mean %in% 0.3,]$proportion_estimates_below_zero)),col=col.alpha("blue",0.5))
-lines(x=c(0.392,0.392),y=c(min(d[d$n %in% 10 & d$changeprop_mean %in% 0.4,]$proportion_estimates_below_zero),max(d[d$n %in% 10 & d$changeprop_mean %in% 0.4,]$proportion_estimates_below_zero)),col=col.alpha("blue",0.5))
+shade( mu_10_ci , unique(d$changeprob_mean) , col=col.alpha("blue",0.7) )
+lines(x=c(-0.008,-0.008),y=c(min(d[d$n %in% 10 & d$changeprob_mean %in% 0,]$proportion_estimates_below_zero_condition),max(d[d$n %in% 10 & d$changeprob_mean %in% 0,]$proportion_estimates_below_zero_condition)),col=col.alpha("blue",0.5))
+lines(x=c(0.022,0.022),y=c(min(d[d$n %in% 10 & d$changeprob_mean %in% 0.025,]$proportion_estimates_below_zero_condition),max(d[d$n %in% 10 & d$changeprob_mean %in% 0.025,]$proportion_estimates_below_zero_condition)),col=col.alpha("blue",0.5))
+lines(x=c(0.044,0.044),y=c(min(d[d$n %in% 10 & d$changeprob_mean %in% 0.05,]$proportion_estimates_below_zero_condition),max(d[d$n %in% 10 & d$changeprob_mean %in% 0.05,]$proportion_estimates_below_zero_condition)),col=col.alpha("blue",0.5))
+lines(x=c(0.092,0.092),y=c(min(d[d$n %in% 10 & d$changeprob_mean %in% 0.1,]$proportion_estimates_below_zero_condition),max(d[d$n %in% 10 & d$changeprob_mean %in% 0.1,]$proportion_estimates_below_zero_condition)),col=col.alpha("blue",0.5))
+lines(x=c(0.192,0.192),y=c(min(d[d$n %in% 10 & d$changeprob_mean %in% 0.2,]$proportion_estimates_below_zero_condition),max(d[d$n %in% 10 & d$changeprob_mean %in% 0.2,]$proportion_estimates_below_zero_condition)),col=col.alpha("blue",0.5))
+lines(x=c(0.292,0.292),y=c(min(d[d$n %in% 10 & d$changeprob_mean %in% 0.3,]$proportion_estimates_below_zero_condition),max(d[d$n %in% 10 & d$changeprob_mean %in% 0.3,]$proportion_estimates_below_zero_condition)),col=col.alpha("blue",0.5))
 
-mu_20 <- link( m_samplesize_diffscount , data=data.frame( changeprop_mean=sqrt(unique(d$changeprop_mean)),samplesize=rep(2,length(unique(d$changeprop_mean))) ) )
+mu_20 <- link( m_samplesize_diffscount , data=data.frame( changeprob_mean=as.factor(unique(d$changeprob_mean)),samplesize=rep(2,length(unique(d$changeprob_mean))) ) )
 mu_20_mean <- apply( mu_20 , 2 , mean )
 mu_20_ci <- apply( mu_20 , 2 , PI , prob=0.97 )
-shade( mu_20_ci , unique(d$changeprop_mean) , col=col.alpha("orange",0.7) )
-lines(x=c(-0.004,-0.004),y=c(min(d[d$n %in% 20 & d$changeprop_mean %in% 0,]$proportion_estimates_below_zero),max(d[d$n %in% 20 & d$changeprop_mean %in% 0,]$proportion_estimates_below_zero)),col=col.alpha("orange",0.5))
-lines(x=c(0.024,0.024),y=c(min(d[d$n %in% 20 & d$changeprop_mean %in% 0.025,]$proportion_estimates_below_zero),max(d[d$n %in% 20 & d$changeprop_mean %in% 0.025,]$proportion_estimates_below_zero)),col=col.alpha("orange",0.5))
-lines(x=c(0.048,0.048),y=c(min(d[d$n %in% 20 & d$changeprop_mean %in% 0.05,]$proportion_estimates_below_zero),max(d[d$n %in% 20 & d$changeprop_mean %in% 0.05,]$proportion_estimates_below_zero)),col=col.alpha("orange",0.5))
-lines(x=c(0.096,0.096),y=c(min(d[d$n %in% 20 & d$changeprop_mean %in% 0.1,]$proportion_estimates_below_zero),max(d[d$n %in% 20 & d$changeprop_mean %in% 0.1,]$proportion_estimates_below_zero)),col=col.alpha("orange",0.5))
-lines(x=c(0.196,0.196),y=c(min(d[d$n %in% 20 & d$changeprop_mean %in% 0.2,]$proportion_estimates_below_zero),max(d[d$n %in% 20 & d$changeprop_mean %in% 0.2,]$proportion_estimates_below_zero)),col=col.alpha("orange",0.5))
-lines(x=c(0.296,0.296),y=c(min(d[d$n %in% 20 & d$changeprop_mean %in% 0.3,]$proportion_estimates_below_zero),max(d[d$n %in% 20 & d$changeprop_mean %in% 0.3,]$proportion_estimates_below_zero)),col=col.alpha("orange",0.5))
-lines(x=c(0.396,0.396),y=c(min(d[d$n %in% 20 & d$changeprop_mean %in% 0.4,]$proportion_estimates_below_zero),max(d[d$n %in% 20 & d$changeprop_mean %in% 0.4,]$proportion_estimates_below_zero)),col=col.alpha("orange",0.5))
+shade( mu_20_ci , unique(d$changeprob_mean) , col=col.alpha("orange",0.7) )
+lines(x=c(-0.004,-0.004),y=c(min(d[d$n %in% 20 & d$changeprob_mean %in% 0,]$proportion_estimates_below_zero_condition),max(d[d$n %in% 20 & d$changeprob_mean %in% 0,]$proportion_estimates_below_zero_condition)),col=col.alpha("orange",0.5))
+lines(x=c(0.024,0.024),y=c(min(d[d$n %in% 20 & d$changeprob_mean %in% 0.025,]$proportion_estimates_below_zero_condition),max(d[d$n %in% 20 & d$changeprob_mean %in% 0.025,]$proportion_estimates_below_zero_condition)),col=col.alpha("orange",0.5))
+lines(x=c(0.048,0.048),y=c(min(d[d$n %in% 20 & d$changeprob_mean %in% 0.05,]$proportion_estimates_below_zero_condition),max(d[d$n %in% 20 & d$changeprob_mean %in% 0.05,]$proportion_estimates_below_zero_condition)),col=col.alpha("orange",0.5))
+lines(x=c(0.096,0.096),y=c(min(d[d$n %in% 20 & d$changeprob_mean %in% 0.1,]$proportion_estimates_below_zero_condition),max(d[d$n %in% 20 & d$changeprob_mean %in% 0.1,]$proportion_estimates_below_zero_condition)),col=col.alpha("orange",0.5))
+lines(x=c(0.196,0.196),y=c(min(d[d$n %in% 20 & d$changeprob_mean %in% 0.2,]$proportion_estimates_below_zero_condition),max(d[d$n %in% 20 & d$changeprob_mean %in% 0.2,]$proportion_estimates_below_zero_condition)),col=col.alpha("orange",0.5))
+lines(x=c(0.296,0.296),y=c(min(d[d$n %in% 20 & d$changeprob_mean %in% 0.3,]$proportion_estimates_below_zero_condition),max(d[d$n %in% 20 & d$changeprob_mean %in% 0.3,]$proportion_estimates_below_zero_condition)),col=col.alpha("orange",0.5))
 
-mu_30 <- link( m_samplesize_diffscount , data=data.frame( changeprop_mean=sqrt(unique(d$changeprop_mean)),samplesize=rep(3,length(unique(d$changeprop_mean))) ) )
+mu_30 <- link( m_samplesize_diffscount , data=data.frame( changeprob_mean=as.factor(unique(d$changeprob_mean)),samplesize=rep(3,length(unique(d$changeprob_mean))) ) )
 mu_30_mean <- apply( mu_30 , 2 , mean )
 mu_30_ci <- apply( mu_30 , 2 , PI , prob=0.97 )
-shade( mu_30_ci ,unique(d$changeprop_mean), col=col.alpha("skyblue",0.7) )
-lines(x=c(0,0),y=c(min(d[d$n %in% 30 & d$changeprop_mean %in% 0,]$proportion_estimates_below_zero),max(d[d$n %in% 30 & d$changeprop_mean %in% 0,]$proportion_estimates_below_zero)),col=col.alpha("skyblue",0.5))
-lines(x=c(0.028,0.028),y=c(min(d[d$n %in% 30 & d$changeprop_mean %in% 0.025,]$proportion_estimates_below_zero),max(d[d$n %in% 30 & d$changeprop_mean %in% 0.025,]$proportion_estimates_below_zero)),col=col.alpha("skyblue",0.5))
-lines(x=c(0.052,0.052),y=c(min(d[d$n %in% 30 & d$changeprop_mean %in% 0.05,]$proportion_estimates_below_zero),max(d[d$n %in% 30 & d$changeprop_mean %in% 0.05,]$proportion_estimates_below_zero)),col=col.alpha("skyblue",0.5))
-lines(x=c(0.1,0.1),y=c(min(d[d$n %in% 30 & d$changeprop_mean %in% 0.1,]$proportion_estimates_below_zero),max(d[d$n %in% 30 & d$changeprop_mean %in% 0.1,]$proportion_estimates_below_zero)),col=col.alpha("skyblue",0.5))
-lines(x=c(0.2,0.2),y=c(min(d[d$n %in% 30 & d$changeprop_mean %in% 0.2,]$proportion_estimates_below_zero),max(d[d$n %in% 30 & d$changeprop_mean %in% 0.2,]$proportion_estimates_below_zero)),col=col.alpha("skyblue",0.5))
-lines(x=c(0.3,0.3),y=c(min(d[d$n %in% 30 & d$changeprop_mean %in% 0.3,]$proportion_estimates_below_zero),max(d[d$n %in% 30 & d$changeprop_mean %in% 0.3,]$proportion_estimates_below_zero)),col=col.alpha("skyblue",0.5))
-lines(x=c(0.4,0.4),y=c(min(d[d$n %in% 30 & d$changeprop_mean %in% 0.4,]$proportion_estimates_below_zero),max(d[d$n %in% 30 & d$changeprop_mean %in% 0.4,]$proportion_estimates_below_zero)),col=col.alpha("skyblue",0.5))
+shade( mu_30_ci ,unique(d$changeprob_mean), col=col.alpha("skyblue",0.7) )
+lines(x=c(0,0),y=c(min(d[d$n %in% 30 & d$changeprob_mean %in% 0,]$proportion_estimates_below_zero_condition),max(d[d$n %in% 30 & d$changeprob_mean %in% 0,]$proportion_estimates_below_zero_condition)),col=col.alpha("skyblue",0.5))
+lines(x=c(0.028,0.028),y=c(min(d[d$n %in% 30 & d$changeprob_mean %in% 0.025,]$proportion_estimates_below_zero_condition),max(d[d$n %in% 30 & d$changeprob_mean %in% 0.025,]$proportion_estimates_below_zero_condition)),col=col.alpha("skyblue",0.5))
+lines(x=c(0.052,0.052),y=c(min(d[d$n %in% 30 & d$changeprob_mean %in% 0.05,]$proportion_estimates_below_zero_condition),max(d[d$n %in% 30 & d$changeprob_mean %in% 0.05,]$proportion_estimates_below_zero_condition)),col=col.alpha("skyblue",0.5))
+lines(x=c(0.1,0.1),y=c(min(d[d$n %in% 30 & d$changeprob_mean %in% 0.1,]$proportion_estimates_below_zero_condition),max(d[d$n %in% 30 & d$changeprob_mean %in% 0.1,]$proportion_estimates_below_zero_condition)),col=col.alpha("skyblue",0.5))
+lines(x=c(0.2,0.2),y=c(min(d[d$n %in% 30 & d$changeprob_mean %in% 0.2,]$proportion_estimates_below_zero_condition),max(d[d$n %in% 30 & d$changeprob_mean %in% 0.2,]$proportion_estimates_below_zero_condition)),col=col.alpha("skyblue",0.5))
+lines(x=c(0.3,0.3),y=c(min(d[d$n %in% 30 & d$changeprob_mean %in% 0.3,]$proportion_estimates_below_zero_condition),max(d[d$n %in% 30 & d$changeprob_mean %in% 0.3,]$proportion_estimates_below_zero_condition)),col=col.alpha("skyblue",0.5))
 
-mu_40 <- link( m_samplesize_diffscount , data=data.frame( changeprop_mean=sqrt(unique(d$changeprop_mean)),samplesize=rep(4,length(unique(d$changeprop_mean))) ) )
+mu_40 <- link( m_samplesize_diffscount , data=data.frame( changeprob_mean=as.factor(unique(d$changeprob_mean)),samplesize=rep(4,length(unique(d$changeprob_mean))) ) )
 mu_40_mean <- apply( mu_40 , 2 , mean )
 mu_40_ci <- apply( mu_40 , 2 , PI , prob=0.97 )
-shade( mu_40_ci ,unique(d$changeprop_mean) , col=col.alpha("#213940",0.7) )
-lines(x=c(0.004,0.004),y=c(min(d[d$n %in% 40 & d$changeprop_mean %in% 0,]$proportion_estimates_below_zero),max(d[d$n %in% 40 & d$changeprop_mean %in% 0,]$proportion_estimates_below_zero)),col=col.alpha("#213940",0.5))
-lines(x=c(0.032,0.032),y=c(min(d[d$n %in% 40 & d$changeprop_mean %in% 0.025,]$proportion_estimates_below_zero),max(d[d$n %in% 40 & d$changeprop_mean %in% 0.025,]$proportion_estimates_below_zero)),col=col.alpha("#213940",0.5))
-lines(x=c(0.056,0.056),y=c(min(d[d$n %in% 40 & d$changeprop_mean %in% 0.05,]$proportion_estimates_below_zero),max(d[d$n %in% 40 & d$changeprop_mean %in% 0.05,]$proportion_estimates_below_zero)),col=col.alpha("#213940",0.5))
-lines(x=c(0.104,0.104),y=c(min(d[d$n %in% 40 & d$changeprop_mean %in% 0.1,]$proportion_estimates_below_zero),max(d[d$n %in% 40 & d$changeprop_mean %in% 0.1,]$proportion_estimates_below_zero)),col=col.alpha("#213940",0.5))
-lines(x=c(0.204,0.204),y=c(min(d[d$n %in% 40 & d$changeprop_mean %in% 0.2,]$proportion_estimates_below_zero),max(d[d$n %in% 40 & d$changeprop_mean %in% 0.2,]$proportion_estimates_below_zero)),col=col.alpha("#213940",0.5))
-lines(x=c(0.304,0.304),y=c(min(d[d$n %in% 40 & d$changeprop_mean %in% 0.3,]$proportion_estimates_below_zero),max(d[d$n %in% 40 & d$changeprop_mean %in% 0.3,]$proportion_estimates_below_zero)),col=col.alpha("#213940",0.5))
-lines(x=c(0.404,0.404),y=c(min(d[d$n %in% 40 & d$changeprop_mean %in% 0.4,]$proportion_estimates_below_zero),max(d[d$n %in% 40 & d$changeprop_mean %in% 0.4,]$proportion_estimates_below_zero)),col=col.alpha("#213940",0.5))
+shade( mu_40_ci ,unique(d$changeprob_mean) , col=col.alpha("#213940",0.7) )
+lines(x=c(0.004,0.004),y=c(min(d[d$n %in% 40 & d$changeprob_mean %in% 0,]$proportion_estimates_below_zero_condition),max(d[d$n %in% 40 & d$changeprob_mean %in% 0,]$proportion_estimates_below_zero_condition)),col=col.alpha("#213940",0.5))
+lines(x=c(0.032,0.032),y=c(min(d[d$n %in% 40 & d$changeprob_mean %in% 0.025,]$proportion_estimates_below_zero_condition),max(d[d$n %in% 40 & d$changeprob_mean %in% 0.025,]$proportion_estimates_below_zero_condition)),col=col.alpha("#213940",0.5))
+lines(x=c(0.056,0.056),y=c(min(d[d$n %in% 40 & d$changeprob_mean %in% 0.05,]$proportion_estimates_below_zero_condition),max(d[d$n %in% 40 & d$changeprob_mean %in% 0.05,]$proportion_estimates_below_zero_condition)),col=col.alpha("#213940",0.5))
+lines(x=c(0.104,0.104),y=c(min(d[d$n %in% 40 & d$changeprob_mean %in% 0.1,]$proportion_estimates_below_zero_condition),max(d[d$n %in% 40 & d$changeprob_mean %in% 0.1,]$proportion_estimates_below_zero_condition)),col=col.alpha("#213940",0.5))
+lines(x=c(0.204,0.204),y=c(min(d[d$n %in% 40 & d$changeprob_mean %in% 0.2,]$proportion_estimates_below_zero_condition),max(d[d$n %in% 40 & d$changeprob_mean %in% 0.2,]$proportion_estimates_below_zero_condition)),col=col.alpha("#213940",0.5))
+lines(x=c(0.304,0.304),y=c(min(d[d$n %in% 40 & d$changeprob_mean %in% 0.3,]$proportion_estimates_below_zero_condition),max(d[d$n %in% 40 & d$changeprob_mean %in% 0.3,]$proportion_estimates_below_zero_condition)),col=col.alpha("#213940",0.5))
 
-mu_60 <- link( m_samplesize_diffscount , data=data.frame( changeprop_mean=sqrt(unique(d$changeprop_mean)),samplesize=rep(5,length(unique(d$changeprop_mean))) ) )
+mu_60 <- link( m_samplesize_diffscount , data=data.frame( changeprob_mean=as.factor(unique(d$changeprob_mean)),samplesize=rep(5,length(unique(d$changeprob_mean))) ) )
 mu_60_mean <- apply( mu_60 , 2 , mean )
 mu_60_ci <- apply( mu_60 , 2 , PI , prob=0.97 )
-shade( mu_60_ci , unique(d$changeprop_mean), col=col.alpha("red",0.7) )
-lines(x=c(0.008,0.008),y=c(min(d[d$n %in% 60 & d$changeprop_mean %in% 0,]$proportion_estimates_below_zero),max(d[d$n %in% 60 & d$changeprop_mean %in% 0,]$proportion_estimates_below_zero)),col=col.alpha("red",0.5))
-lines(x=c(0.036,0.036),y=c(min(d[d$n %in% 60 & d$changeprop_mean %in% 0.025,]$proportion_estimates_below_zero),max(d[d$n %in% 60 & d$changeprop_mean %in% 0.025,]$proportion_estimates_below_zero)),col=col.alpha("red",0.5))
-lines(x=c(0.06,0.06),y=c(min(d[d$n %in% 60 & d$changeprop_mean %in% 0.05,]$proportion_estimates_below_zero),max(d[d$n %in% 60 & d$changeprop_mean %in% 0.05,]$proportion_estimates_below_zero)),col=col.alpha("red",0.5))
-lines(x=c(0.108,0.108),y=c(min(d[d$n %in% 60 & d$changeprop_mean %in% 0.1,]$proportion_estimates_below_zero),max(d[d$n %in% 60 & d$changeprop_mean %in% 0.1,]$proportion_estimates_below_zero)),col=col.alpha("red",0.5))
-lines(x=c(0.208,0.208),y=c(min(d[d$n %in% 60 & d$changeprop_mean %in% 0.2,]$proportion_estimates_below_zero),max(d[d$n %in% 60 & d$changeprop_mean %in% 0.2,]$proportion_estimates_below_zero)),col=col.alpha("red",0.5))
-lines(x=c(0.308,0.308),y=c(min(d[d$n %in% 60 & d$changeprop_mean %in% 0.3,]$proportion_estimates_below_zero),max(d[d$n %in% 60 & d$changeprop_mean %in% 0.3,]$proportion_estimates_below_zero)),col=col.alpha("red",0.5))
-lines(x=c(0.408,0.408),y=c(min(d[d$n %in% 60 & d$changeprop_mean %in% 0.4,]$proportion_estimates_below_zero),max(d[d$n %in% 60 & d$changeprop_mean %in% 0.4,]$proportion_estimates_below_zero)),col=col.alpha("red",0.5))
+shade( mu_60_ci , unique(d$changeprob_mean), col=col.alpha("red",0.7) )
+lines(x=c(0.008,0.008),y=c(min(d[d$n %in% 60 & d$changeprob_mean %in% 0,]$proportion_estimates_below_zero_condition),max(d[d$n %in% 60 & d$changeprob_mean %in% 0,]$proportion_estimates_below_zero_condition)),col=col.alpha("red",0.5))
+lines(x=c(0.036,0.036),y=c(min(d[d$n %in% 60 & d$changeprob_mean %in% 0.025,]$proportion_estimates_below_zero_condition),max(d[d$n %in% 60 & d$changeprob_mean %in% 0.025,]$proportion_estimates_below_zero_condition)),col=col.alpha("red",0.5))
+lines(x=c(0.06,0.06),y=c(min(d[d$n %in% 60 & d$changeprob_mean %in% 0.05,]$proportion_estimates_below_zero_condition),max(d[d$n %in% 60 & d$changeprob_mean %in% 0.05,]$proportion_estimates_below_zero_condition)),col=col.alpha("red",0.5))
+lines(x=c(0.108,0.108),y=c(min(d[d$n %in% 60 & d$changeprob_mean %in% 0.1,]$proportion_estimates_below_zero_condition),max(d[d$n %in% 60 & d$changeprob_mean %in% 0.1,]$proportion_estimates_below_zero_condition)),col=col.alpha("red",0.5))
+lines(x=c(0.208,0.208),y=c(min(d[d$n %in% 60 & d$changeprob_mean %in% 0.2,]$proportion_estimates_below_zero_condition),max(d[d$n %in% 60 & d$changeprob_mean %in% 0.2,]$proportion_estimates_below_zero_condition)),col=col.alpha("red",0.5))
+lines(x=c(0.308,0.308),y=c(min(d[d$n %in% 60 & d$changeprob_mean %in% 0.3,]$proportion_estimates_below_zero_condition),max(d[d$n %in% 60 & d$changeprob_mean %in% 0.3,]$proportion_estimates_below_zero_condition)),col=col.alpha("red",0.5))
 
 legend(x="topright",legend=c(lty2="10",lty1="20",lty3="30",lty2="40",lty3="60"),lty=c(1,1,1,1,1),lwd=c(5,5,5,5,5),col=c(col.alpha("blue",0.4),col.alpha("orange",0.4),col.alpha("skyblue",0.4),col.alpha("#213940",0.4),col.alpha("red",0.4)),cex=1,bty="n")
 
