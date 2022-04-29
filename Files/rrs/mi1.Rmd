@@ -720,7 +720,7 @@ Prior to the flexibility manipulation, we will collect the 4 minimum tracking se
 
 ## **Toutouwai**
 
-  - Toutouwai [protocol](https://docs.google.com/document/d/1U11MpcGd6_dQmgv4jP127KklD7gpAQR--yOtWGMpFXw/edit?usp=sharing) and [data sheet templates]()
+  - Toutouwai [protocol](https://docs.google.com/document/d/1U11MpcGd6_dQmgv4jP127KklD7gpAQR--yOtWGMpFXw/edit?usp=sharing) and [data sheet templates](https://docs.google.com/spreadsheets/d/1Ix7EdTc9SHCW0wDmFJC5T8KA0WNe6wkihG_P8XpW6-s/edit?usp=sharing)
 
 ### Planned sample
 
@@ -2601,25 +2601,37 @@ precis( list( diff_g=diff_g , diff_p=diff_p ) )
 
 ###### The model
 
-*Bayesian model with a binomial distribution:*
+*Bayesian models with a binomial distribution:*
+
+**Examining the difference between conditions:**
 
 status ~ dbinom(1,p)
 
-logit(p) <- g[condition] + $\alpha$[parentpairID,condition] + $\beta$[habitat,condition]
+logit(p) <- g[condition] + $\alpha$[parentpairID,condition]
 
-The response variable is survival status (0=dead, 1=alive) on day 112 post-fledging. g[condition] is the average log odds for each condition (control or flexibility manipulated), $\alpha$[parentpairID,condition] is an effect for each parent pair ID (because parents can produce multiple offspring that participate in the experiment) in each condition, and $\beta$[habitat,condition] is an effect for each habitat (natural or suburban) in each condition. A binomial distribution was used because the response variable is binomial [see Figure 10.6 in @mcelreath2020statistical]. The Bayesian model was developed using @mcelreath2020statistical as a guide.
+The response variable is survival status (0=dead, 1=alive) on day 112 post-fledging. g[condition] is the average log odds for each condition (control or flexibility manipulated), and $\alpha$[parentpairID,condition] is an effect for each parent pair ID (because parents can produce multiple offspring that participate in the experiment) in each condition. A binomial distribution was used because the response variable is binomial [see Figure 10.6 in @mcelreath2020statistical]. The Bayesian model was developed using @mcelreath2020statistical as a guide.
+
+**Examining the difference between conditions in each of the two areas:**
+
+status ~ dbinom(1,p)
+
+logit(p) <- g[habitat] + $\alpha$[parentpairID,habitat] + $\beta$[habitat,condition]
+
+The response variable is survival status (0=dead, 1=alive) on day 112 post-fledging. g[habitat] is the average log odds for each area (inside Zealandia, which is a natural area, or outside Zealandia, which can include natural/suburban/and urban areas), $\alpha$[parentpairID,habitat] is an effect for each parent pair ID (because parents can produce multiple offspring that participate in the experiment) in each habitat, and $\beta$[habitat,condition] is an effect for each area (inside Zealandia or outside Zealandia) in each condition (control or flexibility manipulated).
 
 ###### Power analysis
 
-We estimated our power to detect differences between conditions at different sample sizes and with different mean changes in the total number of different food types taken per individual in the before vs. after conditions (Figure 14). We simulated the number of food types taken for different sample sizes of individuals before and after the flexibility manipulation. We analyzed these simulated data with the model we will use to analyze the actual data, estimating the change in the number of food types taken between the before and after conditions. From the posterior estimates of the model, we extracted both the mean change as well as the ratio of the posterior estimates that were below zero.
+We estimated our power to detect differences between conditions at different sample sizes and with different mean changes in the survival status in the control vs. manipulated conditions (Figure 18). We analyzed simulated data with the model we will use to analyze the actual data, estimating the change in survival status between the conditions. From the posterior estimates of the model, we extracted both the mean change as well as the ratio of the posterior estimates that were below zero.
 
-If the mean ratio of estimates below zero is close to 0.5, the model assumes that the change in the number of food types taken before the flexibility manipulation is similar to after. If the ratio is close to zero, the model assumes individuals have changed their behavior. For differences in the survival status at or larger than 0.3, models are likely to assume that no changes occurred even with large sample sizes. If the difference in survival status between control and manipulated conditions is 0.3, on average 12% of the posterior of the model based on a sample size of 30 individuals will be larger than zero. This means that the model is quite certain there is a difference that is larger than zero. In addition, only two of the 30 models for a sample size of 30 at the mean difference of 0.3 have a ratio larger than 0.3, meaning that the risk of having a false negative is not very likely.
+If the mean ratio of estimates below zero is close to 0.5, the model assumes that the change in the number of food types taken before the flexibility manipulation is similar to after. If the ratio is close to zero, the model assumes individuals have changed their behavior. For differences in the survival status at or larger than 0.3, models are likely to assume that no changes occurred even with large sample sizes. If the difference in survival status between control and manipulated conditions is 0.3, on average 88% of the posterior of the model based on a sample size of 30 individuals will be larger than zero. This means that the model is quite certain there is a difference that is larger than zero.
 
-In general, with sample sizes at or above 30 and mean differences in the survival status of 0.3 or larger, it is likely that the model will indicate that the flexibility experiment influenced their behavior in a way that affected their survival. Mean changes below 0.3 can still be detected, however there is a higher risk that there will be a false negative and this risk is independent of sample size. For example, 83% of the models for a sample size of 30 at the mean change of 0.2 have a ratio larger than 0.3, meaning there is a large risk of having a false negative.
+In general, with sample sizes at or above 30 and mean differences in the survival status of 0.3 or larger, it is likely that the model will indicate that the flexibility experiment influenced their behavior in a way that affected their survival. Mean changes below 0.3 can still be detected, however there is a higher risk that there will be a false negative. For example, 17% of the models for a sample size of 30 at the mean change of 0.2 have a ratio larger than 0.3, meaning there is a large risk of having a false negative.
 
 With small mean changes in the response variable, some individuals might not increase or even decrease their response after the manipulation because there is variation around the mean change in individual responses. With small sample sizes, there is a risk that only individuals who did not clearly increase their response will be studied, whereas larger sample sizes are more likely to include a wider spectrum of individuals.
 
 To estimate the risk of detecting false positives, we set the mean change in survival to zero so there was no change between the conditions. As expected, the average ratio of estimates below zero is close to 0.5 and independent of sample size. With a sample size of 30, 17% have a ratio smaller than 0.3, meaning that the risk of having a false positive is high. 
+
+We also estimated the power to detect differences between conditions in different habitats (inside or outside Zealandia) at different sample sizes and with different mean changes in the survival status (Figure 19). We found that mean changes in survival status of 0.3 are likely to be detected with a sample size of at least 40 when considering the individuals inside Zealandia, but we will not be able to detect differences outside of Zealandia because the subset sample size will likely be too small.
 
 ```{r TouSurvivalSim, eval=F}
 library(rethinking)
@@ -2781,6 +2793,8 @@ set_ulam_cmdstan(TRUE) #makes it so ulam always runs with cmdstan
 #load the data sheet that was made from the simulation in the previous R chunk
 d <- read.csv("https://raw.githubusercontent.com/ManyIndividuals/ManyIndividuals/main/Files/rrs/mi1simresultstousurvival.csv", header = TRUE, sep = ",", stringsAsFactors = FALSE)
 #head(d)
+d_noNA <- d[complete.cases(d$proportion_estimates_below_zero_habitatnatural),]
+
 
 # Set up the data sheet for the model
 #condition
@@ -2793,16 +2807,16 @@ dat <- list(
 
 #habitat: natural
 datn <- list(
-  proportion_estimates_below_zero_n = as.numeric(d$proportion_estimates_below_zero_habitatnatural),
-  changeprop_mean_n = as.numeric(d$changeprob_mean),
-  samplesize_n = as.integer(as.factor(d$n)
+  proportion_estimates_below_zero_n = as.numeric(d_noNA$proportion_estimates_below_zero_habitatnatural),
+  changeprop_mean_n = as.numeric(d_noNA$changeprob_mean),
+  samplesize_n = as.integer(as.factor(d_noNA$n)
 ))
 
 #habitat: suburban
 dats <- list(
-  proportion_estimates_below_zero_s = as.numeric(d$proportion_estimates_below_zero_habitatsuburban),
-  changeprop_mean_s = as.numeric(d$changeprob_mean),
-  samplesize_s = as.integer(as.factor(d$n)
+  proportion_estimates_below_zero_s = as.numeric(d_noNA$proportion_estimates_below_zero_habitatsuburban),
+  changeprop_mean_s = as.numeric(d_noNA$changeprob_mean),
+  samplesize_s = as.integer(as.factor(d_noNA$n)
 ))
 
 # We run the STAN model - it is a binomial model that assumes that the probability to estimate a difference depends on an interaction between the sample size and the difference between the conditions
@@ -2925,10 +2939,10 @@ length(d[d$n %in% 30 & d$changeprob_mean %in% 0.3,]$proportion_estimates_below_z
 
 
 # NATURAL
-op <- par(mfrow=c(1,2), mar=c(5.9,4.9,2.3,0.9))
+op <- par(mfrow=c(1,2), mar=c(5.9,4.9,2.3,1.6))
 plot(NULL,xlim=c(-0.01,0.31),ylim=c(0.0,0.6),pch=1,ann=F,frame.plot=F,cex=1.5)
 
-mu_10n<- link( m_samplesize_diffsnatural , data=data.frame( changeprop_mean_n=as.numeric(unique(d$changeprob_mean)),samplesize=rep(1,length(unique(d$changeprob_mean))) ) )
+mu_10n<- link( m_samplesize_diffsnatural , data=data.frame( changeprop_mean_n=as.numeric(unique(d$changeprob_mean)),samplesize_n=rep(1,length(unique(d$changeprob_mean))) ) )
 mu_10n_mean <- apply( mu_10n , 2 , mean )
 mu_10n_ci <- apply( mu_10n , 2 , PI , prob=0.97 )
 shade( mu_10n_ci , unique(d$changeprob_mean) , col=col.alpha("blue",0.7) )
@@ -2939,7 +2953,7 @@ lines(x=c(0.092,0.092),y=c(min(d[d$n %in% 10 & d$changeprob_mean %in% 0.1,]$prop
 lines(x=c(0.192,0.192),y=c(min(d[d$n %in% 10 & d$changeprob_mean %in% 0.2,]$proportion_estimates_below_zero_habitatnatural),max(d[d$n %in% 10 & d$changeprob_mean %in% 0.2,]$proportion_estimates_below_zero_habitatnatural)),col=col.alpha("blue",0.5))
 lines(x=c(0.292,0.292),y=c(min(d[d$n %in% 10 & d$changeprob_mean %in% 0.3,]$proportion_estimates_below_zero_habitatnatural),max(d[d$n %in% 10 & d$changeprob_mean %in% 0.3,]$proportion_estimates_below_zero_habitatnatural)),col=col.alpha("blue",0.5))
 
-mu_20n <- link( m_samplesize_diffsnatural , data=data.frame( changeprop_mean_n=as.numeric(unique(d$changeprob_mean)),samplesize=rep(2,length(unique(d$changeprob_mean))) ) )
+mu_20n <- link( m_samplesize_diffsnatural , data=data.frame( changeprop_mean_n=as.numeric(unique(d$changeprob_mean)),samplesize_n=rep(2,length(unique(d$changeprob_mean))) ) )
 mu_20n_mean <- apply( mu_20n , 2 , mean )
 mu_20n_ci <- apply( mu_20n , 2 , PI , prob=0.97 )
 shade( mu_20n_ci , unique(d$changeprob_mean) , col=col.alpha("orange",0.7) )
@@ -2950,7 +2964,7 @@ lines(x=c(0.096,0.096),y=c(min(d[d$n %in% 20 & d$changeprob_mean %in% 0.1,]$prop
 lines(x=c(0.196,0.196),y=c(min(d[d$n %in% 20 & d$changeprob_mean %in% 0.2,]$proportion_estimates_below_zero_habitatnatural),max(d[d$n %in% 20 & d$changeprob_mean %in% 0.2,]$proportion_estimates_below_zero_habitatnatural)),col=col.alpha("orange",0.5))
 lines(x=c(0.296,0.296),y=c(min(d[d$n %in% 20 & d$changeprob_mean %in% 0.3,]$proportion_estimates_below_zero_habitatnatural),max(d[d$n %in% 20 & d$changeprob_mean %in% 0.3,]$proportion_estimates_below_zero_habitatnatural)),col=col.alpha("orange",0.5))
 
-mu_30n <- link( m_samplesize_diffsnatural , data=data.frame( changeprop_mean_n=as.numeric(unique(d$changeprob_mean)),samplesize=rep(3,length(unique(d$changeprob_mean))) ) )
+mu_30n <- link( m_samplesize_diffsnatural , data=data.frame( changeprop_mean_n=as.numeric(unique(d$changeprob_mean)),samplesize_n=rep(3,length(unique(d$changeprob_mean))) ) )
 mu_30n_mean <- apply( mu_30n , 2 , mean )
 mu_30n_ci <- apply( mu_30n , 2 , PI , prob=0.97 )
 shade( mu_30n_ci ,unique(d$changeprob_mean), col=col.alpha("skyblue",0.7) )
@@ -2961,7 +2975,7 @@ lines(x=c(0.1,0.1),y=c(min(d[d$n %in% 30 & d$changeprob_mean %in% 0.1,]$proporti
 lines(x=c(0.2,0.2),y=c(min(d[d$n %in% 30 & d$changeprob_mean %in% 0.2,]$proportion_estimates_below_zero_habitatnatural),max(d[d$n %in% 30 & d$changeprob_mean %in% 0.2,]$proportion_estimates_below_zero_habitatnatural)),col=col.alpha("skyblue",0.5))
 lines(x=c(0.3,0.3),y=c(min(d[d$n %in% 30 & d$changeprob_mean %in% 0.3,]$proportion_estimates_below_zero_habitatnatural),max(d[d$n %in% 30 & d$changeprob_mean %in% 0.3,]$proportion_estimates_below_zero_habitatnatural)),col=col.alpha("skyblue",0.5))
 
-mu_40n <- link( m_samplesize_diffsnatural , data=data.frame( changeprop_mean_n=as.numeric(unique(d$changeprob_mean)),samplesize=rep(4,length(unique(d$changeprob_mean))) ) )
+mu_40n <- link( m_samplesize_diffsnatural , data=data.frame( changeprop_mean_n=as.numeric(unique(d$changeprob_mean)),samplesize_n=rep(4,length(unique(d$changeprob_mean))) ) )
 mu_40n_mean <- apply( mu_40n , 2 , mean )
 mu_40n_ci <- apply( mu_40n , 2 , PI , prob=0.97 )
 shade( mu_40n_ci ,unique(d$changeprob_mean) , col=col.alpha("#213940",0.7) )
@@ -2972,7 +2986,7 @@ lines(x=c(0.104,0.104),y=c(min(d[d$n %in% 40 & d$changeprob_mean %in% 0.1,]$prop
 lines(x=c(0.204,0.204),y=c(min(d[d$n %in% 40 & d$changeprob_mean %in% 0.2,]$proportion_estimates_below_zero_habitatnatural),max(d[d$n %in% 40 & d$changeprob_mean %in% 0.2,]$proportion_estimates_below_zero_habitatnatural)),col=col.alpha("#213940",0.5))
 lines(x=c(0.304,0.304),y=c(min(d[d$n %in% 40 & d$changeprob_mean %in% 0.3,]$proportion_estimates_below_zero_habitatnatural),max(d[d$n %in% 40 & d$changeprob_mean %in% 0.3,]$proportion_estimates_below_zero_habitatnatural)),col=col.alpha("#213940",0.5))
 
-mu_60n <- link( m_samplesize_diffsnatural , data=data.frame( changeprop_mean_n=as.numeric(unique(d$changeprob_mean)),samplesize=rep(5,length(unique(d$changeprob_mean))) ) )
+mu_60n <- link( m_samplesize_diffsnatural , data=data.frame( changeprop_mean_n=as.numeric(unique(d$changeprob_mean)),samplesize_n=rep(5,length(unique(d$changeprob_mean))) ) )
 mu_60n_mean <- apply( mu_60n , 2 , mean )
 mu_60n_ci <- apply( mu_60n , 2 , PI , prob=0.97 )
 shade( mu_60n_ci , unique(d$changeprob_mean), col=col.alpha("red",0.7) )
@@ -2987,8 +3001,8 @@ legend(x="topright",legend=c(lty2="10 / 7.5",lty1="20 / 15",lty3="30 / 22.5",lty
 
 # Axis labels (side 1=x axis, side 2=y axis)
 mtext("Sample size",side=3,line=-0.7,at=0.26)
-mtext("A. Habitat: natural",side=3,line=1,at=0.15,cex=1.5)
-mtext("Mean difference in survival (control vs. manipulated)",side=1,line=3, cex=1.2)
+mtext("A. Habitat: inside Zealandia",side=3,line=1,at=0.15,cex=1.5)
+mtext("Mean difference in survival (control/manipulated)",side=1,line=3, cex=1.2)
 mtext("Ratio of estimates below zero",side=2,line=3, cex=1.2)
 
 # SUBURBAN
@@ -3005,7 +3019,7 @@ lines(x=c(0.092,0.092),y=c(min(d[d$n %in% 10 & d$changeprob_mean %in% 0.1,]$prop
 lines(x=c(0.192,0.192),y=c(min(d[d$n %in% 10 & d$changeprob_mean %in% 0.2,]$proportion_estimates_below_zero_habitatsuburban),max(d[d$n %in% 10 & d$changeprob_mean %in% 0.2,]$proportion_estimates_below_zero_habitatsuburban)),col=col.alpha("blue",0.5))
 lines(x=c(0.292,0.292),y=c(min(d[d$n %in% 10 & d$changeprob_mean %in% 0.3,]$proportion_estimates_below_zero_habitatsuburban),max(d[d$n %in% 10 & d$changeprob_mean %in% 0.3,]$proportion_estimates_below_zero_habitatsuburban)),col=col.alpha("blue",0.5))
 
-mu_20s <- link( m_samplesize_diffssuburban , data=data.frame( changeprop_mean=as.numeric(unique(d$changeprob_mean)),samplesize=rep(2,length(unique(d$changeprob_mean))) ) )
+mu_20s <- link( m_samplesize_diffssuburban , data=data.frame( changeprop_mean_s=as.numeric(unique(d$changeprob_mean)),samplesize_s=rep(2,length(unique(d$changeprob_mean))) ) )
 mu_20s_mean <- apply( mu_20s , 2 , mean )
 mu_20s_ci <- apply( mu_20s , 2 , PI , prob=0.97 )
 shade( mu_20s_ci , unique(d$changeprob_mean) , col=col.alpha("orange",0.7) )
@@ -3016,7 +3030,7 @@ lines(x=c(0.096,0.096),y=c(min(d[d$n %in% 20 & d$changeprob_mean %in% 0.1,]$prop
 lines(x=c(0.196,0.196),y=c(min(d[d$n %in% 20 & d$changeprob_mean %in% 0.2,]$proportion_estimates_below_zero_habitatsuburban),max(d[d$n %in% 20 & d$changeprob_mean %in% 0.2,]$proportion_estimates_below_zero_habitatsuburban)),col=col.alpha("orange",0.5))
 lines(x=c(0.296,0.296),y=c(min(d[d$n %in% 20 & d$changeprob_mean %in% 0.3,]$proportion_estimates_below_zero_habitatsuburban),max(d[d$n %in% 20 & d$changeprob_mean %in% 0.3,]$proportion_estimates_below_zero_habitatsuburban)),col=col.alpha("orange",0.5))
 
-mu_30s <- link( m_samplesize_diffssuburban , data=data.frame( changeprop_mean=as.numeric(unique(d$changeprob_mean)),samplesize=rep(3,length(unique(d$changeprob_mean))) ) )
+mu_30s <- link( m_samplesize_diffssuburban , data=data.frame( changeprop_mean_s=as.numeric(unique(d$changeprob_mean)),samplesize_s=rep(3,length(unique(d$changeprob_mean))) ) )
 mu_30s_mean <- apply( mu_30s , 2 , mean )
 mu_30s_ci <- apply( mu_30s , 2 , PI , prob=0.97 )
 shade( mu_30s_ci ,unique(d$changeprob_mean), col=col.alpha("skyblue",0.7) )
@@ -3027,7 +3041,7 @@ lines(x=c(0.1,0.1),y=c(min(d[d$n %in% 30 & d$changeprob_mean %in% 0.1,]$proporti
 lines(x=c(0.2,0.2),y=c(min(d[d$n %in% 30 & d$changeprob_mean %in% 0.2,]$proportion_estimates_below_zero_habitatsuburban),max(d[d$n %in% 30 & d$changeprob_mean %in% 0.2,]$proportion_estimates_below_zero_habitatsuburban)),col=col.alpha("skyblue",0.5))
 lines(x=c(0.3,0.3),y=c(min(d[d$n %in% 30 & d$changeprob_mean %in% 0.3,]$proportion_estimates_below_zero_habitatsuburban),max(d[d$n %in% 30 & d$changeprob_mean %in% 0.3,]$proportion_estimates_below_zero_habitatsuburban)),col=col.alpha("skyblue",0.5))
 
-mu_40s <- link( m_samplesize_diffssuburban , data=data.frame( changeprop_mean=as.numeric(unique(d$changeprob_mean)),samplesize=rep(4,length(unique(d$changeprob_mean))) ) )
+mu_40s <- link( m_samplesize_diffssuburban , data=data.frame( changeprop_mean_s=as.numeric(unique(d$changeprob_mean)),samplesize_s=rep(4,length(unique(d$changeprob_mean))) ) )
 mu_40s_mean <- apply( mu_40s , 2 , mean )
 mu_40s_ci <- apply( mu_40s , 2 , PI , prob=0.97 )
 shade( mu_40s_ci ,unique(d$changeprob_mean) , col=col.alpha("#213940",0.7) )
@@ -3038,7 +3052,7 @@ lines(x=c(0.104,0.104),y=c(min(d[d$n %in% 40 & d$changeprob_mean %in% 0.1,]$prop
 lines(x=c(0.204,0.204),y=c(min(d[d$n %in% 40 & d$changeprob_mean %in% 0.2,]$proportion_estimates_below_zero_habitatsuburban),max(d[d$n %in% 40 & d$changeprob_mean %in% 0.2,]$proportion_estimates_below_zero_habitatsuburban)),col=col.alpha("#213940",0.5))
 lines(x=c(0.304,0.304),y=c(min(d[d$n %in% 40 & d$changeprob_mean %in% 0.3,]$proportion_estimates_below_zero_habitatsuburban),max(d[d$n %in% 40 & d$changeprob_mean %in% 0.3,]$proportion_estimates_below_zero_habitatsuburban)),col=col.alpha("#213940",0.5))
 
-mu_60s <- link( m_samplesize_diffssuburban , data=data.frame( changeprop_mean=as.numeric(unique(d$changeprob_mean)),samplesize=rep(5,length(unique(d$changeprob_mean))) ) )
+mu_60s <- link( m_samplesize_diffssuburban , data=data.frame( changeprop_mean_s=as.numeric(unique(d$changeprob_mean)),samplesize_s=rep(5,length(unique(d$changeprob_mean))) ) )
 mu_60s_mean <- apply( mu_60s , 2 , mean )
 mu_60s_ci <- apply( mu_60s , 2 , PI , prob=0.97 )
 shade( mu_60s_ci , unique(d$changeprob_mean), col=col.alpha("red",0.7) )
@@ -3053,8 +3067,8 @@ legend(x="topright",legend=c(lty2="10 / 2.5",lty1="20 / 5",lty3="30 / 7.5",lty2=
 
 # Axis labels (side 1=x axis, side 2=y axis)
 mtext("Sample size",side=3,line=-0.7,at=0.26)
-mtext("B. Habitat: suburban",side=3,line=1,at=0.15,cex=1.5)
-mtext("Mean difference in survival (control vs. manipulated)",side=1,line=3, cex=1.2)
+mtext("B. Habitat: outside Zealandia",side=3,line=1,at=0.15,cex=1.5)
+mtext("Mean difference in survival (control/manipulated)",side=1,line=3, cex=1.2)
 mtext("Ratio of estimates below zero",side=2,line=3, cex=1.2)
 par(op)
 ```
@@ -3063,9 +3077,16 @@ par(op)
 
 <img width="100%" src="mi1FigPowerAnalysisTouSurvivalCondition.png">
 
-**Figure 18.** Curves of the mean ratio of estimates below zero (vertical lines show the minimum and maximum ratios), which illustrates the power we have to detect differences between conditions at different sample sizes. Across all models, the survival probability of the control individuals was 0.6.
+**Figure 18.** Curves of the mean ratio of estimates below zero (vertical lines show the minimum and maximum ratios), which illustrates the power we have to detect differences between conditions (control vs. manipulated) at different sample sizes. 
 
 &nbsp;
+
+<img width="100%" src="mi1FigPowerAnalysisTouSurvivalConditionHabitat.png">
+
+**Figure 19.** Curves of the mean ratio of estimates below zero (vertical lines show the minimum and maximum ratios), which illustrates the power we have to detect differences between conditions (control vs. manipulated) in different habitats (inside or outside Zealandia) at different sample sizes. The sample size was set at 75% inside Zealandia and 25% outside Zealandia and the associated numbers with these percentages are shown for each overall sample size in the legend.
+
+&nbsp;
+
 
 ###### Run this model on the actual data
 
