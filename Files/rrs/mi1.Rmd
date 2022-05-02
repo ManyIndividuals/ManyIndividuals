@@ -146,7 +146,7 @@ For all research questions, Table 2 summarizes our predictions, analysis plans, 
  
 &nbsp;
 
-<img width="100%" src="mi1Figgtgr.png">
+<img width="100%" src="mi1Figjays.png">
 
 **Figure 4.** The reversal learning experiment in a group context (Design 2) tailored to the jay research questions.
 
