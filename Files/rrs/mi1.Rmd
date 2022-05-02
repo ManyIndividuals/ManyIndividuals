@@ -2429,17 +2429,18 @@ mjf <- ulam(
 
 #### **Toutouwai**
 
-##### T.Q1 Does a flexibility manipulation alter dispersal timing and distance, as well as the likelihood that juvenile toutouwai will disperse beyond the protection of Zealandia’s fence and attempt to establish in the adjacent urban reserves?
+##### T.Q1 Does a flexibility manipulation alter dispersal timing (1.1) and distance (1.2), as well as the likelihood that juvenile toutouwai will disperse beyond the protection of Zealandia’s fence and attempt to establish in the adjacent urban area (1.3)?
 
-###### The model
-
-
-
-###### Power analysis
+###### The model: dispersal timing (1.1)
 
 
 
-###### Run this model on the actual data
+
+###### Power analysis (1.1)
+
+
+
+###### Run this model on the actual data (1.1)
 
 ```{r toudispersaltiming, eval=F}
 #Dispersal age: Age in days at which dispersal (defined as leaving the natal territory on three consecutive days) is first detected. If a bird does not disperse, the maximum age at the study end (i.e. 112 days) will be assigned. For the analysis, we will invert this as 112 - days at dispersal to make it so those who never dispersed receive a 0 value
@@ -2503,11 +2504,7 @@ zeros_disperse_manipulated <- sum(dispersalday_manipulated==0 & notdisperse_mani
 zeros_total_manipulated <- sum(dispersalday_manipulated==0)
 lines( c(0,0) , c(zeros_disperse_manipulated,zeros_total_manipulated) , lwd=4 , col=rangi2 )
 
-
-
-
 # combined simulated data for STAN model
-
 dat <- list(
     days = c(as.numeric(dispersalday),as.numeric(dispersalday_manipulated)),
     condition = c(rep(1,20),rep(2,20)) # 1 = control group, 2 = manipulated group
@@ -2523,8 +2520,6 @@ mt <- ulam(
         al[condition] ~ dnorm( 1 , 10 ),
        scale~dnorm(0,5)
         ) , data=dat , chains=4 , cores=4 , log_lik=TRUE , cmdstan = TRUE)
-
-
 
 # load data sheet
 d <- read.csv(url(""), header=T, sep=",", stringsAsFactors=F)
@@ -2556,7 +2551,6 @@ diff_g <- post$g[,1] - post$g[,2] #log-odds difference p.341
 diff_p <- inv_logit(post$g[,1]) - inv_logit(post$g[,2]) #on the probability scale p.341
 precis( list( diff_g=diff_g , diff_p=diff_p ) )
 ```
-
 
 ```{r toudispersalhabitat, eval=F}
 #Dispersal habitat: Location of bird at the end of study (or at point of death), Zealandia (0) or areas outside the sanctuary (1)
@@ -2595,6 +2589,338 @@ diff_g <- post$g[,1] - post$g[,2] #log-odds difference p.341
 diff_p <- inv_logit(post$g[,1]) - inv_logit(post$g[,2]) #on the probability scale p.341
 precis( list( diff_g=diff_g , diff_p=diff_p ) )
 ```
+
+
+###### The model: dispersal distance (1.2)
+
+
+
+###### Power analysis (1.2)
+
+
+
+###### Run this model on the actual data (1.2)
+
+
+
+
+
+###### The model: dispersal location (1.3)
+
+location ~ dbinom(1,p)
+
+logit(p) <- g[condition] + $\alpha$[parentpairID,condition]
+
+The response variable is dispersal location (0=inside Zealandia, 1=outside Zealandia) on day 112 post-fledging. g[condition] is the average log odds for each condition (control or flexibility manipulated), and $\alpha$[parentpairID,condition] is an effect for each parent pair ID (because parents can produce multiple offspring that participate in the experiment) in each condition. A binomial distribution was used because the response variable is binomial [see Figure 10.6 in @mcelreath2020statistical]. The Bayesian model was developed using @mcelreath2020statistical as a guide.
+
+###### Power analysis (1.3)
+
+We estimated our power to detect differences between conditions at different sample sizes and with different mean changes in the survival status in the control vs. manipulated conditions (Figure 18). We analyzed simulated data with the model we will use to analyze the actual data, estimating the change in survival status between the conditions. From the posterior estimates of the model, we extracted both the mean change as well as the ratio of the posterior estimates that were below zero.
+
+If the mean ratio of estimates below zero is close to 0.5, the model assumes that the change in the number of food types taken before the flexibility manipulation is similar to after. If the ratio is close to zero, the model assumes individuals have changed their behavior. For differences in the survival status at or larger than 0.3, models are likely to assume that no changes occurred even with large sample sizes. If the difference in survival status between control and manipulated conditions is 0.3, on average 88% of the posterior of the model based on a sample size of 30 individuals will be larger than zero. This means that the model is quite certain there is a difference that is larger than zero.
+
+In general, with sample sizes at or above 30 and mean differences in the survival status of 0.3 or larger, it is likely that the model will indicate that the flexibility experiment influenced their behavior in a way that affected their survival. Mean changes below 0.3 can still be detected, however there is a higher risk that there will be a false negative. For example, 17% of the models for a sample size of 30 at the mean change of 0.2 have a ratio larger than 0.3, meaning there is a large risk of having a false negative.
+
+With small mean changes in the response variable, some individuals might not increase or even decrease their response after the manipulation because there is variation around the mean change in individual responses. With small sample sizes, there is a risk that only individuals who did not clearly increase their response will be studied, whereas larger sample sizes are more likely to include a wider spectrum of individuals.
+
+To estimate the risk of detecting false positives, we set the mean change in survival to zero so there was no change between the conditions. As expected, the average ratio of estimates below zero is close to 0.5 and independent of sample size. With a sample size of 30, 17% have a ratio smaller than 0.3, meaning that the risk of having a false positive is high. 
+
+We also estimated the power to detect differences between conditions in different habitats (inside or outside Zealandia) at different sample sizes and with different mean changes in the survival status (Figure 19). We found that mean changes in survival status of 0.3 are likely to be detected with a sample size of at least 40 when considering the individuals inside Zealandia, but we will not be able to detect differences outside of Zealandia because the subset sample size will likely be too small.
+
+```{r TouLocationSim, eval=F}
+library(rethinking)
+library(cmdstanr)
+set_ulam_cmdstan(TRUE) #makes it so ulam always runs with cmdstan
+rstan_options("auto_write" = TRUE)
+#rebuild_cmdstan() #run this if you get an error about a PCH file https://discourse.mc-stan.org/t/struggling-to-get-cmdstan-working-on-mac-os-big-sur/19774/4
+
+#SIMULATE the population
+N_ind <- 30 #number of individuals tested
+
+#choosing the mean change in survival between control and manipulated groups and standard deviations - visualize to see whether it would be possible to tell the difference between control (black) and manipulated (red). An SD of 0.1 (when the control mean is 0.6) encompasses all of the range of proportions we expect to find (0.3-0.9) so it would be the largest SD we would expect and thus the most conservative sd to use in the simulations
+prob_control<-0.6
+changemanip<-0.1
+plot(density(rnorm(10000,prob_control,sd=0.1)),lwd=2,xlim=c(0,1.2))
+lines(density(rnorm(10000,prob_control+(1-prob_control)*(changemanip*2),sd=0.1)),lwd=2,col="red")
+
+#control
+probcontrol <- round(rbinom(n=N_ind,size=1,prob=0.6),2) #for 20 data points, randomly assign a 0 (dead) or 1 (alive) survival status such that each appears 60% of the time
+changemanip <- rnorm(N_ind, mean=(1-probcontrol)/5,sd=0.1) #if had a large proportion before, have a smaller change relative to the after condition. Divide by 2 = assume that on average they will improve by 0.25 (the before mean of 0.5 divided by 2)
+
+#manip
+probmanip <- round(probcontrol+changemanip,2)
+probmanip[probmanip>1]<-1 #values larger than 1 mess up the model so restrict it
+
+#check the plot to see whether manip increases prob of survival
+#plot(probcontrol,probmanip)
+#abline(0,1)
+
+# power analysis: run this simulation with different N_ind, changeprop means and sd, to find the boundaries of where you can detect a difference (run the model and use contrasts) between the two conditions
+
+
+### POWER ANALYSIS: different sample sizes and different mean changes in proportions between before and after conditions
+# We now set our range of likely sample sizes from 10 to 60 individuals per population. We draw repeated samples of individuals of that size from each of the 5 populations, during each repetition we draw two samples from each population (so we can infer the false negative rate of wrongly estimating that two samples come from a different population even though they were taken from the sample population). This means we have 10 repetitions for each of the 5 sample sizes and each of the 6 changeprops. So 10*6 changeprops (=60) for each of the 5 sample sizes, resulting in a total length of samplesizes of 300
+samplesizes<-c(10,20,30,40,60) #c(10,20,30,40,60)
+
+# Set the means you want to compare
+meanchangeprop1<-0.3 
+meanchangeprop2<-0.2
+meanchangeprop3<-0.1 
+meanchangeprop4<-0.05
+meanchangeprop5<-0.025
+meanchangeprop6<-0 #for false positives
+changeprobvariants<-c(meanchangeprop1,meanchangeprop2,meanchangeprop3,meanchangeprop4,meanchangeprop5,meanchangeprop6) #for false negatives
+
+#compare different control individual location probabilities
+prob_control<-c(0.5,0.6,0.7) #expected baseline location probability of being inside Zealandia
+
+#set up data frame where results will be stored
+simresults <- matrix(NA,nrow=900,ncol=6)
+simresults <- data.frame(simresults)
+colnames(simresults) <- c("n","changeprob_mean","repetition","proportion_inside","proportion_estimates_below_zero","count_estimates_below_zero")
+counter<-1
+ 
+# run simulations. There are 5 different sample sizes, and for each we have 6 different mean change in proportions that we want to examine, and each will repeat 10 times for a total of 300 samples.
+for (samplesize in 1:length(samplesizes)) {
+        N_ind <- samplesizes[samplesize] #number of grackles per sample size
+        
+        #now run through each of the 6 proportion variations
+        for (probvariant in 1:length(changeprobvariants)) {
+        
+        #pick the current proportion variant from the list changepropvariants
+        currentchangeprob <- changeprobvariants[probvariant]
+        
+        for (baselineprob in 1:3) {
+        #pick the current proportion variant from the list changepropvariants
+        currentprob_control <- prob_control[baselineprob]
+        
+        for (repetition in 1:10) {
+        #CONTROL & MANIP groups
+        probcontrol <- round(rbinom(n=N_ind/2,size=1,prob=currentprob_control),2) #for half the data points, randomly assign a 0 (inside Zealandia) or 1 (outside Zealandia) according to the baseline location probabilities (0.5,0.6,0.7)
+        probmanip <- round(rbinom(n=N_ind/2,size=1,prob=(currentprob_control+currentchangeprob)),2) #for the other half of the data points, starting from the probability of the control individuals (0.5, 0.6, and 0.7), we are increasing the probability to be either the same (add zero) or higher (add meanchangeprop 1-6) for the manipulated individuals
+
+        ### run a STAN model to see whether the before and after proportions are estimated to be different from each other
+        #sets up the data sheet with the simulated data that the model will run on
+  dat2 <- list(
+    location = c(probcontrol,probmanip),
+    condition = c(rep(1,N_ind/2),rep(2,N_ind/2)), #1=inside zealandia, 2=outside zealandia
+    parentpairID = round(seq(1,N_ind*0.8,length=N_ind),0)
+)
+       
+        # The MODEL
+       #(note: had to add force_recompile bc kept giving me an error and wouldn't finish running. See https://github.com/rmcelreath/rethinking/issues/338)
+s1 <- ulam(
+    alist(
+        location ~ dbinom(1,p),
+        logit(p) <- g[condition] + alpha[parentpairID,condition],
+        # adaptive priors - non-centered which is a parameterization that improves sampling for the MCMC model fit by helping with complex varying effects (see p.453)
+        transpars> matrix[parentpairID,2]:alpha <- compose_noncentered( sigma_parentpairID , L_Rho_parentpairID , z_parentpairID ),
+        matrix[2,parentpairID]:z_parentpairID ~ normal( 0 , 1 ),
+        # fixed priors
+        g[condition] ~ normal(0,1),
+        vector[2]:sigma_parentpairID ~ dexp(1),
+        cholesky_factor_corr[2]:L_Rho_parentpairID ~ lkj_corr_cholesky( 2 ),
+        # compute ordinary correlation matrixes from Cholesky factors
+        gq> matrix[2,2]:Rho_parentpairID <<- Chol_to_Corr(L_Rho_parentpairID)
+       ) , data=dat2 , chains=4 , cores=4 , log_lik=TRUE , cmdstan = TRUE, control = list(adapt_delta = .95, force_recompile = TRUE))
+
+        #run a CONTRAST to determine whether there is a difference between before (g1) and after (g2) (subtract g1 before from g2 after). Yes if all values for diff_p on one side of zero (want probability scale because that is the scale we used in the simulation)
+post <- extract.samples(s1)
+diff_g <- post$g[,2] - post$g[,1] #log-odds difference p.341 McElreath 2020
+diff_p <- inv_logit(post$g[,2]) - inv_logit(post$g[,1]) #on the probability scale p.341 McElreath 2020
+#precis( list( diff_g=diff_g , diff_p=diff_p ) )      
+
+    # enter all of the results into the data sheet
+    simresults[counter,]$n <- N_ind
+    simresults[counter,]$changeprob_mean <- currentchangeprob
+    simresults[counter,]$repetition <- repetition
+    simresults[counter,]$proportion_inside <- currentprob_control
+    simresults[counter,]$proportion_estimates_below_zero <- sum(diff_p<0)/length(diff_p)
+    simresults[counter,]$count_estimates_below_zero <- sum(diff_p<0)
+    counter<-counter+1 
+    print(c(counter,"out of",10*length(samplesizes)*length(changeprobvariants)*length(prob_control)))
+        }
+        }
+        }
+}
+#write.csv(simresults,file="simresultsTouLocation.csv") #put the outputs into a csv file so don't have to run model again - it takes about 6 hours
+```
+
+```{r TouQ1.3simulationfiguresamplesize, eval=F, messages=F}
+library(rethinking)
+library(cmdstanr)
+set_ulam_cmdstan(TRUE) #makes it so ulam always runs with cmdstan
+
+#load the data sheet that was made from the simulation in the previous R chunk
+d <- read.csv("https://raw.githubusercontent.com/ManyIndividuals/ManyIndividuals/main/Files/rrs/mi1FigPowerAnalysisTouLocation.csv", header = TRUE, sep = ",", stringsAsFactors = FALSE)
+#head(d)
+d_noNA <- d[complete.cases(d$proportion_estimates_below_zero_habitatnatural),]
+
+
+# Set up the data sheet for the model
+dat <- list(
+  proportion_estimates_below_zero = as.numeric(d$proportion_estimates_below_zero),
+  count_estimates_below_zero = as.numeric(d$count_estimates_below_zero),
+  changeprop_mean = as.numeric(d$changeprob_mean),
+  samplesize = as.integer(as.factor(d$n)
+))
+
+# We run the STAN model - it is a binomial model that assumes that the probability to estimate a difference depends on an interaction between the sample size and the difference between the conditions
+# Condition
+m_samplesize_diffscount <- ulam(
+  alist(
+    count_estimates_below_zero~dbinom(2000,p),
+    logit(p) <- a[samplesize]+b[samplesize]*changeprop_mean,
+    a[samplesize] ~ dnorm(a_bar,sigma_a),
+    a_bar ~ dnorm(0,1.5),
+    sigma_a ~ dexp(1),
+    b[samplesize] ~ dnorm(0,1.5)
+  ),data=dat, log_lik=TRUE, messages=FALSE,cmdstan=T)
+
+# Extract the posterior estimates from this STAN model
+precis_output<-precis( m_samplesize_diffscount , depth=2 )
+
+# Plot the predictions for the different sample sizes as separate lines = COUNT out of 2000
+plot(NULL,xlim=c(-0.01,0.31),ylim=c(0.0,0.6),pch=1,ann=F,frame.plot=F,cex=1.5)
+
+mu_10<- link( m_samplesize_diffscount , data=data.frame( changeprop_mean=as.numeric(unique(d$changeprob_mean)),samplesize=rep(1,length(unique(d$changeprob_mean))) ) )
+mu_10_mean <- apply( mu_10 , 2 , mean )
+mu_10_ci <- apply( mu_10 , 2 , PI , prob=0.97 )
+shade( mu_10_ci , unique(d$changeprob_mean) , col=col.alpha("blue",0.7) )
+lines(x=c(-0.008,-0.008),y=c(min(d[d$n %in% 10 & d$changeprob_mean %in% 0,]$proportion_estimates_below_zero),max(d[d$n %in% 10 & d$changeprob_mean %in% 0,]$proportion_estimates_below_zero)),col=col.alpha("blue",0.5))
+lines(x=c(0.022,0.022),y=c(min(d[d$n %in% 10 & d$changeprob_mean %in% 0.025,]$proportion_estimates_below_zero),max(d[d$n %in% 10 & d$changeprob_mean %in% 0.025,]$proportion_estimates_below_zero)),col=col.alpha("blue",0.5))
+lines(x=c(0.044,0.044),y=c(min(d[d$n %in% 10 & d$changeprob_mean %in% 0.05,]$proportion_estimates_below_zero),max(d[d$n %in% 10 & d$changeprob_mean %in% 0.05,]$proportion_estimates_below_zero)),col=col.alpha("blue",0.5))
+lines(x=c(0.092,0.092),y=c(min(d[d$n %in% 10 & d$changeprob_mean %in% 0.1,]$proportion_estimates_below_zero),max(d[d$n %in% 10 & d$changeprob_mean %in% 0.1,]$proportion_estimates_below_zero)),col=col.alpha("blue",0.5))
+lines(x=c(0.192,0.192),y=c(min(d[d$n %in% 10 & d$changeprob_mean %in% 0.2,]$proportion_estimates_below_zero),max(d[d$n %in% 10 & d$changeprob_mean %in% 0.2,]$proportion_estimates_below_zero)),col=col.alpha("blue",0.5))
+lines(x=c(0.292,0.292),y=c(min(d[d$n %in% 10 & d$changeprob_mean %in% 0.3,]$proportion_estimates_below_zero),max(d[d$n %in% 10 & d$changeprob_mean %in% 0.3,]$proportion_estimates_below_zero)),col=col.alpha("blue",0.5))
+
+mu_20 <- link( m_samplesize_diffscount , data=data.frame( changeprop_mean=as.numeric(unique(d$changeprob_mean)),samplesize=rep(2,length(unique(d$changeprob_mean))) ) )
+mu_20_mean <- apply( mu_20 , 2 , mean )
+mu_20_ci <- apply( mu_20 , 2 , PI , prob=0.97 )
+shade( mu_20_ci , unique(d$changeprob_mean) , col=col.alpha("orange",0.7) )
+lines(x=c(-0.004,-0.004),y=c(min(d[d$n %in% 20 & d$changeprob_mean %in% 0,]$proportion_estimates_below_zero),max(d[d$n %in% 20 & d$changeprob_mean %in% 0,]$proportion_estimates_below_zero)),col=col.alpha("orange",0.5))
+lines(x=c(0.024,0.024),y=c(min(d[d$n %in% 20 & d$changeprob_mean %in% 0.025,]$proportion_estimates_below_zero),max(d[d$n %in% 20 & d$changeprob_mean %in% 0.025,]$proportion_estimates_below_zero)),col=col.alpha("orange",0.5))
+lines(x=c(0.048,0.048),y=c(min(d[d$n %in% 20 & d$changeprob_mean %in% 0.05,]$proportion_estimates_below_zero),max(d[d$n %in% 20 & d$changeprob_mean %in% 0.05,]$proportion_estimates_below_zero)),col=col.alpha("orange",0.5))
+lines(x=c(0.096,0.096),y=c(min(d[d$n %in% 20 & d$changeprob_mean %in% 0.1,]$proportion_estimates_below_zero),max(d[d$n %in% 20 & d$changeprob_mean %in% 0.1,]$proportion_estimates_below_zero)),col=col.alpha("orange",0.5))
+lines(x=c(0.196,0.196),y=c(min(d[d$n %in% 20 & d$changeprob_mean %in% 0.2,]$proportion_estimates_below_zero),max(d[d$n %in% 20 & d$changeprob_mean %in% 0.2,]$proportion_estimates_below_zero)),col=col.alpha("orange",0.5))
+lines(x=c(0.296,0.296),y=c(min(d[d$n %in% 20 & d$changeprob_mean %in% 0.3,]$proportion_estimates_below_zero),max(d[d$n %in% 20 & d$changeprob_mean %in% 0.3,]$proportion_estimates_below_zero)),col=col.alpha("orange",0.5))
+
+mu_30 <- link( m_samplesize_diffscount , data=data.frame( changeprop_mean=as.numeric(unique(d$changeprob_mean)),samplesize=rep(3,length(unique(d$changeprob_mean))) ) )
+mu_30_mean <- apply( mu_30 , 2 , mean )
+mu_30_ci <- apply( mu_30 , 2 , PI , prob=0.97 )
+shade( mu_30_ci ,unique(d$changeprob_mean), col=col.alpha("skyblue",0.7) )
+lines(x=c(0,0),y=c(min(d[d$n %in% 30 & d$changeprob_mean %in% 0,]$proportion_estimates_below_zero),max(d[d$n %in% 30 & d$changeprob_mean %in% 0,]$proportion_estimates_below_zero)),col=col.alpha("skyblue",0.5))
+lines(x=c(0.028,0.028),y=c(min(d[d$n %in% 30 & d$changeprob_mean %in% 0.025,]$proportion_estimates_below_zero),max(d[d$n %in% 30 & d$changeprob_mean %in% 0.025,]$proportion_estimates_below_zero)),col=col.alpha("skyblue",0.5))
+lines(x=c(0.052,0.052),y=c(min(d[d$n %in% 30 & d$changeprob_mean %in% 0.05,]$proportion_estimates_below_zero),max(d[d$n %in% 30 & d$changeprob_mean %in% 0.05,]$proportion_estimates_below_zero)),col=col.alpha("skyblue",0.5))
+lines(x=c(0.1,0.1),y=c(min(d[d$n %in% 30 & d$changeprob_mean %in% 0.1,]$proportion_estimates_below_zero),max(d[d$n %in% 30 & d$changeprob_mean %in% 0.1,]$proportion_estimates_below_zero)),col=col.alpha("skyblue",0.5))
+lines(x=c(0.2,0.2),y=c(min(d[d$n %in% 30 & d$changeprob_mean %in% 0.2,]$proportion_estimates_below_zero),max(d[d$n %in% 30 & d$changeprob_mean %in% 0.2,]$proportion_estimates_below_zero)),col=col.alpha("skyblue",0.5))
+lines(x=c(0.3,0.3),y=c(min(d[d$n %in% 30 & d$changeprob_mean %in% 0.3,]$proportion_estimates_below_zero),max(d[d$n %in% 30 & d$changeprob_mean %in% 0.3,]$proportion_estimates_below_zero)),col=col.alpha("skyblue",0.5))
+
+mu_40 <- link( m_samplesize_diffscount , data=data.frame( changeprop_mean=as.numeric(unique(d$changeprob_mean)),samplesize=rep(4,length(unique(d$changeprob_mean))) ) )
+mu_40_mean <- apply( mu_40 , 2 , mean )
+mu_40_ci <- apply( mu_40 , 2 , PI , prob=0.97 )
+shade( mu_40_ci ,unique(d$changeprob_mean) , col=col.alpha("#213940",0.7) )
+lines(x=c(0.004,0.004),y=c(min(d[d$n %in% 40 & d$changeprob_mean %in% 0,]$proportion_estimates_below_zero),max(d[d$n %in% 40 & d$changeprob_mean %in% 0,]$proportion_estimates_below_zero)),col=col.alpha("#213940",0.5))
+lines(x=c(0.032,0.032),y=c(min(d[d$n %in% 40 & d$changeprob_mean %in% 0.025,]$proportion_estimates_below_zero),max(d[d$n %in% 40 & d$changeprob_mean %in% 0.025,]$proportion_estimates_below_zero)),col=col.alpha("#213940",0.5))
+lines(x=c(0.056,0.056),y=c(min(d[d$n %in% 40 & d$changeprob_mean %in% 0.05,]$proportion_estimates_below_zero),max(d[d$n %in% 40 & d$changeprob_mean %in% 0.05,]$proportion_estimates_below_zero)),col=col.alpha("#213940",0.5))
+lines(x=c(0.104,0.104),y=c(min(d[d$n %in% 40 & d$changeprob_mean %in% 0.1,]$proportion_estimates_below_zero),max(d[d$n %in% 40 & d$changeprob_mean %in% 0.1,]$proportion_estimates_below_zero)),col=col.alpha("#213940",0.5))
+lines(x=c(0.204,0.204),y=c(min(d[d$n %in% 40 & d$changeprob_mean %in% 0.2,]$proportion_estimates_below_zero),max(d[d$n %in% 40 & d$changeprob_mean %in% 0.2,]$proportion_estimates_below_zero)),col=col.alpha("#213940",0.5))
+lines(x=c(0.304,0.304),y=c(min(d[d$n %in% 40 & d$changeprob_mean %in% 0.3,]$proportion_estimates_below_zero),max(d[d$n %in% 40 & d$changeprob_mean %in% 0.3,]$proportion_estimates_below_zero)),col=col.alpha("#213940",0.5))
+
+mu_60 <- link( m_samplesize_diffscount , data=data.frame( changeprop_mean=as.numeric(unique(d$changeprob_mean)),samplesize=rep(5,length(unique(d$changeprob_mean))) ) )
+mu_60_mean <- apply( mu_60 , 2 , mean )
+mu_60_ci <- apply( mu_60 , 2 , PI , prob=0.97 )
+shade( mu_60_ci , unique(d$changeprob_mean), col=col.alpha("red",0.7) )
+lines(x=c(0.008,0.008),y=c(min(d[d$n %in% 60 & d$changeprob_mean %in% 0,]$proportion_estimates_below_zero),max(d[d$n %in% 60 & d$changeprob_mean %in% 0,]$proportion_estimates_below_zero)),col=col.alpha("red",0.5))
+lines(x=c(0.036,0.036),y=c(min(d[d$n %in% 60 & d$changeprob_mean %in% 0.025,]$proportion_estimates_below_zero),max(d[d$n %in% 60 & d$changeprob_mean %in% 0.025,]$proportion_estimates_below_zero)),col=col.alpha("red",0.5))
+lines(x=c(0.06,0.06),y=c(min(d[d$n %in% 60 & d$changeprob_mean %in% 0.05,]$proportion_estimates_below_zero),max(d[d$n %in% 60 & d$changeprob_mean %in% 0.05,]$proportion_estimates_below_zero)),col=col.alpha("red",0.5))
+lines(x=c(0.108,0.108),y=c(min(d[d$n %in% 60 & d$changeprob_mean %in% 0.1,]$proportion_estimates_below_zero),max(d[d$n %in% 60 & d$changeprob_mean %in% 0.1,]$proportion_estimates_below_zero)),col=col.alpha("red",0.5))
+lines(x=c(0.208,0.208),y=c(min(d[d$n %in% 60 & d$changeprob_mean %in% 0.2,]$proportion_estimates_below_zero),max(d[d$n %in% 60 & d$changeprob_mean %in% 0.2,]$proportion_estimates_below_zero)),col=col.alpha("red",0.5))
+lines(x=c(0.308,0.308),y=c(min(d[d$n %in% 60 & d$changeprob_mean %in% 0.3,]$proportion_estimates_below_zero),max(d[d$n %in% 60 & d$changeprob_mean %in% 0.3,]$proportion_estimates_below_zero)),col=col.alpha("red",0.5))
+
+legend(x="topright",legend=c(lty2="10",lty1="20",lty3="30",lty2="40",lty3="60"),lty=c(1,1,1,1,1),lwd=c(5,5,5,5,5),col=c(col.alpha("blue",0.4),col.alpha("orange",0.4),col.alpha("skyblue",0.4),col.alpha("#213940",0.4),col.alpha("red",0.4)),cex=1,bty="n")
+
+# Axis labels (side 1=x axis, side 2=y axis)
+mtext("Sample size",side=3,line=-0.7,at=0.31)
+mtext("Power to detect differences between conditions",side=3,line=1,at=0.15,cex=1.5)
+mtext("Mean difference in chance of survival (control vs. manipulated)",side=1,line=3, cex=1.2)
+mtext("Ratio of estimates below zero",side=2,line=3, cex=1.2)
+
+#93% of the posterior mass is above zero for a 0.3 or larger mean difference between conditions when the sample size is 30
+mu_10_ci #29%. Column 1 for the 0.3 category on the x axis (ordered by unique(d$changeprob_mean))
+mu_20_ci #18%
+mu_30_ci #12%
+mu_40_ci #11%
+mu_60_ci #8%
+sum(d[d$n %in% 30 & d$changeprob_mean %in% 0.2,]$proportion_estimates_below_zero<0.3) #28 values are <0.3 (out of 30) when mean change=0.3; 5/30 when mean change = 0, 25/30 when mean change = 0.2
+length(d[d$n %in% 30 & d$changeprob_mean %in% 0.3,]$proportion_estimates_below_zero) #30 values total
+```
+
+&nbsp;
+
+<img width="100%" src="mi1FigPowerAnalysisTouSurvivalCondition.png">
+
+**Figure 18.** Curves of the mean ratio of estimates below zero (vertical lines show the minimum and maximum ratios), which illustrates the power we have to detect differences between conditions (control vs. manipulated) at different sample sizes. 
+
+&nbsp;
+
+###### Run this model on the actual data (1.3)
+
+Run the code below to determine whether there were differences between the control and manipulated conditions in their survival status (alive or dead when individuals are or would be 112 days old). A contrast will be run to determine whether there is a difference between the conditions: if all values of the confidence interval are on one side of zero, then there was a difference; if the confidence interval crosses zero, then there was no difference.
+
+```{r touq1.3model, eval=F}
+library(rethinking)
+library(cmdstanr)
+set_ulam_cmdstan(TRUE) #makes it so ulam always runs with cmdstan
+rstan_options("auto_write" = TRUE)
+#rebuild_cmdstan() #run this if you get an error about a PCH file https://discourse.mc-stan.org/t/struggling-to-get-cmdstan-working-on-mac-os-big-sur/19774/4
+
+# load data sheet
+d <- read.csv(url(""), header=T, sep=",", stringsAsFactors=F)
+
+# Set up the data sheet
+dat <- list(
+    status = d$status,
+    condition = d$condition,
+    parentpairID = d$parentpairID
+)
+
+#simulated data to test the model
+dat2 <- list(
+    location = rbinom(40,1,0.5), #for 40 data points, randomly assign a 0 (dead) or 1 (alive) survival status such that each appears 50% of the time
+    condition = c(rep(1,20),rep(2,20)), #for all rows with control data, assign a condition=1, and for all rows with manipulated data, assign a condition=2, repeat each 20 times (for a total sample size of 40)
+    parentpairID = round(seq(1,35,length=40),0) #for 40 data points, run through numbers 1-35 and repeat a number 5 times (so 5 individuals will have been raised by a parentpairID who also raised another individual in this dataset)
+)
+
+# THE MODEL (p.448 for binomial distribution - McElreath 2020)
+#an interaction model that allows the effect of each condition to vary by each parent pair ID and each habitat
+#g[condition] = avg log odds for each condition
+#alpha[parentpairID,condition] = an effect for each parent pair ID in each condition
+mt <- ulam(
+    alist(
+        location ~ dbinom(1,p),
+        logit(p) <- g[condition] + alpha[parentpairID,condition],
+        # adaptive priors - non-centered which is a parameterization that improves sampling for the MCMC model fit by helping with complex varying effects (see p.453)
+        transpars> matrix[parentpairID,2]:alpha <- compose_noncentered( sigma_parentpairID , L_Rho_parentpairID , z_parentpairID ),
+        matrix[2,parentpairID]:z_parentpairID ~ normal( 0 , 1 ),
+        # fixed priors
+        g[condition] ~ normal(0,1),
+        vector[2]:sigma_parentpairID ~ dexp(1),
+        cholesky_factor_corr[2]:L_Rho_parentpairID ~ lkj_corr_cholesky( 2 ),
+        # compute ordinary correlation matrixes from Cholesky factors
+        gq> matrix[2,2]:Rho_parentpairID <<- Chol_to_Corr(L_Rho_parentpairID)
+    ) , data=dat2 , chains=4 , cores=4 , log_lik=TRUE , cmdstan = TRUE, control = list(adapt_delta = .95, force_recompile = TRUE))
+
+#model output: pay attention to before (g1) and after (g2)
+#precis(mt,depth=2)
+
+#run a CONTRAST to determine whether there is a difference in survival status between control (g1) and manipulated (g2). Yes if all values on one side of zero
+post <- extract.samples(mt)
+diff_g <- post$g[,1] - post$g[,2] #log-odds difference p.341
+diff_p <- inv_logit(post$g[,1]) - inv_logit(post$g[,2]) #on the probability scale p.341
+precis( list( diff_g=diff_g , diff_p=diff_p ) )
+```
+
 
 
 ##### T.Q2 Compared to control individuals, are flexibility manipulated individuals more likely to survive their first 16 weeks post-fledging, particularly if they disperse into the urban reserves outside the sanctuary fence?
@@ -3127,12 +3453,35 @@ dat2 <- list(
 mt <- ulam(
     alist(
         status ~ dbinom(1,p),
-        logit(p) <- g[condition] + alpha[parentpairID,condition] + beta[habitat,condition],
+        logit(p) <- g[condition] + alpha[parentpairID,condition],
         # adaptive priors - non-centered which is a parameterization that improves sampling for the MCMC model fit by helping with complex varying effects (see p.453)
         transpars> matrix[parentpairID,2]:alpha <- compose_noncentered( sigma_parentpairID , L_Rho_parentpairID , z_parentpairID ),
         matrix[2,parentpairID]:z_parentpairID ~ normal( 0 , 1 ),
-        transpars> matrix[habitat,2]:beta <- compose_noncentered( sigma_habitat , L_Rho_habitat , z_habitat ),
-        matrix[2,habitat]:z_habitat ~ normal( 0 , 1 ),
+        # fixed priors
+        g[condition] ~ normal(0,1),
+        vector[2]:sigma_parentpairID ~ dexp(1),
+        cholesky_factor_corr[2]:L_Rho_parentpairID ~ lkj_corr_cholesky( 2 ),
+        # compute ordinary correlation matrixes from Cholesky factors
+        gq> matrix[2,2]:Rho_parentpairID <<- Chol_to_Corr(L_Rho_parentpairID)
+       ) , data=dat2 , chains=4 , cores=4 , log_lik=TRUE , cmdstan = TRUE, control = list(adapt_delta = .95, force_recompile = TRUE))
+
+        #run a CONTRAST to determine whether there is a difference between before (g1) and after (g2) (subtract g1 before from g2 after). Yes if all values for diff_p on one side of zero (want probability scale because that is the scale we used in the simulation)
+post <- extract.samples(mt)
+diff_g <- post$g[,2] - post$g[,1] #log-odds difference p.341 McElreath 2020
+diff_p <- inv_logit(post$g[,2]) - inv_logit(post$g[,1]) #on the probability scale p.341 McElreath 2020
+#precis( list( diff_g=diff_g , diff_p=diff_p ) )      
+
+
+# now run the model to determine whether there were diffrences between conditions within each habitat
+mt2 <- ulam(
+    alist(
+        status ~ dbinom(1,p),
+        logit(p) <- g[habitat] + alpha[parentpairID,habitat] + beta[condition,habitat],
+        # adaptive priors - non-centered which is a parameterization that improves sampling for the MCMC model fit by helping with complex varying effects (see p.453)
+        transpars> matrix[parentpairID,2]:alpha <- compose_noncentered( sigma_parentpairID , L_Rho_parentpairID , z_parentpairID ),
+        matrix[2,parentpairID]:z_parentpairID ~ normal( 0 , 1 ),
+        transpars> matrix[condition,2]:beta <- compose_noncentered( sigma_habitat , L_Rho_habitat , z_habitat ),
+        matrix[2,condition]:z_habitat ~ normal( 0 , 1 ),
         # fixed priors
         g[condition] ~ normal(0,1),
         vector[2]:sigma_parentpairID ~ dexp(1),
@@ -3144,22 +3493,12 @@ mt <- ulam(
         gq> matrix[2,2]:Rho_habitat <<- Chol_to_Corr(L_Rho_habitat)
     ) , data=dat2 , chains=4 , cores=4 , log_lik=TRUE , cmdstan = TRUE, control = list(adapt_delta = .95, force_recompile = TRUE))
 
-#model output: pay attention to before (g1) and after (g2)
-#precis(mt,depth=2)
-
-#run a CONTRAST to determine whether there is a difference in survival status between control (g1) and manipulated (g2). Yes if all values on one side of zero
-post <- extract.samples(mt)
-diff_g <- post$g[,1] - post$g[,2] #log-odds difference p.341
-diff_p <- inv_logit(post$g[,1]) - inv_logit(post$g[,2]) #on the probability scale p.341
-precis( list( diff_g=diff_g , diff_p=diff_p ) )
-
-#run a CONTRAST to determine whether there is a difference in survival status between control (g1) and manipulated (g2) and habitat (reserve vs suburban). Yes if all values on one side of zero
-diff_betacontrol <- post$beta[,1,1] - post$beta[,1,2] #log-odds difference p.341 for condition = 1 control 
-diff_betamanip <- post$beta[,2,1] - post$beta[,2,2] #log-odds difference p.341 for condition = 2 manipulated 
-diff_betapcontrol <- inv_logit(post$beta[,1,1]) - inv_logit(post$beta[,1,2]) #on the probability scale p.341 for condition = 1 control 
-diff_betapmanip <- inv_logit(post$beta[,2,1]) - inv_logit(post$beta[,2,2]) #on the probability scale p.341 for condition = 2 manip
-precis( list( diff_betacontrol=diff_betacontrol , diff_betamanip=diff_betapmanip ) )
-#reading the output: diff_betacontrol - if CI crosses 0, then no difference between habitats for the control condition. diff_betamanip - if CI does not cross 0, then there difference between habitats for the manipulated condition
+      #run a CONTRAST to determine whether there is a difference in survival status between control (g1) and manipulated (g2) and habitat (natural vs suburban). Yes if all values on one side of zero
+post2 <- extract.samples(mt2)
+if(length(unique(dat2$habitat))>1){
+  diff_betanatural <- inv_logit(post2$beta[,2,1]) - inv_logit(post2$beta[,1,1]) # Comparison for habitat 1 (natural): take the inverse logit of the sum (posterior control habitat 1 + posterior control) minus the inverse logit of the sum (posterior manipulated habitat 1 + posterior manipulated). For the beta values, the first entry in the square brackets refers to the rows (we want all of them so we leave this empty), the second entry refers to control (1) versus manipulated (2), and the third entry refers to the habitat (here habitat 1)
+diff_betasuburban <- inv_logit(post2$beta[,2,2]) - inv_logit(post2$beta[,1,2]) # Comparison for habitat 2 (suburban): take the inverse logit of the sum (posterior control habitat 2 + posterior control) minus the inverse logit of the sum (posterior manipulated habitat 2 + posterior manipulated). For the beta values, the first entry in the square brackets refers to the rows (we want all of them so we leave this empty), the second entry refers to control (1) versus manipulated (2), and the third entry refers to the habitat (here habitat 2)
+}
 ```
 
 
@@ -3167,8 +3506,8 @@ precis( list( diff_betacontrol=diff_betacontrol , diff_betamanip=diff_betapmanip
 
 This research is carried out in accordance with permits from the:
 
-1) US Fish and Wildlife Service (scientific collecting permit number MB76700A-0,1,2)
-2) US Geological Survey Bird Banding Laboratory (federal bird banding permit for Logan 23872, for McCune 24273)
+1) US Fish and Wildlife Service (scientific collecting permit number MBPER0039225)
+2) US Geological Survey Bird Banding Laboratory (federal bird banding permit number 23872 for grackles and 24273 for jays)
 3) Institutional Animal Care and Use Committee at the University of California Santa Barbara (protocol number 958)
 4) California Department of Fish and Wildlife (scientific collecting permit [specific use] number S‐192100001‐19210‐001 for grackles and S-192100002-20329-001 for jays)
 5) Oregon Department of Fish and Wildlife (scientific collecting permit 125-22)
