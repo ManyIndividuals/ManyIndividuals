@@ -1513,9 +1513,9 @@ estimates_pairwisedifferences_phiposteriors$crosseszero<-ifelse(estimates_pairwi
 
 *Bayesian model with a normal distribution:*
 
-y ~ $\alpha$[ind] + $\beta$[ind]*before
+habitatuse ~ $\alpha$[ind] + $\beta$[ind]*before
 
-y is the response variable: the total number of different habitats used per individual. There will be one intercept, $\alpha$, and one slope $\beta$ per individual, which will be estimated for the two conditions, before (and after) the manipulation. ID is nested within condition as a random effect because there is more than one data point per individual: each individual has a data point in the before condition and in the after condition. A normal distribution was used because the response variable is a sum without an expected skew to the curve [see Figure 10.6 in @mcelreath2020statistical]. The Bayesian model was developed using @mcelreath2020statistical as a guide.
+habitatuse is the response variable: the total number of different microhabitats used per individual. There will be one intercept, $\alpha$, and one slope $\beta$ per individual, which will be estimated for the two conditions, before (and after) the manipulation. ID is nested within condition as a random effect because there is more than one data point per individual: each individual has a data point in the before condition and in the after condition. A normal distribution was used because the response variable is a sum without an expected skew to the curve [see Figure 10.6 in @mcelreath2020statistical]. The Bayesian model was developed using @mcelreath2020statistical as a guide.
 
 ###### Power analysis
 
@@ -1916,7 +1916,7 @@ par(op)
 
 ###### Run this model on the actual data
 
-Run the code below to determine whether there were differences between the before and after conditions in their proportion of time spent at locations when food was present. If the beta confidence interval is on one side of zero, then there was a difference between the before and after conditions. If the beta confidence interval crosses zero, then there was no difference between before and after.
+Run the code below to determine whether there were differences between the before and after conditions in the number of microhabitats used. Only count that a microhabitat was used if the individual had at least 5% of their data points there. This prevents a microhabitat from being counted even if an individual was simply moving through it, and therefore not necessarily using it. If the beta confidence interval is on one side of zero, then there was a difference between the before and after conditions. If the beta confidence interval crosses zero, then there was no difference between before and after.
 
 ```{r jayhabitatuse, eval=F}
 library(rethinking)
@@ -2671,7 +2671,7 @@ meanchangeprop6<-0 #for false positives
 changeprobvariants<-c(meanchangeprop1,meanchangeprop2,meanchangeprop3,meanchangeprop4,meanchangeprop5,meanchangeprop6) #for false negatives
 
 #compare different control individual location probabilities
-prob_control<-c(0.5,0.6,0.7) #expected baseline location probability of being inside Zealandia
+prob_control<-c(0.6,0.7,0.8) #expected baseline location probability of being inside Zealandia
 
 #set up data frame where results will be stored
 simresults <- matrix(NA,nrow=900,ncol=6)
@@ -2696,7 +2696,7 @@ for (samplesize in 1:length(samplesizes)) {
         for (repetition in 1:10) {
         #CONTROL & MANIP groups
         probcontrol <- round(rbinom(n=N_ind/2,size=1,prob=currentprob_control),2) #for half the data points, randomly assign a 0 (inside Zealandia) or 1 (outside Zealandia) according to the baseline location probabilities (0.5,0.6,0.7)
-        probmanip <- round(rbinom(n=N_ind/2,size=1,prob=(currentprob_control+currentchangeprob)),2) #for the other half of the data points, starting from the probability of the control individuals (0.5, 0.6, and 0.7), we are increasing the probability to be either the same (add zero) or higher (add meanchangeprop 1-6) for the manipulated individuals
+        probmanip <- round(rbinom(n=N_ind/2,size=1,prob=(currentprob_control-currentchangeprob)),2) #for the other half of the data points, starting from the probability that the control individuals stay inside Zealandia (0.5, 0.6, and 0.7), we are decreasing the probability that they remain in Zealandia (add zero) for the manipulated individuals (add meanchangeprop 1-6)
 
         ### run a STAN model to see whether the before and after proportions are estimated to be different from each other
         #sets up the data sheet with the simulated data that the model will run on
@@ -2733,7 +2733,7 @@ diff_p <- inv_logit(post$g[,2]) - inv_logit(post$g[,1]) #on the probability scal
         }
         }
 }
-#write.csv(simresults,file="simresultsTouLocation.csv") #put the outputs into a csv file so don't have to run model again - it takes about 6 hours
+#write.csv(simresults,file="simresultsTouLocation.csv") #put the outputs into a csv file so don't have to run model again - it takes about 6 hours (14:24-)
 ```
 
 ```{r TouQ1.3simulationfiguresamplesize, eval=F, messages=F}
@@ -2742,7 +2742,7 @@ library(cmdstanr)
 set_ulam_cmdstan(TRUE) #makes it so ulam always runs with cmdstan
 
 #load the data sheet that was made from the simulation in the previous R chunk
-d <- read.csv("https://raw.githubusercontent.com/ManyIndividuals/ManyIndividuals/main/Files/rrs/mi1FigPowerAnalysisTouLocation.csv", header = TRUE, sep = ",", stringsAsFactors = FALSE)
+d <- read.csv("https://raw.githubusercontent.com/ManyIndividuals/ManyIndividuals/main/Files/rrs/mi1simresultstoulocation.csv", header = TRUE, sep = ",", stringsAsFactors = FALSE)
 #head(d)
 
 # Set up the data sheet for the model
@@ -2834,14 +2834,14 @@ mtext("Power to detect differences between conditions",side=3,line=1,at=0.15,cex
 mtext("Mean difference in dispersal location (control vs. manipulated)",side=1,line=3, cex=1.2)
 mtext("Ratio of estimates below zero",side=2,line=3, cex=1.2)
 
-#93% of the posterior mass is above zero for a 0.3 or larger mean difference between conditions when the sample size is 30
-mu_10_ci #29%. Column 1 for the 0.3 category on the x axis (ordered by unique(d$changeprob_mean))
-mu_20_ci #18%
-mu_30_ci #12%
-mu_40_ci #11%
-mu_60_ci #8%
-sum(d[d$n %in% 60 & d$changeprob_mean %in% 0.3,]$proportion_estimates_below_zero<0.3) #26 values are <0.3 (out of 30) when mean change=0.3; 5/30 when mean change = 0, 25/30 when mean change = 0.2
-length(d[d$n %in% 30 & d$changeprob_mean %in% 0.3,]$proportion_estimates_below_zero) #30 values total
+#95% of the posterior mass is above zero for a 0.3 or larger mean difference between conditions when the sample size is 60
+mu_10_ci #0.27. Column 1 for the 0.3 category on the x axis (ordered by unique(d$changeprob_mean))
+mu_20_ci #0.15
+mu_30_ci #0.12
+mu_40_ci #0.12
+mu_60_ci #0.05
+sum(d[d$n %in% 60 & d$changeprob_mean %in% 0.3,]$proportion_estimates_below_zero<0.3) #30/30 values are <0.3 when mean change=0.3; 5/30 when mean change = 0, 27/30 when mean change = 0.2
+length(d[d$n %in% 60 & d$changeprob_mean %in% 0.3,]$proportion_estimates_below_zero) #30 values total
 ```
 
 &nbsp;
