@@ -2846,7 +2846,7 @@ length(d[d$n %in% 30 & d$changeprob_mean %in% 0.3,]$proportion_estimates_below_z
 
 &nbsp;
 
-<img width="100%" src="mi1FigPowerAnalysisTouSurvivalCondition.png">
+<img width="100%" src="mi1FigPowerAnalysisTouLocation.png">
 
 **Figure 18.** Curves of the mean ratio of estimates below zero (vertical lines show the minimum and maximum ratios), which illustrates the power we have to detect differences between conditions (control vs. manipulated) at different sample sizes. 
 
@@ -3482,6 +3482,6 @@ We, the authors, declare that we have no financial conflicts of interest with th
 
 # **ACKNOWLEDGEMENTS**
 
-We thank Richard McElreath at the Max Planck Institute for Evolutionary Anthropology for project support.
+We are grateful to our funders: Richard McElreath at the Max Planck Institute for Evolutionary Anthropology (whole project) and the Rutherford Discovery Fellowship from the Royal Society Te Apārangi (to Shaw).
 
 # **REFERENCES**
