@@ -174,7 +174,7 @@ For all research questions, Table 3 summarizes our predictions, analysis plans, 
 
 &nbsp;
 
-<img width="100%" src="mi1Figgtgr.png">
+<img width="100%" src="mi1Figtoutouwai.png">
 
 **Figure 5.** The reversal learning experiment in a group context (Design 2) tailored to the toutouwai research questions.
 
@@ -581,7 +581,7 @@ Half of the individuals (manipulated group) undergo serial reversal learning unt
 
 ### Planned Sample
 
-At least 20 individuals per population will be tested (50% in the control condition, 50% in the flexibility manipulation condition). Individuals will be randomly assigned to the control and flexibility manipulation conditions using a random number generator (random.org). This minimum sample size of 20 was determined using Bayesian simulations in Logan et al. [2020](http://corinalogan.com/Preregistrations/gxpopbehaviorhabitat.html#Q1:_behavior_across_the_range).
+At least 20 individuals per population will be tested (if a between-subjects design: 50% in the control condition, 50% in the flexibility manipulation condition). Individuals will be randomly assigned to the control and flexibility manipulation conditions using a random number generator (random.org). This minimum sample size of 20 was determined using Bayesian simulations in Logan et al. [2020](http://corinalogan.com/Preregistrations/gxpopbehaviorhabitat.html#Q1:_behavior_across_the_range).
 
 **Data collection stopping rule:** Data collection will be stopped when the minimum sample size is reached or when the season in which the minimum sample size is reached comes to an end.
 
@@ -616,10 +616,9 @@ cohen.kappa(data[,c(3,5)], w=NULL,n.obs=NULL,alpha=.05,levels=NULL)
 
 ## **DESIGN 2** - Reversal learning experiment in a group context
 
-Feeders are set up counterbalanced for color/location/etc and will be available for opening when the experiment is being conducted (Figure 7). The feeders will be fitted with technology to automatically record which individual visits which feeder and when (unless a particular population is easy to track visually without such automated technology). Individuals are habituated to the open feeders filled with food until at least half of the minimum sample size has visited at least 1 feeder. All individuals start on the same rewarded option for the intiial discrimination to improve motivation for participating in the experiment (e.g., if the first rewarded option was counterbalanced across individuals, subjects might be slower to learn their rewarded option if they use social information about which option is rewarded). If the subject visits the rewarded feeder, the feeder will automatically deliver a small amount of food, and then close and reset more food in preparation for the next opening. If the subject visits the non-rewarded feeder, the presence data will be recorded, but the feeder will not open. All feeders will contain one type of high value food.
+Feeders are set up counterbalanced for color/location/etc and will be available for opening when the experiment is being conducted (Figure 7). The feeders will be fitted with technology to automatically record which individual visits which feeder and when (unless a particular population is easy to track visually without such automated technology). Individuals are habituated to the open feeders filled with food until at least half of the minimum sample size has visited at least 1 feeder. All individuals start on the same rewarded option for the initial discrimination to improve motivation for participating in the experiment (e.g., if the first rewarded option was counterbalanced across individuals, subjects might be slower to learn their rewarded option if they use social information about which option is rewarded). If the subject visits the rewarded feeder, the feeder will automatically deliver a small amount of food, and then close and reset more food in preparation for the next opening. If the subject visits the non-rewarded feeder, the presence data will be recorded, but the feeder will not open. All feeders will contain one type of high value food.
 
 Individuals in the control condition (if there is one), will receive 1 reversal and, after they pass criterion on reversal 1, feeders of both options (previously rewarded and previously non-rewarded options) will open for these individuals. This will help keep the whole group interested in visiting the feeders while the individuals in the manipulated group complete their serial reversals. Data are collected on success measures either before and after the flexibility intervention or only after the intervention (depending on feasibility and how the study design needs to be tailored for each population).
-
 
 ### Planned Sample
 
@@ -633,10 +632,10 @@ There are two experimental design options:
 **Passing criteria:**
 
  - **Feeder habituation:** all feeders at all locations will have food and be open for several hours daily or until at least half of the minimum sample size in each condition (control and manipulated) have visited at least one of the feeders.
- - **Reversal passing criterion:**  an individual is considered to have a preference when they choose 17 of the most recent 20 trials (choices) correct (the rewarded option). This criterion applies to the initial discrimination, and to each reversal.
- - **Manipulation passing criterion:** pass two consecutive reversals in 50 trials or less.
+ - **Reversal passing criterion:**  an individual is considered to have a preference when they choose 10 of the most recent 12 trials (choices) correct (the rewarded option). This criterion applies to the initial discrimination, and to each reversal.
+ - **Manipulation passing criterion:** pass two consecutive reversals in X trials or less (see Serial reversal passing criterion above).
 
-**Minimum sample size:** To determine the ability to detect actual effects in the analyses, we ran a power analysis in G&ast;Power with the following settings: test family=F tests, statistical test=linear multiple regression: Fixed model (R^2 deviation from zero), type of power analysis=a priori, alpha error probability=0.05. We set the power at 0.70. We found that, to have a 70% chance of detecting a medium effect (approximated at f^2=0.15 by @cohen1988statistical), the minimum sample size needs to be 44 for analyses with 1 explanatory variable.
+**Minimum sample size:** At least 20 individuals per population will be tested (if a between-subjects design: 50% in the control condition, 50% in the flexibility manipulation condition). Individuals will be randomly assigned to the control and flexibility manipulation conditions using a random number generator (random.org). This minimum sample size of 20 was determined using Bayesian simulations in Logan et al. [2020](http://corinalogan.com/Preregistrations/gxpopbehaviorhabitat.html#Q1:_behavior_across_the_range). See Tables 2-4 for question specific sample sizes.
 
 **Data collection stopping rule:** Data collection will stop when the minimum sample size is reached or when the season in which the minimum sample size is reached comes to an end.
 
@@ -3461,6 +3460,7 @@ This research is carried out in accordance with permits from the:
 3) Institutional Animal Care and Use Committee at the University of California Santa Barbara (protocol number 958)
 4) California Department of Fish and Wildlife (scientific collecting permit [specific use] number S‐192100001‐19210‐001 for grackles and S-192100002-20329-001 for jays)
 5) Oregon Department of Fish and Wildlife (scientific collecting permit 125-22)
+6) The New Zealand Department of Conservation (permit number 97554-FAU)
 
 # **AUTHOR CONTRIBUTIONS**
 
