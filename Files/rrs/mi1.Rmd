@@ -131,7 +131,7 @@ Jay species exhibit a diversity of social systems and success in colonizing subu
 
 These species forage primarily on mast (acorns, hazelnuts, etc.) that they cache throughout their territory, which makes it available to eat year-round. They are also opportunistic omnivores and specifically need high-fat and high-protein arthropods to feed to nestlings and fledglings [@curry2017california]. Nesting and foraging substrates can be drastically different in human modified environments compared to natural areas [@tuomainen2011behavioural], and it is unknown whether suburban and urban jays are able to persist in these environments through behavioral adjustments. The DS jay species, the FLSJ, can persist in suburban habitats after conversion from xeric oak scrub, however suburban populations of FLSJ steadily decline (Bowman pers. comm.). This is potentially due to the presence of suboptimal habitat resulting from fire suppression [@woolfenden1996florida], higher rates of brood reduction through nestling starvation [@shawkey2004brood], and the lack of nutritionally complete prey items [@shawkey2004brood] in suburban habitats. It is possible that behavioral flexibility in habitat use and foraging breadth underlies the ability of some FLSJ to persist in human-dominated areas. 
 
-We aim to compare behavioral flexibility within species, between suburban and natural populations to determine whether variation in flexibility relates to variation in presence in these habitats. Subsequently, we will compare flexibility between DS and DR jay species to determine whether this trait is related to the greater success of DR jay species, like the CASJ and BLJA, in human-dominated areas. Lastly, we will test whether manipulating flexibility increases the foraging breadth and reproductive success of jays in human modified environments. Manipulating the flexibility of a subset of individuals has the potential to affect the population because previous research demonstrates that CASJ and FLSJ have the capacity to use foraging information discovered by others (social learning) to flexibly change their behavior [@mccune2018cognition; @midford2000social]. 
+We aim to compare behavioral flexibility within species, between suburban and natural populations to determine whether variation in flexibility relates to variation in presence in these habitats. Subsequently, we will compare flexibility between DS and DR jay species to determine whether this trait is related to the greater success of DR jay species, like the CASJ and BLJA, in human-dominated areas. Lastly, we will test whether manipulating flexibility increases the foraging and microhabitat breadth of jays in human modified environments. Manipulating the flexibility of a subset of individuals has the potential to affect the population because previous research demonstrates that both species have the capacity to use foraging information discovered by others (social learning) to flexibly change their behavior [@mccune2018cognition; @midford2000social]. 
 
 While we have begun to acquire permits to work with these species, the processing time for permits to research threatened and endangered species can be very long and unpredictable. Therefore, while we aim to collect data on the FLSJ during the 5-year timeline of this project, it is possible this species will have to be omitted if the permits are not approved in time. If this occurs, we will not be able to compare CASJ/BLJA and FLSJ (Question 2 in Table 2), but we will still be able to compare behavioral flexibility of CASJ/BLJA populations in human modified and natural areas, and assess whether the behavioral flexibility manipulation affects success in human modified environments.
 
@@ -152,7 +152,7 @@ For all research questions, Table 2 summarizes our predictions, analysis plans, 
 
 &nbsp;
 
-**Table 2.** Study design for the jay research. References that were not already cited in the introduction: [@barton2000limits].
+**Table 2.** Study design for the jay research. References that were not already cited in the introduction: @galbraith2015supplementary; @lapiedra2017urbanization; @rice2003ecological; @emery2004mentality; @sol2002behavioural.
 
 <img width="100%" src="mi1StudyDesignTableGTGR.png">
 
@@ -736,7 +736,7 @@ In the Zealandia toutouwai population the breeding season runs from October to F
 
 ### Flexibility manipulation (Design 2 reversal learning)
 
-Juvenile toutouwai typically begin to forage independently on their caregiver parent’s territory from 3-4 weeks post-fledging. I will set up two experimental feeders on the caregiver parent’s territory when the juvenile toutouwai is at least 3 weeks post-fledging and has been captured, radio tagged and fitted with an RFID tag. Half of all juveniles will be assigned to a manipulated condition and half will be assigned to a control condition. The condition (control or manipulation) will be randomly assigned to each bird using random.org. On each territory the two RFID activated feeders will be spaced a maximum of 4 m apart and within sight of each other, with one feeder mounted within 20 cm of the ground, and the other mounted at 2 m height. Feeders on the ground will be light grey in colour and feeders mounted at height will be dark grey, to make them both spatially and visually distinct. To ensure that the juvenile belonging to the territory is the only bird that can access the feeders, each feeder will only open when the individual fitted with the RFID tag coded to the feeder approaches.
+Juvenile toutouwai typically begin to forage independently on their caregiver parent’s territory from 3-4 weeks post-fledging. I will set up two experimental feeders on the caregiver parent’s territory when the juvenile toutouwai is at least 3 weeks post-fledging and has been captured, radio tagged and fitted with an RFID tag. One juvenile per territory will be randomly selected to participate in the experiment. Half of all juveniles will be assigned to a manipulated condition and half will be assigned to a control condition. The condition (control or manipulation) will be randomly assigned to each bird using random.org. On each territory the two RFID activated feeders will be spaced a maximum of 4 m apart and within sight of each other, with one feeder mounted within 20 cm of the ground, and the other mounted at 2 m height. Feeders on the ground will be light grey in colour and feeders mounted at height will be dark grey, to make them both spatially and visually distinct. To ensure that the juvenile belonging to the territory is the only bird that can access the feeders, each feeder will only open when the individual fitted with the RFID tag coded to the feeder approaches.
 
 #### Feeder habituation
 
@@ -744,7 +744,7 @@ Both feeders on a territory will be available to the RFID tagged individual(s) f
 
 #### The experiment
 
-Juveniles in both the manipulation and control conditions will initially undergo one reversal learning procedure consisting of a discrimination learning phase and a reversal learning phase. During the initial discrimination learning phase, only one feeder will be available (hereafter called the rewarded feeder) and the location of this rewarded feeder (high or low) will be assigned randomly, with half of the birds receiving the low and half receiving the high feeder as their rewarded feeder. The rewarded feeder will be available for 2 hours each day, or until all food is taken from the feeder (whichever occurs first). The rewarded feeder will automatically open when the target bird (fitted with the correct RFID tag) lands on the feeder perch. However, when the target bird lands on the perch of either feeder (rewarded or unrewarded), the visit will be logged and counted as a single trial. To pass the discrimination phase, the bird must visit the rewarded feeder in 10 out of 12 consecutive trials. Once this criteria is reached, the juvenile toutouwai will be given a reversal phase, where the previously unrewarded feeder is now rewarded. To pass this reversal phase, the bird must again achieve the criterion of 10 out of 12 consecutive trials visiting the correct feeder. Birds in the manipulation group will then receive serial reversals until the point at which they are switching feeder preferences in 50 or fewer trials in two sequential reversals (Logan et al. 2019). For juveniles in the control group, after the initial single reversal both feeders will remain available and rewarded for two hours each day (or until food is depleted) for a minimum of 8 days. 
+Juveniles in both the manipulation and control conditions will initially undergo one reversal learning procedure consisting of a discrimination learning phase and a reversal learning phase. During the initial discrimination learning phase, only one feeder will be available (hereafter called the rewarded feeder) and the location of this rewarded feeder (high or low) will be assigned randomly, with half of the birds receiving the low and half receiving the high feeder as their rewarded feeder. The rewarded feeder will be available for 2 hours each day, or until a maximum of 100 trials have been completed (whichever occurs first). The rewarded feeder will automatically open when the target bird (fitted with the correct RFID tag) lands on the feeder perch. However, when the target bird lands on the perch of either feeder (rewarded or unrewarded), the visit will be logged and counted as a single trial. To pass the discrimination phase, the bird must visit the rewarded feeder in 10 out of 12 consecutive trials. Once this criteria is reached, the juvenile toutouwai will be given a reversal phase, where the previously unrewarded feeder is now rewarded. To pass this reversal phase, the bird must again achieve the criterion of 10 out of 12 consecutive trials visiting the correct feeder. Birds in the manipulation group will then receive serial reversals until the point at which they are switching feeder preferences and pass the serial reversal criterion (see Methods). For juveniles in the control group, after the initial single reversal both feeders will remain available and rewarded for two hours each day (or until food is depleted) for a minimum of 8 days. 
 
 #### Post-manipulation success measures
 
@@ -2609,9 +2609,9 @@ precis( list( diff_g=diff_g , diff_p=diff_p ) )
 
 location ~ dbinom(1,p)
 
-logit(p) <- g[condition] + $\alpha$[parentpairID,condition]
+logit(p) <- g[condition]
 
-The response variable is dispersal location (0=inside Zealandia, 1=outside Zealandia) on day 112 post-fledging. g[condition] is the average log odds for each condition (control or flexibility manipulated), and $\alpha$[parentpairID,condition] is an effect for each parent pair ID (because parents can produce multiple offspring that participate in the experiment) in each condition. A binomial distribution was used because the response variable is binomial [see Figure 10.6 in @mcelreath2020statistical]. The Bayesian model was developed using @mcelreath2020statistical as a guide.
+The response variable is dispersal location (0=inside Zealandia, 1=outside Zealandia) on day 112 post-fledging. g[condition] is the average log odds for each condition (control or flexibility manipulated). A binomial distribution was used because the response variable is binomial [see Figure 10.6 in @mcelreath2020statistical]. The Bayesian model was developed using @mcelreath2020statistical as a guide.
 
 ###### Power analysis (1.3)
 
@@ -2703,8 +2703,7 @@ for (samplesize in 1:length(samplesizes)) {
         #sets up the data sheet with the simulated data that the model will run on
   dat2 <- list(
     location = c(probcontrol,probmanip),
-    condition = c(rep(1,N_ind/2),rep(2,N_ind/2)), #1=inside zealandia, 2=outside zealandia
-    parentpairID = round(seq(1,N_ind*0.8,length=N_ind),0)
+    condition = c(rep(1,N_ind/2),rep(2,N_ind/2)) #1=inside zealandia, 2=outside zealandia
 )
        
         # The MODEL
@@ -2712,16 +2711,8 @@ for (samplesize in 1:length(samplesizes)) {
 s1 <- ulam(
     alist(
         location ~ dbinom(1,p),
-        logit(p) <- g[condition] + alpha[parentpairID,condition],
-        # adaptive priors - non-centered which is a parameterization that improves sampling for the MCMC model fit by helping with complex varying effects (see p.453)
-        transpars> matrix[parentpairID,2]:alpha <- compose_noncentered( sigma_parentpairID , L_Rho_parentpairID , z_parentpairID ),
-        matrix[2,parentpairID]:z_parentpairID ~ normal( 0 , 1 ),
-        # fixed priors
-        g[condition] ~ normal(0,1),
-        vector[2]:sigma_parentpairID ~ dexp(1),
-        cholesky_factor_corr[2]:L_Rho_parentpairID ~ lkj_corr_cholesky( 2 ),
-        # compute ordinary correlation matrixes from Cholesky factors
-        gq> matrix[2,2]:Rho_parentpairID <<- Chol_to_Corr(L_Rho_parentpairID)
+        logit(p) <- g[condition],
+        g[condition] ~ normal(0,1)
        ) , data=dat2 , chains=4 , cores=4 , log_lik=TRUE , cmdstan = TRUE, control = list(adapt_delta = .95, force_recompile = TRUE))
 
         #run a CONTRAST to determine whether there is a difference between before (g1) and after (g2) (subtract g1 before from g2 after). Yes if all values for diff_p on one side of zero (want probability scale because that is the scale we used in the simulation)
@@ -2754,8 +2745,6 @@ set_ulam_cmdstan(TRUE) #makes it so ulam always runs with cmdstan
 #load the data sheet that was made from the simulation in the previous R chunk
 d <- read.csv("https://raw.githubusercontent.com/ManyIndividuals/ManyIndividuals/main/Files/rrs/mi1FigPowerAnalysisTouLocation.csv", header = TRUE, sep = ",", stringsAsFactors = FALSE)
 #head(d)
-d_noNA <- d[complete.cases(d$proportion_estimates_below_zero_habitatnatural),]
-
 
 # Set up the data sheet for the model
 dat <- list(
@@ -2778,7 +2767,7 @@ m_samplesize_diffscount <- ulam(
   ),data=dat, log_lik=TRUE, messages=FALSE,cmdstan=T)
 
 # Extract the posterior estimates from this STAN model
-precis_output<-precis( m_samplesize_diffscount , depth=2 )
+precis_output<-precis( m_samplesize_diffscount , depth=2 ) #b gets more negative with increasing sample size as expected
 
 # Plot the predictions for the different sample sizes as separate lines = COUNT out of 2000
 plot(NULL,xlim=c(-0.01,0.31),ylim=c(0.0,0.6),pch=1,ann=F,frame.plot=F,cex=1.5)
@@ -2843,7 +2832,7 @@ legend(x="topright",legend=c(lty2="10",lty1="20",lty3="30",lty2="40",lty3="60"),
 # Axis labels (side 1=x axis, side 2=y axis)
 mtext("Sample size",side=3,line=-0.7,at=0.31)
 mtext("Power to detect differences between conditions",side=3,line=1,at=0.15,cex=1.5)
-mtext("Mean difference in chance of survival (control vs. manipulated)",side=1,line=3, cex=1.2)
+mtext("Mean difference in dispersal location (control vs. manipulated)",side=1,line=3, cex=1.2)
 mtext("Ratio of estimates below zero",side=2,line=3, cex=1.2)
 
 #93% of the posterior mass is above zero for a 0.3 or larger mean difference between conditions when the sample size is 30
@@ -2852,7 +2841,7 @@ mu_20_ci #18%
 mu_30_ci #12%
 mu_40_ci #11%
 mu_60_ci #8%
-sum(d[d$n %in% 30 & d$changeprob_mean %in% 0.2,]$proportion_estimates_below_zero<0.3) #28 values are <0.3 (out of 30) when mean change=0.3; 5/30 when mean change = 0, 25/30 when mean change = 0.2
+sum(d[d$n %in% 60 & d$changeprob_mean %in% 0.3,]$proportion_estimates_below_zero<0.3) #26 values are <0.3 (out of 30) when mean change=0.3; 5/30 when mean change = 0, 25/30 when mean change = 0.2
 length(d[d$n %in% 30 & d$changeprob_mean %in% 0.3,]$proportion_estimates_below_zero) #30 values total
 ```
 
@@ -2881,41 +2870,31 @@ d <- read.csv(url(""), header=T, sep=",", stringsAsFactors=F)
 # Set up the data sheet
 dat <- list(
     status = d$status,
-    condition = d$condition,
-    parentpairID = d$parentpairID
+    condition = d$condition
 )
 
 #simulated data to test the model
 dat2 <- list(
     location = rbinom(40,1,0.5), #for 40 data points, randomly assign a 0 (dead) or 1 (alive) survival status such that each appears 50% of the time
-    condition = c(rep(1,20),rep(2,20)), #for all rows with control data, assign a condition=1, and for all rows with manipulated data, assign a condition=2, repeat each 20 times (for a total sample size of 40)
-    parentpairID = round(seq(1,35,length=40),0) #for 40 data points, run through numbers 1-35 and repeat a number 5 times (so 5 individuals will have been raised by a parentpairID who also raised another individual in this dataset)
+    condition = c(rep(1,20),rep(2,20)) #for all rows with control data, assign a condition=1, and for all rows with manipulated data, assign a condition=2, repeat each 20 times (for a total sample size of 40)
 )
 
 # THE MODEL (p.448 for binomial distribution - McElreath 2020)
 #an interaction model that allows the effect of each condition to vary by each parent pair ID and each habitat
 #g[condition] = avg log odds for each condition
 #alpha[parentpairID,condition] = an effect for each parent pair ID in each condition
-mt <- ulam(
+mtl <- ulam(
     alist(
         location ~ dbinom(1,p),
-        logit(p) <- g[condition] + alpha[parentpairID,condition],
-        # adaptive priors - non-centered which is a parameterization that improves sampling for the MCMC model fit by helping with complex varying effects (see p.453)
-        transpars> matrix[parentpairID,2]:alpha <- compose_noncentered( sigma_parentpairID , L_Rho_parentpairID , z_parentpairID ),
-        matrix[2,parentpairID]:z_parentpairID ~ normal( 0 , 1 ),
-        # fixed priors
-        g[condition] ~ normal(0,1),
-        vector[2]:sigma_parentpairID ~ dexp(1),
-        cholesky_factor_corr[2]:L_Rho_parentpairID ~ lkj_corr_cholesky( 2 ),
-        # compute ordinary correlation matrixes from Cholesky factors
-        gq> matrix[2,2]:Rho_parentpairID <<- Chol_to_Corr(L_Rho_parentpairID)
+        logit(p) <- g[condition],
+        g[condition] ~ normal(0,1)
     ) , data=dat2 , chains=4 , cores=4 , log_lik=TRUE , cmdstan = TRUE, control = list(adapt_delta = .95, force_recompile = TRUE))
 
 #model output: pay attention to before (g1) and after (g2)
-#precis(mt,depth=2)
+#precis(mtl,depth=2)
 
 #run a CONTRAST to determine whether there is a difference in survival status between control (g1) and manipulated (g2). Yes if all values on one side of zero
-post <- extract.samples(mt)
+post <- extract.samples(mtl)
 diff_g <- post$g[,1] - post$g[,2] #log-odds difference p.341
 diff_p <- inv_logit(post$g[,1]) - inv_logit(post$g[,2]) #on the probability scale p.341
 precis( list( diff_g=diff_g , diff_p=diff_p ) )
@@ -2933,17 +2912,17 @@ precis( list( diff_g=diff_g , diff_p=diff_p ) )
 
 status ~ dbinom(1,p)
 
-logit(p) <- g[condition] + $\alpha$[parentpairID,condition]
+logit(p) <- g[condition]
 
-The response variable is survival status (0=dead, 1=alive) on day 112 post-fledging. g[condition] is the average log odds for each condition (control or flexibility manipulated), and $\alpha$[parentpairID,condition] is an effect for each parent pair ID (because parents can produce multiple offspring that participate in the experiment) in each condition. A binomial distribution was used because the response variable is binomial [see Figure 10.6 in @mcelreath2020statistical]. The Bayesian model was developed using @mcelreath2020statistical as a guide.
+The response variable is survival status (0=dead, 1=alive) on day 112 post-fledging. g[condition] is the average log odds for each condition (control or flexibility manipulated). A binomial distribution was used because the response variable is binomial [see Figure 10.6 in @mcelreath2020statistical]. The Bayesian model was developed using @mcelreath2020statistical as a guide.
 
 **Examining the difference between conditions in each of the two areas:**
 
 status ~ dbinom(1,p)
 
-logit(p) <- g[habitat] + $\alpha$[parentpairID,habitat] + $\beta$[habitat,condition]
+logit(p) <- g[habitat] + $\beta$[habitat,condition]
 
-The response variable is survival status (0=dead, 1=alive) on day 112 post-fledging. g[habitat] is the average log odds for each area (inside Zealandia, which is a natural area, or outside Zealandia, which can include natural/suburban/and urban areas), $\alpha$[parentpairID,habitat] is an effect for each parent pair ID (because parents can produce multiple offspring that participate in the experiment) in each habitat, and $\beta$[habitat,condition] is an effect for each area (inside Zealandia or outside Zealandia) in each condition (control or flexibility manipulated).
+The response variable is survival status (0=dead, 1=alive) on day 112 post-fledging. g[habitat] is the average log odds for each area (inside Zealandia, which is a natural area, or outside Zealandia, which can include natural/suburban/and urban areas), and $\beta$[habitat,condition] is an effect for each area (inside Zealandia or outside Zealandia) in each condition (control or flexibility manipulated).
 
 ###### Power analysis
 
@@ -3039,8 +3018,7 @@ for (samplesize in 1:length(samplesizes)) {
   dat2 <- list(
     status = c(probcontrol,probmanip),
     habitat = c(habitatcontrol,habitatmanip), #75% of individuals in the reserve, 25% in suburban randomly assigned from control and manip groups. 1=reserve, 2=suburban
-    condition = c(rep(1,N_ind/2),rep(2,N_ind/2)), 
-    parentpairID = round(seq(1,N_ind*0.8,length=N_ind),0)
+    condition = c(rep(1,N_ind/2),rep(2,N_ind/2))
 )
        
         # Our MODEL, which will estimate a different mean and variance of phi for each site 
@@ -3048,16 +3026,8 @@ for (samplesize in 1:length(samplesizes)) {
 s1 <- ulam(
     alist(
         status ~ dbinom(1,p),
-        logit(p) <- g[condition] + alpha[parentpairID,condition],
-        # adaptive priors - non-centered which is a parameterization that improves sampling for the MCMC model fit by helping with complex varying effects (see p.453)
-        transpars> matrix[parentpairID,2]:alpha <- compose_noncentered( sigma_parentpairID , L_Rho_parentpairID , z_parentpairID ),
-        matrix[2,parentpairID]:z_parentpairID ~ normal( 0 , 1 ),
-        # fixed priors
-        g[condition] ~ normal(0,1),
-        vector[2]:sigma_parentpairID ~ dexp(1),
-        cholesky_factor_corr[2]:L_Rho_parentpairID ~ lkj_corr_cholesky( 2 ),
-        # compute ordinary correlation matrixes from Cholesky factors
-        gq> matrix[2,2]:Rho_parentpairID <<- Chol_to_Corr(L_Rho_parentpairID)
+        logit(p) <- g[condition],
+        g[condition] ~ normal(0,1)
        ) , data=dat2 , chains=4 , cores=4 , log_lik=TRUE , cmdstan = TRUE, control = list(adapt_delta = .95, force_recompile = TRUE))
 
         #run a CONTRAST to determine whether there is a difference between before (g1) and after (g2) (subtract g1 before from g2 after). Yes if all values for diff_p on one side of zero (want probability scale because that is the scale we used in the simulation)
@@ -3069,20 +3039,15 @@ diff_p <- inv_logit(post$g[,2]) - inv_logit(post$g[,1]) #on the probability scal
 s2 <- ulam(
     alist(
         status ~ dbinom(1,p),
-        logit(p) <- g[habitat] + alpha[parentpairID,habitat] + beta[condition,habitat],
+        logit(p) <- g[habitat] + beta[condition,habitat],
         # adaptive priors - non-centered which is a parameterization that improves sampling for the MCMC model fit by helping with complex varying effects (see p.453)
-        transpars> matrix[parentpairID,2]:alpha <- compose_noncentered( sigma_parentpairID , L_Rho_parentpairID , z_parentpairID ),
-        matrix[2,parentpairID]:z_parentpairID ~ normal( 0 , 1 ),
         transpars> matrix[condition,2]:beta <- compose_noncentered( sigma_habitat , L_Rho_habitat , z_habitat ),
         matrix[2,condition]:z_habitat ~ normal( 0 , 1 ),
         # fixed priors
         g[condition] ~ normal(0,1),
-        vector[2]:sigma_parentpairID ~ dexp(1),
-        cholesky_factor_corr[2]:L_Rho_parentpairID ~ lkj_corr_cholesky( 2 ),
         vector[2]:sigma_habitat ~ dexp(1),
         cholesky_factor_corr[2]:L_Rho_habitat ~ lkj_corr_cholesky( 2 ),
         # compute ordinary correlation matrixes from Cholesky factors
-        gq> matrix[2,2]:Rho_parentpairID <<- Chol_to_Corr(L_Rho_parentpairID),
         gq> matrix[2,2]:Rho_habitat <<- Chol_to_Corr(L_Rho_habitat)
     ) , data=dat2 , chains=4 , cores=4 , log_lik=TRUE , cmdstan = TRUE, control = list(adapt_delta = .95, force_recompile = TRUE))
 
@@ -3432,38 +3397,25 @@ d <- read.csv(url(""), header=T, sep=",", stringsAsFactors=F)
 dat <- list(
     status = d$status,
     habitat = d$habitat,
-    condition = d$condition,
-    parentpairID = d$parentpairID
+    condition = d$condition
 )
 
 #simulated data to test the model
 dat2 <- list(
     status = rbinom(40,1,0.5), #for 40 data points, randomly assign a 0 (dead) or 1 (alive) survival status such that each appears 50% of the time
     habitat = rbinom(40,1,0.5)+1, #for 40 data points, randomly assign a 0 (reserve) or 1 (suburban) habitat such that each appears 50% of the time. Add a 1 to each data point to make it 1 & 2 rather than 0 and 1 (if don't do this, rstan will throw a csv error and break)
-    condition = c(rep(1,20),rep(2,20)), #for all rows with control data, assign a condition=1, and for all rows with manipulated data, assign a condition=2, repeat each 20 times (for a total sample size of 40)
-    parentpairID = round(seq(1,35,length=40),0) #for 40 data points, run through numbers 1-35 and repeat a number 5 times (so 5 individuals will have been raised by a parentpairID who also raised another individual in this dataset)
+    condition = c(rep(1,20),rep(2,20)) #for all rows with control data, assign a condition=1, and for all rows with manipulated data, assign a condition=2, repeat each 20 times (for a total sample size of 40)
 )
 
-
 # THE MODEL (p.448 for binomial distribution - McElreath 2020)
-#an interaction model that allows the effect of each condition to vary by each parent pair ID and each habitat
 #g[condition] = avg log odds for each condition
-#alpha[parentpairID,condition] = an effect for each parent pair ID in each condition
-#beta[habitat,condition] = an effect for each habitat in each condition
 mt <- ulam(
     alist(
         status ~ dbinom(1,p),
-        logit(p) <- g[condition] + alpha[parentpairID,condition],
-        # adaptive priors - non-centered which is a parameterization that improves sampling for the MCMC model fit by helping with complex varying effects (see p.453)
-        transpars> matrix[parentpairID,2]:alpha <- compose_noncentered( sigma_parentpairID , L_Rho_parentpairID , z_parentpairID ),
-        matrix[2,parentpairID]:z_parentpairID ~ normal( 0 , 1 ),
-        # fixed priors
-        g[condition] ~ normal(0,1),
-        vector[2]:sigma_parentpairID ~ dexp(1),
-        cholesky_factor_corr[2]:L_Rho_parentpairID ~ lkj_corr_cholesky( 2 ),
-        # compute ordinary correlation matrixes from Cholesky factors
-        gq> matrix[2,2]:Rho_parentpairID <<- Chol_to_Corr(L_Rho_parentpairID)
+        logit(p) <- g[condition],
+        g[condition] ~ normal(0,1)
        ) , data=dat2 , chains=4 , cores=4 , log_lik=TRUE , cmdstan = TRUE, control = list(adapt_delta = .95, force_recompile = TRUE))
+#precis(mt, depth=2)
 
         #run a CONTRAST to determine whether there is a difference between before (g1) and after (g2) (subtract g1 before from g2 after). Yes if all values for diff_p on one side of zero (want probability scale because that is the scale we used in the simulation)
 post <- extract.samples(mt)
@@ -3472,33 +3424,31 @@ diff_p <- inv_logit(post$g[,2]) - inv_logit(post$g[,1]) #on the probability scal
 #precis( list( diff_g=diff_g , diff_p=diff_p ) )      
 
 
-# now run the model to determine whether there were diffrences between conditions within each habitat
+# now run the model to determine whether there were differences between conditions within each habitat
 mt2 <- ulam(
     alist(
         status ~ dbinom(1,p),
-        logit(p) <- g[habitat] + alpha[parentpairID,habitat] + beta[condition,habitat],
+        logit(p) <- g[habitat] + beta[condition,habitat],
         # adaptive priors - non-centered which is a parameterization that improves sampling for the MCMC model fit by helping with complex varying effects (see p.453)
-        transpars> matrix[parentpairID,2]:alpha <- compose_noncentered( sigma_parentpairID , L_Rho_parentpairID , z_parentpairID ),
-        matrix[2,parentpairID]:z_parentpairID ~ normal( 0 , 1 ),
         transpars> matrix[condition,2]:beta <- compose_noncentered( sigma_habitat , L_Rho_habitat , z_habitat ),
         matrix[2,condition]:z_habitat ~ normal( 0 , 1 ),
         # fixed priors
         g[condition] ~ normal(0,1),
-        vector[2]:sigma_parentpairID ~ dexp(1),
-        cholesky_factor_corr[2]:L_Rho_parentpairID ~ lkj_corr_cholesky( 2 ),
         vector[2]:sigma_habitat ~ dexp(1),
         cholesky_factor_corr[2]:L_Rho_habitat ~ lkj_corr_cholesky( 2 ),
         # compute ordinary correlation matrixes from Cholesky factors
-        gq> matrix[2,2]:Rho_parentpairID <<- Chol_to_Corr(L_Rho_parentpairID),
         gq> matrix[2,2]:Rho_habitat <<- Chol_to_Corr(L_Rho_habitat)
     ) , data=dat2 , chains=4 , cores=4 , log_lik=TRUE , cmdstan = TRUE, control = list(adapt_delta = .95, force_recompile = TRUE))
+#precis(mt2, depth=2)
 
       #run a CONTRAST to determine whether there is a difference in survival status between control (g1) and manipulated (g2) and habitat (natural vs suburban). Yes if all values on one side of zero
 post2 <- extract.samples(mt2)
+#str(post2)
 if(length(unique(dat2$habitat))>1){
   diff_betanatural <- inv_logit(post2$beta[,2,1]) - inv_logit(post2$beta[,1,1]) # Comparison for habitat 1 (natural): take the inverse logit of the sum (posterior control habitat 1 + posterior control) minus the inverse logit of the sum (posterior manipulated habitat 1 + posterior manipulated). For the beta values, the first entry in the square brackets refers to the rows (we want all of them so we leave this empty), the second entry refers to control (1) versus manipulated (2), and the third entry refers to the habitat (here habitat 1)
 diff_betasuburban <- inv_logit(post2$beta[,2,2]) - inv_logit(post2$beta[,1,2]) # Comparison for habitat 2 (suburban): take the inverse logit of the sum (posterior control habitat 2 + posterior control) minus the inverse logit of the sum (posterior manipulated habitat 2 + posterior manipulated). For the beta values, the first entry in the square brackets refers to the rows (we want all of them so we leave this empty), the second entry refers to control (1) versus manipulated (2), and the third entry refers to the habitat (here habitat 2)
 }
+#precis( list( diff_betanatural=diff_betanatural , diff_betasuburban=diff_betasuburban ) )
 ```
 
 
