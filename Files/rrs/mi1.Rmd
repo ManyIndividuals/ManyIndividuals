@@ -2430,130 +2430,283 @@ mjf <- ulam(
 
 ##### T.Q1 Does a flexibility manipulation alter dispersal timing (1.1) and distance (1.2), as well as the likelihood that juvenile toutouwai will disperse beyond the protection of Zealandia’s fence and attempt to establish in the adjacent urban area (1.3)?
 
-###### The model: dispersal timing (1.1)
+
+##### G.Q1.1 Do flexibility manipulated individuals disperse at different times after fledging?
+
+# 1.1 Timing: LMM: Age at dispersal (days since fledging) ~ Condition + (1|Parent pair ID)
+# zero-inflated poisson: need zero-inflated because a small percentage of individuals does not disperse in their first season (~10%); individuals who do disperse appear to do so within a relatively short period, which is captured by the poisson-model which counts the numbers of days (McElreath 2020, page 378 2nd edition)
+ 
+*Bayesian model for a zero-inflated poisson distribution:*
+  
+  $D_i$ ~ Zero-inflated Poisson($p_i$,$lambda_i$)
+
+$D_i$ is how many days before the cut-off of observations at 112 days individuals dispersed (for example, if a bird dispersed 50 days after fledging, D_i is 112-50=72); the subtraction covers cases where the age at dispersal would be very late such that some birds might have dispersed but have not yet by the cut-off day. These individuals will be included with the non-dispersers as having a zero-value. $lambda_i$ is the mean of the poisson describing the average day (and variance) for individuals who have dispersed.
+
+log($p_i$) = $\gamma_p$[condition] + $\alpha_p$[parentid],[condition]
+
+log($lambda_i$) = $\gamma_l$[condition] + $\alpha_l$[parentid],[condition]
+
+the two $\gamma$[condition] estimates reflect the difference between control and manipulated birds for the probability to not disperse ($\gamma_p$) and when to disperse ($\gamma_l$) and the two $\alpha$[parentid],[condition] are the effects for individuals born to the same parents in each condition. The Bayesian model was developed using @mcelreath2020statistical as a guide.
 
 
+###### Power analysis
+
+```{r gtgrq1simulation, eval=F}
+library(rethinking)
+library(cmdstanr)
+set_ulam_cmdstan(TRUE) #makes it so ulam always runs with cmdstan
+rstan_options(auto_write = TRUE)
+#rebuild_cmdstan() #run this if you get an error about a PCH file https://discourse.mc-stan.org/t/struggling-to-get-cmdstan-working-on-mac-os-big-sur/19774/4
+
+### SIMULATE the population
+### We first start with a single population to identify the parameters for the zero-inflated poission distribution.
+# We base this on the information on page 69 in this thesis: 
+# https://mro.massey.ac.nz/bitstream/handle/10179/1596/02_whole.pdf?sequence=1
+# It suggests that only a small minority of individuals does not disperse. Based on previous observations of our study population we estimate that ~10% of individuals does not disperse. The dispersers were observed to leave their natal territory on average 47.5 days after fledging, with a range between 32-72 days.As mentioned, we convert this to ask how many days before the end of the observation period birds dispersed, so subtracting these values from 112 (average = 64, range = 40-80). Accordingly, we set p=0.1 and lambda = 112-48 = 64
+# plot the distribution
+hist(rzipois(10000,p=0.1,lambda=64))
+
+# We expect only very few non-dispersing individuals in our sample (10% with a sample size of 60 would be 6 non-dispersers, split between control and manipulated groups). Accordingly, we think that the uncertainty will be too high to say whether there is a difference in the probability to disperse between control and manipulated individuals. We will estimate the separate probabilities in the model, but not vary it in the simulation.
+# For the timing of dispersal, we assume that there might be seasonal differences in when the optimal timing would be, so we set the average of the control group to disperse 40 days before the end of the observation (dispersed on average 72 days after fledging), 64 (48 days after fledging), and 76 (36 days after fledging). 
+# For the expected change due to the manipulation, we assume that it will be within the natural range given that external conditions might set limits on when birds might be first able to disperse. Accordingly, we set the maximum expected improvement to the previous mean minus 2 standard deviations. The standard deviation for a poisson distribution is the square root of the mean. We take this for the days after fledging, not the subtracted means, because we expect potentially more variation when birds on average disperse later. 
+
+# power analysis: run this simulation with different N_ind, change means, to find the boundaries of where you can detect a difference (run the model and use contrasts) between the two conditions (control/manipulated). Automate the process like Dieter did in xpop figs 5 (line 1133) and 6 (line 1452)?
 
 
-###### Power analysis (1.1)
+### POWER ANALYSIS: different sample sizes and different mean changes in dispersal distance between control and manipulated conditions
+# We now set our range of likely sample sizes, from a minimum of 10 individuals to a maximum of 60 individuals (half in the control and the other half in the manipulated condition). We draw repeated samples of individuals of that size, with 10 repetitions for each of the 5 sample sizes and each of the 6 mean changes. So 10*6 mean change (=60) for each of the 5 sample sizes, resulting in a total length of samplesizes of 300
+samplesizes<-c(10,20,30,40,60) #c(10,20,30,40,60)
 
+# Set the means you want to compare (number of standard deviations of change)
+meanchange1<-2 
+meanchange2<-1.5
+meanchange3<-1 #e.g., a bird spends 0.6 of its time being rewarded at cafes and dumpsters before the manipulation and then increases this proportion to 0.8 after the manipulation, showing that the manipulation improved their foraging success
+meanchange4<-0.5
+meanchange5<-0.25
+meanchange6<-0
+changevariants<-c(meanchange1,meanchange2,meanchange3,meanchange4,meanchange5,meanchange6) #for false negatives
+#changepropvariants<-c(0) #for false positives
+#changepropvariants<-c(meanchangeprop6) #for showing differences
+
+#compare different baseline proportions for how much time these individuals spend when the reward is present before the manipulation
+mean_day_control<-c(40,64,76) #
+
+
+#set up data frame where results will be stored
+simresults <- matrix(NA,nrow=900,ncol=6)
+simresults <- data.frame(simresults)
+colnames(simresults) <- c("n","change_mean","repetition","timing_control","proportion_estimates_below_zero","count_estimates_below_zero")
+counter<-1
+
+# run simulations. There are 5 different sample sizes, and for each we have 6 different mean change in proportions that we want to examine, and each will repeat 10 times for a total of 300 samples.
+for (samplesize in 1:length(samplesizes)) {
+  N_ind <- samplesizes[samplesize] #number of grackles per sample size
+  
+  #now run through each of the 6 change variations
+  for (propvariant in 1:length(changevariants)) {
+    
+    #pick the current change variant from the list changevariants
+    currentchange <- changevariants[propvariant]
+    
+    for (baselineprop in 1:3) {
+      #pick the baseline distance variant from the list 
+      currentprop_before <- mean_day_control[baselineprop]
+      
+      for (repetition in 1:10) {
+        #create data frame to store for each repetition of the simulated data to be analyzed by the model
+   
+        #CONTROL condition
+        days_control <- rzipois(N_ind/2,p=0.1,lambda=currentprop_before)
+        #MANIPULATED condition
+        days_manipulated<- rzipois(N_ind/2,p=0.1,lambda=currentprop_before+currentchange*(sqrt(112-currentprop_before)))
+       
+        
+        ### run a STAN model to see whether the before and after proportions are estimated to be different from each other
+        #sets up the data sheet with the simulated data that the model will run on
+        dat <- list(
+          response = c(days_control,days_manipulated),
+          condition = c(rep(1,N_ind/2),rep(2,N_ind/2)), #1 refers to control and 2 to manipulated
+        )
+        
+        # Our MODEL, which will estimate a different mean and variance of phi for each site 
+        #(note: had to add force_recompile bc kept giving me an error and wouldn't finish running. See https://github.com/rmcelreath/rethinking/issues/338)
+        s1 <- ulam(
+          alist(
+            response ~ dzipois(p,lambda),
+            logit(p) <- g_p[condition] ,
+            log(lambda) <- g[condition] ,
+            # adaptive priors - non-centered which is a parameterization that improves sampling for the MCMC model fit by helping with complex varying effects (see p.453)
+            g_p[condition] ~ normal(0,2),
+            g[condition] ~ normal(0,2)
+          ) , data=dat , chains=4 , cores=4 , log_lik=TRUE , cmdstan = TRUE, control = list(adapt_delta = .95, force_recompile = TRUE))
+        
+        #run a CONTRAST to determine whether there is a difference between before (g1) and after (g2) (subtract g1 before from g2 after). Yes if all values for diff_p on one side of zero (want probability scale because that is the scale we used in the simulation)
+        post <- extract.samples(s1)
+        diff_g <- post$g[,2] - post$g[,1] #log-odds difference p.341 McElreath 2020
+
+        # enter all of the results into the data sheet
+        simresults[counter,]$n <- N_ind
+        simresults[counter,]$change_mean <- currentchange
+        simresults[counter,]$repetition <- repetition
+        simresults[counter,]$timing_control <- currentprop_before
+        simresults[counter,]$proportion_estimates_below_zero <- sum(diff_g<0)/length(diff_g)
+        simresults[counter,]$count_estimates_below_zero <- sum(diff_g<0)
+        counter<-counter+1 
+        print(c(counter,"out of",10*length(samplesizes)*length(changevariants)*length(distance_control)))
+      }
+    }
+  }
+}
+
+#write.csv(m1simresults_toutouawidispersaltiming.csv") #put the outputs into a csv file so don't have to run the model again...it takes hours
+
+
+```
+
+We estimated our power to detect differences between conditions at different sample sizes and with different mean changes in age at which individuals disperse after fledging (Figure 10). We simulated the age at which individuals would disperse in the control condition (with averages of 36, 48, or 72 days after fledging), and assumed that manipulated individuals might disperse sooner. We analyzed these simulated data with the model we will use to analyze the actual data, estimating the contrast in average time at which individuals disperse. The model also accounts for differences in the likelihood to not disperse at all between control and manipulated birds, but we did not exame this here in the simulation given that the number of individuals who will not disperse is likely to be very low. From the posterior estimates of the model, we extracted both the mean change as well as the ratio of the posterior estimates that were below zero, indicating that there would be a clear difference between control and manipulated birds. 
+
+If the mean ratio of estimates below zero is close to 0.5, the model assumes that the age at which individuals disperse is similar for control and manipulated birds. If the ratio is close to zero, the model assumes individuals have changed their behavior and disperse earlier when they were manipulated. We find that for changes smaller than 1 standard deviation (which equals roughly 7 days), models are likely to assume that there are no differences between control and manipulated individuals even with large sample sizes. If the contrast in time of dispersal of manipulated compared to control individuals is 1 standard deviation, on average 92% of the posterior of the model based on a sample size of 20 individuals will be larger than zero. This means that the model is quite certain there is a contrast that is larger than zero. 
+
+In general, with sample sizes at or above 20 and mean contrasts of 1 standard deviation or higher, it is highly likely that the model will indicate that manipulated individuals have changed their behavior. Mean contrasts of less than 1 standard deviation can still be detected, however there is a higher risk that there will be a false negative (27% risk of a false negative with a sample size of 20 when the contrast is 0.25 standard deviations/2 days). 
+
+To estimate the risk of detecting false positives, we set the mean change in age of dispersal for manipulated individuals compared to control individuals to zero so there was no change. As expected, the average ratio of estimates below zero is close to 0.5 and independent of sample size. With a sample size of 20, <7% have a ratio smaller than 0.1, meaning that the risk of having a false positive is low. 
+
+```{r gtgrq1simulationfiguresamplesize, eval=F, messages=F}
+library(rethinking)
+library(cmdstanr)
+set_ulam_cmdstan(TRUE) #makes it so ulam always runs with cmdstan
+
+#load the data sheet that was made from the simulation in the previous R chunk
+d <- read.csv("https://raw.githubusercontent.com/ManyIndividuals/ManyIndividuals/main/Files/rrs/m1simresults_toutouawidispersaltiming.csv", header = TRUE, sep = ",", stringsAsFactors = FALSE)
+#head(d)
+
+# Set up the data sheet for the model
+dat <- list(
+  proportion_estimates_below_zero = as.numeric(d$proportion_estimates_below_zero),
+  count_estimates_below_zero = as.numeric(d$count_estimates_below_zero),
+  change_mean = as.numeric(sqrt(d$change_mean)),
+  samplesize = as.integer(as.factor(d$n))
+)
+
+# We run the STAN model - it is a binomial model that assumes that the probability to estimate a difference depends on an interaction between the sample size and the difference between the conditions (before/after). These two models do the same thing with different versions of the response variable. In m_samplesize_diffs, the response variable is already a proportion. In m_samplesize_diffscount, the response variable is a count and the model turns it into a proportion. We ended up using the latter
+#m_samplesize_diffs <- ulam(
+#    alist(
+#        proportion_estimates_below_zero ~ dnorm(mu,sigma),
+#        mu <- a[samplesize] + b[samplesize]*changeprop_mean,
+#        a[samplesize] ~ dnorm(a_bar,sigma_a),
+#        a_bar~dnorm(0,1.5),
+#        sigma_a~dexp(1),
+#        sigma~dexp(1),
+#        b[samplesize]~dnorm(0,1.5)
+#    ) , data=dat , chains=4 , cores=4 , log_lik=TRUE , cmdstan = TRUE, control = list(adapt_delta = .95, force_recompile = TRUE))
+
+m_samplesize_diffscount <- ulam(
+  alist(
+    count_estimates_below_zero~dbinom(2000,p),
+    logit(p) <- a[samplesize]-b[samplesize]*change_mean,
+    a[samplesize]~dnorm(a_bar,sigma_a),
+    a_bar~dnorm(0,1.5),
+    sigma_a~dexp(1),
+    b[samplesize]~dnorm(0,1.5)
+  ),data=dat, log_lik=TRUE, messages=FALSE,cmdstan=T)
+
+# Extract the posterior estimates from this STAN model
+precis_output<-precis( m_samplesize_diffscount , depth=2 )
+
+# Plot the predictions for the different sample sizes as separate lines = COUNT out of 2000
+plot(NULL,xlim=c(-0.01,2.01),ylim=c(0.0,0.7),pch=1,ann=F,frame.plot=F,cex=1.5)
+
+mu_10<- link( m_samplesize_diffscount , data=data.frame( change_mean=sqrt(unique(d$change_mean)),samplesize=rep(1,length(unique(d$change_mean))) ) )
+mu_10_mean <- apply( mu_10 , 2 , mean )
+mu_10_ci <- apply( mu_10 , 2 , PI , prob=0.97 )
+shade( mu_10_ci , unique(d$change_mean) , col=col.alpha("blue",0.7) )
+lines(x=c(-0.04,-0.04),y=c(min(d[d$n %in% 10 & d$change_mean %in% 0,]$proportion_estimates_below_zero),max(d[d$n %in% 10 & d$change_mean %in% 0,]$proportion_estimates_below_zero)),col=col.alpha("blue",0.5))
+lines(x=c(0.21,0.21),y=c(min(d[d$n %in% 10 & d$change_mean %in% 0.25,]$proportion_estimates_below_zero),max(d[d$n %in% 10 & d$change_mean %in% 0.25,]$proportion_estimates_below_zero)),col=col.alpha("blue",0.5))
+lines(x=c(0.46,0.46),y=c(min(d[d$n %in% 10 & d$change_mean %in% 0.5,]$proportion_estimates_below_zero),max(d[d$n %in% 10 & d$change_mean %in% 0.5,]$proportion_estimates_below_zero)),col=col.alpha("blue",0.5))
+lines(x=c(0.96,0.96),y=c(min(d[d$n %in% 10 & d$change_mean %in% 1,]$proportion_estimates_below_zero),max(d[d$n %in% 10 & d$change_mean %in% 1,]$proportion_estimates_below_zero)),col=col.alpha("blue",0.5))
+lines(x=c(1.46,1.46),y=c(min(d[d$n %in% 10 & d$change_mean %in% 1.5,]$proportion_estimates_below_zero),max(d[d$n %in% 10 & d$change_mean %in% 1.5,]$proportion_estimates_below_zero)),col=col.alpha("blue",0.5))
+lines(x=c(1.96,1.96),y=c(min(d[d$n %in% 10 & d$change_mean %in% 2,]$proportion_estimates_below_zero),max(d[d$n %in% 10 & d$change_mean %in% 2,]$proportion_estimates_below_zero)),col=col.alpha("blue",0.5))
+
+mu_20 <- link( m_samplesize_diffscount , data=data.frame( change_mean=sqrt(unique(d$change_mean)),samplesize=rep(2,length(unique(d$change_mean))) ) )
+mu_20_mean <- apply( mu_20 , 2 , mean )
+mu_20_ci <- apply( mu_20 , 2 , PI , prob=0.97 )
+shade( mu_20_ci , unique(d$change_mean) , col=col.alpha("orange",0.7) )
+lines(x=c(-0.02,-0.02),y=c(min(d[d$n %in% 20 & d$change_mean %in% 0,]$proportion_estimates_below_zero),max(d[d$n %in% 20 & d$change_mean %in% 0,]$proportion_estimates_below_zero)),col=col.alpha("orange",0.5))
+lines(x=c(0.23,0.23),y=c(min(d[d$n %in% 20 & d$change_mean %in% 0.25,]$proportion_estimates_below_zero),max(d[d$n %in% 20 & d$change_mean %in% 0.25,]$proportion_estimates_below_zero)),col=col.alpha("orange",0.5))
+lines(x=c(0.48,0.48),y=c(min(d[d$n %in% 20 & d$change_mean %in% 0.5,]$proportion_estimates_below_zero),max(d[d$n %in% 20 & d$change_mean %in% 0.5,]$proportion_estimates_below_zero)),col=col.alpha("orange",0.5))
+lines(x=c(0.98,0.98),y=c(min(d[d$n %in% 20 & d$change_mean %in% 1,]$proportion_estimates_below_zero),max(d[d$n %in% 20 & d$change_mean %in% 1,]$proportion_estimates_below_zero)),col=col.alpha("orange",0.5))
+lines(x=c(1.48,1.48),y=c(min(d[d$n %in% 20 & d$change_mean %in% 1.5,]$proportion_estimates_below_zero),max(d[d$n %in% 20 & d$change_mean %in% 1.5,]$proportion_estimates_below_zero)),col=col.alpha("orange",0.5))
+lines(x=c(1.98,1.98),y=c(min(d[d$n %in% 20 & d$change_mean %in% 2,]$proportion_estimates_below_zero),max(d[d$n %in% 20 & d$change_mean %in% 2,]$proportion_estimates_below_zero)),col=col.alpha("orange",0.5))
+
+mu_30 <- link( m_samplesize_diffscount , data=data.frame( change_mean=sqrt(unique(d$change_mean)),samplesize=rep(3,length(unique(d$change_mean))) ) )
+mu_30_mean <- apply( mu_30 , 2 , mean )
+mu_30_ci <- apply( mu_30 , 2 , PI , prob=0.97 )
+shade( mu_30_ci ,unique(d$change_mean), col=col.alpha("skyblue",0.7) )
+lines(x=c(0,0),y=c(min(d[d$n %in% 30 & d$change_mean %in% 0,]$proportion_estimates_below_zero),max(d[d$n %in% 30 & d$change_mean %in% 0,]$proportion_estimates_below_zero)),col=col.alpha("skyblue",0.5))
+lines(x=c(0.25,0.25),y=c(min(d[d$n %in% 30 & d$change_mean %in% 0.25,]$proportion_estimates_below_zero),max(d[d$n %in% 30 & d$change_mean %in% 0.25,]$proportion_estimates_below_zero)),col=col.alpha("skyblue",0.5))
+lines(x=c(0.5,0.5),y=c(min(d[d$n %in% 30 & d$change_mean %in% 0.5,]$proportion_estimates_below_zero),max(d[d$n %in% 30 & d$change_mean %in% 0.5,]$proportion_estimates_below_zero)),col=col.alpha("skyblue",0.5))
+lines(x=c(1,1),y=c(min(d[d$n %in% 30 & d$change_mean %in% 1,]$proportion_estimates_below_zero),max(d[d$n %in% 30 & d$change_mean %in% 1,]$proportion_estimates_below_zero)),col=col.alpha("skyblue",0.5))
+lines(x=c(1.5,1.5),y=c(min(d[d$n %in% 30 & d$change_mean %in% 1.5,]$proportion_estimates_below_zero),max(d[d$n %in% 30 & d$change_mean %in% 1.5,]$proportion_estimates_below_zero)),col=col.alpha("skyblue",0.5))
+lines(x=c(2,2),y=c(min(d[d$n %in% 30 & d$change_mean %in% 2,]$proportion_estimates_below_zero),max(d[d$n %in% 30 & d$change_mean %in% 2,]$proportion_estimates_below_zero)),col=col.alpha("skyblue",0.5))
+
+mu_40 <- link( m_samplesize_diffscount , data=data.frame( change_mean=sqrt(unique(d$change_mean)),samplesize=rep(4,length(unique(d$change_mean))) ) )
+mu_40_mean <- apply( mu_40 , 2 , mean )
+mu_40_ci <- apply( mu_40 , 2 , PI , prob=0.97 )
+shade( mu_40_ci ,unique(d$change_mean) , col=col.alpha("#213940",0.7) )
+lines(x=c(0.02,0.02),y=c(min(d[d$n %in% 40 & d$change_mean %in% 0,]$proportion_estimates_below_zero),max(d[d$n %in% 40 & d$change_mean %in% 0,]$proportion_estimates_below_zero)),col=col.alpha("#213940",0.5))
+lines(x=c(0.27,0.27),y=c(min(d[d$n %in% 40 & d$change_mean %in% 0.25,]$proportion_estimates_below_zero),max(d[d$n %in% 40 & d$change_mean %in% 0.25,]$proportion_estimates_below_zero)),col=col.alpha("#213940",0.5))
+lines(x=c(0.52,0.52),y=c(min(d[d$n %in% 40 & d$change_mean %in% 0.5,]$proportion_estimates_below_zero),max(d[d$n %in% 40 & d$change_mean %in% 0.5,]$proportion_estimates_below_zero)),col=col.alpha("#213940",0.5))
+lines(x=c(1.02,1.02),y=c(min(d[d$n %in% 40 & d$change_mean %in% 1,]$proportion_estimates_below_zero),max(d[d$n %in% 40 & d$change_mean %in% 1,]$proportion_estimates_below_zero)),col=col.alpha("#213940",0.5))
+lines(x=c(1.52,1.52),y=c(min(d[d$n %in% 40 & d$change_mean %in% 1.5,]$proportion_estimates_below_zero),max(d[d$n %in% 40 & d$change_mean %in% 1.5,]$proportion_estimates_below_zero)),col=col.alpha("#213940",0.5))
+lines(x=c(2.2,2.2),y=c(min(d[d$n %in% 40 & d$change_mean %in% 2,]$proportion_estimates_below_zero),max(d[d$n %in% 40 & d$change_mean %in% 2,]$proportion_estimates_below_zero)),col=col.alpha("#213940",0.5))
+
+mu_60 <- link( m_samplesize_diffscount , data=data.frame( change_mean=sqrt(unique(d$change_mean)),samplesize=rep(5,length(unique(d$change_mean))) ) )
+mu_60_mean <- apply( mu_60 , 2 , mean )
+mu_60_ci <- apply( mu_60 , 2 , PI , prob=0.97 )
+shade( mu_60_ci , unique(d$change_mean), col=col.alpha("red",0.7) )
+lines(x=c(0.04,0.04),y=c(min(d[d$n %in% 60 & d$change_mean %in% 0,]$proportion_estimates_below_zero),max(d[d$n %in% 60 & d$change_mean %in% 0,]$proportion_estimates_below_zero)),col=col.alpha("red",0.5))
+lines(x=c(0.29,0.29),y=c(min(d[d$n %in% 60 & d$change_mean %in% 0.25,]$proportion_estimates_below_zero),max(d[d$n %in% 60 & d$change_mean %in% 0.25,]$proportion_estimates_below_zero)),col=col.alpha("red",0.5))
+lines(x=c(0.54,0.54),y=c(min(d[d$n %in% 60 & d$change_mean %in% 0.5,]$proportion_estimates_below_zero),max(d[d$n %in% 60 & d$change_mean %in% 0.5,]$proportion_estimates_below_zero)),col=col.alpha("red",0.5))
+lines(x=c(1.04,1.04),y=c(min(d[d$n %in% 60 & d$change_mean %in% 1,]$proportion_estimates_below_zero),max(d[d$n %in% 60 & d$change_mean %in% 1,]$proportion_estimates_below_zero)),col=col.alpha("red",0.5))
+lines(x=c(1.54,1.54),y=c(min(d[d$n %in% 60 & d$change_mean %in% 1.5,]$proportion_estimates_below_zero),max(d[d$n %in% 60 & d$change_mean %in% 1.5,]$proportion_estimates_below_zero)),col=col.alpha("red",0.5))
+lines(x=c(2.2,2.2),y=c(min(d[d$n %in% 60 & d$change_mean %in% 2,]$proportion_estimates_below_zero),max(d[d$n %in% 60 & d$change_mean %in% 2,]$proportion_estimates_below_zero)),col=col.alpha("red",0.5))
+
+legend(x="topright",legend=c(lty2="10",lty1="20",lty3="30",lty2="40",lty3="60"),lty=c(1,1,1,1,1),lwd=c(5,5,5,5,5),col=c(col.alpha("blue",0.4),col.alpha("orange",0.4),col.alpha("skyblue",0.4),col.alpha("#213940",0.4),col.alpha("red",0.4)),cex=1,bty="n")
+
+# Axis labels (side 1=x axis, side 2=y axis)
+mtext("Sample size",side=3,line=-1.3,at=1.6)
+mtext("Power to detect differences between conditions",side=3,line=1,at=1,cex=1.5)
+mtext("Weeks manipulated indvs disperse earlier than control indvs",side=1,line=3, cex=1.2)
+mtext("Ratio of estimates below zero",side=2,line=3, cex=1.2)
+
+#92% of the posterior mass is above zero for a change of 1 sd (1 week) between control and manipulated indviduals when the sample size is 20. It is 83% for a change of 0.5 sd
+# 1-mu_10_mean[3] #85%. 3rd column from the left 1 sd (1 week) category on the x axis (ordered by unique(d$change_mean))
+#1-mu_20_mean[3] #92%
+#1-mu_30_mean[3] #94%
+#1-mu_40_mean[3] #95%
+#1-mu_60_mean[3] #97%
+
+# Tthere is a <7% chance to get a false positive with a sample size of 20
+#sum(d[d$n %in% 20 & d$change_mean %in% 0,]$proportion_estimates_below_zero<0.3) #2 values are <0.1 (out of 30)
+#length(d[d$n %in% 20 & d$changeprop_mean %in% 0,]$proportion_estimates_below_zero) #30 values total
+
+```
+
+
+&nbsp;
+
+<img width="100%" src="m1FigPowerAnalysisTouTiming.png">
+
+**Figure 10** Curves of the mean ratio of estimates below zero (vertical lines show the minimum and maximum ratios), which illustrates the power we have to detect differences between conditions (control vs. manipulated) in timing of dispersal at different sample sizes. 
+
+&nbsp;
 
 
 ###### Run this model on the actual data (1.1)
 
-```{r toudispersaltiming, eval=F}
-#Dispersal age: Age in days at which dispersal (defined as leaving the natal territory on three consecutive days) is first detected. If a bird does not disperse, the maximum age at the study end (i.e. 112 days) will be assigned. For the analysis, we will invert this as 112 - days at dispersal to make it so those who never dispersed receive a 0 value
+Run the code below to determine whether the manipulated birds differ from the control individuals in their age of dispersal. A contrast will be run to determine whether there is a difference between the conditions: if all values of the confidence interval are on one side of zero, then there was a difference; if the confidence interval crosses zero, then there was no difference.
 
-library(rethinking)
-library(cmdstanr)
-set_ulam_cmdstan(TRUE) #makes it so ulam always runs with cmdstan
-
- 
-# set up a simulation
-prob_notdisperse <- 0.1 # 20% of individuals
-rate_disperse <- 60    # average 1 dispersal per day
-# sample until the end of the study period 112 days
-N <- 112
-# simulate days dispersed
-notdisperse <- rbinom( 20 , 1 , prob_notdisperse )
-# simulate manuscripts completed
-dispersalday <- (1-notdisperse)*rpois( 20 , rate_disperse ) #n=20 individuals
-
-#visualize (code from p 378 McElreath 2020)
-simplehist( dispersalday , xlab="age at dispersal (days)" , lwd=4 )
-zeros_notdisperse <- sum(notdisperse)
-zeros_disperse <- sum(dispersalday==0 & notdisperse==0)
-zeros_total <- sum(dispersalday==0)
-lines( c(0,0) , c(zeros_disperse,zeros_total) , lwd=4 , col=rangi2 )
-
-
-# Start with 20 control birds
-prob_notdisperse <- 0.2 # 20% of individuals
-
-# simulate days dispersed
-# First define which of the 20 individuals does and does not disperse, this will give  alist of 20 values of either 0 or 1 with the probability as set above
-notdisperse <- rbinom( 20 , 1 , prob_notdisperse )
-# next we simulate how many days ago individuals dispersed. We multiply this by the 0/1 values from before to set the nondispersers to zero. We are using a gamma distribution to get a wider spread of values across the whole possible dispersal period which is skewed left
-dispersalday <- (1-notdisperse)*rgamma( 20 ,1,0.05 ) #n=20 individuals, mean age at dispersal is at 20 days (1 divided by 0.05) before the cut-off (112-20 = 92), values range between 0 and 60 days before cut-off #rpois
-dispersalday<-  round(dispersalday,0)
-
-#visualize
-simplehist( dispersalday , xlab="112 days - days old at dispersal" , lwd=4 )
-zeros_notdisperse <- sum(notdisperse)
-zeros_disperse <- sum(dispersalday==0 & notdisperse==0)
-zeros_total <- sum(dispersalday==0)
-lines( c(0,0) , c(zeros_disperse,zeros_total) , lwd=4 , col=rangi2 )
-
-
-# Next the 20 manipulated birds: we assume that manipulated birds are twice as likely to disperse, and that they disperse 10 days sooner than control birds
-prob_notdisperse_manipulated <- 0.1 # only 10% of individuals remain
-
-# simulate days dispersed
-# First define which of the 20 individuals does and does not disperse, this will give  alist of 20 values of either 0 or 1 with the probability as set above
-notdisperse_manipulated <- rbinom( 20 , 1 , prob_notdisperse_manipulated )
-# next we simulate how many days ago individuals dispersed. We multiply this by the 0/1 values from before to set the nondispersers to zero. We are using a gamma distribution to get a wider spread of values across the whole possible dispersal period which is skewed left
-dispersalday_manipulated <- (1-notdisperse_manipulated)*rgamma( 20 ,1,0.033333 ) #n=20 individuals, mean age at dispersal is at 30 days (1 divided by 0.05) before the cut-off (112-30 = 82), values range between 0 and 100 days before cut-off #rpois
-dispersalday_manipulated<-  round(dispersalday_manipulated,0)
-
-
-#visualize
-simplehist( dispersalday_manipulated , xlab="112 days - days old at dispersal" , lwd=4 )
-zeros_notdisperse_manipulated <- sum(notdisperse_manipulated)
-zeros_disperse_manipulated <- sum(dispersalday_manipulated==0 & notdisperse_manipulated==0)
-zeros_total_manipulated <- sum(dispersalday_manipulated==0)
-lines( c(0,0) , c(zeros_disperse_manipulated,zeros_total_manipulated) , lwd=4 , col=rangi2 )
-
-# combined simulated data for STAN model
-dat <- list(
-    days = c(as.numeric(dispersalday),as.numeric(dispersalday_manipulated)),
-    condition = c(rep(1,20),rep(2,20)) # 1 = control group, 2 = manipulated group
-)
-
-mt <- ulam(
-    alist(
-       days|days>0 ~ custom(log1m( p )+gamma_lpdf(days|mu,scale)),
-       days|days==0 ~  custom(log_mix(p,0,exp(gamma_lpdf(0|mu,scale) ))),          
-        logit(p) <- ap[condition], #ap=probability of zero
-        mu <- al[condition], #al=mean of poisson
-        ap[condition] ~ dnorm( -1.5 , 1 ), #nudge the prior for the probability of not-dispersing so that there is more mass below 0.5, assuming that only a minority of birds will not disperse
-        al[condition] ~ dnorm( 1 , 10 ),
-       scale~dnorm(0,5)
-        ) , data=dat , chains=4 , cores=4 , log_lik=TRUE , cmdstan = TRUE)
-
-# load data sheet
-d <- read.csv(url(""), header=T, sep=",", stringsAsFactors=F)
-
-# Set up the data sheet: condition = manipulated or control, habitat = inside or outside Zealandia, 
-dat <- list(
-    days = as.numeric(as.factor(d$Habitat)),
-    t = d$Condition,
-    parentpairid = d$ParentPairID
-)
-
-# THE MODEL (p.377 for zero inflated poisson, 448 for binomial distribution - McElreath 2020)
-#probability that a juv does not disperse or does disperse and what is the probability on each day that they will disperse. Zero values (still on parent's territory on day 112) will be a mixture of birds who will remain on their parents territory and those who have not yet dispersed, but will soon and the 112 cut off doesn't detect this
-mt <- ulam(
-    alist(
-       days ~ dzipois( p , lambda ),
-        logit(p) <- ap[condition], #ap=probability of zero
-        log(lambda) <- al[condition], #al=mean of poisson
-        ap[condition] ~ dnorm( -1.5 , 1 ), #nudge the prior for the probability of not-dispersing so that there is more mass below 0.5, assuming that only a minority of birds will not disperse
-        al[condition] ~ dnorm( 1 , 0.5 )
-        ) , data=dat , chains=4 , cores=4 , log_lik=TRUE , cmdstan = TRUE)
-
-#model output: pay attention to before (g1) and after (g2)
-#precis(mt,depth=2)
-
-#run a CONTRAST to determine whether there is a difference between before (g1) and after (g2). Yes if all values on one side of zero
-post <- extract.samples(mt)
-diff_g <- post$g[,1] - post$g[,2] #log-odds difference p.341
-diff_p <- inv_logit(post$g[,1]) - inv_logit(post$g[,2]) #on the probability scale p.341
-precis( list( diff_g=diff_g , diff_p=diff_p ) )
-```
-
-```{r toudispersalhabitat, eval=F}
-#Dispersal habitat: Location of bird at the end of study (or at point of death), Zealandia (0) or areas outside the sanctuary (1)
-
+```{r gtgrq1model, eval=F}
 library(rethinking)
 library(cmdstanr)
 set_ulam_cmdstan(TRUE) #makes it so ulam always runs with cmdstan
@@ -2561,32 +2714,33 @@ set_ulam_cmdstan(TRUE) #makes it so ulam always runs with cmdstan
 # load data sheet
 d <- read.csv(url(""), header=T, sep=",", stringsAsFactors=F)
 
-# Set up the data sheet: condition = manipulated or control, habitat = inside or outside Zealandia, 
-dat <- list(
-    response = as.numeric(as.factor(d$Habitat)),
-    t = d$Condition,
-    parentpairid = d$ParentPairID
-)
 
-# THE MODEL (p.441 for normal distribution, 448 for binomial distribution - McElreath 2020)
-mt <- ulam(
-    alist(
-        response ~ normal( mu , sigma ),
-        mu <- a[ind] + b[ind]*t + c*t,
-        a ~ normal(70,40),
-        b ~ normal(0,20),
-        c ~ normal(0,20),
-        sigma ~ exponential(1)
-    ) , data=dat , chains=4 , cores=4 , log_lik=TRUE , cmdstan = TRUE)
+#sets up the data sheet with the simulated data that the model will run on
+        dat <- list(
+          response = d$DispersalTiming, #for each individual the day at which they dispersed
+          condition = d$Condition, #1 refers to control and 2 to manipulated
+        )
+        
+        # Our MODEL, which will estimate a different mean and variance of phi for each site 
+        #(note: had to add force_recompile bc kept giving me an error and wouldn't finish running. See https://github.com/rmcelreath/rethinking/issues/338)
+        m1 <- ulam(
+          alist(
+            response ~ dzipois(p,lambda),
+            logit(p) <- g_p[condition] ,
+            log(lambda) <- g[condition] ,
+            # adaptive priors - non-centered which is a parameterization that improves sampling for the MCMC model fit by helping with complex varying effects (see p.453)
+            g_p[condition] ~ normal(0,2),
+            g[condition] ~ normal(0,2)
+          ) , data=dat , chains=4 , cores=4 , log_lik=TRUE , cmdstan = TRUE, control = list(adapt_delta = .95, force_recompile = TRUE))
+        
+        #run a CONTRAST to determine whether there is a difference between before (g1) and after (g2) (subtract g1 before from g2 after). Yes if all values for diff_p on one side of zero (want probability scale because that is the scale we used in the simulation)
+        post <- extract.samples(m1)
+        diff_g <- post$g[,2] - post$g[,1] #log-odds difference p.341 McElreath 2020
 
-#model output: pay attention to before (g1) and after (g2)
-#precis(mt,depth=2)
 
 #run a CONTRAST to determine whether there is a difference between before (g1) and after (g2). Yes if all values on one side of zero
-post <- extract.samples(mt)
-diff_g <- post$g[,1] - post$g[,2] #log-odds difference p.341
-diff_p <- inv_logit(post$g[,1]) - inv_logit(post$g[,2]) #on the probability scale p.341
-precis( list( diff_g=diff_g , diff_p=diff_p ) )
+precis( diff_g )
+
 ```
 
 
