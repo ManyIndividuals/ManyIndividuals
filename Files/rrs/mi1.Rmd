@@ -2733,7 +2733,7 @@ diff_p <- inv_logit(post$g[,2]) - inv_logit(post$g[,1]) #on the probability scal
         }
         }
 }
-#write.csv(simresults,file="simresultsTouLocation.csv") #put the outputs into a csv file so don't have to run model again - it takes about 6 hours (14:24-)
+#write.csv(simresults,file="simresultsTouLocation.csv") #put the outputs into a csv file so don't have to run model again - it takes about 2.5 hours
 ```
 
 ```{r TouQ1.3simulationfiguresamplesize, eval=F, messages=F}
@@ -2744,6 +2744,10 @@ set_ulam_cmdstan(TRUE) #makes it so ulam always runs with cmdstan
 #load the data sheet that was made from the simulation in the previous R chunk
 d <- read.csv("https://raw.githubusercontent.com/ManyIndividuals/ManyIndividuals/main/Files/rrs/mi1simresultstoulocation.csv", header = TRUE, sep = ",", stringsAsFactors = FALSE)
 #head(d)
+
+#make the data comparable with the other graphs by subtracting from the total
+d$proportion_estimates_below_zero <- 1-d$proportion_estimates_below_zero
+d$count_estimates_below_zero <- 2000-as.numeric(d$count_estimates_below_zero)
 
 # Set up the data sheet for the model
 dat <- list(
@@ -2835,13 +2839,13 @@ mtext("Mean difference in dispersal location (control vs. manipulated)",side=1,l
 mtext("Ratio of estimates below zero",side=2,line=3, cex=1.2)
 
 #95% of the posterior mass is above zero for a 0.3 or larger mean difference between conditions when the sample size is 60
-mu_10_ci #0.27. Column 1 for the 0.3 category on the x axis (ordered by unique(d$changeprob_mean))
-mu_20_ci #0.15
-mu_30_ci #0.12
-mu_40_ci #0.12
-mu_60_ci #0.05
-sum(d[d$n %in% 60 & d$changeprob_mean %in% 0.3,]$proportion_estimates_below_zero<0.3) #30/30 values are <0.3 when mean change=0.3; 5/30 when mean change = 0, 27/30 when mean change = 0.2
-length(d[d$n %in% 60 & d$changeprob_mean %in% 0.3,]$proportion_estimates_below_zero) #30 values total
+mu_10_ci #0.28. Column 1 for the 0.3 category on the x axis (ordered by unique(d$changeprob_mean))
+mu_20_ci #0.20
+mu_30_ci #0.14
+mu_40_ci #0.08
+mu_60_ci #0.06
+sum(d[d$n %in% 40 & d$changeprob_mean %in% 0.3,]$proportion_estimates_below_zero<0.3) #30/30 values are <0.3 when mean change=0.3; 18/30 when mean change = 0, 25/30 when mean change = 0.2
+length(d[d$n %in% 40 & d$changeprob_mean %in% 0.3,]$proportion_estimates_below_zero) #30 values total
 ```
 
 &nbsp;
