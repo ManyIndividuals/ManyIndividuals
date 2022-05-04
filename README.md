@@ -45,6 +45,7 @@ We use a replicable infrastructure where all programs are free to use (and some 
  - [Google Docs](https://www.google.com/docs/about/) to write experimental protocols and link to them in the registered reports and articles at GitHub (e.g., http://corinalogan.com/Preregistrations/gxpopbehaviorhabitat.html#Protocols_and_open_materials)
     - Make the shareable link VIEW ONLY so the public can’t edit it; share directly with collaborators and experimenters and list them as editors so they can update as testing progresses
     - Write exceptions at the protocols as you go for anything that comes up that was not planned or had to be tweaked
+ - [Peer Community in Registered Reports](https://rr.peercommunityin.org/about/about) to submit our registered reports for pre-study peer review and acceptance (then we collect the data and submit it back to PCI RR for its post-study peer review)
 
 ## Code of conduct
 
