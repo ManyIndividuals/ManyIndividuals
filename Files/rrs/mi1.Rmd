@@ -1547,45 +1547,42 @@ number_before<-5/10 #number of habitats used per bird in the before condition. T
 changenumber<-1.5 #the difference in the number habitats used between the before and after conditions
 N_ind <- 20 #number of individuals tested
 
-#before
-numberbefore <- rbinom(N_ind,size=10,prob=number_before) #proportion of habitats used
-changenumber <- rnorm(N_ind, mean=(10-numberbefore)*1,sd=2)  #if had a large number before, have a smaller change relative to the after condition. Subtract 3.5 to have a change of 2 habitats (10-4.5=5.5-3.5=2)
+numberbefore <- rbinom(N_ind,size=10,prob=number_before) #proportion of habitats used before
+numberafter <- as.vector(rep(0,N_ind) )
+for (i in 1:N_ind) {
+  numberafter[i] <- round( numberbefore[i] + rnorm(n=1, mean=(10-numberbefore[i])*(changenumber/numberbefore[i]),sd=1),0 )
+  if(numberafter[i]>10){numberafter[i] <- 10}
+}
 
-#after
-numberafter <- round(numberbefore+rnorm(N_ind,mean=changenumber,sd=2),2)
-numberafter[numberafter<1]<-1 #this needs to be a minimum of 1 bc an individual can never live in less than 1 habitat
+#change the number of habitats increased (e.g., 3.5) in changenumber in numberafter to determine which changenumber to run the simulations at. Visualize using the plot below to see when the distributions have more separation
+plot(density(numberbefore),lwd=2,xlim=c(0,18),ylim=c(0,0.3))
+lines(density(numberafter),lwd=2,col="red") #the after condition. Should be able to tell the difference when changenumber is at least 1.5 above number_before (and number_before is 5/10)
 
-#change the number of habitats increased (e.g., 3.5) in changenumber and the sd in numberafter to determine which sds to run the simulations at. Visualize using the plot below to see when the distributions have more separation. It looks like with a difference of 2 habitats (3.5 in changenumber), which is probably the minimum we could detect differences with, the maximum numberafter sd would be 2 and an sd with larger detectable differences is 1. Run the simulation with an sd of 1 and 2 to explore the boundaries
-plot(density(numberbefore),lwd=2,xlim=c(0,18),ylim=c(0,0.3)) #A sample size of 10k individuals. An SD of 2 (when the mean before is 5) encompasses all of the range of numbers of habitats we expect to find (0-10) so it would be the largest SD we would expect and thus the most conservative sd to use in the simulations
-lines(density(numberafter),lwd=2,col="red") #the after condition. Should be able to tell the difference when changenumber is at least 1.5 and the SD is at least 1.5 (and number_before is 5)
-
-#check the plot to see whether individuals are increasing their numbers = one point is below the 1:1 line
-#plot(numberbefore,numberafter)
-#abline(0,1)
+#check the plot to see whether individuals are increasing their numbers = most are above the 1:1 line. Those that were smaller on the x axis are farther fromm the line, which is what we wanted
+plot(numberbefore,numberafter,xlim=c(0,10),ylim=c(0,10))
+abline(0,1)
 
 
 ### POWER ANALYSIS: different sample sizes and different mean changes in proportions between before and after conditions
 # We now set our range of likely sample sizes, from a minimum of 9 individuals per population to a maximum of 60 individuals per population. We draw repeated samples of individuals of that size from each of the 5 populations, during each repetition we draw two samples from each population (so we can infer the false negative rate of wrongly estimating that two samples come from a different population even though they were taken from the sample population). This means we have 10 repetitions for each of the 5 sample sizes and each of the 6 changeprops. So 10*6 changeprops (=60) for each of the 5 sample sizes, resulting in a total length of samplesizes of 300
 samplesizes<-c(10,20,30,40,60) #c(10,20,30,40,60)
 
-# Set the means you want to compare. To get a certain mean change in number of microhabitats between beforemaxnum and after, set the multiplier in the changenumber mean: a large multiplier means a large change. 
-maxnum <- 10 #maximum number of habitats possible
-maxinc <- (maxnum-1)/2 #4.5 habitats
-meanchangenumber1<-1 #100% of the maximum possible change (individuals in the suburban habitat will on average use 4.5 more habitats after the experiment, and individuals in the natural habitat will use 3.5). maxinc*1. For example, if max is 10, then avg increase of (10-1)/2=4-5. Push everyone to 10 meaning that the lowest individuals will increase by 9 and the highest by 0 food items. Therefore, the average is 4.5 food items. Subtract by 1 bc birds will live in a minimum of 1 habitat
-meanchangenumber2<-0.89 #89% of the maximum possible change (=4 more habitats for suburban birds and  3.1 more habitats for birds in natural areas. maxinc*0.89. If set this to be a value between 0-1, it will reflect the proportion of the max habitat change that individuals will on average show. If instead of working with proportions, you want this to reflect a specific number of habitats, can use your specific number to get the proportion. number habitats / maxinc   For example, we got the 0.89 by dividing 4/4.5. If you want this, replace the code with meanchangenumber2<-("number habitats"/maxinc)
-meanchangenumber3<-0.67 #3 more habitats for suburban, 2.3  more habitats for natural
-meanchangenumber4<-0.44 # 2 more habitats for suburban, 1.5  more habitats for natural
-meanchangenumber5<-0.22 # 1 more habitat for suburban, 0.8  more habitats for natural
-meanchangenumber6<-0 # 0 more habitats for suburban and  natural
+# Set the means you want to compare
+meanchangenumber1<-3/10 #Likely going to use 3 more out of the 10 habitats
+meanchangenumber2<-2.5/10 #Likely going to use 2.5 more out of the 10 habitats
+meanchangenumber3<-2/10 
+meanchangenumber4<-1.5/10
+meanchangenumber5<-1/10
+meanchangenumber6<-0/10
 changenumbervariants<-c(meanchangenumber1,meanchangenumber2,meanchangenumber3,meanchangenumber4,meanchangenumber5,meanchangenumber6) #for false negatives
 
-#compare different baseline numbers for how many habitats these individuals use before the manipulation
-number_before<-c(3, 4.5, 6)
+#compare different baseline numbers for how many habitats these individuals are likely to use before the manipulation
+average_number_before<-c(3/10, 4.5/10, 6/10)
 
 #set up data frame where results will be stored
 simresults <- matrix(NA,nrow=900,ncol=7)
 simresults <- data.frame(simresults)
-colnames(simresults) <- c("n","changenumber_mean","changenumber_sd","repetition","number_before","proportion_estimates_below_zero","count_estimates_below_zero")
+colnames(simresults) <- c("n","changenumber_mean","repetition","changeprop_sd","number_before","proportion_estimates_below_zero","count_estimates_below_zero")
 counter<-1
 
 # run simulations. There are 5 different sample sizes, and for each we have 6 different mean change in proportions that we want to examine, and each will repeat 10 times for a total of 300 samples.
@@ -1600,44 +1597,48 @@ for (samplesize in 1:length(samplesizes)) {
         
         for (baselinenumber in 1:3) {
         #pick the current proportion variant from the list changepropvariants
-        currentnumber_before <- number_before[baselinenumber]
+        average_currentnumber_before <- average_number_before[baselinenumber]
         
         for (repetition in 1:10) {
-        #create data frame to store for each repetition of the simulated data to be analyzed by the model
-        sites <- matrix(nrow=n,ncol=3) 
-        colnames(sites)<-c("ID","condition","number_habitats")
+       
+        #BEFORE & AFTER manipulation
+        individual_probs_before<-(rnorm(N_ind,mean=average_currentnumber_before,sd=0.05))  # Based on one of the three average baseline numbers before, each individual will be assigned a value close to this with some variation
         
-        #BEFORE manipulation
-        #number of habitats used, 2 means 2 decimal points. Assume baseline number is 2, 3, or 4
-        numberbefore <- round(rnorm(N_ind,mean=currentnumber_before,sd=1.5),2) #number of habitats used, 2 means 2 decimal points
-        numberbefore[numberbefore<1]<-1 #this needs to be a minimum of 1 bc an individual can never live in less than 1 habitat
+        simulatedindividuals_number_before<-as.vector(rep(0,N_ind))
+        individual_probs_after<-as.vector(rep(0,N_ind))
+        simulatedindividuals_number_after<-as.vector(rep(0,N_ind))
         
-        changenumber <- rnorm(N_ind, mean=(10-numberbefore)*(currentchangenumber),sd=2) #change this SD to explore the boundaries of individual variation in their response (in terms of the success measure) to the flexibility manipulation. We explored SD=1 and SD=2
+        for (i in 1:N_ind) {
+          simulatedindividuals_number_before[i] <- rbinom(1 ,size=10,prob=individual_probs_before[i]) # Based on their individual values for the number of habitats before, calculate how many habitats each individual used before
+          simulatedindividuals_number_before[simulatedindividuals_number_before==0]<-1 # Individuals have to live in at least one habitat
+          individual_probs_after[i]<-individual_probs_before[i]+rnorm(1,mean=currentchangenumber,sd=0.1) # We increase the individual baseline values by one of the six change numbers, with variation so that some individuals might also decrease their value from their baseline before
+          simulatedindividuals_number_after[i] <- rbinom(1 ,size=10,prob=individual_probs_after[i]) # Based on their modified individual values for the number of habitats after, calculate how many habitats each individual used after
+          simulatedindividuals_number_after[simulatedindividuals_number_after==0]<-1 # Individuals have to live in at least one habitat
+          }
 
-        #AFTER manipulation
-        numberafter <- round(numberbefore+changenumber,2)
-        numberafter[numberafter<1]<-1 #this needs to be a minimum of 1 bc an individual can never live in less than 1 habitat
-  
         ### run a STAN model to see whether the before and after proportions are estimated to be different from each other
         #sets up the data sheet with the simulated data that the model will run on
       dat <- list(
-    habitatuse = standardize(c(numberbefore,numberafter)), #compare before and after
-    before = c(rep(1,N_ind),rep(2,N_ind)), #1 refers to before and 2 to after
-    ind = rep(1:N_ind,2) #go through all individuals twice because there are observations from before and after for each
+    habitatuse = c(simulatedindividuals_number_before,simulatedindividuals_repetition_numberafter), #compare before and after. standardize so can compare natural habitats with max 8 habitats with suburban with max 10 habitats
+    tid = c(rep(1,N_ind),rep(2,N_ind)), #1 refers to before and 2 to after
+    actor = rep(1:N_ind,2) #go through all individuals twice because there are observations from before and after for each
 )
 
         # Our MODEL, which will estimate a different mean and variance of phi for each site 
         # note: had to add force_recompile bc kept giving me an error and wouldn't finish running. See https://github.com/rmcelreath/rethinking/issues/338
 sj <- ulam(
     alist(
-        habitatuse ~ normal( mu , sigma ),
-        mu <- a_ind[ind] + b_ind[ind]*before,
-        c(a_ind,b_ind)[ind] ~ multi_normal( c(alpha,beta) , Rho , sigma_ind ),
-        alpha ~ normal(0,2), #0=standardized mean number of habitats used, 2=habitats for the sd
-        beta ~ normal(0,4), #0=mean slope, 4=sd which is like the max difference between before and after
-        sigma_ind ~ exponential(1),
-        sigma ~ exponential(1),
-        Rho ~ lkj_corr(2)
+        habitatuse ~ dbinom(10,p),
+        logit(p) <- g[tid] + alpha[actor,tid],
+        # adaptive priors - non-centered
+        transpars> matrix[actor,2]:alpha <- compose_noncentered( sigma_actor , L_Rho_actor , z_actor ),
+        matrix[2,actor]:z_actor ~ normal( 0 , 1 ),
+        # fixed priors
+        g[tid] ~ normal(0,1),
+        vector[2]:sigma_actor ~ dexp(1),
+        cholesky_factor_corr[2]:L_Rho_actor ~ lkj_corr_cholesky( 2 ),
+        # compute ordinary correlation matrixes from Cholesky factors
+        gq> matrix[2,2]:Rho_actor <<- Chol_to_Corr(L_Rho_actor)
     ) , data=dat , chains=4 , cores=4 , log_lik=TRUE , cmdstan = TRUE, control = list(adapt_delta = .95, force_recompile = TRUE))
 #precis(sj, depth=2) #check the output to make sure it looks as expected
   #Don't need to do the contrast because we already have each individual's number so we only need to look at their beta to see whether it is positive (more habitats after) or negative (fewer habitats after)
@@ -1646,9 +1647,9 @@ post <- extract.samples(sj)
 
   # enter all of the results into the data sheet
     simresults[counter,]$n <- N_ind
-    simresults[counter,]$changenumber_mean <- maxinc*currentchangenumber #this will show the avg change in number of habitats
-    simresults[counter,]$changenumber_sd <- 2 #change this SD to match that in changenumber (only changes in these 2 places)
+    simresults[counter,]$changenumber_mean <- currentchangenumber #this will show the avg change in number of habitats
     simresults[counter,]$repetition <- repetition
+    simresults[counter,]$changeprop_sd <- 0.1 #change this number and in individual_probs_after to test different SDs
     simresults[counter,]$number_before <- currentnumber_before
     simresults[counter,]$proportion_estimates_below_zero <- sum(post$beta<0)/2000
     simresults[counter,]$count_estimates_below_zero <- sum(post$beta<0)
@@ -1660,8 +1661,8 @@ post <- extract.samples(sj)
 }
 
 #write the output to csv, combine both SD data sets into one sheet, change the column "changenumber_mean" to the number of habitats (e.g., 4.5, 4, 3, 2, 1 as in meanchangenumber above), upload to github, and get the url for the next R chunk. FYI the model takes 5-7hrs to run
-#write.csv(simresults,file="simresultsjayhabitatsd2.csv")
-#write.csv(simresults,file="simresultsjayhabitatsd1.csv")
+#write.csv(simresults,file="simresultsjayhabitatsd0.1.csv")
+#write.csv(simresults,file="simresultsjayhabitatsd0.2.csv")
 ```
 
 ```{r jayq3simulationfiguresamplesize, eval=F, messages=F}
