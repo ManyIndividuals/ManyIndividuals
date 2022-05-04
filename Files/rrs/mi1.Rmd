@@ -180,7 +180,7 @@ For all research questions, Table 3 summarizes our predictions, analysis plans, 
 
 &nbsp;
 
-**Table 3.** Study design for the toutouwai research. References that were not already cited in the introduction: .
+**Table 3.** Study design for the toutouwai research. References that were not already cited in the introduction: @pasinelli2004genetic; @howard1960innate.
 
 <img width="100%" src="mi1StudyDesignTableGTGR.png">
 
@@ -553,15 +553,15 @@ dbinom(1:12,12,probability_choose_lightgrey_twelvetrials)[10]
 
 ## Determining after which reversal an individual has completed the experiment: serial reversal passing criterion
 
-Data from previous serial reversal experiments suggests that individuals who go through multiple reversals will end up with a performance that is similar to the individuals who needed the fewest trials on the first reversal [@Loganflexmanip; @morandferron]. This suggests that the manipulation changes individuals within their natural range of variation rather than pushing them to new limits. This means that we can use the performance of the fastest individuals in the first reversal to set the criterion for passing the serial reversal experiment. Accordingly, we can only set the serial reversal passing criterion after the data from the first reversal begins to become available. Some species might already have data from previous studies on reversal learning, however it is important to set the passing criterion for this experiment using the this particular setup. Therefore, the criterion must be established from scratch for each species using this setup.
+Data from previous serial reversal experiments suggests that individuals who go through multiple reversals will end up with a performance that is similar to the individuals who needed the fewest trials on the first reversal [@logan2022flexmanip]. This suggests that the manipulation changes individuals within their natural range of variation rather than pushing them to new limits. This means that we can use the performance of the fastest individuals in the first reversal to set the criterion for passing the serial reversal experiment. Accordingly, we can only set the serial reversal passing criterion after the data from the first reversal begins to become available. Some species might already have data from previous studies on reversal learning, however it is important to set the passing criterion for this experiment using the this particular setup. Therefore, the criterion must be established from scratch for each species using this setup.
 
 **The serial reversal passing criterion:** reach the reversal passing criterion (10 out of 12 trials correct) in X trials or fewer in two consecutive reversals. 
 
-X = the number of trials required that marks the fastest 20% of individuals in the first reversal. For example, if you test 20 individuals, the number of trials for the 4th fastest individual will be the criterion. For 10 individuals, use the number of trials for the 2nd fastest individual. The fastest 20% was validated using the grackle data [@Loganflexmanip]: it aligns with the one sigma rule from a normal distribution, indicating the percentage of individuals who are faster than the mean number of trials minus one standard deviation. If more than 20% of individuals reach this number of trials in their first reversal (because there might be a tie), choose the next fastest number of trials to pass. Particularly near the beginning of the experiment, it will be important to set the passing criterion to a lower number to ensure that individuals will be overtrained rather than undertrained. 
+X = the number of trials required that marks the fastest 20% of individuals in the first reversal. For example, if you test 20 individuals, the number of trials for the 4th fastest individual will be the criterion. For 10 individuals, use the number of trials for the 2nd fastest individual. The fastest 20% was validated using the grackle data [@logan2022flexmanip]: it aligns with the one sigma rule from a normal distribution, indicating the percentage of individuals who are faster than the mean number of trials minus one standard deviation. If more than 20% of individuals reach this number of trials in their first reversal (because there might be a tie), choose the next fastest number of trials to pass. Particularly near the beginning of the experiment, it will be important to set the passing criterion to a lower number to ensure that individuals will be overtrained rather than undertrained. 
 
 As the data for additional individuals becomes available, this number can change accordingly. If the number changes across the experiment, we will check whether any currently participating individuals would have already passed according to this criterion and end their experiment.
 
-Individuals need to meet this criterion in two consecutive reversals to pass the serial reversal experiment to ensure that their behavior is consistent and that their speedy performance did not occur by chance. Previous serial reversal experiments show that reversal performance plateaus after a certain number of reversals [e.g., 6-8 reversals in great-tailed grackles @Loganflexmanip]. If individuals show no consistent improvement after 12 reversals and have not yet met the serial reversal passing criterion, they will be excluded from the experiment. We will plan to start with many more individuals than the minimum sample size to allow for potential drop outs.
+Individuals need to meet this criterion in two consecutive reversals to pass the serial reversal experiment to ensure that their behavior is consistent and that their speedy performance did not occur by chance. Previous serial reversal experiments show that reversal performance plateaus after a certain number of reversals [e.g., 6-8 reversals in great-tailed grackles @logan2022flexmanip]. If individuals show no consistent improvement after 12 reversals and have not yet met the serial reversal passing criterion, they will be excluded from the experiment. We will plan to start with many more individuals than the minimum sample size to allow for potential drop outs.
 
 
 
@@ -789,13 +789,23 @@ Same questions, response/explanatory/random variables as in Design 1.
 
 $R_i$ ~ Binomial($t_i$,$p_i$)
 
-$R_i$ is the duration spent at cafes and dumpsters when food rewards were present and $t_i$ is the total duration spent at cafes and dumpsters either before or after (i) the flexibility manipulation.
+$R_i$ is the duration spent at cafes and dumpsters when food rewards were present and $t_i$ is the total duration spent at cafes and dumpsters either before or after (i) the flexibility manipulation. A binomial distribution was used because the response variable is a proportion [@mcelreath2020statistical].
 
 logit($p_i$) = $\gamma$[condition] + $\alpha$[ind],[condition]
 
 $\gamma$[condition] is the average log-odds for each condition (before/after) and $\alpha$[ind],[condition] is the effect for each individual in each condition. The Bayesian model was developed using @mcelreath2020statistical as a guide.
 
 ###### Power analysis
+
+We estimated our power to detect differences between conditions at different sample sizes and with different mean changes in the proportion of time spent in the presence of a reward in the before vs. after conditions (Figure 10). We simulated the proportions of times that different sample sizes of individuals would spend in the presence of the reward before and after the flexibility manipulation. We analyzed these simulated data with the model we will use to analyze the actual data, estimating the change in the proportion of time spent in the presence of the reward between the before and after conditions. From the posterior estimates of the model, we extracted both the mean change as well as the ratio of the posterior estimates that were below zero. 
+
+If the mean ratio of estimates below zero is close to 0.5, the model assumes that the change in proportion of time spent in the presence of a reward before the flexibility manipulation is similar to after. If the ratio is close to zero, the model assumes individuals have changed their behavior. For changes smaller than 0.1, models are likely to assume that no changes occurred even with large sample sizes. If the change in the proportion of time an individual spends at a location when food is present before the flexibility manipulation vs. after is 0.1, on average 93% of the posterior of the model based on a sample size of 20 individuals will be larger than zero. This means that the model is quite certain there is a difference that is larger than zero. In addition, none of the models for a sample size of 20 at the mean change of 0.1 have a ratio larger than 0.3, meaning that the risk of having a false negative is unlikely. 
+
+In general, with sample sizes at or above 20 and mean changes in the proportion of time spent in the presence of a reward is 0.1 or larger, then it is highly likely that the model will indicate that individuals have changed their behavior. Mean changes below 0.1 can still be detected, however there is a higher risk that there will be a false negative. If the change in the proportion of time an individual spends at a location when food is present before the flexibility manipulation vs. after is 0.025, on average 61% of the posterior of the model based on a sample size of 20 individuals will be larger than zero. In addition, only 20% of the models for a sample size of 20 at the mean change of 0.025 have a ratio larger than 0.3, meaning that the risk of having a false negative is still low.
+
+With small mean changes in the response variable, some individuals might not increase or even decrease their response after the manipulation because there is variation around the mean change in individual responses. With small sample sizes, there is a risk that only individuals who did not clearly increase their response will be studied, whereas larger sample sizes are more likely to include a wider spectrum of individuals.
+
+To estimate the risk of detecting false positives, we set the mean change in the proportion of time spent in the presence of the reward to zero so there was no change between the before and after conditions. As expected, the average ratio of estimates below zero is close to 0.5 and independent of sample size. With a sample size of 20, 43% have a ratio smaller than 0.3, meaning that the risk of having a false positive is high. The risk would be lower if the variation among individuals was lower than what we assumed (across all models, the standard deviation of the mean change in proportion was 0.1, which is a conservative estimate).
 
 ```{r gtgrq1simulation, eval=F}
 library(rethinking)
@@ -949,16 +959,6 @@ diff_p <- inv_logit(post$g[,2]) - inv_logit(post$g[,1]) #on the probability scal
 #write.csv(diff_p,file="diff_p20changeprop0.025.csv")
 #write.csv(diff_p,file="diff_p60changeprop0.025.csv")
 ```
-
-We estimated our power to detect differences between conditions at different sample sizes and with different mean changes in the proportion of time spent in the presence of a reward in the before vs. after conditions (Figure 10). We simulated the proportions of times that different sample sizes of individuals would spend in the presence of the reward before and after the flexibility manipulation. We analyzed these simulated data with the model we will use to analyze the actual data, estimating the change in the proportion of time spent in the presence of the reward between the before and after conditions. From the posterior estimates of the model, we extracted both the mean change as well as the ratio of the posterior estimates that were below zero. 
-
-If the mean ratio of estimates below zero is close to 0.5, the model assumes that the change in proportion of time spent in the presence of a reward before the flexibility manipulation is similar to after. If the ratio is close to zero, the model assumes individuals have changed their behavior. For changes smaller than 0.1, models are likely to assume that no changes occurred even with large sample sizes. If the change in the proportion of time an individual spends at a location when food is present before the flexibility manipulation vs. after is 0.1, on average 93% of the posterior of the model based on a sample size of 20 individuals will be larger than zero. This means that the model is quite certain there is a difference that is larger than zero. In addition, none of the models for a sample size of 20 at the mean change of 0.1 have a ratio larger than 0.3, meaning that the risk of having a false negative is unlikely. 
-
-In general, with sample sizes at or above 20 and mean changes in the proportion of time spent in the presence of a reward is 0.1 or larger, then it is highly likely that the model will indicate that individuals have changed their behavior. Mean changes below 0.1 can still be detected, however there is a higher risk that there will be a false negative. If the change in the proportion of time an individual spends at a location when food is present before the flexibility manipulation vs. after is 0.025, on average 61% of the posterior of the model based on a sample size of 20 individuals will be larger than zero. In addition, only 20% of the models for a sample size of 20 at the mean change of 0.025 have a ratio larger than 0.3, meaning that the risk of having a false negative is still low.
-
-With small mean changes in the response variable, some individuals might not increase or even decrease their response after the manipulation because there is variation around the mean change in individual responses. With small sample sizes, there is a risk that only individuals who did not clearly increase their response will be studied, whereas larger sample sizes are more likely to include a wider spectrum of individuals.
-
-To estimate the risk of detecting false positives, we set the mean change in the proportion of time spent in the presence of the reward to zero so there was no change between the before and after conditions. As expected, the average ratio of estimates below zero is close to 0.5 and independent of sample size. With a sample size of 20, 43% have a ratio smaller than 0.3, meaning that the risk of having a false positive is high. The risk would be lower if the variation among individuals was lower than what we assumed (across all models, the standard deviation of the mean change in proportion was 0.1, which is a conservative estimate).
 
 ```{r gtgrq1simulationfiguresamplesize, eval=F, messages=F}
 library(rethinking)
@@ -1535,18 +1535,20 @@ library(cmdstanr)
 set_ulam_cmdstan(TRUE) #makes it so ulam always runs with cmdstan
 rstan_options(auto_write = TRUE)
 
-### SIMULATE the population (p.441 for normal distribution - McElreath 2020)
-N_ind <- 20 #number of individuals tested
+### SIMULATE the population
+
+#exploration of the number of habitats jays might use (have to have at least 5% of the points in a given habitat for that habitat to count). Binomial distribution restricts it to the known maximum of 10 microhabitats in our study and makes it a positive number. Can likely distinguish between differences of 15% or more
+plot(density(rbinom(10000,size=10,prob=5/10))) #10 max habitats; on average, individuals will use 5 of the 10 habitats more than 5% of the time
+lines(density(rbinom(10000,size=10,prob=3.5/10)),col="red") #on average, individuals will use 3.5 of the 10 habitats more than 5% of the time
+lines(density(rbinom(10000,size=10,prob=7/10)),col="blue") #on average, individuals will use 7 of the 10 habitats more than 5% of the time
 
 #choose the mean number of habitats used and standard deviations - visualize to see whether it would be possible to tell the difference between before (black) and after (red)
-number_before<-4.5 #number of habitats used per bird in the before condition
+number_before<-5/10 #number of habitats used per bird in the before condition. This is 9/2 and 9 was chosen because it is between the max 8 habitats for individuals in the natural habitat and max 10 habitats in the suburban habitat
 changenumber<-1.5 #the difference in the number habitats used between the before and after conditions
-plot(density(rnorm(10000,number_before,sd=1.5)),lwd=2,xlim=c(0,18),ylim=c(0,0.3)) #A sample size of 10k individuals. An SD of 2 (when the mean before is 5) encompasses all of the range of numbers of habitats we expect to find (0-10) so it would be the largest SD we would expect and thus the most conservative sd to use in the simulations
-lines(density(rnorm(10000,number_before*(changenumber*1),sd=2)),lwd=2,col="red") #the after condition. Should be able to tell the difference when changenumber is at least 1.3 and the SD is at least 2 (and number_before is 4.5)
+N_ind <- 20 #number of individuals tested
 
 #before
-numberbefore <- round(rnorm(N_ind,mean=4.5,sd=1.5),2) #number of habitats used, 2 means 2 decimal points
-numberbefore[numberbefore<1]<-1 #this needs to be a minimum of 1 bc an individual can never live in less than 1 habitat
+numberbefore <- rbinom(N_ind,size=10,prob=number_before) #proportion of habitats used
 changenumber <- rnorm(N_ind, mean=(10-numberbefore)*1,sd=2)  #if had a large number before, have a smaller change relative to the after condition. Subtract 3.5 to have a change of 2 habitats (10-4.5=5.5-3.5=2)
 
 #after
@@ -2430,17 +2432,13 @@ mjf <- ulam(
 
 ##### T.Q1 Does a flexibility manipulation alter dispersal timing (1.1) and distance (1.2), as well as the likelihood that juvenile toutouwai will disperse beyond the protection of Zealandia’s fence and attempt to establish in the adjacent urban area (1.3)?
 
-
-##### G.Q1.1 Do flexibility manipulated individuals disperse at different times after fledging?
-
-# 1.1 Timing: LMM: Age at dispersal (days since fledging) ~ Condition + (1|Parent pair ID)
-# zero-inflated poisson: need zero-inflated because a small percentage of individuals does not disperse in their first season (~10%); individuals who do disperse appear to do so within a relatively short period, which is captured by the poisson-model which counts the numbers of days (McElreath 2020, page 378 2nd edition)
+###### The model: dispersal timing (1.1)
  
 *Bayesian model for a zero-inflated poisson distribution:*
   
   $D_i$ ~ Zero-inflated Poisson($p_i$,$lambda_i$)
 
-$D_i$ is how many days before the cut-off of observations at 112 days individuals dispersed (for example, if a bird dispersed 50 days after fledging, D_i is 112-50=72); the subtraction covers cases where the age at dispersal would be very late such that some birds might have dispersed but have not yet by the cut-off day. These individuals will be included with the non-dispersers as having a zero-value. $lambda_i$ is the mean of the poisson describing the average day (and variance) for individuals who have dispersed.
+$D_i$ is how many days before the cut-off of observations at 112 days individuals dispersed (for example, if a bird dispersed 50 days after fledging, D_i is 112-50=72); the subtraction covers cases where the age at dispersal would be very late such that some birds might disperse after day 112 post-fledging. The latter individuals will be included with the non-dispersers as having a zero value. $lambda_i$ is the mean of the Poisson distribution describing the average day (and variance) for individuals who have dispersed. A zero inflated Poisson distribution was used because a small percentage of individuals do not disperse in their first season (zero values) and individuals who do disperse have a response variable that is a count number of days post-fledging do so within a relatively short period, which is captured by the Poisson distribution which counts the number of days [@mcelreath2020statistical].
 
 log($p_i$) = $\gamma_p$[condition] + $\alpha_p$[parentid],[condition]
 
@@ -2448,10 +2446,17 @@ log($lambda_i$) = $\gamma_l$[condition] + $\alpha_l$[parentid],[condition]
 
 the two $\gamma$[condition] estimates reflect the difference between control and manipulated birds for the probability to not disperse ($\gamma_p$) and when to disperse ($\gamma_l$) and the two $\alpha$[parentid],[condition] are the effects for individuals born to the same parents in each condition. The Bayesian model was developed using @mcelreath2020statistical as a guide.
 
+###### Power analysis (1.1)
 
-###### Power analysis
+We estimated our power to detect differences between conditions at different sample sizes and with different mean changes in age at which individuals disperse after fledging (Figure 10). We simulated the age at which individuals would disperse in the control condition (with averages of 36, 48, or 72 days after fledging), and assumed that manipulated individuals might disperse sooner. We analyzed these simulated data with the model we will use to analyze the actual data, estimating the contrast in average time at which individuals disperse. The model also accounts for differences in the likelihood to not disperse at all between control and manipulated birds, but we did not exame this here in the simulation given that the number of individuals who will not disperse is likely to be very low. From the posterior estimates of the model, we extracted both the mean change as well as the ratio of the posterior estimates that were below zero, indicating that there would be a clear difference between control and manipulated birds.
 
-```{r gtgrq1simulation, eval=F}
+If the mean ratio of estimates below zero is close to 0.5, the model assumes that the age at which individuals disperse is similar for control and manipulated birds. If the ratio is close to zero, the model assumes individuals have changed their behavior and disperse earlier when they were manipulated. We find that for changes smaller than 1 standard deviation (which equals roughly 7 days), models are likely to assume that there are no differences between control and manipulated individuals even with large sample sizes. If the contrast in time of dispersal of manipulated compared to control individuals is 1 standard deviation, on average 92% of the posterior of the model based on a sample size of 20 individuals will be larger than zero. This means that the model is quite certain there is a contrast that is larger than zero. 
+
+In general, with sample sizes at or above 20 and mean contrasts of 1 standard deviation or higher, it is highly likely that the model will indicate that manipulated individuals have changed their behavior. Mean contrasts of less than 1 standard deviation can still be detected, however there is a higher risk that there will be a false negative (27% risk of a false negative with a sample size of 20 when the contrast is 0.25 standard deviations/2 days). 
+
+To estimate the risk of detecting false positives, we set the mean change in age of dispersal for manipulated individuals compared to control individuals to zero so there was no change. As expected, the average ratio of estimates below zero is close to 0.5 and independent of sample size. With a sample size of 20, <7% have a ratio smaller than 0.1, meaning that the risk of having a false positive is low. 
+
+```{r touq1timingsimulation, eval=F}
 library(rethinking)
 library(cmdstanr)
 set_ulam_cmdstan(TRUE) #makes it so ulam always runs with cmdstan
@@ -2563,15 +2568,7 @@ for (samplesize in 1:length(samplesizes)) {
 
 ```
 
-We estimated our power to detect differences between conditions at different sample sizes and with different mean changes in age at which individuals disperse after fledging (Figure 10). We simulated the age at which individuals would disperse in the control condition (with averages of 36, 48, or 72 days after fledging), and assumed that manipulated individuals might disperse sooner. We analyzed these simulated data with the model we will use to analyze the actual data, estimating the contrast in average time at which individuals disperse. The model also accounts for differences in the likelihood to not disperse at all between control and manipulated birds, but we did not exame this here in the simulation given that the number of individuals who will not disperse is likely to be very low. From the posterior estimates of the model, we extracted both the mean change as well as the ratio of the posterior estimates that were below zero, indicating that there would be a clear difference between control and manipulated birds. 
-
-If the mean ratio of estimates below zero is close to 0.5, the model assumes that the age at which individuals disperse is similar for control and manipulated birds. If the ratio is close to zero, the model assumes individuals have changed their behavior and disperse earlier when they were manipulated. We find that for changes smaller than 1 standard deviation (which equals roughly 7 days), models are likely to assume that there are no differences between control and manipulated individuals even with large sample sizes. If the contrast in time of dispersal of manipulated compared to control individuals is 1 standard deviation, on average 92% of the posterior of the model based on a sample size of 20 individuals will be larger than zero. This means that the model is quite certain there is a contrast that is larger than zero. 
-
-In general, with sample sizes at or above 20 and mean contrasts of 1 standard deviation or higher, it is highly likely that the model will indicate that manipulated individuals have changed their behavior. Mean contrasts of less than 1 standard deviation can still be detected, however there is a higher risk that there will be a false negative (27% risk of a false negative with a sample size of 20 when the contrast is 0.25 standard deviations/2 days). 
-
-To estimate the risk of detecting false positives, we set the mean change in age of dispersal for manipulated individuals compared to control individuals to zero so there was no change. As expected, the average ratio of estimates below zero is close to 0.5 and independent of sample size. With a sample size of 20, <7% have a ratio smaller than 0.1, meaning that the risk of having a false positive is low. 
-
-```{r gtgrq1simulationfiguresamplesize, eval=F, messages=F}
+```{r touq1timingsimulationfiguresamplesize, eval=F, messages=F}
 library(rethinking)
 library(cmdstanr)
 set_ulam_cmdstan(TRUE) #makes it so ulam always runs with cmdstan
@@ -2689,9 +2686,7 @@ mtext("Ratio of estimates below zero",side=2,line=3, cex=1.2)
 # Tthere is a <7% chance to get a false positive with a sample size of 20
 #sum(d[d$n %in% 20 & d$change_mean %in% 0,]$proportion_estimates_below_zero<0.3) #2 values are <0.1 (out of 30)
 #length(d[d$n %in% 20 & d$changeprop_mean %in% 0,]$proportion_estimates_below_zero) #30 values total
-
 ```
-
 
 &nbsp;
 
@@ -2701,12 +2696,11 @@ mtext("Ratio of estimates below zero",side=2,line=3, cex=1.2)
 
 &nbsp;
 
-
 ###### Run this model on the actual data (1.1)
 
 Run the code below to determine whether the manipulated birds differ from the control individuals in their age of dispersal. A contrast will be run to determine whether there is a difference between the conditions: if all values of the confidence interval are on one side of zero, then there was a difference; if the confidence interval crosses zero, then there was no difference.
 
-```{r gtgrq1model, eval=F}
+```{r touq1.1model, eval=F}
 library(rethinking)
 library(cmdstanr)
 set_ulam_cmdstan(TRUE) #makes it so ulam always runs with cmdstan
@@ -2768,17 +2762,15 @@ The response variable is dispersal location (0=inside Zealandia, 1=outside Zeala
 
 ###### Power analysis (1.3)
 
-We estimated our power to detect differences between conditions at different sample sizes and with different mean changes in the survival status in the control vs. manipulated conditions (Figure 18). We analyzed simulated data with the model we will use to analyze the actual data, estimating the change in survival status between the conditions. From the posterior estimates of the model, we extracted both the mean change as well as the ratio of the posterior estimates that were below zero.
+We estimated our power to detect differences between conditions at different sample sizes and with different mean changes in the dispersal location in the control vs. manipulated conditions (Figure 18). We analyzed simulated data with the model we will use to analyze the actual data, estimating the change in dispersal location between the conditions. From the posterior estimates of the model, we extracted both the mean change as well as the ratio of the posterior estimates that were below zero.
 
-If the mean ratio of estimates below zero is close to 0.5, the model assumes that the change in the number of food types taken before the flexibility manipulation is similar to after. If the ratio is close to zero, the model assumes individuals have changed their behavior. For differences in the survival status at or larger than 0.3, models are likely to assume that no changes occurred even with large sample sizes. If the difference in survival status between control and manipulated conditions is 0.3, on average 88% of the posterior of the model based on a sample size of 30 individuals will be larger than zero. This means that the model is quite certain there is a difference that is larger than zero.
+If the mean ratio of estimates below zero is close to 0.5, the model assumes that the change in the number of food types taken before the flexibility manipulation is similar to after. If the ratio is close to zero, the model assumes individuals have changed their behavior. For differences in the dispersal location at or larger than 0.3, models are likely to assume that no changes occurred even with large sample sizes. If the difference in dispersal location between control and manipulated conditions is 0.3, on average 92% of the posterior of the model based on a sample size of 40 individuals will be larger than zero. This means that the model is quite certain there is a difference that is larger than zero.
 
-In general, with sample sizes at or above 30 and mean differences in the survival status of 0.3 or larger, it is likely that the model will indicate that the flexibility experiment influenced their behavior in a way that affected their survival. Mean changes below 0.3 can still be detected, however there is a higher risk that there will be a false negative. For example, 17% of the models for a sample size of 30 at the mean change of 0.2 have a ratio larger than 0.3, meaning there is a large risk of having a false negative.
+In general, with sample sizes at or above 40 and mean differences in the dispersal location of 0.3 or larger, it is likely that the model will indicate that the flexibility experiment influenced their behavior in a way that affected their dispersal location. Mean changes below 0.3 can still be detected, however there is a higher risk that there will be a false negative. For example, 17% of the models for a sample size of 40 at the mean change of 0.2 have a ratio larger than 0.3, meaning there is a large risk of having a false negative.
 
 With small mean changes in the response variable, some individuals might not increase or even decrease their response after the manipulation because there is variation around the mean change in individual responses. With small sample sizes, there is a risk that only individuals who did not clearly increase their response will be studied, whereas larger sample sizes are more likely to include a wider spectrum of individuals.
 
-To estimate the risk of detecting false positives, we set the mean change in survival to zero so there was no change between the conditions. As expected, the average ratio of estimates below zero is close to 0.5 and independent of sample size. With a sample size of 30, 17% have a ratio smaller than 0.3, meaning that the risk of having a false positive is high. 
-
-We also estimated the power to detect differences between conditions in different habitats (inside or outside Zealandia) at different sample sizes and with different mean changes in the survival status (Figure 19). We found that mean changes in survival status of 0.3 are likely to be detected with a sample size of at least 40 when considering the individuals inside Zealandia, but we will not be able to detect differences outside of Zealandia because the subset sample size will likely be too small.
+To estimate the risk of detecting false positives, we set the mean change in survival to zero so there was no change between the conditions. As expected, the average ratio of estimates below zero is close to 0.5 and independent of sample size. With a sample size of 40, 60% have a ratio smaller than 0.3, meaning that the risk of having a false positive is high. 
 
 ```{r TouLocationSim, eval=F}
 library(rethinking)
