@@ -221,7 +221,7 @@ The average improvement is larger than the median because there are no individua
 
 <img width="100%" src="m1Fig_ReversalCriterionComparison.png">
 
-**Figure 7.** There is less noise with the 10/12 reversal learning passing criterion and it requires fewer trials to reach than the 17/20 passing criterion. Each circle represents one of the 626 simulated individuals, the black diagonal line indicates where both criteria are equal, and the red line is the slope of the simulated data and stops at x=100 trials to show that there are only few individuals who need more than 100 trials to pass using the 10/12 criterion, but there are many individuals with the 17/20 criterion (y=100+). The red line is above the black line, which shows that the 10/12 criterion requires fewer trials for individuals to reach.
+**Figure 7.** There is less variation with the 10/12 reversal learning passing criterion and it requires fewer trials to reach than the 17/20 passing criterion. The lines represent the densities of individuals (estimated with smoothing which means values can go down to zero) across the 626 simulated individuals that needed a certain number of trials to either reach the 10/12 (red) or the 17/20 (black) criterion. With the 10/12 criterion, most individuals need 8 fewer trials (indicated by the lines showing the mode of the two density distributions). In addition, there are only very few individuals who need 100 or more trials with the 10/12 criterion, while there are several individuals that needed such large numbers with the 17/20 criterion.
 
 **3) variation among individuals with the 10/12 criterion is still present and similar to the variation detected with other criteria**
 
@@ -382,12 +382,26 @@ abline(a=0,b=1)
 mean(twelvetenfaster,na.rm=T)
 # The average improvement is larger than the median because, first, there are no individuals who are faster with the 17 out of 20 rule, and secondly because there is a subset of individuals who need considerably fewer trials with the 10 out of 12 rule. We can see this in a plot:
 
-plot(trialnumber_initiallearning_reachedseventeentwenty[,2]~trialnumber_initiallearning_reachedtwelveten[,2],xlim=c(0,250),ylim=c(0,250),ann=F,bty="n")
-mtext("with 10 out of 12 criterion", side=1,line=3,cex=1.5)
-mtext("with 17 out of 20 criterion", side=2,line=2.5,cex=1.5)
-mtext("number of trials needed to pass reversal", side=3,line=1.25,cex=2)
-abline(a=0,b=1)
-segments(x0 = 12, y0 = 20, x1 = 100, y1 = 108, col = "red",lwd=2) 
+
+seventeentwenty<-trialnumber_initiallearning_reachedseventeentwenty[,2]
+seventeentwenty<-seventeentwenty[is.na(seventeentwenty)==F]
+
+twelveten<-trialnumber_initiallearning_reachedtwelveten[,2]
+twelveten<-twelveten[is.na(twelveten)==F]
+
+plot(density(seventeentwenty),ylim=c(0,0.05),ann=F,bty="n",xlim=c(0,300),lwd=4,xaxt="n",yaxt="n")
+lines(density(twelveten),col="red",lwd=4)
+axis(side=1,at=c(0,50,100,150,200,250,300))
+segments(x0 = 16, y0 = 0, x1 = 16, y1 = 0.05, col = "red",lwd=1.5,lty=2) 
+segments(x0 = 24, y0 = 0, x1 = 24, y1 = 0.045, col = "black",lwd=1.5,lty=2) 
+mtext("Trials needed to reach criterion", side=1,cex=1.25,line=3)
+mtext("Density of individuals", side=2,cex=1.25,line=1)
+legend(x=160,y=0.045,legend=c(lty1="17 / 20 criterion",lty1="10 / 12 criterion"),lwd=c(4,4),col=c("black","red"),cex=1.25,bty="n")
+abline(v=0,lty=1)
+mtext("16 trials", side=1,cex=1,line=-16,at=32,col="red",bg="white")
+mtext("24 trials", side=1,cex=1,line=-14.5,at=40,col="black",bg="white")
+
+
 
 # m1Fig_ReversalCriterionComparison
 
