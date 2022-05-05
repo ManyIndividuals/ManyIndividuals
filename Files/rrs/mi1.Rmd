@@ -1603,7 +1603,7 @@ for (samplesize in 1:length(samplesizes)) {
         for (i in 1:N_ind) {
           simulatedindividuals_number_before[i] <- rbinom(1 ,size=10,prob=individual_probs_before[i]) # Based on their individual values for the number of habitats before, calculate how many habitats each individual used before
           simulatedindividuals_number_before[simulatedindividuals_number_before==0]<-1 # Individuals have to live in at least one habitat
-          individual_probs_after[i]<-individual_probs_before[i]+rnorm(1,mean=currentchangenumber,sd=0.1) # We increase the individual baseline values by one of the six change numbers, with variation so that some individuals might also decrease their value from their baseline before
+          individual_probs_after[i]<-individual_probs_before[i]+rnorm(1,mean=currentchangenumber,sd=0.2) # We increase the individual baseline values by one of the six change numbers, with variation so that some individuals might also decrease their value from their baseline before.  #change this SD here and below in the simuresults ouput to test different SDs
           individual_probs_after[individual_probs_after<0]<-0
           individual_probs_after[individual_probs_after>1]<-1
           simulatedindividuals_number_after[i] <- rbinom(1 ,size=10,prob=individual_probs_after[i]) # Based on their modified individual values for the number of habitats after, calculate how many habitats each individual used after
@@ -1646,9 +1646,8 @@ diff_p <- inv_logit(post$g[,2]) - inv_logit(post$g[,1]) #on the probability scal
     simresults[counter,]$n <- N_ind
     simresults[counter,]$changenumber_mean <- currentchangenumber #this will show the avg change in number of habitats
     simresults[counter,]$repetition <- repetition
-    simresults[counter,]$changeprop_sd <- 0.1 #change this number and in individual_probs_after to test different SDs
-    simresults[counter,]$number_before <- currentnumber_before
-    
+    simresults[counter,]$changeprop_sd <- 0.2 #change this number and in individual_probs_after to test different SDs
+    simresults[counter,]$number_before <- average_currentnumber_before
     simresults[counter,]$proportion_estimates_below_zero <- sum(diff_p<0)/length(diff_p)
     simresults[counter,]$count_estimates_below_zero <- sum(diff_p<0)
     counter<-counter+1 
@@ -1658,7 +1657,7 @@ diff_p <- inv_logit(post$g[,2]) - inv_logit(post$g[,1]) #on the probability scal
         }
 }
 
-#write the output to csv, combine both SD data sets into one sheet, change the column "changenumber_mean" to the number of habitats (e.g., 4.5, 4, 3, 2, 1 as in meanchangenumber above), upload to github, and get the url for the next R chunk. FYI the model takes 5-7hrs to run
+#write the output to csv, combine both SD data sets into one sheet, change the column "changenumber_mean" to the number of habitats (e.g.,3, 5, 7 as in meanchangenumber above), upload to github, and get the url for the next R chunk. FYI model takes 4hrs to run
 #write.csv(simresults,file="simresultsjayhabitatsd0.1.csv")
 #write.csv(simresults,file="simresultsjayhabitatsd0.2.csv")
 ```
