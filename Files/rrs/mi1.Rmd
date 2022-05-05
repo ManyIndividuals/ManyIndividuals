@@ -105,6 +105,10 @@ Great-tailed grackles are flexible [@logan2016flexibilityproblem; @logan2019flex
 #### Research question 
 
  - **G.Q1: Do flexibility manipulated individuals differ in the proportion of time spent at cafes and garbage dumpsters when food is present?** We will investigate this question by tracking their presence at cafes and dumpsters when food is present versus when it is absent before and after manipulating their flexibility using serial reversal learning in the wild (Figure 3). Table 1 summarizes our predictions, analysis plans, interpretations for the various directions the results could go, and the hypotheses that could be contradicted given the various outcomes.
+ 
+ - **G.Q2: Does manipulating behavioral flexibility alter the number of microhabitats used?**
+ 
+ - **G.Q3: Does manipulating flexibility alter the number of different food items taken by grackles?**
 
 &nbsp;
 
