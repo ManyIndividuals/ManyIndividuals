@@ -1577,7 +1577,7 @@ meanchangenumber6<-0/10
 changenumbervariants<-c(meanchangenumber1,meanchangenumber2,meanchangenumber3,meanchangenumber4,meanchangenumber5,meanchangenumber6) #for false negatives
 
 #compare different baseline numbers for how many habitats these individuals are likely to use before the manipulation
-average_number_before<-c(3/10, 4.5/10, 6/10)
+average_number_before<-c(3/10, 5/10, 7/10)
 
 #set up data frame where results will be stored
 simresults <- matrix(NA,nrow=900,ncol=7)
@@ -1648,6 +1648,9 @@ sj <- ulam(
   #Don't need to do the contrast because we already have each individual's number so we only need to look at their beta to see whether it is positive (more habitats after) or negative (fewer habitats after)
 
 post <- extract.samples(sj)
+diff_g <- post$g[,2] - post$g[,1] #log-odds difference p.341 McElreath 2020
+diff_p <- inv_logit(post$g[,2]) - inv_logit(post$g[,1]) #on the probability scale p.341 McElreath 2020
+#precis( list( diff_g=diff_g , diff_p=diff_p ) )
 
   # enter all of the results into the data sheet
     simresults[counter,]$n <- N_ind
@@ -1655,10 +1658,11 @@ post <- extract.samples(sj)
     simresults[counter,]$repetition <- repetition
     simresults[counter,]$changeprop_sd <- 0.1 #change this number and in individual_probs_after to test different SDs
     simresults[counter,]$number_before <- currentnumber_before
-    simresults[counter,]$proportion_estimates_below_zero <- sum(post$beta<0)/2000
-    simresults[counter,]$count_estimates_below_zero <- sum(post$beta<0)
+    
+    simresults[counter,]$proportion_estimates_below_zero <- sum(diff_p<0)/length(diff_p)
+    simresults[counter,]$count_estimates_below_zero <- sum(diff_p<0)
     counter<-counter+1 
-    print(c(counter,"out of",10*length(samplesizes)*length(changenumbervariants)*length(number_before)))
+    print(c(counter,"out of",10*length(samplesizes)*length(changenumbervariants)*length(average_number_before)))
         }
         }
         }
