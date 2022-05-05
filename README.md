@@ -3,8 +3,8 @@
 We are a global network of researchers with field sites investigating hypotheses that involve generalizing across many individuals (e.g., populations or species). We conduct the same tests in the same way across species to determine whether the results of particular experiments are generalizable beyond that population or species. 
 
 ## Research questions
- - Can behavioral flexibility in species associated with human modified environments (California scrub-jays and great-tailed grackles) be increased?
- - If so, does such an increase help threatened species (toutouwai and Florida scrub-jays) survive in human modified environments? 
+ - Can behavioral flexibility be increased by experimentally increasing environmental heterogeneity (via serial reversal learning)? 
+ - Can such an increase in flexibility help species (particularly threatened species) succeed in human modified environments?
 
 ## Founders
  - [Dr. Kelsey McCune](https://www.kelseymccune.com) - designed the foraging predictability experiment and conducts experiments in California and Florida scrub-jays at her field site in Oregon and at Archbold Biological Station in Florida. Developed the reproducible workflow
@@ -45,6 +45,7 @@ We use a replicable infrastructure where all programs are free to use (and some 
  - [Google Docs](https://www.google.com/docs/about/) to write experimental protocols and link to them in the registered reports and articles at GitHub (e.g., http://corinalogan.com/Preregistrations/gxpopbehaviorhabitat.html#Protocols_and_open_materials)
     - Make the shareable link VIEW ONLY so the public can’t edit it; share directly with collaborators and experimenters and list them as editors so they can update as testing progresses
     - Write exceptions at the protocols as you go for anything that comes up that was not planned or had to be tweaked
+ - [Peer Community in Registered Reports](https://rr.peercommunityin.org/about/about) to submit our registered reports for pre-study peer review and acceptance (then we collect the data and submit it back to PCI RR for its post-study peer review)
 
 ## Code of conduct
 

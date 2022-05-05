@@ -51,7 +51,7 @@ knitr::opts_chunk$set(echo=T, include=T, results='asis', warning=F, message=F)
 
 # **ABSTRACT**
 
-Human modified environments are increasing, causing global changes that other species must adjust to or suffer from. Behavioral flexibility (hereafter 'flexibility') could be key to coping with rapid change. Behavioral research can contribute to conservation by determining which behaviors can predict the ability to adjust to human modified environments and whether these can be manipulated. When research that manipulates behavior in a conservation context occurs, it primarily trains a specific behavior to improve individual success in the wild. However, training a domain general cognitive ability, such as flexibility, has the potential to change a whole suite of behaviors, which could have a larger impact on influencing success in adjusting to human modified environments. This project asks whether flexibility can be increased by experimentally increasing environmental heterogeneity and whether such an increase can help species succeed in human modified environments. We explore whether it is  possible to take insights from highly divergent species and apply them to address critical conservation challenges. This pushes the limits in terms of understanding how conserved these abilities may be and to what extent they can be shaped by the environment. We aim to 1) conduct flexibility interventions in flexible species that are successful in human modified environments (great-tailed grackles and California scrub-jays or blue jays) to understand how flexibility relates to success; and 2) implement these interventions in two vulnerable species (toutouwai and Florida scrub-jays) to determine whether flexibility as a generalizable cognitive ability can be trained and whether such training improves success in human-modified environments. This research will significantly advance our understanding of the causes and consequences of flexibility, linking behavior to environmental change, cognition, and success in human modified environments through a comparative and global framework.
+Human modifications of environments are increasing, causing global changes that other species must adjust to or suffer from. Behavioral flexibility (hereafter 'flexibility') could be key to coping with rapid change. Behavioral research can contribute to conservation by determining which behaviors can predict the ability to adjust to human modified environments and whether these can be manipulated. When research that manipulates behavior in a conservation context occurs, it primarily trains a specific behavior to improve individual success in the wild. However, training a domain general cognitive ability, such as flexibility, has the potential to change a whole suite of behaviors, which could have a larger impact on influencing success in adjusting to human modified environments. This project asks whether flexibility can be increased by experimentally increasing environmental heterogeneity and whether such an increase can help species succeed in human modified environments. We explore whether it is  possible to take insights from highly divergent species and apply them to address critical conservation challenges. This pushes the limits in terms of understanding how conserved these abilities may be and to what extent they can be shaped by the environment. We aim to 1) conduct flexibility interventions in flexible species that are successful in human modified environments (great-tailed grackles and California scrub-jays or blue jays) to understand how flexibility relates to success; and 2) implement these interventions in two vulnerable species (toutouwai and Florida scrub-jays) to determine whether flexibility as a generalizable cognitive ability can be trained and whether such training improves success in human-modified environments. This research will significantly advance our understanding of the causes and consequences of flexibility, linking behavior to environmental change, cognition, and success in human modified environments through a comparative and global framework.
 
 # **REGISTERED REPORT DETAILS**
 
@@ -61,9 +61,9 @@ Human modified environments are increasing, causing global changes that other sp
 
 # **INTRODUCTION**
 
-Human modified environments are increasing [e.g., @liu2020high; @wu2011quantifying; @goldewijk2001estimating], causing global changes that other species must adjust to or suffer from [e.g., @ciani1986intertroop; @chejanovski2017experimental; @federspiel2017adjusting; @alberti2015eco]. Behavioral flexibility (hereafter 'flexibility') could be key: individuals interact with their environment through behavior, making it crucial to an ecologically valid understanding of how species adjust to environmental changes [@lee2021animal]. One of the top priorities for behavioral research to maximize conservation progress is to determine which cognitive abilities and behaviors can predict the ability to adjust to human modified environments and whether these can be manipulated [@moseby2016harnessing]. The rare research that manipulates behavior in a conservation context usually focuses on training specific behaviors (e.g., predator recognition through predator exposure) to improve individual success in the wild [@moseby2012can; @west2018predator; @jolly2018out; @ross2019reversing; see review in @tetzlaff2019effects]. However, training a general cognitive ability, such as flexibility -- the ability to rapidly adapt behavior to changes through learning throughout the lifetime [see the theory behind this definition in @mikhalevich_is_2017] -- has the potential to change a whole suite of behaviors and more broadly influence success in adjusting to human modified environments. Recent evidence supports this hypothesis: as far as we are aware, we were the first to show that flexibility can be manipulated using serial reversal learning of color preferences, and that the manipulated individuals were more flexible in a new context (locus switching on a puzzlebox) as well as being more innovative (solved more loci on a puzzlebox) [@logan2022flexmanip].
+Human modified environments are increasing [e.g., @liu2020high; @wu2011quantifying; @goldewijk2001estimating], causing global changes that other species must adjust to or suffer from [e.g., @ciani1986intertroop; @chejanovski2017experimental; @federspiel2017adjusting; @alberti2015eco]. Behavioral flexibility (hereafter 'flexibility') could be key for adjusting to such change: individuals interact with their environment through behavior, making it crucial to an ecologically valid understanding of how species adjust to environmental changes [@lee2021animal]. One of the top priorities for behavioral research to maximize conservation progress is to determine which cognitive abilities and behaviors can predict the ability to adjust to human modified environments and whether these can be manipulated [@moseby2016harnessing]. The rare research that manipulates behavior in a conservation context usually focuses on training specific behaviors (e.g., predator recognition through predator exposure) to improve individual success in the wild [@moseby2012can; @west2018predator; @jolly2018out; @ross2019reversing; see review in @tetzlaff2019effects]. However, training a general cognitive ability, such as flexibility -- the ability to rapidly adapt behavior to changes through learning throughout the lifetime [see the theory behind this definition in @mikhalevich_is_2017] -- has the potential to change a whole suite of behaviors and more broadly influence success in adjusting to human modified environments. Recent evidence supports this hypothesis: as far as we are aware, we were the first to show that flexibility can be manipulated using serial reversal learning of color preferences, and that the manipulated individuals were more flexible in a new context (locus switching on a puzzlebox) as well as being more innovative (solved more loci on a puzzlebox) [@logan2022flexmanip].
 
-Environments where informational cues about resources vary in a heterogeneous (but non-random) way across space and time are hypothesized to open a pathway for species to functionally detect and react to such cues via flexibility [@mikhalevich_is_2017]. Human modified environments likely provide a different set of informational cues that vary heterogeneously across space and time, and the species that are successful in such environments are likely those who are able to detect and track such cues. Because heterogeneous environments are hypothesized to select for flexibility, we expect that experimentally manipulating environments to be more heterogeneous will result in an increase in flexibility in individuals, which will then increase their success in such environments (Figure 1). Success can relate to any number of variables regarding the usage of and investment in resources and response to threats, from improved foraging efficiency to increased dispersal and survival within human modified environments, to placing nests in more protective locations. Whether a measure of success is predicted to relate to flexibility depends on what is already known about the particular population and their particular environment. 
+Environments where informational cues about resources vary in a heterogeneous (but non-random) way across space and time are hypothesized to open a pathway for species to functionally detect and react to such cues via flexibility [@mikhalevich_is_2017]. Human modified environments likely provide a different set of informational cues that vary heterogeneously across space and time, and the species that are successful in such environments are likely those who are able to detect and track such cues. Because heterogeneous environments are hypothesized to select for flexibility [@wright2010behavioral], we expect that experimentally manipulating environments to be more heterogeneous will result in an increase in flexibility in individuals, which will then increase their success in such environments (Figure 1). Success can relate to any number of variables regarding the usage of and investment in resources and response to threats, from improved foraging efficiency to increased dispersal and survival within human modified environments, to placing nests in more protective locations. Whether a measure of success is predicted to relate to flexibility depends on what is already known about the particular population and their particular environment. 
 
 &nbsp;
 
@@ -73,7 +73,7 @@ Environments where informational cues about resources vary in a heterogeneous (b
 
 &nbsp;
 
-This investigation asks whether flexibility can be increased by experimentally increasing environmental heterogeneity (via serial reversal learning) and whether such an increase can help species succeed in human modified environments. We explore whether it is possible to take insights from highly divergent species and apply them to address critical conservation challenges. We aim to conduct a flexibility intervention in flexible species that are successful in human modified environments (great-tailed grackles and California scrub-jays or blue jays) to understand how flexibility relates to success, and implement these interventions in two vulnerable species (toutouwai and Florida scrub-jays) to determine whether flexibility as a generalizable cognitive ability can be trained and whether such training improves success in human modified environments (Figure 2). Manipulating the flexibility of a few individuals could have population-level effects because significant research on social information use in birds [e.g., @valente2021conspecific] demonstrates the potential for the manipulated behavior to disseminate to conspecifics (e.g., if manipulated individuals are faster at locating new resources, which could attract the attention of conspecifics, or if unmanipulated individuals copy the manipulated individuals’ nesting or foraging locations). This comparative approach will ultimately reveal how conserved these abilities may be and to what extent they can be shaped by the environment. The results will substantially advance our understanding of the causes and consequences of flexibility, linking behavior to environmental change, cognition, and success in human modified environments through a comparative and global framework.
+This investigation asks whether flexibility can be increased by experimentally increasing environmental heterogeneity (via serial reversal learning) and whether such an increase can help species succeed in human modified environments. We explore whether it is possible to take insights from highly divergent species and apply them to address critical conservation challenges. Serial reversal learning tasks have been performed with a wide diversity of species [e.g., birds: @bond_serial_2007; bumblebees: @strang2014serial; stingrays: @daniel2020serial]. There is variation across individuals and species in their performance, however almost all previous studies show that individuals improve their flexibility if the reversal intervention is given multiple times in sequence [e.g., rats: @mackintosh1968factors; guppies: @lucon2014discrimination; poison frogs: @liu2016learning]. We aim to conduct a flexibility intervention in flexible species that are successful in human modified environments (great-tailed grackles and California scrub-jays or blue jays) to understand how flexibility relates to success, and implement these interventions in two vulnerable species (toutouwai and Florida scrub-jays) to determine whether flexibility as a generalizable cognitive ability can be trained and whether such training improves success in human modified environments (Figure 2). Manipulating the flexibility of a few individuals could have population-level effects because significant research on social information use in birds [e.g., @valente2021conspecific] demonstrates the potential for the manipulated behavior to disseminate to conspecifics (e.g., if manipulated individuals are faster at locating new resources, which could attract the attention of conspecifics, or if unmanipulated individuals copy the manipulated individuals’ nesting or foraging locations). This comparative approach will ultimately reveal how conserved these abilities may be and to what extent they can be shaped by the environment. The results will substantially advance our understanding of the causes and consequences of flexibility, linking behavior to environmental change, cognition, and success in human modified environments through a comparative and global framework.
 
 
 # **RESEARCH QUESTIONS**
@@ -82,7 +82,7 @@ This investigation asks whether flexibility can be increased by experimentally i
 
 **Prediction 1:** Flexibility can be increased in individuals and such an increase **improves the likelihood of success in human modified environments**. This would indicate that the abilities involved in tracking changing resources in the environment are the same as or related to the abilities involved in succeeding in human modified environments. It would also indicate that flexibility is trainable and that such training could be a useful conservation tool for threatened and endangered species. 
 
-**Prediction 1 alternative 1:** Flexibility can be increased in individuals, but such an increase **does not improve the likelihood of success** in human modified environments. This would indicate that species associated with human modified environments form this association for reasons other than their flexibility, and that threatened species are likely not very successful in human modified environments for reasons unrelated to their ability to change their behavior with changing circumstances.
+**Prediction 1 alternative 1:** Flexibility can be increased in individuals, but such an increase **does not improve the likelihood of success** in human modified environments. This would indicate that species associated with human modified environments form this association for reasons other than their flexibility, and that threatened species are likely not very successful in human modified environments for reasons unrelated to their ability to change their behavior with changing circumstances. An alternative could be that the changes induced by the increase in flexibility do not persist for sufficiently long times to make a difference on the subsequent likelihood of success.
 
 **Prediction 1 alternative 2:** Flexibility can be increased in some populations, but not others. This would indicate that **flexibility manipulations may not work for all populations**, and that the effectiveness of such experiments should first be tested in the population of interest before including such an intervention in a conservation plan. If flexibility is not manipulatable in threatened populations, this would indicate that they are likely not very successful in human modified environments because of their inability to change their behavior with changing circumstances, and that flexibility is not trainable. If flexibility is not manipulatable in populations that are successful in human modified environments, this could indicate that they might have used flexibility in the past when originally forming the association, but the need to maintain flexibility in their repertoire is no longer necessary. In populations where flexibility is not manipulatable, this would indicate that the abilities involved in tracking changing resources in the environment are independent of the abilities involved in succeeding in human modified environments.
 
@@ -180,7 +180,7 @@ For all research questions, Table 3 summarizes our predictions, analysis plans, 
 
 &nbsp;
 
-**Table 3.** Study design for the toutouwai research. References that were not already cited in the introduction: .
+**Table 3.** Study design for the toutouwai research. References that were not already cited in the introduction: @pasinelli2004genetic; @howard1960innate.
 
 <img width="100%" src="mi1StudyDesignTableGTGR.png">
 
@@ -190,7 +190,12 @@ For all research questions, Table 3 summarizes our predictions, analysis plans, 
 
 # **METHODS**
 
-We present one experimental design for the flexibility intervention (Figure 6) that can be conducted in two ways: in visual isolation (design 1) and in a group context (design 2). Experimenters can decide which (or both) they want to conduct in their population. Only one experiment must be conducted per population to be able to test these hypotheses. Conducting more than one of these experiments per population is acceptable, but not necessary. Before we present the designs, we first validated the reversal passing criteria and made them generalizable to a variety of species (see the next two sections).
+Our approach involves individuals participating in a serial reversal learning task and measuring success in natural behavior in the wild. In the following, we outline the procedure we are planning to use with wild birds: the serial reversal learning will involve a feeder setup (see design 2 below), and the success measures will be matched to the relevant behavior in the respective population. The framework we provide is general to facilitate its adaptation and replication to other populations (i.e., another researcher could adapt our hypotheses, methods, and analysis plans to their system). We start each section of the methods and analysis plans with general considerations (e.g., minimum sample size), before providing the specific details for each of the systems we plan to study.
+
+We present one experimental design for the flexibility intervention (Figure 6) that can be conducted in two ways: in visual isolation (design 1) and in a group context (design 2). Experimenters can decide which (or both) they want to conduct in their population. Only one experiment must be conducted per population to be able to test these hypotheses. Conducting more than one of these experiments per population is acceptable, but not necessary. Before we present the designs, we first validated the reversal passing criteria and made them generalizable to a variety of species (see the next two sections). Depending on the response variable, there is the option to conduct a within- or between-subjects design: 
+
+ 1) Within-subjects: run the manipulation on all individuals and compare pre- and post-manipulation success measures
+ 2) Between-subjects: with manipulated and control groups and compare post-manipulation success measures. In this case, 50% of the individuals will be assigned to the control condition and 50% to the flexibility manipulation condition. Assignment to condition will be random (using the random number generator random.org).
 
 &nbsp;
 
@@ -553,16 +558,21 @@ dbinom(1:12,12,probability_choose_lightgrey_twelvetrials)[10]
 
 ## Determining after which reversal an individual has completed the experiment: serial reversal passing criterion
 
-Data from previous serial reversal experiments suggests that individuals who go through multiple reversals will end up with a performance that is similar to the individuals who needed the fewest trials on the first reversal [@Loganflexmanip; @morandferron]. This suggests that the manipulation changes individuals within their natural range of variation rather than pushing them to new limits. This means that we can use the performance of the fastest individuals in the first reversal to set the criterion for passing the serial reversal experiment. Accordingly, we can only set the serial reversal passing criterion after the data from the first reversal begins to become available. Some species might already have data from previous studies on reversal learning, however it is important to set the passing criterion for this experiment using the this particular setup. Therefore, the criterion must be established from scratch for each species using this setup.
+Data from previous serial reversal experiments suggests that individuals who go through multiple reversals will end up with a performance that is similar to the individuals who needed the fewest trials on the first reversal [@lucon2014discrimination; @logan2022flexmanip]. This suggests that the manipulation changes individuals within their natural range of variation rather than pushing them to new limits. This means that we can use the performance of the fastest individuals in the first reversal to set the criterion for passing the serial reversal experiment. Accordingly, we can only set the serial reversal passing criterion after the data from the first reversal begins to become available. Some species might already have data from previous studies on reversal learning, however it is important to set the passing criterion for this experiment using the this particular setup. Therefore, the criterion must be established from scratch for each species using this setup.
 
 **The serial reversal passing criterion:** reach the reversal passing criterion (10 out of 12 trials correct) in X trials or fewer in two consecutive reversals. 
 
-X = the number of trials required that marks the fastest 20% of individuals in the first reversal. For example, if you test 20 individuals, the number of trials for the 4th fastest individual will be the criterion. For 10 individuals, use the number of trials for the 2nd fastest individual. The fastest 20% was validated using the grackle data [@Loganflexmanip]: it aligns with the one sigma rule from a normal distribution, indicating the percentage of individuals who are faster than the mean number of trials minus one standard deviation. If more than 20% of individuals reach this number of trials in their first reversal (because there might be a tie), choose the next fastest number of trials to pass. Particularly near the beginning of the experiment, it will be important to set the passing criterion to a lower number to ensure that individuals will be overtrained rather than undertrained. 
+X = the number of trials required that marks the fastest 20% of individuals in the first reversal. For example, if you test 20 individuals, the number of trials for the 4th fastest individual will be the criterion. For 10 individuals, use the number of trials for the 2nd fastest individual. The fastest 20% was validated using the grackle data [@logan2022flexmanip]: it aligns with the one sigma rule from a normal distribution, indicating the percentage of individuals who are faster than the mean number of trials minus one standard deviation. If more than 20% of individuals reach this number of trials in their first reversal (because there might be a tie), choose the next fastest number of trials to pass. Particularly near the beginning of the experiment, it will be important to set the passing criterion to a lower number to ensure that individuals will be overtrained rather than undertrained. 
 
 As the data for additional individuals becomes available, this number can change accordingly. If the number changes across the experiment, we will check whether any currently participating individuals would have already passed according to this criterion and end their experiment.
 
-Individuals need to meet this criterion in two consecutive reversals to pass the serial reversal experiment to ensure that their behavior is consistent and that their speedy performance did not occur by chance. Previous serial reversal experiments show that reversal performance plateaus after a certain number of reversals [e.g., 6-8 reversals in great-tailed grackles @Loganflexmanip]. If individuals show no consistent improvement after 12 reversals and have not yet met the serial reversal passing criterion, they will be excluded from the experiment. We will plan to start with many more individuals than the minimum sample size to allow for potential drop outs.
+Individuals need to meet this criterion in two consecutive reversals to pass the serial reversal experiment to ensure that their behavior is consistent and that their speedy performance did not occur by chance. Previous serial reversal experiments show that reversal performance plateaus after a certain number of reversals [e.g., 6-8 reversals in great-tailed grackles @logan2022flexmanip]. If individuals show no consistent improvement after 12 reversals and have not yet met the serial reversal passing criterion, they will be excluded from the experiment. We will plan to start with many more individuals than the minimum sample size to allow for potential drop outs.
 
+## Planned Sample
+
+For each population, depending on the response variable, we ran separate power analyses to determine the planned sample size (see Analysis Plan). For each population, we will aim to reach the minimum sample size required to detect the expected effects of the intervention on the response variables. However, given the difficulties of working with wild individuals, there might be instances where we might not reach a particular target. In such a case, we will interpret the result in light of the power that the particular sample size provides, as indicated by the power analyses. The minimum sample size depends on whether the intervention is performed as a within-subject design  (higher power), measuring the response for the same individuals before and after the intervention, or whether it is performed as a between-subjects design, where half the individuals are randomly assigned to the intervention group. In addition, it will depend on whether the response variable has a binary or a continuous outcome (higher power), and in the latter case whether the measure is open-ended (lower power) and therefore individuals will show a large range of values (e.g., dispersal distance).
+
+We will stop collecting data for the flexibility manipulation experiment when a buffer above the minimum sample size is reached or when the season in which the minimum sample size is reached comes to an end, or when the minimum sample sizes for the success measures have been reached. When conducting the manipulation experiment, it is important to aim to test more than the minimum number of individuals because some might not have data in the post-intervention stage. 
 
 
 ## **DESIGN 1** - Reversal learning experiment in visual isolation
@@ -577,13 +587,6 @@ Half of the individuals (manipulated group) undergo serial reversal learning unt
  - **Reversal (including initial discrimination):** using the same apparatuses as above but with the openings untaped, must obtain the food from the rewarded color/shape on at least 10 of the latest 12 trials, calculated in 1-trial windows (i.e., the individual can pass on trial 21, 35, 44, etc.).
  - **Serial reversal manipulation group:** across reversals, must achieve the reversal criterion for two consecutive reversals in 50 trials or less. This passing criterion was generated using great-tailed grackles [@logan2019flexmanip] and might need to be adjusted depending on the population.
  - **Control group:** receives as many trials with the control apparatuses (two containers of identical color/shape, both rewarded) as the average number of trials that manipulated individuals require to pass serial reversals. If this is unknown at the beginning of the experiment, test a manipulated individual first and match the control individuals to this number until an average can be obtained. The average can continue to be updated as more manipulated individuals complete testing.
-
-
-### Planned Sample
-
-At least 20 individuals per population will be tested (if a between-subjects design: 50% in the control condition, 50% in the flexibility manipulation condition). Individuals will be randomly assigned to the control and flexibility manipulation conditions using a random number generator (random.org). This minimum sample size of 20 was determined using Bayesian simulations in Logan et al. [2020](http://corinalogan.com/Preregistrations/gxpopbehaviorhabitat.html#Q1:_behavior_across_the_range).
-
-**Data collection stopping rule:** Data collection will be stopped when the minimum sample size is reached or when the season in which the minimum sample size is reached comes to an end.
 
 ### Protocols and data sheet templates
 
@@ -620,24 +623,11 @@ Feeders are set up in the field, counterbalanced for color/location/etc, and wil
 
 Individuals in the control condition (if there is one), will receive 1 reversal and, after they pass criterion on reversal 1, feeders of both options (previously rewarded and previously non-rewarded options) will open for these individuals. This will help keep the whole group interested in visiting the feeders while the individuals in the manipulated group complete their serial reversals. Data are collected on success measures (see below) either before and after the flexibility intervention or only after the intervention (depending on feasibility and how the study design needs to be tailored for each population).
 
-### Planned Sample
-
-There are two experimental design options: 
- 
- 1) manipulated vs. control groups (and compare pre- and post-manipulation success measures or only post-manipulation measures) (instructions below)
- 2) run the manipulation on all individuals (and compare pre- and post-manipulation success measures)
-
-**Manipulated vs control groups:** 50% of the individuals will be assigned to the control condition and 50% to the flexibility manipulation condition. Assignment to condition will be random (using the random number generator random.org).
-
 **Passing criteria:**
 
  - **Feeder habituation:** all feeders at all locations will have food and be open for several hours daily or until at least half of the minimum sample size in each condition (control and manipulated) have visited at least one of the feeders.
  - **Reversal passing criterion:**  an individual is considered to have a preference when they choose 10 of the most recent 12 trials (choices) correct (the rewarded option). This criterion applies to the initial discrimination, and to each reversal.
  - **Manipulation passing criterion:** pass two consecutive reversals in X trials or less (see Serial reversal passing criterion above).
-
-**Minimum sample size:** At least 20 individuals per population will be tested (if a between-subjects design: 50% in the control condition, 50% in the flexibility manipulation condition). Individuals will be randomly assigned to the control and flexibility manipulation conditions using a random number generator (random.org). This minimum sample size of 20 was determined using Bayesian simulations in Logan et al. [2020](http://corinalogan.com/Preregistrations/gxpopbehaviorhabitat.html#Q1:_behavior_across_the_range). See Tables 2-4 for question specific sample sizes.
-
-**Data collection stopping rule:** Data collection will stop when the minimum sample size is reached or when the season in which the minimum sample size is reached comes to an end.
 
 ### Protocols
 
@@ -723,7 +713,7 @@ Prior to the flexibility manipulation, we will collect the 4 minimum tracking se
 
 ### Planned sample
 
-In the Zealandia toutouwai population the breeding season runs from October to February. Pairs typically produce 1-3 fledglings per nesting attempt and can nest up to 3 times per season. Each season, around 30 pairs nest in the long term study area (Figure 9), so I will aim to catch up to 30 fledgling toutouwai a year (one per pair, 60 in total) using a drop trap. I will collect their biometric data and a feather sample for DNA sexing. On each bird I will apply 2 colored leg bands for individual ID (one to each leg), a uniquely numbered metal BP sized band (supplied by the New Zealand National Bird Banding Scheme) and a single RFID tag attached to a leg band (on the opposite leg to the metal band). I will also attach a radio tag using a leg loop harness that degrades over time. Birds will be released at their point of capture. 
+In the Zealandia toutouwai population the breeding season runs from October to February. Pairs typically produce 1-3 fledglings per nesting attempt and can nest up to 3 times per season. Each season, around 30 pairs nest in the long term study area (Figure 9), so we will aim to catch up to 30 fledgling toutouwai a year (one per pair, 60 in total) using a drop trap. We will collect their biometric data and a feather sample for DNA sexing. On each bird I will apply 2 colored leg bands for individual ID (one to each leg), a uniquely numbered metal BP sized band (supplied by the New Zealand National Bird Banding Scheme) and a single RFID tag attached to a leg band (on the opposite leg to the metal band). We will also attach a radio tag using a leg loop harness that degrades over time. Birds will be released at their point of capture. 
 
 &nbsp;
 
@@ -789,13 +779,23 @@ Same questions, response/explanatory/random variables as in Design 1.
 
 $R_i$ ~ Binomial($t_i$,$p_i$)
 
-$R_i$ is the duration spent at cafes and dumpsters when food rewards were present and $t_i$ is the total duration spent at cafes and dumpsters either before or after (i) the flexibility manipulation.
+$R_i$ is the duration spent at cafes and dumpsters when food rewards were present and $t_i$ is the total duration spent at cafes and dumpsters either before or after (i) the flexibility manipulation. A binomial distribution was used because the response variable is a proportion [@mcelreath2020statistical].
 
 logit($p_i$) = $\gamma$[condition] + $\alpha$[ind],[condition]
 
 $\gamma$[condition] is the average log-odds for each condition (before/after) and $\alpha$[ind],[condition] is the effect for each individual in each condition. The Bayesian model was developed using @mcelreath2020statistical as a guide.
 
 ###### Power analysis
+
+We estimated our power to detect differences between conditions at different sample sizes and with different mean changes in the proportion of time spent in the presence of a reward in the before vs. after conditions (Figure 10). We simulated the proportions of times that different sample sizes of individuals would spend in the presence of the reward before and after the flexibility manipulation. We analyzed these simulated data with the model we will use to analyze the actual data, estimating the change in the proportion of time spent in the presence of the reward between the before and after conditions. From the posterior estimates of the model, we extracted both the mean change as well as the ratio of the posterior estimates that were below zero. 
+
+If the mean ratio of estimates below zero is close to 0.5, the model assumes that the change in proportion of time spent in the presence of a reward before the flexibility manipulation is similar to after. If the ratio is close to zero, the model assumes individuals have changed their behavior. For changes smaller than 0.1, models are likely to assume that no changes occurred even with large sample sizes. If the change in the proportion of time an individual spends at a location when food is present before the flexibility manipulation vs. after is 0.1, on average 93% of the posterior of the model based on a sample size of 20 individuals will be larger than zero. This means that the model is quite certain there is a difference that is larger than zero. In addition, none of the models for a sample size of 20 at the mean change of 0.1 have a ratio larger than 0.3, meaning that the risk of having a false negative is unlikely. 
+
+In general, with sample sizes at or above 20 and mean changes in the proportion of time spent in the presence of a reward is 0.1 or larger, then it is highly likely that the model will indicate that individuals have changed their behavior. Mean changes below 0.1 can still be detected, however there is a higher risk that there will be a false negative. If the change in the proportion of time an individual spends at a location when food is present before the flexibility manipulation vs. after is 0.025, on average 61% of the posterior of the model based on a sample size of 20 individuals will be larger than zero. In addition, only 20% of the models for a sample size of 20 at the mean change of 0.025 have a ratio larger than 0.3, meaning that the risk of having a false negative is still low.
+
+With small mean changes in the response variable, some individuals might not increase or even decrease their response after the manipulation because there is variation around the mean change in individual responses. With small sample sizes, there is a risk that only individuals who did not clearly increase their response will be studied, whereas larger sample sizes are more likely to include a wider spectrum of individuals.
+
+To estimate the risk of detecting false positives, we set the mean change in the proportion of time spent in the presence of the reward to zero so there was no change between the before and after conditions. As expected, the average ratio of estimates below zero is close to 0.5 and independent of sample size. With a sample size of 20, 43% have a ratio smaller than 0.3, meaning that the risk of having a false positive is high. The risk would be lower if the variation among individuals was lower than what we assumed (across all models, the standard deviation of the mean change in proportion was 0.1, which is a conservative estimate).
 
 ```{r gtgrq1simulation, eval=F}
 library(rethinking)
@@ -950,16 +950,6 @@ diff_p <- inv_logit(post$g[,2]) - inv_logit(post$g[,1]) #on the probability scal
 #write.csv(diff_p,file="diff_p60changeprop0.025.csv")
 ```
 
-We estimated our power to detect differences between conditions at different sample sizes and with different mean changes in the proportion of time spent in the presence of a reward in the before vs. after conditions (Figure 10). We simulated the proportions of times that different sample sizes of individuals would spend in the presence of the reward before and after the flexibility manipulation. We analyzed these simulated data with the model we will use to analyze the actual data, estimating the change in the proportion of time spent in the presence of the reward between the before and after conditions. From the posterior estimates of the model, we extracted both the mean change as well as the ratio of the posterior estimates that were below zero. 
-
-If the mean ratio of estimates below zero is close to 0.5, the model assumes that the change in proportion of time spent in the presence of a reward before the flexibility manipulation is similar to after. If the ratio is close to zero, the model assumes individuals have changed their behavior. For changes smaller than 0.1, models are likely to assume that no changes occurred even with large sample sizes. If the change in the proportion of time an individual spends at a location when food is present before the flexibility manipulation vs. after is 0.1, on average 93% of the posterior of the model based on a sample size of 20 individuals will be larger than zero. This means that the model is quite certain there is a difference that is larger than zero. In addition, none of the models for a sample size of 20 at the mean change of 0.1 have a ratio larger than 0.3, meaning that the risk of having a false negative is unlikely. 
-
-In general, with sample sizes at or above 20 and mean changes in the proportion of time spent in the presence of a reward is 0.1 or larger, then it is highly likely that the model will indicate that individuals have changed their behavior. Mean changes below 0.1 can still be detected, however there is a higher risk that there will be a false negative. If the change in the proportion of time an individual spends at a location when food is present before the flexibility manipulation vs. after is 0.025, on average 61% of the posterior of the model based on a sample size of 20 individuals will be larger than zero. In addition, only 20% of the models for a sample size of 20 at the mean change of 0.025 have a ratio larger than 0.3, meaning that the risk of having a false negative is still low.
-
-With small mean changes in the response variable, some individuals might not increase or even decrease their response after the manipulation because there is variation around the mean change in individual responses. With small sample sizes, there is a risk that only individuals who did not clearly increase their response will be studied, whereas larger sample sizes are more likely to include a wider spectrum of individuals.
-
-To estimate the risk of detecting false positives, we set the mean change in the proportion of time spent in the presence of the reward to zero so there was no change between the before and after conditions. As expected, the average ratio of estimates below zero is close to 0.5 and independent of sample size. With a sample size of 20, 43% have a ratio smaller than 0.3, meaning that the risk of having a false positive is high. The risk would be lower if the variation among individuals was lower than what we assumed (across all models, the standard deviation of the mean change in proportion was 0.1, which is a conservative estimate).
-
 ```{r gtgrq1simulationfiguresamplesize, eval=F, messages=F}
 library(rethinking)
 library(cmdstanr)
@@ -1100,7 +1090,7 @@ mtext("Ratio of estimates below zero",side=2,line=3, cex=1.2)
 
 <img width="100%" src="mi1FigPowerAnalysisGTGR.png">
 
-**Figure 10.** Curves of the mean ratio of estimates below zero (vertical lines show the minimum and maximum ratios), which illustrates the power we have to detect differences between conditions at different sample sizes. Across all models, the standard deviation of the mean change in proportion was 0.1 (a conservative estimate) and the proportion of time spent in the presence of food before the flexibility manipulation was 0.6.
+**Figure 10.** Risk of false positives and false negatives depending on sample and effect sizes. Curves of the mean ratio of estimates below zero (vertical lines show the minimum and maximum ratios), which illustrates the power we have to detect differences between conditions at different sample sizes. The curves show the model estimates as the effect increases (larger changes in the mean proportion time spent after versus before on the x-axis) for different potential sample sizes (10-60, illustrated by different colors). When there is no change (x value of zero), estimates suggest that, as expected, half of the estimates are below zero because the before and after conditions are not different from each other. As the change increases, the estimates decrease because models are able to reliably tell that the before and after conditions differ from each other. Across all models, the standard deviation of the mean change in proportion was 0.1 (a conservative estimate).
 
 ```{r gtgrq1simulationfigurecurve, eval=F}
 # (not shown in the article, but useful if you want to learn more about this modeling process)
@@ -1535,55 +1525,54 @@ library(cmdstanr)
 set_ulam_cmdstan(TRUE) #makes it so ulam always runs with cmdstan
 rstan_options(auto_write = TRUE)
 
-### SIMULATE the population (p.441 for normal distribution - McElreath 2020)
-N_ind <- 20 #number of individuals tested
+### SIMULATE the population
+
+#exploration of the number of habitats jays might use (have to have at least 5% of the points in a given habitat for that habitat to count). Binomial distribution restricts it to the known maximum of 10 microhabitats in our study and makes it a positive number. Can likely distinguish between differences of 15% or more
+plot(density(rbinom(10000,size=10,prob=5/10))) #10 max habitats; on average, individuals will use 5 of the 10 habitats more than 5% of the time
+lines(density(rbinom(10000,size=10,prob=3.5/10)),col="red") #on average, individuals will use 3.5 of the 10 habitats more than 5% of the time
+lines(density(rbinom(10000,size=10,prob=7/10)),col="blue") #on average, individuals will use 7 of the 10 habitats more than 5% of the time
 
 #choose the mean number of habitats used and standard deviations - visualize to see whether it would be possible to tell the difference between before (black) and after (red)
-number_before<-4.5 #number of habitats used per bird in the before condition
+number_before<-5/10 #number of habitats used per bird in the before condition. This is 9/2 and 9 was chosen because it is between the max 8 habitats for individuals in the natural habitat and max 10 habitats in the suburban habitat
 changenumber<-1.5 #the difference in the number habitats used between the before and after conditions
-plot(density(rnorm(10000,number_before,sd=1.5)),lwd=2,xlim=c(0,18),ylim=c(0,0.3)) #A sample size of 10k individuals. An SD of 2 (when the mean before is 5) encompasses all of the range of numbers of habitats we expect to find (0-10) so it would be the largest SD we would expect and thus the most conservative sd to use in the simulations
-lines(density(rnorm(10000,number_before*(changenumber*1),sd=2)),lwd=2,col="red") #the after condition. Should be able to tell the difference when changenumber is at least 1.3 and the SD is at least 2 (and number_before is 4.5)
+N_ind <- 20 #number of individuals tested
 
-#before
-numberbefore <- round(rnorm(N_ind,mean=4.5,sd=1.5),2) #number of habitats used, 2 means 2 decimal points
-numberbefore[numberbefore<1]<-1 #this needs to be a minimum of 1 bc an individual can never live in less than 1 habitat
-changenumber <- rnorm(N_ind, mean=(10-numberbefore)*1,sd=2)  #if had a large number before, have a smaller change relative to the after condition. Subtract 3.5 to have a change of 2 habitats (10-4.5=5.5-3.5=2)
+numberbefore <- rbinom(N_ind,size=10,prob=number_before) #proportion of habitats used before
+numberafter <- as.vector(rep(0,N_ind) )
+for (i in 1:N_ind) {
+  numberafter[i] <- round( numberbefore[i] + rnorm(n=1, mean=(10-numberbefore[i])*(changenumber/numberbefore[i]),sd=1),0 )
+  if(numberafter[i]>10){numberafter[i] <- 10}
+}
 
-#after
-numberafter <- round(numberbefore+rnorm(N_ind,mean=changenumber,sd=2),2)
-numberafter[numberafter<1]<-1 #this needs to be a minimum of 1 bc an individual can never live in less than 1 habitat
+#change the number of habitats increased (e.g., 3.5) in changenumber in numberafter to determine which changenumber to run the simulations at. Visualize using the plot below to see when the distributions have more separation
+plot(density(numberbefore),lwd=2,xlim=c(0,18),ylim=c(0,0.3))
+lines(density(numberafter),lwd=2,col="red") #the after condition. Should be able to tell the difference when changenumber is at least 1.5 above number_before (and number_before is 5/10)
 
-#change the number of habitats increased (e.g., 3.5) in changenumber and the sd in numberafter to determine which sds to run the simulations at. Visualize using the plot below to see when the distributions have more separation. It looks like with a difference of 2 habitats (3.5 in changenumber), which is probably the minimum we could detect differences with, the maximum numberafter sd would be 2 and an sd with larger detectable differences is 1. Run the simulation with an sd of 1 and 2 to explore the boundaries
-plot(density(numberbefore),lwd=2,xlim=c(0,18),ylim=c(0,0.3)) #A sample size of 10k individuals. An SD of 2 (when the mean before is 5) encompasses all of the range of numbers of habitats we expect to find (0-10) so it would be the largest SD we would expect and thus the most conservative sd to use in the simulations
-lines(density(numberafter),lwd=2,col="red") #the after condition. Should be able to tell the difference when changenumber is at least 1.5 and the SD is at least 1.5 (and number_before is 5)
-
-#check the plot to see whether individuals are increasing their numbers = one point is below the 1:1 line
-#plot(numberbefore,numberafter)
-#abline(0,1)
+#check the plot to see whether individuals are increasing their numbers = most are above the 1:1 line. Those that were smaller on the x axis are farther fromm the line, which is what we wanted
+plot(numberbefore,numberafter,xlim=c(0,10),ylim=c(0,10))
+abline(0,1)
 
 
 ### POWER ANALYSIS: different sample sizes and different mean changes in proportions between before and after conditions
 # We now set our range of likely sample sizes, from a minimum of 9 individuals per population to a maximum of 60 individuals per population. We draw repeated samples of individuals of that size from each of the 5 populations, during each repetition we draw two samples from each population (so we can infer the false negative rate of wrongly estimating that two samples come from a different population even though they were taken from the sample population). This means we have 10 repetitions for each of the 5 sample sizes and each of the 6 changeprops. So 10*6 changeprops (=60) for each of the 5 sample sizes, resulting in a total length of samplesizes of 300
 samplesizes<-c(10,20,30,40,60) #c(10,20,30,40,60)
 
-# Set the means you want to compare. To get a certain mean change in number of microhabitats between beforemaxnum and after, set the multiplier in the changenumber mean: a large multiplier means a large change. 
-maxnum <- 10 #maximum number of habitats possible
-maxinc <- (maxnum-1)/2 #4.5 habitats
-meanchangenumber1<-1 #100% of the maximum possible change (individuals in the suburban habitat will on average use 4.5 more habitats after the experiment, and individuals in the natural habitat will use 3.5). maxinc*1. For example, if max is 10, then avg increase of (10-1)/2=4-5. Push everyone to 10 meaning that the lowest individuals will increase by 9 and the highest by 0 food items. Therefore, the average is 4.5 food items. Subtract by 1 bc birds will live in a minimum of 1 habitat
-meanchangenumber2<-0.89 #89% of the maximum possible change (=4 more habitats for suburban birds and  3.1 more habitats for birds in natural areas. maxinc*0.89. If set this to be a value between 0-1, it will reflect the proportion of the max habitat change that individuals will on average show. If instead of working with proportions, you want this to reflect a specific number of habitats, can use your specific number to get the proportion. number habitats / maxinc   For example, we got the 0.89 by dividing 4/4.5. If you want this, replace the code with meanchangenumber2<-("number habitats"/maxinc)
-meanchangenumber3<-0.67 #3 more habitats for suburban, 2.3  more habitats for natural
-meanchangenumber4<-0.44 # 2 more habitats for suburban, 1.5  more habitats for natural
-meanchangenumber5<-0.22 # 1 more habitat for suburban, 0.8  more habitats for natural
-meanchangenumber6<-0 # 0 more habitats for suburban and  natural
+# Set the means you want to compare
+meanchangenumber1<-3/10 #Likely going to use 3 more out of the 10 habitats
+meanchangenumber2<-2.5/10 #Likely going to use 2.5 more out of the 10 habitats
+meanchangenumber3<-2/10 
+meanchangenumber4<-1.5/10
+meanchangenumber5<-1/10
+meanchangenumber6<-0/10
 changenumbervariants<-c(meanchangenumber1,meanchangenumber2,meanchangenumber3,meanchangenumber4,meanchangenumber5,meanchangenumber6) #for false negatives
 
-#compare different baseline numbers for how many habitats these individuals use before the manipulation
-number_before<-c(3, 4.5, 6)
+#compare different baseline numbers for how many habitats these individuals are likely to use before the manipulation
+average_number_before<-c(3/10, 5/10, 7/10)
 
 #set up data frame where results will be stored
 simresults <- matrix(NA,nrow=900,ncol=7)
 simresults <- data.frame(simresults)
-colnames(simresults) <- c("n","changenumber_mean","changenumber_sd","repetition","number_before","proportion_estimates_below_zero","count_estimates_below_zero")
+colnames(simresults) <- c("n","changenumber_mean","repetition","changeprop_sd","number_before","proportion_estimates_below_zero","count_estimates_below_zero")
 counter<-1
 
 # run simulations. There are 5 different sample sizes, and for each we have 6 different mean change in proportions that we want to examine, and each will repeat 10 times for a total of 300 samples.
@@ -1598,68 +1587,79 @@ for (samplesize in 1:length(samplesizes)) {
         
         for (baselinenumber in 1:3) {
         #pick the current proportion variant from the list changepropvariants
-        currentnumber_before <- number_before[baselinenumber]
+        average_currentnumber_before <- average_number_before[baselinenumber]
         
         for (repetition in 1:10) {
-        #create data frame to store for each repetition of the simulated data to be analyzed by the model
-        sites <- matrix(nrow=n,ncol=3) 
-        colnames(sites)<-c("ID","condition","number_habitats")
+       
+        #BEFORE & AFTER manipulation
+        individual_probs_before<-(rnorm(N_ind,mean=average_currentnumber_before,sd=0.05))  # Based on one of the three average baseline numbers before, each individual will be assigned a value close to this with some variation
+        individual_probs_before[individual_probs_before<0]<-0
+        individual_probs_before[individual_probs_before>1]<-1
         
-        #BEFORE manipulation
-        #number of habitats used, 2 means 2 decimal points. Assume baseline number is 2, 3, or 4
-        numberbefore <- round(rnorm(N_ind,mean=currentnumber_before,sd=1.5),2) #number of habitats used, 2 means 2 decimal points
-        numberbefore[numberbefore<1]<-1 #this needs to be a minimum of 1 bc an individual can never live in less than 1 habitat
+        simulatedindividuals_number_before<-as.vector(rep(0,N_ind))
+        individual_probs_after<-as.vector(rep(0,N_ind))
+        simulatedindividuals_number_after<-as.vector(rep(0,N_ind))
         
-        changenumber <- rnorm(N_ind, mean=(10-numberbefore)*(currentchangenumber),sd=2) #change this SD to explore the boundaries of individual variation in their response (in terms of the success measure) to the flexibility manipulation. We explored SD=1 and SD=2
+        for (i in 1:N_ind) {
+          simulatedindividuals_number_before[i] <- rbinom(1 ,size=10,prob=individual_probs_before[i]) # Based on their individual values for the number of habitats before, calculate how many habitats each individual used before
+          simulatedindividuals_number_before[simulatedindividuals_number_before==0]<-1 # Individuals have to live in at least one habitat
+          individual_probs_after[i]<-individual_probs_before[i]+rnorm(1,mean=currentchangenumber,sd=0.2) # We increase the individual baseline values by one of the six change numbers, with variation so that some individuals might also decrease their value from their baseline before.  #change this SD here and below in the simuresults ouput to test different SDs
+          individual_probs_after[individual_probs_after<0]<-0
+          individual_probs_after[individual_probs_after>1]<-1
+          simulatedindividuals_number_after[i] <- rbinom(1 ,size=10,prob=individual_probs_after[i]) # Based on their modified individual values for the number of habitats after, calculate how many habitats each individual used after
+          simulatedindividuals_number_after[simulatedindividuals_number_after==0]<-1 # Individuals have to live in at least one habitat
+          }
 
-        #AFTER manipulation
-        numberafter <- round(numberbefore+changenumber,2)
-        numberafter[numberafter<1]<-1 #this needs to be a minimum of 1 bc an individual can never live in less than 1 habitat
-  
         ### run a STAN model to see whether the before and after proportions are estimated to be different from each other
         #sets up the data sheet with the simulated data that the model will run on
       dat <- list(
-    habitatuse = standardize(c(numberbefore,numberafter)), #compare before and after
-    before = c(rep(1,N_ind),rep(2,N_ind)), #1 refers to before and 2 to after
-    ind = rep(1:N_ind,2) #go through all individuals twice because there are observations from before and after for each
+    habitatuse = c(simulatedindividuals_number_before,simulatedindividuals_number_after), #compare before and after. standardize so can compare natural habitats with max 8 habitats with suburban with max 10 habitats
+    tid = c(rep(1,N_ind),rep(2,N_ind)), #1 refers to before and 2 to after
+    actor = rep(1:N_ind,2) #go through all individuals twice because there are observations from before and after for each
 )
 
         # Our MODEL, which will estimate a different mean and variance of phi for each site 
         # note: had to add force_recompile bc kept giving me an error and wouldn't finish running. See https://github.com/rmcelreath/rethinking/issues/338
 sj <- ulam(
     alist(
-        habitatuse ~ normal( mu , sigma ),
-        mu <- a_ind[ind] + b_ind[ind]*before,
-        c(a_ind,b_ind)[ind] ~ multi_normal( c(alpha,beta) , Rho , sigma_ind ),
-        alpha ~ normal(0,2), #0=standardized mean number of habitats used, 2=habitats for the sd
-        beta ~ normal(0,4), #0=mean slope, 4=sd which is like the max difference between before and after
-        sigma_ind ~ exponential(1),
-        sigma ~ exponential(1),
-        Rho ~ lkj_corr(2)
+        habitatuse ~ dbinom(10,p),
+        logit(p) <- g[tid] + alpha[actor,tid],
+        # adaptive priors - non-centered
+        transpars> matrix[actor,2]:alpha <- compose_noncentered( sigma_actor , L_Rho_actor , z_actor ),
+        matrix[2,actor]:z_actor ~ normal( 0 , 1 ),
+        # fixed priors
+        g[tid] ~ normal(0,1),
+        vector[2]:sigma_actor ~ dexp(1),
+        cholesky_factor_corr[2]:L_Rho_actor ~ lkj_corr_cholesky( 2 ),
+        # compute ordinary correlation matrixes from Cholesky factors
+        gq> matrix[2,2]:Rho_actor <<- Chol_to_Corr(L_Rho_actor)
     ) , data=dat , chains=4 , cores=4 , log_lik=TRUE , cmdstan = TRUE, control = list(adapt_delta = .95, force_recompile = TRUE))
 #precis(sj, depth=2) #check the output to make sure it looks as expected
   #Don't need to do the contrast because we already have each individual's number so we only need to look at their beta to see whether it is positive (more habitats after) or negative (fewer habitats after)
 
 post <- extract.samples(sj)
+diff_g <- post$g[,2] - post$g[,1] #log-odds difference p.341 McElreath 2020
+diff_p <- inv_logit(post$g[,2]) - inv_logit(post$g[,1]) #on the probability scale p.341 McElreath 2020
+#precis( list( diff_g=diff_g , diff_p=diff_p ) )
 
   # enter all of the results into the data sheet
     simresults[counter,]$n <- N_ind
-    simresults[counter,]$changenumber_mean <- maxinc*currentchangenumber #this will show the avg change in number of habitats
-    simresults[counter,]$changenumber_sd <- 2 #change this SD to match that in changenumber (only changes in these 2 places)
+    simresults[counter,]$changenumber_mean <- currentchangenumber #this will show the avg change in number of habitats
     simresults[counter,]$repetition <- repetition
-    simresults[counter,]$number_before <- currentnumber_before
-    simresults[counter,]$proportion_estimates_below_zero <- sum(post$beta<0)/2000
-    simresults[counter,]$count_estimates_below_zero <- sum(post$beta<0)
+    simresults[counter,]$changeprop_sd <- 0.2 #change this number and in individual_probs_after to test different SDs
+    simresults[counter,]$number_before <- average_currentnumber_before
+    simresults[counter,]$proportion_estimates_below_zero <- sum(diff_p<0)/length(diff_p)
+    simresults[counter,]$count_estimates_below_zero <- sum(diff_p<0)
     counter<-counter+1 
-    print(c(counter,"out of",10*length(samplesizes)*length(changenumbervariants)*length(number_before)))
+    print(c(counter,"out of",10*length(samplesizes)*length(changenumbervariants)*length(average_number_before)))
         }
         }
         }
 }
 
-#write the output to csv, combine both SD data sets into one sheet, change the column "changenumber_mean" to the number of habitats (e.g., 4.5, 4, 3, 2, 1 as in meanchangenumber above), upload to github, and get the url for the next R chunk. FYI the model takes 5-7hrs to run
-#write.csv(simresults,file="simresultsjayhabitatsd2.csv")
-#write.csv(simresults,file="simresultsjayhabitatsd1.csv")
+#write the output to csv, combine both SD data sets into one sheet, change the column "changenumber_mean" to the number of habitats (e.g.,3, 5, 7 as in meanchangenumber above), upload to github, and get the url for the next R chunk. FYI model takes 4hrs to run
+#write.csv(simresults,file="simresultsjayhabitatsd0.1.csv")
+#write.csv(simresults,file="simresultsjayhabitatsd0.2.csv")
 ```
 
 ```{r jayq3simulationfiguresamplesize, eval=F, messages=F}
@@ -2431,27 +2431,29 @@ mjf <- ulam(
 ##### T.Q1 Does a flexibility manipulation alter dispersal timing (1.1) and distance (1.2), as well as the likelihood that juvenile toutouwai will disperse beyond the protection of Zealandia’s fence and attempt to establish in the adjacent urban area (1.3)?
 
 
-##### G.Q1.1 Do flexibility manipulated individuals disperse at different times after fledging?
-
-# 1.1 Timing: LMM: Age at dispersal (days since fledging) ~ Condition + (1|Parent pair ID)
-# zero-inflated poisson: need zero-inflated because a small percentage of individuals does not disperse in their first season (~10%); individuals who do disperse appear to do so within a relatively short period, which is captured by the poisson-model which counts the numbers of days (McElreath 2020, page 378 2nd edition)
+###### The model: dispersal timing (1.1)
  
 *Bayesian model for a zero-inflated poisson distribution:*
   
   $D_i$ ~ Zero-inflated Poisson($p_i$,$lambda_i$)
 
-$D_i$ is how many days before the cut-off of observations at 112 days individuals dispersed (for example, if a bird dispersed 50 days after fledging, D_i is 112-50=72); the subtraction covers cases where the age at dispersal would be very late such that some birds might have dispersed but have not yet by the cut-off day. These individuals will be included with the non-dispersers as having a zero-value. $lambda_i$ is the mean of the poisson describing the average day (and variance) for individuals who have dispersed.
+$D_i$ is how many days before the cut-off of observations at 112 days individuals dispersed (for example, if a bird dispersed 50 days after fledging, D_i is 112-50=72); the subtraction covers cases where the age at dispersal would be very late such that some birds might disperse after day 112 post-fledging. The latter individuals will be included with the non-dispersers as having a zero value. $lambda_i$ is the mean of the Poisson distribution describing the average day (and variance) for individuals who have dispersed. A zero inflated Poisson distribution was used because a small percentage of individuals do not disperse in their first season (zero values) and individuals who do disperse have a response variable that is a count number of days post-fledging do so within a relatively short period, which is captured by the Poisson distribution which counts the number of days [@mcelreath2020statistical]. These patterns are described by [@richard2007demography], which shows that only a small minority of individuals does not disperse, and that dispersers were observed to leave their natal territory on average 47.5 days after fledging, with a range between 32-72 days. We assume that both the likelihood to disperse and the day at which dispersers leave might differ between individuals in the manipulated and the control conditions:
 
 log($p_i$) = $\gamma_p$[condition] + $\alpha_p$[parentid],[condition]
 
-log($lambda_i$) = $\gamma_l$[condition] + $\alpha_l$[parentid],[condition]
+The two $\gamma$[condition] estimates reflect the difference between control and manipulated birds for the probability to not disperse ($\gamma_p$) and when to disperse ($\gamma_l$). The Bayesian model was developed using @mcelreath2020statistical as a guide.
 
-the two $\gamma$[condition] estimates reflect the difference between control and manipulated birds for the probability to not disperse ($\gamma_p$) and when to disperse ($\gamma_l$) and the two $\alpha$[parentid],[condition] are the effects for individuals born to the same parents in each condition. The Bayesian model was developed using @mcelreath2020statistical as a guide.
+###### Power analysis (1.1)
 
+We estimated our power to detect differences between conditions at different sample sizes and with different mean changes in age at which individuals disperse after fledging (Figure 10). We simulated the age at which individuals would disperse in the control condition (with averages of 36, 48, or 72 days after fledging), and assumed that manipulated individuals might disperse sooner. We analyzed these simulated data with the model we will use to analyze the actual data, estimating the contrast in average time at which individuals disperse. The model also accounts for differences in the likelihood to not disperse at all between control and manipulated birds, but we did not examine this here in the simulation given that the number of individuals who will not disperse is likely to be very low. From the posterior estimates of the model, we extracted both the mean change as well as the ratio of the posterior estimates that were below zero, indicating that there would be a clear difference between control and manipulated birds.
 
-###### Power analysis
+If the mean ratio of estimates below zero is close to 0.5, the model assumes that the age at which individuals disperse is similar for control and manipulated birds. If the ratio is close to zero, the model assumes individuals have changed their behavior and disperse earlier when they were manipulated. We find that for changes smaller than 1 standard deviation (which equals roughly 7 days), models are likely to assume that there are no differences between control and manipulated individuals even with large sample sizes. If the contrast in time of dispersal of manipulated compared to control individuals is 1 standard deviation, on average 92% of the posterior of the model based on a sample size of 20 individuals will be larger than zero. This means that the model is quite certain there is a contrast that is larger than zero. 
 
-```{r gtgrq1simulation, eval=F}
+In general, with sample sizes at or above 20 and mean contrasts between manipulated and control individuals of 1 standard deviation or higher, it is highly likely that the model will indicate that manipulated individuals have changed their behavior. Mean contrasts of less than 1 standard deviation can still be detected, however there is a higher risk that there will be a false negative (27% risk of a false negative with a sample size of 20 when the contrast is 0.25 standard deviations = ~2 days earlier dispersal). 
+
+To estimate the risk of detecting false positives, we set the mean change in age of dispersal for manipulated individuals compared to control individuals to zero so there was no change. As expected, the average ratio of estimates below zero is close to 0.5 and independent of sample size. With a sample size of 20, <7% of the simulations have a ratio smaller than 0.1, meaning that the risk of having a false positive is low. 
+
+```{r touq1timingsimulation, eval=F}
 library(rethinking)
 library(cmdstanr)
 set_ulam_cmdstan(TRUE) #makes it so ulam always runs with cmdstan
@@ -2563,15 +2565,7 @@ for (samplesize in 1:length(samplesizes)) {
 
 ```
 
-We estimated our power to detect differences between conditions at different sample sizes and with different mean changes in age at which individuals disperse after fledging (Figure 10). We simulated the age at which individuals would disperse in the control condition (with averages of 36, 48, or 72 days after fledging), and assumed that manipulated individuals might disperse sooner. We analyzed these simulated data with the model we will use to analyze the actual data, estimating the contrast in average time at which individuals disperse. The model also accounts for differences in the likelihood to not disperse at all between control and manipulated birds, but we did not exame this here in the simulation given that the number of individuals who will not disperse is likely to be very low. From the posterior estimates of the model, we extracted both the mean change as well as the ratio of the posterior estimates that were below zero, indicating that there would be a clear difference between control and manipulated birds. 
-
-If the mean ratio of estimates below zero is close to 0.5, the model assumes that the age at which individuals disperse is similar for control and manipulated birds. If the ratio is close to zero, the model assumes individuals have changed their behavior and disperse earlier when they were manipulated. We find that for changes smaller than 1 standard deviation (which equals roughly 7 days), models are likely to assume that there are no differences between control and manipulated individuals even with large sample sizes. If the contrast in time of dispersal of manipulated compared to control individuals is 1 standard deviation, on average 92% of the posterior of the model based on a sample size of 20 individuals will be larger than zero. This means that the model is quite certain there is a contrast that is larger than zero. 
-
-In general, with sample sizes at or above 20 and mean contrasts of 1 standard deviation or higher, it is highly likely that the model will indicate that manipulated individuals have changed their behavior. Mean contrasts of less than 1 standard deviation can still be detected, however there is a higher risk that there will be a false negative (27% risk of a false negative with a sample size of 20 when the contrast is 0.25 standard deviations/2 days). 
-
-To estimate the risk of detecting false positives, we set the mean change in age of dispersal for manipulated individuals compared to control individuals to zero so there was no change. As expected, the average ratio of estimates below zero is close to 0.5 and independent of sample size. With a sample size of 20, <7% have a ratio smaller than 0.1, meaning that the risk of having a false positive is low. 
-
-```{r gtgrq1simulationfiguresamplesize, eval=F, messages=F}
+```{r touq1timingsimulationfiguresamplesize, eval=F, messages=F}
 library(rethinking)
 library(cmdstanr)
 set_ulam_cmdstan(TRUE) #makes it so ulam always runs with cmdstan
@@ -2689,9 +2683,7 @@ mtext("Ratio of estimates below zero",side=2,line=3, cex=1.2)
 # Tthere is a <7% chance to get a false positive with a sample size of 20
 #sum(d[d$n %in% 20 & d$change_mean %in% 0,]$proportion_estimates_below_zero<0.3) #2 values are <0.1 (out of 30)
 #length(d[d$n %in% 20 & d$changeprop_mean %in% 0,]$proportion_estimates_below_zero) #30 values total
-
 ```
-
 
 &nbsp;
 
@@ -2701,12 +2693,11 @@ mtext("Ratio of estimates below zero",side=2,line=3, cex=1.2)
 
 &nbsp;
 
-
 ###### Run this model on the actual data (1.1)
 
-Run the code below to determine whether the manipulated birds differ from the control individuals in their age of dispersal. A contrast will be run to determine whether there is a difference between the conditions: if all values of the confidence interval are on one side of zero, then there was a difference; if the confidence interval crosses zero, then there was no difference.
+Run the code below to determine whether the manipulated individuals differ from the control individuals in their age of dispersal. A contrast will be run to determine whether there is a difference between the conditions: if all values of the confidence interval are on one side of zero, then there was a difference; if the confidence interval crosses zero, then there was no difference.
 
-```{r gtgrq1model, eval=F}
+```{r touq1.1model, eval=F}
 library(rethinking)
 library(cmdstanr)
 set_ulam_cmdstan(TRUE) #makes it so ulam always runs with cmdstan
@@ -2746,13 +2737,311 @@ precis( diff_g )
 
 ###### The model: dispersal distance (1.2)
 
+*Bayesian model for a gamma-poisson distribution:*
+  
+  $D_i$ ~ Gamma-Poisson($lambda_i$,$phi_i$)
+
+$D_i$ is the distance in meters that individuals are found away from their parents' territory on day 112 after they fledged, $lambda_i$ is the mean of the poisson describing the distance individuals who have dispersed are found on average away from their parents' territory, and $phi_i$ controls the variance. A gamma-poisson distribution was used because the dispersal distance is a non-negative count, almost all individuals disperse, but the distribution is skewed. Most individuals disperse not very far, but a small proportion can disperse for large distances. These patterns are described by [@richard2007demography], which shows that the average dispersal distance ~1,000m and the maximum dispersal distance is ~10,000m. We assume that distance dispersers move might differ between individuals in the manipulated and the control conditions:
+
+log($lambda_i$) = $\gamma_l$[condition]
+
+The $\gamma$[condition] reflects the average distance individuals disperse for each condition (control/manipulated) to disperse. The Bayesian model was developed using @mcelreath2020statistical as a guide.
+
 
 
 ###### Power analysis (1.2)
 
+We estimated our power to detect differences between conditions at different sample sizes and with different mean changes in distance individuals disperse (Figure 11). We simulated the distance individuals would disperse in the control condition (with averages of 500m, 1000m, or 1500m), and assumed that manipulated individuals might disperse up to 1000m farther. We analyzed these simulated data with the model we will use to analyze the actual data, estimating the contrast in average distance individuals disperse. From the posterior estimates of the model, we extracted both the mean change as well as the ratio of the posterior estimates that were below zero, indicating that there would be a clear difference between control and manipulated birds.
+
+If the mean ratio of estimates below zero is close to 0.5, the model assumes that the distance individuals disperse is similar for control and manipulated birds. If the ratio is close to zero, the model assumes individuals have changed their behavior and disperse earlier when they were manipulated. We find that for changes smaller than 300m, models are likely to assume that there are no differences between control and manipulated individuals even with large sample sizes. Also for the larger increases in dispersal distance, we would need sample sizes of at least 40 (for a 1000m increase) or 60 individuals (for a 300m increase) to reliably detect differences between control and manipulated individuals. If the contrast in dispersal distance of manipulated compared to control individuals is 500m, on average 93% of the posterior of the model based on a sample size of 60 individuals will be larger than zero (81% with a sample size of 20). This means that the model is quite certain there is a contrast that is larger than zero. 
+
+In general, with sample sizes at or above 40 and mean contrasts between manipulated and control individuals of 300m or more, it is likely that the model will indicate that manipulated individuals have changed their behavior. Mean contrasts of less than 300m can still be detected, however there is a high risk that there will be a false negative (67% risk of a false negative with a sample size of 40 when the contrast is 200m). 
+
+To estimate the risk of detecting false positives, we set the mean change in age of dispersal for manipulated individuals compared to control individuals to zero so there was no change. As expected, the average ratio of estimates below zero is close to 0.5 and independent of sample size. With a sample size of 40, <7% of the simulations have a ratio smaller than 0.1, meaning that the risk of having a false positive is low. 
+
+
+```{r tou1.2powersimulation, eval=F}
+library(rethinking)
+library(cmdstanr)
+set_ulam_cmdstan(TRUE) #makes it so ulam always runs with cmdstan
+rstan_options(auto_write = TRUE)
+#rebuild_cmdstan() #run this if you get an error about a PCH file https://discourse.mc-stan.org/t/struggling-to-get-cmdstan-working-on-mac-os-big-sur/19774/4
+
+### SIMULATE the population
+### We first start with a single population to identify the parameters for the Gamma-Poission distribution.
+# We base this on the information on page 71ff in this thesis: 
+# https://mro.massey.ac.nz/bitstream/handle/10179/1596/02_whole.pdf?sequence=1
+# It suggests that i) almost all individuals disperse, ii) most individuals do not disperse far with the average dispersal distance ~1,000m, and iii) the maximum dispersal distance is ~10,000m. This distribution resembles a gamma-poisson with a mean (lambda) of 1000 and a dispersion (phi) also of 1000
+# plot the distribution
+hist(rgampois(10000,1000,1000),breaks=100)
+# percentage who disperse less than 100m (so are assumed to have remained on the natal territory): 10%
+sum(rgampois(10000,1000,1000)<100)/10000
+
+# If individuals disperse on average 500 meters more, they will have a mean of 1500m rather than 1000m, 2.5% rather than 10% will remain in the natal territory, and the maximum will go up from ~14,000 to ~16,000 meters. 
+
+# Potentially the individuals in this population will not disperse as far or farther than the ones we based the information on. We will accordingly change the dispersal distance for the control population to 500m and to 1500m in the simulation. We will keep the variance parameter the same as the mean (so lambda and phi are both 500, both 1000, or both 1500).
+
+# power analysis: run this simulation with different N_ind, change means, to find the boundaries of where you can detect a difference (run the model and use contrasts) between the two conditions (control/manipulated). Automate the process like Dieter did in xpop figs 5 (line 1133) and 6 (line 1452)?
+
+
+### POWER ANALYSIS: different sample sizes and different mean changes in dispersal distance between control and manipulated conditions
+# We now set our range of likely sample sizes, from a minimum of 10 individuals to a maximum of 60 individuals (half in the control and the other half in the manipulated condition). We draw repeated samples of individuals of that size, with 10 repetitions for each of the 5 sample sizes and each of the 6 mean changes. So 10*6 mean change (=60) for each of the 5 sample sizes, resulting in a total length of samplesizes of 300
+samplesizes<-c(10,20,30,40,60) #c(10,20,30,40,60)
+
+# Set the means you want to compare
+meanchange1<-1000 
+meanchange2<-500
+meanchange3<-300 #e.g., a bird spends 0.6 of its time being rewarded at cafes and dumpsters before the manipulation and then increases this proportion to 0.8 after the manipulation, showing that the manipulation improved their foraging success
+meanchange4<-200
+meanchange5<-100
+meanchange6<-0
+changevariants<-c(meanchange1,meanchange2,meanchange3,meanchange4,meanchange5,meanchange6) #for false negatives
+#changepropvariants<-c(0) #for false positives
+#changepropvariants<-c(meanchangeprop6) #for showing differences
+
+#compare different baseline proportions for how much time these individuals spend when the reward is present before the manipulation
+mean_distance_control<-c(500,1000,1500) #c(0.5,0.6,0.7)
+
+
+#set up data frame where results will be stored
+simresults <- matrix(NA,nrow=900,ncol=6)
+simresults <- data.frame(simresults)
+colnames(simresults) <- c("n","change_mean","repetition","distance_control","proportion_estimates_below_zero","count_estimates_below_zero")
+counter<-1
+
+# run simulations. There are 5 different sample sizes, and for each we have 6 different mean change in proportions that we want to examine, and each will repeat 10 times for a total of 300 samples.
+for (samplesize in 1:length(samplesizes)) {
+  N_ind <- samplesizes[samplesize] #number of grackles per sample size
+  
+  #now run through each of the 6 change variations
+  for (propvariant in 1:length(changevariants)) {
+    
+    #pick the current change variant from the list changevariants
+    currentchangeprop <- changevariants[propvariant]
+    
+    for (baselineprop in 1:3) {
+      #pick the baseline distance variant from the list 
+      currentprop_before <- mean_distance_control[baselineprop]
+      
+      for (repetition in 1:10) {
+        #create data frame to store for each repetition of the simulated data to be analyzed by the model
+   
+        #CONTROL condition
+        distance_control <- round(rgampois(N_ind/2,currentprop_before,currentprop_before),0) 
+        #MANIPULATED condition
+        distance_manipulated<- round(rgampois(N_ind/2,currentprop_before+currentchangeprop,currentprop_before),0) 
+       
+        
+        ### run a STAN model to see whether the before and after proportions are estimated to be different from each other
+        #sets up the data sheet with the simulated data that the model will run on
+        dat <- list(
+          response = c(distance_control,distance_manipulated),
+          condition = c(rep(1,N_ind/2),rep(2,N_ind/2)) #1 refers to control and 2 to manipulated
+        )
+        
+        # Our MODEL, which will estimate a different mean and variance of phi for each site 
+        #(note: had to add force_recompile bc kept giving me an error and wouldn't finish running. See https://github.com/rmcelreath/rethinking/issues/338)
+        s1 <- ulam(
+          alist(
+            response ~ dgampois(lambda,phi),
+            lambda <- g[condition],
+            # fixed priors
+            g[condition] ~ normal(1000,1000),
+            phi ~ normal(1000,1500)
+          ) , data=dat , chains=4 , cores=4 , log_lik=TRUE , cmdstan = TRUE, control = list(adapt_delta = .95, force_recompile = TRUE))
+        
+        #run a CONTRAST to determine whether there is a difference between before (g1) and after (g2) (subtract g1 before from g2 after). Yes if all values for diff_p on one side of zero (want probability scale because that is the scale we used in the simulation)
+        post <- extract.samples(s1)
+        diff_g <- post$g[,2] - post$g[,1] #log-odds difference p.341 McElreath 2020
+
+        # enter all of the results into the data sheet
+        simresults[counter,]$n <- N_ind
+        simresults[counter,]$change_mean <- currentchangeprop
+        simresults[counter,]$repetition <- repetition
+        simresults[counter,]$distance_control <- currentprop_before
+        simresults[counter,]$proportion_estimates_below_zero <- sum(diff_g<0)/length(diff_g)
+        simresults[counter,]$count_estimates_below_zero <- sum(diff_g<0)
+        counter<-counter+1 
+        print(c(counter,"out of",10*length(samplesizes)*length(changevariants)*length(distance_control)))
+      }
+    }
+  }
+}
+
+#write.csv(simresults,file="simresults20plus.csv") #put the outputs into a csv file so don't have to run the model again...it takes hours
+
+## Prep a figure to show how sample size and mean change prop makes a difference in the results. Get posterior values for particular sample sizes and change props. Set samplesize (20 or 60), changepropvariants (0.1 or 0.025), and prop_before (always 0.6) to just one number and run the model. Generate the output, write to csv. Repeat for other model variants
+#write.csv(diff_p,file="diff_p20changeprop0.1.csv")
+#write.csv(diff_p,file="diff_p60changeprop0.1.csv")
+#write.csv(diff_p,file="diff_p20changeprop0.025.csv")
+#write.csv(diff_p,file="diff_p60changeprop0.025.csv")
+```
+
+```{r tou1.2simulationfiguresamplesize, eval=F, messages=F}
+library(rethinking)
+library(cmdstanr)
+set_ulam_cmdstan(TRUE) #makes it so ulam always runs with cmdstan
+
+#load the data sheet that was made from the simulation in the previous R chunk
+d <- read.csv("https://raw.githubusercontent.com/ManyIndividuals/ManyIndividuals/main/Files/rrs/m1simresults_toutouawidispersaldistance.csv", header = TRUE, sep = ",", stringsAsFactors = FALSE)
+#head(d)
+
+# Set up the data sheet for the model
+dat <- list(
+  proportion_estimates_below_zero = as.numeric(d$proportion_estimates_below_zero),
+  count_estimates_below_zero = as.numeric(d$count_estimates_below_zero),
+  change_mean = as.numeric(as.factor(d$change_mean)),
+  samplesize = as.integer(as.factor(d$n))
+)
+
+# We run the STAN model - it is a binomial model that assumes that the probability to estimate a difference depends on an interaction between the sample size and the difference between the conditions (before/after). These two models do the same thing with different versions of the response variable. In m_samplesize_diffs, the response variable is already a proportion. In m_samplesize_diffscount, the response variable is a count and the model turns it into a proportion. We ended up using the latter
+#m_samplesize_diffs <- ulam(
+#    alist(
+#        proportion_estimates_below_zero ~ dnorm(mu,sigma),
+#        mu <- a[samplesize] + b[samplesize]*changeprop_mean,
+#        a[samplesize] ~ dnorm(a_bar,sigma_a),
+#        a_bar~dnorm(0,1.5),
+#        sigma_a~dexp(1),
+#        sigma~dexp(1),
+#        b[samplesize]~dnorm(0,1.5)
+#    ) , data=dat , chains=4 , cores=4 , log_lik=TRUE , cmdstan = TRUE, control = list(adapt_delta = .95, force_recompile = TRUE))
+
+m_samplesize_diffscount <- ulam(
+  alist(
+    count_estimates_below_zero~dbinom(2000,p),
+    logit(p) <- a[samplesize]-b[samplesize]*change_mean,
+    a[samplesize]~dnorm(a_bar,sigma_a),
+    a_bar~dnorm(0,1.5),
+    sigma_a~dexp(1),
+    b[samplesize]~dnorm(0,1.5)
+  ),data=dat, log_lik=TRUE, messages=FALSE,cmdstan=T)
+
+# Extract the posterior estimates from this STAN model
+precis_output<-precis( m_samplesize_diffscount , depth=2 )
+
+# Plot the predictions for the different sample sizes as separate lines = COUNT out of 2000
+plot(NULL,xlim=c(0.5,6.5),ylim=c(0.0,0.8),pch=1,ann=F,frame.plot=F,cex=1.5,xaxt="n")
+axis(side=1,at=c(1,2,3,4,5,6),labels=c(0,100,200,300,500,1000))
+
+mu_10<- link( m_samplesize_diffscount , data=data.frame( change_mean=as.numeric(as.factor(unique(d$change_mean))),samplesize=rep(1,length(unique(d$change_mean))) ) )
+mu_10_mean <- apply( mu_10 , 2 , mean )
+mu_10_ci <- apply( mu_10 , 2 , PI , prob=0.97 )
+shade( mu_10_ci , as.numeric(as.factor(unique(d$change_mean))) , col=col.alpha("blue",0.7) )
+lines(x=c(0.96,0.96),y=c(min(d[d$n %in% 10 & d$change_mean %in% 0,]$proportion_estimates_below_zero),max(d[d$n %in% 10 & d$change_mean %in% 0,]$proportion_estimates_below_zero)),col=col.alpha("blue",0.5))
+lines(x=c(1.96,1.96),y=c(min(d[d$n %in% 10 & d$change_mean %in% 100,]$proportion_estimates_below_zero),max(d[d$n %in% 10 & d$change_mean %in% 100,]$proportion_estimates_below_zero)),col=col.alpha("blue",0.5))
+lines(x=c(2.96,2.96),y=c(min(d[d$n %in% 10 & d$change_mean %in% 200,]$proportion_estimates_below_zero),max(d[d$n %in% 10 & d$change_mean %in% 300,]$proportion_estimates_below_zero)),col=col.alpha("blue",0.5))
+lines(x=c(3.96,3.96),y=c(min(d[d$n %in% 10 & d$change_mean %in% 300,]$proportion_estimates_below_zero),max(d[d$n %in% 10 & d$change_mean %in% 300,]$proportion_estimates_below_zero)),col=col.alpha("blue",0.5))
+lines(x=c(4.96,4.96),y=c(min(d[d$n %in% 10 & d$change_mean %in% 500,]$proportion_estimates_below_zero),max(d[d$n %in% 10 & d$change_mean %in% 500,]$proportion_estimates_below_zero)),col=col.alpha("blue",0.5))
+lines(x=c(5.96,5.96),y=c(min(d[d$n %in% 10 & d$change_mean %in% 1000,]$proportion_estimates_below_zero),max(d[d$n %in% 10 & d$change_mean %in% 1000,]$proportion_estimates_below_zero)),col=col.alpha("blue",0.5))
+
+mu_20<- link( m_samplesize_diffscount , data=data.frame( change_mean=as.numeric(as.factor(unique(d$change_mean))),samplesize=rep(2,length(unique(d$change_mean))) ) )
+mu_20_mean <- apply( mu_20 , 2 , mean )
+mu_20_ci <- apply( mu_20 , 2 , PI , prob=0.97 )
+shade( mu_20_ci , as.numeric(as.factor(unique(d$change_mean))) , col=col.alpha("orange",0.7) )
+lines(x=c(0.98,0.98),y=c(min(d[d$n %in% 20 & d$change_mean %in% 0,]$proportion_estimates_below_zero),max(d[d$n %in% 20 & d$change_mean %in% 0,]$proportion_estimates_below_zero)),col=col.alpha("orange",0.5))
+lines(x=c(1.98,1.98),y=c(min(d[d$n %in% 20 & d$change_mean %in% 100,]$proportion_estimates_below_zero),max(d[d$n %in% 20 & d$change_mean %in% 100,]$proportion_estimates_below_zero)),col=col.alpha("orange",0.5))
+lines(x=c(2.98,2.98),y=c(min(d[d$n %in% 20 & d$change_mean %in% 200,]$proportion_estimates_below_zero),max(d[d$n %in% 20 & d$change_mean %in% 300,]$proportion_estimates_below_zero)),col=col.alpha("orange",0.5))
+lines(x=c(3.98,3.98),y=c(min(d[d$n %in% 20 & d$change_mean %in% 300,]$proportion_estimates_below_zero),max(d[d$n %in% 20 & d$change_mean %in% 300,]$proportion_estimates_below_zero)),col=col.alpha("orange",0.5))
+lines(x=c(4.98,4.98),y=c(min(d[d$n %in% 20 & d$change_mean %in% 500,]$proportion_estimates_below_zero),max(d[d$n %in% 20 & d$change_mean %in% 500,]$proportion_estimates_below_zero)),col=col.alpha("orange",0.5))
+lines(x=c(5.98,5.98),y=c(min(d[d$n %in% 20 & d$change_mean %in% 1000,]$proportion_estimates_below_zero),max(d[d$n %in% 20 & d$change_mean %in% 1000,]$proportion_estimates_below_zero)),col=col.alpha("orange",0.5))
+
+mu_30<- link( m_samplesize_diffscount , data=data.frame( change_mean=as.numeric(as.factor(unique(d$change_mean))),samplesize=rep(3,length(unique(d$change_mean))) ) )
+mu_30_mean <- apply( mu_30 , 2 , mean )
+mu_30_ci <- apply( mu_30 , 2 , PI , prob=0.97 )
+shade( mu_30_ci , as.numeric(as.factor(unique(d$change_mean))) , col=col.alpha("skyblue",0.7) )
+lines(x=c(1,1),y=c(min(d[d$n %in% 30 & d$change_mean %in% 0,]$proportion_estimates_below_zero),max(d[d$n %in% 30 & d$change_mean %in% 0,]$proportion_estimates_below_zero)),col=col.alpha("skyblue",0.5))
+lines(x=c(2,2),y=c(min(d[d$n %in% 30 & d$change_mean %in% 100,]$proportion_estimates_below_zero),max(d[d$n %in% 30 & d$change_mean %in% 100,]$proportion_estimates_below_zero)),col=col.alpha("skyblue",0.5))
+lines(x=c(3,3),y=c(min(d[d$n %in% 30 & d$change_mean %in% 200,]$proportion_estimates_below_zero),max(d[d$n %in% 30 & d$change_mean %in% 300,]$proportion_estimates_below_zero)),col=col.alpha("skyblue",0.5))
+lines(x=c(4,4),y=c(min(d[d$n %in% 30 & d$change_mean %in% 300,]$proportion_estimates_below_zero),max(d[d$n %in% 30 & d$change_mean %in% 300,]$proportion_estimates_below_zero)),col=col.alpha("skyblue",0.5))
+lines(x=c(5,5),y=c(min(d[d$n %in% 30 & d$change_mean %in% 500,]$proportion_estimates_below_zero),max(d[d$n %in% 30 & d$change_mean %in% 500,]$proportion_estimates_below_zero)),col=col.alpha("skyblue",0.5))
+lines(x=c(6,6),y=c(min(d[d$n %in% 30 & d$change_mean %in% 1000,]$proportion_estimates_below_zero),max(d[d$n %in% 30 & d$change_mean %in% 1000,]$proportion_estimates_below_zero)),col=col.alpha("skyblue",0.5))
+
+mu_40<- link( m_samplesize_diffscount , data=data.frame( change_mean=as.numeric(as.factor(unique(d$change_mean))),samplesize=rep(4,length(unique(d$change_mean))) ) )
+mu_40_mean <- apply( mu_40 , 2 , mean )
+mu_40_ci <- apply( mu_40 , 2 , PI , prob=0.97 )
+shade( mu_40_ci , as.numeric(as.factor(unique(d$change_mean))) , col=col.alpha("#213940",0.7) )
+lines(x=c(1.02,1.02),y=c(min(d[d$n %in% 40 & d$change_mean %in% 0,]$proportion_estimates_below_zero),max(d[d$n %in% 40 & d$change_mean %in% 0,]$proportion_estimates_below_zero)),col=col.alpha("#213940",0.5))
+lines(x=c(2.02,2.02),y=c(min(d[d$n %in% 40 & d$change_mean %in% 100,]$proportion_estimates_below_zero),max(d[d$n %in% 40 & d$change_mean %in% 100,]$proportion_estimates_below_zero)),col=col.alpha("#213940",0.5))
+lines(x=c(3.02,3.02),y=c(min(d[d$n %in% 40 & d$change_mean %in% 200,]$proportion_estimates_below_zero),max(d[d$n %in% 40 & d$change_mean %in% 300,]$proportion_estimates_below_zero)),col=col.alpha("#213940",0.5))
+lines(x=c(4.02,4.02),y=c(min(d[d$n %in% 40 & d$change_mean %in% 300,]$proportion_estimates_below_zero),max(d[d$n %in% 40 & d$change_mean %in% 300,]$proportion_estimates_below_zero)),col=col.alpha("#213940",0.5))
+lines(x=c(5.02,5.02),y=c(min(d[d$n %in% 40 & d$change_mean %in% 500,]$proportion_estimates_below_zero),max(d[d$n %in% 40 & d$change_mean %in% 500,]$proportion_estimates_below_zero)),col=col.alpha("#213940",0.5))
+lines(x=c(6.02,6.02),y=c(min(d[d$n %in% 40 & d$change_mean %in% 1000,]$proportion_estimates_below_zero),max(d[d$n %in% 40 & d$change_mean %in% 1000,]$proportion_estimates_below_zero)),col=col.alpha("#213940",0.5))
+
+mu_60<- link( m_samplesize_diffscount , data=data.frame( change_mean=as.numeric(as.factor(unique(d$change_mean))),samplesize=rep(5,length(unique(d$change_mean))) ) )
+mu_60_mean <- apply( mu_60 , 2 , mean )
+mu_60_ci <- apply( mu_60 , 2 , PI , prob=0.97 )
+shade( mu_60_ci , as.numeric(as.factor(unique(d$change_mean))) , col=col.alpha("red",0.7) )
+lines(x=c(1.04,1.04),y=c(min(d[d$n %in% 60 & d$change_mean %in% 0,]$proportion_estimates_below_zero),max(d[d$n %in% 60 & d$change_mean %in% 0,]$proportion_estimates_below_zero)),col=col.alpha("red",0.5))
+lines(x=c(2.04,2.04),y=c(min(d[d$n %in% 60 & d$change_mean %in% 100,]$proportion_estimates_below_zero),max(d[d$n %in% 60 & d$change_mean %in% 100,]$proportion_estimates_below_zero)),col=col.alpha("red",0.5))
+lines(x=c(3.04,3.04),y=c(min(d[d$n %in% 60 & d$change_mean %in% 200,]$proportion_estimates_below_zero),max(d[d$n %in% 60 & d$change_mean %in% 300,]$proportion_estimates_below_zero)),col=col.alpha("red",0.5))
+lines(x=c(4.04,4.04),y=c(min(d[d$n %in% 60 & d$change_mean %in% 300,]$proportion_estimates_below_zero),max(d[d$n %in% 60 & d$change_mean %in% 300,]$proportion_estimates_below_zero)),col=col.alpha("red",0.5))
+lines(x=c(5.04,5.04),y=c(min(d[d$n %in% 60 & d$change_mean %in% 500,]$proportion_estimates_below_zero),max(d[d$n %in% 60 & d$change_mean %in% 500,]$proportion_estimates_below_zero)),col=col.alpha("red",0.5))
+lines(x=c(6.04,6.04),y=c(min(d[d$n %in% 60 & d$change_mean %in% 1000,]$proportion_estimates_below_zero),max(d[d$n %in% 60 & d$change_mean %in% 1000,]$proportion_estimates_below_zero)),col=col.alpha("red",0.5))
+
+legend(x="topright",legend=c(lty2="10",lty1="20",lty3="30",lty2="40",lty3="60"),lty=c(1,1,1,1,1),lwd=c(5,5,5,5,5),col=c(col.alpha("blue",0.4),col.alpha("orange",0.4),col.alpha("skyblue",0.4),col.alpha("#213940",0.4),col.alpha("red",0.4)),cex=1,bty="n")
+
+# Axis labels (side 1=x axis, side 2=y axis)
+mtext("Sample size",side=3,line=-1,at=5.5)
+mtext("Power to detect differences between conditions",side=3,line=1,at=3.5,cex=1.5)
+mtext("Increase in dispersal distance (meters) of manipulated vs control individuals",side=1,line=3, cex=1.2)
+mtext("Ratio of estimates below zero",side=2,line=3, cex=1.2)
+
+#93% of the posterior mass is above zero for a 500m or larger mean change in proportion between before and after when the sample size is 60, 86% for n=40, 83% for n=30, and 81% for n=20
+#mu_10_ci #82%. 3rd column from the right (column 4) for the 0.1 category on the x axis (ordered by unique(d$changeprop_mean))
+# 1-mu_60_mean[2]
+# 1-mu_30_mean[2]
+
+#sum(d[d$n %in% 40 & d$change_mean %in% 0,]$proportion_estimates_below_zero<0.1) #2 values are <0.1 (out of 30)
+#length(d[d$n %in% 40 & d$change_mean %in% 0,]$proportion_estimates_below_zero) #30 values total
+
+```
+
+&nbsp;
+
+<img width="100%" src="m1FigPowerAnalysisTouDistance.png">
+
+**Figure 11** Curves of the mean ratio of estimates below zero (vertical lines show the minimum and maximum ratios), which illustrates the power we have to detect differences between conditions (control vs. manipulated) in the distance of dispersal at different sample sizes. 
+
+&nbsp;
 
 
 ###### Run this model on the actual data (1.2)
+
+Run the code below to determine whether there were differences between the control and manipulated conditions in the distance of dispersal. A contrast will be run to determine whether there is a difference between the conditions: if all values of the confidence interval are on one side of zero, then there was a difference; if the confidence interval crosses zero, then there was no difference.
+
+```{r tou1.2model, eval=F}
+library(rethinking)
+library(cmdstanr)
+set_ulam_cmdstan(TRUE) #makes it so ulam always runs with cmdstan
+
+# load data sheet
+d <- read.csv(url(""), header=T, sep=",", stringsAsFactors=F)
+
+# Set up the data for the analysis. This assumes you have a variable "dispersaldistance" that reports for each individual how many meters they dispersed, and a variable "condition" that indicates whether the individual is part of the control or the manipulated group 
+dat <- list(
+          response = as.numeric(d$dispersaldistance),
+          condition = as.numeric(as.factor(d$condition)) #1 refers to control and 2 to manipulated
+        )
+        
+# Our MODEL, which will estimate a different mean and variance of phi for each site 
+        #(note: had to add force_recompile bc kept giving me an error and wouldn't finish running. See https://github.com/rmcelreath/rethinking/issues/338)
+        s1 <- ulam(
+          alist(
+            response ~ dgampois(lambda,phi),
+            lambda <- g[condition],
+            # fixed priors
+            g[condition] ~ normal(1000,1000),
+            phi ~ normal(1000,1500)
+          ) , data=dat , chains=4 , cores=4 , log_lik=TRUE , cmdstan = TRUE, control = list(adapt_delta = .95, force_recompile = TRUE))
+
+#model output: pay attention to control (g1) and manipulated (g2)
+#precis(m1,depth=2)
+
+#run a CONTRAST to determine whether there is a difference between control (g1) and manipulated (g2). Yes if all values on one side of zero
+post <- extract.samples(m1)
+diff_g <- post$g[,1] - post$g[,2] #log-odds difference p.341
+precis( diff_g )
+```
 
 
 
@@ -2768,17 +3057,15 @@ The response variable is dispersal location (0=inside Zealandia, 1=outside Zeala
 
 ###### Power analysis (1.3)
 
-We estimated our power to detect differences between conditions at different sample sizes and with different mean changes in the survival status in the control vs. manipulated conditions (Figure 18). We analyzed simulated data with the model we will use to analyze the actual data, estimating the change in survival status between the conditions. From the posterior estimates of the model, we extracted both the mean change as well as the ratio of the posterior estimates that were below zero.
+We estimated our power to detect differences between conditions at different sample sizes and with different mean changes in the dispersal location in the control vs. manipulated conditions (Figure 18). We analyzed simulated data with the model we will use to analyze the actual data, estimating the change in dispersal location between the conditions. From the posterior estimates of the model, we extracted both the mean change as well as the ratio of the posterior estimates that were below zero.
 
-If the mean ratio of estimates below zero is close to 0.5, the model assumes that the change in the number of food types taken before the flexibility manipulation is similar to after. If the ratio is close to zero, the model assumes individuals have changed their behavior. For differences in the survival status at or larger than 0.3, models are likely to assume that no changes occurred even with large sample sizes. If the difference in survival status between control and manipulated conditions is 0.3, on average 88% of the posterior of the model based on a sample size of 30 individuals will be larger than zero. This means that the model is quite certain there is a difference that is larger than zero.
+If the mean ratio of estimates below zero is close to 0.5, the model assumes that the change in the number of food types taken before the flexibility manipulation is similar to after. If the ratio is close to zero, the model assumes individuals have changed their behavior. For differences in the dispersal location at or larger than 0.3, models are likely to assume that no changes occurred even with large sample sizes. If the difference in dispersal location between control and manipulated conditions is 0.3, on average 92% of the posterior of the model based on a sample size of 40 individuals will be larger than zero. This means that the model is quite certain there is a difference that is larger than zero.
 
-In general, with sample sizes at or above 30 and mean differences in the survival status of 0.3 or larger, it is likely that the model will indicate that the flexibility experiment influenced their behavior in a way that affected their survival. Mean changes below 0.3 can still be detected, however there is a higher risk that there will be a false negative. For example, 17% of the models for a sample size of 30 at the mean change of 0.2 have a ratio larger than 0.3, meaning there is a large risk of having a false negative.
+In general, with sample sizes at or above 40 and mean differences in the dispersal location of 0.3 or larger, it is likely that the model will indicate that the flexibility experiment influenced their behavior in a way that affected their dispersal location. Mean changes below 0.3 can still be detected, however there is a higher risk that there will be a false negative. For example, 17% of the models for a sample size of 40 at the mean change of 0.2 have a ratio larger than 0.3, meaning there is a large risk of having a false negative.
 
 With small mean changes in the response variable, some individuals might not increase or even decrease their response after the manipulation because there is variation around the mean change in individual responses. With small sample sizes, there is a risk that only individuals who did not clearly increase their response will be studied, whereas larger sample sizes are more likely to include a wider spectrum of individuals.
 
-To estimate the risk of detecting false positives, we set the mean change in survival to zero so there was no change between the conditions. As expected, the average ratio of estimates below zero is close to 0.5 and independent of sample size. With a sample size of 30, 17% have a ratio smaller than 0.3, meaning that the risk of having a false positive is high. 
-
-We also estimated the power to detect differences between conditions in different habitats (inside or outside Zealandia) at different sample sizes and with different mean changes in the survival status (Figure 19). We found that mean changes in survival status of 0.3 are likely to be detected with a sample size of at least 40 when considering the individuals inside Zealandia, but we will not be able to detect differences outside of Zealandia because the subset sample size will likely be too small.
+To estimate the risk of detecting false positives, we set the mean change in survival to zero so there was no change between the conditions. As expected, the average ratio of estimates below zero is close to 0.5 and independent of sample size. With a sample size of 40, 60% have a ratio smaller than 0.3, meaning that the risk of having a false positive is high. 
 
 ```{r TouLocationSim, eval=F}
 library(rethinking)
