@@ -55,7 +55,7 @@ Human modifications of environments are increasing, causing global changes that 
 
 # **REGISTERED REPORT DETAILS**
 
- - **Level of bias = 6:** This registered report was written (Jul 2021-Mar 2022) prior to collecting any data.
+ - **Level of bias = 6:** This registered report was written (Jul 2021-May 2022) prior to collecting any data.
  - **Programmatic registered report:** Three Stage 2 articles will result from this one Stage 1 registered report: one for toutouwai, one for grackles, and one for jays.
  - **Deviations from the Stage 1 registered report:** [to be filled in as needed after data collection begins]
 
@@ -109,6 +109,8 @@ Great-tailed grackles are flexible [@logan2016flexibilityproblem; @logan2019flex
  - **G.Q2: Does manipulating behavioral flexibility alter the number of microhabitats used?** We will investigate this question by tracking their presence in a variety of microhabitats before and after manipulating their flexibility using serial reversal learning in the wild.
  
  - **G.Q3: Does manipulating flexibility alter the number of different food items taken by grackles?** We will investigate this question by tracking the various food items they take before and after manipulating their flexibility using serial reversal learning in the wild.
+ 
+*Note: we may not have the time or personnel to collect data for G.Q2 and G.Q3, however we will attempt to answer these questions if possible.*
 
 &nbsp;
 
@@ -186,7 +188,7 @@ For all research questions, Table 3 summarizes our predictions, analysis plans, 
 
 **Table 3.** Study design for the toutouwai research. References that were not already cited in the introduction: @pasinelli2004genetic; @howard1960innate.
 
-<img width="100%" src="mi1StudyDesignTableGTGR.png">
+<img width="100%" src="mi1StudyDesignTableToutouwai.png">
 
 &nbsp;
 
@@ -198,8 +200,8 @@ Our approach involves individuals participating in a serial reversal learning ta
 
 We present one experimental design for the flexibility intervention (Figure 6) that can be conducted in two ways: in visual isolation (design 1) and in a group context (design 2). Experimenters can decide which (or both) they want to conduct in their population. Only one experiment must be conducted per population to be able to test these hypotheses. Conducting more than one of these experiments per population is acceptable, but not necessary. Before we present the designs, we first validated the reversal passing criteria and made them generalizable to a variety of species (see the next two sections). Depending on the response variable, there is the option to conduct a within- or between-subjects design: 
 
- 1) Within-subjects: run the manipulation on all individuals and compare pre- and post-manipulation success measures
- 2) Between-subjects: with manipulated and control groups and compare post-manipulation success measures. In this case, 50% of the individuals will be assigned to the control condition and 50% to the flexibility manipulation condition. Assignment to condition will be random (using the random number generator random.org).
+ 1) **Within-subjects:** run the manipulation on all individuals and compare pre- and post-manipulation success measures
+ 2) **Between-subjects:** with manipulated and control groups and compare post-manipulation success measures. In this case, 50% of the individuals will be assigned to the control condition and 50% to the flexibility manipulation condition. Assignment to condition will be random (using the random number generator random.org).
 
 &nbsp;
 
@@ -244,9 +246,7 @@ As expected, based on the relative attraction scores at the end of the previous 
 **Figure 8.** Individuals form strong enough preferences using the 10/12 passing criterion as indicated by the fact that they are unlikely to pass in the first 12 trials of their next reversal (red line). These individuals would take longer to switch their preference than individuals who have no preference (gray line), and they would be slightly faster at switching their preference than individuals who formed their previous association using the 17/20 criterion (black line).
 
 ```{r loadsimulatedreversaldata, eval=F}
-################################################################################################
 # Load previously simulated data from xpop
-################################################################################################
 
 # There are two sets of simulated data, with initial attractions towards both options set at 0.1, and eight different phi and four different lambda combinations
 simulatedreversaldata_attractionscores_1<-read.csv(url("https://raw.githubusercontent.com/corinalogan/grackles/master/Files/Preregistrations/gxpopbehaviorhabitat_SimulatedReversalData_Grackles_PhiLambda_Attraction02_Aug2021.csv"), header=T, sep=",", stringsAsFactors=F) 
@@ -264,9 +264,7 @@ library(dplyr)
 simulatedreversaldata_attractionscores<-bind_rows(simulatedreversaldata_attractionscores_1,simulatedreversaldata_attractionscores_2)
 
 
-################################################################################################
 # Preparing simulated data for analyses
-################################################################################################
 
 # In the simulations, trials were counted continuously for each bird. We now want to change this so that it restarts counting trials from 1 upward once a bird switches to reversal.
 
@@ -283,7 +281,6 @@ simulatedreversaldata_attractionscores[simulatedreversaldata_attractionscores$Ch
 
 colnames(simulatedreversaldata_attractionscores)<-c("counter","id","Session","Trial","Reversal","Choice","Correct","Phi_mean","Lambda_mean","Site","Phi_sd","Lambda_sd","ThisBirdsPhi","ThisBirdsLambda","Attraction1","Attraction2")
 
-
 # There are several simulated individuals who never reached any criterion during the initial learning phase (in xpop we worked with the criterion of 17 correct out of the 20 choices given as one block). We need to remove these individuals from the dataset
 
 birdswithreversal<-as.data.frame(simulatedreversaldata_attractionscores %>% group_by(id) %>% summarise(experiments=length(unique(Reversal))))
@@ -295,9 +292,7 @@ simulatedreversaldata_attractionscores$id<-as.integer(as.factor(simulatedreversa
 
 
 
-################################################################################################
 # 1) With the 10 correct out of 12 continuous trials criterion, individuals finish after fewer trials than with other criteria
-################################################################################################
 
 # We use the data from the first reversal to check after how many trials an individual reaches the 10 out of 12 trials solved correctly rule. We are using a sliding window, rather than assuming that the experiment is split into discrete blocks of trials. For this, we check for each individual at what trial number it first reached the criterion that it had correctly solved 10 out of the last 12 trials.
 
@@ -337,11 +332,9 @@ twelvetenfaster<-trialnumber_initiallearning_reachedseventeentwenty[,2]-trialnum
 median(twelvetenfaster,na.rm=T)
 # This means that for most individuals the two rules are equally effective, but because the 10 out of 12 rule is restricted to 12 trials instead of 20 individuals need 8 fewer trials.
 
-
 # The same is seen in a regression
 summary(lm(trialnumber_initiallearning_reachedseventeentwenty[,2]~trialnumber_initiallearning_reachedtwelveten[,2]))
 # The intercept is 7 (similar to the mean listed above), and the slope is 1.3 (suggesting that deviations are slightly more when individuals need a large number of trials). 
-
 
 # We can also check whether counting trials continously, instead of grouping them into blocks, means that individuals finish sooner. In the original simulation, trials where stopped when birds reached the 17 out of 20 criterion based on blocks of 10 trials. We can check whether counting trials continously means they would have finished sooner:
 
@@ -349,27 +342,20 @@ summary(lm(trialnumber_initiallearning_reachedseventeentwenty[,2]~trialnumber_in
 trialnumber_initiallearning_reachedseventeentwentyblock<-matrix(ncol=2,nrow=length(unique(simulatedreversaldata_attractionscores$id)))
 
 for (i in 1:length(unique(simulatedreversaldata_attractionscores$id))){
-  
   thisindividualsinitaltrials<-simulatedreversaldata_attractionscores[simulatedreversaldata_attractionscores$id %in% i & simulatedreversaldata_attractionscores$Reversal %in% "initial",]
   trialnumber_initiallearning_reachedseventeentwentyblock[i,1]<-i
   trialnumber_initiallearning_reachedseventeentwentyblock[i,2]<-max(thisindividualsinitaltrials$Trial)
-
   }
 
 plot(trialnumber_initiallearning_reachedseventeentwentyblock[,2]~trialnumber_initiallearning_reachedseventeentwenty[,2])
 abline(a=0,b=1)
-
 median(trialnumber_initiallearning_reachedseventeentwentyblock[,2]-trialnumber_initiallearning_reachedseventeentwenty[,2],na.rm=T)
 # 5 trials faster
-
 mean(trialnumber_initiallearning_reachedseventeentwentyblock[,2]-trialnumber_initiallearning_reachedseventeentwenty[,2],na.rm=T)
 # 7 trials faster
 
 
-################################################################################################
 # 2) With the 10 correct out of 12 continuous trials criterion, variation among individuals is still present and similar to the variation detected with other criteria
-################################################################################################
-
 
 # Changing the criterion from 17/20 to 10/12 generally means that most individuals need 8 fewer trials. That also means that the differences among individuals, which might contain relevant information, is preserved. We can see this when we plot their ranks in how many trials they need (individuals who need the same number of trials have the same rank; there are fewer ranks with the 10/12 criterion because large values do not appear)
 plot(as.integer(as.factor(trialnumber_initiallearning_reachedseventeentwenty[,2])) ~ as.integer(as.factor(trialnumber_initiallearning_reachedtwelveten[,2])),xlim=c(0,100),ylim=c(0,100))
@@ -377,15 +363,11 @@ abline(a=0,b=1)
 
 
 
-
-################################################################################################
 # 3) With the 10 correct out of 12 continuous trials criterion, classification is less noisy because there is less of a chance of individuals missing the criterion repeatedly or even never reaching it, meaning that individuals slow to learn will be more reliably classified than with a different criterion
-################################################################################################
 
 # While the median improvement is 8 trials, the average improvement is 15 trials
 mean(twelvetenfaster,na.rm=T)
 # The average improvement is larger than the median because, first, there are no individuals who are faster with the 17 out of 20 rule, and secondly because there is a subset of individuals who need considerably fewer trials with the 10 out of 12 rule. We can see this in a plot:
-
 
 seventeentwenty<-trialnumber_initiallearning_reachedseventeentwenty[,2]
 seventeentwenty<-seventeentwenty[is.na(seventeentwenty)==F]
@@ -405,8 +387,6 @@ abline(v=0,lty=1)
 mtext("16 trials", side=1,cex=1,line=-16,at=32,col="red",bg="white")
 mtext("24 trials", side=1,cex=1,line=-14.5,at=40,col="black",bg="white")
 
-
-
 # m1Fig_ReversalCriterionComparison
 
 # With the 17 out of 20 rule, some individuals need a very large number of trials. This is presumably because with more trials there is a higher chance that an individual will deviate from their preference by chance, leading to them not reaching the criterion. Such individuals with very larger number of trials (>100) almost never occur with the 10 out 12 rule. There are also 65 individuals (out of the 626) with the 17 out of 20 criterion who never reached the criterion within the maximum 300 trials that were simulated - while there are only 4 with the 10 out of 12 criterion.
@@ -417,9 +397,7 @@ sum(is.na(trialnumber_initiallearning_reachedtwelveten))
 
 
 
-################################################################################################
 # 4) With the 10 correct out of 12 continuous trials criterion, individuals can be assumed to have reliably learned the association
-################################################################################################
 
 # The difference in attraction, the mechanisms of the assumed learning processes mean that changes in attraction scores are non-linear. New information that an option is rewarded leads initially to large increases in the attraction score towards that option, but each additional information about the reward leads to smaller and smaller additional increases; new information that a previously rewarded option is now unrewarded lead initially to large drops in the attraction score, but additional information that this option is no longer rewarded leads to smaller declines in the attraction score. This means that with the 10 out of 12 criterion, individuals might have already reached the part in the curve of change of attraction scores where there are large differences that have essentially plateaued. We can check this by assessing both the actual attraction scores at that trial when individuals would have reached the criterion, and how high their attraction score is in relation to the maximum attraction score they obtained during the experiment.
 simulatedreversaldata_attractionscores$relativeattraction<-simulatedreversaldata_attractionscores$Attraction1/simulatedreversaldata_attractionscores$Attraction2
@@ -431,7 +409,6 @@ trialnumber_initiallearning_reachedtwelveten<-as.data.frame(trialnumber_initiall
 
 # We loop through all unique individuals in the simulated dataset (626 individuals) and for each check when they reached the criterion - at that point we can stop ("break") and ignore the remaining performance. In the initial association learning, wrong choices are coded as 2 and correct choices as 1, so individuals reached the criterion if they chose 10*1 + 2*2 (equals 14) - so individuals reached criterion when the sum in choices across 12 trials is lower than 15.
 for (i in 1:length(unique(simulatedreversaldata_attractionscores$id))){
-  
   thisindividualsinitaltrials<-simulatedreversaldata_attractionscores[simulatedreversaldata_attractionscores$id %in% i & simulatedreversaldata_attractionscores$Reversal %in% "initial",]
   trialnumber_initiallearning_reachedtwelveten[i,1]<-i
   for (k in 1:(nrow(thisindividualsinitaltrials)-12)){
@@ -451,7 +428,6 @@ colnames(trialnumber_initiallearning_reachedseventeentwenty)<-c("Id","TrialAtRea
 trialnumber_initiallearning_reachedseventeentwenty<-as.data.frame(trialnumber_initiallearning_reachedseventeentwenty)
 
 for (i in 1:length(unique(simulatedreversaldata_attractionscores$id))){
-  
   thisindividualsinitaltrials<-simulatedreversaldata_attractionscores[simulatedreversaldata_attractionscores$id %in% i & simulatedreversaldata_attractionscores$Reversal %in% "initial",]
   trialnumber_initiallearning_reachedseventeentwenty[i,1]<-i
   for (k in 1:(nrow(thisindividualsinitaltrials)-20)){
@@ -474,7 +450,6 @@ PI(trialnumber_initiallearning_reachedseventeentwenty[is.na(trialnumber_initiall
 
 # We can see that (i) the lowest relative attraction scores are very similar, suggesting that independent of the criterion, individuals generally have formed a preference for the rewarded option (89% of the values lie between 2.5 and 14); and that (ii) for most individuals, the relative attraction scores are very similar for the two criteria.
 
-
 # We can convert the relative attraction scores into the probability that an individual will choose the rewarded option in the trial following the cut-off by converting it back with the respective phi and lambda values
 attractionlightgrey_twelveten<-median(trialnumber_initiallearning_reachedtwelveten$AttractionScore,na.rm=T)
 attractiondarkgrey_twelveten<-(median(trialnumber_initiallearning_reachedtwelveten$AttractionScore,na.rm=T))/(median(trialnumber_initiallearning_reachedtwelveten$RelativeAttractionScore,na.rm=T))
@@ -494,10 +469,7 @@ probability_choose_lightgrey_seventeenoftwenty
 # While individuals are more likely to choose the rewarded option if they needed the 17/20 criterion to pass, also with the 10/12 criterion individuals show a clear preference for the rewarded option
 
 
-################################################################################################
-# 4) this learned association means that individuals who move to the next reversal with this criteria are unlikely to solve the reversed association by chance.
-################################################################################################
-
+# 5) this learned association means that individuals who move to the next reversal with this criteria are unlikely to solve the reversed association by chance.
 
 # We can simulate the performance in the first 12 trials after switching the rewarded option for sets of 10000 individuals who either have no learned association, have been stopped after the 10/12 rule, or stopped after the 17/20 rule.
 choselightgrey_seventeenoftwenty<-matrix(nrow=10000,ncol=12)
@@ -559,7 +531,6 @@ attractionlightgrey<-(1-bird_phi)*attractionlightgrey+bird_phi*1
 
 probability_choose_lightgrey_twentytrials<-exp(bird_lambda*attractionlightgrey)/(exp(bird_lambda*attractionlightgrey)+exp(bird_lambda*attractiondarkgrey)  )
 
-
 # While the learning during the 12 trials changes what they choose compared to what they would choose just based on their attractions at the end of the previous phase (black line is shifted up compared to the blue line), this is still not sufficient for them to pass the 10/12 rule
 plot(NA,xlim=c(0,12),ylim=c(0,0.3),bty="n",ann=F)
 lines(dbinom(0:12,12,0.5)~c(0:12),col="grey",lwd=2)
@@ -592,7 +563,6 @@ For each population, depending on the response variable, we ran separate power a
 
 We will stop collecting data for the flexibility manipulation experiment when a buffer above the minimum sample size is reached or when the season in which the minimum sample size is reached comes to an end, or when the minimum sample sizes for the success measures have been reached. When conducting the manipulation experiment, it is important to aim to test more than the minimum number of individuals because some might not have data in the post-intervention stage. 
 
-
 ## **DESIGN 1** - Reversal learning experiment in visual isolation
 
 Half of the individuals (manipulated group) undergo serial reversal learning until they meet the passing criterion, while the other half (control group) receive only one reversal (Figure 6). A reversal of where the reward is placed represents environmental heterogeneity, and those individuals who have enough experience in this heterogeneous environment through multiple reversals are able to learn to improve their flexibility (the number of trials it takes to change a preference). This flexibility intervention has been shown to work in great-tailed grackles where 8 out of 9 individuals in the serial reversal group achieved the passing criterion (passing 2 consecutive reversals in 50 trials or less) within their given time frame [@logan2019flexmanip]. Individuals are presented with two options that differ in color, shape, or in some other way, with one option being the rewarded option. The first rewarded option (i.e., color, shape, etc.) in reversal learning is counterbalanced across individuals at each site. The rewarded option location is pseudorandomized for side. Pseudorandomization consists of alternating location of the rewarded option for the first two trials of a session and then keeping the same color on the same side for at most two consecutive trials thereafter. A list of all [88 unique trial sequences](https://docs.google.com/spreadsheets/d/1B3-ZKd4nr_4gA91Pu2eUUBOriwW-V88VRgK9c1lDSjY/edit?usp=sharing) for a 10-trial session, following the pseudorandomization rules, will be generated in advance for experimenters to use during testing (e.g., a randomized trial sequence might look like: LRLLRRLRLR, where L and R refer to the location, left or right, of the rewarded tube). Randomized trial sequences will be assigned randomly to any given 10-trial session using a random number generator (random.org) to generate a number from 1-88. The individual is only allowed one choice per trial and the option on the left is always placed first, with the experimenter always turning to the right when setting up and taking down each trial (if a live experimenter is involved). Once a preference for the rewarded option is reached (17/20 trials correct), the reward is then always placed in the previously non-rewarded option until a preference is reached (using the same criterion). After the control group's first reversal, they receive a similar amount of experience as the manipulated group, but without the functionality: two apparatuses are still used in every trial, but they are the same color/shape/etc. and both contain food. As with the manipulated group, only one choice, the first choice, is allowed per trial. Choices are scored as: 1=chose the correct option (even if they do not eat the food), 0=chose the incorrect option, and -1=did not make a choice.
@@ -618,6 +588,7 @@ We conduct interobserver reliability by having hypothesis-blind video coders cod
 
 ```{r iorRev, eval=FALSE, warning=FALSE, results='asis', echo=TRUE, include=TRUE}
 library(irr) #ICC package
+
 # did video coder pass interobserver reliability training? 
 data <- read.csv("", header = TRUE, sep = ",", stringsAsFactors = FALSE)
 head(data)  #Check to make sure it looks right
@@ -625,15 +596,14 @@ head(data)  #Check to make sure it looks right
 data[,3] #coder 1 (live coder)
 data[,5] #coder 2 (video coder)
 cohen.kappa(data[,c(3,5)], w=NULL,n.obs=NULL,alpha=.05,levels=NULL) 
+
 # video coder score for 20% of videos =  
 data <- read.csv("", header = TRUE, sep = ",", stringsAsFactors = FALSE)
 head(data)  #Check to make sure it looks right
-# Note: c(3,5) is telling R to look at columns 2 and 3 and compare them. Double check this:
 data[,3] #coder 1 (live coder)
 data[,5] #coder 2 (video coder)
 cohen.kappa(data[,c(3,5)], w=NULL,n.obs=NULL,alpha=.05,levels=NULL) 
 ```
-
 
 ## **DESIGN 2** - Reversal learning experiment in a group context
 
@@ -649,7 +619,7 @@ Individuals in the control condition (if there is one), will receive 1 reversal 
 
 ### Protocols
 
-**Food in the feeders:** All feeders are opaque and always have food in them to eliminate the confound due to olfactory differences between the feeders that could be introduced if only the rewarded feeders have food in them. If a feeder needs to be refilled, refill all feeders consecutively in the same time period and refill each for the same amount of time even if that feeder does not need much or any food (in these cases, pretend to fill the feeder as you normally would). This eliminates confounds from cues provided by a differential amount of attention experimenters give the feeders depending on which needs refilling.
+Food in the feeders: All feeders are opaque and always have food in them to eliminate the confound due to olfactory differences between the feeders that could be introduced if only the rewarded feeders have food in them. If a feeder needs to be refilled, refill all feeders consecutively in the same time period and refill each for the same amount of time even if that feeder does not need much or any food (in these cases, pretend to fill the feeder as you normally would). This eliminates confounds from cues provided by a differential amount of attention experimenters give the feeders depending on which needs refilling.
 
 ### Reliability of feeder data
 
@@ -682,6 +652,12 @@ We will catch at least 20 grackles using walk in traps, mist nets, and bow nets;
 The proportion of time spent at dumpsters and outdoor cafes when food is present will be collected using automation from Cellular Tracking Technologies. Individuals will wear radio tags whose signals are detected (within approximately 75m) by nodes that are placed at approximately 200m intervals. Before and after tracking data will be collected on a minimum of 20 individuals with a minimum of 4 separate visit events per individual pre-manipulation and a minimum of 4 separate visit events per individual post-manipulation. This data will allow me to detect pre- vs post-manipulation within-individual differences in visits to dumpsters and cafes to determine whether individuals change the proportion of time they spend at these locations when food is present. 
 
 A determination will be made daily about whether food was present at a location and in which particular time period. I will visit the dumpsters each morning to record whether the lids were open and there was garbage inside or garbage on the ground around the dumpsters (1=food present) or whether the lids were closed and there was no garbage on the ground (0=food absent). I will initially visit cafes during lunch hours to determine when people generally eat outside and then set the default food presence period for each cafe to the widest time period I observed for that cafe (e.g., 12-2p = food present, before 12p and after 2p = food absent).
+
+We will track baseline behavior and changes after the flexibility manipulation in habitat use and foraging using 10 minute focal follows [@altmann1974observational]. We document all occurrences of microhabitats used and foraging of the focal individual. The minimum sample size will be 20 individuals with a minimum of 4 follows per individual (at least 2 per month) pre-manipulation and a minimum of 4 follows per individual (at least 2 per month) post-manipulation. These data will allow us to detect any pre- and post-manipulation within-individual differences in diversity of habitat use and foraging breadth.
+
+Microhabitat types in the suburban habitat include: vertical human structure (e.g. building, bench), native vegetation, non-native vegetation, grass, cement, and dirt. In the natural habitat, microhabitat types include all previous categories, but not human structure or cement. All categories can be further defined by whether the subject was high (>3m) or low (<3m).
+
+Food types are broken down into plant (seed, fruit, human-provided, or unknown plant) and animal (insect larva, adult insect, amphibian, reptile, mammal, bird, egg, human-provided, or unknown animal).
 
 ### Flexibility manipulation (Design 2 reversal learning)
 
@@ -758,7 +734,6 @@ Juveniles in both the manipulation and control conditions will initially undergo
 We will radio track fledglings for 12 weeks following the end of the flexibility manipulation (i.e., until they are 112 days post-fledging). Tag signals will either be detected with a hand-held antenna, or by nodes that are placed at approximately 200m intervals across the 25 ha robin study area and around the sanctuary perimeter. Each fledgling will be located once per week over this time period and their location will be GPS marked to reconstruct dispersal tracks. By the end of 12 weeks, fledglings will be approximately 4 months post-fledging, at which point they are likely to be attempting to establish their own territories. The measures used to investigate the effect of the manipulation versus control treatment will include the final dispersal location (inside or outside the sanctuary), the total dispersal distance between the natal territory and final location, the age at which dispersal is first detected (defined as when the bird has left the caregiver parent’s territory for a minimum of 3 days), and their survival status at 16 weeks post-fledging (alive/dead).
 
 
-
 # **ANALYSIS PLAN**
 
 We run analyses in R [current version `r getRversion()`; @rcoreteam] using the following R packages: rethinking [@rethinking2020], rstan [@rstan], cmdstanr [@cmdstanr], knitr [@xie2018knitr], and irr [@gamer2012package].
@@ -771,7 +746,7 @@ We run analyses in R [current version `r getRversion()`; @rcoreteam] using the f
 
 **Do the flexibility manipulated (serial reversal) individuals have better success in human modified environments?**
 
-*Response variable:* success variable (e.g., predictability of movement behavior, number of different food items eaten, etc.)
+*Response variable:* success variable (e.g., predictability of movement behavior, number of different food items taken, etc.)
 
 *Explanatory variable:* 
 
@@ -779,7 +754,7 @@ We run analyses in R [current version `r getRversion()`; @rcoreteam] using the f
 
 OR
 
-- Time (pre-manipulation, post-manipulation)
+- Condition (pre-manipulation, post-manipulation)
 
 *Random variable:* ID (when response variable has multiple data points per individual)
 
@@ -793,6 +768,8 @@ Same questions, response/explanatory/random variables as in Design 1.
 
 ##### G.Q1 Do flexibility manipulated individuals differ in the proportion of time spent at cafes and garbage dumpsters when food is present?
 
+**The model**
+
 *Bayesian model for a binomial distribution:*
 
 $R_i$ ~ Binomial($t_i$,$p_i$)
@@ -803,7 +780,7 @@ logit($p_i$) = $\gamma$[condition] + $\alpha$[ind],[condition]
 
 $\gamma$[condition] is the average log-odds for each condition (before/after) and $\alpha$[ind],[condition] is the effect for each individual in each condition. The Bayesian model was developed using @mcelreath2020statistical as a guide.
 
-###### Power analysis
+**Power analysis**
 
 We estimated our power to detect differences between conditions at different sample sizes and with different mean changes in the proportion of time spent in the presence of a reward in the before vs. after conditions (Figure 10). We simulated the proportions of times that different sample sizes of individuals would spend in the presence of the reward before and after the flexibility manipulation. We analyzed these simulated data with the model we will use to analyze the actual data, estimating the change in the proportion of time spent in the presence of the reward between the before and after conditions. From the posterior estimates of the model, we extracted both the mean change as well as the ratio of the posterior estimates that were below zero. 
 
@@ -938,7 +915,7 @@ s1 <- ulam(
         gq> matrix[2,2]:Rho_actor <<- Chol_to_Corr(L_Rho_actor)
     ) , data=dat , chains=4 , cores=4 , log_lik=TRUE , cmdstan = TRUE, control = list(adapt_delta = .95, force_recompile = TRUE))
       
-        #run a CONTRAST to determine whether there is a difference between before (g1) and after (g2) (subtract g1 before from g2 after). Yes if all values for diff_p on one side of zero (want probability scale because that is the scale we used in the simulation)
+        #run a CONTRAST to determine whether there is a difference between before (g1) and after (g2) (subtract g1 before from g2 after). Want probability scale because that is the scale we used in the simulation
 post <- extract.samples(s1)
 diff_g <- post$g[,2] - post$g[,1] #log-odds difference p.341 McElreath 2020
 diff_p <- inv_logit(post$g[,2]) - inv_logit(post$g[,1]) #on the probability scale p.341 McElreath 2020
@@ -961,11 +938,9 @@ diff_p <- inv_logit(post$g[,2]) - inv_logit(post$g[,1]) #on the probability scal
 
 #write.csv(simresults,file="simresults20plus.csv") #put the outputs into a csv file so don't have to run the model again...it takes hours
 
-## Prep a figure to show how sample size and mean change prop makes a difference in the results. Get posterior values for particular sample sizes and change props. Set samplesize (20 or 60), changepropvariants (0.1 or 0.025), and prop_before (always 0.6) to just one number and run the model. Generate the output, write to csv. Repeat for other model variants
+## Prep a figure to show how sample size and mean change prop makes a difference in the results. Get posterior values for particular sample sizes and change props. The model kept stopping in the middle so I got the simulated data by running one sample size at a time. To do this, set samplesize (20 or 60), changepropvariants (0.1 or 0.025), and prop_before (always 0.6) to just one number and run the model. Generate the output, write to csv. Repeat for other model variants
 #write.csv(diff_p,file="diff_p20changeprop0.1.csv")
 #write.csv(diff_p,file="diff_p60changeprop0.1.csv")
-#write.csv(diff_p,file="diff_p20changeprop0.025.csv")
-#write.csv(diff_p,file="diff_p60changeprop0.025.csv")
 ```
 
 ```{r gtgrq1simulationfiguresamplesize, eval=F, messages=F}
@@ -1180,7 +1155,6 @@ dat2 <- list(
     actor = simulatedgtgrproportiondata$id 
 )
 
-
 # THE MODEL (p.441 for normal distribution, 448 for binomial distribution - McElreath 2020)
 m1 <- ulam(
     alist(
@@ -1200,7 +1174,7 @@ m1 <- ulam(
 #model output: pay attention to before (g1) and after (g2)
 #precis(m1,depth=2)
 
-#run a CONTRAST to determine whether there is a difference between before (g1) and after (g2). Yes if all values on one side of zero
+#run a CONTRAST to determine whether there is a difference between before (g1) and after (g2)
 post <- extract.samples(m1)
 diff_g <- post$g[,1] - post$g[,2] #log-odds difference p.341
 diff_p <- inv_logit(post$g[,1]) - inv_logit(post$g[,2]) #on the probability scale p.341
@@ -1306,7 +1280,7 @@ set_ulam_cmdstan(TRUE) #makes it so ulam always runs with cmdstan
 N_ind <- 20
 
 dat <- list(
-    foods = standardize(rnorm(40,mean=4.5,sd=2)), #estimate 20 total individuals (*2 conditions) with a mean of 6.5 foods/individual (halfway between the max 13 possible food types)
+    foods = standardize(rnorm(40,mean=6.5,sd=2)), #estimate 20 total individuals (*2 conditions) with a mean of 6.5 foods/individual (halfway between the max 13 possible food types)
     before = c(rep(1,N_ind),rep(2,N_ind)), #1 refers to before and 2 to after
     ind = rep(1:N_ind,2) #go through all individuals twice because there are observations from before and after for each
 )
@@ -1339,20 +1313,19 @@ mjf <- ulam(
 ```
 
 
-
 #### **Jays**
 
 ##### J.Q1 Do jay populations in human modified areas differ in baseline behavioral flexibility compared to populations in natural areas?
 
-###### The model
+**The model**
 
 We used the reversal learning Bayesian model in @logan2020xpop to simulate and analyze population differences in reversal learning, and calculate our ability to detect differences between populations. The model "accounts for every choice made in the reversal learning experiment and updates the probability of choosing either option after the choice was made depending on whether that choice contained a food reward or not. It does this by updating three main components for each choice: an attraction score, a learning rate ($\phi$), and a rate of deviating from learned attractions ($\lambda$)" [@logan2020xpop].
 
-**Equation 1 (attraction and $\phi$):** $A_{i,j, t+1} = (1-\phi_j) A_{i,j,t} + \phi_j \pi_{i,j,t}$
+***Equation 1 (attraction and $\phi$):*** $A_{i,j, t+1} = (1-\phi_j) A_{i,j,t} + \phi_j \pi_{i,j,t}$
 
 Equation 1 “tells us how attractions to different behavioral options $A_{i,j, t+1}$ (i.e., how preferable option $i$ is to the bird $j$ at time $t+1$) change over time as a function of previous attractions $A_{i ,j, t}$ and recently experienced payoffs $\pi_{i,j,t}$ (i.e., whether they received a reward in a given trial or not). Attraction scores thus reflect the accumulated learning history up to this point. The (bird-specific) parameter $\phi_j$ describes the weight of recent experience. The higher the value of $\phi_j$, the faster the bird updates their attraction. It thus can be interpreted as the *learning or updating rate of an individual*. A value of $\phi_j = 0.04$, for example, means that receiving a single reward for one of the two options will shift preferences by 0.02 from initial 0.5-0.5 attractions, a value of $\phi_j = 0.06$ will shift preferences by 0.03 and so on” [@blaisdell2021causal]. 
 
-**Equation 2 ($\lambda$):** $P(i)_{t+1} = \frac{\exp(\lambda_j A_{i, j, t})}{\sum\limits_{m=1}^{2}\exp(\lambda_j A_{m, j, t})}.$
+***Equation 2 ($\lambda$):*** $P(i)_{t+1} = \frac{\exp(\lambda_j A_{i, j, t})}{\sum\limits_{m=1}^{2}\exp(\lambda_j A_{m, j, t})}.$
 
 Equation 2 “expresses the probability an individual $j$ chooses option $i$ in the next round, $t+1$, based on the latent attractions. The parameter $\lambda_j$ represents the *rate of deviating from learned attractions* of an individual (also called inverse temperature). It controls how sensitive choices are to differences in attraction scores. As $\lambda_j$ gets larger, choices become more deterministic, as it gets smaller, choices become more exploratory (random choice if $\lambda_j = 0$). For instance, if an individual has a 0.6-0.4 preference for option A, a value of $\lambda_j = 3$ means they choose A 65% of the time, a value of $\lambda_j = 10$ means they choose A 88% of the time and a value of $\lambda_j = 0.5$ means they choose A only 53% of the time” [@blaisdell2021causal].  
 
@@ -1362,11 +1335,11 @@ y ~ $\alpha$[habitat]
 
 y is the response variable ($\phi_j$ and $\lambda_j$, which are extracted from the correct and incorrect choices in the serial reversals). There is one intercept, $\alpha$, per habitat (suburban or natural) and we will estimate the habitat's average and standard deviation of the response variable.
 
-###### Power analysis
+**Power analysis**
 
 Simulations using bespoke Bayesian models in @logan2020xpop (the same model structure we use here) showed a high likelihood of detecting differences with a minimum sample size of 15 when mean differences in phi were at least 0.01 and mean differences in lambda at least 3.
 
-###### Run this model on the actual data
+**Run this model on the actual data**
 
 Run the code below to determine whether there were differences between the two habitats in their phi and lambda flexibility measures.
 
@@ -1504,15 +1477,15 @@ estimates_pairwisedifferences_phiposteriors$crosseszero<-ifelse(estimates_pairwi
 
 ##### J.Q2 Are disturbance-resiliant jays more flexible than disturbance-resistant jays?
 
-###### The model
+**The model**
 
 Same as in J.Q1 above.
 
-###### Power analysis
+**Power analysis**
 
 Same as in J.Q1 above.
 
-###### Run this model on the actual data
+**Run this model on the actual data**
 
 Run the code below to determine whether there were differences between the species in their phi and lambda flexibility measures.
 
@@ -1657,7 +1630,7 @@ habitatuse ~ $\alpha$[ind] + $\beta$[ind]*before
 
 habitatuse is the response variable: the total number of different microhabitats used per individual. There will be one intercept, $\alpha$, and one slope $\beta$ per individual, which will be estimated for the two conditions, before (and after) the manipulation. ID is nested within condition as a random effect because there is more than one data point per individual: each individual has a data point in the before condition and in the after condition. A normal distribution was used because the response variable is a sum without an expected skew to the curve [see Figure 10.6 in @mcelreath2020statistical]. The Bayesian model was developed using @mcelreath2020statistical as a guide.
 
-###### Power analysis
+**Power analysis**
 
 We estimated our power to detect differences between conditions at different sample sizes and with different mean changes in the proportion of different microhabitats used per individual in the before vs. after conditions (Figure 11). We simulated the proportion of habitats used for different sample sizes of individuals before and after the flexibility manipulation. We analyzed these simulated data with the model we will use to analyze the actual data, estimating the change in the proportion of habitats used between the before and after conditions. From the posterior estimates of the model, we extracted both the mean change as well as the ratio of the posterior estimates that were below zero.
 
@@ -1682,8 +1655,8 @@ plot(density(rbinom(10000,size=10,prob=5/10))) #10 max habitats; on average, ind
 lines(density(rbinom(10000,size=10,prob=3.5/10)),col="red") #on average, individuals will use 3.5 of the 10 habitats more than 5% of the time
 lines(density(rbinom(10000,size=10,prob=7/10)),col="blue") #on average, individuals will use 7 of the 10 habitats more than 5% of the time
 
-#choose the mean number of habitats used and standard deviations - visualize to see whether it would be possible to tell the difference between before (black) and after (red)
-number_before<-5/10 #number of habitats used per bird in the before condition. This is 9/2 and 9 was chosen because it is between the max 8 habitats for individuals in the natural habitat and max 10 habitats in the suburban habitat
+#choose the mean proportion of habitats used before the manipulation
+number_before<-5/10 #number of habitats used per bird in the before condition. 5 = 10/2, the halfway point of the max 10 habitats in the suburban habitat
 changenumber<-1.5 #the difference in the number habitats used between the before and after conditions
 N_ind <- 20 #number of individuals tested
 
@@ -1694,17 +1667,17 @@ for (i in 1:N_ind) {
   if(numberafter[i]>10){numberafter[i] <- 10}
 }
 
-#change the number of habitats increased (e.g., 3.5) in changenumber in numberafter to determine which changenumber to run the simulations at. Visualize using the plot below to see when the distributions have more separation
+#change the number of habitats increased (e.g., 3.5) in changenumber in numberafter to determine which changenumber to run the simulations at. Visualize using the plot below to see when the distributions have more separation (and see whether it might be possible to tell the difference between before (black) and after (red))
 plot(density(numberbefore),lwd=2,xlim=c(0,18),ylim=c(0,0.3))
 lines(density(numberafter),lwd=2,col="red") #the after condition. Should be able to tell the difference when changenumber is at least 1.5 above number_before (and number_before is 5/10)
 
-#check the plot to see whether individuals are increasing their numbers = most are above the 1:1 line. Those that were smaller on the x axis are farther fromm the line, which is what we wanted
+#check the plot to see whether individuals are increasing their numbers = most are above the 1:1 line. Those that were smaller on the x axis are farther from the line, which is what we wanted
 plot(numberbefore,numberafter,xlim=c(0,10),ylim=c(0,10))
 abline(0,1)
 
 
 ### POWER ANALYSIS: different sample sizes and different mean changes in proportions between before and after conditions
-# We now set our range of likely sample sizes, from a minimum of 9 individuals per population to a maximum of 60 individuals per population. We draw repeated samples of individuals of that size from each of the 5 populations, during each repetition we draw two samples from each population (so we can infer the false negative rate of wrongly estimating that two samples come from a different population even though they were taken from the sample population). This means we have 10 repetitions for each of the 5 sample sizes and each of the 6 changeprops. So 10*6 changeprops (=60) for each of the 5 sample sizes, resulting in a total length of samplesizes of 300
+# We now set our range of likely sample sizes, from a minimum of 10 individuals per population to a maximum of 60 individuals per population. We draw repeated samples of individuals of that size from each of the 5 populations, during each repetition we draw two samples from each population (so we can infer the false negative rate of wrongly estimating that two samples come from a different population even though they were taken from the sample population). This means we have 10 repetitions for each of the 5 sample sizes and each of the 6 changemeans. So 10*6 changemeans. (=60) for each of the 5 sample sizes, resulting in a total length of samplesizes of 300
 samplesizes<-c(10,20,30,40,60) #c(10,20,30,40,60)
 
 # Set the means you want to compare
@@ -1751,25 +1724,24 @@ for (samplesize in 1:length(samplesizes)) {
         simulatedindividuals_number_after<-as.vector(rep(0,N_ind))
         
         for (i in 1:N_ind) {
-          simulatedindividuals_number_before[i] <- rbinom(1 ,size=10,prob=individual_probs_before[i]) # Based on their individual values for the number of habitats before, calculate how many habitats each individual used before
+          simulatedindividuals_number_before[i] <- rbinom(1 ,size=10,prob=individual_probs_before[i]) # Based on their individual values for the proportion of habitats before, calculate proportion of habitats each individual used before
           simulatedindividuals_number_before[simulatedindividuals_number_before==0]<-1 # Individuals have to live in at least one habitat
-          individual_probs_after[i]<-individual_probs_before[i]+rnorm(1,mean=currentchangenumber,sd=0.2) # We increase the individual baseline values by one of the six change numbers, with variation so that some individuals might also decrease their value from their baseline before.  #change this SD here and below in the simuresults ouput to test different SDs
+          individual_probs_after[i]<-individual_probs_before[i]+rnorm(1,mean=currentchangenumber,sd=0.2) # We increase the individual baseline values by one of the six change numbers, with variation so that some individuals might also decrease their value from their baseline before.  #change this SD here and below in the simresults ouput to test different SDs
           individual_probs_after[individual_probs_after<0]<-0
           individual_probs_after[individual_probs_after>1]<-1
-          simulatedindividuals_number_after[i] <- rbinom(1 ,size=10,prob=individual_probs_after[i]) # Based on their modified individual values for the number of habitats after, calculate how many habitats each individual used after
+          simulatedindividuals_number_after[i] <- rbinom(1 ,size=10,prob=individual_probs_after[i]) # Based on their modified individual values for the proportion of habitats after, calculate how many habitats each individual used after
           simulatedindividuals_number_after[simulatedindividuals_number_after==0]<-1 # Individuals have to live in at least one habitat
           }
 
         ### run a STAN model to see whether the before and after proportions are estimated to be different from each other
         #sets up the data sheet with the simulated data that the model will run on
       dat <- list(
-    habitatuse = c(simulatedindividuals_number_before,simulatedindividuals_number_after), #compare before and after. standardize so can compare natural habitats with max 8 habitats with suburban with max 10 habitats
+    habitatuse = c(simulatedindividuals_number_before,simulatedindividuals_number_after), #compare before and after
     tid = c(rep(1,N_ind),rep(2,N_ind)), #1 refers to before and 2 to after
     actor = rep(1:N_ind,2) #go through all individuals twice because there are observations from before and after for each
 )
 
-        # Our MODEL, which will estimate a different mean and variance of phi for each site 
-        # note: had to add force_recompile bc kept giving me an error and wouldn't finish running. See https://github.com/rmcelreath/rethinking/issues/338
+        # Our MODEL
 sj <- ulam(
     alist(
         habitatuse ~ dbinom(10,p),
@@ -1785,8 +1757,8 @@ sj <- ulam(
         gq> matrix[2,2]:Rho_actor <<- Chol_to_Corr(L_Rho_actor)
     ) , data=dat , chains=4 , cores=4 , log_lik=TRUE , cmdstan = TRUE, control = list(adapt_delta = .95, force_recompile = TRUE))
 #precis(sj, depth=2) #check the output to make sure it looks as expected
-  #Don't need to do the contrast because we already have each individual's number so we only need to look at their beta to see whether it is positive (more habitats after) or negative (fewer habitats after)
 
+#run contrasts
 post <- extract.samples(sj)
 diff_g <- post$g[,2] - post$g[,1] #log-odds difference p.341 McElreath 2020
 diff_p <- inv_logit(post$g[,2]) - inv_logit(post$g[,1]) #on the probability scale p.341 McElreath 2020
@@ -1794,7 +1766,7 @@ diff_p <- inv_logit(post$g[,2]) - inv_logit(post$g[,1]) #on the probability scal
 
   # enter all of the results into the data sheet
     simresults[counter,]$n <- N_ind
-    simresults[counter,]$changenumber_mean <- currentchangenumber #this will show the avg change in number of habitats
+    simresults[counter,]$changenumber_mean <- currentchangenumber #this will show the avg change in proportion of habitats
     simresults[counter,]$repetition <- repetition
     simresults[counter,]$changeprop_sd <- 0.2 #change this number and in individual_probs_after to test different SDs
     simresults[counter,]$number_before <- average_currentnumber_before
@@ -1807,7 +1779,7 @@ diff_p <- inv_logit(post$g[,2]) - inv_logit(post$g[,1]) #on the probability scal
         }
 }
 
-#write the output to csv, combine both SD data sets into one sheet, change the column "changenumber_mean" to the number of habitats (e.g.,3, 5, 7 as in meanchangenumber above), upload to github, and get the url for the next R chunk. FYI model takes 4hrs to run
+#write the output to csv, combine both SD data sets into one sheet, upload to github, and get the url for the next R chunk. FYI model takes 4hrs to run
 #write.csv(simresults,file="simresultsjayhabitatsd0.1.csv")
 #write.csv(simresults,file="simresultsjayhabitatsd0.2.csv")
 ```
@@ -1861,7 +1833,7 @@ dat1 <- list(
   samplesize = as.integer(as.factor(d1$n))
 )
 
-# We run the STAN model - it is a binomial model that assumes that the probability to estimate a difference depends on an interaction between the sample size and the difference between the conditions (before/after). The response variable is a count and the model turns it into a proportion
+# We run the STAN model
 m_samplesize_diffscount <- ulam(
   alist(
     count_estimates_below_zero ~ dbinom(2000,p),
@@ -2034,7 +2006,7 @@ sum(d1[d1$n %in% 20 & d1$changenumber_mean %in% 0.1,]$proportion_estimates_below
 
 <img width="100%" src="mi1FigPowerAnalysisJayHabitat.png">
 
-**Figure 11.** Curves of the mean ratio of estimates below zero (vertical lines show the minimum and maximum ratios), which illustrates the power we have to detect differences between conditions at different sample sizes. Across all models, the standard deviation of the mean change in proportion of habitats used was 0.2 (A) or 0.1 (B). A mean change in proportion of habitats of 0.3 is associated with a difference of 3 habitats (when the maximumn number of habitats is 10).
+**Figure 11.** Risk of false positives and false negatives depending on sample and effect sizes. Curves of the mean ratio of estimates below zero (vertical lines show the minimum and maximum ratios), which illustrates the power we have to detect differences between conditions at different sample sizes. Across all models, the standard deviation of the mean change in proportion of habitats used was 0.2 (A) or 0.1 (B). A mean change in proportion of habitats of 0.3 is associated with a difference of 3 habitats (when the maximumn number of habitats is 10). The curves show the model estimates as the effect increases (larger changes in the mean proportion time spent after versus before on the x-axis) for different potential sample sizes (10-60, illustrated by different colors). When there is no change (x value of zero), estimates suggest that, as expected, half of the estimates are below zero because the before and after conditions are not different from each other. As the change increases, the estimates decrease because models are able to reliably tell that the before and after conditions differ from each other.
 
 &nbsp;
 
@@ -2098,7 +2070,7 @@ diff_p <- inv_logit(post$g[,2]) - inv_logit(post$g[,1]) #on the probability scal
 
 ##### J.Q4 More flexible = more food types?
 
-###### The model
+**The model**
 
 *Bayesian model with a normal distribution:*
 
@@ -2106,9 +2078,9 @@ y ~ $\alpha$[ind] + $\beta$[ind]*before
 
 y is the response variable: the total number of different food types taken per individual. There will be one intercept, $\alpha$, and one slope $\beta$ per individual, which will be estimated for the two conditions, before (and after) the manipulation. ID is nested within condition as a random effect because there is more than one data point per individual: each individual has a data point in the before condition and in the after condition. A normal distribution was used because the response variable is a sum without an expected skew to the curve [see Figure 10.6 in @mcelreath2020statistical]. The Bayesian model was developed using @mcelreath2020statistical as a guide.
 
-###### Power analysis
+**Power analysis**
 
-We estimated our power to detect differences between conditions at different sample sizes and with different mean changes in the total number of different food types taken per individual in the before vs. after conditions (Figure 14). We simulated the number of food types taken for different sample sizes of individuals before and after the flexibility manipulation. We analyzed these simulated data with the model we will use to analyze the actual data, estimating the change in the number of food types taken between the before and after conditions. From the posterior estimates of the model, we extracted both the mean change as well as the ratio of the posterior estimates that were below zero.
+We estimated our power to detect differences between conditions at different sample sizes and with different mean changes in the total number of different food types taken per individual in the before vs. after conditions (Figure 12). We simulated the number of food types taken for different sample sizes of individuals before and after the flexibility manipulation. We analyzed these simulated data with the model we will use to analyze the actual data, estimating the change in the number of food types taken between the before and after conditions. From the posterior estimates of the model, we extracted both the mean change as well as the ratio of the posterior estimates that were below zero.
 
 If the mean ratio of estimates below zero is close to 0.5, the model assumes that the change in the number of food types taken before the flexibility manipulation is similar to after. If the ratio is close to zero, the model assumes individuals have changed their behavior. For changes in the number of food types taken smaller than 1, models are likely to assume that no changes occurred even with large sample sizes. If the change in the number of food types taken before the flexibility manipulation vs. after is 1 with a standard deviation of 2, on average 99.96% of the posterior of the model based on a sample size of 20 individuals will be larger than zero. This means that the model is quite certain there is a difference that is larger than zero. In addition, none of the 30 models for a sample size of 20 at the mean change of 1 have a ratio larger than 0.3, meaning that the risk of having a false negative is not very likely.
 
@@ -2127,7 +2099,7 @@ rstan_options(auto_write = TRUE)
 ### SIMULATE the population (p.441 for normal distribution - McElreath 2020)
 N_ind <- 20 #number of individuals tested
 
-#choose the mean number of food types taken and standard deviations - visualize to see whether it would be possible to tell the difference between before (black) and after (red)
+#choose the mean number of food types taken and standard deviations - visualize to see whether it might be possible to tell the difference between before (black) and after (red)
 number_before<-6.5 #number of foods per bird in the before condition
 changenumber<-1.3 #the difference in the number foods between the before and after conditions
 plot(density(rnorm(10000,number_before,sd=2)),lwd=2,xlim=c(0,18),ylim=c(0,0.3)) #A sample size of 10k individuals. An SD of 1.3 (when the mean before is 6.5) encompasses all of the range of numbers of foods we expect to find (0-13) so it would be the largest SD we would expect and thus the most conservative sd to use in the simulations
@@ -2152,10 +2124,10 @@ abline(0,1)
 
 
 ### POWER ANALYSIS: different sample sizes and different mean changes in proportions between before and after conditions
-# We now set our range of likely sample sizes, from a minimum of 9 individuals per population to a maximum of 60 individuals per population. We draw repeated samples of individuals of that size from each of the 5 populations, during each repetition we draw two samples from each population (so we can infer the false negative rate of wrongly estimating that two samples come from a different population even though they were taken from the sample population). This means we have 10 repetitions for each of the 5 sample sizes and each of the 6 changeprops. So 10*6 changeprops (=60) for each of the 5 sample sizes, resulting in a total length of samplesizes of 300
+# We now set our range of likely sample sizes, from a minimum of 9 individuals per population to a maximum of 60 individuals per population. We draw repeated samples of individuals of that size from each of the 5 populations, during each repetition we draw two samples from each population (so we can infer the false negative rate of wrongly estimating that two samples come from a different population even though they were taken from the sample population). This means we have 10 repetitions for each of the 5 sample sizes and each of the 6 changenumbers. So 10*6 changenumbers. (=60) for each of the 5 sample sizes, resulting in a total length of samplesizes of 300
 samplesizes<-c(10,20,30,40,60) #c(10,20,30,40,60)
 
-# Set the means you want to compare. To get a certain mean change in number of microhabitats between before and after, set the multiplier in the changenumber mean: a large multiplier means a large change. Max (13) minus 1 (bc individuals will always live in at least one habitat) / 2 bc individuals who have low starting values will increase to the max, whereas individuals with high starting values will not increase at all
+# Set the means you want to compare. To get a certain mean change in number of foods between before and after, set the multiplier in the changenumber mean: a large multiplier means a large change. Max (13) minus 1 (bc individuals will always live in at least one habitat) / 2 bc individuals who have low starting values will increase to the max, whereas individuals with high starting values will not increase at all
 meanchangenumber1<-1 #individuals will on average take 6 more foods after the experiment ((13-numberbefore=6) 6*(6/6)=6*1 = 6. push everyone to 13 meaning that the lowest individuals will increase by 12 and the highest by 0 food items. Therefore, the average is 6 food items
 meanchangenumber2<-0.5 # individuals will on average take 3 more foods after the experiment (6*(3/6) =6*0.5= 3)
 meanchangenumber3<-0.333 #individuals will on average take 2 more foods after the experiment (6*(2/6) =6*0.33  = 2)
@@ -2193,15 +2165,13 @@ for (samplesize in 1:length(samplesizes)) {
         colnames(sites)<-c("ID","condition","number_habitats")
         
         #BEFORE manipulation
-        #number of habitats used, 2 means 2 decimal points. Assume baseline number is 2, 3, or 4
-        numberbefore <- round(rnorm(N_ind,mean=currentnumber_before,sd=1.5),0) #number of habitats used, 2 means 2 decimal points
-        numberbefore[numberbefore<1]<-1 #this needs to be a minimum of 1 bc an individual can never live in less than 1 habitat#
-        
+        numberbefore <- round(rnorm(N_ind,mean=currentnumber_before,sd=1.5),0) #number of foods, 2 means 2 decimal points
+        numberbefore[numberbefore<1]<-1 #this needs to be a minimum of 1 bc an individual likely have been observed to take at least one piece of food
         changenumber <- rnorm(N_ind, mean=(13-numberbefore)*(currentchangenumber),sd=1) #change this SD to explore the boundaries of individual variation in their response (in terms of the success measure) to the flexibility manipulation. We explored SD=1 and SD=2
 
         #AFTER manipulation
         numberafter <- round(numberbefore+changenumber,0)
-        numberafter[numberafter<1]<-1 #this needs to be a minimum of 1 bc an individual can never live in less than 1 habitat
+        numberafter[numberafter<1]<-1 #this needs to be a minimum of 1 bc an individual likely have been observed to take at least one piece of food
   
         ### run a STAN model to see whether the before and after proportions are estimated to be different from each other
         #sets up the data sheet with the simulated data that the model will run on
@@ -2226,8 +2196,7 @@ sjf <- ulam(
     ) , data=dat , chains=4 , cores=4 , log_lik=TRUE , cmdstan = TRUE, control = list(adapt_delta = .95, force_recompile = TRUE))
 
 #precis(sjf, depth=2) #check the output to make sure it looks as expected
-  #Don't need to do the contrast because we already have each individual's number so we only need to look at their beta to see whether it is positive (more foods after) or negative (fewer foods after)
-
+#Don't need to do the contrast because we already have each individual's number so we only need to look at their beta to see whether it is positive (more foods after) or negative (fewer foods after)
 post <- extract.samples(sjf)
 
   # enter all of the results into the data sheet
@@ -2254,7 +2223,6 @@ library(rethinking)
 library(cmdstanr)
 set_ulam_cmdstan(TRUE) #makes it so ulam always runs with cmdstan
 #rebuild_cmdstan() #run this if you get an error about a PCH file https://discourse.mc-stan.org/t/struggling-to-get-cmdstan-working-on-mac-os-big-sur/19774/4
-
 
 #load the data sheet that was made from the simulation in the previous R chunk
 d <- read.csv("https://raw.githubusercontent.com/ManyIndividuals/ManyIndividuals/main/Files/rrs/mi1simresultsjaysforaging.csv", header = TRUE, sep = ",", stringsAsFactors = FALSE)
@@ -2484,11 +2452,11 @@ par(op)
 
 <img width="100%" src="mi1FigPowerAnalysisJayForaging.png">
 
-**Figure 14.** Curves of the mean ratio of estimates below zero (vertical lines show the minimum and maximum ratios), which illustrates the power we have to detect differences between conditions at different sample sizes. Across all models, the standard deviation of the mean change in number of food types taken was 2 (A) or 1 (B), and the number of food types taken before the flexibility manipulation was 6.5.
+**Figure 12.** Risk of false positives and false negatives depending on sample and effect sizes. Curves of the mean ratio of estimates below zero (vertical lines show the minimum and maximum ratios), which illustrates the power we have to detect differences between conditions at different sample sizes. Across all models, the standard deviation of the mean change in number of food types taken was 2 (A) or 1 (B), and the number of food types taken before the flexibility manipulation was 6.5. A mean change in proportion of habitats of 0.3 is associated with a difference of 3 habitats (when the maximumn number of habitats is 10). The curves show the model estimates as the effect increases (larger changes in the mean proportion time spent after versus before on the x-axis) for different potential sample sizes (10-60, illustrated by different colors). When there is no change (x value of zero), estimates suggest that, as expected, half of the estimates are below zero because the before and after conditions are not different from each other. As the change increases, the estimates decrease because models are able to reliably tell that the before and after conditions differ from each other.
 
 &nbsp;
 
-###### Run this model on the actual data
+**Run this model on the actual data**
 
 Run the code below to determine whether there were differences between the before and after conditions in the number of food types taken. 
 
@@ -2515,7 +2483,7 @@ dat <- list(
     ind = d$ID
 )
 
-# THE MODEL (p.441 for normal distribution - McElreath 2020). Note that it is MULTIPLIED by condition (before), which means that you don't need to run a contrast because each individual value already accounts for the difference. So only look at beta to see if it is above zero or not for each individual or summed across individuals
+# THE MODEL (p.441 for normal distribution - McElreath 2020). Note that it is MULTIPLIED by condition (before), which means that you don't need to run a contrast because each individual value already accounts for the difference. So only look at beta 
 mjf <- ulam(
     alist(
         foods ~ normal( mu , sigma ),
@@ -2528,10 +2496,9 @@ mjf <- ulam(
         Rho ~ lkj_corr(2)
     ) , data=dat , chains=4 , cores=4 , log_lik=TRUE , cmdstan = TRUE)
 
-#precis(mjf,depth=2) #model output: if the beta confidence interval are on one side of zero, then there was a difference between the before and after conditions. If the beta confidence interval crosses zero, then there was no difference between before and after.
+#precis(mjf,depth=2)
 #boxplot(dat$foods~dat$before) #see if there is a difference visually
 ```
-
 
 
 
@@ -2539,22 +2506,21 @@ mjf <- ulam(
 
 ##### T.Q1 Does a flexibility manipulation alter dispersal timing (1.1) and distance (1.2), as well as the likelihood that juvenile toutouwai will disperse beyond the protection of Zealandia’s fence and attempt to establish in the adjacent urban area (1.3)?
 
-
-###### The model: dispersal timing (1.1)
+**The model: dispersal timing (1.1)**
  
 *Bayesian model for a zero-inflated poisson distribution:*
   
   $D_i$ ~ Zero-inflated Poisson($p_i$,$lambda_i$)
 
-$D_i$ is how many days before the cut-off of observations at 112 days individuals dispersed (for example, if a bird dispersed 50 days after fledging, D_i is 112-50=72); the subtraction covers cases where the age at dispersal would be very late such that some birds might disperse after day 112 post-fledging. The latter individuals will be included with the non-dispersers as having a zero value. $lambda_i$ is the mean of the Poisson distribution describing the average day (and variance) for individuals who have dispersed. A zero inflated Poisson distribution was used because a small percentage of individuals do not disperse in their first season (zero values) and individuals who do disperse have a response variable that is a count number of days post-fledging do so within a relatively short period, which is captured by the Poisson distribution which counts the number of days [@mcelreath2020statistical]. These patterns are described by [@richard2007demography], which shows that only a small minority of individuals does not disperse, and that dispersers were observed to leave their natal territory on average 47.5 days after fledging, with a range between 32-72 days. We assume that both the likelihood to disperse and the day at which dispersers leave might differ between individuals in the manipulated and the control conditions:
+$D_i$ is how many days before the cut-off of observations at 112 days individuals dispersed (for example, if a bird dispersed 50 days after fledging, D_i is 112-50=72); the subtraction covers cases where the age at dispersal would be very late such that some birds might disperse after day 112 post-fledging. The latter individuals will be included with the non-dispersers as having a zero value. $lambda_i$ is the mean of the Poisson distribution describing the average day (and variance) for individuals who have dispersed. Dispersal is defined as the time point at which the juvenile is first detected leaving the natal territory on three consecutive days. A zero inflated Poisson distribution was used because a small percentage of individuals do not disperse in their first season (zero values) and individuals who do disperse have a response variable that is a count number of days post-fledging do so within a relatively short period, which is captured by the Poisson distribution which counts the number of days [@mcelreath2020statistical]. These patterns are described by [@richard2007demography], which shows that only a small minority of individuals does not disperse, and that dispersers were observed to leave their natal territory on average 47.5 days after fledging, with a range between 32-72 days. We assume that both the likelihood to disperse and the day at which dispersers leave might differ between individuals in the manipulated and the control conditions:
 
 log($p_i$) = $\gamma_p$[condition] + $\alpha_p$[parentid],[condition]
 
 The two $\gamma$[condition] estimates reflect the difference between control and manipulated birds for the probability to not disperse ($\gamma_p$) and when to disperse ($\gamma_l$). The Bayesian model was developed using @mcelreath2020statistical as a guide.
 
-###### Power analysis (1.1)
+**Power analysis (1.1)**
 
-We estimated our power to detect differences between conditions at different sample sizes and with different mean changes in age at which individuals disperse after fledging (Figure 10). We simulated the age at which individuals would disperse in the control condition (with averages of 36, 48, or 72 days after fledging), and assumed that manipulated individuals might disperse sooner. We analyzed these simulated data with the model we will use to analyze the actual data, estimating the contrast in average time at which individuals disperse. The model also accounts for differences in the likelihood to not disperse at all between control and manipulated birds, but we did not examine this here in the simulation given that the number of individuals who will not disperse is likely to be very low. From the posterior estimates of the model, we extracted both the mean change as well as the ratio of the posterior estimates that were below zero, indicating that there would be a clear difference between control and manipulated birds.
+We estimated our power to detect differences between conditions at different sample sizes and with different mean changes in age at which individuals disperse after fledging (Figure 13). We simulated the age at which individuals would disperse in the control condition (with averages of 36, 48, or 72 days after fledging), and assumed that manipulated individuals might disperse sooner. We analyzed these simulated data with the model we will use to analyze the actual data, estimating the contrast in average time at which individuals disperse. The model also accounts for differences in the likelihood to not disperse at all between control and manipulated birds, but we did not examine this here in the simulation given that the number of individuals who will not disperse is likely to be very low. From the posterior estimates of the model, we extracted both the mean change as well as the ratio of the posterior estimates that were below zero, indicating that there would be a clear difference between control and manipulated birds.
 
 If the mean ratio of estimates below zero is close to 0.5, the model assumes that the age at which individuals disperse is similar for control and manipulated birds. If the ratio is close to zero, the model assumes individuals have changed their behavior and disperse earlier when they were manipulated. We find that for changes smaller than 1 standard deviation (which equals roughly 7 days), models are likely to assume that there are no differences between control and manipulated individuals even with large sample sizes. If the contrast in time of dispersal of manipulated compared to control individuals is 1 standard deviation, on average 92% of the posterior of the model based on a sample size of 20 individuals will be larger than zero. This means that the model is quite certain there is a contrast that is larger than zero. 
 
@@ -2570,18 +2536,18 @@ rstan_options(auto_write = TRUE)
 #rebuild_cmdstan() #run this if you get an error about a PCH file https://discourse.mc-stan.org/t/struggling-to-get-cmdstan-working-on-mac-os-big-sur/19774/4
 
 ### SIMULATE the population
-### We first start with a single population to identify the parameters for the zero-inflated poission distribution.
+### We first start with a single population to identify the parameters for the zero-inflated poisson distribution.
 # We base this on the information on page 69 in this thesis: 
 # https://mro.massey.ac.nz/bitstream/handle/10179/1596/02_whole.pdf?sequence=1
-# It suggests that only a small minority of individuals does not disperse. Based on previous observations of our study population we estimate that ~10% of individuals does not disperse. The dispersers were observed to leave their natal territory on average 47.5 days after fledging, with a range between 32-72 days.As mentioned, we convert this to ask how many days before the end of the observation period birds dispersed, so subtracting these values from 112 (average = 64, range = 40-80). Accordingly, we set p=0.1 and lambda = 112-48 = 64
+# It suggests that only a small minority of individuals do not disperse. Based on previous observations of our study population we estimate that ~10% of individuals do not disperse. The dispersers were observed to leave their natal territory on average 47.5 days after fledging, with a range between 32-72 days. We convert this to ask how many days before the end of the observation period birds dispersed, so subtracting these values from 112 (average = 64, range = 40-80). Accordingly, we set p=0.1 and lambda = 112-48 = 64
 # plot the distribution
 hist(rzipois(10000,p=0.1,lambda=64))
 
-# We expect only very few non-dispersing individuals in our sample (10% with a sample size of 60 would be 6 non-dispersers, split between control and manipulated groups). Accordingly, we think that the uncertainty will be too high to say whether there is a difference in the probability to disperse between control and manipulated individuals. We will estimate the separate probabilities in the model, but not vary it in the simulation.
+# We expect to have only very few non-dispersing individuals in our sample (10% with a sample size of 60 would be 6 non-dispersers, split between control and manipulated groups). Accordingly, we think that the uncertainty will be too high to say whether there is a difference in the probability to disperse between control and manipulated individuals. We will estimate the separate probabilities in the model, but not vary it in the simulation.
 # For the timing of dispersal, we assume that there might be seasonal differences in when the optimal timing would be, so we set the average of the control group to disperse 40 days before the end of the observation (dispersed on average 72 days after fledging), 64 (48 days after fledging), and 76 (36 days after fledging). 
 # For the expected change due to the manipulation, we assume that it will be within the natural range given that external conditions might set limits on when birds might be first able to disperse. Accordingly, we set the maximum expected improvement to the previous mean minus 2 standard deviations. The standard deviation for a poisson distribution is the square root of the mean. We take this for the days after fledging, not the subtracted means, because we expect potentially more variation when birds on average disperse later. 
 
-# power analysis: run this simulation with different N_ind, change means, to find the boundaries of where you can detect a difference (run the model and use contrasts) between the two conditions (control/manipulated). Automate the process like Dieter did in xpop figs 5 (line 1133) and 6 (line 1452)?
+# power analysis: run this simulation with different N_ind, change means, to find the boundaries of where you can detect a difference (run the model and use contrasts) between the two conditions (control/manipulated)
 
 
 ### POWER ANALYSIS: different sample sizes and different mean changes in dispersal distance between control and manipulated conditions
@@ -2591,15 +2557,13 @@ samplesizes<-c(10,20,30,40,60) #c(10,20,30,40,60)
 # Set the means you want to compare (number of standard deviations of change)
 meanchange1<-2 
 meanchange2<-1.5
-meanchange3<-1 #e.g., a bird spends 0.6 of its time being rewarded at cafes and dumpsters before the manipulation and then increases this proportion to 0.8 after the manipulation, showing that the manipulation improved their foraging success
+meanchange3<-1 
 meanchange4<-0.5
 meanchange5<-0.25
-meanchange6<-0
+meanchange6<-0 #for false positives
 changevariants<-c(meanchange1,meanchange2,meanchange3,meanchange4,meanchange5,meanchange6) #for false negatives
-#changepropvariants<-c(0) #for false positives
-#changepropvariants<-c(meanchangeprop6) #for showing differences
 
-#compare different baseline proportions for how much time these individuals spend when the reward is present before the manipulation
+#compare different baseline means
 mean_day_control<-c(40,64,76) #
 
 
@@ -2630,17 +2594,15 @@ for (samplesize in 1:length(samplesizes)) {
         days_control <- rzipois(N_ind/2,p=0.1,lambda=currentprop_before)
         #MANIPULATED condition
         days_manipulated<- rzipois(N_ind/2,p=0.1,lambda=currentprop_before+currentchange*(sqrt(112-currentprop_before)))
-       
         
         ### run a STAN model to see whether the before and after proportions are estimated to be different from each other
         #sets up the data sheet with the simulated data that the model will run on
         dat <- list(
           response = c(days_control,days_manipulated),
-          condition = c(rep(1,N_ind/2),rep(2,N_ind/2)), #1 refers to control and 2 to manipulated
+          condition = c(rep(1,N_ind/2),rep(2,N_ind/2)) #1 refers to control and 2 to manipulated
         )
         
-        # Our MODEL, which will estimate a different mean and variance of phi for each site 
-        #(note: had to add force_recompile bc kept giving me an error and wouldn't finish running. See https://github.com/rmcelreath/rethinking/issues/338)
+        # Our MODEL
         s1 <- ulam(
           alist(
             response ~ dzipois(p,lambda),
@@ -2651,7 +2613,7 @@ for (samplesize in 1:length(samplesizes)) {
             g[condition] ~ normal(0,2)
           ) , data=dat , chains=4 , cores=4 , log_lik=TRUE , cmdstan = TRUE, control = list(adapt_delta = .95, force_recompile = TRUE))
         
-        #run a CONTRAST to determine whether there is a difference between before (g1) and after (g2) (subtract g1 before from g2 after). Yes if all values for diff_p on one side of zero (want probability scale because that is the scale we used in the simulation)
+        #run a CONTRAST to determine whether there is a difference between before (g1) and after (g2) (subtract g1 before from g2 after)
         post <- extract.samples(s1)
         diff_g <- post$g[,2] - post$g[,1] #log-odds difference p.341 McElreath 2020
 
@@ -2670,8 +2632,6 @@ for (samplesize in 1:length(samplesizes)) {
 }
 
 #write.csv(m1simresults_toutouawidispersaltiming.csv") #put the outputs into a csv file so don't have to run the model again...it takes hours
-
-
 ```
 
 ```{r touq1timingsimulationfiguresamplesize, eval=F, messages=F}
@@ -2691,18 +2651,7 @@ dat <- list(
   samplesize = as.integer(as.factor(d$n))
 )
 
-# We run the STAN model - it is a binomial model that assumes that the probability to estimate a difference depends on an interaction between the sample size and the difference between the conditions (before/after). These two models do the same thing with different versions of the response variable. In m_samplesize_diffs, the response variable is already a proportion. In m_samplesize_diffscount, the response variable is a count and the model turns it into a proportion. We ended up using the latter
-#m_samplesize_diffs <- ulam(
-#    alist(
-#        proportion_estimates_below_zero ~ dnorm(mu,sigma),
-#        mu <- a[samplesize] + b[samplesize]*changeprop_mean,
-#        a[samplesize] ~ dnorm(a_bar,sigma_a),
-#        a_bar~dnorm(0,1.5),
-#        sigma_a~dexp(1),
-#        sigma~dexp(1),
-#        b[samplesize]~dnorm(0,1.5)
-#    ) , data=dat , chains=4 , cores=4 , log_lik=TRUE , cmdstan = TRUE, control = list(adapt_delta = .95, force_recompile = TRUE))
-
+# We run the STAN model - it is a binomial model that assumes that the probability to estimate a difference depends on an interaction between the sample size and the difference between the conditions (before/after)
 m_samplesize_diffscount <- ulam(
   alist(
     count_estimates_below_zero~dbinom(2000,p),
@@ -2789,7 +2738,7 @@ mtext("Ratio of estimates below zero",side=2,line=3, cex=1.2)
 #1-mu_40_mean[3] #95%
 #1-mu_60_mean[3] #97%
 
-# Tthere is a <7% chance to get a false positive with a sample size of 20
+# There is a <7% chance to get a false positive with a sample size of 20
 #sum(d[d$n %in% 20 & d$change_mean %in% 0,]$proportion_estimates_below_zero<0.3) #2 values are <0.1 (out of 30)
 #length(d[d$n %in% 20 & d$changeprop_mean %in% 0,]$proportion_estimates_below_zero) #30 values total
 ```
@@ -2798,11 +2747,11 @@ mtext("Ratio of estimates below zero",side=2,line=3, cex=1.2)
 
 <img width="100%" src="m1FigPowerAnalysisTouTiming.png">
 
-**Figure 10** Curves of the mean ratio of estimates below zero (vertical lines show the minimum and maximum ratios), which illustrates the power we have to detect differences between conditions (control vs. manipulated) in timing of dispersal at different sample sizes. 
+**Figure 13.** Risk of false positives and false negatives depending on sample and effect sizes. Curves of the mean ratio of estimates below zero (vertical lines show the minimum and maximum ratios), which illustrates the power we have to detect differences between conditions at different sample sizes. The curves show the model estimates as the effect increases (larger changes in the mean proportion time spent after versus before on the x-axis) for different potential sample sizes (10-60, illustrated by different colors). When there is no change (x value of zero), estimates suggest that, as expected, half of the estimates are below zero because the before and after conditions are not different from each other. As the change increases, the estimates decrease because models are able to reliably tell that the before and after conditions differ from each other.
 
 &nbsp;
 
-###### Run this model on the actual data (1.1)
+**Run this model on the actual data (1.1)**
 
 Run the code below to determine whether the manipulated individuals differ from the control individuals in their age of dispersal.
 
@@ -2814,15 +2763,13 @@ set_ulam_cmdstan(TRUE) #makes it so ulam always runs with cmdstan
 # load data sheet
 d <- read.csv(url(""), header=T, sep=",", stringsAsFactors=F)
 
-
 #sets up the data sheet with the simulated data that the model will run on
         dat <- list(
           response = d$DispersalTiming, #for each individual the day at which they dispersed
-          condition = d$Condition, #1 refers to control and 2 to manipulated
+          condition = d$Condition #1 refers to control and 2 to manipulated
         )
         
-        # Our MODEL, which will estimate a different mean and variance of phi for each site 
-        #(note: had to add force_recompile bc kept giving me an error and wouldn't finish running. See https://github.com/rmcelreath/rethinking/issues/338)
+        # Our MODEL
         m1 <- ulam(
           alist(
             response ~ dzipois(p,lambda),
@@ -2833,41 +2780,34 @@ d <- read.csv(url(""), header=T, sep=",", stringsAsFactors=F)
             g[condition] ~ normal(0,2)
           ) , data=dat , chains=4 , cores=4 , log_lik=TRUE , cmdstan = TRUE, control = list(adapt_delta = .95, force_recompile = TRUE))
         
-        #run a CONTRAST to determine whether there is a difference between before (g1) and after (g2) (subtract g1 before from g2 after). Yes if all values for diff_p on one side of zero (want probability scale because that is the scale we used in the simulation)
+#run a CONTRAST to determine whether there is a difference between before (g1) and after (g2) (subtract g1 before from g2 after)
         post <- extract.samples(m1)
         diff_g <- post$g[,2] - post$g[,1] #log-odds difference p.341 McElreath 2020
-
-
-#run a CONTRAST to determine whether there is a difference between before (g1) and after (g2). Yes if all values on one side of zero
-precis( diff_g )
-
+        precis( diff_g )
 ```
 
 
-###### The model: dispersal distance (1.2)
+**The model: dispersal distance (1.2)**
 
 *Bayesian model for a gamma-poisson distribution:*
   
   $D_i$ ~ Gamma-Poisson($lambda_i$,$phi_i$)
 
-$D_i$ is the distance in meters that individuals are found away from their parents' territory on day 112 after they fledged, $lambda_i$ is the mean of the poisson describing the distance individuals who have dispersed are found on average away from their parents' territory, and $phi_i$ controls the variance. A gamma-poisson distribution was used because the dispersal distance is a non-negative count, almost all individuals disperse, but the distribution is skewed. Most individuals disperse not very far, but a small proportion can disperse for large distances. These patterns are described by [@richard2007demography], which shows that the average dispersal distance ~1,000m and the maximum dispersal distance is ~10,000m. We assume that distance dispersers move might differ between individuals in the manipulated and the control conditions:
+$D_i$ is the distance in meters  that individuals are found away from their parents' territory on day 112 after they fledged (measured as a straight line between the center of the natal territory and final location the bird is detected at or the point of death/disappearance), $lambda_i$ is the mean of the poisson describing the distance individuals who have dispersed are found on average away from their parents' territory, and $phi_i$ controls the variance. A gamma-poisson distribution was used because the dispersal distance is a non-negative count, almost all individuals disperse, but the distribution is skewed. Most individuals disperse not very far, but a small proportion can disperse for large distances. These patterns are described by [@richard2007demography], which shows that the average dispersal distance ~1,000m and the maximum dispersal distance is ~10,000m. We assume that distance dispersers move might differ between individuals in the manipulated and the control conditions:
 
 log($lambda_i$) = $\gamma_l$[condition]
 
 The $\gamma$[condition] reflects the average distance individuals disperse for each condition (control/manipulated) to disperse. The Bayesian model was developed using @mcelreath2020statistical as a guide.
 
+**Power analysis (1.2)**
 
-
-###### Power analysis (1.2)
-
-We estimated our power to detect differences between conditions at different sample sizes and with different mean changes in distance individuals disperse (Figure 11). We simulated the distance individuals would disperse in the control condition (with averages of 500m, 1000m, or 1500m), and assumed that manipulated individuals might disperse up to 1000m farther. We analyzed these simulated data with the model we will use to analyze the actual data, estimating the contrast in average distance individuals disperse. From the posterior estimates of the model, we extracted both the mean change as well as the ratio of the posterior estimates that were below zero, indicating that there would be a clear difference between control and manipulated birds.
+We estimated our power to detect differences between conditions at different sample sizes and with different mean changes in distance individuals disperse (Figure 14). We simulated the distance individuals would disperse in the control condition (with averages of 500m, 1000m, or 1500m), and assumed that manipulated individuals might disperse up to 1000m farther. We analyzed these simulated data with the model we will use to analyze the actual data, estimating the contrast in average distance individuals disperse. From the posterior estimates of the model, we extracted both the mean change as well as the ratio of the posterior estimates that were below zero, indicating that there would be a clear difference between control and manipulated birds.
 
 If the mean ratio of estimates below zero is close to 0.5, the model assumes that the distance individuals disperse is similar for control and manipulated birds. If the ratio is close to zero, the model assumes individuals have changed their behavior and disperse earlier when they were manipulated. We find that for changes smaller than 300m, models are likely to assume that there are no differences between control and manipulated individuals even with large sample sizes. Also for the larger increases in dispersal distance, we would need sample sizes of at least 40 (for a 1000m increase) or 60 individuals (for a 300m increase) to reliably detect differences between control and manipulated individuals. If the contrast in dispersal distance of manipulated compared to control individuals is 500m, on average 93% of the posterior of the model based on a sample size of 60 individuals will be larger than zero (81% with a sample size of 20). This means that the model is quite certain there is a contrast that is larger than zero. 
 
 In general, with sample sizes at or above 40 and mean contrasts between manipulated and control individuals of 300m or more, it is likely that the model will indicate that manipulated individuals have changed their behavior. Mean contrasts of less than 300m can still be detected, however there is a high risk that there will be a false negative (67% risk of a false negative with a sample size of 40 when the contrast is 200m). 
 
 To estimate the risk of detecting false positives, we set the mean change in age of dispersal for manipulated individuals compared to control individuals to zero so there was no change. As expected, the average ratio of estimates below zero is close to 0.5 and independent of sample size. With a sample size of 40, <7% of the simulations have a ratio smaller than 0.1, meaning that the risk of having a false positive is low. 
-
 
 ```{r tou1.2powersimulation, eval=F}
 library(rethinking)
@@ -2878,39 +2818,34 @@ rstan_options(auto_write = TRUE)
 
 ### SIMULATE the population
 ### We first start with a single population to identify the parameters for the Gamma-Poission distribution.
-# We base this on the information on page 71ff in this thesis: 
+# We base this on the information on page 71ff in this thesis on toutouwai: 
 # https://mro.massey.ac.nz/bitstream/handle/10179/1596/02_whole.pdf?sequence=1
-# It suggests that i) almost all individuals disperse, ii) most individuals do not disperse far with the average dispersal distance ~1,000m, and iii) the maximum dispersal distance is ~10,000m. This distribution resembles a gamma-poisson with a mean (lambda) of 1000 and a dispersion (phi) also of 1000
+# It suggests that i) almost all individuals disperse, ii) most individuals do not disperse far: average dispersal distance ~1,000m, and iii) the maximum dispersal distance is ~10,000m. This distribution resembles a gamma-poisson with a mean (lambda) of 1000 and a dispersion (phi) also of 1000
 # plot the distribution
 hist(rgampois(10000,1000,1000),breaks=100)
 # percentage who disperse less than 100m (so are assumed to have remained on the natal territory): 10%
 sum(rgampois(10000,1000,1000)<100)/10000
 
-# If individuals disperse on average 500 meters more, they will have a mean of 1500m rather than 1000m, 2.5% rather than 10% will remain in the natal territory, and the maximum will go up from ~14,000 to ~16,000 meters. 
+# If manipulated individuals disperse on average 500 meters more, they will have a mean of 1500m rather than 1000m, 2.5% rather than 10% will remain in the natal territory, and the maximum will go up from ~14,000 to ~16,000 meters. 
 
 # Potentially the individuals in this population will not disperse as far or farther than the ones we based the information on. We will accordingly change the dispersal distance for the control population to 500m and to 1500m in the simulation. We will keep the variance parameter the same as the mean (so lambda and phi are both 500, both 1000, or both 1500).
-
-# power analysis: run this simulation with different N_ind, change means, to find the boundaries of where you can detect a difference (run the model and use contrasts) between the two conditions (control/manipulated). Automate the process like Dieter did in xpop figs 5 (line 1133) and 6 (line 1452)?
 
 
 ### POWER ANALYSIS: different sample sizes and different mean changes in dispersal distance between control and manipulated conditions
 # We now set our range of likely sample sizes, from a minimum of 10 individuals to a maximum of 60 individuals (half in the control and the other half in the manipulated condition). We draw repeated samples of individuals of that size, with 10 repetitions for each of the 5 sample sizes and each of the 6 mean changes. So 10*6 mean change (=60) for each of the 5 sample sizes, resulting in a total length of samplesizes of 300
 samplesizes<-c(10,20,30,40,60) #c(10,20,30,40,60)
 
-# Set the means you want to compare
+# Set the means you want to compare (mean change in meters of dispersal distance)
 meanchange1<-1000 
 meanchange2<-500
-meanchange3<-300 #e.g., a bird spends 0.6 of its time being rewarded at cafes and dumpsters before the manipulation and then increases this proportion to 0.8 after the manipulation, showing that the manipulation improved their foraging success
+meanchange3<-300
 meanchange4<-200
 meanchange5<-100
-meanchange6<-0
+meanchange6<-0 #for false positives
 changevariants<-c(meanchange1,meanchange2,meanchange3,meanchange4,meanchange5,meanchange6) #for false negatives
-#changepropvariants<-c(0) #for false positives
-#changepropvariants<-c(meanchangeprop6) #for showing differences
 
-#compare different baseline proportions for how much time these individuals spend when the reward is present before the manipulation
-mean_distance_control<-c(500,1000,1500) #c(0.5,0.6,0.7)
-
+#compare different baseline distances for control individuals
+mean_distance_control<-c(500,1000,1500)
 
 #set up data frame where results will be stored
 simresults <- matrix(NA,nrow=900,ncol=6)
@@ -2941,15 +2876,14 @@ for (samplesize in 1:length(samplesizes)) {
         distance_manipulated<- round(rgampois(N_ind/2,currentprop_before+currentchangeprop,currentprop_before),0) 
        
         
-        ### run a STAN model to see whether the before and after proportions are estimated to be different from each other
+        ### run a STAN model to see whether the distance differences are estimated to be different from each other
         #sets up the data sheet with the simulated data that the model will run on
         dat <- list(
           response = c(distance_control,distance_manipulated),
           condition = c(rep(1,N_ind/2),rep(2,N_ind/2)) #1 refers to control and 2 to manipulated
         )
         
-        # Our MODEL, which will estimate a different mean and variance of phi for each site 
-        #(note: had to add force_recompile bc kept giving me an error and wouldn't finish running. See https://github.com/rmcelreath/rethinking/issues/338)
+        # Our MODEL
         s1 <- ulam(
           alist(
             response ~ dgampois(lambda,phi),
@@ -2959,7 +2893,7 @@ for (samplesize in 1:length(samplesizes)) {
             phi ~ normal(1000,1500)
           ) , data=dat , chains=4 , cores=4 , log_lik=TRUE , cmdstan = TRUE, control = list(adapt_delta = .95, force_recompile = TRUE))
         
-        #run a CONTRAST to determine whether there is a difference between before (g1) and after (g2) (subtract g1 before from g2 after). Yes if all values for diff_p on one side of zero (want probability scale because that is the scale we used in the simulation)
+        #run a CONTRAST to determine whether there is a difference between before (g1) and after (g2) (subtract g1 before from g2 after)
         post <- extract.samples(s1)
         diff_g <- post$g[,2] - post$g[,1] #log-odds difference p.341 McElreath 2020
 
@@ -2978,12 +2912,6 @@ for (samplesize in 1:length(samplesizes)) {
 }
 
 #write.csv(simresults,file="simresults20plus.csv") #put the outputs into a csv file so don't have to run the model again...it takes hours
-
-## Prep a figure to show how sample size and mean change prop makes a difference in the results. Get posterior values for particular sample sizes and change props. Set samplesize (20 or 60), changepropvariants (0.1 or 0.025), and prop_before (always 0.6) to just one number and run the model. Generate the output, write to csv. Repeat for other model variants
-#write.csv(diff_p,file="diff_p20changeprop0.1.csv")
-#write.csv(diff_p,file="diff_p60changeprop0.1.csv")
-#write.csv(diff_p,file="diff_p20changeprop0.025.csv")
-#write.csv(diff_p,file="diff_p60changeprop0.025.csv")
 ```
 
 ```{r tou1.2simulationfiguresamplesize, eval=F, messages=F}
@@ -3003,18 +2931,7 @@ dat <- list(
   samplesize = as.integer(as.factor(d$n))
 )
 
-# We run the STAN model - it is a binomial model that assumes that the probability to estimate a difference depends on an interaction between the sample size and the difference between the conditions (before/after). These two models do the same thing with different versions of the response variable. In m_samplesize_diffs, the response variable is already a proportion. In m_samplesize_diffscount, the response variable is a count and the model turns it into a proportion. We ended up using the latter
-#m_samplesize_diffs <- ulam(
-#    alist(
-#        proportion_estimates_below_zero ~ dnorm(mu,sigma),
-#        mu <- a[samplesize] + b[samplesize]*changeprop_mean,
-#        a[samplesize] ~ dnorm(a_bar,sigma_a),
-#        a_bar~dnorm(0,1.5),
-#        sigma_a~dexp(1),
-#        sigma~dexp(1),
-#        b[samplesize]~dnorm(0,1.5)
-#    ) , data=dat , chains=4 , cores=4 , log_lik=TRUE , cmdstan = TRUE, control = list(adapt_delta = .95, force_recompile = TRUE))
-
+# We run the STAN model - it is a binomial model that assumes that the probability to estimate a difference depends on an interaction between the sample size and the difference between the conditions
 m_samplesize_diffscount <- ulam(
   alist(
     count_estimates_below_zero~dbinom(2000,p),
@@ -3095,26 +3012,24 @@ mtext("Power to detect differences between conditions",side=3,line=1,at=3.5,cex=
 mtext("Increase in dispersal distance (meters) of manipulated vs control individuals",side=1,line=3, cex=1.2)
 mtext("Ratio of estimates below zero",side=2,line=3, cex=1.2)
 
-#93% of the posterior mass is above zero for a 500m or larger mean change in proportion between before and after when the sample size is 60, 86% for n=40, 83% for n=30, and 81% for n=20
+#93% of the posterior mass is above zero for a 500m or larger mean change between conditions when the sample size is 60, 86% for n=40, 83% for n=30, and 81% for n=20
 #mu_10_ci #82%. 3rd column from the right (column 4) for the 0.1 category on the x axis (ordered by unique(d$changeprop_mean))
 # 1-mu_60_mean[2]
 # 1-mu_30_mean[2]
 
 #sum(d[d$n %in% 40 & d$change_mean %in% 0,]$proportion_estimates_below_zero<0.1) #2 values are <0.1 (out of 30)
 #length(d[d$n %in% 40 & d$change_mean %in% 0,]$proportion_estimates_below_zero) #30 values total
-
 ```
 
 &nbsp;
 
 <img width="100%" src="m1FigPowerAnalysisTouDistance.png">
 
-**Figure 11** Curves of the mean ratio of estimates below zero (vertical lines show the minimum and maximum ratios), which illustrates the power we have to detect differences between conditions (control vs. manipulated) in the distance of dispersal at different sample sizes. 
+**Figure 14** Risk of false positives and false negatives depending on sample and effect sizes. Curves of the mean ratio of estimates below zero (vertical lines show the minimum and maximum ratios), which illustrates the power we have to detect differences between conditions at different sample sizes. The curves show the model estimates as the effect increases (larger changes in the mean proportion time spent after versus before on the x-axis) for different potential sample sizes (10-60, illustrated by different colors). When there is no change (x value of zero), estimates suggest that, as expected, half of the estimates are below zero because the before and after conditions are not different from each other. As the change increases, the estimates decrease because models are able to reliably tell that the before and after conditions differ from each other.
 
 &nbsp;
 
-
-###### Run this model on the actual data (1.2)
+**Run this model on the actual data (1.2)**
 
 Run the code below to determine whether there were differences between the control and manipulated conditions in the distance of dispersal. 
 
@@ -3132,8 +3047,7 @@ dat <- list(
           condition = as.numeric(as.factor(d$condition)) #1 refers to control and 2 to manipulated
         )
         
-# Our MODEL, which will estimate a different mean and variance of phi for each site 
-        #(note: had to add force_recompile bc kept giving me an error and wouldn't finish running. See https://github.com/rmcelreath/rethinking/issues/338)
+# Our MODEL
         s1 <- ulam(
           alist(
             response ~ dgampois(lambda,phi),
@@ -3146,17 +3060,13 @@ dat <- list(
 #model output: pay attention to control (g1) and manipulated (g2)
 #precis(m1,depth=2)
 
-#run a CONTRAST to determine whether there is a difference between control (g1) and manipulated (g2). Yes if all values on one side of zero
+#run a CONTRAST to determine whether there is a difference between control (g1) and manipulated (g2)
 post <- extract.samples(m1)
-diff_g <- post$g[,1] - post$g[,2] #log-odds difference p.341
+diff_g <- post$g[,1] - post$g[,2] #log-odds difference p.341 McElreath 2020
 precis( diff_g )
 ```
 
-
-
-
-
-###### The model: dispersal location (1.3)
+**The model: dispersal location (1.3)**
 
 location ~ dbinom(1,p)
 
@@ -3164,9 +3074,9 @@ logit(p) <- g[condition]
 
 The response variable is dispersal location (0=inside Zealandia, 1=outside Zealandia) on day 112 post-fledging. g[condition] is the average log odds for each condition (control or flexibility manipulated). A binomial distribution was used because the response variable is binomial [see Figure 10.6 in @mcelreath2020statistical]. The Bayesian model was developed using @mcelreath2020statistical as a guide.
 
-###### Power analysis (1.3)
+**Power analysis (1.3)**
 
-We estimated our power to detect differences between conditions at different sample sizes and with different mean changes in the dispersal location in the control vs. manipulated conditions (Figure 18). We analyzed simulated data with the model we will use to analyze the actual data, estimating the change in dispersal location between the conditions. From the posterior estimates of the model, we extracted both the mean change as well as the ratio of the posterior estimates that were below zero.
+We estimated our power to detect differences between conditions at different sample sizes and with different mean changes in the dispersal location in the control vs. manipulated conditions (Figure 15). We analyzed simulated data with the model we will use to analyze the actual data, estimating the change in dispersal location between the conditions. From the posterior estimates of the model, we extracted both the mean change as well as the ratio of the posterior estimates that were below zero.
 
 If the mean ratio of estimates below zero is close to 0.5, the model assumes that the change in the number of food types taken before the flexibility manipulation is similar to after. If the ratio is close to zero, the model assumes individuals have changed their behavior. For differences in the dispersal location at or larger than 0.3, models are likely to assume that no changes occurred even with large sample sizes. If the difference in dispersal location between control and manipulated conditions is 0.3, on average 92% of the posterior of the model based on a sample size of 40 individuals will be larger than zero. This means that the model is quite certain there is a difference that is larger than zero.
 
@@ -3186,25 +3096,23 @@ rstan_options("auto_write" = TRUE)
 #SIMULATE the population
 N_ind <- 30 #number of individuals tested
 
-#choosing the mean change in survival between control and manipulated groups and standard deviations - visualize to see whether it would be possible to tell the difference between control (black) and manipulated (red). An SD of 0.1 (when the control mean is 0.6) encompasses all of the range of proportions we expect to find (0.3-0.9) so it would be the largest SD we would expect and thus the most conservative sd to use in the simulations
+#choosing the mean change in location between control and manipulated groups and standard deviations - visualize to see whether it would be possible to tell the difference between control (black) and manipulated (red)
 prob_control<-0.6
 changemanip<-0.1
 plot(density(rnorm(10000,prob_control,sd=0.1)),lwd=2,xlim=c(0,1.2))
 lines(density(rnorm(10000,prob_control+(1-prob_control)*(changemanip*2),sd=0.1)),lwd=2,col="red")
 
 #control
-probcontrol <- round(rbinom(n=N_ind,size=1,prob=0.6),2) #for 20 data points, randomly assign a 0 (dead) or 1 (alive) survival status such that each appears 60% of the time
-changemanip <- rnorm(N_ind, mean=(1-probcontrol)/5,sd=0.1) #if had a large proportion before, have a smaller change relative to the after condition. Divide by 2 = assume that on average they will improve by 0.25 (the before mean of 0.5 divided by 2)
+probcontrol <- round(rbinom(n=N_ind,size=1,prob=0.6),2) #for 20 data points, randomly assign a 0 (inside) or 1 (outside) location such that each appears 60% of the time
+changemanip <- rnorm(N_ind, mean=(1-probcontrol)/5,sd=0.1) #if had a large proportion for control, have a smaller change relative to the manipulated condition. Divide by 2 = assume that on average manipulated will disperse outside 0.25 (the control mean of 0.5 divided by 2)
 
 #manip
 probmanip <- round(probcontrol+changemanip,2)
 probmanip[probmanip>1]<-1 #values larger than 1 mess up the model so restrict it
 
-#check the plot to see whether manip increases prob of survival
+#check the plot to see whether manip are more likely to disperse outside
 #plot(probcontrol,probmanip)
 #abline(0,1)
-
-# power analysis: run this simulation with different N_ind, changeprop means and sd, to find the boundaries of where you can detect a difference (run the model and use contrasts) between the two conditions
 
 
 ### POWER ANALYSIS: different sample sizes and different mean changes in proportions between before and after conditions
@@ -3246,9 +3154,9 @@ for (samplesize in 1:length(samplesizes)) {
         for (repetition in 1:10) {
         #CONTROL & MANIP groups
         probcontrol <- round(rbinom(n=N_ind/2,size=1,prob=currentprob_control),2) #for half the data points, randomly assign a 0 (inside Zealandia) or 1 (outside Zealandia) according to the baseline location probabilities (0.5,0.6,0.7)
-        probmanip <- round(rbinom(n=N_ind/2,size=1,prob=(currentprob_control-currentchangeprob)),2) #for the other half of the data points, starting from the probability that the control individuals stay inside Zealandia (0.5, 0.6, and 0.7), we are decreasing the probability that they remain in Zealandia (add zero) for the manipulated individuals (add meanchangeprop 1-6)
+        probmanip <- round(rbinom(n=N_ind/2,size=1,prob=(currentprob_control-currentchangeprob)),2) #for the other half of the data points, starting from the probability that the control individuals stay inside Zealandia (0.5, 0.6, and 0.7), we are decreasing the probability that they remain in Zealandia (add zero) for the manipulated individuals (add meanchangeprop 1 through 6)
 
-        ### run a STAN model to see whether the before and after proportions are estimated to be different from each other
+        ### run a STAN model to see whether the conditions are estimated to be different from each other
         #sets up the data sheet with the simulated data that the model will run on
   dat2 <- list(
     location = c(probcontrol,probmanip),
@@ -3256,7 +3164,6 @@ for (samplesize in 1:length(samplesizes)) {
 )
        
         # The MODEL
-       #(note: had to add force_recompile bc kept giving me an error and wouldn't finish running. See https://github.com/rmcelreath/rethinking/issues/338)
 s1 <- ulam(
     alist(
         location ~ dbinom(1,p),
@@ -3264,7 +3171,7 @@ s1 <- ulam(
         g[condition] ~ normal(0,1)
        ) , data=dat2 , chains=4 , cores=4 , log_lik=TRUE , cmdstan = TRUE, control = list(adapt_delta = .95, force_recompile = TRUE))
 
-        #run a CONTRAST to determine whether there is a difference between before (g1) and after (g2) (subtract g1 before from g2 after). Yes if all values for diff_p on one side of zero (want probability scale because that is the scale we used in the simulation)
+        #run a CONTRAST to determine whether there is a difference between before (g1) and after (g2) (subtract g1 before from g2 after)
 post <- extract.samples(s1)
 diff_g <- post$g[,2] - post$g[,1] #log-odds difference p.341 McElreath 2020
 diff_p <- inv_logit(post$g[,2]) - inv_logit(post$g[,1]) #on the probability scale p.341 McElreath 2020
@@ -3402,11 +3309,11 @@ length(d[d$n %in% 40 & d$changeprob_mean %in% 0.3,]$proportion_estimates_below_z
 
 <img width="100%" src="mi1FigPowerAnalysisTouLocation.png">
 
-**Figure 18.** Curves of the mean ratio of estimates below zero (vertical lines show the minimum and maximum ratios), which illustrates the power we have to detect differences between conditions (control vs. manipulated) at different sample sizes. 
+**Figure 15.** Risk of false positives and false negatives depending on sample and effect sizes. Curves of the mean ratio of estimates below zero (vertical lines show the minimum and maximum ratios), which illustrates the power we have to detect differences between conditions at different sample sizes. The curves show the model estimates as the effect increases (larger changes in the mean proportion time spent after versus before on the x-axis) for different potential sample sizes (10-60, illustrated by different colors). When there is no change (x value of zero), estimates suggest that, as expected, half of the estimates are below zero because the before and after conditions are not different from each other. As the change increases, the estimates decrease because models are able to reliably tell that the before and after conditions differ from each other.
 
 &nbsp;
 
-###### Run this model on the actual data (1.3)
+**Run this model on the actual data (1.3)**
 
 Run the code below to determine whether there were differences between the control and manipulated conditions in their survival status (alive or dead when individuals are or would be 112 days old). 
 
@@ -3428,14 +3335,12 @@ dat <- list(
 
 #simulated data to test the model
 dat2 <- list(
-    location = rbinom(40,1,0.5), #for 40 data points, randomly assign a 0 (dead) or 1 (alive) survival status such that each appears 50% of the time
+    location = rbinom(40,1,0.5), #for 40 data points, randomly assign a 0 (inside) or 1 (outside) dispersal location such that each appears 50% of the time
     condition = c(rep(1,20),rep(2,20)) #for all rows with control data, assign a condition=1, and for all rows with manipulated data, assign a condition=2, repeat each 20 times (for a total sample size of 40)
 )
 
 # THE MODEL (p.448 for binomial distribution - McElreath 2020)
-#an interaction model that allows the effect of each condition to vary by each parent pair ID and each habitat
 #g[condition] = avg log odds for each condition
-#alpha[parentpairID,condition] = an effect for each parent pair ID in each condition
 mtl <- ulam(
     alist(
         location ~ dbinom(1,p),
@@ -3446,7 +3351,7 @@ mtl <- ulam(
 #model output: pay attention to before (g1) and after (g2)
 #precis(mtl,depth=2)
 
-#run a CONTRAST to determine whether there is a difference in survival status between control (g1) and manipulated (g2). Yes if all values on one side of zero
+#run a CONTRAST to determine whether there is a difference in survival status between control (g1) and manipulated (g2)
 post <- extract.samples(mtl)
 diff_g <- post$g[,1] - post$g[,2] #log-odds difference p.341
 diff_p <- inv_logit(post$g[,1]) - inv_logit(post$g[,2]) #on the probability scale p.341
@@ -3454,14 +3359,13 @@ precis( list( diff_g=diff_g , diff_p=diff_p ) )
 ```
 
 
-
 ##### T.Q2 Compared to control individuals, are flexibility manipulated individuals more likely to survive their first 16 weeks post-fledging, particularly if they disperse into the urban reserves outside the sanctuary fence?
 
-###### The model
+**The model**
 
 *Bayesian models with a binomial distribution:*
 
-**Examining the difference between conditions:**
+***Examining the difference between conditions:***
 
 status ~ dbinom(1,p)
 
@@ -3469,7 +3373,7 @@ logit(p) <- g[condition]
 
 The response variable is survival status (0=dead, 1=alive) on day 112 post-fledging. g[condition] is the average log odds for each condition (control or flexibility manipulated). A binomial distribution was used because the response variable is binomial [see Figure 10.6 in @mcelreath2020statistical]. The Bayesian model was developed using @mcelreath2020statistical as a guide.
 
-**Examining the difference between conditions in each of the two areas:**
+***Examining the difference between conditions in each of the two areas:***
 
 status ~ dbinom(1,p)
 
@@ -3477,9 +3381,9 @@ logit(p) <- g[habitat] + $\beta$[habitat,condition]
 
 The response variable is survival status (0=dead, 1=alive) on day 112 post-fledging. g[habitat] is the average log odds for each area (inside Zealandia, which is a natural area, or outside Zealandia, which can include natural/suburban/and urban areas), and $\beta$[habitat,condition] is an effect for each area (inside Zealandia or outside Zealandia) in each condition (control or flexibility manipulated).
 
-###### Power analysis
+**Power analysis**
 
-We estimated our power to detect differences between conditions at different sample sizes and with different mean changes in the survival status in the control vs. manipulated conditions (Figure 18). We analyzed simulated data with the model we will use to analyze the actual data, estimating the change in survival status between the conditions. From the posterior estimates of the model, we extracted both the mean change as well as the ratio of the posterior estimates that were below zero.
+We estimated our power to detect differences between conditions at different sample sizes and with different mean changes in the survival status in the control vs. manipulated conditions (Figure 16). We analyzed simulated data with the model we will use to analyze the actual data, estimating the change in survival status between the conditions. From the posterior estimates of the model, we extracted both the mean change as well as the ratio of the posterior estimates that were below zero.
 
 If the mean ratio of estimates below zero is close to 0.5, the model assumes that the change in the number of food types taken before the flexibility manipulation is similar to after. If the ratio is close to zero, the model assumes individuals have changed their behavior. For differences in the survival status at or larger than 0.3, models are likely to assume that no changes occurred even with large sample sizes. If the difference in survival status between control and manipulated conditions is 0.3, on average 88% of the posterior of the model based on a sample size of 30 individuals will be larger than zero. This means that the model is quite certain there is a difference that is larger than zero.
 
@@ -3489,7 +3393,7 @@ With small mean changes in the response variable, some individuals might not inc
 
 To estimate the risk of detecting false positives, we set the mean change in survival to zero so there was no change between the conditions. As expected, the average ratio of estimates below zero is close to 0.5 and independent of sample size. With a sample size of 30, 17% have a ratio smaller than 0.3, meaning that the risk of having a false positive is high. 
 
-We also estimated the power to detect differences between conditions in different habitats (inside or outside Zealandia) at different sample sizes and with different mean changes in the survival status (Figure 19). We found that mean changes in survival status of 0.3 are likely to be detected with a sample size of at least 40 when considering the individuals inside Zealandia, but we will not be able to detect differences outside of Zealandia because the subset sample size will likely be too small.
+We also estimated the power to detect differences between conditions in different habitats (inside or outside Zealandia) at different sample sizes and with different mean changes in the survival status (Figure 17). We found that mean changes in survival status of 0.3 are likely to be detected with a sample size of at least 40 when considering the individuals inside Zealandia, but we will not be able to detect differences outside of Zealandia because the subset sample size will likely be too small.
 
 ```{r TouSurvivalSim, eval=F}
 library(rethinking)
@@ -3501,7 +3405,7 @@ rstan_options("auto_write" = TRUE)
 #SIMULATE the population
 N_ind <- 20 #number of individuals tested
 
-#choosing the mean change in survival between control and manipulated groups and standard deviations - visualize to see whether it would be possible to tell the difference between control (black) and manipulated (red). An SD of 0.1 (when the control mean is 0.6) encompasses all of the range of proportions we expect to find (0.3-0.9) so it would be the largest SD we would expect and thus the most conservative sd to use in the simulations
+#choosing the mean change in survival between control and manipulated groups and standard deviations - visualize to see whether it might be possible to tell the difference between control (black) and manipulated (red)
 prob_control<-0.6
 changemanip<-0.1
 plot(density(rnorm(10000,prob_control,sd=0.1)),lwd=2,xlim=c(0,1.2))
@@ -3509,7 +3413,7 @@ lines(density(rnorm(10000,prob_control+(1-prob_control)*(changemanip*2),sd=0.1))
 
 #control
 probcontrol <- round(rbinom(n=N_ind,size=1,prob=0.6),2) #for 20 data points, randomly assign a 0 (dead) or 1 (alive) survival status such that each appears 60% of the time
-changemanip <- rnorm(N_ind, mean=(1-probcontrol)/5,sd=0.1) #if had a large proportion before, have a smaller change relative to the after condition. Divide by 2 = assume that on average they will improve by 0.25 (the before mean of 0.5 divided by 2)
+changemanip <- rnorm(N_ind, mean=(1-probcontrol)/5,sd=0.1) #if had a large proportion before, have a smaller change relative to the control condition. Divide by 2 = assume that on average manipulated is more likely to survive by 0.25 (the control mean of 0.5 divided by 2)
 
 #manip
 probmanip <- round(probcontrol+changemanip,2)
@@ -3519,17 +3423,15 @@ probmanip[probmanip>1]<-1 #values larger than 1 mess up the model so restrict it
 #plot(probcontrol,probmanip)
 #abline(0,1)
 
-# power analysis: run this simulation with different N_ind, changeprop means and sd, to find the boundaries of where you can detect a difference (run the model and use contrasts) between the two conditions
 
-
-### POWER ANALYSIS: different sample sizes and different mean changes in proportions between before and after conditions
-# We now set our range of likely sample sizes, from a minimum of 9 individuals per population to a maximum of 60 individuals per population. We draw repeated samples of individuals of that size from each of the 5 populations, during each repetition we draw two samples from each population (so we can infer the false negative rate of wrongly estimating that two samples come from a different population even though they were taken from the sample population). This means we have 10 repetitions for each of the 5 sample sizes and each of the 6 changeprops. So 10*6 changeprops (=60) for each of the 5 sample sizes, resulting in a total length of samplesizes of 300
-samplesizes<-c(10,20,30,40,60) #c(10,20,30,40,60)
+### POWER ANALYSIS: different sample sizes and different mean changes in conditions
+# We now set our range of likely sample sizes, from a minimum of 10 individuals per population to a maximum of 60 individuals per population. We draw repeated samples of individuals of that size from each of the 5 populations, during each repetition we draw two samples from each population (so we can infer the false negative rate of wrongly estimating that two samples come from a different population even though they were taken from the sample population). This means we have 10 repetitions for each of the 5 sample sizes and each of the 6 changeprops. So 10*6 changeprops (=60) for each of the 5 sample sizes, resulting in a total length of samplesizes of 300
+samplesizes<-c(10,20,30,40,60)
 
 # Set the means you want to compare
 meanchangeprop1<-0.3 
 meanchangeprop2<-0.2
-meanchangeprop3<-0.1 #e.g., a bird spends 0.6 of its time being rewarded at cafes and dumpsters before the manipulation and then increases this proportion to 0.8 after the manipulation, showing that the manipulation improved their foraging success
+meanchangeprop3<-0.1 
 meanchangeprop4<-0.05
 meanchangeprop5<-0.025
 meanchangeprop6<-0 #for false positives
@@ -3566,7 +3468,7 @@ for (samplesize in 1:length(samplesizes)) {
         habitatmanip <- rbinom(N_ind/2,1,0.25)+1  
         probmanip <- round(rbinom(n=N_ind/2,size=1,prob=(currentprob_control/habitatmanip)+currentchangeprob),2) #for the other half the data points, randomly assign a 0 (dead) or 1 (alive) survival status according to the baseline survival probabilities (0.5,0.6,0.7)
 
-        ### run a STAN model to see whether the before and after proportions are estimated to be different from each other
+        ### run a STAN model to see whether the condition proportions are estimated to be different from each other
         #sets up the data sheet with the simulated data that the model will run on
   dat2 <- list(
     status = c(probcontrol,probmanip),
@@ -3574,8 +3476,7 @@ for (samplesize in 1:length(samplesizes)) {
     condition = c(rep(1,N_ind/2),rep(2,N_ind/2))
 )
        
-        # Our MODEL, which will estimate a different mean and variance of phi for each site 
-       #(note: had to add force_recompile bc kept giving me an error and wouldn't finish running. See https://github.com/rmcelreath/rethinking/issues/338)
+        # Our MODEL
 s1 <- ulam(
     alist(
         status ~ dbinom(1,p),
@@ -3583,7 +3484,7 @@ s1 <- ulam(
         g[condition] ~ normal(0,1)
        ) , data=dat2 , chains=4 , cores=4 , log_lik=TRUE , cmdstan = TRUE, control = list(adapt_delta = .95, force_recompile = TRUE))
 
-        #run a CONTRAST to determine whether there is a difference between before (g1) and after (g2) (subtract g1 before from g2 after). Yes if all values for diff_p on one side of zero (want probability scale because that is the scale we used in the simulation)
+        #run a CONTRAST to determine whether there is a difference between before (g1) and after (g2) (subtract g1 before from g2 after)
 post <- extract.samples(s1)
 diff_g <- post$g[,2] - post$g[,1] #log-odds difference p.341 McElreath 2020
 diff_p <- inv_logit(post$g[,2]) - inv_logit(post$g[,1]) #on the probability scale p.341 McElreath 2020
@@ -3604,7 +3505,7 @@ s2 <- ulam(
         gq> matrix[2,2]:Rho_habitat <<- Chol_to_Corr(L_Rho_habitat)
     ) , data=dat2 , chains=4 , cores=4 , log_lik=TRUE , cmdstan = TRUE, control = list(adapt_delta = .95, force_recompile = TRUE))
 
-      #run a CONTRAST to determine whether there is a difference in survival status between control (g1) and manipulated (g2) and habitat (reserve vs suburban). Yes if all values on one side of zero
+      #run a CONTRAST to determine whether there is a difference in survival status between control (g1) and manipulated (g2) and habitat (reserve vs suburban)
 post2 <- extract.samples(s2)
 if(length(unique(dat2$habitat))>1){
   diff_betanatural <- inv_logit(post2$beta[,2,1]) - inv_logit(post2$beta[,1,1]) # Comparison for habitat 1 (natural): take the inverse logit of the sum (posterior control habitat 1 + posterior control) minus the inverse logit of the sum (posterior manipulated habitat 1 + posterior manipulated). For the beta values, the first entry in the square brackets refers to the rows (we want all of them so we leave this empty), the second entry refers to control (1) versus manipulated (2), and the third entry refers to the habitat (here habitat 1)
@@ -3638,7 +3539,6 @@ set_ulam_cmdstan(TRUE) #makes it so ulam always runs with cmdstan
 d <- read.csv("https://raw.githubusercontent.com/ManyIndividuals/ManyIndividuals/main/Files/rrs/mi1simresultstousurvival.csv", header = TRUE, sep = ",", stringsAsFactors = FALSE)
 #head(d)
 d_noNA <- d[complete.cases(d$proportion_estimates_below_zero_habitatnatural),]
-
 
 # Set up the data sheet for the model
 #condition
@@ -3921,18 +3821,17 @@ par(op)
 
 <img width="100%" src="mi1FigPowerAnalysisTouSurvivalCondition.png">
 
-**Figure 18.** Curves of the mean ratio of estimates below zero (vertical lines show the minimum and maximum ratios), which illustrates the power we have to detect differences between conditions (control vs. manipulated) at different sample sizes. 
+**Figure 16.** Risk of false positives and false negatives depending on sample and effect sizes. Curves of the mean ratio of estimates below zero (vertical lines show the minimum and maximum ratios), which illustrates the power we have to detect differences between conditions at different sample sizes. The curves show the model estimates as the effect increases (larger changes in the mean proportion time spent after versus before on the x-axis) for different potential sample sizes (10-60, illustrated by different colors). When there is no change (x value of zero), estimates suggest that, as expected, half of the estimates are below zero because the before and after conditions are not different from each other. As the change increases, the estimates decrease because models are able to reliably tell that the before and after conditions differ from each other.
 
 &nbsp;
 
 <img width="100%" src="mi1FigPowerAnalysisTouSurvivalConditionHabitat.png">
 
-**Figure 19.** Curves of the mean ratio of estimates below zero (vertical lines show the minimum and maximum ratios), which illustrates the power we have to detect differences between conditions (control vs. manipulated) in different habitats (inside or outside Zealandia) at different sample sizes. The sample size was set at 75% inside Zealandia and 25% outside Zealandia and the associated numbers with these percentages are shown for each overall sample size in the legend.
+**Figure 17.** Risk of false positives and false negatives depending on sample and effect sizes. Curves of the mean ratio of estimates below zero (vertical lines show the minimum and maximum ratios), which illustrates the power we have to detect differences between conditions (control vs. manipulated) in different habitats (inside or outside Zealandia) at different sample sizes. The sample size was set at 75% inside Zealandia and 25% outside Zealandia and the associated numbers with these percentages are shown for each overall sample size in the legend. The curves show the model estimates as the effect increases (larger changes in the mean proportion time spent after versus before on the x-axis) for different potential sample sizes (10-60, illustrated by different colors). When there is no change (x value of zero), estimates suggest that, as expected, half of the estimates are below zero because the before and after conditions are not different from each other. As the change increases, the estimates decrease because models are able to reliably tell that the before and after conditions differ from each other.
 
 &nbsp;
 
-
-###### Run this model on the actual data
+**Run this model on the actual data**
 
 Run the code below to determine whether there were differences between the control and manipulated conditions in their survival status (alive or dead when individuals are or would be 112 days old). 
 
@@ -3970,12 +3869,11 @@ mt <- ulam(
        ) , data=dat2 , chains=4 , cores=4 , log_lik=TRUE , cmdstan = TRUE, control = list(adapt_delta = .95, force_recompile = TRUE))
 #precis(mt, depth=2)
 
-        #run a CONTRAST to determine whether there is a difference between before (g1) and after (g2) (subtract g1 before from g2 after). Yes if all values for diff_p on one side of zero (want probability scale because that is the scale we used in the simulation)
+#run a CONTRAST to determine whether there is a difference between before (g1) and after (g2) (subtract g1 before from g2 after)
 post <- extract.samples(mt)
 diff_g <- post$g[,2] - post$g[,1] #log-odds difference p.341 McElreath 2020
 diff_p <- inv_logit(post$g[,2]) - inv_logit(post$g[,1]) #on the probability scale p.341 McElreath 2020
 #precis( list( diff_g=diff_g , diff_p=diff_p ) )      
-
 
 # now run the model to determine whether there were differences between conditions within each habitat
 mt2 <- ulam(
@@ -3994,7 +3892,7 @@ mt2 <- ulam(
     ) , data=dat2 , chains=4 , cores=4 , log_lik=TRUE , cmdstan = TRUE, control = list(adapt_delta = .95, force_recompile = TRUE))
 #precis(mt2, depth=2)
 
-      #run a CONTRAST to determine whether there is a difference in survival status between control (g1) and manipulated (g2) and habitat (natural vs suburban). Yes if all values on one side of zero
+#run a CONTRAST to determine whether there is a difference in survival status between control (g1) and manipulated (g2) and habitat (natural vs suburban)
 post2 <- extract.samples(mt2)
 #str(post2)
 if(length(unique(dat2$habitat))>1){
@@ -4003,7 +3901,6 @@ diff_betasuburban <- inv_logit(post2$beta[,2,2]) - inv_logit(post2$beta[,1,2]) #
 }
 #precis( list( diff_betanatural=diff_betanatural , diff_betasuburban=diff_betasuburban ) )
 ```
-
 
 # **ETHICS**
 
@@ -4022,13 +3919,13 @@ This research is carried out in accordance with permits from the:
 
 **Shaw:** Hypothesis development, data collection, data analysis and interpretation, write up, revising/editing, materials/funding.
 
-**Lukas:** Analysis design and code, sample size modeling, validated serial reversal passing criterion, write up, revising/editing
+**Lukas:** Analysis design and code, sample size modeling, validated reversal passing criteria, write up, revising/editing
 
 **McCune:** Hypothesis development, data collection, data analysis and interpretation, write up, revising/editing.
 
 # **FUNDING**
 
-This research is funded by the Department of Human Behavior, Ecology and Culture at the Max Planck Institute for Evolutionary Anthropology.
+This research is funded by the Department of Human Behavior, Ecology and Culture at the Max Planck Institute for Evolutionary Anthropology (to Logan) and the Rutherford Discovery Fellowship from the Royal Society Te Apārangi (to Shaw).
 
 # **CONFLICT OF INTEREST DISCLOSURE**
 
@@ -4036,6 +3933,6 @@ We, the authors, declare that we have no financial conflicts of interest with th
 
 # **ACKNOWLEDGEMENTS**
 
-We are grateful to our funders: Richard McElreath at the Max Planck Institute for Evolutionary Anthropology (whole project) and the Rutherford Discovery Fellowship from the Royal Society Te Apārangi (to Shaw).
+We are grateful to our funders: Richard McElreath at the Max Planck Institute for Evolutionary Anthropology (whole project) and the Rutherford Discovery Fellowship from the Royal Society Te Apārangi (Shaw).
 
 # **REFERENCES**
