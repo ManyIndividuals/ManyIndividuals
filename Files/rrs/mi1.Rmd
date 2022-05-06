@@ -51,7 +51,7 @@ knitr::opts_chunk$set(echo=T, include=T, results='asis', warning=F, message=F)
 
 # **ABSTRACT**
 
-Human modifications of environments are increasing, causing global changes that other species must adjust to or suffer from. Behavioral flexibility (hereafter 'flexibility') could be key to coping with rapid change. Behavioral research can contribute to conservation by determining which behaviors can predict the ability to adjust to human modified environments and whether these can be manipulated. When research that manipulates behavior in a conservation context occurs, it primarily trains a specific behavior to improve individual success in the wild. However, training a domain general cognitive ability, such as flexibility, has the potential to change a whole suite of behaviors, which could have a larger impact on influencing success in adjusting to human modified environments. This project asks whether flexibility can be increased by experimentally increasing environmental heterogeneity and whether such an increase can help species succeed in human modified environments. We explore whether it is  possible to take insights from highly divergent species and apply them to address critical conservation challenges. This pushes the limits in terms of understanding how conserved these abilities may be and to what extent they can be shaped by the environment. We aim to 1) conduct flexibility interventions in flexible species that are successful in human modified environments (great-tailed grackles and California scrub-jays or blue jays) to understand how flexibility relates to success; and 2) implement these interventions in two vulnerable species (toutouwai and Florida scrub-jays) to determine whether flexibility as a generalizable cognitive ability can be trained and whether such training improves success in human-modified environments. This research will significantly advance our understanding of the causes and consequences of flexibility, linking behavior to environmental change, cognition, and success in human modified environments through a comparative and global framework.
+Human modifications of environments are increasing, causing global changes that other species must adjust to or suffer from. Behavioral flexibility (hereafter 'flexibility') could be key to coping with rapid change. Behavioral research can contribute to conservation by determining which behaviors can predict the ability to adjust to human modified environments and whether these can be manipulated. When research that manipulates behavior in a conservation context occurs, it primarily trains a specific behavior to improve individual success in the wild. However, training a domain general cognitive ability, such as flexibility, has the potential to change a whole suite of behaviors, which could have a larger impact on influencing success in adjusting to human modified environments. This project asks whether flexibility can be increased by experimentally increasing environmental heterogeneity and whether such an increase can help species succeed in human modified environments. We explore whether it is  possible to take insights from highly divergent species and apply them to address critical conservation challenges. This pushes the limits in terms of understanding how conserved these abilities may be and to what extent they can be shaped by the environment. We aim to 1) conduct flexibility interventions in flexible species that are successful in human modified environments (great-tailed grackles and California scrub-jays or blue jays) to understand how flexibility relates to success; and 2) implement these interventions in two vulnerable species (toutouwai and Florida scrub-jays) to determine whether flexibility as a generalizable cognitive ability can be trained and whether such training improves success in human-modified environments. This research will significantly advance our understanding of the causes and consequences of flexibility, linking behavior to environmental change, cognition, and success in human modified environments through a comparative and global framework. This registered report launches our reproducible research program, ManyIndividuals (https://github.com/ManyIndividuals/ManyIndividuals), which is a global network of researchers with field sites investigating hypotheses that involve generalizing across many individuals.
 
 # **REGISTERED REPORT DETAILS**
 
@@ -221,7 +221,7 @@ With the 10 out of 12 criterion, individuals pass the reversal 8 trials faster (
 
 **2) classification of individuals using the 10/12 criterion is less noisy because there is less of a chance for individuals to approach the criterion and not pass or never pass**
 
-The average improvement in the number of trials individuals need to reach the respective criterion is larger than the median because there are no individuals who are faster with the 17 out of 20 criterion, and because there is a subset of individuals who need considerably fewer trials with the 10/12 criterion (Figure 7). Individuals who require a larger number of trials (>100) to pass almost never occur with the 10/12 criterion, whereas they are more common with the 17/20. With more trials, there is a higher chance that an individual will deviate from their preference by chance. This is also reflected in that 65 of the 626 simulated individuals never reached the 17/20 criterion within the maximum 300 trials, whereas there were only 4 individuals with the 10/12 criterion. Accordingly, an additional benefit of choosing the 10/12 criterion is that it is more likely that data for all individuals, even those who are slow to learn an association, can be collected.
+The average improvement in the number of trials individuals need to reach the respective criterion is larger than the median of 8 trials. This occurs because there are no individuals who are faster with the 17 out of 20 criterion, and because there is a subset of individuals who need considerably fewer trials with the 10/12 criterion (Figure 7). Individuals who require a larger number of trials (>100) to pass almost never occur with the 10/12 criterion, whereas they are more common with the 17/20. With more trials, there is a higher chance that an individual will deviate from their preference by chance. This is also reflected in that 65 of the 626 simulated individuals never reached the 17/20 criterion within the maximum 300 trials, whereas there were only 4 individuals with the 10/12 criterion. Accordingly, an additional benefit of choosing the 10/12 criterion is that it is more likely that data for all individuals, even those who are slow to learn an association, can be collected.
 
 <img width="100%" src="m1Fig_ReversalCriterionComparison.png">
 
@@ -1529,7 +1529,7 @@ habitatuse is the response variable: the total number of different microhabitats
 
 We estimated our power to detect differences between conditions at different sample sizes and with different mean changes in the proportion of different microhabitats used per individual in the before vs. after conditions (Figure 11). We simulated the proportion of habitats used for different sample sizes of individuals before and after the flexibility manipulation. We analyzed these simulated data with the model we will use to analyze the actual data, estimating the change in the proportion of habitats used between the before and after conditions. From the posterior estimates of the model, we extracted both the mean change as well as the ratio of the posterior estimates that were below zero.
 
-If the mean ratio of estimates below zero is close to 0.5, the model assumes that the change in the proportion of habitats used before the flexibility manipulation is similar to after. If the ratio is close to zero, the model assumes individuals have changed their behavior. For changes in the proportion of habitats used smaller than 0.15, models are likely to assume that no changes occurred even with large sample sizes. If the change in the proportion of habitats used before the flexibility manipulation vs. after is 0.15 with a standard deviation of 0.2, on average 94% of the posterior of the model based on a sample size of 20 individuals will be larger than zero (93% with a standard deviation of 0.1). This means that the model is quite certain there is a difference that is larger than zero. In addition, only four of the 30 models for a sample size of 20 at the mean change of 0.15 have a ratio larger than 0.3, meaning that the risk of having a false negative is not very likely.
+If the mean ratio of estimates below zero is close to 0.5, the model assumes that the change in the proportion of habitats used before the flexibility manipulation is similar to after. If the ratio is close to zero, the model assumes individuals have changed their behavior. For changes in the proportion of habitats used smaller than 0.15 (standard deviation=0.2) or 0.1 (SD=0.1), models are likely to assume that no changes occurred even with large sample sizes. If the change in the proportion of habitats used before the flexibility manipulation vs. after is 0.15 with a standard deviation of 0.2, on average 94% of the posterior of the model based on a sample size of 20 individuals will be larger than zero (93% with a standard deviation of 0.1). This means that the model is quite certain there is a difference that is larger than zero. In addition, only four of the 30 models for a sample size of 20 at the mean change of 0.15 have a ratio larger than 0.3, meaning that the risk of having a false negative is not very likely.
 
 In general, with sample sizes at or above 20 and mean changes in the proportion of habitats used at 0.1 or larger, it is highly likely that the model will indicate that individuals have changed their behavior. Mean changes below 0.1 can still be detected, however there is a higher risk that there will be a false negative and this risk is independent of sample size. 
 
@@ -1906,7 +1906,7 @@ sum(d1[d1$n %in% 20 & d1$changenumber_mean %in% 0.1,]$proportion_estimates_below
 
 &nbsp;
 
-###### Run this model on the actual data
+**Run this model on the actual data**
 
 Run the code below to determine whether there were differences between the before and after conditions in the number of microhabitats used. Only count that a microhabitat was used if the individual had at least 5% of their data points there. This prevents a microhabitat from being counted even if an individual was simply moving through it, and therefore not necessarily using it. If the beta confidence interval is on one side of zero, then there was a difference between the before and after conditions. If the beta confidence interval crosses zero, then there was no difference between before and after.
 
@@ -1942,13 +1942,17 @@ plot(density(standardized_suburban))
 lines(density(standardized_natural),col="red")
 
 dat <- list(
-    habitatuse = standardize(rnorm(40,mean=4.5,sd=2)), #estimate 20 total individuals (*2 conditions) with a mean of 4.5 habitats/individual (halfway between the max 10 suburban and 8 natural habitats)
-    before = c(rep(1,N_ind),rep(2,N_ind)), #1 refers to before and 2 to after
-    ind = rep(1:N_ind,2) #go through all individuals twice because there are observations from before and after for each
+    habitatuse = rbinom(10000,size=10,prob=5/10), #10 max habitats; on average, individuals will use 5 of the 10 habitats more than 5% of the time
+    tid = c(rep(1,N_ind),rep(2,N_ind)), #1 refers to before and 2 to after
+    actor = rep(1:N_ind,2) #go through all individuals twice because there are observations from before and after for each
 )
 
-## load data sheet
+
+## When you have the actual data, load data sheet
 d <- read.csv(url(""), header=T, sep=",", stringsAsFactors=F)
+
+# add 3 microhabitats for all individuals in the natural habitat because suburban has 3 more microhabitats and this will equalize natural and suburban in the model
+d[d$Habitat=="Natural",]$habitats<-+3
 
 # replace all values with standardized values for each habitat (suburban and natural)
 d[d$Habitat=="Suburban",]$habitats<-standardize(d[d$Habitat=="Suburban",]$habitats)
@@ -1961,21 +1965,29 @@ dat <- list(
     ind = d$ID
 )
 
-# THE MODEL (p.441 for normal distribution - McElreath 2020). Note that it is MULTIPLIED by condition (before), which means that you don't need to run a contrast because each individual value already accounts for the difference. So only look at beta to see if it is above zero or not for each individual or summed across individuals
+# THE MODEL (p.447 for binomial distribution with advanced varying slopes - McElreath 2020). 
 mj <- ulam(
     alist(
-        habitatuse ~ normal( mu , sigma ),
-        mu <- a_ind[ind] + b_ind[ind]*before,
-        c(a_ind,b_ind)[ind] ~ multi_normal( c(alpha,beta) , Rho , sigma_ind ),
-        alpha ~ normal(4.5,2), #4.5=mean number of habitats used, 2=habitats for the sd
-        beta ~ normal(0,4), #0=mean slope, 4=sd which is like the max difference between before and after
-        sigma_ind ~ exponential(1),
-        sigma ~ exponential(1),
-        Rho ~ lkj_corr(2)
-    ) , data=dat , chains=4 , cores=4 , log_lik=TRUE , cmdstan = TRUE)
+        habitatuse ~ dbinom(10,p), #max 10 habitats
+        logit(p) <- g[tid] + alpha[actor,tid],
+        # adaptive priors - non-centered
+        transpars> matrix[actor,2]:alpha <- compose_noncentered( sigma_actor , L_Rho_actor , z_actor ),
+        matrix[2,actor]:z_actor ~ normal( 0 , 1 ),
+        # fixed priors
+        g[tid] ~ normal(0,1),
+        vector[2]:sigma_actor ~ dexp(1),
+        cholesky_factor_corr[2]:L_Rho_actor ~ lkj_corr_cholesky( 2 ),
+        # compute ordinary correlation matrixes from Cholesky factors
+        gq> matrix[2,2]:Rho_actor <<- Chol_to_Corr(L_Rho_actor)
+    ) , data=dat , chains=4 , cores=4 , log_lik=TRUE , cmdstan = TRUE, control = list(adapt_delta = .95, force_recompile = TRUE))
 
-#precis(mj,depth=2) #pay attention to beta to determine whether there is a difference between the before and after conditions (there is a difference if CI on one side of zero)
-#boxplot(dat$habitatuse~dat$before) #see if there is a difference visually
+precis(mj,depth=2) #pay attention to g to determine whether there is a difference between the before and after conditions (there is a difference if CI is on one side of zero)
+boxplot(dat$habitatuse~dat$tid) #see if there is a difference visually
+
+post <- extract.samples(mj)
+diff_g <- post$g[,2] - post$g[,1] #log-odds difference p.341 McElreath 2020
+diff_p <- inv_logit(post$g[,2]) - inv_logit(post$g[,1]) #on the probability scale p.341 McElreath 2020
+#precis( list( diff_g=diff_g , diff_p=diff_p ) )
 ```
 
 
