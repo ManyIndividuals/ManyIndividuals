@@ -35,7 +35,7 @@ header-includes:
 \lhead{\includegraphics[height=1.2cm]{logoPCIRR.png}}
 \renewcommand{\headrulewidth}{0pt}
 
-Open... ![](logoOpenAccess.png){width=5%} access ![](logoOpenCode.png){width=5%} [code](https://github.com/ManyIndividuals/ManyIndividuals/blob/main/Files/rrs/mi1.Rmd)
+Open...  ![](logoOpenAccess.png){width=5%} access ![](logoOpenCode.png){width=5%} [code](https://github.com/ManyIndividuals/ManyIndividuals/blob/main/Files/rrs/mi1.Rmd)
 
 **Affiliations:** 1) Max Planck Institute for Evolutionary Anthropology, Germany; 2) University of California Santa Barbara, USA; 3) Victoria University of Wellington, New Zealand. Corresponding authors: corina_logan@eva.mpg.de, rachael.shaw@vuw.ac.nz, kelseybmccune@gmail.com
 
