@@ -158,7 +158,7 @@ For all research questions, Table 2 summarizes our predictions, analysis plans, 
 
 **Table 2.** Study design for the jay research. References that were not already cited in the introduction: @galbraith2015supplementary; @lapiedra2017urbanization; @rice2003ecological; @emery2004mentality; @sol2002behavioural.
 
-<img width="100%" src="mi1StudyDesignTableGTGR.png">
+<img width="100%" src="mi1StudyDesignTableJay.png">
 
 &nbsp;
 
@@ -1132,9 +1132,9 @@ mtext("Mean change in proportion of time spent in the presence of a reward betwe
 mtext("Density",side=2,line=3, cex=1.2)
 ```
 
-###### Run this model on the actual data
+**Run this model on the actual data**
 
-Run the code below to determine whether there were differences between the before and after conditions in their proportion of time spent at locations when food was present. A contrast will be run to determine whether there is a difference between the conditions: if all values of the confidence interval are on one side of zero, then there was a difference; if the confidence interval crosses zero, then there was no difference.
+Run the code below to determine whether there were differences between the before and after conditions in their proportion of time spent at locations when food was present.
 
 ```{r gtgrq1model, eval=F}
 library(rethinking)
@@ -1206,6 +1206,138 @@ diff_g <- post$g[,1] - post$g[,2] #log-odds difference p.341
 diff_p <- inv_logit(post$g[,1]) - inv_logit(post$g[,2]) #on the probability scale p.341
 precis( list( diff_g=diff_g , diff_p=diff_p ) )
 ```
+
+
+##### G.Q2 More flexible = use more microhabitats?
+
+**The model**
+
+*Bayesian model with a normal distribution:*
+
+habitatuse ~ $\alpha$[ind] + $\beta$[ind]*before
+
+habitatuse is the response variable: the total number of different microhabitats used per individual. There will be one intercept, $\alpha$, and one slope $\beta$ per individual, which will be estimated for the two conditions, before (and after) the manipulation. ID is nested within condition as a random effect because there is more than one data point per individual: each individual has a data point in the before condition and in the after condition. A normal distribution was used because the response variable is a sum without an expected skew to the curve [see Figure 10.6 in @mcelreath2020statistical]. The Bayesian model was developed using @mcelreath2020statistical as a guide.
+
+**Power analysis**
+
+See the jay Q3 microhabitat model for the power analysis.
+
+**Run this model on the actual data**
+
+Run the code below to determine whether there were differences between the before and after conditions in the proportion of microhabitats used. Only count that a microhabitat was used if the individual had at least 5% of their data points there. This prevents a microhabitat from being counted even if an individual was simply moving through it, and therefore not necessarily using it.
+
+```{r gtgrhabitatuse, eval=F}
+library(rethinking)
+library(cmdstanr)
+set_ulam_cmdstan(TRUE) #makes it so ulam always runs with cmdstan
+                                                                                                                                  ## when the data do not yet exist, use simulated data to test the model
+N_ind <- 20
+
+dat <- list(
+    habitatuse = rbinom(N_ind*2,size=10,prob=5/10), #20 individuals * 2 observations/individual, 10 max habitats; on average, individuals will use 5 of the 10 habitats more than 5% of the time
+    tid = c(rep(1,N_ind),rep(2,N_ind)), #1 refers to before and 2 to after
+    actor = rep(1:N_ind,2) #go through all individuals twice because there are observations from before and after for each
+)
+
+
+## When you have the actual data, load data sheet
+d <- read.csv(url(""), header=T, sep=",", stringsAsFactors=F)
+
+# add 3 microhabitats for all individuals in the natural habitat because suburban has 3 more microhabitats and this will equalize natural and suburban in the model
+d[d$Habitat=="Natural",]$habitats <- d[d$Habitat=="Natural",]$habitats+3
+
+# Set up the data sheet
+dat <- list(
+    habitatuse = d$habitats,
+    before = d$BeforeOrAfterManipulation,
+    ind = d$ID
+)
+
+# THE MODEL (p.447 for binomial distribution with advanced varying slopes - McElreath 2020). 
+mj <- ulam(
+    alist(
+        habitatuse ~ dbinom(10,p), #max 10 habitats
+        logit(p) <- g[tid] + alpha[actor,tid],
+        # adaptive priors - non-centered
+        transpars> matrix[actor,2]:alpha <- compose_noncentered( sigma_actor , L_Rho_actor , z_actor ),
+        matrix[2,actor]:z_actor ~ normal( 0 , 1 ),
+        # fixed priors
+        g[tid] ~ normal(0,1),
+        vector[2]:sigma_actor ~ dexp(1),
+        cholesky_factor_corr[2]:L_Rho_actor ~ lkj_corr_cholesky( 2 ),
+        # compute ordinary correlation matrixes from Cholesky factors
+        gq> matrix[2,2]:Rho_actor <<- Chol_to_Corr(L_Rho_actor)
+    ) , data=dat , chains=4 , cores=4 , log_lik=TRUE , cmdstan = TRUE, control = list(adapt_delta = .95, force_recompile = TRUE))
+
+precis(mj,depth=2) #pay attention to g (g1 is before, g2 is after)
+boxplot(dat$habitatuse~dat$tid) #see if there is a difference visually
+
+ # run a contrast to determine whether there is a difference between the before and after conditions (there is a difference if CI is on one side of zero)
+post <- extract.samples(mj)
+diff_g <- post$g[,2] - post$g[,1] #log-odds difference p.341 McElreath 2020
+diff_p <- inv_logit(post$g[,2]) - inv_logit(post$g[,1]) #on the probability scale p.341 McElreath 2020
+#precis( list( diff_g=diff_g , diff_p=diff_p ) )
+```
+
+
+##### G.Q3 More flexible = more food types?
+
+**The model**
+
+*Bayesian model with a normal distribution:*
+
+y ~ $\alpha$[ind] + $\beta$[ind]*before
+
+y is the response variable: the total number of different food types taken per individual. There will be one intercept, $\alpha$, and one slope $\beta$ per individual, which will be estimated for the two conditions, before (and after) the manipulation. ID is nested within condition as a random effect because there is more than one data point per individual: each individual has a data point in the before condition and in the after condition. A normal distribution was used because the response variable is a sum without an expected skew to the curve [see Figure 10.6 in @mcelreath2020statistical]. The Bayesian model was developed using @mcelreath2020statistical as a guide.
+
+**Power analysis**
+
+See the jay Q4 foraging model for the power analysis.
+
+**Run this model on the actual data**
+
+Run the code below to determine whether there were differences between the before and after conditions in the number of food types taken. 
+
+```{r gtgrforaging, eval=F}
+library(rethinking)
+library(cmdstanr)
+set_ulam_cmdstan(TRUE) #makes it so ulam always runs with cmdstan
+                                                                                                                                  ## when the data do not yet exist, use simulated data to test the model
+N_ind <- 20
+
+dat <- list(
+    foods = standardize(rnorm(40,mean=4.5,sd=2)), #estimate 20 total individuals (*2 conditions) with a mean of 6.5 foods/individual (halfway between the max 13 possible food types)
+    before = c(rep(1,N_ind),rep(2,N_ind)), #1 refers to before and 2 to after
+    ind = rep(1:N_ind,2) #go through all individuals twice because there are observations from before and after for each
+)
+
+## load data sheet
+d <- read.csv(url(""), header=T, sep=",", stringsAsFactors=F)
+
+# Set up the data sheet
+dat <- list(
+    habitatuse = d$habitats,
+    before = d$BeforeOrAfterManipulation,
+    ind = d$ID
+)
+
+# THE MODEL (p.441 for normal distribution - McElreath 2020). Note that it is MULTIPLIED by condition (before), which means that you don't need to run a contrast because each individual value already accounts for the difference. So only look at beta to see if it is above zero or not for each individual or summed across individuals
+mjf <- ulam(
+    alist(
+        foods ~ normal( mu , sigma ),
+        mu <- a_ind[ind] + b_ind[ind]*before,
+        c(a_ind,b_ind)[ind] ~ multi_normal( c(alpha,beta) , Rho , sigma_ind ),
+        alpha ~ normal(6.5,2), #6.5=mean number of foods taken, 2=food types for the sd
+        beta ~ normal(0,6), #0.5=mean slope, 6=sd which is like the max difference between before and after
+        sigma_ind ~ exponential(1),
+        sigma ~ exponential(1),
+        Rho ~ lkj_corr(2)
+    ) , data=dat , chains=4 , cores=4 , log_lik=TRUE , cmdstan = TRUE)
+
+#precis(mjf,depth=2) #model output: if the beta confidence interval are on one side of zero, then there was a difference between the before and after conditions. If the beta confidence interval crosses zero, then there was no difference between before and after.
+#boxplot(dat$foods~dat$before) #see if there is a difference visually
+```
+
 
 
 #### **Jays**
@@ -1908,7 +2040,7 @@ sum(d1[d1$n %in% 20 & d1$changenumber_mean %in% 0.1,]$proportion_estimates_below
 
 **Run this model on the actual data**
 
-Run the code below to determine whether there were differences between the before and after conditions in the number of microhabitats used. Only count that a microhabitat was used if the individual had at least 5% of their data points there. This prevents a microhabitat from being counted even if an individual was simply moving through it, and therefore not necessarily using it. If the beta confidence interval is on one side of zero, then there was a difference between the before and after conditions. If the beta confidence interval crosses zero, then there was no difference between before and after.
+Run the code below to determine whether there were differences between the before and after conditions in the proportion of microhabitats used. Only count that a microhabitat was used if the individual had at least 5% of their data points there. This prevents a microhabitat from being counted even if an individual was simply moving through it, and therefore not necessarily using it.
 
 ```{r jayhabitatuse, eval=F}
 library(rethinking)
@@ -1917,32 +2049,8 @@ set_ulam_cmdstan(TRUE) #makes it so ulam always runs with cmdstan
                                                                                                                                   ## when the data do not yet exist, use simulated data to test the model
 N_ind <- 20
 
-#standardize the data to make suburban (max 10 microhabitats) directly comparable with natural (max 8 microhabitats)
-suburban_before<-rnorm(20,mean=5,sd=1)
-suburban_after<-suburban_before+rnorm(20,mean=2,sd=1)
-natural_before<-rnorm(20,mean=4,sd=1)
-natural_after<-natural_before+rnorm(20,mean=2,sd=1)
-plot(density(suburban_before),xlim=c(0,10))
-lines(density(suburban_after),col="grey")
-lines(density(natural_before),col="darkred")
-lines(density(natural_after),col="red")
-
-#combine before and after data per habitat
-suburban<-c(suburban_before,suburban_after)
-natural<-c(natural_before,natural_after)
-
-plot(density(suburban))
-lines(density(natural),col="red")
-
-#the standardization worked: both curves almost exactly overlap (note the hump to the right which is the after data)
-standardized_suburban<-standardize(suburban)
-standardized_natural<-standardize(natural)
-
-plot(density(standardized_suburban))
-lines(density(standardized_natural),col="red")
-
 dat <- list(
-    habitatuse = rbinom(10000,size=10,prob=5/10), #10 max habitats; on average, individuals will use 5 of the 10 habitats more than 5% of the time
+    habitatuse = rbinom(N_ind*2,size=10,prob=5/10), #20 individuals * 2 observations/individual, 10 max habitats; on average, individuals will use 5 of the 10 habitats more than 5% of the time
     tid = c(rep(1,N_ind),rep(2,N_ind)), #1 refers to before and 2 to after
     actor = rep(1:N_ind,2) #go through all individuals twice because there are observations from before and after for each
 )
@@ -1952,11 +2060,7 @@ dat <- list(
 d <- read.csv(url(""), header=T, sep=",", stringsAsFactors=F)
 
 # add 3 microhabitats for all individuals in the natural habitat because suburban has 3 more microhabitats and this will equalize natural and suburban in the model
-d[d$Habitat=="Natural",]$habitats<-+3
-
-# replace all values with standardized values for each habitat (suburban and natural)
-d[d$Habitat=="Suburban",]$habitats<-standardize(d[d$Habitat=="Suburban",]$habitats)
-d[d$Habitat=="Natural",]$habitats<-standardize(d[d$Habitat=="Natural",]$habitats)
+d[d$Habitat=="Natural",]$habitats <- d[d$Habitat=="Natural",]$habitats+3
 
 # Set up the data sheet
 dat <- list(
@@ -1981,9 +2085,10 @@ mj <- ulam(
         gq> matrix[2,2]:Rho_actor <<- Chol_to_Corr(L_Rho_actor)
     ) , data=dat , chains=4 , cores=4 , log_lik=TRUE , cmdstan = TRUE, control = list(adapt_delta = .95, force_recompile = TRUE))
 
-precis(mj,depth=2) #pay attention to g to determine whether there is a difference between the before and after conditions (there is a difference if CI is on one side of zero)
+precis(mj,depth=2) #pay attention to g (g1 is before, g2 is after)
 boxplot(dat$habitatuse~dat$tid) #see if there is a difference visually
 
+ # run a contrast to determine whether there is a difference between the before and after conditions (there is a difference if CI is on one side of zero)
 post <- extract.samples(mj)
 diff_g <- post$g[,2] - post$g[,1] #log-odds difference p.341 McElreath 2020
 diff_p <- inv_logit(post$g[,2]) - inv_logit(post$g[,1]) #on the probability scale p.341 McElreath 2020
@@ -2385,7 +2490,7 @@ par(op)
 
 ###### Run this model on the actual data
 
-Run the code below to determine whether there were differences between the before and after conditions in the number of food types taken. If the beta confidence interval is on one side of zero, then there was a difference between the before and after conditions. If the beta confidence interval crosses zero, then there was no difference between before and after.
+Run the code below to determine whether there were differences between the before and after conditions in the number of food types taken. 
 
 ```{r jayforaging, eval=F}
 library(rethinking)
@@ -2699,7 +2804,7 @@ mtext("Ratio of estimates below zero",side=2,line=3, cex=1.2)
 
 ###### Run this model on the actual data (1.1)
 
-Run the code below to determine whether the manipulated individuals differ from the control individuals in their age of dispersal. A contrast will be run to determine whether there is a difference between the conditions: if all values of the confidence interval are on one side of zero, then there was a difference; if the confidence interval crosses zero, then there was no difference.
+Run the code below to determine whether the manipulated individuals differ from the control individuals in their age of dispersal.
 
 ```{r touq1.1model, eval=F}
 library(rethinking)
@@ -3011,7 +3116,7 @@ mtext("Ratio of estimates below zero",side=2,line=3, cex=1.2)
 
 ###### Run this model on the actual data (1.2)
 
-Run the code below to determine whether there were differences between the control and manipulated conditions in the distance of dispersal. A contrast will be run to determine whether there is a difference between the conditions: if all values of the confidence interval are on one side of zero, then there was a difference; if the confidence interval crosses zero, then there was no difference.
+Run the code below to determine whether there were differences between the control and manipulated conditions in the distance of dispersal. 
 
 ```{r tou1.2model, eval=F}
 library(rethinking)
@@ -3303,7 +3408,7 @@ length(d[d$n %in% 40 & d$changeprob_mean %in% 0.3,]$proportion_estimates_below_z
 
 ###### Run this model on the actual data (1.3)
 
-Run the code below to determine whether there were differences between the control and manipulated conditions in their survival status (alive or dead when individuals are or would be 112 days old). A contrast will be run to determine whether there is a difference between the conditions: if all values of the confidence interval are on one side of zero, then there was a difference; if the confidence interval crosses zero, then there was no difference.
+Run the code below to determine whether there were differences between the control and manipulated conditions in their survival status (alive or dead when individuals are or would be 112 days old). 
 
 ```{r touq1.3model, eval=F}
 library(rethinking)
@@ -3829,7 +3934,7 @@ par(op)
 
 ###### Run this model on the actual data
 
-Run the code below to determine whether there were differences between the control and manipulated conditions in their survival status (alive or dead when individuals are or would be 112 days old). A contrast will be run to determine whether there is a difference between the conditions: if all values of the confidence interval are on one side of zero, then there was a difference; if the confidence interval crosses zero, then there was no difference.
+Run the code below to determine whether there were differences between the control and manipulated conditions in their survival status (alive or dead when individuals are or would be 112 days old). 
 
 ```{r touq2model, eval=F}
 library(rethinking)
