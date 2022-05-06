@@ -6,6 +6,12 @@ We are a global network of researchers with field sites investigating hypotheses
  - Can behavioral flexibility be increased by experimentally increasing environmental heterogeneity (via serial reversal learning)? 
  - Can such an increase in flexibility help species (particularly threatened species) succeed in human modified environments?
 
+## Registered reports (in pre-study peer review at *[Peer Community in Registered Reports](https://rr.peercommunityin.org/about/about))*
+
+ - **[How to succeed in human modified environments](http://corinalogan.com/ManyIndividuals/mi1.html)**. Logan CJ, Shaw R, Lukas D, McCune KB. 2022. Code is in the reproducible manuscript ([rmd](https://github.com/ManyIndividuals/ManyIndividuals/blob/main/Files/rrs/mi1.Rmd)).
+    - Protocols: [Design 1 reversal](https://docs.google.com/document/d/16hKGUNO1SpnXAT8DN_GXb56Aw6WzCraCIUKiP9gVI6o/edit?usp=sharing), [Design 1 pseudorandomized option on left order](https://docs.google.com/spreadsheets/d/1B3-ZKd4nr_4gA91Pu2eUUBOriwW-V88VRgK9c1lDSjY/edit?usp=sharing), [instructions](https://docs.google.com/document/d/1QakS8TMe4WRv_QWKrHaWHyJSXbQwl8v9Y061SY914Wg/edit?usp=sharing) for interobserver reliability video coders who code 20% of the videos from the experiment, [GPS tracking](https://docs.google.com/document/d/1ZOpkdxy5-wiGg7hYod-XaaBoOl53DsVQ3pwWoIdvrzk/edit?usp=sharing) with radio tag attachment instructions and how to GPS track tagged and non-tagged individuals, [Design 2 grackles](https://docs.google.com/document/d/1pTrcy7ztgYVSAP7rGA6Y_lAmZ7hK_-mB01zwy0oKh7w/edit?usp=sharing), [Design 2 jays](https://docs.google.com/document/d/1VWL7AIDB-Z1vhs1dEM7JACHuvNjgjZCBI3ubQECqm2U/edit?usp=sharing), [Design 2 toutouwai](https://docs.google.com/document/d/1U11MpcGd6_dQmgv4jP127KklD7gpAQR--yOtWGMpFXw/edit?usp=sharing)
+    - Data sheet templates: [Design 1 reversal](http://corinalogan.com/Preregistrations/g_flexmanip.html), [Design 2 grackles](https://docs.google.com/spreadsheets/d/1xELxnCJPa0hIXKagbUPgqq8Tap8mh7PFfLFUGCc525s/edit?usp=sharing), [Design 2 jays](https://docs.google.com/spreadsheets/d/1qpukS67A8IslPxP8RBpdB4fS4f9ofWCvQXVgXu-G7Qs/edit?usp=sharing), [Design 2 toutouwai](https://docs.google.com/spreadsheets/d/1Ix7EdTc9SHCW0wDmFJC5T8KA0WNe6wkihG_P8XpW6-s/edit?usp=sharing) 
+
 ## Founders
  - [Dr. Kelsey McCune](https://www.kelseymccune.com) - designed the foraging predictability experiment and conducts experiments in California and Florida scrub-jays at her field site in Oregon and at Archbold Biological Station in Florida. Developed the reproducible workflow
  - [Dr. Rachael Shaw](https://thinkingbehaviour.org) -  conducts experiments in the threatened toutouwai at her field site in New Zealand, then assesses the manipulation’s impact on their ability to survive in a human modified environment
@@ -13,12 +19,6 @@ We are a global network of researchers with field sites investigating hypotheses
 
 ## Collaborators
  - [Dr. Dieter Lukas](http://dieterlukas.strikingly.com) - customized the analyses for the reversal learning and feeder experiments, generated Bayesian "power analyses" to determine what level of differences will be detectable with which sample size, validated the serial reversal passing criterion, and made the analyses generalizeable across species
-
-## The experiments
-
- - **Manipulating behavioral flexibility through serial reversal learning:** [protocol](https://docs.google.com/document/d/16hKGUNO1SpnXAT8DN_GXb56Aw6WzCraCIUKiP9gVI6o/edit?usp=sharing), [pseudorandomized option on left order](https://docs.google.com/spreadsheets/d/1B3-ZKd4nr_4gA91Pu2eUUBOriwW-V88VRgK9c1lDSjY/edit?usp=sharing), [instructions](https://docs.google.com/document/d/1QakS8TMe4WRv_QWKrHaWHyJSXbQwl8v9Y061SY914Wg/edit?usp=sharing) for interobserver reliability video coders who code 20% of the videos from the experiment
- - **Manipulating behavioral flexibility through what where when memory using foraging predictability:**
-     - **GPS tracking:** [protocol](https://docs.google.com/document/d/1ZOpkdxy5-wiGg7hYod-XaaBoOl53DsVQ3pwWoIdvrzk/edit?usp=sharing) with radio tag attachment instructions and how to GPS track tagged and non-tagged individuals
 
 ## The tools: an open and verifiable workflow that makes research better and faster
 
