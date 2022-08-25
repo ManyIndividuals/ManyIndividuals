@@ -654,7 +654,7 @@ We will use slightly different observational methods for grackles and jays to co
 
 Microhabitat types in the suburban habitat (<100m from human structure) include: vertical human structure (e.g. building, bench), native vegetation, non-native vegetation, grass, impervious surface, and dirt. In the natural habitat (>100m from human structure), microhabitat types include all previous categories, but not human structure or impervious surface All categories can be further defined by whether the subject was high (>3m) or low (<3m) (for example, grass and impervious surfaces can occur above 3m if grass is on the roof of a building, and if an individual is walking on the impervious surface of an upper floor parking garage).
 
-Food types are broken down into plant (seed, fruit, human-provided, or unknown plant) and animal (insect larva, adult insect, amphibian, reptile, mammal, bird, egg, human-provided, or unknown animal). Data will be collected on the four plant subcategories and nine animal subcategories and used in the analyses.
+Food types are broken down into plant (seed, fruit, human-provided, or unknown plant) and animal (insect larva, adult insect, amphibian, reptile, mammal, bird, egg, human-provided, or unknown animal). “Human-provided” indicates any food item that was acquired from a store at some point and is left out by humans. For example, sunflower seeds would be considered human-provided if they are in the form of bird seed or a human snack. Sunflower seeds would only be counted in the “seed” category if the bird is seen eating it from a plant. Data will be collected on the four plant subcategories and nine animal subcategories and used in the analyses.
 
 During follows, we will record each microhabitat the individual is present in and all food items consumed. Before data analysis, to ensure that we are only including the microhabitats individuals use (rather than just pass through), we will filter the data to include only microhabitats that account for at least 5% of their data points. Although we may not observe every possible microhabitat or food item the individual may use, by equally sampling before and after the manipulation we can detect changes in habitat use.
 
@@ -1245,7 +1245,7 @@ dat <- list(
 ## When you have the actual data, load data sheet
 d <- read.csv(url(""), header=T, sep=",", stringsAsFactors=F)
 
-# add 3 microhabitats for all individuals in the natural habitat because suburban has 3 more microhabitats and this will equalize natural and suburban in the model
+# add 4 microhabitats for all individuals in the natural habitat because suburban has 4 more microhabitats and this will equalize natural and suburban in the model
 d[d$Habitat=="Natural",]$habitats <- d[d$Habitat=="Natural",]$habitats+3
 
 # Set up the data sheet
