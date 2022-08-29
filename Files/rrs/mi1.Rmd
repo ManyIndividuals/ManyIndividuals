@@ -37,7 +37,28 @@ header-includes:
 
 Open...  ![](logoOpenAccess.png){width=5%} access ![](logoOpenCode.png){width=5%} [code](https://github.com/ManyIndividuals/ManyIndividuals/blob/main/Files/rrs/mi1.Rmd)
 
+\addtolength{\headheight}{0.1cm}
+\pagestyle{fancyplain}
+\lhead{\includegraphics[height=1.2cm]{logoPCIRR.png}}
+\renewcommand{\headrulewidth}{0pt}
+
+&nbsp;
+
 **Affiliations:** 1) Max Planck Institute for Evolutionary Anthropology, Germany; 2) University of California Santa Barbara, USA; 3) Victoria University of Wellington, New Zealand. Corresponding authors: corina_logan@eva.mpg.de, rachael.shaw@vuw.ac.nz, kelseybmccune@gmail.com
+
+&nbsp;
+
+**This registered report has been pre-study peer reviewed and received an In Principle Acceptance by:**
+
+Chris Chambers (2022) . *Peer Community in Registered Reports*, . [](). Reviewers:  Gloriana Chaverri, Vedrana Šlipogor, and Alizée Vernouillet
+
+![](logoPCIRR.png){width=50%}
+
+**Cite as:** Logan CJ, Shaw R,  Lukas D, McCune KB. 2022. **[How to succeed in human modified environments](http://corinalogan.com/ManyIndividuals/mi1.html)** (http://corinalogan.com/ManyIndividuals/mi1.html) In principle acceptance by *PCI Registered Reports* of the version on 25 Aug 2022 []().
+
+*See the reproducible manuscript ([Rmd]()) version for the code*
+
+&nbsp;
 
 ```{r setup, include=FALSE}
 library(knitr)
