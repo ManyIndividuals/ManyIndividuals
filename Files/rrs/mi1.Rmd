@@ -48,15 +48,15 @@ Open...  ![](logoOpenAccess.png){width=5%} access ![](logoOpenCode.png){width=5%
 
 &nbsp;
 
-**This registered report has been pre-study peer reviewed and received an In Principle Acceptance by:**
+**This registered report has been pre-study peer reviewed and received an In Principle Acceptance on 8 Sep 2022 by:**
 
-Chris Chambers (2022) . *Peer Community in Registered Reports*, . [](). Reviewers:  Gloriana Chaverri, Vedrana Šlipogor, and Alizée Vernouillet
+Chris Chambers (2022) The role of behavioural flexibility in promoting resilience to human environmental impacts. *Peer Community in Registered Reports*. [https://rr.peercommunityin.org/articles/rec?id=200](https://rr.peercommunityin.org/articles/rec?id=200). Reviewers:  Gloriana Chaverri, Vedrana Šlipogor, and Alizée Vernouillet
 
 ![](logoPCIRR.png){width=50%}
 
-**Cite as:** Logan CJ, Shaw R,  Lukas D, McCune KB. 2022. **[How to succeed in human modified environments](http://corinalogan.com/ManyIndividuals/mi1.html)** (http://corinalogan.com/ManyIndividuals/mi1.html) In principle acceptance by *PCI Registered Reports* of the version on 25 Aug 2022 []().
+**Cite as:** Logan CJ, Shaw R,  Lukas D, McCune KB. 2022. **[How to succeed in human modified environments](http://corinalogan.com/ManyIndividuals/mi1.html)** (http://corinalogan.com/ManyIndividuals/mi1.html) In principle acceptance by *PCI Registered Reports* of the version on 25 Aug 2022 [https://github.com/ManyIndividuals/ManyIndividuals/blob/573b4b5802550f47f246fb8b71c8efc4f853445c/Files/rrs/mi1.Rmd](https://github.com/ManyIndividuals/ManyIndividuals/blob/573b4b5802550f47f246fb8b71c8efc4f853445c/Files/rrs/mi1.Rmd).
 
-*See the reproducible manuscript ([Rmd]()) version for the code*
+*See the reproducible manuscript ([Rmd](https://github.com/ManyIndividuals/ManyIndividuals/blob/573b4b5802550f47f246fb8b71c8efc4f853445c/Files/rrs/mi1.Rmd)) version for the code*
 
 &nbsp;
 
