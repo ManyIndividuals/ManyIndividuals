@@ -1398,7 +1398,8 @@ library(cmdstanr)
 set_ulam_cmdstan(TRUE) #makes it so ulam always runs with cmdstan
 
 # load data sheet
-dflex <- read.csv(url(""), header=T, sep=",", stringsAsFactors=F)
+dflex <- read.csv(url("https://raw.githubusercontent.com/ManyIndividuals/ManyIndividuals/refs/heads/main/Files/rrs/mi1_jays_flexdata.csv"), header=T, sep=",", stringsAsFactors=F)
+colnames(dflex)[3] = "Habitat"
 
 # sort the data: only want data from the initial discrimination and first reversal to use as the baseline flexibility so we can compare between habitats
 reduceddata <- matrix(ncol=ncol(dflex),nrow=0)
@@ -1414,7 +1415,7 @@ dflex_beginning <- reduceddata
 
 # Now we run a STAN model with all simulated habitats, estimating both means of phi and lambda for each habitat as well as each individuals' phi and lambda
 
-# We set up the data for the model
+# We set up the data for the model, make sure you've run code in Chunk 2
 dat_full <- as.list(simulatedreversaldata_attractionscores)
 dat_full$N <- nrow(simulatedreversaldata_attractionscores)
 dat_full$N_id <- length(unique(simulatedreversaldata_attractionscores$id))
@@ -1428,11 +1429,11 @@ data{
    int N;
    int N_id;
    int N_exp;
-   int id[N];
-   int Habitat[N];
-   int Trial[N];
-   int Choice[N];
-   int Correct[N];
+   array[N] int id;
+   array[N] int Habitat;
+   array[N] int Trial;
+   array[N] int Choice;
+   array[N] int Correct;
 }
 
 parameters{
@@ -1475,7 +1476,7 @@ Rho_EXP ~ lkj_corr_cholesky(4);
 
 // initialize attraction scores
 for ( i in 1:N_id ) {
-A[i,1] = 0.1; A[i,2] = 0.1';
+A[i,1] = 0.1; A[i,2] = 0.1;
 }
 
 // loop over Choices
@@ -1494,13 +1495,13 @@ Choice[i] ~ categorical( p );
 phi =  inv_logit(logit_phi + v_ID[id[i],2]+ v_EXP[Habitat[i],2]);
 pay[1:2] = rep_vector(0,2);
 pay[ Choice[i] ] = Correct[i];
-A[ id[i] , Choice[i] ] = ( (1-phi)*(A[ id[i] , Choice[i] ]) + phi*pay[Choice[i]])';
+A[ id[i] , Choice[i] ] = ( (1-phi)*(A[ id[i] , Choice[i] ]) + phi*pay[Choice[i]]);
 }//i
 }
 "
 
-# Now we run the STAN model on the full data. This will take a few hours.
-m_simulated_full <- stan( model_code =  reinforcement_model_id_site_nonzeroattraction, data=dat_full ,iter = 5000, cores = 4, chains=4, control = list(adapt_delta=0.9, max_treedepth = 12))
+# Now we run the STAN model on the full data. 5000 iter takes a few hours.
+m_simulated_full <- stan( model_code =  reinforcement_model_id_site_nonzeroattraction, data=dat_full ,iter = 10, cores = 4, chains=4, control = list(adapt_delta=0.9, max_treedepth = 12)) 
 
 # We extract the posterior from the STAN model
 s <- extract.samples(m_simulated_full)
