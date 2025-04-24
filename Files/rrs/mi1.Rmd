@@ -1420,9 +1420,9 @@ for (i in 1:length(unique(dflex$ID))) {
 dflex_beginning <- reduceddata
 
 
-# Now we run a STAN model with all simulated habitats, estimating both means of phi and lambda for each habitat as well as each individuals' phi and lambda
+# Now we run a STAN model with all habitats, estimating both means of phi and lambda for each habitat as well as each individuals' phi and lambda
 
-# We set up the data for the model, make sure you've run code in Chunk 2
+# We set up the data for the model
 dat_full <-list() # start the list which holds the input data for the stan model
 dat_full$N <- nrow(dflex_beginning) #total number of rows
 dat_full$N_id <- length(unique(as.factor(dflex_beginning$ID))) # records how many different individuals there are
@@ -1431,7 +1431,7 @@ dat_full$N_exp <- length(unique(dflex_beginning$Habitat)) # records the number o
 dat_full$Choice <- as.numeric(as.factor(dflex_beginning$Choice)) #this is the Correct +1 variable
 dat_full$Correct <- as.numeric(as.factor(dflex_beginning$Correct)) #making this a factor turns it into the same as Choice
 dat_full$Trial<-dflex_beginning$Trial # has the info on which trial it is
-dat_full$Habitat <- as.numeric(as.factor(dflex_beginning$Habitat)) # re-codes the unique habitats as sequential number
+dat_full$Habitat <- as.numeric(as.factor(dflex_beginning$Habitat)) # re-codes the unique habitats as sequential number; 1 = Natural, 2 = Suburban
 
 # This STAN model, in addition to estimating phi and lambda for each individual, also estimates means for each habitat It again starts with attractions set to 0.1 and assumes that individuals only learn about the option they chose.
 
@@ -1511,11 +1511,18 @@ A[ id[i] , Choice[i] ] = ( (1-phi)*(A[ id[i] , Choice[i] ]) + phi*pay[Choice[i]]
 }
 "
 
-# Now we run the STAN model on the full data. 5000 iter takes a few hours.
-m_simulated_full <- stan( model_code =  reinforcement_model_id_site_nonzeroattraction, data=dat_full ,iter = 1000, cores = 4, chains=4, control = list(adapt_delta=0.9, max_treedepth = 12)) 
+ 
+ 
+# Run the STAN model on the full data with rstan. 5000 iter takes a couple of minutes
+m_simulated_full <- stan( model_code =  reinforcement_model_id_site_nonzeroattraction, data=dat_full ,iter = 5000, cores = 4, chains=4, control = list(adapt_delta=0.9, max_treedepth = 12)) 
 
 # We extract the posterior from the STAN model
 s <- extract.samples(m_simulated_full)
+
+# We save the output so that we do not have to rerun the model for potential further analyses
+write.csv(s,"mi1_jays_q1_output_m_simulated_full.csv")
+# if you want to work directly from the saved model output, run the following line 
+# s <- read.csv(url("https://raw.githubusercontent.com/ManyIndividuals/ManyIndividuals/refs/heads/main/Files/rrs/mi1_jays_q1_output_m_simulated_full.csv"), header=T, sep=",", stringsAsFactors=F)
 
 # We calculate the mean phi and lambda for each habitat as estimated by the STAN model
 lambda <- sapply(1 : dat_full$N_exp, function(x) exp( mean(s$log_L) + mean(s$v_EXP[ ,x, 1])))
@@ -1534,15 +1541,27 @@ estimates_pairwisedifferences_phiposteriors<-as.data.frame(precis(pairwisediffer
 # We add a column that classifies as true or false whether the estimates crosses zero (as opposed to all values being either smaller or larger than zero)
 estimates_pairwisedifferences_phiposteriors$crosseszero<-ifelse(estimates_pairwisedifferences_phiposteriors$mean>0,estimates_pairwisedifferences_phiposteriors$`5.5%`<0,estimates_pairwisedifferences_phiposteriors$`94.5%`>0)
 
+# the columns are: mean is the average difference between the two habitats (suburban minus natural, natural has slightly larger values; sd is the standard deviation of this estimation, followed by the 89% compatibility estimates, a histogram showing the distribution of the differences across the different samples in the posterior indicating that this has been sampled reliably because there are no outliers, and a classifier whether the 89% interval crosses zero - the 1 means it does, so the two habitats do not differ consistently in the phi of the individuals)
+#      mean   sd  5.5% 94.5%    histogram crosseszero
+# [1] -0.23 1.27 -2.22   1.4 ▁▁▁▁▁▁▇▅▁▁▁▁           1
+# Result = there is no difference between suburban and natural intervals for phi because the interval crosses zero
+
+
 # Second, we check whether there is a difference in mean lambda
 # We calculate the pairwise differences between sites for the estimated phi means
 pairwisedifferences_lambdaposteriors<-list(sapply(1 : (dat_full$N_exp * (dat_full$N_exp-1)/2), function(x) (s$v_EXP[ ,combn(1:dat_full$N_exp,m=2)[1,x], 1]-(s$v_EXP[ ,combn(1:dat_full$N_exp,m=2)[2,x], 1]))))
 
 # We convert it into a dataframe for easier manipulation
-pairwisedifferences_lambdaposteriors<-as.data.frame(precis(pairwisedifferences_lambdaposteriors,depth=2))
+estimates_pairwisedifferences_lambdaposteriors<-as.data.frame(precis(pairwisedifferences_lambdaposteriors,depth=2))
 
 # We add a column that classifies as true or false whether the estimates crosses zero (as opposed to all values being either smaller or larger than zero)
-estimates_pairwisedifferences_lambdaposteriors$crosseszero<-ifelse(pairwisedifferences_lambdaposteriors$mean>0,pairwisedifferences_lambdaposteriors$`5.5%`<0,pairwisedifferences_lambdaposteriors$`94.5%`>0)
+estimates_pairwisedifferences_lambdaposteriors$crosseszero<-ifelse(estimates_pairwisedifferences_lambdaposteriors$mean>0,estimates_pairwisedifferences_lambdaposteriors$`5.5%`<0,estimates_pairwisedifferences_lambdaposteriors$`94.5%`>0)
+
+# the columns are: mean is the average difference between the two habitats (suburban minus natural, natural has slightly larger values; sd is the standard deviation of this estimation, followed by the 89% compatibility estimates, a histogram showing the distribution of the differences across the different samples in the posterior indicating that this has been sampled reliably because there are no outliers, and a classifier whether the 89% interval crosses zero - the 1 means it does, so the two habitats do not differ consistently in the phi of the individuals)
+#      mean   sd  5.5% 94.5%    histogram crosseszero
+# [1] -0.01 0.18 -0.28  0.28 ▁▁▁▁▂▇▇▂▁▁▁▁           1
+# Result = there is no difference between suburban and natural intervals for lambda because the interval crosses zero
+
 ```
 
 
