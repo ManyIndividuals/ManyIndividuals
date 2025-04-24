@@ -1423,13 +1423,15 @@ dflex_beginning <- reduceddata
 # Now we run a STAN model with all simulated habitats, estimating both means of phi and lambda for each habitat as well as each individuals' phi and lambda
 
 # We set up the data for the model, make sure you've run code in Chunk 2
-dat_full <- as.list(dflex_beginning)
+dat_full <-list() # start the list which holds the input data for the stan model
 dat_full$N <- nrow(dflex_beginning) #total number of rows
-dat_full$N_id <- length(unique(as.factor(dflex_beginning$ID)))
-dat_full$N_exp <- length(unique(dflex_beginning$Habitat))
+dat_full$N_id <- length(unique(as.factor(dflex_beginning$ID))) # records how many different individuals there are
+dat_full$id <- as.numeric(as.factor(dflex_beginning$ID)) # re-codes each ID as a sequential number
+dat_full$N_exp <- length(unique(dflex_beginning$Habitat)) # records the number of habitats
 dat_full$Choice <- as.numeric(as.factor(dflex_beginning$Choice)) #this is the Correct +1 variable
 dat_full$Correct <- as.numeric(as.factor(dflex_beginning$Correct)) #making this a factor turns it into the same as Choice
-dat_full$Habitat <- as.numeric(as.factor(dflex_beginning$Habitat)) 
+dat_full$Trial<-dflex_beginning$Trial # has the info on which trial it is
+dat_full$Habitat <- as.numeric(as.factor(dflex_beginning$Habitat)) # re-codes the unique habitats as sequential number
 
 # This STAN model, in addition to estimating phi and lambda for each individual, also estimates means for each habitat It again starts with attractions set to 0.1 and assumes that individuals only learn about the option they chose.
 
@@ -1510,7 +1512,7 @@ A[ id[i] , Choice[i] ] = ( (1-phi)*(A[ id[i] , Choice[i] ]) + phi*pay[Choice[i]]
 "
 
 # Now we run the STAN model on the full data. 5000 iter takes a few hours.
-m_simulated_full <- stan( model_code =  reinforcement_model_id_site_nonzeroattraction, data=dat_full ,iter = 10, cores = 4, chains=4, control = list(adapt_delta=0.9, max_treedepth = 12)) 
+m_simulated_full <- stan( model_code =  reinforcement_model_id_site_nonzeroattraction, data=dat_full ,iter = 1000, cores = 4, chains=4, control = list(adapt_delta=0.9, max_treedepth = 12)) 
 
 # We extract the posterior from the STAN model
 s <- extract.samples(m_simulated_full)
