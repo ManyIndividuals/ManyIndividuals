@@ -1399,7 +1399,14 @@ set_ulam_cmdstan(TRUE) #makes it so ulam always runs with cmdstan
 
 # load data sheet
 dflex <- read.csv(url("https://raw.githubusercontent.com/ManyIndividuals/ManyIndividuals/refs/heads/main/Files/rrs/mi1_jays_flexdata.csv"), header=T, sep=",", stringsAsFactors=F)
+
+#label columns so they match the model's variable names
 colnames(dflex)[3] = "Habitat"
+colnames(dflex)[9] = "Correct"
+
+#make a new column Choice that is Correct +1 to avoid zeros that mess up the model. Make sure to remove the -1s showing that the bird did not participate
+dflex <- dflex[!dflex$Correct==-1,] #remove the -1s
+dflex$Choice <- dflex$Correct+1 
 
 # sort the data: only want data from the initial discrimination and first reversal to use as the baseline flexibility so we can compare between habitats
 reduceddata <- matrix(ncol=ncol(dflex),nrow=0)
@@ -1416,11 +1423,13 @@ dflex_beginning <- reduceddata
 # Now we run a STAN model with all simulated habitats, estimating both means of phi and lambda for each habitat as well as each individuals' phi and lambda
 
 # We set up the data for the model, make sure you've run code in Chunk 2
-dat_full <- as.list(simulatedreversaldata_attractionscores)
-dat_full$N <- nrow(simulatedreversaldata_attractionscores)
-dat_full$N_id <- length(unique(simulatedreversaldata_attractionscores$id))
-dat_full$N_exp <- length(unique(simulatedreversaldata_attractionscores$Habitat))
-dat_full$Choice <- as.numeric(as.factor(dat_full$Choice))
+dat_full <- as.list(dflex_beginning)
+dat_full$N <- nrow(dflex_beginning) #total number of rows
+dat_full$N_id <- length(unique(as.factor(dflex_beginning$ID)))
+dat_full$N_exp <- length(unique(dflex_beginning$Habitat))
+dat_full$Choice <- as.numeric(as.factor(dflex_beginning$Choice)) #this is the Correct +1 variable
+dat_full$Correct <- as.numeric(as.factor(dflex_beginning$Correct)) #making this a factor turns it into the same as Choice
+dat_full$Habitat <- as.numeric(as.factor(dflex_beginning$Habitat)) 
 
 # This STAN model, in addition to estimating phi and lambda for each individual, also estimates means for each habitat It again starts with attractions set to 0.1 and assumes that individuals only learn about the option they chose.
 
@@ -2079,7 +2088,9 @@ dat <- list(
 
 
 ## When you have the actual data, load data sheet
-d <- read.csv(url(""), header=T, sep=",", stringsAsFactors=F)
+d <- read.csv(url("https://raw.githubusercontent.com/ManyIndividuals/ManyIndividuals/refs/heads/main/Files/rrs/mi1_jays_flexdata.csv"), header=T, sep=",", stringsAsFactors=F)
+colnames(d)[3] = "Habitat"
+colnames(d)[9] = "Correct"
 
 # add 3 microhabitats for all individuals in the natural habitat because suburban has 3 more microhabitats and this will equalize natural and suburban in the model
 d[d$Habitat=="Natural",]$habitats <- d[d$Habitat=="Natural",]$habitats+3
