@@ -1435,6 +1435,9 @@ dat_full$Habitat <- as.numeric(as.factor(dflex_beginning$Habitat)) # re-codes th
 
 # This STAN model, in addition to estimating phi and lambda for each individual, also estimates means for each habitat It again starts with attractions set to 0.1 and assumes that individuals only learn about the option they chose.
 
+# The individuals are now numbered - to find out which individual is which number, run
+# levels(as.factor(dflex_beginning$ID))
+
 reinforcement_model_id_site_nonzeroattraction <- "
 data{
    int N;
@@ -1523,6 +1526,41 @@ s <- extract.samples(m_simulated_full)
 write.csv(s,"mi1_jays_q1_output_m_simulated_full.csv")
 # if you want to work directly from the saved model output, run the following line 
 # s <- read.csv(url("https://raw.githubusercontent.com/ManyIndividuals/ManyIndividuals/refs/heads/main/Files/rrs/mi1_jays_q1_output_m_simulated_full.csv"), header=T, sep=",", stringsAsFactors=F)
+# There should be 10000 rows in the data frame (we sampled 2500 iterations from 4 chains), so each row is one of the samples from the posterior.
+# The csv file does not preserve the structure. The s file that is the posterior from the STAN model has a nested structure. If you load it from the csv file, the nesting is lost and the variables are renamed. 
+# Variable X = unique identifier of the sample from the posterior
+# logit_phi = estimate of the baseline phi (logit transformed) across all individuals and habitats
+# log_L = estimate of the baseline lambda (log transformed) across all individuals and habitats
+# z_ID.1 through z_ID.14 z transformation of lambda for each of the 14 individuals (helps to make the values comparable)
+# z_ID.15 through z_ID.28 z transformation of phi for each of the 15 individuals (helps to make the values comparable)
+# sigma.ID.1 = variation in lambda among individuals
+# sigma_ID.2 = variation in phi among individuals
+# Rho_ID.1 = how much lambda is correlated within individuals (will always be 1)
+# Rho_ID.2 = how much lambda is with phi within individuals (will be slightly negative)
+# Rho_ID.3 = how much lambda is correlated with phi among individuals (will always be 0)
+# Rho_ID.4 = how much phi is correlated within individuals (should be close to 1)
+# z_EXP.1 through z_EXP.2 z transformation of lambda for each of the two habitats (helps to make the values comparable)
+# z_EXP.3 through z_EXP.4 z transformation of phi for each of the two habitats (helps to make the values comparable)
+# sigma_EXP.1 variation among individuals in natural habitat
+# sigma_EXP.2 variation among individuals in suburban habitat
+# Rho_ID.1 = how much lambda is correlated within habitats (will always be 1)
+# Rho_ID.2 = how much lambda is correlated with phi within habitats (should be slightly negative)
+# Rho_ID.3 = how much lambda is correlated with phi among individuals (will always be 0)
+# Rho_ID.4 = how much phi is correlated within individuals (should be close to 1)
+# v_ID.1 through v_ID.14 the individual offsets in lambda for the 14 individuals
+# v_ID.15 through v_ID.28 the individual offsets in phi for the 14 individuals
+# v_EXP.1 the offset for lambda for the natural habitat
+# v_EXP.2 the offset for lambda for the suburban habitat
+# v_EXP.3 the offset for phi for the natural habitat
+# v_EXP.4 the offset for phi for the suburban habitat
+# To obtain the estimated phi value for the first individual estimated during a given posterior, you need the inverse logit of the sum of (logit_phi in that row plus v_ID.15 from that row) - to get the full estimate for that individual, average across all rows
+# To obtain the estimated lambda value for the first individual estimated during a given posterior, you need the exponential of the sum of (log_L in that row plus v_ID.1 from that row) - to get the full estimate for that individual, average across all rows
+# To obtain the estimated phi value in the natural habitat estimated during a given posterior, you need the inverse logit of the sum of (logit_phi in that row plus v_EXP.3 from that row) - to get the full estimate for that habitat, average across all rows
+# To obtain the estimated lambda value in the natural habitat estimated during a given posterior, you need the exponential of the sum of (log_L in that row plus v_EXP.1 from that row) - to get the full estimate for that habitat, average across all rows
+
+# If you want to plot the distribution of phi and lambda in the two different habitats, first calculate phi and lambda for each individual. Next, look up which individual is in which habitat with the following code (the order is the same as in the mode, so the individual in the first row is the individual labelled 1 in the model)
+# library(dplyr)
+# dflex_beginning %>% group_by(ID) %>% summarize(unique(Habitat))
 
 # We calculate the mean phi and lambda for each habitat as estimated by the STAN model
 lambda <- sapply(1 : dat_full$N_exp, function(x) exp( mean(s$log_L) + mean(s$v_EXP[ ,x, 1])))
