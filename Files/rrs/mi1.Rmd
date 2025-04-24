@@ -1524,7 +1524,7 @@ phi <- sapply(1 : dat_full$N_exp, function(x) inv_logit( mean(s$logit_phi) + mea
 
 # We want to know whether the STAN model estimated two habitats to be different or not. As criterion for this, we check whether the samples in the posterior for pairs of habitat overlap or not. That means that, when calculating the difference between the samples in the posterior for a pair of habitat, they are assumed to be different if the differences are all on one side of zero.
 
-# We first check our power to estimate difference in mean phi between sites
+# We first whether there is a difference in mean phi between sites
 # We calculate the pairwise differences between sites for the estimated phi means
 pairwisedifferences_phiposteriors<-list(sapply(1 : (dat_full$N_exp * (dat_full$N_exp-1)/2), function(x) (s$v_EXP[ ,combn(1:dat_full$N_exp,m=2)[1,x], 2]-(s$v_EXP[ ,combn(1:dat_full$N_exp,m=2)[2,x], 2]))))
 
@@ -1533,6 +1533,16 @@ estimates_pairwisedifferences_phiposteriors<-as.data.frame(precis(pairwisediffer
 
 # We add a column that classifies as true or false whether the estimates crosses zero (as opposed to all values being either smaller or larger than zero)
 estimates_pairwisedifferences_phiposteriors$crosseszero<-ifelse(estimates_pairwisedifferences_phiposteriors$mean>0,estimates_pairwisedifferences_phiposteriors$`5.5%`<0,estimates_pairwisedifferences_phiposteriors$`94.5%`>0)
+
+# Second, we check whether there is a difference in mean lambda
+# We calculate the pairwise differences between sites for the estimated phi means
+pairwisedifferences_lambdaposteriors<-list(sapply(1 : (dat_full$N_exp * (dat_full$N_exp-1)/2), function(x) (s$v_EXP[ ,combn(1:dat_full$N_exp,m=2)[1,x], 1]-(s$v_EXP[ ,combn(1:dat_full$N_exp,m=2)[2,x], 1]))))
+
+# We convert it into a dataframe for easier manipulation
+pairwisedifferences_lambdaposteriors<-as.data.frame(precis(pairwisedifferences_lambdaposteriors,depth=2))
+
+# We add a column that classifies as true or false whether the estimates crosses zero (as opposed to all values being either smaller or larger than zero)
+estimates_pairwisedifferences_lambdaposteriors$crosseszero<-ifelse(pairwisedifferences_lambdaposteriors$mean>0,pairwisedifferences_lambdaposteriors$`5.5%`<0,pairwisedifferences_lambdaposteriors$`94.5%`>0)
 ```
 
 
