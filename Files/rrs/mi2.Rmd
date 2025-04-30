@@ -65,7 +65,86 @@ See slide 32 at [google slides](https://docs.google.com/presentation/d/1oeNt2-vm
 
 # **INTRODUCTION**
 
+Human modified environments are increasing (Goldewijk, 2001; X. Liu et al., 2020; Wu et
+al., 2011), causing global changes that other species must adjust to or suffer from
+(Alberti, 2015; Chejanovski et al., 2017; Ciani, 1986; Federspiel et al., 2017). Behavioral
+flexibility (hereafter ‘flexibility’) could be key to adjusting to such change: individuals interact
+with their environment through behavior, therefore whether a species has the flexibility to
+change behavior when circumstances change could be crucial for adjusting to environmental
+changes (Lee & Thornton, 2021). One of the top priorities for behavioral research with regard to
+maximizing conservation progress is to determine which cognitive abilities and behaviors can
+predict the ability to adjust to human modified environments and whether these behaviors can
+be trained (Moseby et al., 2016). The rare research that trains behavior in a conservation
+context usually focuses on training specific behaviors (for example, predator recognition through
+predator exposure) to improve individual success in the wild (Jolly et al., 2018; Moseby et al.,
+2012; Ross et al., 2019; West et al., 2018; see review in Tetzlaff et al., 2019). However, training
+a general cognitive ability, such as flexibility – the ability to rapidly adapt behavior to
+changes through learning throughout the lifetime (see the theory behind this definition in
+Mikhalevich et al., 2017) – has the potential to change a whole suite of behaviors and more
+broadly influence success in adjusting to human modified environments. Recent evidence
+supports this hypothesis: as far as I am aware, I was the first to show that flexibility can be
+trained using serial reversal learning of color preferences, and that the trained individuals
+(great-tailed grackles, Quiscalus mexicanus) were more flexible in a new context (locus
+switching on a puzzlebox), more innovative (solved more loci on a puzzlebox) (Logan et al.,
+2022), and used more food types and foraging techniques in the wild afterward (Logan et
+al. 2025).
 
+This investigation asks whether flexibility training (via serial reversal learning) can help
+species succeed in human modified environments. I explore how far reaching the effects of
+flexibility training extend in a species that is highly successful in human modified environments,
+the great-tailed grackle (hereafter “grackles”), with the idea that these insights could be applied
+to address critical conservation challenges. Serial reversal learning tasks have been performed
+with a wide diversity of species (birds: Bond et al., 2007; bumblebees: Strang & Sherry, 2014;
+stingrays: Daniel & Schluessel, 2020). There is variation across individuals and species in their
+performance, however almost all previous studies show that individuals improve their flexibility if
+the reversal training is given multiple times in sequence (serially; rats: Mackintosh et al., 1968;
+guppies: Lucon-Xiccato & Bisazza, 2014; poison frogs: Y. Liu et al., 2016).
+
+I aim to determine in grackles, a flexible species, whether it is indeed flexibility that
+makes species successful in human modified environments, whether flexibility is
+trainable in the wild, and discover for how long the effects of the training last. Grackles
+are flexible (Logan, 2016; Logan et al., 2023), highly associated with human modified
+environments (Johnson & Peer, 2001), and have been rapidly expanding their geographic range
+across North America over the past 140 years (Wehtje, 2003). They are social and polygamous,
+and eat a diversity of human foods as well as foraging on insects and on substrates for other
+natural food items (Johnson & Peer, 2001). Males tend to be the socially dominant sex
+(Johnson et al., 2000) and also the sex that disperses away from their natal area (Sevchik et al.,
+2022). Rodrigo et al. (2021) found that more grackles are present and more foraging events
+occur during garbage pick ups when garbage tends to spill out of the bags, thus increasing food
+availability. Attending to garbage trucks, potentially across space and time, is an example of
+how flexibility can help individuals meet foraging needs in the context of changing
+environmental cues. Grackle behavioral flexibility is trainable using serial reversal learning, and
+this training improves their flexibility in a new context as well as their innovativeness (Logan et
+al., 2023), and, after release back to the wild, they eat a larger number of food types and use
+more foraging techniques than untrained grackles (Logan et al., 2025) This shows that training
+a general cognitive ability can affect more behaviors than the behavior that was trained and
+potentially make them more successful in human modified environments.
+The results from this research program will allow us to determine whether flexibility training
+improves success in human modified environments. This research will significantly advance our
+understanding of the causes and consequences of flexibility, linking
+
+Determine for how long the effects, if any, from the flexibility training last. I
+will investigate this by continuing to track the number of microhabitats and food items grackles
+use for up to three years after the flexibility training has occurred. Effects in grackle flexibility
+and innovativeness were still present for four weeks after the flexibility training (longer time
+periods were not attempted so the threshold is unknown; Logan et al., 2023), and foraging
+effects in the wild were still detected eight months after the flexibility training (longer time
+periods were not attempted; Logan et al 2025). The longer the effects last, the more valuable
+this flexibility training could be when applied to threatened and endangered species to try to
+improve their success in human modified environments. In the event that the effects last only a
+few months, there could still be significant advantages. Training the flexibility of a few individuals
+could have population-level effects because significant research on social information use in
+birds (e.g., Valente et al., 2021) demonstrates the potential for the trained behavior to
+disseminate to conspecifics (for example, trained individuals might be faster at locating new
+resources, which could attract the attention of conspecifics, or untrained individuals might copy
+the trained individuals’ food type choices or foraging locations). In the event that social learning
+is not used by a given population to spread the behaviors of trained individuals, investing in the
+training of specific individuals to increase their success in the wild could still have conservation
+impacts. In some cases, it is possible to train many individuals in a population or a species
+because there are not many individuals left (Greggor et al., 2021). It is also possible to train all
+individuals involved in a conservation management event such as a translocation (Greggor et
+al., 2021). Therefore, there can still be significant population consequences even if each
+individual needs to be trained to achieve the goal.
 
 # **RESEARCH QUESTIONS**
 
@@ -73,6 +152,52 @@ See slide 32 at [google slides](https://docs.google.com/presentation/d/1oeNt2-vm
 
 # **METHODS**
 
+My approach involves individuals participating in a serial reversal learning task and
+measuring success in natural behavior in the wild using a within-subjects design where I
+train all individuals and compare pre- and post-training success measures. Data collection
+will occur across three field seasons, which are conducted in the non-breeding seasons
+(August-January) of 2025, 2026, and 2027 to ensure the birds have more energy and attention
+for participating in the research (Table 1). Field season data collection entails collecting foraging
+data using focal follows before and after the flexibility training, which uses remote controlled
+feeders for serial reversals of a color preference. In year 3, the final year, focal follow data will
+be collected to obtain up to 3 years post-training foraging observations to determine for how
+long any training effects last, and there will only be serial reversal training if the sample size is
+not yet large enough. Additionally, in year 3, I will conduct a single reversal to determine how
+long the flexibility training persisted for.
+
+Focal follow (Altmann 1974) data (before and after flexibility training) will be collected on all
+occurrences of microhabitats used, food types taken, foraging techniques used, location, and
+whether food was present or absent from a given location. These data will be collected on a
+minimum of 20 individuals with a minimum of 4 separate visit events to human food sources
+(cafes or dumpsters) per individual pre-training or a maximum of 180 minutes of in view focal
+time, and a minimum of 4 separate human food sources visit events or a maximum of 180
+minutes of in view focal time, per individual post-training. The minimum focal time possible per
+bird (pre- and post-training) is 60 minutes to ensure that there is enough microhabitat data.
+Focal individuals will be followed for as long as possible during the hours when people generally
+eat outside at cafes (approximately 11:00-14:00) until criterion is reached. Reaching criterion
+may require conducting multiple focal follows on multiple days. Focal follows will be spaced
+apart by at least one day.
+
+For the flexibility training, I set up two feeders (one dark gray and one light gray) at a location
+where grackles regularly visit in the wild (Figure 2). If a subject visits the feeder that has the
+rewarded color, I cue the feeder to deliver a small amount of food. If a subject visits the feeder
+that has the non-rewarded color, the choice will be recorded, but the feeder will not open. All
+feeders contain one type of high value food (e.g., goldfish crackers). The dark gray feeder is
+always the first rewarded color for a bird. A grackle is considered to have a color preference if it
+chooses that color in 10 out of the most recent 12 trials, after which point, the other colored
+feeder becomes the rewarded color. A bird is considered to have passed the serial reversal
+training when it passes two consecutive reversals in 25 trials or less. Before starting the
+training, grackles are exposed to a habituation feeder (green, blue, and white) where food is
+available and presented to the target grackle until it is habituated to the feeder and the food refill
+mechanism noise. To be ready to start the training, they need to hop up to the feeder when
+there is no food visible in the tray, stay there when the feeder releases food (the refill noise),
+then leave and come back to start another trial.
+
+
+Figure 2. Photo of the setup for conducting the flexibility training in Santa Barbara, California.
+The dark gray feeder is on the far side of the picnic table, and the light gray feeder is on the
+near side. Grackles are standing in front of each feeder where the food is dispensed into the
+tray.
 
 ## Sample
 
