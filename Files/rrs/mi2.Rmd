@@ -1,0 +1,128 @@
+---
+title: 
+author: 
+- '[Logan CJ](http://CorinaLogan.com)^1,2^'
+- '[Lukas D](https://dieterlukas.mystrikingly.com)^1^'
+date: '`r Sys.Date()`'
+always_allow_html: yes
+output:
+  html_document: 
+    toc: true
+    toc_depth: 5
+    toc_float: 
+      collapsed: false
+    code_folding: hide
+  md_document: 
+    toc: true
+  pdf_document:
+    keep_tex: yes
+    latex_engine: xelatex
+  github_document: 
+    toc: true
+bibliography: mi.bib
+csl: https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl
+urlcolor: blue
+header-includes:
+  - \usepackage[left]{lineno}
+  - \linenumbers
+  - \usepackage{fancyhdr}
+---
+
+\addtolength{\headheight}{0.1cm}
+\pagestyle{fancyplain}
+\lhead{\includegraphics[height=1.2cm]{logoPCIRR.png}}
+\renewcommand{\headrulewidth}{0pt}
+
+\addtolength{\headheight}{0.1cm}
+\pagestyle{fancyplain}
+\lhead{\includegraphics[height=1.2cm]{logoPCIRR.png}}
+\renewcommand{\headrulewidth}{0pt}
+
+&nbsp;
+
+**Affiliations:** 1) Max Planck Institute for Evolutionary Anthropology, Germany; 2) University of California Santa Barbara, USA. Corresponding author: corina_logan@eva.mpg.de
+
+&nbsp;
+
+```{r setup, include=FALSE}
+library(knitr)
+knitr::opts_chunk$set(tidy.opts=list(width.cutoff=60),tidy=TRUE) 
+#Make code wrap text so it doesn't go off the page when Knitting to PDF
+
+knitr::opts_chunk$set(echo=T, include=T, results='asis', warning=F, message=F) 
+#sets global options to display code along with the results https://exeter-data-analytics.github.io/LitProg/r-markdown.html
+#set echo=F for knitting to PDF (hide code), and echo=T for knitting to HTML (show code)
+```
+
+# **ABSTRACT**
+
+See slide 32 at [google slides](https://docs.google.com/presentation/d/1oeNt2-vm8t6BjkmwL2NJRbjVydIuAfUBxPP1zidufuo/edit?usp=sharing) for the study design table upon which this RR will be written.
+
+# **REGISTERED REPORT DETAILS**
+
+ - **Level of bias = 1:** This registered report uses data from @logan2022manyindividuals, as well as generating new data, and was written after data collection began.
+ - **Deviations from the Stage 1 registered report:** [to be filled in as needed]
+
+# **INTRODUCTION**
+
+
+
+# **RESEARCH QUESTIONS**
+
+
+
+# **METHODS**
+
+
+## Sample
+
+
+### Protocols
+
+
+#### Focal follows
+
+
+## Open data
+
+The data will be published in the Knowledge Network for Biocomplexity's data repository.
+
+## **Great-tailed grackles**
+
+ - Grackle [protocol](https://docs.google.com/document/d/1pTrcy7ztgYVSAP7rGA6Y_lAmZ7hK_-mB01zwy0oKh7w/edit?usp=sharing) and [data sheet templates](https://docs.google.com/spreadsheets/d/1xELxnCJPa0hIXKagbUPgqq8Tap8mh7PFfLFUGCc525s/edit?usp=sharing)
+ - [Protocol for applying radio tags and conducting GPS tracks](https://docs.google.com/document/d/1ZOpkdxy5-wiGg7hYod-XaaBoOl53DsVQ3pwWoIdvrzk/edit?usp=sharing) from @mccune2020spaceuse
+
+
+
+# **ANALYSIS PLAN**
+
+We run analyses in R [current version `r getRversion()`; @rcoreteam] using the following R packages: rethinking [@rethinking2020], rstan [@rstan], cmdstanr [@cmdstanr], knitr [@xie2018knitr], and irr [@gamer2012package].
+
+
+# **ETHICS**
+
+This research is carried out in accordance with permits from the:
+
+1) US Geological Survey Bird Banding Laboratory (federal bird banding permit number 23872 for grackles and 24273 for jays)
+3) Institutional Animal Care and Use Committee at the University of California Santa Barbara (protocol number 958)
+4) California Department of Fish and Wildlife (scientific collecting permit [specific use] number S‐192100001‐19210‐001 for grackles and S-192100002-20329-001 for jays)
+
+# **AUTHOR CONTRIBUTIONS**
+
+**Logan:** Hypothesis development, data collection, data analysis and interpretation, write up, revising/editing, materials/funding.
+
+**Lukas:** Analysis design and code, sample size modeling, validated reversal passing criteria, write up, revising/editing
+
+# **FUNDING**
+
+This research is funded by the Department of Human Behavior, Ecology and Culture at the Max Planck Institute for Evolutionary Anthropology.
+
+# **CONFLICT OF INTEREST DISCLOSURE**
+
+We, the authors, declare that we have no financial conflicts of interest with the content of this article. CJ Logan is a co-founder of and on the Managing Board at PCI Registered Reports. Dieter Lukas is a recommender at PCI Registered Reports.
+
+# **ACKNOWLEDGEMENTS**
+
+We are grateful to our funder: Richard McElreath at the Max Planck Institute for Evolutionary Anthropology.
+
+# **REFERENCES**
