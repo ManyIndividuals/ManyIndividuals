@@ -2157,12 +2157,12 @@ dat <- list(
 
 
 ## When you have the actual data, load data sheet
-d <- read.csv(url("https://raw.githubusercontent.com/ManyIndividuals/ManyIndividuals/refs/heads/main/Files/rrs/mi1_jays_flexdata.csv"), header=T, sep=",", stringsAsFactors=F)
-colnames(d)[3] = "Habitat"
-colnames(d)[9] = "Correct"
+d <- read.csv(url("https://raw.githubusercontent.com/ManyIndividuals/ManyIndividuals/refs/heads/main/Files/rrs/mi1_jays_Habitatdata.csv"), header=T, sep=",", stringsAsFactors=F)
+d = d[,-1]
+colnames(d) = c("habitats","BeforeOrAfterManipulation","ID")
 
-# add 3 microhabitats for all individuals in the natural habitat because suburban has 3 more microhabitats and this will equalize natural and suburban in the model
-d[d$Habitat=="Natural",]$habitats <- d[d$Habitat=="Natural",]$habitats+3
+# add 2 microhabitats for all individuals in the natural habitat because suburban has 2 more microhabitats (impervious surface & non-native vegetation) and this will equalize natural and suburban in the model
+d[d$habitats=="Natural",]$habitats <- d[d$habitats=="Natural",]$habitats+2
 
 # Set up the data sheet
 dat <- list(
@@ -2175,16 +2175,16 @@ dat <- list(
 mj <- ulam(
     alist(
         habitatuse ~ dbinom(10,p), #max 10 habitats
-        logit(p) <- g[tid] + alpha[actor,tid],
+        logit(p) <- g[before] + alpha[ind,before],
         # adaptive priors - non-centered
-        transpars> matrix[actor,2]:alpha <- compose_noncentered( sigma_actor , L_Rho_actor , z_actor ),
-        matrix[2,actor]:z_actor ~ normal( 0 , 1 ),
+        transpars> matrix[ind,2]:alpha <- compose_noncentered( sigma_ind , L_Rho_ind , z_ind ),
+        matrix[2,ind]:z_ind ~ normal( 0 , 1 ),
         # fixed priors
-        g[tid] ~ normal(0,1),
-        vector[2]:sigma_actor ~ dexp(1),
-        cholesky_factor_corr[2]:L_Rho_actor ~ lkj_corr_cholesky( 2 ),
-        # compute ordinary correlation matrixes from Cholesky factors
-        gq> matrix[2,2]:Rho_actor <<- Chol_to_Corr(L_Rho_actor)
+        g[before] ~ normal(0,1),
+        vector[2]:sigma_ind ~ dexp(1),
+        cholesky_find_corr[2]:L_Rho_ind ~ lkj_corr_cholesky( 2 ),
+        # compute ordinary correlation matrixes from Cholesky finds
+        gq> matrix[2,2]:Rho_ind <<- Chol_to_Corr(L_Rho_ind)
     ) , data=dat , chains=4 , cores=4 , log_lik=TRUE , cmdstan = TRUE, control = list(adapt_delta = .95, force_recompile = TRUE))
 
 precis(mj,depth=2) #pay attention to g (g1 is before, g2 is after)
