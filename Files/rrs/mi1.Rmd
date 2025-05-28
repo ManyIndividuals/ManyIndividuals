@@ -2188,7 +2188,7 @@ mj <- ulam(
     ) , data=dat , chains=4 , cores=4 , log_lik=TRUE , cmdstan = TRUE, control = list(adapt_delta = .95, force_recompile = TRUE))
 
 precis(mj,depth=2) #pay attention to g (g1 is before, g2 is after)
-boxplot(dat$habitatuse~dat$tid) #see if there is a difference visually
+boxplot(dat$habitatuse~dat$before) #see if there is a difference visually
 
  # run a contrast to determine whether there is a difference between the before and after conditions (there is a difference if CI is on one side of zero)
 post <- extract.samples(mj)
