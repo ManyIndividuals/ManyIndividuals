@@ -2159,14 +2159,15 @@ dat <- list(
 ## When you have the actual data, load data sheet
 d <- read.csv(url("https://raw.githubusercontent.com/ManyIndividuals/ManyIndividuals/refs/heads/main/Files/rrs/mi1_jays_Habitatdata.csv"), header=T, sep=",", stringsAsFactors=F)
 d = d[,-1]
-colnames(d) = c("habitats","BeforeOrAfterManipulation","ID")
+colnames(d) = c("habitats","BeforeOrAfterManipulation","ID","area")
 
-# add 2 microhabitats for all individuals in the natural habitat because suburban has 2 more microhabitats (impervious surface & non-native vegetation) and this will equalize natural and suburban in the model
-d[d$habitats=="Natural",]$habitats <- d[d$habitats=="Natural",]$habitats+2
+# The number of micro-habitats that individuals could have used differs between the natural and the suburban area. We need to account for this because we are assessing whether the proportion of possible habitats an individual uses changed from before to after
+d$possiblehabitats<-ifelse(d$area=="natural",10,12)
 
 # Set up the data sheet
 dat <- list(
     habitatuse = d$habitats,
+    possiblehabitats = d$possiblehabitats,
     before = d$BeforeOrAfterManipulation,
     ind = as.integer(as.factor(d$ID))
 )
@@ -2174,7 +2175,7 @@ dat <- list(
 # THE MODEL (p.447 for binomial distribution with advanced varying slopes - McElreath 2020). 
 mj <- ulam(
     alist(
-        habitatuse ~ dbinom(10,p), #max 10 habitats
+        habitatuse ~ dbinom(possiblehabitats,p), #max 10 habitats
         logit(p) <- g[before] + alpha[ind,before],
         # adaptive priors - non-centered
         transpars> matrix[ind,2]:alpha <- compose_noncentered( sigma_ind , L_Rho_ind , z_ind ),
