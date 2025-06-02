@@ -2159,10 +2159,15 @@ dat <- list(
 ## When you have the actual data, load data sheet
 d <- read.csv(url("https://raw.githubusercontent.com/ManyIndividuals/ManyIndividuals/refs/heads/main/Files/rrs/mi1_jays_Habitatdata.csv"), header=T, sep=",", stringsAsFactors=F)
 d = d[,-1]
+d$area = ifelse(d$BirdID == "yx-dgk" | d$BirdID == "wk-ox" | d$BirdID == "gx-ak" |
+                     d$BirdID == "rx-yk" | d$BirdID == "bx-wk"| d$BirdID == "yx-gk" |
+                     d$BirdID == "ow-xk" | d$BirdID == "ak-ox"| 
+                     d$BirdID == "gx-ok" | d$BirdID == "bx-yk" | d$BirdID == "wx-rk",
+                   "Suburban", "Natural")
 colnames(d) = c("habitats","BeforeOrAfterManipulation","ID","area")
 
 # The number of micro-habitats that individuals could have used differs between the natural and the suburban area. We need to account for this because we are assessing whether the proportion of possible habitats an individual uses changed from before to after
-d$possiblehabitats<-ifelse(d$area=="natural",10,12)
+d$possiblehabitats<-ifelse(d$area=="Natural",10,12)
 
 # Set up the data sheet
 dat <- list(
