@@ -2194,7 +2194,7 @@ boxplot(dat$habitatuse~dat$before) #see if there is a difference visually
 post <- extract.samples(mj)
 diff_g <- post$g[,2] - post$g[,1] #log-odds difference p.341 McElreath 2020
 diff_p <- inv_logit(post$g[,2]) - inv_logit(post$g[,1]) #on the probability scale p.341 McElreath 2020
-#precis( list( diff_g=diff_g , diff_p=diff_p ) )
+precis( list( diff_g=diff_g , diff_p=diff_p ) )
 ```
 
 
