@@ -2610,11 +2610,13 @@ dat <- list(
 )
 
 ## load data sheet
-d <- read.csv(url(""), header=T, sep=",", stringsAsFactors=F)
+d <- read.csv(url("https://raw.githubusercontent.com/ManyIndividuals/ManyIndividuals/refs/heads/main/Files/rrs/mi1_jays_Foragingdata.csv"), header=T, sep=",", stringsAsFactors=F)
+d = d[,-1]
+colnames(d) = c("area","forage","BeforeOrAfterManipulation","ID")
 
 # Set up the data sheet
 dat <- list(
-    habitatuse = d$habitats,
+    forageuse = d$forage,
     before = d$BeforeOrAfterManipulation,
     ind = d$ID
 )
