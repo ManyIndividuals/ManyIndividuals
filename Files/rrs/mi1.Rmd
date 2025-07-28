@@ -2600,14 +2600,14 @@ Run the code below to determine whether there were differences between the befor
 library(rethinking)
 library(cmdstanr)
 set_ulam_cmdstan(TRUE) #makes it so ulam always runs with cmdstan
-                                                                                                                                  ## when the data do not yet exist, use simulated data to test the model
-N_ind <- 20
+                                                                                                                      ## when the data do not yet exist, use simulated data to test the model
+#N_ind <- 20
 
-dat <- list(
-    foods = standardize(rnorm(40,mean=4.5,sd=2)), #estimate 20 total individuals (*2 conditions) with a mean of 6.5 foods/individual (halfway between the max 13 possible food types)
-    before = c(rep(1,N_ind),rep(2,N_ind)), #1 refers to before and 2 to after
-    ind = rep(1:N_ind,2) #go through all individuals twice because there are observations from before and after for each
-)
+#dat <- list(
+#    foods = standardize(rnorm(40,mean=4.5,sd=2)), #estimate 20 total individuals (*2 conditions) with a mean of 6.5 foods/individual (halfway between the max 13 possible food types)
+#    before = c(rep(1,N_ind),rep(2,N_ind)), #1 refers to before and 2 to after
+#    ind = rep(1:N_ind,2) #go through all individuals twice because there are observations from before and after for each
+#)
 
 ## load data sheet
 d <- read.csv(url("https://raw.githubusercontent.com/ManyIndividuals/ManyIndividuals/refs/heads/main/Files/rrs/mi1_jays_Foragingdata.csv"), header=T, sep=",", stringsAsFactors=F)
@@ -2617,14 +2617,14 @@ colnames(d) = c("area","forage","BeforeOrAfterManipulation","ID")
 # Set up the data sheet
 dat <- list(
     forageuse = d$forage,
-    before = d$BeforeOrAfterManipulation,
-    ind = d$ID
+    before = d$BeforeOrAfterManipulation-1, #1=before, 2=after, and then -1 makes it so it is 0 and 1, respectively, which makes the model work better
+    ind = as.integer(as.factor(d$ID))
 )
 
 # THE MODEL (p.441 for normal distribution - McElreath 2020). Note that it is MULTIPLIED by condition (before), which means that you don't need to run a contrast because each individual value already accounts for the difference. So only look at beta 
 mjf <- ulam(
     alist(
-        foods ~ normal( mu , sigma ),
+        forageuse ~ normal( mu , sigma ),
         mu <- a_ind[ind] + b_ind[ind]*before,
         c(a_ind,b_ind)[ind] ~ multi_normal( c(alpha,beta) , Rho , sigma_ind ),
         alpha ~ normal(6.5,2), #6.5=mean number of foods taken, 2=food types for the sd
@@ -2632,10 +2632,13 @@ mjf <- ulam(
         sigma_ind ~ exponential(1),
         sigma ~ exponential(1),
         Rho ~ lkj_corr(2)
-    ) , data=dat , chains=4 , cores=4 , log_lik=TRUE , cmdstan = TRUE)
+    ) , data=dat , iter=8000, chains=4 , cores=4 , log_lik=TRUE , cmdstan = TRUE)
 
 #precis(mjf,depth=2)
-#boxplot(dat$foods~dat$before) #see if there is a difference visually
+#Don't need to do a contrast because we already have each individual's number of food itmes so we only need to look at the overall beta (the slope between the values before and after) to see whether it is positive (more foods after) or negative (fewer foods after)
+#beta: mean=0.26, 89%CI= -0.45 to 0.96 - it crosses zero so we cannot say whether there was a difference between before and after. This is because 0.26 more foods were used after the flexibility training and if we look at Figure 12, the power analysis, about 63% of the analyses at a sample size of 20 (the actual sample size was 22) cross zero, so it would be very difficult to detect a difference between the conditions because such a small difference in the number of foods taken could occur by chance.
+
+#boxplot(dat$forageuse~dat$before) #see if there is a difference visually
 ```
 
 
