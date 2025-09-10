@@ -244,7 +244,7 @@ One feeder at each location will have food and the experimenter will use the rem
 
 ### The experiment
 
-Prior to the flexibility manipulation, we will collect the 4 minimum tracking sessions to determine the baseline values for microhabitat use and foraging breadth. Afterwards, we will set up feeders to initiate the flexibility manipulation phase.  Once jays are habituated to the feeders we will manipulate behavioral flexibility using serial reversals of the open feeder location. Only one feeder will be opened at a consistent location (north or south, east or west position) within territories across days and the manipulation treatment will consist of 30-min sessions per day per territory, up to 4 days per week, where each visit by the focal jay to a feeder is considered a trial. Jays pass a given reversal when they correctly choose the rewarded feeder in at least 10 trials out of the most recent 12 trials. Jays were very fast to switch their preference in the first reversal. Therefore, serial reversals will continue until jays pass two consecutive reversals in X trials or less (see Serial reversal passing criterion above). At this criterion, the jays will be considered to have increased their behavioral flexibility.  After the manipulation is complete in each territory, we will again conduct the tracking sessions to measure microhabitat use and foraging breadth.
+Prior to the flexibility manipulation, we will collect the 4 minimum tracking sessions to determine the baseline values for microhabitat use and foraging breadth. Afterwards, we will set up feeders to initiate the flexibility manipulation phase.  Once jays are habituated to the feeders we will manipulate behavioral flexibility using serial reversals of the open feeder location. Only one feeder will be opened at a consistent location (north or south, east or west position) within territories across days and the manipulation treatment will consist of 30-min sessions per day per territory, up to 4 days per week, where each visit by the focal jay to a feeder is considered a trial. Jays pass a given reversal when they correctly choose the rewarded feeder in at least 10 trials out of the most recent 12 trials. Jays were very fast to switch their preference in the first reversal. Therefore, serial reversals will continue until jays pass two consecutive reversals in 12 trials or less (see Serial reversal passing criterion above). At this criterion, the jays will be considered to have increased their behavioral flexibility.  After the manipulation is complete in each territory, we will again conduct the tracking sessions to measure microhabitat use and foraging breadth.
 
 
 # **ANALYSIS PLAN**
@@ -253,8 +253,6 @@ We run analyses in R [current version `r getRversion()`; @rcoreteam] using the f
 
 ## Can flexibility be increased to help individuals succeed in human modified environments?
 
-### **DESIGN 1** - Reversal learning experiment in visual isolation
-
 **Can flexibility be increased?** If most individuals in the flexibility manipulation (serial reversals) passed the passing criterion, then the answer is yes.
 
 **Do the flexibility manipulated (serial reversal) individuals have better success in human modified environments?**
@@ -262,10 +260,6 @@ We run analyses in R [current version `r getRversion()`; @rcoreteam] using the f
 *Response variable:* success variable (e.g., predictability of movement behavior, number of different food items taken, etc.)
 
 *Explanatory variable:* 
-
-- Condition (control, manipulated)
-
-OR
 
 - Condition (pre-manipulation, post-manipulation)
 
@@ -276,10 +270,7 @@ OR
 
 Same questions, response/explanatory/random variables as in Design 1.
 
-
-#### **Jays**
-
-##### J.Q1 Do jay populations in human modified areas differ in baseline behavioral flexibility compared to populations in natural areas?
+#### J.Q1 Do jay populations in human modified areas differ in baseline behavioral flexibility compared to populations in natural areas?
 
 **The model**
 
@@ -518,7 +509,7 @@ estimates_pairwisedifferences_lambdaposteriors$crosseszero<-ifelse(estimates_pai
 ```
 
 
-##### J.Q2 Are disturbance-resiliant jays more flexible than disturbance-resistant jays?
+#### J.Q2 Are disturbance-resiliant jays more flexible than disturbance-resistant jays?
 
 **The model**
 
@@ -663,7 +654,7 @@ estimates_pairwisedifferences_phiposteriors<-as.data.frame(precis(pairwisediffer
 estimates_pairwisedifferences_phiposteriors$crosseszero<-ifelse(estimates_pairwisedifferences_phiposteriors$mean>0,estimates_pairwisedifferences_phiposteriors$`5.5%`<0,estimates_pairwisedifferences_phiposteriors$`94.5%`>0)
 ```
 
-##### J.Q3 More flexible = use more microhabitats?
+#### J.Q3 More flexible = use more microhabitats?
 
 **The model**
 
@@ -1119,7 +1110,7 @@ precis( list( diff_g=diff_g , diff_p=diff_p ) )
 ```
 
 
-##### J.Q4 More flexible = more food types?
+#### J.Q4 More flexible = more food types?
 
 **The model**
 
@@ -1564,26 +1555,24 @@ This research is carried out in accordance with permits from the:
 1) US Fish and Wildlife Service (scientific collecting permit number MBPER0039225)
 2) US Geological Survey Bird Banding Laboratory (federal bird banding permit number 23872 for grackles and 24273 for jays)
 3) Institutional Animal Care and Use Committee at the University of California Santa Barbara (protocol number 958)
-4) California Department of Fish and Wildlife (scientific collecting permit [specific use] number S‐192100001‐19210‐001 for grackles and S-192100002-20329-001 for jays)
-5) Oregon Department of Fish and Wildlife (scientific collecting permit 125-22)
-6) The New Zealand Department of Conservation (permit number 97554-FAU)
+
 
 # **AUTHOR CONTRIBUTIONS**
 
 **McCune:** Hypothesis development, data collection, data analysis and interpretation, write up, revising/editing.
 
-**Barve:** Data collection, revising/editing, materials/funding
+**Barve:** Interpretation, revising/editing, materials/funding
 
 # **FUNDING**
 
-This research is funded by the Department of Human Behavior, Ecology and Culture at the Max Planck Institute for Evolutionary Anthropology (to Logan).
+This research is funded by the Department of Human Behavior, Ecology and Culture at the Max Planck Institute for Evolutionary Anthropology (to Logan and McCune).
 
 # **CONFLICT OF INTEREST DISCLOSURE**
 
-We, the authors, declare that we have no financial conflicts of interest with the content of this article. CJ Logan is a co-founder of and on the Managing Board at PCI Registered Reports.
+We, the authors, declare that we have no financial conflicts of interest with the content of this article.
 
 # **ACKNOWLEDGEMENTS**
 
-We are grateful to our funders: Richard McElreath and Corina Logan at the Max Planck Institute for Evolutionary Anthropology (whole project), Dieter Lukas for assistance with analyses and coding.
+We are grateful to our funders: Richard McElreath and Corina Logan at the Max Planck Institute for Evolutionary Anthropology (whole project), Dieter Lukas for assistance with analyses and coding. In addition, we are grateful for the ManyIndividuals co-founders, Drs. Corina Logan and Rachel Shaw. We are thankful for the input and assistance of Dr. Reed Bowman when designing the Florida scrub-jay data collection.
 
 # **REFERENCES**
