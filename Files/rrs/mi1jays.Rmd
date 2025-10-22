@@ -171,29 +171,25 @@ We presented one experimental design for the flexibility intervention (Fig. 4) t
 
 ## **DESIGN 2** - Reversal learning experiment in a group context
 
-Feeders are set up in the field, counterbalanced for color/location/etc, and will be available for opening when the experiment is being conducted (Figure 7). The feeders will be fitted with technology to automatically record which individual visits which feeder and when (unless a particular population is easy to track visually without such automated technology, as is the case for the jays). Individuals are habituated to the open feeders filled with food until at least half of the minimum sample size has visited at least 1 feeder. All individuals start on the same rewarded option for the initial discrimination to improve motivation for participating in the experiment (e.g., if the first rewarded option was counterbalanced across individuals, subjects might be slower to learn their rewarded option if they use social information about which option is rewarded). If the subject visits the rewarded feeder, the feeder will automatically, or via a remote controlled by the experimenter, deliver a small amount of food, and then close and reset more food in preparation for the next opening. If the subject visits the non-rewarded feeder, the presence data will be recorded, but the feeder will not open. All feeders will contain one type of high value food. Ideally, feeders will be programmed to automatically switch which feeder type is rewarded as soon as an individual passes criterion in the middle of a test session. If automation is not possible, then the data sheets will be coded live by the experimenter. All feeders are opaque and always have food in them to eliminate the confound due to olfactory differences between the feeders that could be introduced if only the rewarded feeders have food in them. If a feeder needs to be refilled, refill all feeders consecutively in the same time period and refill each for the same amount of time even if that feeder does not need much or any food (in these cases, pretend to fill the feeder as you normally would). This eliminates confounds from cues provided by a differential amount of attention experimenters give the feeders depending on which needs refilling.
+Feeders were set up in the field, counterbalanced for location, and were available for dispensing food when the experiment was being conducted (Figures 3,4). Individuals were habituated to the open feeders filled with food until at least half of the minimum sample size visited at least 1 feeder. Individuals that participated in the experiment in a social group started on the same rewarded option for the initial discrimination to improve motivation for participating in the experiment (e.g., if the first rewarded option was counterbalanced across individuals, subjects might be slower to learn their rewarded option if they use social information about which option is rewarded). If the subject visited the rewarded feeder, via a remote controlled by the experimenter, the feeder delivered a small amount of food and then closed to reset more food in preparation for the next opening. If the subject visits the non-rewarded feeder, the presence data was recorded, but the feeder did not open. All feeders contained one type of high value food. In addition, feeders were opaque and always had food in them to eliminate the confound due to olfactory differences between the feeders that could be introduced if only the rewarded feeders had food in them. If a feeder needed to be refilled, the experimenter refilled all feeders consecutively in the same time period and for the same amount of time even if that feeder did not need much or any food (in these cases, we pretended to fill the feeder). This eliminates confounds from cues provided by a differential amount of attention experimenters give the feeders depending on which needed refilling.
 
-Data are collected on success measures (see below) before and after the flexibility intervention or only after the intervention.
+Data are collected on success measures (see below) before and after the flexibility intervention.
 
 **Passing criteria:**
 
- - **Feeder habituation:** all feeders at all locations will have food and be open for several hours daily or until at least half of the minimum sample size in each condition (control and manipulated) have visited at least one of the feeders.
- - **Reversal passing criterion:**  an individual is considered to have a preference when they choose 10 of the most recent 12 trials (choices) correct (the rewarded option). This criterion applies to the initial discrimination, and to each reversal.
- - **Manipulation passing criterion:** pass two consecutive reversals in X trials or less (see Serial reversal passing criterion above).
+ - **Feeder habituation:** all feeders at all locations contained visible food and were open for several hours daily or until at least half of the minimum sample size visited at least one of the feeders.
+ - **Reversal passing criterion:**  an individual was considered to have a preference when they chose 10 of the most recent 12 trials (choices) correct (the rewarded option). This criterion applied to the initial discrimination, and to each reversal.
+ - **Manipulation passing criterion:** passed two consecutive reversals in 12 trials or less (see Serial reversal passing criterion in the Supplementary materials, S2).
 
 
 ### Assessment of the likelihood of success in human modified environments with regard to the flexibility manipulation
 
-Here, we compare pre- and post-flexibility manipulation measures on the same individuals using one or more of the following success measures. Choose population-relevant success variables that are predicted to be the most likely to be used in human modified environments. This list is not exhaustive - it serves as a place to generate ideas about what the best measures could be in a given population. Observational methods to collect these data may vary among populations and we describe below the methods that we will use (i.e., all occurrences sampling). 
+Here, we compared pre- and post-flexibility manipulation measures on the same individuals using the following success measures. We chose population-relevant success variables that are predicted to be the most likely to be used in human modified environments. Observational methods to collect these data are described below (i.e., all occurrences sampling).
 
- - **Fitness variables:** nest success, number of offspring who survived to independence or adulthood, longevity, etc.
  - **Foraging variables:** diet breadth, number of foraging techniques used, etc.
- - **Movement variables:** predictability of movement behavior [e.g., step length and turning angles; see @mccune2020spaceuse], ability to disperse from a lower risk environment (e.g. a sanctuary, or largely intact natural habitat) to a higher risk, more heavily human modified environment (assess success/survival after dispersal if possible), etc.
  - **Habitat use variables:** foraging substrate (ground, bushes, trees, human modified substrates, human-provided supplemental food), nesting substrate (high or low, tree, bush or reeds), etc.
 
-Begin collecting post-manipulation data on an individual as soon as it passes the manipulation because it is unknown for how long any potential effects of the manipulation will last. For the more social species and for populations who participate in the experiment in groups, there is the potential that individuals who were not in the manipulation condition or who have not yet passed the manipulation condition will learn about post-manipulation success behaviors from the manipulated individuals who passed the experiment. We are ultimately interested in determining whether we can change success behaviors as a result of the flexibility manipulation. If part of this change is the result of social learning from some of the manipulated individuals, it will still result in a change even if we do not quantify what percentage of the mechanism comes from individual learning after the manipulation or social learning after the manipulation. If there is a change in success measures between before and after the manipulation, the manipulation will have been the cause in either case. 
-
-If other researchers are interested in beginning to quantify whether social learning is involved in the spread of success behaviors, then they could collect data on post-manipulation success measures from the individuals who did not pass the manipulation and compare them with individuals who passed the manipulation. If there is no difference between both groups’ post-manipulation success measures, this indicates that social learning was involved in the spread of success behaviors. They could then use this data in a future registered report examining the role of social learning in the spread of success behaviors. If researchers are not planning on a social learning component in future research and/or do not have the time or resources to collect more data, they can refrain from collecting post-manipulation data on success measures on the individuals who did not pass the manipulation criterion. 
+We began collecting post-manipulation data on an individual as soon as it passed the manipulation because it is unknown for how long any potential effects of the manipulation will last. For the more social species, like the Florida scrub-jay, who participate in the experiment in groups, there is the potential that individuals who were not in the manipulation condition or who have not yet passed the manipulation condition will learn about post-manipulation success behaviors from the manipulated individuals who passed the experiment. We are ultimately interested in determining whether we can change success behaviors as a result of the flexibility manipulation. If part of this change is the result of social learning from some of the manipulated individuals, it will still result in a change even if we do not quantify what percentage of the mechanism comes from individual learning after the manipulation or social learning after the manipulation. If there is a change in success measures between before and after the manipulation, the manipulation will have been the cause in either case. 
 
 ### Observational methods
 
@@ -201,17 +197,17 @@ We categorized the food and habitat types used as:
 
 Microhabitat types in the suburban habitat (<100m from human structure) include: vertical human structure (e.g. building, bench), native vegetation, non-native vegetation, grass, impervious surface, and dirt. In the natural habitat (>100m from human structure), microhabitat types include all previous categories, but not human structure or impervious surface All categories can be further defined by whether the subject was high (>3m) or low (<3m) (for example, grass and impervious surfaces can occur above 3m if grass is on the roof of a building, and if an individual is walking on the impervious surface of an upper floor parking garage).
 
-Food types are broken down into plant (seed, fruit, human-provided, or unknown plant) and animal (insect larva, adult insect, crustacean, amphibian, reptile, mammal, bird, egg, human-provided, or unknown animal). “Human-provided” indicates any food item that was acquired from a store at some point and is left out by humans. For example, sunflower seeds would be considered human-provided if they are in the form of bird seed or a human snack. Sunflower seeds would only be counted in the “seed” category if the bird is seen eating it from a plant. Data will be collected on the four plant subcategories and ten animal subcategories and used in the analyses.
+Food types are broken down into plant (seed, fruit, human-provided, or unknown plant) and animal (insect larva, adult insect, crustacean, amphibian, reptile, mammal, bird, egg, human-provided, or unknown animal). “Human-provided” indicates any food item that was acquired from a store at some point and is left out by humans. For example, sunflower seeds would be considered human-provided if they are in the form of bird seed or a human snack. Sunflower seeds would only be counted in the “seed” category if the bird is seen eating it from a plant. Data were collected on the four plant subcategories and ten animal subcategories and used in the analyses.
 
-During follows, we will record each microhabitat the individual is present in and all food items consumed. Before data analysis, to ensure that we are only including the microhabitats individuals use (rather than just pass through), we will filter the data to include only microhabitats that account for at least 5% of their data points. Although we may not observe every possible microhabitat or food item the individual may use, by equally sampling before and after the manipulation we can detect changes in use.
+During observations, we recorded each microhabitat the individual is present in and all food items consumed. Before data analysis, to ensure that we were only including the microhabitats individuals use (rather than just pass through), we will filter the data to include only microhabitats that account for at least 5% of their data points. Although we may not observe every possible microhabitat or food item the individual may use, by equally sampling before and after the manipulation we can detect changes in use.
 
-Additionally, for all observational methods we use binoculars so that we can always attempt to stay far enough from the focal individual that our presence is not affecting their behavior. Because that distance can be different for each individual and species, we hesitate to give a specific number. However, if at any point the focal individual shows it is affected by our presence by looking directly at the researcher, alarm calling or startling, then we end the focal immediately, drop all data from that follow and attempt the follow again the next day.
+Additionally, for all observational methods we used binoculars so that we could stay far enough from the focal individual that our presence is not affecting their behavior. Because that distance can be different for each individual and species, we hesitate to give a specific number. However, if at any point the focal individual showed that it was affected by our presence by looking directly at the researcher, alarm calling or startling, then we ended the observation immediately, dropped all data from that observation and attempted the observation again the next day.
 
-We will attempt to balance follows for each observational method in the morning and afternoon for all individuals in the study. In this way, we will collect a random sample of data from active and inactive time periods for all individuals. 
+We attempted to balance observations in the morning and afternoon for all individuals in the study. In this way, we collected a random sample of data from active and inactive time periods for all individuals. 
 
 #### All occurrences sampling
 
-We will collect data on the foraging and microhabitat use of jays during spatial movement tracking (the latter as part of another investigation). We will follow jays for 60 minutes and record at 1-minute intervals the spatial location (GPS coordinates), any food items consumed, the microhabitat the jay is present in, and breeding behaviors if it is the breeding season. We will do 4 tracks per individual before, and 4 tracks per individual after the flexibility manipulation.
+We collected data on the foraging and microhabitat use of jays during spatial movement tracking (the latter as part of another investigation). We followed jays for 60 minutes and recorded at 1-minute intervals the spatial location (GPS coordinates), any food items consumed, and the microhabitat the jay is present in. We conducted 4 tracks per individual before, and 4 tracks per individual after the flexibility manipulation.
 
 ### Open data
 
@@ -226,11 +222,13 @@ The data will be published in the Knowledge Network for Biocomplexity's data rep
 
 ### Planned sample
 
-We will catch up to 60 jays per year using walk in traps, mist nets, and bow nets; collect their biometric data, and a blood sample; apply colored leg bands; attach a radio tag using a leg loop harness; and release them at their point of capture. We will collect data on pre- and post-manipulation success measures and conduct the experiment within the non-breeding season to control for potential temporal differences in the environment and behavior.
+Many individuals from our focal population of Florida scrub-jays were already color-banded. We additionally caught 24 jays over 2 field seasons using walk in traps and mist nets. We collected biometric data, a blood sample, applied colored leg bands and attached a radio tag using a leg loop harness to a small subset of individuals, then released them at their point of capture. We tested out the radio tag technology on four individuals in the first field season. However, the solar panel on the tags had low functionality, reducing the usability of this technology in this system. The Florida scrub-jays are highly territorial, and we were always able to find the jays to collect observational data without the radio tags.
+
+We conducted the serial reversal manipulation on 9 individuals. We will collect data on pre- and post-manipulation success measures and conduct the experiment within the non-breeding season to control for potential temporal differences in the environment and behavior.
 
 To determine whether the flexibility manipulation has influenced the ability of jays to persist in human modified environments, we will catch half of the jays in areas with access to human-supplemented food (i.e. private property, a university campus, parks adjacent to neighborhoods with feeders) and the other half in natural areas (wildlife management areas, reserves).
 
-### Before and after manipulation success measures
+#### Before and after manipulation success measures
 
 We will track baseline behavior and changes after the flexibility manipulation via spatial movement tracking that lasts for 60 min, noting the GPS location and the jay’s behavior at 1 minute intervals. During tracks, we document all occurrences of microhabitats used within the territory and foraging (see Observational methods, above) [@altmann1974observational]. The minimum sample size will be 20 individuals per species with a minimum of 4 tracks per individual (at least 2 per month) pre-manipulation and a minimum of 4 tracks per individual (at least 2 per month) post-manipulation (at least 320 tracks in total). These data will allow us to detect any pre- and post-manipulation within-individual differences in diversity of habitat use, and foraging breadth.
 
@@ -1576,3 +1574,363 @@ We, the authors, declare that we have no financial conflicts of interest with th
 We are grateful to our funders: Richard McElreath and Corina Logan at the Max Planck Institute for Evolutionary Anthropology (whole project), Dieter Lukas for assistance with analyses and coding. In addition, we are grateful for the ManyIndividuals co-founders, Drs. Corina Logan and Rachel Shaw. We are thankful for the input and assistance of Dr. Reed Bowman when designing the Florida scrub-jay data collection.
 
 # **REFERENCES**
+
+
+# **SUPPLEMENTARY MATERIALS**
+## S1 - Determining when to switch each individual to the next reversal: reversal passing criterion
+
+Different criteria exist to decide whether an individual has learned an association between the presence of a reward and some other feature (e.g., color or shape). The two main two criteria used are to switch an individual after it either has chosen 10 out of 12 choices correct [e.g., @shaw2015wild] or 17 out of 20 choices correct [e.g., @logan2016flexibilityproblem]. The criteria are further modified depending on whether choices are assessed continuously or grouped in predetermined blocks. 
+
+Here, we assess whether achieving 10 correct choices out of the last 12 continuously counted choices can be used as a reliable reversal passing criterion. To determine reliability and suitability, we investigated five questions (see below) by generalizing previously simulated reversal learning data from @logan2020xpop, based on data from great-tailed grackles. We simulated the choices individuals with different learning rates (phi) and rates of deviating from learned associations (lambda) would make in the initial discrimination and in the first reversal. Grackles are fast to reverse preferences compared with many other species [@logan2016flexibilityproblem], therefore we generalized the simulations to other species by setting the parameters that guide performance (phi and lambda) to lead to slower performances. 
+
+The findings from these simulated data indicate that deciding that an individual has passed the reversal when they choose 10 out of the last 12 consecutive trials correctly is functional and reliable because of the following:
+
+**1) individuals will be finished after fewer trials than with other criteria**
+
+With the 10 out of 12 criterion, individuals pass the reversal 8 trials faster (median) than with the 17 out of 20 criterion. This means that, for most individuals, the two rules are equally effective because they will pass both in the same amount of trials (i.e., the individual who met the 17/20 criterion in 50 trials would have met the 10/12 criterion in 42 trials), but because the 10 out of 12 criterion is restricted to 12 trials instead of 20, individuals need 8 fewer trials to meet the passing criterion. No individual needs more trials with the 10 out of 12 criterion. When trials are grouped into blocks of 10 such that they could only pass on trial 20, 30, etc., individuals need a median of 5 more trials compared to when choices are assessed continuously.
+
+**2) classification of individuals using the 10/12 criterion is less noisy because there is less of a chance for individuals to approach the criterion and not pass or never pass**
+
+The average improvement in the number of trials individuals need to reach the respective criterion is larger than the median of 8 trials. This occurs because there are no individuals who are faster with the 17 out of 20 criterion, and because there is a subset of individuals who need considerably fewer trials with the 10/12 criterion (Figure 7). Individuals who require a larger number of trials (>100) to pass almost never occur with the 10/12 criterion, whereas they are more common with the 17/20. With more trials, there is a higher chance that an individual will deviate from their preference by chance. This is also reflected in that 65 of the 626 simulated individuals never reached the 17/20 criterion within the maximum 300 trials, whereas there were only 4 individuals with the 10/12 criterion. Accordingly, an additional benefit of choosing the 10/12 criterion is that it is more likely that data for all individuals, even those who are slow to learn an association, can be collected.
+
+<img width="100%" src="m1Fig_ReversalCriterionComparison.png">
+
+**Figure 7.** There is less variation with the 10/12 reversal learning passing criterion and it requires fewer trials to reach than the 17/20 passing criterion. The lines represent the densities of individuals (estimated with smoothing which means values can go down to zero) across the 626 simulated individuals that needed a certain number of trials to either reach the 10/12 (red) or the 17/20 (black) criterion. With the 10/12 criterion, most individuals need 8 fewer trials (indicated by the lines showing the mode of the two density distributions). In addition, there are only very few individuals who need 100 or more trials with the 10/12 criterion, while there are several individuals that needed such large numbers with the 17/20 criterion.
+
+**3) variation among individuals with the 10/12 criterion is still present and similar to the variation detected with other criteria**
+
+As described in point 1, when changing the criterion from 17/20 to 10/12, most individuals need 8 fewer trials. This also means that the differences among individuals, which might contain relevant information about variation among them, is preserved. When transforming performance with the two criteria to ranks, individuals are sorted essentially in the same order independent of which criterion is used. This is shown in Figure 7: most points are shifted up by exactly 8 trials.
+
+**4) individuals can be assumed to have reliably learned the association using the 10/12 criterion**
+
+Based on the two reversal passing criteria (10/12 and 17/20), we can extract the attractions that simulated individuals have formed toward both the rewarded and the unrewarded option at the point at which they meet each of these criteria. Comparing the two attractions (to the rewarded and unrewarded options), we can determine whether individuals are likely to have learned an association or not. Independent of the criterion, individuals generally formed a preference for the rewarded option: 89% of individuals favor the rewarded option between 2.5 and 14 times more than the unrewarded option. With both criteria, individuals always have a stronger attraction to the rewarded than the unrewarded option. The smallest difference between the attraction scores to the rewarded and unrewarded options we observe at the point of passing is the same with both criteria. With the 10/12 criterion, individuals would in the next trial, on average, choose the rewarded option with a probability of 76% (3 times more likely to choose rewarded over unrewarded option), whereas this is 84% with the 17/20 criterion (5 times more likely).
+
+**5) the learned association means that individuals who move to the next reversal are unlikely to solve the reversed association by chance**
+
+As expected, based on the relative attraction scores at the end of the previous reversal, most individuals are unlikely to choose the now rewarded option. We expect that, on average, individuals will choose the newly rewarded option in 4 or fewer trials out of the first 12 trials (red line in Figure 8). This is a lower number of trials compared to individuals who have no association with either option (gray line in Figure 8), and a slightly higher number compared to individuals who use the 17/20 criterion (black line in Figure 8). The probability that an individual would, after a reversal, immediately choose the rewarded option 10 times during the first 12 trials (and pass) by chance is 0.001. However, even such rare individuals will have actually reversed their preference during their first 12 trials because they update their attractions on every trial.
+
+<img width="100%" src="m1Fig_ReversalCriterionAssociation.png">
+
+**Figure 8.** Individuals form strong enough preferences using the 10/12 passing criterion as indicated by the fact that they are unlikely to pass in the first 12 trials of their next reversal (red line). These individuals would take longer to switch their preference than individuals who have no preference (gray line), and they would be slightly faster at switching their preference than individuals who formed their previous association using the 17/20 criterion (black line).
+
+```{r loadsimulatedreversaldata, eval=F}
+# Load previously simulated data from xpop
+
+# There are two sets of simulated data, with initial attractions towards both options set at 0.1, and eight different phi and four different lambda combinations
+simulatedreversaldata_attractionscores_1<-read.csv(url("https://raw.githubusercontent.com/corinalogan/grackles/master/Files/Preregistrations/gxpopbehaviorhabitat_SimulatedReversalData_Grackles_PhiLambda_Attraction02_Aug2021.csv"), header=T, sep=",", stringsAsFactors=F) 
+
+simulatedreversaldata_attractionscores_2<-read.csv(url("https://raw.githubusercontent.com/corinalogan/grackles/master/Files/Preregistrations/gxpopbehaviorhabitat_SimulatedReversalData_Grackles_PhiLambda_Attraction04_Aug2021.csv"), header=T, sep=",", stringsAsFactors=F) 
+
+# In both simulations, sites (which differ by the phi and lambda assigned to individuals) were counted from 1-16; for the second simulation we change this to 17-32
+simulatedreversaldata_attractionscores_2$Site<-simulatedreversaldata_attractionscores_2$Site+16
+
+# In both simulations, individuals were counted from 1-320; for the second population we change the ids to start at 321
+simulatedreversaldata_attractionscores_2$Bird_ID<-simulatedreversaldata_attractionscores_2$Bird_ID+320
+
+# We combine the two data sets for the further analyses
+library(dplyr)
+simulatedreversaldata_attractionscores<-bind_rows(simulatedreversaldata_attractionscores_1,simulatedreversaldata_attractionscores_2)
+
+
+# Preparing simulated data for analyses
+
+# In the simulations, trials were counted continuously for each bird. We now want to change this so that it restarts counting trials from 1 upward once a bird switches to reversal.
+
+for (birds in 1:length(unique(simulatedreversaldata_attractionscores$Bird_ID))){
+  currentbird<-unique(simulatedreversaldata_attractionscores$Bird_ID)[birds]
+  maximuminitial<-max(simulatedreversaldata_attractionscores[simulatedreversaldata_attractionscores$Bird_ID==currentbird & simulatedreversaldata_attractionscores$Reversal == "initial",]$Trial)
+  simulatedreversaldata_attractionscores[simulatedreversaldata_attractionscores$Bird_ID==currentbird & simulatedreversaldata_attractionscores$Reversal == "reversal",]$Trial<-simulatedreversaldata_attractionscores[simulatedreversaldata_attractionscores$Bird_ID==currentbird & simulatedreversaldata_attractionscores$Reversal == "reversal",]$Trial - maximuminitial
+}
+
+# We need to adjust the coding during the reversal learning so that "correct" now matches whether it is correct or not. 
+simulatedreversaldata_attractionscores[simulatedreversaldata_attractionscores$Choice==0,]$Choice<-2
+
+# To use the model to estimate the phi and lambda parameters, we first need to change the column names to match these to the specifications in the model: change Bird_ID  to id; change Reversal to Choice, change CorrectChoice to Correct, change Site to Expid
+
+colnames(simulatedreversaldata_attractionscores)<-c("counter","id","Session","Trial","Reversal","Choice","Correct","Phi_mean","Lambda_mean","Site","Phi_sd","Lambda_sd","ThisBirdsPhi","ThisBirdsLambda","Attraction1","Attraction2")
+
+# There are several simulated individuals who never reached any criterion during the initial learning phase (in xpop we worked with the criterion of 17 correct out of the 20 choices given as one block). We need to remove these individuals from the dataset
+
+birdswithreversal<-as.data.frame(simulatedreversaldata_attractionscores %>% group_by(id) %>% summarise(experiments=length(unique(Reversal))))
+birdswithreversal<-birdswithreversal[birdswithreversal$experiments==2,]
+simulatedreversaldata_attractionscores<-simulatedreversaldata_attractionscores[simulatedreversaldata_attractionscores$id %in% birdswithreversal$id,]
+
+# Next, we need to change the ids of the birds to be continuous again for easier further processing in loops
+simulatedreversaldata_attractionscores$id<-as.integer(as.factor(simulatedreversaldata_attractionscores$id))
+
+
+
+# 1) With the 10 correct out of 12 continuous trials criterion, individuals finish after fewer trials than with other criteria
+
+# We use the data from the first reversal to check after how many trials an individual reaches the 10 out of 12 trials solved correctly rule. We are using a sliding window, rather than assuming that the experiment is split into discrete blocks of trials. For this, we check for each individual at what trial number it first reached the criterion that it had correctly solved 10 out of the last 12 trials.
+
+# We create a matrix to store the output. We have two columns, one with the id of the individual the other with the number of trials they needed with this rule. Having this setup makes the comparison with the alternative rule easier. In addition, it will keep track of individuals that never reached the criterion
+trialnumber_initiallearning_reachedtwelveten<-matrix(ncol=2,nrow=length(unique(simulatedreversaldata_attractionscores$id)))
+
+# We loop through all unique individuals in the simulated dataset (626 individuals) and for each check when they reached the criterion - at that point we can stop ("break") and ignore the remaining performance. In the initial association learning, wrong choices are coded as 2 and correct choices as 1, so individuals reached the criterion if they chose 10*1 + 2*2 (equals 14) - so individuals reached criterion when the sum in choices across 12 trials is lower than 15.
+for (i in 1:length(unique(simulatedreversaldata_attractionscores$id))){
+  
+  thisindividualsinitaltrials<-simulatedreversaldata_attractionscores[simulatedreversaldata_attractionscores$id %in% i & simulatedreversaldata_attractionscores$Reversal %in% "initial",]
+  trialnumber_initiallearning_reachedtwelveten[i,1]<-i
+  for (k in 1:(nrow(thisindividualsinitaltrials)-12)){
+    if(sum(thisindividualsinitaltrials[c(k:(k+11)),]$Choice)<15){
+      trialnumber_initiallearning_reachedtwelveten[i,2]<-(k+11)
+      break}
+  }
+}
+
+# Next, we repeat this for the alternative rule of 17 out of 20 trials, again using a sliding window approach across trials (17*1 + 3*2 = 23).
+trialnumber_initiallearning_reachedseventeentwenty<-matrix(ncol=2,nrow=length(unique(simulatedreversaldata_attractionscores$id)))
+
+for (i in 1:length(unique(simulatedreversaldata_attractionscores$id))){
+  
+  thisindividualsinitaltrials<-simulatedreversaldata_attractionscores[simulatedreversaldata_attractionscores$id %in% i & simulatedreversaldata_attractionscores$Reversal %in% "initial",]
+  trialnumber_initiallearning_reachedseventeentwenty[i,1]<-i
+  for (k in 1:(nrow(thisindividualsinitaltrials)-20)){
+    if(sum(thisindividualsinitaltrials[c(k:(k+19)),]$Choice)<24){
+      trialnumber_initiallearning_reachedseventeentwenty[i,2]<-(k+19)
+      break}
+  }
+}
+
+# We now have the number of trials each individual would have needed with the two rules to reach the respective criterion. We can check whether individuals needed fewer trials with the 10 out of 12 rule than the 17 out of 20 rule
+twelvetenfaster<-trialnumber_initiallearning_reachedseventeentwenty[,2]-trialnumber_initiallearning_reachedtwelveten[,2]
+
+# The median improvement is 8 trials
+median(twelvetenfaster,na.rm=T)
+# This means that for most individuals the two rules are equally effective, but because the 10 out of 12 rule is restricted to 12 trials instead of 20 individuals need 8 fewer trials.
+
+# The same is seen in a regression
+summary(lm(trialnumber_initiallearning_reachedseventeentwenty[,2]~trialnumber_initiallearning_reachedtwelveten[,2]))
+# The intercept is 7 (similar to the mean listed above), and the slope is 1.3 (suggesting that deviations are slightly more when individuals need a large number of trials). 
+
+# We can also check whether counting trials continously, instead of grouping them into blocks, means that individuals finish sooner. In the original simulation, trials where stopped when birds reached the 17 out of 20 criterion based on blocks of 10 trials. We can check whether counting trials continously means they would have finished sooner:
+
+# We now get the number of trials they needed to pass the block criterion
+trialnumber_initiallearning_reachedseventeentwentyblock<-matrix(ncol=2,nrow=length(unique(simulatedreversaldata_attractionscores$id)))
+
+for (i in 1:length(unique(simulatedreversaldata_attractionscores$id))){
+  thisindividualsinitaltrials<-simulatedreversaldata_attractionscores[simulatedreversaldata_attractionscores$id %in% i & simulatedreversaldata_attractionscores$Reversal %in% "initial",]
+  trialnumber_initiallearning_reachedseventeentwentyblock[i,1]<-i
+  trialnumber_initiallearning_reachedseventeentwentyblock[i,2]<-max(thisindividualsinitaltrials$Trial)
+  }
+
+plot(trialnumber_initiallearning_reachedseventeentwentyblock[,2]~trialnumber_initiallearning_reachedseventeentwenty[,2])
+abline(a=0,b=1)
+median(trialnumber_initiallearning_reachedseventeentwentyblock[,2]-trialnumber_initiallearning_reachedseventeentwenty[,2],na.rm=T)
+# 5 trials faster
+mean(trialnumber_initiallearning_reachedseventeentwentyblock[,2]-trialnumber_initiallearning_reachedseventeentwenty[,2],na.rm=T)
+# 7 trials faster
+
+
+# 2) With the 10 correct out of 12 continuous trials criterion, variation among individuals is still present and similar to the variation detected with other criteria
+
+# Changing the criterion from 17/20 to 10/12 generally means that most individuals need 8 fewer trials. That also means that the differences among individuals, which might contain relevant information, is preserved. We can see this when we plot their ranks in how many trials they need (individuals who need the same number of trials have the same rank; there are fewer ranks with the 10/12 criterion because large values do not appear)
+plot(as.integer(as.factor(trialnumber_initiallearning_reachedseventeentwenty[,2])) ~ as.integer(as.factor(trialnumber_initiallearning_reachedtwelveten[,2])),xlim=c(0,100),ylim=c(0,100))
+abline(a=0,b=1)
+
+
+
+# 3) With the 10 correct out of 12 continuous trials criterion, classification is less noisy because there is less of a chance of individuals missing the criterion repeatedly or even never reaching it, meaning that individuals slow to learn will be more reliably classified than with a different criterion
+
+# While the median improvement is 8 trials, the average improvement is 15 trials
+mean(twelvetenfaster,na.rm=T)
+# The average improvement is larger than the median because, first, there are no individuals who are faster with the 17 out of 20 rule, and secondly because there is a subset of individuals who need considerably fewer trials with the 10 out of 12 rule. We can see this in a plot:
+
+seventeentwenty<-trialnumber_initiallearning_reachedseventeentwenty[,2]
+seventeentwenty<-seventeentwenty[is.na(seventeentwenty)==F]
+
+twelveten<-trialnumber_initiallearning_reachedtwelveten[,2]
+twelveten<-twelveten[is.na(twelveten)==F]
+
+plot(density(seventeentwenty),ylim=c(0,0.05),ann=F,bty="n",xlim=c(0,300),lwd=4,xaxt="n",yaxt="n")
+lines(density(twelveten),col="red",lwd=4)
+axis(side=1,at=c(0,50,100,150,200,250,300))
+segments(x0 = 16, y0 = 0, x1 = 16, y1 = 0.05, col = "red",lwd=1.5,lty=2) 
+segments(x0 = 24, y0 = 0, x1 = 24, y1 = 0.045, col = "black",lwd=1.5,lty=2) 
+mtext("Trials needed to reach criterion", side=1,cex=1.25,line=3)
+mtext("Density of individuals", side=2,cex=1.25,line=1)
+legend(x=160,y=0.045,legend=c(lty1="17 / 20 criterion",lty1="10 / 12 criterion"),lwd=c(4,4),col=c("black","red"),cex=1.25,bty="n")
+abline(v=0,lty=1)
+mtext("16 trials", side=1,cex=1,line=-16,at=32,col="red",bg="white")
+mtext("24 trials", side=1,cex=1,line=-14.5,at=40,col="black",bg="white")
+
+# m1Fig_ReversalCriterionComparison
+
+# With the 17 out of 20 rule, some individuals need a very large number of trials. This is presumably because with more trials there is a higher chance that an individual will deviate from their preference by chance, leading to them not reaching the criterion. Such individuals with very larger number of trials (>100) almost never occur with the 10 out 12 rule. There are also 65 individuals (out of the 626) with the 17 out of 20 criterion who never reached the criterion within the maximum 300 trials that were simulated - while there are only 4 with the 10 out of 12 criterion.
+sum(is.na(trialnumber_initiallearning_reachedseventeentwenty))
+sum(is.na(trialnumber_initiallearning_reachedtwelveten))
+
+# Accordingly, an additional benefit of choosing the 10/12 rule is that it is more likely that data for all individuals, even those slow to learn an association, can be collected.
+
+
+
+# 4) With the 10 correct out of 12 continuous trials criterion, individuals can be assumed to have reliably learned the association
+
+# The difference in attraction, the mechanisms of the assumed learning processes mean that changes in attraction scores are non-linear. New information that an option is rewarded leads initially to large increases in the attraction score towards that option, but each additional information about the reward leads to smaller and smaller additional increases; new information that a previously rewarded option is now unrewarded lead initially to large drops in the attraction score, but additional information that this option is no longer rewarded leads to smaller declines in the attraction score. This means that with the 10 out of 12 criterion, individuals might have already reached the part in the curve of change of attraction scores where there are large differences that have essentially plateaued. We can check this by assessing both the actual attraction scores at that trial when individuals would have reached the criterion, and how high their attraction score is in relation to the maximum attraction score they obtained during the experiment.
+simulatedreversaldata_attractionscores$relativeattraction<-simulatedreversaldata_attractionscores$Attraction1/simulatedreversaldata_attractionscores$Attraction2
+
+# We create a matrix to store the output. We have two columns, one with the id of the individual the other with the number of trials they needed with this rule. Having this setup makes the comparison with the alternative rule easier. In addition, it will keep track of individuals that never reached the criterion
+trialnumber_initiallearning_reachedtwelveten<-matrix(ncol=6,nrow=length(unique(simulatedreversaldata_attractionscores$id)))
+colnames(trialnumber_initiallearning_reachedtwelveten)<-c("Id","TrialAtReachingCriterion","AttractionScore","RelativeAttractionScore","AttractionOutOfMax","RelativeAttractionOutOfMax")
+trialnumber_initiallearning_reachedtwelveten<-as.data.frame(trialnumber_initiallearning_reachedtwelveten)
+
+# We loop through all unique individuals in the simulated dataset (626 individuals) and for each check when they reached the criterion - at that point we can stop ("break") and ignore the remaining performance. In the initial association learning, wrong choices are coded as 2 and correct choices as 1, so individuals reached the criterion if they chose 10*1 + 2*2 (equals 14) - so individuals reached criterion when the sum in choices across 12 trials is lower than 15.
+for (i in 1:length(unique(simulatedreversaldata_attractionscores$id))){
+  thisindividualsinitaltrials<-simulatedreversaldata_attractionscores[simulatedreversaldata_attractionscores$id %in% i & simulatedreversaldata_attractionscores$Reversal %in% "initial",]
+  trialnumber_initiallearning_reachedtwelveten[i,1]<-i
+  for (k in 1:(nrow(thisindividualsinitaltrials)-12)){
+    if(sum(thisindividualsinitaltrials[c(k:(k+11)),]$Choice)<15){
+      trialnumber_initiallearning_reachedtwelveten[i,2]<-(k+11)
+      trialnumber_initiallearning_reachedtwelveten[i,3]<-thisindividualsinitaltrials[k+11,]$Attraction1
+      trialnumber_initiallearning_reachedtwelveten[i,4]<-thisindividualsinitaltrials[k+11,]$relativeattraction
+      trialnumber_initiallearning_reachedtwelveten[i,5]<-thisindividualsinitaltrials[k+11,]$Attraction1/max(thisindividualsinitaltrials$Attraction1,na.rm=T)
+      trialnumber_initiallearning_reachedtwelveten[i,6]<-thisindividualsinitaltrials[k+11,]$relativeattraction/max(thisindividualsinitaltrials$relativeattraction,na.rm=T)
+      break}
+  }
+}
+
+# Next, we repeat this for the alternative rule of 17 out of 20 trials, again using a sliding window approach across trials (17*1 + 3*2 = 23).
+trialnumber_initiallearning_reachedseventeentwenty<-matrix(ncol=6,nrow=length(unique(simulatedreversaldata_attractionscores$id)))
+colnames(trialnumber_initiallearning_reachedseventeentwenty)<-c("Id","TrialAtReachingCriterion","AttractionScore","RelativeAttractionScore","AttractionOutOfMax","RelativeAttractionOutOfMax")
+trialnumber_initiallearning_reachedseventeentwenty<-as.data.frame(trialnumber_initiallearning_reachedseventeentwenty)
+
+for (i in 1:length(unique(simulatedreversaldata_attractionscores$id))){
+  thisindividualsinitaltrials<-simulatedreversaldata_attractionscores[simulatedreversaldata_attractionscores$id %in% i & simulatedreversaldata_attractionscores$Reversal %in% "initial",]
+  trialnumber_initiallearning_reachedseventeentwenty[i,1]<-i
+  for (k in 1:(nrow(thisindividualsinitaltrials)-20)){
+    if(sum(thisindividualsinitaltrials[c(k:(k+19)),]$Choice)<24){
+      trialnumber_initiallearning_reachedseventeentwenty[i,2]<-(k+19)
+      trialnumber_initiallearning_reachedseventeentwenty[i,3]<-thisindividualsinitaltrials[k+19,]$Attraction1
+      trialnumber_initiallearning_reachedseventeentwenty[i,4]<-thisindividualsinitaltrials[k+19,]$relativeattraction
+      trialnumber_initiallearning_reachedseventeentwenty[i,5]<-thisindividualsinitaltrials[k+19,]$Attraction1/max(thisindividualsinitaltrials$Attraction1,na.rm=T)
+      trialnumber_initiallearning_reachedseventeentwenty[i,6]<-thisindividualsinitaltrials[k+19,]$relativeattraction/max(thisindividualsinitaltrials$relativeattraction,na.rm=T)
+      break}
+  }
+}
+
+# We can plot the relative attraction scores (prefer rewarded option relative to unrewarded option) at the points where each individual reached either the 10/12 or the 17/20 criterion. 
+plot(trialnumber_initiallearning_reachedtwelveten$RelativeAttractionScore~trialnumber_initiallearning_reachedseventeentwenty$RelativeAttractionScore,ylim=c(0,50),xlim=c(0,50))
+abline(a=0,b=1)
+library(rethinking)
+PI(trialnumber_initiallearning_reachedtwelveten[is.na(trialnumber_initiallearning_reachedtwelveten$RelativeAttractionScore)==F,]$RelativeAttractionScore)
+PI(trialnumber_initiallearning_reachedseventeentwenty[is.na(trialnumber_initiallearning_reachedseventeentwenty$RelativeAttractionScore)==F,]$RelativeAttractionScore)
+
+# We can see that (i) the lowest relative attraction scores are very similar, suggesting that independent of the criterion, individuals generally have formed a preference for the rewarded option (89% of the values lie between 2.5 and 14); and that (ii) for most individuals, the relative attraction scores are very similar for the two criteria.
+
+# We can convert the relative attraction scores into the probability that an individual will choose the rewarded option in the trial following the cut-off by converting it back with the respective phi and lambda values
+attractionlightgrey_twelveten<-median(trialnumber_initiallearning_reachedtwelveten$AttractionScore,na.rm=T)
+attractiondarkgrey_twelveten<-(median(trialnumber_initiallearning_reachedtwelveten$AttractionScore,na.rm=T))/(median(trialnumber_initiallearning_reachedtwelveten$RelativeAttractionScore,na.rm=T))
+bird_lambda<-median(simulatedreversaldata_attractionscores$ThisBirdsLambda)
+probability_choose_lightgrey_tenoftwelve<-exp(bird_lambda*attractionlightgrey_twelveten)/(exp(bird_lambda*attractionlightgrey_twelveten)+exp(bird_lambda*attractiondarkgrey_twelveten)  )
+
+attractionlightgrey_seventeentwenty<-median(trialnumber_initiallearning_reachedseventeentwenty$AttractionScore,na.rm=T)
+attractiondarkgrey_seventeentwenty<-(median(trialnumber_initiallearning_reachedseventeentwenty$AttractionScore,na.rm=T))/(median(trialnumber_initiallearning_reachedseventeentwenty$RelativeAttractionScore,na.rm=T))
+bird_lambda<-median(simulatedreversaldata_attractionscores$ThisBirdsLambda)
+probability_choose_lightgrey_seventeenoftwenty<-exp(bird_lambda*attractionlightgrey_seventeentwenty)/(exp(bird_lambda*attractionlightgrey_seventeentwenty)+exp(bird_lambda*attractiondarkgrey_seventeentwenty)  )
+
+probability_choose_lightgrey_tenoftwelve
+# 0.7612336
+probability_choose_lightgrey_seventeenoftwenty
+# 0.839137
+
+# While individuals are more likely to choose the rewarded option if they needed the 17/20 criterion to pass, also with the 10/12 criterion individuals show a clear preference for the rewarded option
+
+
+# 5) this learned association means that individuals who move to the next reversal with this criteria are unlikely to solve the reversed association by chance.
+
+# We can simulate the performance in the first 12 trials after switching the rewarded option for sets of 10000 individuals who either have no learned association, have been stopped after the 10/12 rule, or stopped after the 17/20 rule.
+choselightgrey_seventeenoftwenty<-matrix(nrow=10000,ncol=12)
+choselightgrey_seventeenoftwenty<-as.data.frame(choselightgrey_seventeenoftwenty)
+
+for(i in 1:10000){
+  for(j in 1:12)
+choselightgrey_seventeenoftwenty[i,j]<-if(runif(1,0,1)<probability_choose_lightgrey_seventeenoftwenty){1} else{0}
+}
+
+# We can plot how often these individuals choose the now rewarded option in the first 12 trials: individuals with no learned associations are in the grey distribution, individuals with the 10/12 rule in the blue distribution, and individuals with the 17/20 rule are in the red distribution.  
+plot(NA,xlim=c(1,12),ylim=c(0,0.3))
+lines(dbinom(1:12,12,1-probability_choose_lightgrey_seventeenoftwenty)~c(1:12),col="red")
+lines(dbinom(1:12,12,1-probability_choose_lightgrey_tenoftwelve)~c(1:12),col="blue")
+lines(dbinom(1:12,12,0.5)~c(1:12),col="grey")
+
+# As expected based on the relative attraction scores (probability to choose the now rewarded option of 24% for 10/12 and 16% for 17/20), most individuals choose the now rewarded option in less than 6 out of the first 12 trials, whereas that is the mean for individuals with no association
+
+# We can make this more explicit and incorporate that individuals will also change their association as they learn that the rewarded option has switched
+#assume that a bird made 10/12 choices correct
+attractiondarkgrey<-0.388985
+attractionlightgrey<-0.08549744
+bird_phi<-median(simulatedreversaldata_attractionscores$ThisBirdsPhi)
+
+# We give the individual 12 trials. We assume that at first they chose the previously rewarded option (dark grey) and switch to the now rewarded option halfway through
+attractiondarkgrey<-(1-bird_phi)*attractiondarkgrey+bird_phi*0
+attractiondarkgrey<-(1-bird_phi)*attractiondarkgrey+bird_phi*0
+attractiondarkgrey<-(1-bird_phi)*attractiondarkgrey+bird_phi*0
+attractionlightgrey<-(1-bird_phi)*attractionlightgrey+bird_phi*1
+attractiondarkgrey<-(1-bird_phi)*attractiondarkgrey+bird_phi*0
+attractiondarkgrey<-(1-bird_phi)*attractiondarkgrey+bird_phi*0
+attractionlightgrey<-(1-bird_phi)*attractionlightgrey+bird_phi*1
+attractionlightgrey<-(1-bird_phi)*attractionlightgrey+bird_phi*1
+attractionlightgrey<-(1-bird_phi)*attractionlightgrey+bird_phi*1
+attractiondarkgrey<-(1-bird_phi)*attractiondarkgrey+bird_phi*0
+attractionlightgrey<-(1-bird_phi)*attractionlightgrey+bird_phi*1
+attractionlightgrey<-(1-bird_phi)*attractionlightgrey+bird_phi*1
+
+probability_choose_lightgrey_twelvetrials<-exp(bird_lambda*attractionlightgrey)/(exp(bird_lambda*attractionlightgrey)+exp(bird_lambda*attractiondarkgrey)  )
+
+attractionlightgrey_seventeentwenty
+attractiondarkgrey<-attractionlightgrey_seventeentwenty
+attractionlightgrey<-attractiondarkgrey_seventeentwenty
+bird_phi<-median(simulatedreversaldata_attractionscores$ThisBirdsPhi)
+
+# We give the individual 12 trials. We assume that at first they chose the previously rewarded option (dark grey) and switch to the now rewarded option halfway through
+attractiondarkgrey<-(1-bird_phi)*attractiondarkgrey+bird_phi*0
+attractiondarkgrey<-(1-bird_phi)*attractiondarkgrey+bird_phi*0
+attractiondarkgrey<-(1-bird_phi)*attractiondarkgrey+bird_phi*0
+attractionlightgrey<-(1-bird_phi)*attractionlightgrey+bird_phi*1
+attractiondarkgrey<-(1-bird_phi)*attractiondarkgrey+bird_phi*0
+attractiondarkgrey<-(1-bird_phi)*attractiondarkgrey+bird_phi*0
+attractionlightgrey<-(1-bird_phi)*attractionlightgrey+bird_phi*1
+attractionlightgrey<-(1-bird_phi)*attractionlightgrey+bird_phi*1
+attractionlightgrey<-(1-bird_phi)*attractionlightgrey+bird_phi*1
+attractiondarkgrey<-(1-bird_phi)*attractiondarkgrey+bird_phi*0
+attractionlightgrey<-(1-bird_phi)*attractionlightgrey+bird_phi*1
+attractionlightgrey<-(1-bird_phi)*attractionlightgrey+bird_phi*1
+
+probability_choose_lightgrey_twentytrials<-exp(bird_lambda*attractionlightgrey)/(exp(bird_lambda*attractionlightgrey)+exp(bird_lambda*attractiondarkgrey)  )
+
+# While the learning during the 12 trials changes what they choose compared to what they would choose just based on their attractions at the end of the previous phase (black line is shifted up compared to the blue line), this is still not sufficient for them to pass the 10/12 rule
+plot(NA,xlim=c(0,12),ylim=c(0,0.3),bty="n",ann=F)
+lines(dbinom(0:12,12,0.5)~c(0:12),col="grey",lwd=2)
+lines(dbinom(0:12,12,probability_choose_lightgrey_twelvetrials)~c(0:12),col="red",lwd=2)
+lines(dbinom(0:12,12,probability_choose_lightgrey_twentytrials)~c(0:12),col="black",lwd=2)
+mtext("Choice of the newly rewarded option in the first 12 trials after a reversal", side=1,line=3,cex=1.25)
+mtext("Percentage of individuals", side=2,line=2.5,cex=1.5)
+mtext("Strength of association at a reversal with different criteria", side=3,line=1.25,cex=1.5)
+legend(x="topright",legend=c(lty1="17 / 20",lty1="10 / 12",lty3="random"),lwd=c(2,2,2),col=c("black","red","grey"),cex=1,bty="n")
+
+dbinom(1:12,12,probability_choose_lightgrey_twelvetrials)[10]
+# The probability that a bird would, after a reversal, reach the 10 out of 12 rule by chance is 0.001
+```
+
+## S2 - Determining after which reversal an individual has completed the experiment: serial reversal passing criterion
+
+Data from previous serial reversal experiments suggests that individuals who go through multiple reversals will end up with a performance that is similar to the individuals who needed the fewest trials on the first reversal [@lucon2014discrimination; @logan2022flexmanip]. This suggests that the manipulation changes individuals within their natural range of variation rather than pushing them to new limits. This means that we can use the performance of the fastest individuals in the first reversal to set the criterion for passing the serial reversal experiment. Accordingly, we can only set the serial reversal passing criterion after the data from the first reversal begins to become available. Some species might already have data from previous studies on reversal learning, however it is important to set the passing criterion for this experiment using this particular setup. Therefore, the criterion must be established from scratch for each species using this setup.
+
+**The serial reversal passing criterion:** reach the reversal passing criterion (10 out of 12 trials correct) in X trials or fewer in two consecutive reversals. 
+
+X = the number of trials required that marks the fastest 20% of individuals in the first reversal. For example, if you test 20 individuals, the number of trials for the 4th fastest individual will be the criterion. For 10 individuals, use the number of trials for the 2nd fastest individual. The fastest 20% was validated using the grackle data [@logan2022flexmanip]: it aligns with the one sigma rule from a normal distribution, indicating the percentage of individuals who are faster than the mean number of trials minus one standard deviation. If more than 20% of individuals reach this number of trials in their first reversal (because there might be a tie), choose the next fastest number of trials to pass. Particularly near the beginning of the experiment, it will be important to set the passing criterion to a lower number to ensure that individuals will be overtrained rather than undertrained. 
+
+As the data for additional individuals becomes available, this number can change accordingly. If the number changes across the experiment, we will check whether any currently participating individuals would have already passed according to this criterion and end their experiment.
+
+Individuals need to meet this criterion in two consecutive reversals to pass the serial reversal experiment to ensure that their behavior is consistent and that their speedy performance did not occur by chance. Previous serial reversal experiments show that reversal performance plateaus after a certain number of reversals [e.g., 6-8 reversals in great-tailed grackles @logan2022flexmanip]. If individuals show no consistent improvement after 12 reversals and have not yet met the serial reversal passing criterion, they will be excluded from the experiment. We will plan to start with many more individuals than the minimum sample size to allow for potential drop outs.
+
+We do not expect that the serial reversal manipulation will introduce new negative effects because the passing criterion is set such that the manipulated individuals are only as fast as the fastest 20% of tested individuals. This means that we are not introducing an unnatural amount of flexibility because we are not making any individuals more flexible than what already exists in their population.
+
+There will be individual variation in terms of baseline flexibility before the manipulation such that the flexibility training might influence individuals differently. For example, individuals who are already flexible before the manipulation will not benefit much from the manipulation, while the less flexible individuals will benefit more. Individuals who are already flexible and pass the serial reversals in fewer reversals will still meet the experiment’s passing criterion and be considered to have completed the manipulation, even if they did not improve. Baseline flexibility differences could also be reflected in their pre-manipulation success measures (i.e., individuals with high baseline flexibility might already be successful before the manipulation) if these success measures relate to flexibility. Our statistical models account for these baseline individual differences in success as they might relate to performance on the flexibility manipulation because they include an interaction between the intercept (the value at which individuals start) and slope (by how much they change).
+
+## S3 - Planned Sample
+
+For each population, depending on the response variable, we ran separate power analyses to determine the planned sample size (see Analysis Plan). For each population, we will aim to reach the minimum sample size required to detect the expected effects of the intervention on the response variables. However, given the difficulties of working with wild individuals, there might be instances where we might not reach a particular target. In such a case, we will interpret the result in light of the power that the particular sample size provides, as indicated by the power analyses. The minimum sample size depends on whether the intervention is performed as a within-subject design  (higher power), measuring the response for the same individuals before and after the intervention, or whether it is performed as a between-subjects design, where half the individuals are randomly assigned to the intervention group. In addition, it will depend on whether the response variable has a binary or a continuous outcome (higher power), and in the latter case whether the measure is open-ended (lower power) and therefore individuals will show a large range of values (e.g., dispersal distance).
+
+We will stop collecting data for the flexibility manipulation experiment when a buffer above the minimum sample size is reached or when the season in which the minimum sample size is reached comes to an end, or when the minimum sample sizes for the success measures have been reached. When conducting the manipulation experiment, it is important to aim to test more than the minimum number of individuals because some might not have data in the post-intervention stage. 
