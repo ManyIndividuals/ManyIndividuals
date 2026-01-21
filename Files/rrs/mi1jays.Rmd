@@ -524,8 +524,9 @@ ggplot(dflex2, aes(as.factor(Reversal), max.trial, fill = Location)) +
   geom_hline(yintercept = 12,color = "red") +
   coord_cartesian(ylim=c(5,40)) +
   theme_classic() +
-  theme(legend.title = element_blank(),
+  theme(
         legend.text = element_text(size = 18),
+        legend.title = element_text(size = 22),
         axis.title = element_text(size = 22),
         axis.text = element_text( size = 18),
         strip.text = element_text(size = 24,face = "bold")) +
@@ -1143,16 +1144,24 @@ library(reshape2)
 pp.div2 = melt(pp.div, id.vars = c("ID","Condition","pp"),value.name = "value", measure.vars = c("food","substrate","height"))
 pp.div2$pp = factor(pp.div2$pp, levels = c("pre","post"))
 
-ggplot(pp.div2[-which(pp.div2$variable == "height"),], aes(pp,value, group = ID)) +
+pp.div2$Location = ifelse(pp.div2$ID == "ak-ox" | pp.div2$ID == "wk-ox" |pp.div2$ID == "gx-ok" |
+                          pp.div2$ID == "ow-xk" |pp.div2$ID == "gx-ak" |pp.div2$ID == "wx-rk" |
+                          pp.div2$ID == "bx-wk" |pp.div2$ID == "bx-yk" |pp.div2$ID == "rx-yk" |
+                          pp.div2$ID == "yx-dgk" |pp.div2$ID == "yx-gk",
+                          "Suburban","Natural")
+
+ggplot(pp.div2[-which(pp.div2$variable == "height"),], aes(pp,value, group = ID, color = Location)) +
   facet_wrap(~ variable, scales = "free") +
   geom_line() +
-  geom_point(size = 3) +
+  geom_point(size = 3, aes(color = Location)) +
   theme_classic() +
-  theme(legend.position = "none",
+  theme(legend.text = element_text(size = 18),
+        legend.title = element_text(size = 22),
         axis.title = element_text(size = 22),
         axis.title.x = element_blank(),
         axis.text = element_text( size = 18),
-        strip.text = element_text(size = 24,face = "bold")) 
+        strip.text = element_text(size = 24,face = "bold")) +
+  scale_color_manual(values=c("gray17","gray60"))
   
   
 ```
