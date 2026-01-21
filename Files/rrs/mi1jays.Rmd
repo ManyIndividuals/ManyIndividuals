@@ -509,7 +509,7 @@ estimates_pairwisedifferences_lambdaposteriors$crosseszero<-ifelse(estimates_pai
 
 ```
 
-```{r plotjayflexbeforehabitatcomparison, eval=F}
+```{r plotjayflexbeforehabitatcomparison, echo=FALSE}
 dflex.o <- read.csv(url("https://raw.githubusercontent.com/ManyIndividuals/ManyIndividuals/refs/heads/main/Files/rrs/mi1_jays_flexdata.csv"), 
                   header=T, sep=",", stringsAsFactors=F)
 dflex = dflex.o[which(dflex.o$Reversal == 0 | dflex.o$Reversal == 1),]
@@ -517,13 +517,6 @@ dflex = dflex.o[which(dflex.o$Reversal == 0 | dflex.o$Reversal == 1),]
 dflex2 = aggregate(Trial ~ ID + Location + Reversal, FUN = "max", data = dflex)
 colnames(dflex2)[4] = "max.trial"
 dflex2$adj.max = dflex2$max.trial - 12 # because no jays could reach the criterion in fewer than 12 trials.
-library(lme4)
-sl = glmer(adj.max ~ Location+Reversal + (1|ID) + (1|olre), family = "poisson", data = dflex2)
-summary(sl) # no difference with max.trial or adj.max
-boxplot(max.trial ~ Location+Reversal, data = dflex2)
-s0 = glmer(adj.max ~ Location + (1|olre), data = dflex2[which(dflex2$Reversal == 0),], family = "poisson")
-summary(s0) # no difference with max.trial or adj.max
-overdisp_fun(s0)
 
 
 ggplot(dflex2, aes(as.factor(Reversal), max.trial, fill = Location)) +
@@ -540,6 +533,8 @@ ggplot(dflex2, aes(as.factor(Reversal), max.trial, fill = Location)) +
   labs(x = "Reversal",y = "Trials to criteria")
 
 ```
+Figure 3: Before the flexibility training, jays in the suburban and natural habitats did not differ in baseline cognitive ability. These boxplots show the performance on baseline associative learning (Reversal 0) and behavioral flexibility (Reversal 1) for jays in the natural (dark grey) and suburban (light grey) habitats. The horizontal red line illustrates the minimum number of trials to pass criteria (10 out of the most recent 12 trials correct).
+
 
 #### J.Q2 Are disturbance-resiliant jays more flexible than disturbance-resistant jays?
 
@@ -1141,49 +1136,28 @@ diff_p <- inv_logit(post$g[,2]) - inv_logit(post$g[,1]) #on the probability scal
 precis( list( diff_g=diff_g , diff_p=diff_p ) )
 ```
 
-```{r plotjayhabitatuse, eval=F}
-pp.div = read.csv(url("https://raw.githubusercontent.com/ManyIndividuals/ManyIndividuals/refs/heads/main/Files/rrs/mi1_jays_pp_div.csv"), header=T, sep=",", stringsAsFactors=F)
-
-boxplot(forage ~ pp, data = pp.div)
-boxplot(height ~ pp, data = pp.div)
-boxplot(substrate ~ pp, data = pp.div)
-
-pp.div2 = melt(pp.div, id.vars = c("ID","Condition","pp"),value.name = "value", measure.vars = c("forage","substrate","height"))
+```{r plotjayhabitatuse, echo=FALSE}
+pp.div = read.csv(url("https://raw.githubusercontent.com/ManyIndividuals/ManyIndividuals/refs/heads/main/Files/rrs/mi1_jays_pp_div2.csv"), header=T, sep=",", stringsAsFactors=F)
+colnames(pp.div)[3] = "food"
+library(reshape2)
+pp.div2 = melt(pp.div, id.vars = c("ID","Condition","pp"),value.name = "value", measure.vars = c("food","substrate","height"))
 pp.div2$pp = factor(pp.div2$pp, levels = c("pre","post"))
-colnames(move2) = c("ID","pp","value")
-move2$variable = "step.length"
-pp.div3 = pp.div2
-pp.div3 = pp.div3[-which(pp.div3$variable == "height"),]
 
-pp.div3 = rbind(pp.div3,move2)
-
-ggplot(pp.div3, aes(pp,value, group = ID)) +
+ggplot(pp.div2[-which(pp.div2$variable == "height"),], aes(pp,value, group = ID)) +
   facet_wrap(~ variable, scales = "free") +
   geom_line() +
-  geom_point(size = 3, aes(color = pp)) +
+  geom_point(size = 3) +
   theme_classic() +
   theme(legend.position = "none",
         axis.title = element_text(size = 22),
         axis.title.x = element_blank(),
         axis.text = element_text( size = 18),
-        strip.text = element_text(size = 24,face = "bold")) +
-  scale_color_manual(values=c("black","grey"))
+        strip.text = element_text(size = 24,face = "bold")) 
   
   
-  
-ggplot(sample, aes(x = status, y = score, group = name)) + 
-geom_line() + 
-geom_point(size = 2, aes(color = status)) + 
-facet_wrap(~ test, switch = "x") +
-scale_x_discrete("") +
-theme_minimal() +
-theme(legend.position = "top", 
-      panel.grid = element_blank(),
-      axis.text.x = element_blank(),
-      axis.line.y = element_line(size = .5))
-
-
 ```
+Figure 4: Jays did not predictably change their foraging or microhabitat use behaviors after they underwent the flexibility training manipulation. Values indicate the number of different foods or substrates jays were observed to use during the all-occurrences focal observation session before (pre) and after (post) we conducted serial reversal learning to increase behavioral flexibility. Each dot represents a jay and lines connect the dots of jays with data both pre and post. We collected pre observations on some jays for which we were not able to conduct the flexibility training and so we did not need to collect post observations.
+
 
 #### J.Q4 More flexible = more food types?
 
