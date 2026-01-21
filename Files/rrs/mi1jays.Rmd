@@ -125,14 +125,14 @@ This comparative approach will ultimately reveal how conserved these abilities m
 &nbsp;
 
 
-#### Background
+### Background
 Jay species exhibit a diversity of social systems and success in colonizing suburban and urban areas (Fig. 2). California scrub-jays (*Aphelocoma californica*, hereafter "CASJ") and blue jays (*Cyanocitta cristata*, hereafter “BLJA”) are singular, monogamous breeders that are increasing in abundance, expanding their range sizes, and highly successful in natural, suburban, and urban areas [@blair1996land; @curry2017california]. We therefore consider these “disturbance-resilient” (DR) jay species. In contrast, the Florida scrub-jay (*A. coerulescens*; hereafter "FLSJ") is a “disturbance-sensitive” (DS) jay species that is threatened, endemic, and range-restricted to xeric oak scrub habitat in Florida [@woolfenden1996florida]. 
 
 These species forage primarily on mast (acorns, hazelnuts, etc.) that they cache throughout their territory, which makes it available to eat year-round. They are also opportunistic omnivores and specifically need high-fat and high-protein arthropods to feed to nestlings and fledglings [@curry2017california]. Nesting and foraging substrates can be drastically different in human modified environments compared to natural areas [e.g., predominance of non-native vegetation; @tuomainen2011behavioural], and it is unknown whether suburban and urban jays are able to persist in these environments through behavioral adjustments. The DS jay species, the FLSJ, can persist in suburban habitats after conversion from xeric oak scrub, however suburban populations of FLSJ steadily decline (Bowman pers. comm.). This is potentially due to the presence of suboptimal habitat resulting from fire suppression [@woolfenden1996florida], higher rates of brood reduction through nestling starvation [@shawkey2004brood], and the lack of nutritionally complete prey items [@shawkey2004brood] in suburban habitats. It is possible that behavioral flexibility in habitat use and foraging breadth underlies the ability of some FLSJ to persist in human-dominated areas. 
 
-We aim to compare behavioral flexibility within species, between suburban and natural populations to determine whether variation in flexibility relates to variation in presence in these habitats. Subsequently, we will compare flexibility between DS and DR jay species to determine whether this trait is related to the greater success of DR jay species, like the CASJ and BLJA, in human-dominated areas. Lastly, we will test whether manipulating flexibility increases the foraging and microhabitat breadth of jays in human modified environments. Manipulating the flexibility of a subset of individuals has the potential to affect the population because previous research demonstrates that both species have the capacity to use foraging information discovered by others (social learning) to flexibly change their behavior [@mccune2018cognition; @midford2000social]. 
+We aim to compare behavioral flexibility within species, between suburban and natural populations to determine whether variation in flexibility relates to variation in presence in these habitats. Subsequently, we will compare flexibility between DS and DR jay species to determine whether this trait is related to the greater success of DR jay species, like the CASJ and BLJA, in human-dominated areas. Lastly, we will test whether manipulating flexibility increases the foraging and microhabitat breadth of jays in human modified environments. Manipulating the flexibility of a subset of individuals has the potential to affect the population because previous research demonstrates that both species have the capacity to use foraging information discovered by others (social learning) to flexibly change their behavior [@mccune2022social; @midford2000social]. 
 
-#### Research questions
+### Research questions
 
 For all research questions, Table 1 summarizes our predictions, analysis plans, interpretations for the various directions the results could go, and the hypotheses that could be contradicted given the various outcomes.
 
@@ -330,7 +330,8 @@ dflex_beginning <- reduceddata
 dat_full <-list() # start the list which holds the input data for the stan model
 dat_full$N <- nrow(dflex_beginning) #total number of rows
 dat_full$N_id <- length(unique(as.factor(dflex_beginning$ID))) # records how many different individuals there are
-dat_full$id <- as.numeric(as.factor(dflex_beginning$ID)) # re-codes each ID as a sequential number
+dat_full$id <- as.factor(dflex_beginning$ID)
+dat_full$id <- as.numeric(dat_full$id) # re-codes each ID as a sequential number
 dat_full$N_exp <- length(unique(dflex_beginning$Habitat)) # records the number of habitats
 dat_full$Choice <- as.numeric(as.factor(dflex_beginning$Choice)) #this is the Correct +1 variable
 dat_full$Correct <- as.numeric(as.factor(dflex_beginning$Correct)) #making this a factor turns it into the same as Choice
@@ -427,10 +428,11 @@ m_simulated_full <- stan( model_code =  reinforcement_model_id_site_nonzeroattra
 s <- extract.samples(m_simulated_full)
 
 # We save the output so that we do not have to rerun the model for potential further analyses
-write.csv(s,"mi1_jays_q1_output_m_simulated_full.csv")
+#write.csv(s,"mi1_jays_q1_output_m_simulated_full.csv")
 # if you want to work directly from the saved model output, run the following line 
-# s <- read.csv(url("https://raw.githubusercontent.com/ManyIndividuals/ManyIndividuals/refs/heads/main/Files/rrs/mi1_jays_q1_output_m_simulated_full.csv"), header=T, sep=",", stringsAsFactors=F)
+s <- read.csv(url("https://raw.githubusercontent.com/ManyIndividuals/ManyIndividuals/refs/heads/main/Files/rrs/mi1_jays_q1_output_m_simulated_full.csv"), header=T, sep=",", stringsAsFactors=F)
 # There should be 10000 rows in the data frame (we sampled 2500 iterations from 4 chains), so each row is one of the samples from the posterior.
+
 # The csv file does not preserve the structure. The s file that is the posterior from the STAN model has a nested structure. If you load it from the csv file, the nesting is lost and the variables are renamed. 
 # Variable X = unique identifier of the sample from the posterior
 # logit_phi = estimate of the baseline phi (logit transformed) across all individuals and habitats
@@ -457,23 +459,24 @@ write.csv(s,"mi1_jays_q1_output_m_simulated_full.csv")
 # v_EXP.2 the offset for lambda for the suburban habitat
 # v_EXP.3 the offset for phi for the natural habitat
 # v_EXP.4 the offset for phi for the suburban habitat
+
 # To obtain the estimated phi value for the first individual estimated during a given posterior, you need the inverse logit of the sum of (logit_phi in that row plus v_ID.15 from that row) - to get the full estimate for that individual, average across all rows
 # To obtain the estimated lambda value for the first individual estimated during a given posterior, you need the exponential of the sum of (log_L in that row plus v_ID.1 from that row) - to get the full estimate for that individual, average across all rows
 # To obtain the estimated phi value in the natural habitat estimated during a given posterior, you need the inverse logit of the sum of (logit_phi in that row plus v_EXP.3 from that row) - to get the full estimate for that habitat, average across all rows
 # To obtain the estimated lambda value in the natural habitat estimated during a given posterior, you need the exponential of the sum of (log_L in that row plus v_EXP.1 from that row) - to get the full estimate for that habitat, average across all rows
 
-# If you want to plot the distribution of phi and lambda in the two different habitats, first calculate phi and lambda for each individual. Next, look up which individual is in which habitat with the following code (the order is the same as in the mode, so the individual in the first row is the individual labelled 1 in the model)
-# library(dplyr)
-# dflex_beginning %>% group_by(ID) %>% summarize(unique(Habitat))
+# If you want to plot the distribution of phi and lambda in the two different habitats, first calculate phi and lambda for each individual. Next, look up which individual is in which habitat with the following code (the order is the same as in the model, so the individual in the first row is the individual labelled 1 in the model)
+library(dplyr)
+dflex_beginning %>% group_by(ID) %>% summarize(unique(Habitat))
 
 # We calculate the mean phi and lambda for each habitat as estimated by the STAN model
-lambda <- sapply(1 : dat_full$N_exp, function(x) exp( mean(s$log_L) + mean(s$v_EXP[ ,x, 1])))
+lambda <- sapply(1 : dat_full$N_exp, function(x) exp( mean(s$log_L) + mean(s$v_EXP.1)))
 phi <- sapply(1 : dat_full$N_exp, function(x) inv_logit( mean(s$logit_phi) + mean(s$v_EXP[ ,x, 2])))
 
 
 # We want to know whether the STAN model estimated two habitats to be different or not. As criterion for this, we check whether the samples in the posterior for pairs of habitat overlap or not. That means that, when calculating the difference between the samples in the posterior for a pair of habitat, they are assumed to be different if the differences are all on one side of zero.
 
-# We first whether there is a difference in mean phi between sites
+# We first test whether there is a difference in mean phi between sites
 # We calculate the pairwise differences between sites for the estimated phi means
 pairwisedifferences_phiposteriors<-list(sapply(1 : (dat_full$N_exp * (dat_full$N_exp-1)/2), function(x) (s$v_EXP[ ,combn(1:dat_full$N_exp,m=2)[1,x], 2]-(s$v_EXP[ ,combn(1:dat_full$N_exp,m=2)[2,x], 2]))))
 
@@ -506,6 +509,37 @@ estimates_pairwisedifferences_lambdaposteriors$crosseszero<-ifelse(estimates_pai
 
 ```
 
+```{r plotjayflexbeforehabitatcomparison, eval=F}
+dflex.o <- read.csv(url("https://raw.githubusercontent.com/ManyIndividuals/ManyIndividuals/refs/heads/main/Files/rrs/mi1_jays_flexdata.csv"), 
+                  header=T, sep=",", stringsAsFactors=F)
+dflex = dflex.o[which(dflex.o$Reversal == 0 | dflex.o$Reversal == 1),]
+
+dflex2 = aggregate(Trial ~ ID + Location + Reversal, FUN = "max", data = dflex)
+colnames(dflex2)[4] = "max.trial"
+dflex2$adj.max = dflex2$max.trial - 12 # because no jays could reach the criterion in fewer than 12 trials.
+library(lme4)
+sl = glmer(adj.max ~ Location+Reversal + (1|ID) + (1|olre), family = "poisson", data = dflex2)
+summary(sl) # no difference with max.trial or adj.max
+boxplot(max.trial ~ Location+Reversal, data = dflex2)
+s0 = glmer(adj.max ~ Location + (1|olre), data = dflex2[which(dflex2$Reversal == 0),], family = "poisson")
+summary(s0) # no difference with max.trial or adj.max
+overdisp_fun(s0)
+
+
+ggplot(dflex2, aes(as.factor(Reversal), max.trial, fill = Location)) +
+  geom_boxplot() +
+  geom_hline(yintercept = 12,color = "red") +
+  coord_cartesian(ylim=c(5,40)) +
+  theme_classic() +
+  theme(legend.title = element_blank(),
+        legend.text = element_text(size = 18),
+        axis.title = element_text(size = 22),
+        axis.text = element_text( size = 18),
+        strip.text = element_text(size = 24,face = "bold")) +
+  scale_fill_manual(values=c("gray32","gray90")) +
+  labs(x = "Reversal",y = "Trials to criteria")
+
+```
 
 #### J.Q2 Are disturbance-resiliant jays more flexible than disturbance-resistant jays?
 
@@ -1053,7 +1087,7 @@ set_ulam_cmdstan(TRUE) #makes it so ulam always runs with cmdstan
                                                                                                                                   ## when the data do not yet exist, use simulated data to test the model
 N_ind <- 20
 
-dat <- list(
+datHab <- list(
     habitatuse = rbinom(N_ind*2,size=10,prob=5/10), #20 individuals * 2 observations/individual, 10 max habitats; on average, individuals will use 5 of the 10 habitats more than 5% of the time
     before = c(rep(1,N_ind),rep(2,N_ind)), #1 refers to before and 2 to after
     ind = rep(1:N_ind,2) #go through all individuals twice because there are observations from before and after for each
@@ -1074,7 +1108,7 @@ colnames(d) = c("habitats","BeforeOrAfterManipulation","ID","area")
 d$possiblehabitats<-ifelse(d$area=="Natural",10,12)
 
 # Set up the data sheet
-dat <- list(
+datHab <- list(
     habitatuse = d$habitats,
     possiblehabitats = d$possiblehabitats,
     before = d$BeforeOrAfterManipulation,
@@ -1095,7 +1129,7 @@ mj <- ulam(
         cholesky_factor_corr[2]:L_Rho_ind ~ lkj_corr_cholesky( 2 ),
         # compute ordinary correlation matrixes from Cholesky finds
         gq> matrix[2,2]:Rho_ind <<- Chol_to_Corr(L_Rho_ind)
-    ) , data=dat , chains=4 , cores=4 , log_lik=TRUE , cmdstan = TRUE, control = list(adapt_delta = .95, force_recompile = TRUE))
+    ) , data=datHab , chains=4 , cores=4 , log_lik=TRUE , cmdstan = TRUE, control = list(adapt_delta = .95, force_recompile = TRUE))
 
 precis(mj,depth=2) #pay attention to g (g1 is before, g2 is after)
 boxplot(dat$habitatuse~dat$before) #see if there is a difference visually
@@ -1107,6 +1141,49 @@ diff_p <- inv_logit(post$g[,2]) - inv_logit(post$g[,1]) #on the probability scal
 precis( list( diff_g=diff_g , diff_p=diff_p ) )
 ```
 
+```{r plotjayhabitatuse, eval=F}
+pp.div = read.csv(url("https://raw.githubusercontent.com/ManyIndividuals/ManyIndividuals/refs/heads/main/Files/rrs/mi1_jays_pp_div.csv"), header=T, sep=",", stringsAsFactors=F)
+
+boxplot(forage ~ pp, data = pp.div)
+boxplot(height ~ pp, data = pp.div)
+boxplot(substrate ~ pp, data = pp.div)
+
+pp.div2 = melt(pp.div, id.vars = c("ID","Condition","pp"),value.name = "value", measure.vars = c("forage","substrate","height"))
+pp.div2$pp = factor(pp.div2$pp, levels = c("pre","post"))
+colnames(move2) = c("ID","pp","value")
+move2$variable = "step.length"
+pp.div3 = pp.div2
+pp.div3 = pp.div3[-which(pp.div3$variable == "height"),]
+
+pp.div3 = rbind(pp.div3,move2)
+
+ggplot(pp.div3, aes(pp,value, group = ID)) +
+  facet_wrap(~ variable, scales = "free") +
+  geom_line() +
+  geom_point(size = 3, aes(color = pp)) +
+  theme_classic() +
+  theme(legend.position = "none",
+        axis.title = element_text(size = 22),
+        axis.title.x = element_blank(),
+        axis.text = element_text( size = 18),
+        strip.text = element_text(size = 24,face = "bold")) +
+  scale_color_manual(values=c("black","grey"))
+  
+  
+  
+ggplot(sample, aes(x = status, y = score, group = name)) + 
+geom_line() + 
+geom_point(size = 2, aes(color = status)) + 
+facet_wrap(~ test, switch = "x") +
+scale_x_discrete("") +
+theme_minimal() +
+theme(legend.position = "top", 
+      panel.grid = element_blank(),
+      axis.text.x = element_blank(),
+      axis.line.y = element_line(size = .5))
+
+
+```
 
 #### J.Q4 More flexible = more food types?
 
@@ -1519,7 +1596,7 @@ d = d[,-1]
 colnames(d) = c("area","forage","BeforeOrAfterManipulation","ID")
 
 # Set up the data sheet
-dat <- list(
+datFood <- list(
     forageuse = d$forage,
     before = d$BeforeOrAfterManipulation-1, #1=before, 2=after, and then -1 makes it so it is 0 and 1, respectively, which makes the model work better
     ind = as.integer(as.factor(d$ID))
@@ -1536,13 +1613,14 @@ mjf <- ulam(
         sigma_ind ~ exponential(1),
         sigma ~ exponential(1),
         Rho ~ lkj_corr(2)
-    ) , data=dat , iter=8000, chains=4 , cores=4 , log_lik=TRUE , cmdstan = TRUE)
+    ) , data=datFood, iter=8000, chains=4 , cores=4 , log_lik=TRUE , cmdstan = TRUE)
 
 #precis(mjf,depth=2)
 #Don't need to do a contrast because we already have each individual's number of food itmes so we only need to look at the overall beta (the slope between the values before and after) to see whether it is positive (more foods after) or negative (fewer foods after)
+
 #beta: mean=0.26, 89%CI= -0.45 to 0.96 - it crosses zero so we cannot say whether there was a difference between before and after. This is because 0.26 more foods were used after the flexibility training and if we look at Figure 12, the power analysis, about 63% of the analyses at a sample size of 20 (the actual sample size was 22) cross zero, so it would be very difficult to detect a difference between the conditions because such a small difference in the number of foods taken could occur by chance.
 
-#boxplot(dat$forageuse~dat$before) #see if there is a difference visually
+boxplot(datFood$forageuse~datFood$before) #see if there is a difference visually
 ```
 
 
