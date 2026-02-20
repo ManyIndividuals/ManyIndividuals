@@ -158,91 +158,52 @@ For all research questions, Table 1 summarizes our predictions, analysis plans, 
 
 # **METHODS**
 
-Our approach involves individuals participating in a serial reversal learning task and measuring success in natural behavior in the wild. In the following, we outline the procedure we are planning to use with wild birds: the serial reversal learning will involve a feeder setup (see Fig. 3, above), and the success measures will be matched to the relevant behavior in the respective population. The framework we provided in the ManyIndividuals registered report is general to facilitate its adaptation and replication to other populations (i.e., another researcher could adapt our hypotheses, methods, and analysis plans to their system). 
+## Planned sample
 
-We presented one experimental design for the flexibility intervention (Fig. 4) that can be conducted in two ways: in visual isolation (design 1) and in a group context (design 2). In this Stage 2 manuscript, we used design 2, the within-subjects group context which compares pre- and post-manipulation success measures of the same individuals.
+We studied Florida scrub-jays in unfragmented, fire-maintained habitat at Archbold Biological Station (natural areas), as well as in the adjacent suburbs of Lake Placid, FL (human modified areas). Much of the study population at Archbold Biological Station was already individually identifiable with color leg bands. We caught an additional 24 jays using walk-in traps and mist nets; collected their biometric data, and a blood sample; applied colored leg bands; and released them at their point of capture. We collected data on pre- and post-manipulation success measures (foraging and habitat use, see below) and conducted the experiment within the non-breeding season to control for potential temporal differences in the environment and behavior. We planned to use radio tags to find jays for observing before and after manipulation success measures. However, Florida scrub-jays are highly territorial, and we were always able to find the jays to collect observational data without the radio tags.
 
-&nbsp;
+To determine whether the flexibility manipulation has influenced the ability of jays to persist in human modified environments, we planned for half of the total sample of jays from areas with access to human-supplemented food (i.e. private property, university campus, parks adjacent to neighborhoods with feeders) and the other half from natural areas (wildlife management areas, reserves). To address Q1, testing for differences in baseline behavioral flexibility between jays in natural or human-modified environments, the power analysis (see Supplementary materials S1) showed a high likelihood of detecting differences with a minimum sample of 15. We were able to quantify baseline behavioral flexibility in 14 Florida scrub-jays (8 in natural areas, 6 in human-modified areas).
 
-<img width="100%" src="mi1Figexpdesign.png">
+To address Q3 and Q4, we tracked baseline behavior and changes after the flexibility manipulation via all-occurrence sampling during focal observations (Altmann, 1974) that last for 60 min. During observations, we documented all occurrences of microhabitats used within the territory and foraging behavior (see Observational methods, below). Our planned minimum sample size was 20 individuals per species with a minimum of 4 observations per individual (at least 2 per month) pre-manipulation and a minimum of 4 per individual (at least 2 per month) post-manipulation (at least 320 observations in total). We were only able to conduct the serial reversal manipulation on 9 color-banded individuals, but we met or exceeded the minimum sample size for observations before and after the manipulation. There was one exception where an individual disappeared after the manipulation and was not found during extensive searching of the territory and surrounding areas and so was presumed dead. We only collected one-third of the necessary post-manipulation data on this individual.
 
-**Figure 4.** Template design for the reversal learning experiment.
+## Observational methods
+
+During observations, we recorded each microhabitat the individual is present in and all food items consumed. Before data analysis, to ensure that we were only including the microhabitats individuals use (rather than just pass through), we filtered the data to include only microhabitats that account for at least 5% of their data points. Although we may not observe every possible microhabitat or food item the individual may use, by equally sampling before and after the manipulation we can detect changes in habitat use. We counterbalanced observations across the morning and afternoon for all individuals in the study. In this way, we collected a random sample of data from active and inactive time periods for all individuals. 
+
+Microhabitat types in the suburban habitat (<100m from human structure) included: vertical human structure (e.g. building, bench), native vegetation, non-native vegetation, grass, impervious surface, and dirt. In the natural habitat (>100m from human structure), microhabitat types included all previous categories, but not human structure or impervious surface. All categories were further defined by whether the subject was high (>3m) or low (<3m). For example, grass and impervious surfaces can occur above 3m if grass is on the roof of a building, and if an individual is walking on the impervious surface of an upper floor parking garage.
+
+Food types were broken down into plant (seed, fruit, human-provided, or unknown plant) and animal (insect larva, adult insect, amphibian, crustacean, reptile, mammal, bird, egg, human-provided, or unknown animal). “Human-provided” indicates any food item that was acquired from a store at some point and is left out by humans. For example, sunflower seeds would be considered human-provided if they are in the form of bird seed or a human snack. Sunflower seeds would only be counted in the “seed” category if the bird is seen eating it from a plant. 
+
+Additionally, for all observations we used binoculars so that we could remain far enough from the focal individual that our presence was not affecting their behavior. Because that distance can be different for each individual and species, we hesitate to give a specific number. However, if at any point the focal individual showed that it was affected by our presence, by looking directly at the researcher, alarm calling or startling, then we ended the observation immediately, dropped all data from that observation session and attempted the observation again the next day.
+
+## Flexibility manipulation (Design 2 from the registered repor)
+
+Our approach involved individual jays participating in a serial reversal learning task in the wild. We set up remote-controlled feeders at multiple study sites, each containing several jay territories, spaced at least 2km apart: 2 sites in natural habitat, 2 in human-modified habitat.
+
+### Feeder habituation
+
+One feeder at each location contained food and the experimenter used the remote to feed the focal individual every time it approached. Habituation consisted of 2-hour sessions between 8a-3p on a minimum of 4 consecutive days or until at least 1 banded jay per territory had visited the feeder at least 3 times without showing fear behaviors.
+
+### The experiment
+
+Prior to the flexibility manipulation, we collected the 4 minimum observation sessions to determine the baseline values for microhabitat use and foraging breadth. Afterwards, we set up the remote-controlled feeders to initiate the serial reversal learning flexibility manipulation phase. All feeders contained one type of high value food (i.e., peanuts). In addition, feeders were opaque and always had food in them to eliminate a confound with performance due to olfactory differences between the feeders that could be introduced if only the rewarded feeders had food in them. If a feeder needed to be refilled, we refilled all feeders consecutively in the same time period and for the same amount of time even if that feeder did not need much or any food (in these cases, we pretended to fill the feeder). This eliminated potential confounds in jay performance from cues provided by a differential amount of experimenter attention given to the feeders during refilling. 
+
+At the beginning of serial reversal learning, one of the two feeders, at a consistent location (north or south, east or west) within the territory, was randomly selected to dispense food when the focal jay approached. If the subject visited the non-rewarded feeder, this incorrect choice was recorded, but the feeder did not open. Reversal sessions for the manipulation treatment consisted of 30-120 min sessions per day per territory, up to 4 days per week. Each visit by the focal jay to the correct or incorrect feeder was considered a trial. Jays passed a given reversal when they correctly chose the rewarded feeder in at least 10 trials out of the most recent 12 trials (see S1 of the supplementary materials for details on the simulations that determined that threshold). After passing one reversal, we switched to rewarding jays at the other feeder location. Serial reversals continued until jays passed two consecutive reversals in 12 trials or less (see S2 of the supplementary materials for details on the simulations that determined that threshold). At this criterion, the jays were considered to have increased their behavioral flexibility. 
+
+After the manipulation was complete for the focal individual, we again conducted the all-occurrences focal observation sessions to measure microhabitat use and foraging breadth. We began collecting post-manipulation data on an individual as soon as it passed the manipulation because it is unknown for how long any potential effects of the manipulation will last. 
+
+For more social species, like the Florida scrub-jay, who may experience the experiment in groups, there is the potential that individuals who were not in the manipulation condition or who have not yet passed the manipulation condition will learn about post-manipulation success behaviors from the manipulated individuals who passed the experiment. We are ultimately interested in determining whether we can change success behaviors of threatened populations or species as a result of the flexibility manipulation. If part of this change is the result of social learning from some of the manipulated individuals, it will still result in a change even if we do not quantify what percentage of the mechanism comes from individual learning as a result of the manipulation or social learning after the manipulation. If there is a change in success measures between before and after the manipulation, the manipulation will have been the cause in either case.
 
 
-## **DESIGN 2** - Reversal learning experiment in a group context
-
-Feeders were set up in the field, counterbalanced for location, and were available for dispensing food when the experiment was being conducted (Figures 3,4). Individuals were habituated to the open feeders filled with food until at least half of the minimum sample size visited at least 1 feeder. Individuals that participated in the experiment in a social group started on the same rewarded option for the initial discrimination to improve motivation for participating in the experiment (e.g., if the first rewarded option was counterbalanced across individuals, subjects might be slower to learn their rewarded option if they use social information about which option is rewarded). If the subject visited the rewarded feeder, via a remote controlled by the experimenter, the feeder delivered a small amount of food and then closed to reset more food in preparation for the next opening. If the subject visits the non-rewarded feeder, the presence data was recorded, but the feeder did not open. All feeders contained one type of high value food. In addition, feeders were opaque and always had food in them to eliminate the confound due to olfactory differences between the feeders that could be introduced if only the rewarded feeders had food in them. If a feeder needed to be refilled, the experimenter refilled all feeders consecutively in the same time period and for the same amount of time even if that feeder did not need much or any food (in these cases, we pretended to fill the feeder). This eliminates confounds from cues provided by a differential amount of attention experimenters give the feeders depending on which needed refilling.
-
-Data are collected on success measures (see below) before and after the flexibility intervention.
-
-**Passing criteria:**
-
- - **Feeder habituation:** all feeders at all locations contained visible food and were open for several hours daily or until at least half of the minimum sample size visited at least one of the feeders.
- - **Reversal passing criterion:**  an individual was considered to have a preference when they chose 10 of the most recent 12 trials (choices) correct (the rewarded option). This criterion applied to the initial discrimination, and to each reversal.
- - **Manipulation passing criterion:** passed two consecutive reversals in 12 trials or less (see Serial reversal passing criterion in the Supplementary materials, S2).
-
-
-### Assessment of the likelihood of success in human modified environments with regard to the flexibility manipulation
-
-Here, we compared pre- and post-flexibility manipulation measures on the same individuals using the following success measures. We chose population-relevant success variables that are predicted to be the most likely to be used in human modified environments. Observational methods to collect these data are described below (i.e., all occurrences sampling).
-
- - **Foraging variables:** diet breadth, number of foraging techniques used, etc.
- - **Habitat use variables:** foraging substrate (ground, bushes, trees, human modified substrates, human-provided supplemental food), nesting substrate (high or low, tree, bush or reeds), etc.
-
-We began collecting post-manipulation data on an individual as soon as it passed the manipulation because it is unknown for how long any potential effects of the manipulation will last. For the more social species, like the Florida scrub-jay, who participate in the experiment in groups, there is the potential that individuals who were not in the manipulation condition or who have not yet passed the manipulation condition will learn about post-manipulation success behaviors from the manipulated individuals who passed the experiment. We are ultimately interested in determining whether we can change success behaviors as a result of the flexibility manipulation. If part of this change is the result of social learning from some of the manipulated individuals, it will still result in a change even if we do not quantify what percentage of the mechanism comes from individual learning after the manipulation or social learning after the manipulation. If there is a change in success measures between before and after the manipulation, the manipulation will have been the cause in either case. 
-
-### Observational methods
-
-We categorized the food and habitat types used as:
-
-Microhabitat types in the suburban habitat (<100m from human structure) include: vertical human structure (e.g. building, bench), native vegetation, non-native vegetation, grass, impervious surface, and dirt. In the natural habitat (>100m from human structure), microhabitat types include all previous categories, but not human structure or impervious surface All categories can be further defined by whether the subject was high (>3m) or low (<3m) (for example, grass and impervious surfaces can occur above 3m if grass is on the roof of a building, and if an individual is walking on the impervious surface of an upper floor parking garage).
-
-Food types are broken down into plant (seed, fruit, human-provided, or unknown plant) and animal (insect larva, adult insect, crustacean, amphibian, reptile, mammal, bird, egg, human-provided, or unknown animal). “Human-provided” indicates any food item that was acquired from a store at some point and is left out by humans. For example, sunflower seeds would be considered human-provided if they are in the form of bird seed or a human snack. Sunflower seeds would only be counted in the “seed” category if the bird is seen eating it from a plant. Data were collected on the four plant subcategories and ten animal subcategories and used in the analyses.
-
-During observations, we recorded each microhabitat the individual is present in and all food items consumed. Before data analysis, to ensure that we were only including the microhabitats individuals use (rather than just pass through), we will filter the data to include only microhabitats that account for at least 5% of their data points. Although we may not observe every possible microhabitat or food item the individual may use, by equally sampling before and after the manipulation we can detect changes in use.
-
-Additionally, for all observational methods we used binoculars so that we could stay far enough from the focal individual that our presence is not affecting their behavior. Because that distance can be different for each individual and species, we hesitate to give a specific number. However, if at any point the focal individual showed that it was affected by our presence by looking directly at the researcher, alarm calling or startling, then we ended the observation immediately, dropped all data from that observation and attempted the observation again the next day.
-
-We attempted to balance observations in the morning and afternoon for all individuals in the study. In this way, we collected a random sample of data from active and inactive time periods for all individuals. 
-
-#### All occurrences sampling
-
-We collected data on the foraging and microhabitat use of jays during spatial movement tracking (the latter as part of another investigation). We followed jays for 60 minutes and recorded at 1-minute intervals the spatial location (GPS coordinates), any food items consumed, and the microhabitat the jay is present in. We conducted 4 tracks per individual before, and 4 tracks per individual after the flexibility manipulation.
-
-### Open data
+## Open data
 
 The data will be published in the Knowledge Network for Biocomplexity's data repository.
-
 
 ### Protocols
 
   - Jay [protocol](https://docs.google.com/document/d/1VWL7AIDB-Z1vhs1dEM7JACHuvNjgjZCBI3ubQECqm2U/edit?usp=sharing) and [data sheet templates](https://docs.google.com/spreadsheets/d/1qpukS67A8IslPxP8RBpdB4fS4f9ofWCvQXVgXu-G7Qs/edit?usp=sharing)
  - [Protocol for applying radio tags and conducting GPS tracks](https://docs.google.com/document/d/1ZOpkdxy5-wiGg7hYod-XaaBoOl53DsVQ3pwWoIdvrzk/edit?usp=sharing) from @mccune2020spaceuse
  - Jay [processing protocol](https://docs.google.com/document/d/1YnGdsU-Q7kNBVT-N3x1BA30xP10jPFYEv9-dlTw2RcQ/edit?usp=sharing)
-
-### Planned sample
-
-Many individuals from our focal population of Florida scrub-jays were already color-banded. We additionally caught 24 jays over 2 field seasons using walk in traps and mist nets. We collected biometric data, a blood sample, applied colored leg bands and attached a radio tag using a leg loop harness to a small subset of individuals, then released them at their point of capture. We tested out the radio tag technology on four individuals in the first field season. However, the solar panel on the tags had low functionality, reducing the usability of this technology in this system. The Florida scrub-jays are highly territorial, and we were always able to find the jays to collect observational data without the radio tags.
-
-We conducted the serial reversal manipulation on 9 individuals. We will collect data on pre- and post-manipulation success measures and conduct the experiment within the non-breeding season to control for potential temporal differences in the environment and behavior.
-
-To determine whether the flexibility manipulation has influenced the ability of jays to persist in human modified environments, we will catch half of the jays in areas with access to human-supplemented food (i.e. private property, a university campus, parks adjacent to neighborhoods with feeders) and the other half in natural areas (wildlife management areas, reserves).
-
-#### Before and after manipulation success measures
-
-We will track baseline behavior and changes after the flexibility manipulation via spatial movement tracking that lasts for 60 min, noting the GPS location and the jay’s behavior at 1 minute intervals. During tracks, we document all occurrences of microhabitats used within the territory and foraging (see Observational methods, above) [@altmann1974observational]. The minimum sample size will be 20 individuals per species with a minimum of 4 tracks per individual (at least 2 per month) pre-manipulation and a minimum of 4 tracks per individual (at least 2 per month) post-manipulation (at least 320 tracks in total). These data will allow us to detect any pre- and post-manipulation within-individual differences in diversity of habitat use, and foraging breadth.
-
-### Flexibility manipulation (Design 2 reversal learning)
-
-We will set up feeding stations at a minimum of 4 study sites, each containing multiple jay territories, spaced at least 2km apart: 2 sites in natural habitat, 2 in human-modified habitat. If individuals are dispersed across multiple areas, we will attempt to add an equal number of sites in natural and human-modified habitats. 
-
-#### Feeder habituation
-
-One feeder at each location will have food and the experimenter will use the remote to feed the focal individual every time it approaches. Habituation will occur in 2-hour sessions between 8a-3p on a minimum of 4 consecutive days or until at least 1 banded jay per territory has visited the feeder at least 3 times without showing fear behaviors.
-
-### The experiment
-
-Prior to the flexibility manipulation, we will collect the 4 minimum tracking sessions to determine the baseline values for microhabitat use and foraging breadth. Afterwards, we will set up feeders to initiate the flexibility manipulation phase.  Once jays are habituated to the feeders we will manipulate behavioral flexibility using serial reversals of the open feeder location. Only one feeder will be opened at a consistent location (north or south, east or west position) within territories across days and the manipulation treatment will consist of 30-min sessions per day per territory, up to 4 days per week, where each visit by the focal jay to a feeder is considered a trial. Jays pass a given reversal when they correctly choose the rewarded feeder in at least 10 trials out of the most recent 12 trials. Jays were very fast to switch their preference in the first reversal. Therefore, serial reversals will continue until jays pass two consecutive reversals in 12 trials or less (see Serial reversal passing criterion above). At this criterion, the jays will be considered to have increased their behavioral flexibility.  After the manipulation is complete in each territory, we will again conduct the tracking sessions to measure microhabitat use and foraging breadth.
 
 
 # **ANALYSIS PLAN**
