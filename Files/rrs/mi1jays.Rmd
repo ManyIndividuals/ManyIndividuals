@@ -84,7 +84,7 @@ Human modifications of environments are expanding, causing global changes that o
 
 # **INTRODUCTION**
 
-Human modified environments are expanding [@liu2020high; @wu2011quantifying; @goldewijk2001estimating], causing global changes that other species must adjust to or suffer from [@ciani1986intertroop; @chejanovski2017experimental; @federspiel2017adjusting; @alberti2015eco]. Behavioral flexibility (hereafter 'flexibility') could be key for adjusting to such change: individuals interact with their environment through behavior, making it crucial to an ecologically valid understanding of how species adjust to environmental changes [@lee2021animal]. One of the top priorities for behavioral research to maximize conservation progress is to determine which cognitive abilities and behaviors can predict the ability to adjust to human modified environments and whether these can be manipulated [@moseby2016harnessing]. The rare research that manipulates behavior in a conservation context usually focuses on training specific behaviors (for example, predator recognition through predator exposure) to improve individual success in the wild [@moseby2012can; @west2018predator; @jolly2018out; @ross2019reversing; see review in @tetzlaff2019effects]. However, training a general cognitive ability, such as flexibility -- the ability to rapidly adapt behavior to changes through learning throughout the lifetime [see the theory behind this definition in @mikhalevich_is_2017] -- has the potential to change a whole suite of behaviors and more broadly influence success in adjusting to human modified environments. Recent evidence supports this hypothesis: as far as we are aware, our previous work, in collaboration with Dr. Corina Logan, was the first to show that flexibility can be manipulated using serial reversal learning of color preferences, and that the manipulated individuals were more flexible in a new context (locus switching on a puzzlebox) as well as being more innovative (solved more loci on a puzzlebox) [@logan2022flexmanip].
+Human modified environments are expanding [@liu2020high; @wu2011quantifying; @goldewijk2001estimating], causing global changes that other species must adjust to or suffer from [@ciani1986intertroop; @chejanovski2017experimental; @federspiel2017adjusting; @alberti2015eco]. Behavioral flexibility (hereafter 'flexibility') could be key for adjusting to such change: individuals interact with their environment through behavior, making it crucial to an ecologically valid understanding of how species adjust to environmental changes [@lee2021animal]. One of the top priorities for behavioral research to maximize conservation progress is to determine which cognitive abilities and behaviors can predict the ability to adjust to human modified environments and whether these can be manipulated [@moseby2016harnessing]. The rare research that manipulates behavior in a conservation context usually focuses on training specific behaviors (for example, predator recognition through predator exposure) to improve individual success in the wild [@moseby2012can; @west2018predator; @jolly2018out; @ross2019reversing; see review in @tetzlaff2019effects]. However, training a general cognitive ability, such as flexibility -- the ability to rapidly adapt behavior to changes through learning throughout the lifetime [see the theory behind this definition in @mikhalevich_is_2017] -- has the potential to change a whole suite of behaviors and more broadly influence success in adjusting to human modified environments. Recent evidence supports this hypothesis: as far as we are aware, our previous research in the great-tailed grackle was the first to show that flexibility can be manipulated using serial reversal learning of color preferences, and that the manipulated individuals were more flexible during foraging [@logan2025behavioral], in a different experimental context (locus switching on a puzzlebox) as well as being more innovative (solved more loci on a puzzlebox) [@logan2023flexmanippcj].
 
 Environments where informational cues about resources vary in a heterogeneous (but non-random) way across space and time are hypothesized to open a pathway for species to functionally detect and react to such cues via flexibility [@mikhalevich_is_2017]. Human modified environments likely provide a different set of informational cues that vary heterogeneously across space and time, and the species that are successful in such environments are likely those who are able to detect and track such cues. Because heterogeneous environments are hypothesized to select for flexibility [@wright2010behavioral], we expect that exposing individuals to experimentally increased environmental heterogeneity will train individuals to be more flexible, which will then increase their success in such environments (Fig. 1). Success can relate to any number of variables regarding the usage of and investment in resources and response to threats, from improved foraging efficiency to increased dispersal and survival within human modified environments, to placing nests in more protective locations. Whether a measure of success is predicted to relate to flexibility depends on what is already known about the particular population and their particular environment. 
 
@@ -96,9 +96,9 @@ Environments where informational cues about resources vary in a heterogeneous (b
 
 &nbsp;
 
-This investigation asks whether a method of experimentally increasing environmental heterogeneity through serial reversal learning leads to increased behavioral flexibility and greater fitness in human modified environments. Serial reversal learning tasks have been performed with a wide diversity of species [birds: @bond_serial_2007; bumblebees: @strang2014serial; stingrays: @daniel2020serial]. There is variation across individuals and species in their performance, however almost all previous studies show that individuals improve their flexibility if the reversal intervention is given multiple times in sequence [rats: @mackintosh1968factors; guppies: @lucon2014discrimination; poison frogs: @liu2016learning]. We aim to conduct a flexibility intervention in species that are successful in human modified environments (California scrub-jays or blue jays) to understand how flexibility relates to success, and implement these interventions in a vulnerable species (Florida scrub-jays). 
+This investigation asks whether a method of experimentally increasing environmental heterogeneity through serial reversal learning leads to increased behavioral flexibility and greater fitness in human modified environments. Serial reversal learning tasks have been performed with a wide diversity of species [birds: @bond_serial_2007; bumblebees: @strang2014serial; stingrays: @daniel2020serial]. There is variation across individuals and species in their performance, however almost all previous studies show that individuals improve their flexibility if the reversal intervention is given multiple times in sequence [rats: @mackintosh1968factors; guppies: @lucon2014discrimination; poison frogs: @liu2016learning; grackles: @logan2023flexmanippcj]. We aim to conduct a flexibility intervention in species that are successful in human modified environments (California scrub-jays or blue jays) to understand how flexibility relates to success, and implement these interventions in a vulnerable species (Florida scrub-jays). 
 
-While we do not examine the potential spread of the post-manipulation success behaviors from manipulated individuals to individuals that are not involved in our studies, we acknowledge that this is a possibility worthy of future investigation. Manipulating the flexibility of a few individuals could have population-level effects because significant research on social information use in birds [e.g., @valente2021conspecific] demonstrates the potential for the manipulated behavior to disseminate to conspecifics (for example, if manipulated individuals are faster at locating new resources, which could attract the attention of conspecifics, or if unmanipulated individuals copy the manipulated individuals’ nesting or foraging locations). In the event that social learning is not used by a given population to spread the behaviors of manipulated individuals, investing in the training of specific individuals to increase their success in the wild could still have conservation impacts. In some cases, it is possible to train many individuals in a population or a species because there are not many individuals left [@greggor2021pre]. It is also possible to train all individuals involved in a conservation management event such as a translocation [@greggor2021pre]. Therefore, there can still be significant population consequences even if each individual needs to be trained to achieve the goal.
+While we do not examine the potential spread of the post-manipulation success behaviors from manipulated individuals to individuals that are not involved in our studies, we acknowledge that this is a possibility worthy of future investigation. Manipulating the flexibility of a few individuals could have population-level effects because significant research on social information use in birds [e.g., @valente2021conspecific] demonstrates the potential for the manipulated behavior to disseminate to conspecifics (for example, if manipulated individuals are faster at locating new resources, which could attract the attention of conspecifics, or if unmanipulated individuals copy the manipulated individuals’ nesting or foraging locations). Indeed, there is evidence for social learning in the focal species for this investigation [@midford2000social; @mccune2022social]. In the event that social learning is not used by a given population to spread the behaviors of manipulated individuals, investing in the training of specific individuals to increase their success in the wild could still have conservation impacts. In some cases, it is possible to train many individuals in a population or a species because there are not many individuals left [@greggor2021pre]. It is also possible to train all individuals involved in a conservation management event such as a translocation [@greggor2021pre]. Therefore, there can still be significant population consequences even if each individual needs to be trained to achieve the goal.
 
 This comparative approach will ultimately reveal the role of behavioral flexibility in adaptation to environmental change and whether there is a causal relationship between this general cognitive trait and behavioral interactions with human-modified environments, such as foraging and habitat use. Our previous research on great-tailed grackles provided support that this causal relationship does exist in a generalist, invasive species. However, the research presented here will evaluate the generalizability of this technique across distinct species differentially affected by anthropogenic change. Consequently, the results from this research will substantially advance our understanding of the causes and consequences of flexibility, linking behavior to environmental change, cognition, and success in human modified environments to facilitate conservation of declining species.
 
@@ -130,7 +130,7 @@ Jay species exhibit a diversity of social systems and success in colonizing subu
 
 These species forage primarily on mast (acorns, hazelnuts, etc.) that they cache throughout their territory, which makes it available to eat year-round. They are also opportunistic omnivores and specifically need high-fat and high-protein arthropods to feed to nestlings and fledglings [@curry2017california]. Nesting and foraging substrates can be drastically different in human modified environments compared to natural areas [e.g., predominance of non-native vegetation; @tuomainen2011behavioural], and it is unknown whether suburban and urban jays are able to persist in these environments through behavioral adjustments. The DS jay species, the FLSJ, can persist in suburban habitats after conversion from xeric oak scrub, however suburban populations of FLSJ steadily decline (Bowman pers. comm.). This is potentially due to the presence of suboptimal habitat resulting from fire suppression [@woolfenden1996florida], higher rates of brood reduction through nestling starvation [@shawkey2004brood], and the lack of nutritionally complete prey items [@shawkey2004brood] in suburban habitats. It is possible that behavioral flexibility in habitat use and foraging breadth underlies the ability of some FLSJ to persist in human-dominated areas. 
 
-We aim to compare behavioral flexibility within species, between suburban and natural populations to determine whether variation in flexibility relates to variation in presence in these habitats. Subsequently, we planned to compare flexibility between DS and DR jay species to determine whether this trait is related to the greater success of DR jay species, like the CASJ and BLJA, in human-dominated areas (but see Deviations section). Lastly, we will test whether manipulating flexibility increases the foraging and microhabitat breadth of jays in suburban and natural environments. Manipulating the flexibility of a subset of individuals has the potential to affect the population because previous research demonstrates that both species have the capacity to use foraging information discovered by others (social learning) to flexibly change their behavior [@mccune2022social; @midford2000social]. 
+We aimed to compare behavioral flexibility within species, between suburban and natural populations to determine whether variation in flexibility relates to variation in presence in these habitats. Subsequently, we planned to compare flexibility between DS and DR jay species to determine whether this trait is related to the greater success of DR jay species, like the CASJ and BLJA, in human-dominated areas (but see Deviations section). Lastly, we tested whether manipulating flexibility increases the foraging and microhabitat breadth of jays in suburban and natural environments. Manipulating the flexibility of a subset of individuals has the potential to affect the population because previous research demonstrates that these species have the capacity to use foraging information discovered by others (social learning) to flexibly change their behavior [@mccune2022social; @midford2000social]. 
 
 ### Tailored Research Questions
 
@@ -176,7 +176,7 @@ Food types were broken down into plant (seed, fruit, human-provided, or unknown 
 
 Additionally, for all observations we used binoculars so that we could remain far enough from the focal individual that our presence was not affecting their behavior. Because that distance can be different for each individual and species, we hesitate to give a specific number. However, if at any point the focal individual showed that it was affected by our presence, by looking directly at the researcher, alarm calling or startling, then we ended the observation immediately, dropped all data from that observation session and attempted the observation again the next day.
 
-## Flexibility manipulation (Design 2 from the registered repor)
+## Flexibility manipulation (Design 2 from the registered report)
 
 Our approach involved individual jays participating in a serial reversal learning task in the wild. We set up remote-controlled feeders at multiple study sites, each containing several jay territories, spaced at least 2km apart: 2 sites in natural habitat, 2 in human-modified habitat.
 
@@ -199,19 +199,19 @@ For more social species, like the Florida scrub-jay, who may experience the expe
 
 The data will be published in the Knowledge Network for Biocomplexity's data repository.
 
-### Protocols
+## Protocols
 
   - Jay [protocol](https://docs.google.com/document/d/1VWL7AIDB-Z1vhs1dEM7JACHuvNjgjZCBI3ubQECqm2U/edit?usp=sharing) and [data sheet templates](https://docs.google.com/spreadsheets/d/1qpukS67A8IslPxP8RBpdB4fS4f9ofWCvQXVgXu-G7Qs/edit?usp=sharing)
  - [Protocol for applying radio tags and conducting GPS tracks](https://docs.google.com/document/d/1ZOpkdxy5-wiGg7hYod-XaaBoOl53DsVQ3pwWoIdvrzk/edit?usp=sharing) from @mccune2020spaceuse
  - Jay [processing protocol](https://docs.google.com/document/d/1YnGdsU-Q7kNBVT-N3x1BA30xP10jPFYEv9-dlTw2RcQ/edit?usp=sharing)
 
 
-# **ANALYSIS PLAN**
+## Analysis plan
 
 We run analyses in R [current version `r getRversion()`; @rcoreteam] using the following R packages: rethinking [@rethinking2020], rstan [@rstan], cmdstanr [@cmdstanr], knitr [@xie2018knitr], and irr [@gamer2012package]. We describe below the Bayesian models we developed to address each of the specific research questions. All Bayesian models were developed using McElreath (2020b) as a guide. Code for running these models is available in supplementary materials S4.
 
 
-## J.Q1 Do jay populations in human modified areas differ in baseline behavioral flexibility compared to populations in natural areas?
+### J.Q1 Do jay populations in human modified areas differ in baseline behavioral flexibility compared to populations in natural areas?
 
 **The model**
 
@@ -225,20 +225,22 @@ Equation 1 “tells us how attractions to different behavioral options $A_{i,j, 
 
 Equation 2 “expresses the probability an individual $j$ chooses option $i$ in the next round, $t+1$, based on the latent attractions. The parameter $\lambda_j$ represents the *rate of deviating from learned attractions* of an individual (also called inverse temperature). It controls how sensitive choices are to differences in attraction scores. As $\lambda_j$ gets larger, choices become more deterministic, as it gets smaller, choices become more exploratory (random choice if $\lambda_j = 0$). For instance, if an individual has a 0.6-0.4 preference for option A, a value of $\lambda_j = 3$ means they choose A 65% of the time, a value of $\lambda_j = 10$ means they choose A 88% of the time and a value of $\lambda_j = 0.5$ means they choose A only 53% of the time” [@blaisdell2021causal].  
 
-We used the $\phi_j$ and $\lambda_j$ values as the response variable in the Bayesian model to examine whether there were differences in flexibility between the habitats:
+We used the c values as the response variable in the Bayesian model to examine whether there were differences in flexibility between the habitats:
 
 y ~ $\alpha$[habitat]
 
 y is the response variable ($\phi_j$ and $\lambda_j$, which are extracted from the correct and incorrect choices in the serial reversals). There is one intercept, $\alpha$, per habitat (suburban or natural) and we will estimate the habitat's average and standard deviation of the response variable.
 
 
-## J.Q2 Are disturbance-resiliant jays more flexible than disturbance-resistant jays?
+### J.Q2 Are disturbance-resiliant jays more flexible than disturbance-resistant jays?
 
 We were not able to collect data on disturbance-resilient species within the timeframe of this study and the funding of our grant. However, we were able to conduct an *unregistered analysis* testing for differences in behavior between disturbance-resilient Florida scrub-jay individuals persisting in human-modified areas and conspecifics in natural habitat lacking human disturbance.
 
-.... Add here details of this model ....
+**The model**
+We used poisson regression to assess whether jays in human-modified areas foraged on more different kinds of foods and used more substrate types relative to jays in natural areas. We included a random effect for jay ID and an offset for the amount of time each jay was observed.
 
-## J.Q3 More flexible = use more microhabitats?
+
+### J.Q3 More flexible = use more microhabitats?
 
 **The model**
 
@@ -246,9 +248,10 @@ We were not able to collect data on disturbance-resilient species within the tim
 
 habitatuse ~ $\alpha$[ind] + $\beta$[ind]*before
 
-habitatuse is the response variable: the total number of different microhabitats used per individual. There will be one intercept, $\alpha$, and one slope $\beta$ per individual, which will be estimated for the two conditions, before (and after) the manipulation. ID is nested within condition as a random effect because there is more than one data point per individual: each individual has a data point in the before condition and in the after condition. A normal distribution was used because the response variable is a sum without an expected skew to the curve [see Figure 10.6 in @mcelreath2020statistical]. The Bayesian model was developed using @mcelreath2020statistical as a guide.
+habitatuse is the response variable: the total number of different microhabitats used per individual. There was one intercept, $\alpha$, and one slope $\beta$ per individual, which was estimated for the two conditions, before (and after) the manipulation. ID is nested within condition as a random effect because there was more than one data point per individual: each individual has a data point in the before condition and in the after condition. A normal distribution was used because the response variable is a sum without an expected skew to the curve [see Figure 10.6 in @mcelreath2020statistical]. 
 
-## J.Q4 More flexible = more food types?
+
+### J.Q4 More flexible = more food types?
 
 **The model**
 
@@ -256,17 +259,574 @@ habitatuse is the response variable: the total number of different microhabitats
 
 y ~ $\alpha$[ind] + $\beta$[ind]*before
 
-y is the response variable: the total number of different food types taken per individual. There will be one intercept, $\alpha$, and one slope $\beta$ per individual, which will be estimated for the two conditions, before (and after) the manipulation. ID is nested within condition as a random effect because there is more than one data point per individual: each individual has a data point in the before condition and in the after condition. A normal distribution was used because the response variable is a sum without an expected skew to the curve [see Figure 10.6 in @mcelreath2020statistical]. The Bayesian model was developed using @mcelreath2020statistical as a guide.
+y is the response variable: the total number of different food types taken per individual. There will be one intercept, $\alpha$, and one slope $\beta$ per individual, which will be estimated for the two conditions, before (and after) the manipulation. ID is nested within condition as a random effect because there is more than one data point per individual: each individual has a data point in the before condition and in the after condition. A normal distribution was used because the response variable is a sum without an expected skew to the curve [see Figure 10.6 in @mcelreath2020statistical]. 
 
 # **RESULTS**
+Very few Florida scrub-jay were found in human-modified areas at our study site in Lake Placid, FL. Across two years we collected focal observations and baseline behavioral flexibility on 6 individuals in these human-modified areas and 8 jays in natural areas at Archbold Biological Station. A smaller subset of 9 jays (all 8 jays in the areas and 1 from the human-modified areas) received the serial research learning flexibility manipulation because it was not feasible to conduct this longer experiment on more jays within the constraints of our field season.
+
+## J.Q1 Do jay populations in human modified areas differ in baseline behavioral flexibility compared to populations in natural areas? 
+There was no difference in baseline behavioral flexibility performance between jays in suburban or natural areas. This was true when we considered either of the two behavioral flexibility components, $\phi_j$, the rate of learning the newly rewarded option ($\beta$ = -0.23, sd = 1.27, CI = -2.22 - 1.4), or $\lambda_j$, the rate of deviation from previously rewarded options ($\beta$ = -0.01, sd = 0.18, CI = -0.28 - 0.28).
+
+```{r jayflexbeforehabitatcomparison, eval=F}
+library(rethinking)
+library(cmdstanr)
+set_ulam_cmdstan(TRUE) #makes it so ulam always runs with cmdstan
+
+# load data sheet
+dflex <- read.csv(url("https://raw.githubusercontent.com/ManyIndividuals/ManyIndividuals/refs/heads/main/Files/rrs/mi1_jays_flexdata.csv"), header=T, sep=",", stringsAsFactors=F)
+
+#label columns so they match the model's variable names
+colnames(dflex)[3] = "Habitat"
+colnames(dflex)[9] = "Correct"
+
+#make a new column Choice that is Correct +1 to avoid zeros that mess up the model. Make sure to remove the -1s showing that the bird did not participate
+dflex <- dflex[!dflex$Correct==-1,] #remove the -1s
+dflex$Choice <- dflex$Correct+1 
+
+# sort the data: only want data from the initial discrimination and first reversal to use as the baseline flexibility so we can compare between habitats
+reduceddata <- matrix(ncol=ncol(dflex),nrow=0)
+reduceddata <- data.frame(reduceddata)
+for (i in 1:length(unique(dflex$ID))) {
+  thisbird <- unique(dflex$ID)[i]
+  thisbirddata <- dflex[dflex$ID==thisbird,]
+  thisbirdslastreversal <- thisbirddata[thisbirddata$Reversal %in% c(0,1),]
+  reduceddata <- rbind(reduceddata,thisbirdslastreversal)
+}
+dflex_beginning <- reduceddata
+
+
+# Now we run a STAN model with all habitats, estimating both means of phi and lambda for each habitat as well as each individuals' phi and lambda
+
+# We set up the data for the model
+dat_full <-list() # start the list which holds the input data for the stan model
+dat_full$N <- nrow(dflex_beginning) #total number of rows
+dat_full$N_id <- length(unique(as.factor(dflex_beginning$ID))) # records how many different individuals there are
+dat_full$id <- as.factor(dflex_beginning$ID)
+dat_full$id <- as.numeric(dat_full$id) # re-codes each ID as a sequential number
+dat_full$N_exp <- length(unique(dflex_beginning$Habitat)) # records the number of habitats
+dat_full$Choice <- as.numeric(as.factor(dflex_beginning$Choice)) #this is the Correct +1 variable
+dat_full$Correct <- as.numeric(as.factor(dflex_beginning$Correct)) #making this a factor turns it into the same as Choice
+dat_full$Trial<-dflex_beginning$Trial # has the info on which trial it is
+dat_full$Habitat <- as.numeric(as.factor(dflex_beginning$Habitat)) # re-codes the unique habitats as sequential number; 1 = Natural, 2 = Suburban
+
+# This STAN model, in addition to estimating phi and lambda for each individual, also estimates means for each habitat It again starts with attractions set to 0.1 and assumes that individuals only learn about the option they chose.
+
+# The individuals are now numbered - to find out which individual is which number, run
+# levels(as.factor(dflex_beginning$ID))
+
+reinforcement_model_id_site_nonzeroattraction <- "
+data{
+   int N;
+   int N_id;
+   int N_exp;
+   array[N] int id;
+   array[N] int Habitat;
+   array[N] int Trial;
+   array[N] int Choice;
+   array[N] int Correct;
+}
+
+parameters{
+  real logit_phi;
+  real log_L;
+
+  // Varying effects clustered on individual
+  matrix[2,N_id] z_ID;
+  vector<lower=0>[2] sigma_ID;       //SD of parameters among individuals
+  cholesky_factor_corr[2] Rho_ID;
+
+  // Varying effects clustered on experimenter
+  matrix[2,N_exp] z_EXP;
+  vector<lower=0>[2] sigma_EXP;
+  cholesky_factor_corr[2] Rho_EXP;
+}
+
+transformed parameters{
+matrix[N_id,2] v_ID; // varying effects on individuals
+matrix[N_exp,2] v_EXP; // varying effects on experimenter
+
+v_ID = ( diag_pre_multiply( sigma_ID , Rho_ID ) * z_ID )';
+v_EXP = ( diag_pre_multiply( sigma_EXP , Rho_EXP ) * z_EXP )';
+}
+
+model{
+matrix[N_id,2] A; // attraction matrix
+
+logit_phi ~  normal(0,1);
+log_L ~  normal(0,1);
+
+// varying effects
+to_vector(z_ID) ~ normal(0,1);
+sigma_ID ~ exponential(1);
+Rho_ID ~ lkj_corr_cholesky(4);
+
+to_vector(z_EXP) ~ normal(0,1);
+sigma_EXP ~ exponential(1);
+Rho_EXP ~ lkj_corr_cholesky(4);
+
+// initialize attraction scores
+for ( i in 1:N_id ) {
+A[i,1] = 0.1; A[i,2] = 0.1;
+}
+
+// loop over Choices
+for ( i in 1:N ) {
+vector[2] pay;
+vector[2] p;
+real L;
+real phi;
+
+// first, what is log-prob of observed choice
+L =  exp(log_L + v_ID[id[i],1]+ v_EXP[Habitat[i],1]);
+p = softmax(L*A[id[i],1:2]' );
+Choice[i] ~ categorical( p );
+
+// second, update attractions conditional on observed choice
+phi =  inv_logit(logit_phi + v_ID[id[i],2]+ v_EXP[Habitat[i],2]);
+pay[1:2] = rep_vector(0,2);
+pay[ Choice[i] ] = Correct[i];
+A[ id[i] , Choice[i] ] = ( (1-phi)*(A[ id[i] , Choice[i] ]) + phi*pay[Choice[i]]);
+}//i
+}
+"
+
+ 
+ 
+# Run the STAN model on the full data with rstan. 5000 iter takes a couple of minutes
+m_simulated_full <- stan( model_code =  reinforcement_model_id_site_nonzeroattraction, data=dat_full ,iter = 5000, cores = 4, chains=4, control = list(adapt_delta=0.9, max_treedepth = 12)) 
+
+# We extract the posterior from the STAN model
+s <- extract.samples(m_simulated_full)
+
+# We save the output so that we do not have to rerun the model for potential further analyses
+#write.csv(s,"mi1_jays_q1_output_m_simulated_full.csv")
+# if you want to work directly from the saved model output, run the following line 
+s <- read.csv(url("https://raw.githubusercontent.com/ManyIndividuals/ManyIndividuals/refs/heads/main/Files/rrs/mi1_jays_q1_output_m_simulated_full.csv"), header=T, sep=",", stringsAsFactors=F)
+# There should be 10000 rows in the data frame (we sampled 2500 iterations from 4 chains), so each row is one of the samples from the posterior.
+
+# The csv file does not preserve the structure. The s file that is the posterior from the STAN model has a nested structure. If you load it from the csv file, the nesting is lost and the variables are renamed. 
+# Variable X = unique identifier of the sample from the posterior
+# logit_phi = estimate of the baseline phi (logit transformed) across all individuals and habitats
+# log_L = estimate of the baseline lambda (log transformed) across all individuals and habitats
+# z_ID.1 through z_ID.14 z transformation of lambda for each of the 14 individuals (helps to make the values comparable)
+# z_ID.15 through z_ID.28 z transformation of phi for each of the 15 individuals (helps to make the values comparable)
+# sigma.ID.1 = variation in lambda among individuals
+# sigma_ID.2 = variation in phi among individuals
+# Rho_ID.1 = how much lambda is correlated within individuals (will always be 1)
+# Rho_ID.2 = how much lambda is with phi within individuals (will be slightly negative)
+# Rho_ID.3 = how much lambda is correlated with phi among individuals (will always be 0)
+# Rho_ID.4 = how much phi is correlated within individuals (should be close to 1)
+# z_EXP.1 through z_EXP.2 z transformation of lambda for each of the two habitats (helps to make the values comparable)
+# z_EXP.3 through z_EXP.4 z transformation of phi for each of the two habitats (helps to make the values comparable)
+# sigma_EXP.1 variation among individuals in natural habitat
+# sigma_EXP.2 variation among individuals in suburban habitat
+# Rho_ID.1 = how much lambda is correlated within habitats (will always be 1)
+# Rho_ID.2 = how much lambda is correlated with phi within habitats (should be slightly negative)
+# Rho_ID.3 = how much lambda is correlated with phi among individuals (will always be 0)
+# Rho_ID.4 = how much phi is correlated within individuals (should be close to 1)
+# v_ID.1 through v_ID.14 the individual offsets in lambda for the 14 individuals
+# v_ID.15 through v_ID.28 the individual offsets in phi for the 14 individuals
+# v_EXP.1 the offset for lambda for the natural habitat
+# v_EXP.2 the offset for lambda for the suburban habitat
+# v_EXP.3 the offset for phi for the natural habitat
+# v_EXP.4 the offset for phi for the suburban habitat
+
+# To obtain the estimated phi value for the first individual estimated during a given posterior, you need the inverse logit of the sum of (logit_phi in that row plus v_ID.15 from that row) - to get the full estimate for that individual, average across all rows
+# To obtain the estimated lambda value for the first individual estimated during a given posterior, you need the exponential of the sum of (log_L in that row plus v_ID.1 from that row) - to get the full estimate for that individual, average across all rows
+# To obtain the estimated phi value in the natural habitat estimated during a given posterior, you need the inverse logit of the sum of (logit_phi in that row plus v_EXP.3 from that row) - to get the full estimate for that habitat, average across all rows
+# To obtain the estimated lambda value in the natural habitat estimated during a given posterior, you need the exponential of the sum of (log_L in that row plus v_EXP.1 from that row) - to get the full estimate for that habitat, average across all rows
+
+# If you want to plot the distribution of phi and lambda in the two different habitats, first calculate phi and lambda for each individual. Next, look up which individual is in which habitat with the following code (the order is the same as in the model, so the individual in the first row is the individual labelled 1 in the model)
+library(dplyr)
+dflex_beginning %>% group_by(ID) %>% summarize(unique(Habitat))
+
+# We calculate the mean phi and lambda for each habitat as estimated by the STAN model
+lambda <- sapply(1 : dat_full$N_exp, function(x) exp( mean(s$log_L) + mean(s$v_EXP.1)))
+phi <- sapply(1 : dat_full$N_exp, function(x) inv_logit( mean(s$logit_phi) + mean(s$v_EXP[ ,x, 2])))
+
+
+# We want to know whether the STAN model estimated two habitats to be different or not. As criterion for this, we check whether the samples in the posterior for pairs of habitat overlap or not. That means that, when calculating the difference between the samples in the posterior for a pair of habitat, they are assumed to be different if the differences are all on one side of zero.
+
+# We first test whether there is a difference in mean phi between sites
+# We calculate the pairwise differences between sites for the estimated phi means
+pairwisedifferences_phiposteriors<-list(sapply(1 : (dat_full$N_exp * (dat_full$N_exp-1)/2), function(x) (s$v_EXP[ ,combn(1:dat_full$N_exp,m=2)[1,x], 2]-(s$v_EXP[ ,combn(1:dat_full$N_exp,m=2)[2,x], 2]))))
+
+# We convert it into a dataframe for easier manipulation
+estimates_pairwisedifferences_phiposteriors<-as.data.frame(precis(pairwisedifferences_phiposteriors,depth=2))
+
+# We add a column that classifies as true or false whether the estimates crosses zero (as opposed to all values being either smaller or larger than zero)
+estimates_pairwisedifferences_phiposteriors$crosseszero<-ifelse(estimates_pairwisedifferences_phiposteriors$mean>0,estimates_pairwisedifferences_phiposteriors$`5.5%`<0,estimates_pairwisedifferences_phiposteriors$`94.5%`>0)
+
+# the columns are: mean is the average difference between the two habitats (suburban minus natural, natural has slightly larger values; sd is the standard deviation of this estimation, followed by the 89% compatibility estimates, a histogram showing the distribution of the differences across the different samples in the posterior indicating that this has been sampled reliably because there are no outliers, and a classifier whether the 89% interval crosses zero - the 1 means it does, so the two habitats do not differ consistently in the phi of the individuals)
+#      mean   sd  5.5% 94.5%    histogram crosseszero
+# [1] -0.23 1.27 -2.22   1.4 ▁▁▁▁▁▁▇▅▁▁▁▁           1
+# Result = there is no difference between suburban and natural intervals for phi because the interval crosses zero
+
+
+# Second, we check whether there is a difference in mean lambda
+# We calculate the pairwise differences between sites for the estimated phi means
+pairwisedifferences_lambdaposteriors<-list(sapply(1 : (dat_full$N_exp * (dat_full$N_exp-1)/2), function(x) (s$v_EXP[ ,combn(1:dat_full$N_exp,m=2)[1,x], 1]-(s$v_EXP[ ,combn(1:dat_full$N_exp,m=2)[2,x], 1]))))
+
+# We convert it into a dataframe for easier manipulation
+estimates_pairwisedifferences_lambdaposteriors<-as.data.frame(precis(pairwisedifferences_lambdaposteriors,depth=2))
+
+# We add a column that classifies as true or false whether the estimates crosses zero (as opposed to all values being either smaller or larger than zero)
+estimates_pairwisedifferences_lambdaposteriors$crosseszero<-ifelse(estimates_pairwisedifferences_lambdaposteriors$mean>0,estimates_pairwisedifferences_lambdaposteriors$`5.5%`<0,estimates_pairwisedifferences_lambdaposteriors$`94.5%`>0)
+
+# the columns are: mean is the average difference between the two habitats (suburban minus natural, natural has slightly larger values; sd is the standard deviation of this estimation, followed by the 89% compatibility estimates, a histogram showing the distribution of the differences across the different samples in the posterior indicating that this has been sampled reliably because there are no outliers, and a classifier whether the 89% interval crosses zero - the 1 means it does, so the two habitats do not differ consistently in the phi of the individuals)
+#      mean   sd  5.5% 94.5%    histogram crosseszero
+# [1] -0.01 0.18 -0.28  0.28 ▁▁▁▁▂▇▇▂▁▁▁▁           1
+# Result = there is no difference between suburban and natural intervals for lambda because the interval crosses zero
+
+```
+
+```{r jayflexsppdiff, eval=F}
+library(rethinking)
+library(cmdstanr)
+set_ulam_cmdstan(TRUE) #makes it so ulam always runs with cmdstan
+
+# load data sheet
+dflex.o <- read.csv(url("https://raw.githubusercontent.com/ManyIndividuals/ManyIndividuals/refs/heads/main/Files/rrs/mi1_jays_flexdata.csv"), 
+                  header=T, sep=",", stringsAsFactors=F)
+
+# sort the data: only want data from the initial discrimination and first reversal to use as the baseline flexibility so we can compare between species
+reduceddata <- matrix(ncol=ncol(dflex),nrow=0)
+reduceddata <- data.frame(reduceddata)
+for (i in 1:length(unique(dflex$ID))) {
+  thisbird <- unique(dflex$ID)[i]
+  thisbirddata <- dflex[dflex$ID==thisbird,]
+  thisbirdslastreversal <- thisbirddata[thisbirddata$Reversal %in% c(0,1),]
+  reduceddata <- rbind(reduceddata,thisbirdslastreversal)
+}
+dflex_beginning <- reduceddata
+
+
+# Now we run a STAN model with all simulated species, estimating both means of phi and lambda for each species as well as each individuals' phi and lambda
+
+# We set up the data for the model
+dat_full <- as.list(simulatedreversaldata_attractionscores)
+dat_full$N <- nrow(simulatedreversaldata_attractionscores)
+dat_full$N_id <- length(unique(simulatedreversaldata_attractionscores$id))
+dat_full$N_exp <- length(unique(simulatedreversaldata_attractionscores$Habitat))
+dat_full$Choice <- as.numeric(as.factor(dat_full$Choice))
+
+# This STAN model, in addition to estimating phi and lambda for each individual, also estimates means for each habitat It again starts with attractions set to 0.1 and assumes that individuals only learn about the option they chose.
+
+reinforcement_model_id_site_nonzeroattraction <- "
+data{
+   int N;
+   int N_id;
+   int N_exp;
+   int id[N];
+   int Species[N];
+   int Trial[N];
+   int Choice[N];
+   int Correct[N];
+}
+
+parameters{
+  real logit_phi;
+  real log_L;
+
+  // Varying effects clustered on individual
+  matrix[2,N_id] z_ID;
+  vector<lower=0>[2] sigma_ID;       //SD of parameters among individuals
+  cholesky_factor_corr[2] Rho_ID;
+
+  // Varying effects clustered on experimenter
+  matrix[2,N_exp] z_EXP;
+  vector<lower=0>[2] sigma_EXP;
+  cholesky_factor_corr[2] Rho_EXP;
+}
+
+transformed parameters{
+matrix[N_id,2] v_ID; // varying effects on individuals
+matrix[N_exp,2] v_EXP; // varying effects on experimenter
+
+v_ID = ( diag_pre_multiply( sigma_ID , Rho_ID ) * z_ID )';
+v_EXP = ( diag_pre_multiply( sigma_EXP , Rho_EXP ) * z_EXP )';
+}
+
+model{
+matrix[N_id,2] A; // attraction matrix
+
+logit_phi ~  normal(0,1);
+log_L ~  normal(0,1);
+
+// varying effects
+to_vector(z_ID) ~ normal(0,1);
+sigma_ID ~ exponential(1);
+Rho_ID ~ lkj_corr_cholesky(4);
+
+to_vector(z_EXP) ~ normal(0,1);
+sigma_EXP ~ exponential(1);
+Rho_EXP ~ lkj_corr_cholesky(4);
+
+// initialize attraction scores
+for ( i in 1:N_id ) {
+A[i,1] = 0.1; A[i,2] = 0.1';
+}
+
+// loop over Choices
+for ( i in 1:N ) {
+vector[2] pay;
+vector[2] p;
+real L;
+real phi;
+
+// first, what is log-prob of observed choice
+L =  exp(log_L + v_ID[id[i],1]+ v_EXP[Species[i],1]);
+p = softmax(L*A[id[i],1:2]' );
+Choice[i] ~ categorical( p );
+
+// second, update attractions conditional on observed choice
+phi =  inv_logit(logit_phi + v_ID[id[i],2]+ v_EXP[Species[i],2]);
+pay[1:2] = rep_vector(0,2);
+pay[ Choice[i] ] = Correct[i];
+A[ id[i] , Choice[i] ] = ( (1-phi)*(A[ id[i] , Choice[i] ]) + phi*pay[Choice[i]])';
+}//i
+}
+"
+
+# Now we run the STAN model on the full data. This will take a few hours.
+m_simulated_full <- stan( model_code =  reinforcement_model_id_site_nonzeroattraction, data=dat_full ,iter = 5000, cores = 4, chains=4, control = list(adapt_delta=0.9, max_treedepth = 12))
+
+# We extract the posterior from the STAN model
+s <- extract.samples(m_simulated_full)
+
+# We calculate the mean phi and lambda for each Species as estimated by the STAN model
+lambda <- sapply(1 : dat_full$N_exp, function(x) exp( mean(s$log_L) + mean(s$v_EXP[ ,x, 1])))
+phi <- sapply(1 : dat_full$N_exp, function(x) inv_logit( mean(s$logit_phi) + mean(s$v_EXP[ ,x, 2])))
+
+
+# We want to know whether the STAN model estimated two habitats to be different or not. As criterion for this, we check whether the samples in the posterior for pairs of Species overlap or not. That means that, when calculating the difference between the samples in the posterior for a pair of Species, they are assumed to be different if the differences are all on one side of zero.
+
+# We first check our power to estimate difference in mean phi between sites
+# We calculate the pairwise differences between sites for the estimated phi means
+pairwisedifferences_phiposteriors<-list(sapply(1 : (dat_full$N_exp * (dat_full$N_exp-1)/2), function(x) (s$v_EXP[ ,combn(1:dat_full$N_exp,m=2)[1,x], 2]-(s$v_EXP[ ,combn(1:dat_full$N_exp,m=2)[2,x], 2]))))
+
+# We convert it into a dataframe for easier manipulation
+estimates_pairwisedifferences_phiposteriors<-as.data.frame(precis(pairwisedifferences_phiposteriors,depth=2))
+
+# We add a column that classifies as true or false whether the estimates crosses zero (as opposed to all values being either smaller or larger than zero)
+estimates_pairwisedifferences_phiposteriors$crosseszero<-ifelse(estimates_pairwisedifferences_phiposteriors$mean>0,estimates_pairwisedifferences_phiposteriors$`5.5%`<0,estimates_pairwisedifferences_phiposteriors$`94.5%`>0)
+```
+
+
+```{r plotjayflexbefore, echo=FALSE}
+dflex.o <- read.csv(url("https://raw.githubusercontent.com/ManyIndividuals/ManyIndividuals/refs/heads/main/Files/rrs/mi1_jays_flexdata.csv"), 
+                  header=T, sep=",", stringsAsFactors=F)
+dflex = dflex.o[which(dflex.o$Reversal == 0 | dflex.o$Reversal == 1),]
+
+dflex2 = aggregate(Trial ~ ID + Location + Reversal, FUN = "max", data = dflex)
+colnames(dflex2)[4] = "max.trial"
+dflex2$adj.max = dflex2$max.trial - 12 # because no jays could reach the criterion in fewer than 12 trials.
+
+
+ggplot(dflex2, aes(as.factor(Reversal), max.trial, fill = Location)) +
+  geom_boxplot() +
+  geom_hline(yintercept = 12,color = "red") +
+  coord_cartesian(ylim=c(5,40)) +
+  theme_classic() +
+  theme(
+        legend.text = element_text(size = 18),
+        legend.title = element_text(size = 22),
+        axis.title = element_text(size = 22),
+        axis.text = element_text( size = 18),
+        strip.text = element_text(size = 24,face = "bold")) +
+  scale_fill_manual(values=c("gray32","gray90")) +
+  labs(x = "Reversal",y = "Trials to criteria")
+
+```
+Figure 3: Before the flexibility training, jays in the suburban and natural habitats performed exceptionally well on the baseline behavioral flexibility task and did not differ in ability. These boxplots show the performance as the number of trials to reach the passing criterion on baseline associative learning (Reversal 0) and behavioral flexibility (Reversal 1) for jays in the natural (dark grey) and human modified (light grey) areas. We use trials to pass, rather than  or  in this plot for more interpretable illustration of the speed of performance on this task. The horizontal red line illustrates the minimum number of trials to pass criteria (10 out of the most recent 12 trials correct).
+
+## J.Q2 Are disturbance-resilient jays more flexible than disturbance-resistant jays?
+We were not able to test this question within the timeframe and funding of the grant. However, we conducted an unregistered analysis using Poisson models to compare foraging and habitat use behavior of Florida scrub-jays in human modified areas to those in natural areas. In other words, within this disturbance sensitive species, a subset of individuals were resilient to disturbance, at least during the timeline of this study. The disturbance-resilient individuals in the suburbs were not more diverse foragers (ß = 0.26 ± 0.19, p = 0.15), but did use a greater variety of microhabitats (ß = 0.52 ± 0.16, p = 0.001) compared to the jays in undisturbed, natural habitat at Archbold Biological Station.
+
+```{r dr-vs-ds, message=FALSE, warning=FALSE, include=FALSE}
+# foraging
+data = read.csv(url("https://raw.githubusercontent.com/ManyIndividuals/ManyIndividuals/refs/heads/main/Files/rrs/mi1_jays_Foragingdata.csv"), 
+                  header=T, sep=",", stringsAsFactors=F)
+overdisp_fun <- function(model) {
+  rdf <- df.residual(model)
+  rp <- residuals(model,type="pearson")
+  Pearson.chisq <- sum(rp^2)
+  prat <- Pearson.chisq/rdf
+  pval <- pchisq(Pearson.chisq, df=rdf, lower.tail=FALSE)
+  c(chisq=Pearson.chisq,ratio=prat,rdf=rdf,p=pval)
+}
+
+m.for = glm(forage.div ~ site, data = data,family = poisson)
+overdisp_fun(m.for) #not overdispersed
+summary(m.for) # Suburban jays do not eat more diverse foods
+
+
+# substrate
+data2 = read.csv(url("https://raw.githubusercontent.com/ManyIndividuals/ManyIndividuals/refs/heads/main/Files/rrs/mi1_jays_Habitatdata.csv"), 
+                  header=T, sep=",", stringsAsFactors=F)
+data2$site = ifelse(data2$BirdID == "yx-dgk" | data2$BirdID == "wk-ox" | data2$BirdID == "gx-ak" |
+                    data2$BirdID == "rx-yk" | data2$BirdID == "bx-wk"| data2$BirdID == "yx-gk" |
+                    data2$BirdID == "ow-xk" | data2$BirdID == "ak-ox"| data2$BirdID == "wk-ox post" |
+                    data2$BirdID == "gx-ok" | data2$BirdID == "bx-yk" | data2$BirdID == "wx-rk",
+                  "Suburban", "Natural")
+
+m.sub = glm(substrate.div ~ site, data = data2, family = poisson)
+overdisp_fun(m.sub) #not overdispersed
+summary(m.sub) # Suburban jays use more diverse substrates ß = 0.52, se = 0.16, p=0.001
+
+```
+
+
+## J.Q3 More flexible = use more microhabitats?
+Even though all jays increased the speed with which they switched their preference in the serial reversal learning training, there was no effect on subsequent habitat use diversity (before relative to after log-odds difference = -0.06, CI = -0.41 - 0.30, p > 0.05; Fig. 4). 
+
+```{r jayhabitatuse, eval=F}
+library(rethinking)
+library(cmdstanr)
+set_ulam_cmdstan(TRUE) #makes it so ulam always runs with cmdstan
+
+## load data sheet
+d <- read.csv(url("https://raw.githubusercontent.com/ManyIndividuals/ManyIndividuals/refs/heads/main/Files/rrs/mi1_jays_Habitatdata.csv"), header=T, sep=",", stringsAsFactors=F)
+d = d[,-1]
+d$area = ifelse(d$BirdID == "yx-dgk" | d$BirdID == "wk-ox" | d$BirdID == "gx-ak" |
+                     d$BirdID == "rx-yk" | d$BirdID == "bx-wk"| d$BirdID == "yx-gk" |
+                     d$BirdID == "ow-xk" | d$BirdID == "ak-ox"| 
+                     d$BirdID == "gx-ok" | d$BirdID == "bx-yk" | d$BirdID == "wx-rk",
+                   "Suburban", "Natural")
+colnames(d) = c("habitats","BeforeOrAfterManipulation","ID","area")
+
+# The number of micro-habitats that individuals could have used differs between the natural and the suburban area. We need to account for this because we are assessing whether the proportion of possible habitats an individual uses changed from before to after
+d$possiblehabitats<-ifelse(d$area=="Natural",10,12)
+
+# Set up the data sheet
+datHab <- list(
+    habitatuse = d$habitats,
+    possiblehabitats = d$possiblehabitats,
+    before = d$BeforeOrAfterManipulation,
+    ind = as.integer(as.factor(d$ID))
+)
+
+# THE MODEL (p.447 for binomial distribution with advanced varying slopes - McElreath 2020). 
+mj <- ulam(
+    alist(
+        habitatuse ~ dbinom(possiblehabitats,p), #max 10 habitats
+        logit(p) <- g[before] + alpha[ind,before],
+        # adaptive priors - non-centered
+        transpars> matrix[ind,2]:alpha <- compose_noncentered( sigma_ind , L_Rho_ind , z_ind ),
+        matrix[2,ind]:z_ind ~ normal( 0 , 1 ),
+        # fixed priors
+        g[before] ~ normal(0,1),
+        vector[2]:sigma_ind ~ dexp(1),
+        cholesky_factor_corr[2]:L_Rho_ind ~ lkj_corr_cholesky( 2 ),
+        # compute ordinary correlation matrixes from Cholesky finds
+        gq> matrix[2,2]:Rho_ind <<- Chol_to_Corr(L_Rho_ind)
+    ) , data=datHab , chains=4 , cores=4 , log_lik=TRUE , cmdstan = TRUE, control = list(adapt_delta = .95, force_recompile = TRUE))
+
+precis(mj,depth=2) #pay attention to g (g1 is before, g2 is after)
+boxplot(dat$habitatuse~dat$before) #see if there is a difference visually
+
+ # run a contrast to determine whether there is a difference between the before and after conditions (there is a difference if CI is on one side of zero)
+post <- extract.samples(mj)
+diff_g <- post$g[,2] - post$g[,1] #log-odds difference p.341 McElreath 2020
+diff_p <- inv_logit(post$g[,2]) - inv_logit(post$g[,1]) #on the probability scale p.341 McElreath 2020
+precis( list( diff_g=diff_g , diff_p=diff_p ) )
+```
+
+
+## J.Q4 More flexible = more food types?
+Similarly, after the serial reversal flexibility training, jays were not more likely to eat a greater diversity of food types ( = 0.26, CI = -0.45 - 0.96, p > 0.05; Fig. 4).
+
+```{r jayforaging, eval=F}
+library(rethinking)
+library(cmdstanr)
+set_ulam_cmdstan(TRUE) #makes it so ulam always runs with cmdstan
+
+## load data sheet
+d <- read.csv(url("https://raw.githubusercontent.com/ManyIndividuals/ManyIndividuals/refs/heads/main/Files/rrs/mi1_jays_Foragingdata.csv"), header=T, sep=",", stringsAsFactors=F)
+d = d[,-1]
+colnames(d) = c("area","forage","BeforeOrAfterManipulation","ID")
+
+# Set up the data sheet
+datFood <- list(
+    forageuse = d$forage,
+    before = d$BeforeOrAfterManipulation-1, #1=before, 2=after, and then -1 makes it so it is 0 and 1, respectively, which makes the model work better
+    ind = as.integer(as.factor(d$ID))
+)
+
+# THE MODEL (p.441 for normal distribution - McElreath 2020). Note that it is MULTIPLIED by condition (before), which means that you don't need to run a contrast because each individual value already accounts for the difference. So only look at beta 
+mjf <- ulam(
+    alist(
+        forageuse ~ normal( mu , sigma ),
+        mu <- a_ind[ind] + b_ind[ind]*before,
+        c(a_ind,b_ind)[ind] ~ multi_normal( c(alpha,beta) , Rho , sigma_ind ),
+        alpha ~ normal(6.5,2), #6.5=mean number of foods taken, 2=food types for the sd
+        beta ~ normal(0,6), #0.5=mean slope, 6=sd which is like the max difference between before and after
+        sigma_ind ~ exponential(1),
+        sigma ~ exponential(1),
+        Rho ~ lkj_corr(2)
+    ) , data=datFood, iter=8000, chains=4 , cores=4 , log_lik=TRUE , cmdstan = TRUE)
+
+#precis(mjf,depth=2)
+#Don't need to do a contrast because we already have each individual's number of food itmes so we only need to look at the overall beta (the slope between the values before and after) to see whether it is positive (more foods after) or negative (fewer foods after)
+
+#beta: mean=0.26, 89%CI= -0.45 to 0.96 - it crosses zero so we cannot say whether there was a difference between before and after. This is because 0.26 more foods were used after the flexibility training and if we look at Figure 12, the power analysis, about 63% of the analyses at a sample size of 20 (the actual sample size was 22) cross zero, so it would be very difficult to detect a difference between the conditions because such a small difference in the number of foods taken could occur by chance.
+
+#boxplot(datFood$forageuse~datFood$before) #see if there is a difference visually
+```
+
+
+```{r plotfor-habitatuse, echo=FALSE}
+pp.div = read.csv(url("https://raw.githubusercontent.com/ManyIndividuals/ManyIndividuals/refs/heads/main/Files/rrs/mi1_jays_pp_div2.csv"), header=T, sep=",", stringsAsFactors=F)
+colnames(pp.div)[3] = "food"
+library(reshape2)
+pp.div2 = melt(pp.div, id.vars = c("ID","Condition","pp"),value.name = "value", measure.vars = c("food","substrate","height"))
+pp.div2$pp = factor(pp.div2$pp, levels = c("pre","post"))
+
+pp.div2$Location = ifelse(pp.div2$ID == "ak-ox" | pp.div2$ID == "wk-ox" |pp.div2$ID == "gx-ok" |
+                          pp.div2$ID == "ow-xk" |pp.div2$ID == "gx-ak" |pp.div2$ID == "wx-rk" |
+                          pp.div2$ID == "bx-wk" |pp.div2$ID == "bx-yk" |pp.div2$ID == "rx-yk" |
+                          pp.div2$ID == "yx-dgk" |pp.div2$ID == "yx-gk",
+                          "Suburban","Natural")
+
+ggplot(pp.div2[-which(pp.div2$variable == "height"),], aes(pp,value, group = ID, color = Location)) +
+  facet_wrap(~ variable, scales = "free") +
+  geom_line(aes(color = Location),position = position_dodge(width =0.2)) +
+  geom_point(size = 3, aes(color = Location), position = position_dodge(width =0.2)) +
+  theme_classic() +
+  theme(legend.text = element_text(size = 18),
+        legend.title = element_text(size = 22),
+        axis.title = element_text(size = 22),
+        axis.title.x = element_blank(),
+        axis.text = element_text( size = 18),
+        strip.text = element_text(size = 24,face = "bold")) +
+  scale_color_manual(values=c("gray17","gray60"))
+  
+  
+```
+Figure 4: Jays did not predictably change their foraging or microhabitat use behaviors after they underwent the flexibility training manipulation. Values indicate the number of different foods or substrates jays were observed to use during the all-occurrences focal observation session before (pre) and after (post) we conducted serial reversal learning to increase behavioral flexibility. Each dot represents a jay and lines connect the dots of jays with data both pre and post. We collected pre observations on some jays for which we were not able to conduct the flexibility training and so we did not need to collect post observations.
+
+
+
+# **DISCUSSION**
+Anthropogenic change is creating unpredictable heterogeneity in the environment that requires some level of fast, adaptable learning in wildlife populations. In some species, the general cognitive trait, behavioral flexibility, is thought to underlie the ability to cope with rapid changes in human-modified environments (Sol et al., 2002; Vardi et al., 2022). Our previous work in the great-tailed grackle supported this hypothesis because grackles that were trained to be more flexible foraged on more diverse food and used more distinct behaviors to forage in the wild (Logan et al., 2025). The grackle is an urban-adapted generalist species that has demonstrated adaptability to environmental change through a rapid range expansion (Wehtje, 2003). We tested whether the same training to increase behavioral flexibility in a threatened species, the Florida scrub-jay (FLSJ), would lead to more adaptable foraging and habitat use behaviors in the wild. However, we found no effect of the behavioral flexibility training in this species.
+
+Unlike great-tailed grackles, FLSJ populations have rapidly declined coincident with anthropogenic change and there is little evidence for adaptation to human-modified environments. Yet, for many species, suburban environments can also provide significantly more foraging opportunities through the provision of novel foods, ornamental plants or agricultural activities that increase survival and reproductive success. For example, use of food at bird feeders has been linked to population growth and range expansions (Veech et al., 2010; Greig et al., 2017). One such species is the California scrub-jay, a congener to the FLSJ, that similarly prefers xeric scrub-oak habitat along the west coast of the United States. In contrast to the FLSJ, this species has been able to adapt to persist in highly developed areas (e.g., Los Angeles, CA) and expand its range north, while taking advantage of bird feeders (Curry et al., 2024). 
+
+In our population of FLSJ, a small population does persist in suburban areas. Anecdotally, homeowners report frequently seeing these individuals at their backyard bird feeders or other human-provided food sources. We compared foraging and habitat use of these individuals to FLSJ in pristine, unfragmented and fire-maintained scrub habitat at Archbold Biological Station. Jays in both habitat types foraged on equally diverse food items, but suburban jays used more distinct kinds of microhabitats (substrate type and height) relative to the jays at Archbold. In other words, suburban jays did not completely restrict their habitat use to the small remnant fragments of undeveloped scrub in the suburbs. This demonstrates that FLSJ are capable of adapting their habitat use behavior to include novel, human-modified environments. However, when we compared baseline behavioral flexibility between the two jay populations, suburban jays were not more behaviorally flexible than Archbold jays. Consequently, it is likely that behavioral flexibility, as we measured it through spatial reversal learning, does not underlie adaptation to human-disturbance in this species.
+
+This was supported by our finding of no change in foraging and habitat use behavior after undergoing behavioral flexibility training. Our results support our Prediction 1 alternative 1; all jays improved their reversal learning speed to meet the criterion, indicating they had increased their behavioral flexibility. But there was no consistent trend in the change in food item or microhabitat diversity measured before and after the training. There are a few potential explanations for why the training worked in great-tailed grackles but led to no behavior change in FLSJ. First, it is possible that the serial reversal learning task and passing criterion were too easy for FLSJ and so the training did not lead to a large enough change in flexibility to be seen in resulting behavior. We based the criteria for when an individual was considered to have passed a given reversal, as well as for passing the whole flexibility training, on performance of great-tailed grackles in the previous, similar experiment. However, FLSJ were significantly faster at forming an initial understanding of the location of the rewarded feeder and subsequently reversing that association compared to the grackles. In fact, the majority of individuals achieved the passing criteria almost as quickly as possible (Fig. 3). Our criterion to pass was 10 correct choices out of the most recent 12 trials and half of the jays reached this criterion in 12 or 13 trials (average = 15.6, max = 38). In comparison, the average number of trials for great-tailed grackles to reach criterion in the first reversal was 75 (McCune et al., 2023). This drastic difference in performance could be because grackles were tested in captivity and jays were tested in the wild (McCune et al., 2019). Although, another study (Bebus et al., 2016) evaluated reversal learning of FLSJ in captivity and those individuals required a similar number of days (3 days) to pass the criterion as in our study (2.8 days), but it is unclear if grackles would perform better if tested in the wild.
+
+Another potential reason we failed to see a change in natural behavior after the flexibility training is that jays were already using the majority of foods and substrates available. Due to time constraints, size and accessibility of the suburban population, the majority of jays (8 out of 9 total) that underwent the flexibility training were from Archbold Biological Station where the scrub-oak habitat is maintained at high quality and mid-successional state through prescribed fire and other management techniques. Thus, this habitat is far more homogenous than jays experience in the suburban areas. Consequently, it is possible that there was no opportunity for flexibility training to alter the foods or microhabitats used by these jays. However, this is unlikely to be a large confound because the suburban and Archbold jays did not differ in the number of different food items they ate before training and the one jay from the suburban area that we were able to train, also did not show a change in the variety of substrates used and showed a slight decrease in the diversity of food items used after the training (Fig. 4, single grey line).
+
+To better understand the role of behavior in adaptation or resilience to human disturbance, ongoing and future work in FLSJ will evaluate variation in other relevant behavioral traits like boldness, foraging role (producer-scrounger dynamics), exploration and movement behavior (Snell-Rood & Steck, 2019). The ManyIndividuals registered report also creates a versatile structure for testing behavioral flexibility in other species or systems. Although we were unable to test disturbance resilient jay species within the timeline of our current funding, we hope the research we present here will provide guidance and motivation for other investigators to address this question. As humans accelerate the frequency and degree of environmental change, experimental interventions such as this, that train species in behaviors that facilitate resilience, may become increasingly important.
+
 
 # **ETHICS**
 
 This research is carried out in accordance with permits from the:
-
-1) US Fish and Wildlife Service (scientific collecting permit number MBPER0039225)
-2) US Geological Survey Bird Banding Laboratory (federal bird banding permit number 23872 for grackles and 24273 for jays)
-3) Institutional Animal Care and Use Committee at the University of California Santa Barbara (protocol number 958)
+1. US Fish and Wildlife Service (scientific collecting permit number ES824723)
+2. US Geological Survey Bird Banding Laboratory (federal bird banding permit number 07732)
+3. Institutional Animal Care and Use Committee (University of California Santa Barbara protocol number 958 and Auburn University protocol number 2022-5132)
 
 
 # **AUTHOR CONTRIBUTIONS**
@@ -285,9 +845,9 @@ We, the authors, declare that we have no financial conflicts of interest with th
 
 # **ACKNOWLEDGEMENTS**
 
-We are grateful to our funders: Richard McElreath and Corina Logan at the Max Planck Institute for Evolutionary Anthropology (whole project), Dieter Lukas for assistance with analyses and coding. In addition, we are grateful for the ManyIndividuals co-founders, Drs. Corina Logan and Rachel Shaw. We are thankful for the input and assistance of Dr. Reed Bowman when designing the Florida scrub-jay data collection.
+We are grateful to our funders: Richard McElreath at the Max Planck Institute for Evolutionary Anthropology (whole project), as well as Corina Logan and Dieter Lukas for assistance with analyses and coding. In addition, we are grateful for the ManyIndividuals co-founders, Drs. Corina Logan and Rachel Shaw. We are thankful for the input and assistance of Dr. Reed Bowman when designing the Florida scrub-jay data collection.
 
-# **REFERENCES**
+# [REFERENCES](mi.bib)
 
 
 # **SUPPLEMENTARY MATERIALS**
@@ -682,7 +1242,138 @@ Simulations using bespoke Bayesian models in @logan2020xpop (the same model stru
 
 Run the code below to determine whether there were differences between the two habitats in their phi and lambda flexibility measures.
 
-```{r jayflexbeforehabitatcomparison, eval=F}
+```{r stage1-jayflexsppdiff, eval=F}
+library(rethinking)
+library(cmdstanr)
+set_ulam_cmdstan(TRUE) #makes it so ulam always runs with cmdstan
+
+# load data sheet
+dflex <- read.csv(url(""), header=T, sep=",", stringsAsFactors=F)
+
+# sort the data: only want data from the initial discrimination and first reversal to use as the baseline flexibility so we can compare between species
+reduceddata <- matrix(ncol=ncol(dflex),nrow=0)
+reduceddata <- data.frame(reduceddata)
+for (i in 1:length(unique(dflex$ID))) {
+  thisbird <- unique(dflex$ID)[i]
+  thisbirddata <- dflex[dflex$ID==thisbird,]
+  thisbirdslastreversal <- thisbirddata[thisbirddata$Reversal %in% c(0,1),]
+  reduceddata <- rbind(reduceddata,thisbirdslastreversal)
+}
+dflex_beginning <- reduceddata
+
+
+# Now we run a STAN model with all simulated species, estimating both means of phi and lambda for each species as well as each individuals' phi and lambda
+
+# We set up the data for the model
+dat_full <- as.list(simulatedreversaldata_attractionscores)
+dat_full$N <- nrow(simulatedreversaldata_attractionscores)
+dat_full$N_id <- length(unique(simulatedreversaldata_attractionscores$id))
+dat_full$N_exp <- length(unique(simulatedreversaldata_attractionscores$Habitat))
+dat_full$Choice <- as.numeric(as.factor(dat_full$Choice))
+
+# This STAN model, in addition to estimating phi and lambda for each individual, also estimates means for each habitat It again starts with attractions set to 0.1 and assumes that individuals only learn about the option they chose.
+
+reinforcement_model_id_site_nonzeroattraction <- "
+data{
+   int N;
+   int N_id;
+   int N_exp;
+   int id[N];
+   int Species[N];
+   int Trial[N];
+   int Choice[N];
+   int Correct[N];
+}
+
+parameters{
+  real logit_phi;
+  real log_L;
+
+  // Varying effects clustered on individual
+  matrix[2,N_id] z_ID;
+  vector<lower=0>[2] sigma_ID;       //SD of parameters among individuals
+  cholesky_factor_corr[2] Rho_ID;
+
+  // Varying effects clustered on experimenter
+  matrix[2,N_exp] z_EXP;
+  vector<lower=0>[2] sigma_EXP;
+  cholesky_factor_corr[2] Rho_EXP;
+}
+
+transformed parameters{
+matrix[N_id,2] v_ID; // varying effects on individuals
+matrix[N_exp,2] v_EXP; // varying effects on experimenter
+
+v_ID = ( diag_pre_multiply( sigma_ID , Rho_ID ) * z_ID )';
+v_EXP = ( diag_pre_multiply( sigma_EXP , Rho_EXP ) * z_EXP )';
+}
+
+model{
+matrix[N_id,2] A; // attraction matrix
+
+logit_phi ~  normal(0,1);
+log_L ~  normal(0,1);
+
+// varying effects
+to_vector(z_ID) ~ normal(0,1);
+sigma_ID ~ exponential(1);
+Rho_ID ~ lkj_corr_cholesky(4);
+
+to_vector(z_EXP) ~ normal(0,1);
+sigma_EXP ~ exponential(1);
+Rho_EXP ~ lkj_corr_cholesky(4);
+
+// initialize attraction scores
+for ( i in 1:N_id ) {
+A[i,1] = 0.1; A[i,2] = 0.1';
+}
+
+// loop over Choices
+for ( i in 1:N ) {
+vector[2] pay;
+vector[2] p;
+real L;
+real phi;
+
+// first, what is log-prob of observed choice
+L =  exp(log_L + v_ID[id[i],1]+ v_EXP[Species[i],1]);
+p = softmax(L*A[id[i],1:2]' );
+Choice[i] ~ categorical( p );
+
+// second, update attractions conditional on observed choice
+phi =  inv_logit(logit_phi + v_ID[id[i],2]+ v_EXP[Species[i],2]);
+pay[1:2] = rep_vector(0,2);
+pay[ Choice[i] ] = Correct[i];
+A[ id[i] , Choice[i] ] = ( (1-phi)*(A[ id[i] , Choice[i] ]) + phi*pay[Choice[i]])';
+}//i
+}
+"
+
+# Now we run the STAN model on the full data. This will take a few hours.
+m_simulated_full <- stan( model_code =  reinforcement_model_id_site_nonzeroattraction, data=dat_full ,iter = 5000, cores = 4, chains=4, control = list(adapt_delta=0.9, max_treedepth = 12))
+
+# We extract the posterior from the STAN model
+s <- extract.samples(m_simulated_full)
+
+# We calculate the mean phi and lambda for each Species as estimated by the STAN model
+lambda <- sapply(1 : dat_full$N_exp, function(x) exp( mean(s$log_L) + mean(s$v_EXP[ ,x, 1])))
+phi <- sapply(1 : dat_full$N_exp, function(x) inv_logit( mean(s$logit_phi) + mean(s$v_EXP[ ,x, 2])))
+
+
+# We want to know whether the STAN model estimated two habitats to be different or not. As criterion for this, we check whether the samples in the posterior for pairs of Species overlap or not. That means that, when calculating the difference between the samples in the posterior for a pair of Species, they are assumed to be different if the differences are all on one side of zero.
+
+# We first check our power to estimate difference in mean phi between sites
+# We calculate the pairwise differences between sites for the estimated phi means
+pairwisedifferences_phiposteriors<-list(sapply(1 : (dat_full$N_exp * (dat_full$N_exp-1)/2), function(x) (s$v_EXP[ ,combn(1:dat_full$N_exp,m=2)[1,x], 2]-(s$v_EXP[ ,combn(1:dat_full$N_exp,m=2)[2,x], 2]))))
+
+# We convert it into a dataframe for easier manipulation
+estimates_pairwisedifferences_phiposteriors<-as.data.frame(precis(pairwisedifferences_phiposteriors,depth=2))
+
+# We add a column that classifies as true or false whether the estimates crosses zero (as opposed to all values being either smaller or larger than zero)
+estimates_pairwisedifferences_phiposteriors$crosseszero<-ifelse(estimates_pairwisedifferences_phiposteriors$mean>0,estimates_pairwisedifferences_phiposteriors$`5.5%`<0,estimates_pairwisedifferences_phiposteriors$`94.5%`>0)
+```
+
+```{r stage1-jayflexbeforehabitatcomparison, eval=F}
 library(rethinking)
 library(cmdstanr)
 set_ulam_cmdstan(TRUE) #makes it so ulam always runs with cmdstan
@@ -895,32 +1586,6 @@ estimates_pairwisedifferences_lambdaposteriors$crosseszero<-ifelse(estimates_pai
 
 ```
 
-```{r plotjayflexbeforehabitatcomparison, echo=FALSE}
-dflex.o <- read.csv(url("https://raw.githubusercontent.com/ManyIndividuals/ManyIndividuals/refs/heads/main/Files/rrs/mi1_jays_flexdata.csv"), 
-                  header=T, sep=",", stringsAsFactors=F)
-dflex = dflex.o[which(dflex.o$Reversal == 0 | dflex.o$Reversal == 1),]
-
-dflex2 = aggregate(Trial ~ ID + Location + Reversal, FUN = "max", data = dflex)
-colnames(dflex2)[4] = "max.trial"
-dflex2$adj.max = dflex2$max.trial - 12 # because no jays could reach the criterion in fewer than 12 trials.
-
-
-ggplot(dflex2, aes(as.factor(Reversal), max.trial, fill = Location)) +
-  geom_boxplot() +
-  geom_hline(yintercept = 12,color = "red") +
-  coord_cartesian(ylim=c(5,40)) +
-  theme_classic() +
-  theme(
-        legend.text = element_text(size = 18),
-        legend.title = element_text(size = 22),
-        axis.title = element_text(size = 22),
-        axis.text = element_text( size = 18),
-        strip.text = element_text(size = 24,face = "bold")) +
-  scale_fill_manual(values=c("gray32","gray90")) +
-  labs(x = "Reversal",y = "Trials to criteria")
-
-```
-Figure 3: Before the flexibility training, jays in the suburban and natural habitats did not differ in baseline cognitive ability. These boxplots show the performance on baseline associative learning (Reversal 0) and behavioral flexibility (Reversal 1) for jays in the natural (dark grey) and suburban (light grey) habitats. The horizontal red line illustrates the minimum number of trials to pass criteria (10 out of the most recent 12 trials correct).
 
 
 #### J.Q2 Are disturbance-resiliant jays more flexible than disturbance-resistant jays?
@@ -936,137 +1601,6 @@ Same as in J.Q1 above.
 **Run this model on the actual data**
 
 Run the code below to determine whether there were differences between the species in their phi and lambda flexibility measures.
-
-```{r jayflexsppdiff, eval=F}
-library(rethinking)
-library(cmdstanr)
-set_ulam_cmdstan(TRUE) #makes it so ulam always runs with cmdstan
-
-# load data sheet
-dflex <- read.csv(url(""), header=T, sep=",", stringsAsFactors=F)
-
-# sort the data: only want data from the initial discrimination and first reversal to use as the baseline flexibility so we can compare between species
-reduceddata <- matrix(ncol=ncol(dflex),nrow=0)
-reduceddata <- data.frame(reduceddata)
-for (i in 1:length(unique(dflex$ID))) {
-  thisbird <- unique(dflex$ID)[i]
-  thisbirddata <- dflex[dflex$ID==thisbird,]
-  thisbirdslastreversal <- thisbirddata[thisbirddata$Reversal %in% c(0,1),]
-  reduceddata <- rbind(reduceddata,thisbirdslastreversal)
-}
-dflex_beginning <- reduceddata
-
-
-# Now we run a STAN model with all simulated species, estimating both means of phi and lambda for each species as well as each individuals' phi and lambda
-
-# We set up the data for the model
-dat_full <- as.list(simulatedreversaldata_attractionscores)
-dat_full$N <- nrow(simulatedreversaldata_attractionscores)
-dat_full$N_id <- length(unique(simulatedreversaldata_attractionscores$id))
-dat_full$N_exp <- length(unique(simulatedreversaldata_attractionscores$Habitat))
-dat_full$Choice <- as.numeric(as.factor(dat_full$Choice))
-
-# This STAN model, in addition to estimating phi and lambda for each individual, also estimates means for each habitat It again starts with attractions set to 0.1 and assumes that individuals only learn about the option they chose.
-
-reinforcement_model_id_site_nonzeroattraction <- "
-data{
-   int N;
-   int N_id;
-   int N_exp;
-   int id[N];
-   int Species[N];
-   int Trial[N];
-   int Choice[N];
-   int Correct[N];
-}
-
-parameters{
-  real logit_phi;
-  real log_L;
-
-  // Varying effects clustered on individual
-  matrix[2,N_id] z_ID;
-  vector<lower=0>[2] sigma_ID;       //SD of parameters among individuals
-  cholesky_factor_corr[2] Rho_ID;
-
-  // Varying effects clustered on experimenter
-  matrix[2,N_exp] z_EXP;
-  vector<lower=0>[2] sigma_EXP;
-  cholesky_factor_corr[2] Rho_EXP;
-}
-
-transformed parameters{
-matrix[N_id,2] v_ID; // varying effects on individuals
-matrix[N_exp,2] v_EXP; // varying effects on experimenter
-
-v_ID = ( diag_pre_multiply( sigma_ID , Rho_ID ) * z_ID )';
-v_EXP = ( diag_pre_multiply( sigma_EXP , Rho_EXP ) * z_EXP )';
-}
-
-model{
-matrix[N_id,2] A; // attraction matrix
-
-logit_phi ~  normal(0,1);
-log_L ~  normal(0,1);
-
-// varying effects
-to_vector(z_ID) ~ normal(0,1);
-sigma_ID ~ exponential(1);
-Rho_ID ~ lkj_corr_cholesky(4);
-
-to_vector(z_EXP) ~ normal(0,1);
-sigma_EXP ~ exponential(1);
-Rho_EXP ~ lkj_corr_cholesky(4);
-
-// initialize attraction scores
-for ( i in 1:N_id ) {
-A[i,1] = 0.1; A[i,2] = 0.1';
-}
-
-// loop over Choices
-for ( i in 1:N ) {
-vector[2] pay;
-vector[2] p;
-real L;
-real phi;
-
-// first, what is log-prob of observed choice
-L =  exp(log_L + v_ID[id[i],1]+ v_EXP[Species[i],1]);
-p = softmax(L*A[id[i],1:2]' );
-Choice[i] ~ categorical( p );
-
-// second, update attractions conditional on observed choice
-phi =  inv_logit(logit_phi + v_ID[id[i],2]+ v_EXP[Species[i],2]);
-pay[1:2] = rep_vector(0,2);
-pay[ Choice[i] ] = Correct[i];
-A[ id[i] , Choice[i] ] = ( (1-phi)*(A[ id[i] , Choice[i] ]) + phi*pay[Choice[i]])';
-}//i
-}
-"
-
-# Now we run the STAN model on the full data. This will take a few hours.
-m_simulated_full <- stan( model_code =  reinforcement_model_id_site_nonzeroattraction, data=dat_full ,iter = 5000, cores = 4, chains=4, control = list(adapt_delta=0.9, max_treedepth = 12))
-
-# We extract the posterior from the STAN model
-s <- extract.samples(m_simulated_full)
-
-# We calculate the mean phi and lambda for each Species as estimated by the STAN model
-lambda <- sapply(1 : dat_full$N_exp, function(x) exp( mean(s$log_L) + mean(s$v_EXP[ ,x, 1])))
-phi <- sapply(1 : dat_full$N_exp, function(x) inv_logit( mean(s$logit_phi) + mean(s$v_EXP[ ,x, 2])))
-
-
-# We want to know whether the STAN model estimated two habitats to be different or not. As criterion for this, we check whether the samples in the posterior for pairs of Species overlap or not. That means that, when calculating the difference between the samples in the posterior for a pair of Species, they are assumed to be different if the differences are all on one side of zero.
-
-# We first check our power to estimate difference in mean phi between sites
-# We calculate the pairwise differences between sites for the estimated phi means
-pairwisedifferences_phiposteriors<-list(sapply(1 : (dat_full$N_exp * (dat_full$N_exp-1)/2), function(x) (s$v_EXP[ ,combn(1:dat_full$N_exp,m=2)[1,x], 2]-(s$v_EXP[ ,combn(1:dat_full$N_exp,m=2)[2,x], 2]))))
-
-# We convert it into a dataframe for easier manipulation
-estimates_pairwisedifferences_phiposteriors<-as.data.frame(precis(pairwisedifferences_phiposteriors,depth=2))
-
-# We add a column that classifies as true or false whether the estimates crosses zero (as opposed to all values being either smaller or larger than zero)
-estimates_pairwisedifferences_phiposteriors$crosseszero<-ifelse(estimates_pairwisedifferences_phiposteriors$mean>0,estimates_pairwisedifferences_phiposteriors$`5.5%`<0,estimates_pairwisedifferences_phiposteriors$`94.5%`>0)
-```
 
 ```{r jayflexpopdiff, eval=F}
 ## This is an unregistered analysis to test whether FLSJ persisting in human-modified areas (suburban neighborhoods) show more flexible foraging and habitat use behaviors compared to FLSJ in natural areas where human disturbance is absent. ##
@@ -1469,7 +2003,7 @@ sum(d1[d1$n %in% 20 & d1$changenumber_mean %in% 0.1,]$proportion_estimates_below
 
 Run the code below to determine whether there were differences between the before and after conditions in the proportion of microhabitats used. Only count that a microhabitat was used if the individual had at least 5% of their data points there. This prevents a microhabitat from being counted even if an individual was simply moving through it, and therefore not necessarily using it.
 
-```{r jayhabitatuse, eval=F}
+```{r stage1-jayhabitatuse, eval=F}
 library(rethinking)
 library(cmdstanr)
 set_ulam_cmdstan(TRUE) #makes it so ulam always runs with cmdstan
@@ -1530,7 +2064,7 @@ diff_p <- inv_logit(post$g[,2]) - inv_logit(post$g[,1]) #on the probability scal
 precis( list( diff_g=diff_g , diff_p=diff_p ) )
 ```
 
-```{r plotjayhabitatuse, echo=FALSE}
+```{r stage1-plotjayhabitatuse, echo=FALSE}
 pp.div = read.csv(url("https://raw.githubusercontent.com/ManyIndividuals/ManyIndividuals/refs/heads/main/Files/rrs/mi1_jays_pp_div2.csv"), header=T, sep=",", stringsAsFactors=F)
 colnames(pp.div)[3] = "food"
 library(reshape2)
@@ -1953,7 +2487,7 @@ par(op)
 
 Run the code below to determine whether there were differences between the before and after conditions in the number of food types taken. 
 
-```{r jayforaging, eval=F}
+```{r stage1-jayforaging, eval=F}
 library(rethinking)
 library(cmdstanr)
 set_ulam_cmdstan(TRUE) #makes it so ulam always runs with cmdstan
