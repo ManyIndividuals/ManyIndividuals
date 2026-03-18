@@ -1,7 +1,7 @@
 ---
 title: Flexibility training does not increase behavioral diversity of Florida scrub-jays
 author: 
-- '[McCune KB](https://www.kelseymccune.com/)^1,2^'
+- '[McCune, KB](https://www.kelseymccune.com/)^1,2^'
 - '[Barve, S](http://www.sahasbarve.com/)^3^'
 date: '`r Sys.Date()`'
 always_allow_html: yes
@@ -28,17 +28,10 @@ header-includes:
   - \usepackage{fancyhdr}
 ---
 
-\addtolength{\headheight}{0.1cm}
-\pagestyle{fancyplain}
-\lhead{\includegraphics[height=1.2cm]{logoPCIRR.png}}
-\renewcommand{\headrulewidth}{0pt}
 
 Open...  ![](logoOpenAccess.png){width=5%} access ![](logoOpenCode.png){width=5%} [code](https://github.com/ManyIndividuals/ManyIndividuals/blob/main/Files/rrs/mi1.Rmd)
 
-\addtolength{\headheight}{0.1cm}
-\pagestyle{fancyplain}
-\lhead{\includegraphics[height=1.2cm]{logoPCIRR.png}}
-\renewcommand{\headrulewidth}{0pt}
+
 
 &nbsp;
 
@@ -72,6 +65,10 @@ knitr::opts_chunk$set(echo=T, include=T, results='asis', warning=F, message=F)
 #set echo=F for knitting to PDF (hide code), and echo=T for knitting to HTML (show code)
 ```
 
+
+
+\newpage
+
 # **ABSTRACT**
 
 Human modifications of environments are expanding, causing global changes that other species must adjust to or suffer from. Behavioral flexibility (hereafter 'flexibility') could be key to coping with rapid change. Behavioral research can contribute to conservation by determining which behaviors can predict the ability to adjust to human modified environments and whether these can be manipulated. When research that manipulates behavior in a conservation context occurs, it primarily trains a specific behavior to address one potential threat improve individual success in the wild. However, training a domain general cognitive ability, such as flexibility, has the potential to change a whole suite of behaviors, which could have a larger impact on influencing success in adjusting to human modified environments. This project asks whether flexibility can be increased by experimentally increasing environmental heterogeneity and whether such an increase can help species succeed in human modified environments. We explore whether it is  possible to take insights from highly divergent species and apply them to address critical conservation challenges. This pushes the limits in terms of understanding how conserved these abilities may be and to what extent they can be shaped by the environment. We aim to 1) conduct flexibility interventions in flexible species that are successful in human modified environments (California scrub-jays or blue jays) to understand how flexibility relates to success; and 2) implement these interventions in a vulnerable species (Florida scrub-jays) to determine whether flexibility as a generalizable cognitive ability can be trained and whether such training improves success in human-modified environments. This research will significantly advance our understanding of the causes and consequences of flexibility, linking behavior to environmental change, cognition, and success in human modified environments through a comparative framework. 
@@ -90,8 +87,7 @@ Environments where informational cues about resources vary in a heterogeneous (b
 
 &nbsp;
 
-<img width="100%" src="mi1Figdag.png">
-
+![](mi1Figdag.png){width=100%}
 **Figure 1.** The theory behind this research illustrated by a directed acyclic graph (DAG), which is a theoretical model of the causal relationships among the key variables in our investigation. Based on the theoretical background provided by @mikhalevich_is_2017, we assume that more heterogeneity causes more flexibility, which then causes more success in human modified environments.
 
 &nbsp;
@@ -113,12 +109,12 @@ This comparative approach will ultimately reveal the role of behavioral flexibil
 
 **Prediction 1 alternative 2:** Flexibility can be increased in some populations, but not others. This would indicate that **flexibility manipulations may not work for all populations**, and that the effectiveness of such experiments should first be tested in the population of interest before including such an intervention in a conservation plan. If flexibility is not manipulatable in threatened populations, this would indicate that they are likely not very successful in human modified environments because of their inability to change their behavior with changing circumstances, and that flexibility is not trainable. If flexibility is not manipulatable in populations that are successful in human modified environments, this could indicate that they might have used flexibility in the past when originally forming the association, but the need to maintain flexibility in their repertoire is no longer necessary [@wright2010behavioral]. In populations where flexibility is not manipulatable, this would indicate that the abilities involved in tracking changing resources in the environment are independent of the abilities involved in succeeding in human modified environments.
 
-
+\newpage
 ## Population-specific background and tailored research questions
 
 &nbsp;
 
-<img width="100%" src="mi1jays_spp_Fig2.png">
+![](mi1jays_spp_Fig2.png){width=100%}
 
 **Figure 2.** Comparing the species involved in this investigation relative to their geographic range and association with human modified habitats. The yellow dots represent field site locations. Photo credit: CASJ, Corina Logan; BLJA, Rhododendrites; FLSJ, VvAndromedavV.
 
@@ -141,19 +137,18 @@ For all research questions, Table 1 summarizes our predictions, analysis plans, 
  - **J.Q3: Does manipulating behavioral flexibility alter the number of microhabitats used?** We will investigate this question by tracking their presence in a variety of microhabitats before and after manipulating their flexibility using serial reversal learning in the wild. We only count that a microhabitat was used if the individual had at least 5% of their data points there. This prevents a microhabitat from being counted even if an individual was simply moving through it, and therefore not necessarily using it.
  - **J.Q4: Does manipulating flexibility alter the number of different food items taken by jays?** We will investigate this question by tracking the various food items they take before and after manipulating their flexibility using serial reversal learning in the wild.
  
-&nbsp;
 
-<img width="100%" src="mi1Figjays.png">
+
+![](mi1Figjays.png){width=80%}
 
 **Figure 3.** The reversal learning experiment in a group context (Design 2 from the ManyIndividuals registered report) tailored to the jay research questions. The white rectangles represent feeder locations, the feeder with the X is in the unrewarded location while the feeder with the green check is the rewarded location.
 
-&nbsp;
+\newpage
 
 **Table 1.** Study design for the jay research. Note that we are unable to test Q2 because it was not possible to sample CASJ or BLJA within the timeframe of this study. References that were not already cited in the introduction: @galbraith2015supplementary, @lapiedra2017urbanization, @rice2003ecological, @emery2004mentality, @sol2002behavioural, @peterson2011ecological, @grinnell1917niche.
+![](mi1StudyDesignTableJay.png){width=100%}
 
-<img width="100%" src="mi1StudyDesignTableJay.png">
 
-&nbsp;
 
 
 # **METHODS**
@@ -237,7 +232,8 @@ y is the response variable ($\phi_j$ and $\lambda_j$, which are extracted from t
 We were not able to collect data on disturbance-resilient species within the timeframe of this study and the funding of our grant. However, we were able to conduct an *unregistered analysis* testing for differences in behavior between disturbance-resilient Florida scrub-jay individuals persisting in human-modified areas and conspecifics in natural habitat lacking human disturbance.
 
 **The model**
-We used poisson regression to assess whether jays in human-modified areas foraged on more different kinds of foods and used more substrate types relative to jays in natural areas. We included a random effect for jay ID and an offset for the amount of time each jay was observed.
+
+We used poisson regression to assess whether jays in human-modified areas foraged on more kinds of foods and used more substrate types relative to jays in natural areas. Models were not overdispersed or heteroscedastic.
 
 
 ### J.Q3 More flexible = use more microhabitats?
@@ -265,9 +261,9 @@ y is the response variable: the total number of different food types taken per i
 Very few Florida scrub-jay were found in human-modified areas at our study site in Lake Placid, FL. Across two years we collected focal observations and baseline behavioral flexibility on 6 individuals in these human-modified areas and 8 jays in natural areas at Archbold Biological Station. A smaller subset of 9 jays (all 8 jays in the areas and 1 from the human-modified areas) received the serial research learning flexibility manipulation because it was not feasible to conduct this longer experiment on more jays within the constraints of our field season.
 
 ## J.Q1 Do jay populations in human modified areas differ in baseline behavioral flexibility compared to populations in natural areas? 
-There was no difference in baseline behavioral flexibility performance between jays in suburban or natural areas. This was true when we considered either of the two behavioral flexibility components, $\phi_j$, the rate of learning the newly rewarded option ($\beta$ = -0.23, sd = 1.27, CI = -2.22 - 1.4), or $\lambda_j$, the rate of deviation from previously rewarded options ($\beta$ = -0.01, sd = 0.18, CI = -0.28 - 0.28).
+There was no difference in baseline behavioral flexibility performance between jays in suburban or natural areas. This was true when we considered either of the two behavioral flexibility components, $\phi_j$, the rate of learning the newly rewarded option ($\beta$ = -0.23, sd = 1.27, CI = -2.22 - 1.4, *p* > 0.05), or $\lambda_j$, the rate of deviation from previously rewarded options ($\beta$ = -0.01, sd = 0.18, CI = -0.28 - 0.28, *p* > 0.05).
 
-```{r jayflexbeforehabitatcomparison, eval=F}
+```{r jayflexbeforehabitatcomparison, eval=FALSE, include=FALSE}
 library(rethinking)
 library(cmdstanr)
 set_ulam_cmdstan(TRUE) #makes it so ulam always runs with cmdstan
@@ -480,7 +476,7 @@ estimates_pairwisedifferences_lambdaposteriors$crosseszero<-ifelse(estimates_pai
 
 ```
 
-```{r jayflexsppdiff, eval=F}
+```{r jayflexsppdiff, eval=FALSE, include=FALSE}
 library(rethinking)
 library(cmdstanr)
 set_ulam_cmdstan(TRUE) #makes it so ulam always runs with cmdstan
@@ -612,7 +608,6 @@ estimates_pairwisedifferences_phiposteriors<-as.data.frame(precis(pairwisediffer
 estimates_pairwisedifferences_phiposteriors$crosseszero<-ifelse(estimates_pairwisedifferences_phiposteriors$mean>0,estimates_pairwisedifferences_phiposteriors$`5.5%`<0,estimates_pairwisedifferences_phiposteriors$`94.5%`>0)
 ```
 
-
 ```{r plotjayflexbefore, echo=FALSE}
 dflex.o <- read.csv(url("https://raw.githubusercontent.com/ManyIndividuals/ManyIndividuals/refs/heads/main/Files/rrs/mi1_jays_flexdata.csv"), 
                   header=T, sep=",", stringsAsFactors=F)
@@ -622,7 +617,7 @@ dflex2 = aggregate(Trial ~ ID + Location + Reversal, FUN = "max", data = dflex)
 colnames(dflex2)[4] = "max.trial"
 dflex2$adj.max = dflex2$max.trial - 12 # because no jays could reach the criterion in fewer than 12 trials.
 
-library(ggplot1)
+library(ggplot2)
 ggplot(dflex2, aes(as.factor(Reversal), max.trial, fill = Location)) +
   geom_boxplot() +
   geom_hline(yintercept = 12,color = "red") +
@@ -641,9 +636,9 @@ ggplot(dflex2, aes(as.factor(Reversal), max.trial, fill = Location)) +
 Figure 3: Before the flexibility training, jays in the suburban and natural habitats performed exceptionally well on the baseline behavioral flexibility task and did not differ in ability. These boxplots show the performance as the number of trials to reach the passing criterion on baseline associative learning (Reversal 0) and behavioral flexibility (Reversal 1) for jays in the natural (dark grey) and human modified (light grey) areas. We use trials to pass, rather than  or  in this plot for more interpretable illustration of the speed of performance on this task. The horizontal red line illustrates the minimum number of trials to pass criteria (10 out of the most recent 12 trials correct).
 
 ## J.Q2 Are disturbance-resilient jays more flexible than disturbance-resistant jays?
-We were not able to test this question within the timeframe and funding of the grant. However, we conducted an unregistered analysis using Poisson models to compare foraging and habitat use behavior of Florida scrub-jays in human modified areas to those in natural areas. In other words, within this disturbance sensitive species, a subset of individuals were resilient to disturbance, at least during the timeline of this study. The disturbance-resilient individuals in the suburbs were not more diverse foragers (ß = 0.26 ± 0.19, p = 0.15), but did use a greater variety of microhabitats (ß = 0.52 ± 0.16, p = 0.001) compared to the jays in undisturbed, natural habitat at Archbold Biological Station.
+We were not able to test this question within the timeframe and funding of the grant. However, we conducted an unregistered analysis using Poisson models to compare foraging and habitat use behavior of Florida scrub-jays in human modified areas to those in natural areas. In other words, within this disturbance sensitive species, a subset of individuals were resilient to disturbance, at least during the timeline of this study. The disturbance-resilient individuals in the suburbs were not more diverse foragers ($\beta$ = 0.26 ± 0.19, *p* = 0.15), but did use a greater variety of microhabitats ($\beta$ = 0.52 ± 0.16, *p* = 0.001) compared to the jays in undisturbed, natural habitat at Archbold Biological Station.
 
-```{r dr-vs-ds, message=FALSE, warning=FALSE, include=FALSE}
+```{r dr-vs-ds, eval=FALSE, include=FALSE}
 # foraging
 data = read.csv(url("https://raw.githubusercontent.com/ManyIndividuals/ManyIndividuals/refs/heads/main/Files/rrs/mi1_jays_Foragingdata.csv"), 
                   header=T, sep=",", stringsAsFactors=F)
@@ -678,9 +673,9 @@ summary(m.sub) # Suburban jays use more diverse substrates ß = 0.52, se = 0.16,
 
 
 ## J.Q3 More flexible = use more microhabitats?
-Even though all jays increased the speed with which they switched their preference in the serial reversal learning training, there was no effect on subsequent habitat use diversity (before relative to after log-odds difference = -0.06, CI = -0.41 - 0.30, p > 0.05; Fig. 4). 
+Even though all jays increased the speed with which they switched their preference in the serial reversal learning training, there was no effect on subsequent habitat use diversity (before relative to after log-odds difference = -0.06, CI = -0.41 - 0.30, *p* > 0.05; Fig. 4). 
 
-```{r jayhabitatuse, eval=F}
+```{r jayhabitatuse, eval=FALSE, include=FALSE}
 library(rethinking)
 library(cmdstanr)
 set_ulam_cmdstan(TRUE) #makes it so ulam always runs with cmdstan
@@ -734,9 +729,9 @@ precis( list( diff_g=diff_g , diff_p=diff_p ) )
 
 
 ## J.Q4 More flexible = more food types?
-Similarly, after the serial reversal flexibility training, jays were not more likely to eat a greater diversity of food types ( = 0.26, CI = -0.45 - 0.96, p > 0.05; Fig. 4).
+Similarly, after the serial reversal flexibility training, jays were not more likely to eat a greater diversity of food types ($\beta$ = 0.26, CI = -0.45 - 0.96, *p* > 0.05; Fig. 4).
 
-```{r jayforaging, eval=F}
+```{r jayforaging, eval=FALSE, include=FALSE}
 library(rethinking)
 library(cmdstanr)
 set_ulam_cmdstan(TRUE) #makes it so ulam always runs with cmdstan
@@ -814,7 +809,7 @@ Unlike great-tailed grackles, FLSJ populations have rapidly declined coincident 
 
 In our population of FLSJ, a small population does persist in suburban areas. Anecdotally, homeowners report frequently seeing these individuals at their backyard bird feeders or other human-provided food sources. We compared foraging and habitat use of these individuals to FLSJ in pristine, unfragmented and fire-maintained scrub habitat at Archbold Biological Station. Jays in both habitat types foraged on equally diverse food items, but suburban jays used more distinct kinds of microhabitats (substrate type and height) relative to the jays at Archbold. In other words, suburban jays did not completely restrict their habitat use to the small remnant fragments of undeveloped scrub in the suburbs. This demonstrates that FLSJ are capable of adapting their habitat use behavior to include novel, human-modified environments. However, when we compared baseline behavioral flexibility between the two jay populations, suburban jays were not more behaviorally flexible than Archbold jays. Consequently, it is likely that behavioral flexibility, as we measured it through spatial reversal learning, does not underlie adaptation to human-disturbance in this species.
 
-This was supported by our finding of no change in foraging and habitat use behavior after undergoing behavioral flexibility training. Our results support our Prediction 1 alternative 1; all jays improved their reversal learning speed to meet the criterion, indicating they had increased their behavioral flexibility. But there was no consistent trend in the change in food item or microhabitat diversity measured before and after the training. There are a few potential explanations for why the training worked in great-tailed grackles but led to no behavior change in FLSJ. First, it is possible that the serial reversal learning task and passing criterion were too easy for FLSJ and so the training did not lead to a large enough change in flexibility to be seen in resulting behavior. We based the criteria for when an individual was considered to have passed a given reversal, as well as for passing the whole flexibility training, on performance of great-tailed grackles in the previous, similar experiment. However, FLSJ were significantly faster at forming an initial understanding of the location of the rewarded feeder and subsequently reversing that association compared to the grackles. In fact, the majority of individuals achieved the passing criteria almost as quickly as possible (Fig. 3). Our criterion to pass was 10 correct choices out of the most recent 12 trials and half of the jays reached this criterion in 12 or 13 trials (average = 15.6, max = 38). In comparison, the average number of trials for great-tailed grackles to reach criterion in the first reversal was 75 [@mccune2023using]. This drastic difference in performance could be because grackles were tested in captivity and jays were tested in the wild [@mccunee2019captive]. Although, another study [@bebus2016associative] evaluated reversal learning of FLSJ in captivity and those individuals required a similar number of days (3 days) to pass the criterion as in our study (2.8 days), but it is unclear if grackles would perform better if tested in the wild.
+This was supported by our finding of no change in foraging and habitat use behavior after undergoing behavioral flexibility training. Our results support our Prediction 1 alternative 1; all jays improved their reversal learning speed to meet the criterion, indicating they had increased their behavioral flexibility. But there was no consistent trend in the change in food item or microhabitat diversity measured before and after the training. There are a few potential explanations for why the training worked in great-tailed grackles but led to no behavior change in FLSJ. First, it is possible that the serial reversal learning task and passing criterion were too easy for FLSJ and so the training did not lead to a large enough change in flexibility to be seen in resulting behavior. We based the criteria for when an individual was considered to have passed a given reversal, as well as for passing the whole flexibility training, on performance of great-tailed grackles in the previous, similar experiment. However, FLSJ were significantly faster at forming an initial understanding of the location of the rewarded feeder and subsequently reversing that association compared to the grackles. In fact, the majority of individuals achieved the passing criteria almost as quickly as possible (Fig. 3). Our criterion to pass was 10 correct choices out of the most recent 12 trials and half of the jays reached this criterion in 12 or 13 trials (average = 15.6, max = 38). In comparison, the average number of trials for great-tailed grackles to reach criterion in the first reversal was 75 [@mccune2023using]. This drastic difference in performance could be because grackles were tested in captivity and jays were tested in the wild [@mccune2019captive]. Although, another study [@bebus2016associative] evaluated reversal learning of FLSJ in captivity and those individuals required a similar number of days (3 days) to pass the criterion as in our study (2.8 days), but it is unclear if grackles would perform better if tested in the wild.
 
 Another potential reason we failed to see a change in natural behavior after the flexibility training is that jays were already using the majority of foods and substrates available. Due to time constraints, size and accessibility of the suburban population, the majority of jays (8 out of 9 total) that underwent the flexibility training were from Archbold Biological Station where the scrub-oak habitat is maintained at high quality and mid-successional state through prescribed fire and other management techniques. Thus, this habitat is far more homogenous than jays experience in the suburban areas. Consequently, it is possible that there was no opportunity for flexibility training to alter the foods or microhabitats used by these jays. However, this is unlikely to be a large confound because the suburban and Archbold jays did not differ in the number of different food items they ate before training and the one jay from the suburban area that we were able to train, also did not show a change in the variety of substrates used and showed a slight decrease in the diversity of food items used after the training (Fig. 4, single grey line).
 
@@ -824,9 +819,9 @@ To better understand the role of behavior in adaptation or resilience to human d
 # **ETHICS**
 
 This research is carried out in accordance with permits from the:
-1. US Fish and Wildlife Service (scientific collecting permit number ES824723)
-2. US Geological Survey Bird Banding Laboratory (federal bird banding permit number 07732)
-3. Institutional Animal Care and Use Committee (University of California Santa Barbara protocol number 958 and Auburn University protocol number 2022-5132)
+**1.** US Fish and Wildlife Service (scientific collecting permit number ES824723).
+**2.** US Geological Survey Bird Banding Laboratory (federal bird banding permit number 07732).
+**3.** Institutional Animal Care and Use Committee (University of California Santa Barbara protocol number 958 and Auburn University protocol number 2022-5132).
 
 
 # **AUTHOR CONTRIBUTIONS**
@@ -847,8 +842,6 @@ We, the authors, declare that we have no financial conflicts of interest with th
 
 We are grateful to our funders: Richard McElreath at the Max Planck Institute for Evolutionary Anthropology (whole project), as well as Corina Logan and Dieter Lukas for assistance with analyses and coding. In addition, we are grateful for the ManyIndividuals co-founders, Drs. Corina Logan and Rachel Shaw. We are thankful for the input and assistance of Dr. Reed Bowman when designing the Florida scrub-jay data collection.
 
-# [REFERENCES](mi.bib)
-
 
 # **SUPPLEMENTARY MATERIALS**
 ## S1 - Determining when to switch each individual to the next reversal: reversal passing criterion
@@ -867,9 +860,9 @@ With the 10 out of 12 criterion, individuals pass the reversal 8 trials faster (
 
 The average improvement in the number of trials individuals need to reach the respective criterion is larger than the median of 8 trials. This occurs because there are no individuals who are faster with the 17 out of 20 criterion, and because there is a subset of individuals who need considerably fewer trials with the 10/12 criterion (Figure 7). Individuals who require a larger number of trials (>100) to pass almost never occur with the 10/12 criterion, whereas they are more common with the 17/20. With more trials, there is a higher chance that an individual will deviate from their preference by chance. This is also reflected in that 65 of the 626 simulated individuals never reached the 17/20 criterion within the maximum 300 trials, whereas there were only 4 individuals with the 10/12 criterion. Accordingly, an additional benefit of choosing the 10/12 criterion is that it is more likely that data for all individuals, even those who are slow to learn an association, can be collected.
 
-<img width="100%" src="m1Fig_ReversalCriterionComparison.png">
+![](m1Fig_ReversalCriterionComparison.png){width=60%}
 
-**Figure 7.** There is less variation with the 10/12 reversal learning passing criterion and it requires fewer trials to reach than the 17/20 passing criterion. The lines represent the densities of individuals (estimated with smoothing which means values can go down to zero) across the 626 simulated individuals that needed a certain number of trials to either reach the 10/12 (red) or the 17/20 (black) criterion. With the 10/12 criterion, most individuals need 8 fewer trials (indicated by the lines showing the mode of the two density distributions). In addition, there are only very few individuals who need 100 or more trials with the 10/12 criterion, while there are several individuals that needed such large numbers with the 17/20 criterion.
+**Figure S1.** There is less variation with the 10/12 reversal learning passing criterion and it requires fewer trials to reach than the 17/20 passing criterion. The lines represent the densities of individuals (estimated with smoothing which means values can go down to zero) across the 626 simulated individuals that needed a certain number of trials to either reach the 10/12 (red) or the 17/20 (black) criterion. With the 10/12 criterion, most individuals need 8 fewer trials (indicated by the lines showing the mode of the two density distributions). In addition, there are only very few individuals who need 100 or more trials with the 10/12 criterion, while there are several individuals that needed such large numbers with the 17/20 criterion.
 
 **3) variation among individuals with the 10/12 criterion is still present and similar to the variation detected with other criteria**
 
@@ -883,11 +876,11 @@ Based on the two reversal passing criteria (10/12 and 17/20), we can extract the
 
 As expected, based on the relative attraction scores at the end of the previous reversal, most individuals are unlikely to choose the now rewarded option. We expect that, on average, individuals will choose the newly rewarded option in 4 or fewer trials out of the first 12 trials (red line in Figure 8). This is a lower number of trials compared to individuals who have no association with either option (gray line in Figure 8), and a slightly higher number compared to individuals who use the 17/20 criterion (black line in Figure 8). The probability that an individual would, after a reversal, immediately choose the rewarded option 10 times during the first 12 trials (and pass) by chance is 0.001. However, even such rare individuals will have actually reversed their preference during their first 12 trials because they update their attractions on every trial.
 
-<img width="100%" src="m1Fig_ReversalCriterionAssociation.png">
+![](m1Fig_ReversalCriterionAssociation.png){width=60%}
 
-**Figure 8.** Individuals form strong enough preferences using the 10/12 passing criterion as indicated by the fact that they are unlikely to pass in the first 12 trials of their next reversal (red line). These individuals would take longer to switch their preference than individuals who have no preference (gray line), and they would be slightly faster at switching their preference than individuals who formed their previous association using the 17/20 criterion (black line).
+**Figure S2.** Individuals form strong enough preferences using the 10/12 passing criterion as indicated by the fact that they are unlikely to pass in the first 12 trials of their next reversal (red line). These individuals would take longer to switch their preference than individuals who have no preference (gray line), and they would be slightly faster at switching their preference than individuals who formed their previous association using the 17/20 criterion (black line).
 
-```{r loadsimulatedreversaldata, eval=F}
+```{r loadsimulatedreversaldata, eval=FALSE, include=FALSE}
 # Load previously simulated data from xpop
 
 # There are two sets of simulated data, with initial attractions towards both options set at 0.1, and eight different phi and four different lambda combinations
@@ -1209,7 +1202,7 @@ For each population, depending on the response variable, we ran separate power a
 
 We will stop collecting data for the flexibility manipulation experiment when a buffer above the minimum sample size is reached or when the season in which the minimum sample size is reached comes to an end, or when the minimum sample sizes for the success measures have been reached. When conducting the manipulation experiment, it is important to aim to test more than the minimum number of individuals because some might not have data in the post-intervention stage. 
 
-# **ANALYSIS PLAN - Power analyses simulations and model code**
+# S4 - Power analyses simulations and model code
 
 We run analyses in R [current version `r getRversion()`; @rcoreteam] using the following R packages: rethinking [@rethinking2020], rstan [@rstan], cmdstanr [@cmdstanr], knitr [@xie2018knitr], and irr [@gamer2012package]. We describe below the Bayesian models we developed to address each of the specific research questions. All Bayesian models were developed using McElreath (2020b) as a guide. Code for running these models is available in supplementary materials S4.
 
@@ -1242,7 +1235,7 @@ Simulations using bespoke Bayesian models in @logan2020xpop (the same model stru
 
 Run the code below to determine whether there were differences between the two habitats in their phi and lambda flexibility measures.
 
-```{r stage1-jayflexsppdiff, eval=F}
+```{r stage1-jayflexsppdiff, eval=FALSE, include=FALSE}
 library(rethinking)
 library(cmdstanr)
 set_ulam_cmdstan(TRUE) #makes it so ulam always runs with cmdstan
@@ -1373,7 +1366,7 @@ estimates_pairwisedifferences_phiposteriors<-as.data.frame(precis(pairwisediffer
 estimates_pairwisedifferences_phiposteriors$crosseszero<-ifelse(estimates_pairwisedifferences_phiposteriors$mean>0,estimates_pairwisedifferences_phiposteriors$`5.5%`<0,estimates_pairwisedifferences_phiposteriors$`94.5%`>0)
 ```
 
-```{r stage1-jayflexbeforehabitatcomparison, eval=F}
+```{r stage1-jayflexbeforehabitatcomparison, eval=FALSE, include=FALSE}
 library(rethinking)
 library(cmdstanr)
 set_ulam_cmdstan(TRUE) #makes it so ulam always runs with cmdstan
@@ -1598,16 +1591,6 @@ Same as in J.Q1 above.
 
 Same as in J.Q1 above.
 
-**Run this model on the actual data**
-
-Run the code below to determine whether there were differences between the species in their phi and lambda flexibility measures.
-
-```{r jayflexpopdiff, eval=F}
-## This is an unregistered analysis to test whether FLSJ persisting in human-modified areas (suburban neighborhoods) show more flexible foraging and habitat use behaviors compared to FLSJ in natural areas where human disturbance is absent. ##
-
-
-
-```
 
 #### J.Q3 More flexible = use more microhabitats?
 
@@ -1631,7 +1614,7 @@ With small mean changes in the response variable, some individuals might not inc
 
 To estimate the risk of detecting false positives, we set the mean change in the proportion of habitats used to zero so there was no change between the before and after conditions. As expected, the average ratio of estimates below zero is close to but below 0.5 and independent of sample size. The estimates went generally below 0.5 because the maximum number of habitats used was set to 10 and we had a condition where individuals before the manipulation used a mean of 7 habitats. Accordingly, if individuals randomly either increase or decrease their number of habitats used, decreases will be more severe because individuals can only increase by 3 habitats, but potentially decrease by 6 habitats. With a sample size of 20, 27% have a ratio smaller than 0.3, meaning that the risk of having a false positive is high. The risk would be lower if the variation among individuals was lower than what we assumed (the standard deviation of the mean change in number of habitats was 0.2, which is a conservative estimate).
 
-```{r jayhabitatusesim, eval=F}
+```{r jayhabitatusesim, eval=FALSE, include=FALSE}
 library(rethinking)
 library(cmdstanr)
 set_ulam_cmdstan(TRUE) #makes it so ulam always runs with cmdstan
@@ -1773,7 +1756,7 @@ diff_p <- inv_logit(post$g[,2]) - inv_logit(post$g[,1]) #on the probability scal
 #write.csv(simresults,file="simresultsjayhabitatsd0.2.csv")
 ```
 
-```{r jayq3simulationfiguresamplesize, eval=F, messages=F}
+```{r jayq3simulationfiguresamplesize, eval=FALSE, include=FALSE}
 library(rethinking)
 library(cmdstanr)
 set_ulam_cmdstan(TRUE) #makes it so ulam always runs with cmdstan
@@ -2003,7 +1986,7 @@ sum(d1[d1$n %in% 20 & d1$changenumber_mean %in% 0.1,]$proportion_estimates_below
 
 Run the code below to determine whether there were differences between the before and after conditions in the proportion of microhabitats used. Only count that a microhabitat was used if the individual had at least 5% of their data points there. This prevents a microhabitat from being counted even if an individual was simply moving through it, and therefore not necessarily using it.
 
-```{r stage1-jayhabitatuse, eval=F}
+```{r stage1-jayhabitatuse, eval=FALSE, include=FALSE}
 library(rethinking)
 library(cmdstanr)
 set_ulam_cmdstan(TRUE) #makes it so ulam always runs with cmdstan
@@ -2064,36 +2047,6 @@ diff_p <- inv_logit(post$g[,2]) - inv_logit(post$g[,1]) #on the probability scal
 precis( list( diff_g=diff_g , diff_p=diff_p ) )
 ```
 
-```{r stage1-plotjayhabitatuse, echo=FALSE}
-pp.div = read.csv(url("https://raw.githubusercontent.com/ManyIndividuals/ManyIndividuals/refs/heads/main/Files/rrs/mi1_jays_pp_div2.csv"), header=T, sep=",", stringsAsFactors=F)
-colnames(pp.div)[3] = "food"
-library(reshape2)
-pp.div2 = melt(pp.div, id.vars = c("ID","Condition","pp"),value.name = "value", measure.vars = c("food","substrate","height"))
-pp.div2$pp = factor(pp.div2$pp, levels = c("pre","post"))
-
-pp.div2$Location = ifelse(pp.div2$ID == "ak-ox" | pp.div2$ID == "wk-ox" |pp.div2$ID == "gx-ok" |
-                          pp.div2$ID == "ow-xk" |pp.div2$ID == "gx-ak" |pp.div2$ID == "wx-rk" |
-                          pp.div2$ID == "bx-wk" |pp.div2$ID == "bx-yk" |pp.div2$ID == "rx-yk" |
-                          pp.div2$ID == "yx-dgk" |pp.div2$ID == "yx-gk",
-                          "Suburban","Natural")
-
-ggplot(pp.div2[-which(pp.div2$variable == "height"),], aes(pp,value, group = ID, color = Location)) +
-  facet_wrap(~ variable, scales = "free") +
-  geom_line(aes(color = Location),position = position_dodge(width =0.2)) +
-  geom_point(size = 3, aes(color = Location), position = position_dodge(width =0.2)) +
-  theme_classic() +
-  theme(legend.text = element_text(size = 18),
-        legend.title = element_text(size = 22),
-        axis.title = element_text(size = 22),
-        axis.title.x = element_blank(),
-        axis.text = element_text( size = 18),
-        strip.text = element_text(size = 24,face = "bold")) +
-  scale_color_manual(values=c("gray17","gray60"))
-  
-  
-```
-Figure 4: Jays did not predictably change their foraging or microhabitat use behaviors after they underwent the flexibility training manipulation. Values indicate the number of different foods or substrates jays were observed to use during the all-occurrences focal observation session before (pre) and after (post) we conducted serial reversal learning to increase behavioral flexibility. Each dot represents a jay and lines connect the dots of jays with data both pre and post. We collected pre observations on some jays for which we were not able to conduct the flexibility training and so we did not need to collect post observations.
-
 
 #### J.Q4 More flexible = more food types?
 
@@ -2117,7 +2070,7 @@ With small mean changes in the response variable, some individuals might not inc
 
 To estimate the risk of detecting false positives, we set the mean change in the number of food types taken to zero so there was no change between the before and after conditions. As expected, the average ratio of estimates below zero is close to 0.5 and independent of sample size. With a sample size of 20, 30% have a ratio smaller than 0.3, meaning that the risk of having a false positive is high. The risk would be lower if the variation among individuals was lower than what we assumed (the standard deviation of the mean change in number of foods was 2, which is a conservative estimate).
 
-```{r jayforagingsim, eval=F}
+```{r jayforagingsim, eval=FALSE, include=FALSE}
 library(rethinking)
 library(cmdstanr)
 set_ulam_cmdstan(TRUE) #makes it so ulam always runs with cmdstan
@@ -2245,7 +2198,7 @@ post <- extract.samples(sjf)
 #write.csv(simresults,file="simresultsjayforagingsd1.csv")
 ```
 
-```{r jayq4simulationfiguresamplesize, eval=F, messages=F}
+```{r jayq4simulationfiguresamplesize, eval=FALSE, include=FALSE}
 library(rethinking)
 library(cmdstanr)
 set_ulam_cmdstan(TRUE) #makes it so ulam always runs with cmdstan
@@ -2485,9 +2438,9 @@ par(op)
 
 **Run this model on the actual data**
 
-Run the code below to determine whether there were differences between the before and after conditions in the number of food types taken. 
+Run the code to determine whether there were differences between the before and after conditions in the number of food types taken. 
 
-```{r stage1-jayforaging, eval=F}
+```{r stage1-jayforaging, eval=FALSE, include=FALSE}
 library(rethinking)
 library(cmdstanr)
 set_ulam_cmdstan(TRUE) #makes it so ulam always runs with cmdstan
@@ -2533,3 +2486,7 @@ mjf <- ulam(
 boxplot(datFood$forageuse~datFood$before) #see if there is a difference visually
 ```
 
+
+
+
+# **REFERENCES**
