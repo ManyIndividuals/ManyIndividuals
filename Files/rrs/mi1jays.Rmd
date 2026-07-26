@@ -71,13 +71,15 @@ knitr::opts_chunk$set(echo=T, include=T, results='asis', warning=F, message=F)
 
 # **ABSTRACT**
 
-Human modifications of environments are expanding, causing global changes that other species must adjust to or suffer from. Behavioral flexibility (hereafter 'flexibility') could be key to coping with rapid change. Behavioral research can contribute to conservation by determining which behaviors can predict the ability to adjust to human modified environments and whether these can be manipulated. When research that manipulates behavior in a conservation context occurs, it primarily trains a specific behavior to address one potential threat improve individual success in the wild. However, training a domain general cognitive ability, such as flexibility, has the potential to change a whole suite of behaviors, which could have a larger impact on influencing success in adjusting to human modified environments. This project asks whether flexibility can be increased by experimentally increasing environmental heterogeneity and whether such an increase can help species succeed in human modified environments. We explore whether it is  possible to take insights from highly divergent species and apply them to address critical conservation challenges. This pushes the limits in terms of understanding how conserved these abilities may be and to what extent they can be shaped by the environment. We aim to 1) conduct flexibility interventions in flexible species that are successful in human modified environments (California scrub-jays or blue jays) to understand how flexibility relates to success; and 2) implement these interventions in a vulnerable species (Florida scrub-jays) to determine whether flexibility as a generalizable cognitive ability can be trained and whether such training improves success in human-modified environments. This research will significantly advance our understanding of the causes and consequences of flexibility, linking behavior to environmental change, cognition, and success in human modified environments through a comparative framework. 
+Human modifications of environments are increasing, causing global changes that other species must adjust to or suffer from. Behavioral flexibility (hereafter ‘flexibility’) could be key to coping with rapid change. Behavioral research can contribute to conservation by determining which behaviors can predict the ability to adjust to human modified environments and whether these can be manipulated. Most research that seeks to change animal behavior to facilitate conservation primarily focuses on one specific behavior to address one potential threat (e.g., response to a novel predator). However, training a domain general cognitive ability, such as flexibility, has the potential to change a whole suite of behaviors, which could have a larger impact on adjusting to human modified environments. This study asked whether flexibility can be increased by experimentally increasing environmental heterogeneity and whether such an increase helped species succeed in human modified environments. We aimed to 1) conduct flexibility interventions in disturbance-resilient species that are successful in human modified environments (California scrub-jays or blue jays) to understand how flexibility relates to success; and 2) implement these interventions in a disturbance-sensitive species (Florida scrub-jays) to determine whether flexibility as a generalizable cognitive ability can be trained and whether such training improves success in human-modified environments. Due to funding and time constraints, we were only able to conduct this research in Florida scrub-jays from two sites: fire-maintained, unfragmented habitat at Archbold Biological Station (“natural”) and suburban neighborhoods. We found no difference in behavioral flexibility before the intervention between jays in the natural or suburban sites. We were then able to successfully increase behavioral flexibility of wild jays through serial reversal learning, but we found no effect of this intervention on foraging or habitat use behaviors. Because we were not able to test successful species, we instead conducted an unregistered analysis comparing foraging and habitat use behavior between suburban and natural site Florida scrub-jays. Suburban jays used a greater variety of habitats than Archbold jays but there was no difference in foraging behavior. This research demonstrates that behavioral flexibility may not relate to adaptation to environmental change in this species, but some jays are able to persist in human modified environments and use the greater diversity of microhabitats present there. To better understand the role of behavior in the ability of Florida scrub-jays to adapt to environmental change, future work should evaluate the variation in other relevant traits like boldness, exploration and movement behavior. 
 
 # **REGISTERED REPORT DETAILS**
 
  - **Level of bias = 6:** This registered report was written (Jul 2021-May 2022), and revised after round one of peer review at Peer Community in Registered Reports (Jul 2022) prior to collecting any data.
  - **Programmatic registered report:** This is one of three Stage 2 articles that will result from the original, comprehensive Stage 1 registered report: one for toutouwai, one for grackles, and one for jays (this current manuscript).
- - **Deviations from the Stage 1 registered report:** We were unable to sample disturbance-resilient blue jays or California scrub-jays and so we cannot address J.Q2 (one of four specific research questions) at this time. However, to begin to test the question of whether behavior relates to success in human-modified environments, we conducted an unregistered analysis comparing behavior of Florida scrub-jays (FLSJ; a species that is overall disturbance-sensitive) that were persisting in suburban areas to FLSJ in natural habitat managed without human disturbance.
+ - **Deviations from the Stage 1 registered report:** 
+      - We were unable to sample disturbance-resilient blue jays or California scrub-jays and so we cannot address J.Q2 (one of four specific research questions) at this time. 
+      - To begin to test the question of whether behavior relates to success in human-modified environments, we conducted an *unregistered analysis* comparing behavior of Florida scrub-jays (a species that is declining due to anthropogenic change and therefore disturbance-sensitive) that were persisting in suburban areas to those in natural habitats managed with fire to promote jay population growth.
 
 # **INTRODUCTION**
 
@@ -782,8 +784,9 @@ pp.div2$Location = ifelse(pp.div2$ID == "ak-ox" | pp.div2$ID == "wk-ox" |pp.div2
                           pp.div2$ID == "bx-wk" |pp.div2$ID == "bx-yk" |pp.div2$ID == "rx-yk" |
                           pp.div2$ID == "yx-dgk" |pp.div2$ID == "yx-gk",
                           "Suburban","Natural")
+levels(pp.div2$variable) = c("food" = "Food", "substrate" = "Microhabitat","height" = "Height")
 
-ggplot(pp.div2[-which(pp.div2$variable == "height"),], aes(pp,value, group = ID, color = Location)) +
+ggplot(pp.div2[-which(pp.div2$variable == "Height"),], aes(pp,value, group = ID, color = Location)) +
   facet_wrap(~ variable, scales = "free") +
   geom_line(aes(color = Location),position = position_dodge(width =0.2)) +
   geom_point(size = 3, aes(color = Location), position = position_dodge(width =0.2)) +
@@ -800,7 +803,128 @@ ggplot(pp.div2[-which(pp.div2$variable == "height"),], aes(pp,value, group = ID,
 ```
 Figure 4: Jays did not predictably change their foraging or microhabitat use behaviors after they underwent the flexibility training manipulation. Values indicate the number of different foods or substrates jays were observed to use during the all-occurrences focal observation session before (pre) and after (post) we conducted serial reversal learning to increase behavioral flexibility. Each dot represents a jay and lines connect the dots of jays with data both pre and post. We collected pre observations on some jays for which we were not able to conduct the flexibility training and so we did not need to collect post observations.
 
+```{r unregistered analysis, echo=FALSE}
+freq = read.csv(url("https://raw.githubusercontent.com/ManyIndividuals/ManyIndividuals/refs/heads/main/Files/rrs/mi1_jays_rawBehavObsData.csv"), header=T, sep=",", stringsAsFactors=F)
 
+# Food types
+freq.for = freq
+freq.for$count = ifelse(freq.for$Forage == "",0,1)
+freq.for$count = ifelse(is.na(freq.for$count),0,freq.for$count)
+
+
+## Put into categories from MI1 RR
+results2 = freq.for
+results2$Forage[results2$Forage == "peanut" | results2$Forage == "recover cache peanut" | results2$Forage == "recovered peanut" |
+                 results2$Forage == "recover cached corn" | results2$Forage == "recover peanut" | results2$Forage == "cache peanut" |
+                 results2$Forage == "corn" | results2$Forage == "cigarette butt" | results2$Forage == "cheese puff" |
+                  results2$Forage == "kathy's peanuts" |  results2$Forage == "photographer's peanuts" | 
+                 results2$Forage == "cache cheese puff" | results2$Forage == "recover cheese puff" | 
+                  results2$Forage == "steals cached peanut"| results2$Forage == "peanuts"] <- "Human-provided"
+results2$Forage[results2$Forage == "unk bugs" | results2$Forage=="unk bug" |results2$Forage=="bug" | 
+                results2$Forage == "flying insect" | results2$Forage == "caterpillar" | results2$Forage == "spider" | 
+                  results2$Forage == "grasshopper" | results2$Forage == "moth" |
+                 results2$Forage == "flying bug" | results2$Forage == "insect" | results2$Forage == "termites"]<-"Adult insect"
+results2$Forage[results2$Forage == "large grub" | results2$Forage == "scarab beetle grub" | results2$Forage == "worm"] <-"Insect larva"
+results2$Forage[results2$Forage == "gecko" | results2$Forage=="frog" | results2$Forage == "cache frog"]<-"Amphibian"
+results2$Forage[results2$Forage == "lizard" | results2$Forage == "cache lizard"]<-"Reptile"
+results2$Forage[results2$Forage == "dead rat" | results2$Forage=="rabbit"]<-"Mammal"
+results2$Forage[results2$Forage == "crayfish" | results2$Forage == "shells"] <- "Crustacean" 
+results2$Forage[results2$Forage == "dead leaf"|results2$Forage == "unk"|results2$Forage == "recover unk cache"|
+                  results2$Forage == "unk food"|results2$Forage == "recover cache"|results2$Forage == "unknown"|
+                  results2$Forage == "unknown plant"|results2$Forage == "cache unk"]<-"Unknown"
+results2$Forage[results2$Forage == "acorn"|results2$Forage == "cache acorn"|results2$Forage == "seed"|
+                  results2$Forage == "hickory nut"| results2$Forage == "cache hickory nut" |
+                  results2$Forage == "scrounge acorn" |results2$Forage == "recover cached acorn" |
+                  results2$Forage == "cache acorn in bryophyte" |results2$Forage == "cache acorn in needles" |
+                  results2$Forage == "recovered acorn" |results2$Forage == "recache acorn" |results2$Forage == "re-cache acorn"|
+                  results2$Forage == "recover acorn" |results2$Forage == "cache acorns" |
+                  results2$Forage == "recover and recache acorn"] <- "Seed"
+results2$Forage[results2$Forage == "sand heath berries"|results2$Forage == "palmetto berry"|results2$Forage == "greenbriar berry"] <- "Fruit"
+results2$Forage[results2$Forage == "leaf bathing"|results2$Forage == "fibers"|
+                  results2$Forage == "water"|results2$Forage == "stick"| results2$Forage == ""]<-"None"
+results2$Forage[which(is.na(results2$Forage))]<-"None"
+
+prop.for = aggregate(count ~ Forage + site, FUN = "sum", data = results2)
+
+sub = ggplot(prop.for[which(prop.for$site == "Suburban"),], aes(x = "", y = count, fill = as.factor(Forage)))+
+  geom_bar(stat="identity", width=1,color="white") +
+  coord_polar("y", start=0) + labs(fill = "Food Type") +
+  theme_void() +
+  ggtitle("Suburban") + 
+  theme(plot.title = element_text(hjust = 0.5))
+nat = ggplot(prop.for[which(prop.for$site == "Natural"),], aes(x = "", y = count, fill = as.factor(Forage)))+
+  geom_bar(stat="identity", width=1,color="white") +
+  coord_polar("y", start=0) + labs(fill = "Food Type") +
+  theme_void() +
+  ggtitle("Natural") + 
+  theme(plot.title = element_text(hjust = 0.5))
+
+ggarrange(sub, nat, nrow = 1,common.legend = T,legend = "right")
+
+# Microhabitat
+freq.hab = freq
+freq.hab$count = ifelse(freq.hab$Substrate == "",0,1)
+freq.hab$count = ifelse(is.na(freq.hab$count),0,freq.hab$count)
+
+## Put into categories from MI1 RR
+results = freq.hab
+
+unique(results$Substrate)
+results$Substrate[results$Substrate=="" | results$Substrate == "unk" | results$Substrate == "unk tree" | 
+                    results$Substrate == "none"  | results$Substrate == "mangrove tree" | 
+                    results$Substrate == "palm" | results$Substrate == "unk shrub"] <- "Unknown"
+results$Substrate[results$Substrate == "tarp" | results$Substrate == "roof" | results$Substrate =="cement" | 
+                    results$Substrate == "pavement" | results$Substrate == "brick"]<-"impervious surface"
+results$Substrate[results$Substrate == "coco plum" | results$Substrate== "cocoplum"]<-"rusty lyonia"
+results$Substrate[results$Substrate == "madrona" | results$Substrate == "manzanita"]<-"silk bay"
+results$Substrate[results$Substrate == "sand rosemary"]<-"sand heath"
+results$Substrate[results$Substrate == "brazillian peppertree"]<-"brazilian peppertree"
+results$Substrate[results$Substrate == "mimosa tree"]<-"guanacaste"
+
+results$Substrate[results$Substrate == "street sign"| results$Substrate == "chicken fence" | results$Substrate == "bucket" | 
+                    results$Substrate == "sign" | results$Substrate == "fence post" | results$Substrate == "plastic post" | 
+                    results$Substrate == "antenna" | results$Substrate == "fence" | results$Substrate == "powerline pole" | 
+                    results$Substrate == "wooden carport" | results$Substrate == "light pole" | results$Substrate == "power line" | 
+                    results$Substrate == "powerline" | results$Substrate == "chicken coop"]<-"vertical human structure"
+results$Substrate[results$Substrate == "maple tree" | results$Substrate == "muscadine" | results$Substrate == "silk bay" | 
+                    results$Substrate == "sand heath"| results$Substrate == "palmetto" | results$Substrate == "tallow wood" |
+                    results$Substrate == "groundseltree"| results$Substrate == "rusty lyonia" | 
+                    results$Substrate == "gum bumelia tree" | results$Substrate == "pine" | results$Substrate == "maple" |
+                    results$Substrate == "oak" | results$Substrate == "fetterbush" | results$Substrate == "wax myrtle" | 
+                    results$Substrate == "magnolia" | results$Substrate == "bayberry" | results$Substrate == "greenbriar" |
+                    results$Substrate == "tarflower"  | results$Substrate == "holly" | results$Substrate == "gerberia" |
+                    results$Substrate == "snag" | results$Substrate == "inkberry" | results$Substrate == "hickory" | 
+                    results$Substrate == "scrub blueberry" |results$Substrate == "muscadine vine"]<-"native vegetation"
+results$Substrate[results$Substrate == "avocado tree" | results$Substrate == "banana tree" | results$Substrate == "norfolk island pine"
+                  | results$Substrate == "brazilian peppertree" | results$Substrate == "loquat" | results$Substrate == "loquat tree"
+                  | results$Substrate == "mango tree" | results$Substrate == "non-native bush" | results$Substrate == "guanacaste"
+                  | results$Substrate == "starfruit tree" | results$Substrate == "chinese tallow"] <- "non-native vegetation"
+
+prop.hab = aggregate(count ~ Substrate + site, FUN = "sum", data = results)
+# some microhabitat categories not present/used in natural site
+prop.hab[14,] = c("dirt","Natural",0)
+prop.hab[15,] = c("impervious surface","Natural",0)
+prop.hab[16,] = c("non-native vegetation","Natural",0)
+
+prop.hab$count = as.numeric(prop.hab$count)
+prop.hab$Substrate = as.factor(prop.hab$Substrate)
+
+sub.h = ggplot(prop.hab[which(prop.hab$site == "Suburban"),], aes(x = "", y = count, fill = Substrate))+
+  geom_bar(stat="identity", width=1,color="white") +
+  coord_polar("y", start=0) + labs(fill = "Microhabitat Type") +
+  theme_void() +
+  ggtitle("Suburban") + 
+  theme(plot.title = element_text(hjust = 0.5))
+nat.h = ggplot(prop.hab[which(prop.hab$site == "Natural"),], aes(x = "", y = count, fill = Substrate))+
+  geom_bar(stat="identity", width=1,color="white") +
+  coord_polar("y", start=0) + labs(fill = "Microhabitat Type") +
+  theme_void() +
+  ggtitle("Natural") + 
+  theme(plot.title = element_text(hjust = 0.5))
+
+ggarrange(sub.h, nat.h, nrow = 1,common.legend = T,legend = "right")
+
+```
 
 # **DISCUSSION**
 Anthropogenic change is creating unpredictable heterogeneity in the environment that requires some level of fast, adaptable learning in wildlife populations. In some species, the general cognitive trait, behavioral flexibility, is thought to underlie the ability to cope with rapid changes in human-modified environments [@sol2002behavioural; @vardi2022environmental]. Our previous work in the great-tailed grackle supported this hypothesis because grackles that were trained to be more flexible foraged on more diverse food and used more distinct behaviors to forage in the wild [@logan2025behavioral]. The grackle is an urban-adapted generalist species that has demonstrated adaptability to environmental change through a rapid range expansion [@wehtje2003range]. We tested whether the same training to increase behavioral flexibility in a threatened species, the Florida scrub-jay (FLSJ), would lead to more adaptable foraging and habitat use behaviors in the wild. However, we found no effect of the behavioral flexibility training in this species.
