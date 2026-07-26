@@ -94,7 +94,7 @@ Environments where informational cues about resources vary in a heterogeneous (b
 
 &nbsp;
 
-This investigation asked whether a method of experimentally increasing environmental heterogeneity through serial reversal learning leads to increased behavioral flexibility and greater fitness in human modified environments. Serial reversal learning tasks have been performed with a wide diversity of species [birds: @bond_serial_2007; bumblebees: @strang2014serial; stingrays: @daniel2020serial]. There is variation across individuals and species in their performance, however almost all previous studies show that individuals improve the time it took to change their behavior if the reversal manipulation is given multiple times in sequence [rats: @mackintosh1968factors; guppies: @lucon2014discrimination; poison frogs: @liu2016learning; grackles: @logan2023flexmanippcj]. We aim to conduct a flexibility manipulation in common species that are resilient to human-disturbance (California scrub-jays or blue jays) to understand how flexibility relates to success, and implement these interventions in a disturbance-sensitive species (Florida scrub-jays). Ultimately, we were unable to conduct the flexibility manipulation in a disturbance-resilient jay species. Nevertheless, our previous research in disturbance-resilient great-tailed grackles already demonstrated that increased flexibility increases the diversity of behaviors related to success in human modified environments [@Logan2025behavioral]. What is still unknown, is whether this manipulation can also influence the success of a species that is threatened or endangered with extinction. That is the research we focused on here.
+This investigation asked whether a method of experimentally increasing environmental heterogeneity through serial reversal learning leads to increased behavioral flexibility and greater fitness in human modified environments. Serial reversal learning tasks have been performed with a wide diversity of species [birds: @bond_serial_2007; bumblebees: @strang2014serial; stingrays: @daniel2020serial]. There is variation across individuals and species in their performance, however almost all previous studies show that individuals improve the time it took to change their behavior if the reversal manipulation is given multiple times in sequence [rats: @mackintosh1968factors; guppies: @lucon2014discrimination; poison frogs: @liu2016learning; grackles: @logan2023flexmanippcj]. We aim to conduct a flexibility manipulation in common species that are resilient to human-disturbance (California scrub-jays or blue jays) to understand how flexibility relates to success, and implement these interventions in a disturbance-sensitive species (Florida scrub-jays). Ultimately, we were unable to conduct the flexibility manipulation in a disturbance-resilient jay species. Nevertheless, our previous research in disturbance-resilient great-tailed grackles already demonstrated that increased flexibility increases the diversity of behaviors related to success in human modified environments [@logan2025behavioral]. What is still unknown, is whether this manipulation can also influence the success of a species that is threatened or endangered with extinction. That is the research we focused on here.
 
 While we did not examine the potential spread of the post-manipulation success behaviors from manipulated individuals to individuals that are not involved in our studies, we acknowledge that this is a possibility worthy of future investigation. Manipulating the flexibility of a few individuals could have population-level effects because significant research on social information use in birds [e.g., @valente2021conspecific] demonstrates the potential for the manipulated behavior to disseminate to conspecifics (for example, if manipulated individuals are faster at locating new resources, which could attract the attention of conspecifics, or if unmanipulated individuals copy the manipulated individuals’ nesting or foraging locations). Indeed, there is evidence for social learning in California and Florida scrub-jays [@midford2000social; @mccune2022social]. Even if the behaviors of manipulated individuals do not spread in the population through social learning, investing in the training of specific individuals to increase their success in the wild could still have conservation impacts. In some cases, it is possible to train many individuals in a population or a species because there are not many individuals left [@greggor2021pre]. It is also possible to train all individuals involved in a conservation management event such as a translocation [@greggor2021pre]. Therefore, there can still be significant population consequences even if each individual needs to be trained to achieve the goal.
 
@@ -271,7 +271,7 @@ We used poisson regression to assess whether jays in human modified areas forage
 
 
 Table 2: Description of which of the original planned research questions were achieved, the species, samples sizes and the results. Also noted is the post-hoc unregistered analysis that explores differences in behavior between suburban and natural Florida scrub-jays.
-![](mi1jaysAchievedStudyTable.png){width=100%}
+![](mi1_jays_Table2.png){width=100%}
 
 
 # **RESULTS**
@@ -881,7 +881,8 @@ nat = ggplot(prop.for[which(prop.for$site == "Natural"),], aes(x = "", y = count
   ggtitle("Natural") + 
   theme(plot.title = element_text(hjust = 0.5))
 
-ggarrange(sub, nat, nrow = 1,common.legend = T,legend = "right")
+library(ggpubr)
+forag = ggarrange(sub, nat, nrow = 1,common.legend = T,legend = "right")
 
 # Microhabitat
 freq.hab = freq
@@ -934,19 +935,18 @@ prop.hab$Substrate = as.factor(prop.hab$Substrate)
 sub.h = ggplot(prop.hab[which(prop.hab$site == "Suburban"),], aes(x = "", y = count, fill = Substrate))+
   geom_bar(stat="identity", width=1,color="white") +
   coord_polar("y", start=0) + labs(fill = "Microhabitat Type") +
-  theme_void() +
-  ggtitle("Suburban") + 
-  theme(plot.title = element_text(hjust = 0.5))
+  theme_void() 
 nat.h = ggplot(prop.hab[which(prop.hab$site == "Natural"),], aes(x = "", y = count, fill = Substrate))+
   geom_bar(stat="identity", width=1,color="white") +
   coord_polar("y", start=0) + labs(fill = "Microhabitat Type") +
-  theme_void() +
-  ggtitle("Natural") + 
-  theme(plot.title = element_text(hjust = 0.5))
+  theme_void() 
 
-ggarrange(sub.h, nat.h, nrow = 1,common.legend = T,legend = "right")
+hab = ggarrange(sub.h, nat.h, nrow = 1,common.legend = T,legend = "right")
+
+ggarrange(forag, hab, nrow = 2, common.legend = F, align = "hv")
 
 ```
+![](mi1_jays_Figure5.png){width=100%}
 Figure 5: The proportion of different food types taken (top) and microhabitat types used (bottom) among suburban (left) and natural (right) site Florida scrub-jays. Diversity of food types did not differ between the two sites, but there was a significant difference in the diversity of microhabitats used. Note that vertical human structure includes fence posts, poles, power lines, street signs, and buildings.
 
 
